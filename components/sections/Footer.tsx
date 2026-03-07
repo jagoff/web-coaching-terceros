@@ -56,7 +56,7 @@ export default function Footer() {
   return (
     <footer className="footer-bg" role="contentinfo">
       <div className="container">
-        <div className="py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
+        <div className="pt-16 pb-12 sm:pt-20 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
           {/* Links — Navigation + Services combined */}
           <div className="grid grid-cols-2 gap-6">
             <div>
