@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   CheckCircle2,
   MessageCircle,
@@ -15,6 +15,8 @@ import {
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
 
   const [form, setForm] = useState({
     name: "",
@@ -67,8 +69,8 @@ export default function Contact() {
       className="section section-dark relative overflow-hidden"
       ref={ref}
     >
-      {/* Glow */}
-      <div
+      {/* Glow with scroll parallax */}
+      <motion.div
         className="orb orb-gold absolute"
         style={{
           width: 600,
@@ -76,6 +78,7 @@ export default function Contact() {
           bottom: "-30%",
           right: "-15%",
           opacity: 0.35,
+          y: orbY,
         }}
         aria-hidden="true"
       />

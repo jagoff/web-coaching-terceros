@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
+import { scrollToElement } from "@/lib/scroll";
 
 const plans = [
   {
@@ -64,13 +65,7 @@ export default function Pricing() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  const handleScroll = (href: string) => scrollToElement(href);
 
   return (
     <section id="precios" className="section section-surface section-gold-border-top" ref={ref}>

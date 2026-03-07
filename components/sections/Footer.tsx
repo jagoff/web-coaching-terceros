@@ -1,6 +1,7 @@
 "use client";
 
 import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { scrollToElement, scrollToTop } from "@/lib/scroll";
 
 const navLinks = [
   { label: "Sobre mí", href: "#sobre-mi" },
@@ -41,11 +42,7 @@ function ScrollLink({
 }) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+    scrollToElement(href);
   };
 
   return (
@@ -67,7 +64,7 @@ export default function Footer() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  scrollToTop();
                 }}
                 aria-label="ELEVA Coaching — inicio"
               >

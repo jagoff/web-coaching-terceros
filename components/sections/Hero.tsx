@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
+import { scrollToElement } from "@/lib/scroll";
 
 type Particle = {
   id: number;
@@ -26,6 +27,11 @@ const fadeUp = {
 export default function Hero() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
     setMounted(true);
@@ -42,53 +48,54 @@ export default function Hero() {
     );
   }, []);
 
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  const handleScroll = (href: string) => scrollToElement(href);
 
   return (
     <section
       id="inicio"
+      ref={sectionRef}
       className="hero-bg relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
       aria-label="Sección principal"
     >
-      {/* Decorative orbs */}
-      <div
-        className="orb orb-gold animate-float-slow"
-        style={{
-          width: "clamp(300px, 50vw, 700px)",
-          height: "clamp(300px, 50vw, 700px)",
-          top: "10%",
-          left: "-15%",
-          opacity: 0.6,
-        }}
-      />
-      <div
-        className="orb orb-amber animate-float"
-        style={{
-          width: "clamp(200px, 35vw, 500px)",
-          height: "clamp(200px, 35vw, 500px)",
-          top: "-5%",
-          right: "-10%",
-          opacity: 0.4,
-          animationDelay: "2s",
-        }}
-      />
-      <div
-        className="orb orb-gold"
-        style={{
-          width: "clamp(150px, 25vw, 350px)",
-          height: "clamp(150px, 25vw, 350px)",
-          bottom: "15%",
-          right: "20%",
-          opacity: 0.3,
-          filter: "blur(100px)",
-        }}
-      />
+      {/* Decorative orbs with scroll parallax */}
+      <motion.div style={{ y: orbY1 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="orb orb-gold animate-float-slow"
+          style={{
+            width: "clamp(300px, 50vw, 700px)",
+            height: "clamp(300px, 50vw, 700px)",
+            top: "10%",
+            left: "-15%",
+            opacity: 0.6,
+          }}
+        />
+      </motion.div>
+      <motion.div style={{ y: orbY2 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="orb orb-amber animate-float"
+          style={{
+            width: "clamp(200px, 35vw, 500px)",
+            height: "clamp(200px, 35vw, 500px)",
+            top: "-5%",
+            right: "-10%",
+            opacity: 0.4,
+            animationDelay: "2s",
+          }}
+        />
+      </motion.div>
+      <motion.div style={{ y: orbY3 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="orb orb-gold"
+          style={{
+            width: "clamp(150px, 25vw, 350px)",
+            height: "clamp(150px, 25vw, 350px)",
+            bottom: "15%",
+            right: "20%",
+            opacity: 0.3,
+            filter: "blur(100px)",
+          }}
+        />
+      </motion.div>
 
       {/* Floating particles — only rendered client-side to avoid hydration mismatch */}
       {mounted && (

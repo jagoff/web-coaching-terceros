@@ -9,11 +9,12 @@ import {
   Contact,
   Footer,
   ScrollProgress,
+  SmoothScroll,
 } from "@/components/DynamicSections";
 
 export default function Home() {
   return (
-    <>
+    <SmoothScroll>
       <ScrollProgress />
       <main>
         <Hero />
@@ -26,6 +27,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </SmoothScroll>
   );
 }

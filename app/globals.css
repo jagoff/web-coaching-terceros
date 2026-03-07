@@ -554,6 +554,103 @@ p {
 }
 
 /* ============================================================
+   LENIS SMOOTH SCROLL
+   ============================================================ */
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ============================================================
+   SCROLL-DRIVEN ANIMATIONS (Progressive Enhancement)
+   ============================================================ */
+
+/* -- Reveal: sections fade-in + slide up as they enter viewport -- */
+@keyframes scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -- Parallax: decorative orbs drift slower than scroll -- */
+@keyframes scroll-parallax-up {
+  from {
+    transform: translateY(60px);
+  }
+  to {
+    transform: translateY(-60px);
+  }
+}
+
+/* -- Heading reveal with subtle scale -- */
+@keyframes scroll-heading-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* -- Divider grow from center -- */
+@keyframes scroll-divider-grow {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Apply scroll-driven animations only where supported */
+@supports (animation-timeline: view()) {
+  .scroll-reveal {
+    animation: scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  .scroll-parallax {
+    animation: scroll-parallax-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  .scroll-heading {
+    animation: scroll-heading-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  .scroll-divider {
+    animation: scroll-divider-grow linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* ============================================================
    SECCIONES ESPECIALES
    ============================================================ */
 

@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { scrollToElement } from "@/lib/scroll";
 
 const stats = [
   {
@@ -86,14 +87,10 @@ function CountUp({
 export default function Results() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  const handleScroll = (href: string) => scrollToElement(href);
 
   return (
     <section
@@ -105,15 +102,16 @@ export default function Results() {
           "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%), var(--dark-surface)",
       }}
     >
-      {/* Decorative orbs */}
-      <div
+      {/* Decorative orb with scroll parallax */}
+      <motion.div
         className="orb orb-gold absolute"
         style={{
           width: 400,
           height: 400,
           top: "-20%",
           left: "50%",
-          transform: "translateX(-50%)",
+          x: "-50%",
+          y: orbY,
           opacity: 0.5,
         }}
         aria-hidden="true"
