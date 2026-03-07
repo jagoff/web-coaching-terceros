@@ -22,7 +22,6 @@ export default function Contact() {
     phone: "",
     service: "",
     message: "",
-    privacy: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
@@ -34,7 +33,6 @@ export default function Contact() {
       errs.email = "Introduce un email válido";
     if (!form.phone.trim()) errs.phone = "El teléfono es obligatorio";
     if (!form.service) errs.service = "Selecciona un servicio";
-    if (!form.privacy) errs.privacy = "Debes aceptar la política de privacidad";
     return errs;
   };
 
@@ -43,12 +41,10 @@ export default function Contact() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value, type } = e.target;
-    const checked =
-      type === "checkbox" ? (e.target as HTMLInputElement).checked : undefined;
+    const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
@@ -368,40 +364,6 @@ export default function Contact() {
                         rows={4}
                       />
                     </div>
-
-                    {/* Privacy */}
-                    <div className="flex items-start gap-3">
-                      <input
-                        id="privacy"
-                        name="privacy"
-                        type="checkbox"
-                        className="mt-1 w-4 h-4 flex-shrink-0 cursor-pointer"
-                        style={{ accentColor: "var(--gold-primary)" }}
-                        checked={form.privacy}
-                        onChange={handleChange}
-                        aria-invalid={!!errors.privacy}
-                      />
-                      <label
-                        htmlFor="privacy"
-                        className="text-sm cursor-pointer"
-                        style={{ color: "var(--text-muted)" }}
-                      >
-                        Acepto la{" "}
-                        <a
-                          href="#"
-                          className="underline transition-colors"
-                          style={{ color: "var(--gold-primary)" }}
-                        >
-                          política de privacidad
-                        </a>{" "}
-                        <span style={{ color: "var(--gold-primary)" }}>*</span>
-                      </label>
-                    </div>
-                    {errors.privacy && (
-                      <p role="alert" className="text-xs -mt-3" style={{ color: "#ef4444" }}>
-                        {errors.privacy}
-                      </p>
-                    )}
 
                     {/* Submit */}
                     <button
