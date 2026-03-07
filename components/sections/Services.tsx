@@ -1,0 +1,174 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
+
+const services = [
+  {
+    id: "vida",
+    icon: Flame,
+    title: "Coaching de Vida",
+    description:
+      "Para quienes sienten que están viviendo la vida de alguien más. Juntos clarificamos tu propósito, eliminamos los bloqueos invisibles y construimos la versión más auténtica de ti.",
+    benefits: [
+      "Claridad de propósito y dirección",
+      "Gestión emocional y resiliencia",
+      "Relaciones más profundas y auténticas",
+      "Confianza radical en tus decisiones",
+      "Balance vida-trabajo real y sostenible",
+    ],
+    cta: "Quiero transformar mi vida",
+    featured: false,
+  },
+  {
+    id: "negocios",
+    icon: Gem,
+    title: "Coaching de Negocios",
+    description:
+      "Para emprendedores y líderes que quieren llevar su empresa al siguiente nivel sin sacrificar su bienestar. Estrategia, mentalidad y ejecución — todo en uno.",
+    benefits: [
+      "Liderazgo de alto rendimiento",
+      "Claridad estratégica y foco ejecutivo",
+      "Sistemas que escalan sin depender de ti",
+      "Gestión y motivación de equipos",
+      "Crecimiento sostenible y rentable",
+    ],
+    cta: "Escala mi negocio",
+    featured: true,
+    badge: "MÁS SOLICITADO",
+  },
+];
+
+export default function Services() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="servicios" className="section section-dark" ref={ref}>
+      <div className="container">
+        {/* Section header */}
+        <div className="text-center mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center mb-6"
+          >
+            <span className="badge">Servicios</span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="heading-xl"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            ¿En qué área necesitas{" "}
+            <span className="text-gradient">elevar</span> más?
+          </motion.h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="divider-gold mt-6"
+          />
+        </div>
+
+        {/* Service cards */}
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-12 max-w-6xl mx-auto">
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, scale: 0.92, y: 30 }}
+                animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.2 + i * 0.15,
+                  ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number],
+                }}
+                className={`glass-card p-10 md:p-12 flex flex-col group relative overflow-hidden${service.featured ? " ring-1" : ""}`}
+                style={
+                  service.featured
+                    ? {
+                        borderColor: "rgba(212,175,55,0.45)",
+                        boxShadow:
+                          "0 0 40px rgba(212,175,55,0.12), 0 8px 32px rgba(0,0,0,0.5)",
+                      }
+                    : {}
+                }
+                whileHover={service.featured ? { boxShadow: "0 0 60px rgba(212,175,55,0.2), 0 8px 32px rgba(0,0,0,0.5)" } : {}}
+              >
+                {/* Featured glow background */}
+                {service.featured && (
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-20"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at top right, rgba(212,175,55,0.25) 0%, transparent 60%)",
+                    }}
+                  />
+                )}
+
+                {/* Badge */}
+                {service.badge && (
+                  <div className="flex mb-4">
+                    <span className="badge text-xs">{service.badge}</span>
+                  </div>
+                )}
+
+                {/* Icon */}
+                <div
+                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110"
+                  style={{
+                    background: "rgba(212,175,55,0.12)",
+                    border: "1px solid rgba(212,175,55,0.25)",
+                    color: "var(--gold-primary)",
+                  }}
+                >
+                  <Icon size={26} strokeWidth={1.5} />
+                </div>
+
+                <h3
+                  className="heading-md mb-6"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {service.title}
+                </h3>
+
+                <p className="mb-10" style={{ color: "var(--text-secondary)", lineHeight: "1.75" }}>
+                  {service.description}
+                </p>
+
+                {/* Benefits */}
+                <ul className="space-y-4 mb-10 flex-1">
+                  {service.benefits.map((benefit) => (
+                    <li key={benefit} className="flex items-start gap-3">
+                      <CheckCircle2
+                        size={16}
+                        className="flex-shrink-0 mt-0.5"
+                        style={{ color: "var(--gold-primary)" }}
+                      />
+                      <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                        {benefit}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <button
+                  className={service.featured ? "btn-primary" : "btn-secondary"}
+                >
+                  {service.cta} <ArrowRight size={16} className="inline ml-1" />
+                </button>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
