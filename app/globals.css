@@ -187,28 +187,9 @@ p {
   padding-block: var(--section-padding-y);
 }
 
-/* ---- Gradientes ---- */
-
-.gradient-gold {
-  background: var(--gradient-gold);
-}
-
-.gradient-gold-h {
-  background: var(--gradient-gold-h);
-}
-
 /* Texto con gradiente dorado */
 .text-gradient {
   background: linear-gradient(135deg, #D4AF37 0%, #F59E0B 55%, #E8C94A 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Variante más brillante para hero */
-.text-gradient-bright {
-  background: linear-gradient(135deg, #E8C94A 0%, #FCD34D 40%, #F59E0B 70%, #D4AF37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -385,14 +366,6 @@ p {
 
 /* ---- Glow effects ---- */
 
-.glow-gold {
-  box-shadow: var(--shadow-gold-md);
-}
-
-.glow-gold-lg {
-  box-shadow: var(--shadow-gold-lg);
-}
-
 /* Orbe de luz difusa (decorativo) */
 .orb {
   position: absolute;
@@ -536,35 +509,6 @@ p {
   min-height: 120px;
 }
 
-/* ---- Animaciones de entrada ---- */
-
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-}
-
-.fade-up.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-in {
-  opacity: 0;
-  transition: opacity 0.6s var(--ease-out);
-}
-
-.fade-in.in-view {
-  opacity: 1;
-}
-
-/* Delays para stagger */
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
-.delay-5 { transition-delay: 0.5s; }
-.delay-6 { transition-delay: 0.6s; }
 
 /* ============================================================
    @KEYFRAMES
@@ -593,83 +537,6 @@ p {
   }
 }
 
-/* Shimmer — barre de luz horizontal */
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-/* Bounce suave — flecha de scroll */
-@keyframes bounce-y {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
-}
-
-/* Pulse sutil */
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-/* Spin lento */
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Fade in desde abajo */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Escala desde el centro */
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.90);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Shimmer de texto (heading) */
-@keyframes text-shimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* ============================================================
    CLASES DE ANIMACIÓN APLICADAS
    ============================================================ */
@@ -684,41 +551,6 @@ p {
 
 .animate-glow {
   animation: glow 3s ease-in-out infinite alternate;
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--gold-primary) 0%,
-    var(--amber-light) 30%,
-    var(--gold-primary) 60%,
-    var(--amber-primary) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
-.animate-bounce-y {
-  animation: bounce-y 2s ease-in-out infinite;
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 3s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s var(--ease-out) both;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.5s var(--ease-bounce) both;
 }
 
 /* ============================================================
