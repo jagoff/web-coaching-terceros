@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { DynamicNavbar } from "@/components/DynamicSections";
+import { DynamicNavbar, CursorGlow } from "@/components/DynamicSections";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -19,6 +19,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://coaching-landing-cyan.vercel.app"
+  ),
   title: "ELEVA Coaching | Transforma Tu Vida y Tu Negocio",
   description:
     "Coaching de vida y negocios para personas que saben que pueden más. Metodología probada, resultados medibles y acompañamiento real. Agenda tu sesión gratuita.",
@@ -57,6 +60,8 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
+        <div className="noise-overlay" aria-hidden="true" />
+        <CursorGlow />
         <DynamicNavbar />
         {children}
       </body>

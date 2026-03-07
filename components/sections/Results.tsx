@@ -1,9 +1,39 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
+
+const headerStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const blurUp: Variants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const statCard: Variants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9, filter: "blur(6px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      delay: 0.2 + i * 0.12,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
 
 const stats = [
   {
@@ -56,21 +86,21 @@ function CountUp({
 
   useEffect(() => {
     if (!started) return;
-    const duration = 1800;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
+    const duration = 2000;
+    const totalFrames = 70;
     let frame = 0;
 
     const timer = setInterval(() => {
       frame++;
-      current = Math.min(current + increment, value);
-      setDisplayed(current);
-      if (frame >= steps) {
+      const progress = frame / totalFrames;
+      // ease-out cubic for a snappy feel
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayed(eased * value);
+      if (frame >= totalFrames) {
         setDisplayed(value);
         clearInterval(timer);
       }
-    }, duration / steps);
+    }, duration / totalFrames);
 
     return () => clearInterval(timer);
   }, [started, value]);
@@ -119,19 +149,17 @@ export default function Results() {
 
       <div className="container relative z-10">
         {/* Header */}
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center mb-6"
-          >
+        <motion.div
+          variants={headerStagger}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-14 md:mb-24"
+        >
+          <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">Impacto Real</span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
@@ -139,22 +167,23 @@ export default function Results() {
             <span className="text-gradient">hablan por sí solos</span>
           </motion.h2>
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
             className="divider-gold mt-6"
           />
-        </div>
+        </motion.div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12 lg:gap-16 mb-14 md:mb-24">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.12 }}
+              custom={i}
+              variants={statCard}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
               className="text-center"
+              whileHover={{ scale: 1.06, y: -4 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Number */}
               <p className="stat-number mb-2">
@@ -187,9 +216,9 @@ export default function Results() {
 
         {/* Call to action */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
           <p

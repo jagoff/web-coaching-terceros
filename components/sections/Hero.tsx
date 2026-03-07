@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 
@@ -13,15 +13,55 @@ type Particle = {
   delay: number;
   duration: number;
   opacity: number;
+  drift: number;
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (delay = 0) => ({
+/* ---------- animation variants ---------- */
+
+const stagger: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const revealUp: Variants = {
+  hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0, 0, 0.2, 1] as [number, number, number, number], delay },
-  }),
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const revealScale: Variants = {
+  hidden: { opacity: 0, scale: 0.85, filter: "blur(10px)" },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const lineGrow: Variants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const ctaReveal: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 200, damping: 20 },
+  },
 };
 
 export default function Hero() {
@@ -32,18 +72,21 @@ export default function Hero() {
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
 
   useEffect(() => {
     setMounted(true);
     setParticles(
-      Array.from({ length: 28 }, (_, i) => ({
+      Array.from({ length: 35 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
         size: Math.random() * 3 + 1,
-        delay: Math.random() * 6,
-        duration: Math.random() * 4 + 5,
-        opacity: 0.3 + Math.random() * 0.4,
+        delay: Math.random() * 4,
+        duration: Math.random() * 4 + 6,
+        opacity: 0.2 + Math.random() * 0.5,
+        drift: (Math.random() - 0.5) * 30,
       }))
     );
   }, []);
@@ -97,7 +140,7 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Floating particles — only rendered client-side to avoid hydration mismatch */}
+      {/* Floating particles — varied drift + pulse */}
       {mounted && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           {particles.map((p) => (
@@ -110,10 +153,13 @@ export default function Hero() {
                 width: p.size,
                 height: p.size,
                 background: `rgba(212, 175, 55, ${p.opacity})`,
+                boxShadow: p.size > 2.5 ? `0 0 ${p.size * 3}px rgba(212,175,55,0.3)` : "none",
               }}
               animate={{
-                y: [0, -20, 0],
-                opacity: [0.3, 0.8, 0.3],
+                y: [0, -30 - Math.random() * 20, 0],
+                x: [0, p.drift, 0],
+                opacity: [p.opacity * 0.4, p.opacity, p.opacity * 0.4],
+                scale: [1, 1.2, 1],
               }}
               transition={{
                 duration: p.duration,
@@ -126,115 +172,116 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Main content */}
-      <div className="container relative z-10 flex flex-col items-center text-center px-4 sm:px-6" style={{ paddingTop: "clamp(140px, 20vh, 180px)", paddingBottom: "clamp(80px, 12vh, 120px)" }}>
-        {/* Badge */}
+      {/* Main content — fades out on scroll */}
+      <motion.div
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="container relative z-10 flex flex-col items-center text-center"
+      >
         <motion.div
-          variants={fadeUp}
+          variants={stagger}
           initial="hidden"
           animate="visible"
-          custom={0.1}
-          className="badge mb-8"
+          className="flex flex-col items-center"
+          style={{ paddingTop: "clamp(120px, 18vh, 180px)", paddingBottom: "clamp(60px, 10vh, 120px)" }}
         >
-          <Sparkles size={12} fill="currentColor" />
-          COACHING EJECUTIVO · RESULTADOS REALES
-        </motion.div>
+          {/* Badge */}
+          <motion.div variants={revealScale} className="badge mb-8">
+            <Sparkles size={12} fill="currentColor" />
+            COACHING EJECUTIVO · RESULTADOS REALES
+          </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.25}
-          className="display-text max-w-5xl mb-10 px-4"
-          style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
-        >
-          Deja de sobrevivir.
-          <br className="block my-3" />
-          <span className="text-gradient">Empieza a liderar</span>
-          <br className="block my-3" />
-          tu propia vida.
-        </motion.h1>
-
-        {/* Decorative line */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="divider-gold mb-10"
-          style={{ width: "80px", height: "3px" }}
-        />
-
-        {/* Subheadline */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.45}
-          className="lead-text max-w-2xl mb-12 px-4"
-        >
-          Coaching de vida y negocios para personas que saben que pueden
-          más — y están listas para demostrarlo.{" "}
-          <br className="hidden sm:block" />
-          Metodología probada. Resultados medibles. Acompañamiento real.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.6}
-          className="flex flex-col sm:flex-row gap-5 sm:gap-6 w-full sm:w-auto px-4 max-w-2xl"
-        >
-          <button
-            className="btn-primary animate-glow"
-            onClick={() => handleScroll("#contacto")}
+          {/* Headline — each line reveals separately */}
+          <motion.h1
+            className="display-text max-w-5xl mb-6 sm:mb-10"
+            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
           >
-            Agenda tu sesión gratuita →
-          </button>
-          <button
-            className="btn-secondary"
-            onClick={() => handleScroll("#proceso")}
-          >
-            Ver cómo funciona ↓
-          </button>
-        </motion.div>
+            <motion.span variants={revealUp} className="block">
+              Deja de sobrevivir.
+            </motion.span>
+            <motion.span variants={revealUp} className="block text-gradient mt-3">
+              Empieza a liderar
+            </motion.span>
+            <motion.span variants={revealUp} className="block mt-3">
+              tu propia vida.
+            </motion.span>
+          </motion.h1>
 
-        {/* Social proof */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.75}
-          className="flex items-center justify-center mt-20 px-4"
-        >
-          <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
-            Más de{" "}
-            <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>500 clientes</span>{" "}
-            transformados · {" "}
-            <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>10 años</span>{" "}
-            de experiencia certificada
-          </p>
+          {/* Decorative line */}
+          <motion.div
+            variants={lineGrow}
+            className="divider-gold mb-10"
+            style={{ width: "80px", height: "3px" }}
+          />
+
+          {/* Subheadline */}
+          <motion.p
+            variants={revealUp}
+            className="lead-text max-w-2xl mb-8 sm:mb-12"
+          >
+            Coaching de vida y negocios para personas que saben que pueden
+            más — y están listas para demostrarlo.
+            <br className="hidden sm:block" />
+            Metodología probada. Resultados medibles. Acompañamiento real.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            variants={ctaReveal}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
+          >
+            <motion.button
+              className="btn-primary animate-glow"
+              onClick={() => handleScroll("#contacto")}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              Agenda tu sesión gratuita →
+            </motion.button>
+            <motion.button
+              className="btn-secondary"
+              onClick={() => handleScroll("#proceso")}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              Ver cómo funciona ↓
+            </motion.button>
+          </motion.div>
+
+          {/* Social proof */}
+          <motion.div
+            variants={revealUp}
+            className="flex items-center justify-center mt-12 sm:mt-20"
+          >
+            <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
+              Más de{" "}
+              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>500 clientes</span>{" "}
+              transformados ·{" "}
+              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>10 años</span>{" "}
+              de experiencia certificada
+            </p>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer bg-transparent border-0 z-10"
         style={{ color: "var(--text-muted)" }}
         onClick={() => handleScroll("#sobre-mi")}
+        whileHover={{ color: "var(--gold-primary)" }}
         aria-label="Desplazarse hacia abajo"
       >
         <span className="text-xs uppercase tracking-widest" style={{ letterSpacing: "0.2em" }}>
           Descubre más
         </span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
         >
           <ArrowDown size={20} />
         </motion.div>

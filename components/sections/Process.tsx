@@ -1,8 +1,38 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { Search, Compass, Zap, Star } from "lucide-react";
+
+const headerStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const blurUp: Variants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const stepReveal: Variants = {
+  hidden: { opacity: 0, y: 50, rotateY: -8, filter: "blur(4px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateY: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      delay: 0.35 + i * 0.15,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
 
 const steps = [
   {
@@ -43,41 +73,32 @@ export default function Process() {
     <section id="proceso" className="section section-surface section-gold-border-top" ref={ref}>
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-24 max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center mb-6"
-          >
+        <motion.div
+          variants={headerStagger}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-14 md:mb-24 max-w-3xl mx-auto"
+        >
+          <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">El Proceso</span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            variants={blurUp}
             className="heading-xl mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Tu transformación en{" "}
             <span className="text-gradient">4 pasos</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lead-text"
-          >
+          <motion.p variants={blurUp} className="lead-text">
             No existe el cambio sin estructura. Mi metodología garantiza que
             cada sesión tenga un propósito claro y un avance medible.
           </motion.p>
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.35 }}
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
             className="divider-gold mt-6"
           />
-        </div>
+        </motion.div>
 
         {/* Steps — desktop horizontal / mobile vertical */}
         <div className="relative">
@@ -100,20 +121,20 @@ export default function Process() {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 relative z-10">
             {steps.map((step, i) => {
               const Icon = step.icon;
               return (
                 <motion.div
                   key={step.number}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.3 + i * 0.15,
-                    ease: [0, 0, 0.2, 1] as [number, number, number, number],
-                  }}
+                  custom={i}
+                  variants={stepReveal}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
                   className="process-step glass-card-sm group p-6"
+                  style={{ perspective: "600px" }}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   {/* Ghost number */}
                   <span className="step-number" aria-hidden="true">
@@ -121,9 +142,13 @@ export default function Process() {
                   </span>
 
                   {/* Icon circle */}
-                  <div className="step-icon group-hover:scale-110 transition-transform duration-300">
+                  <motion.div
+                    className="step-icon"
+                    whileHover={{ scale: 1.15, rotate: -5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                  >
                     <Icon size={22} strokeWidth={1.5} />
-                  </div>
+                  </motion.div>
 
                   {/* Number label */}
                   <p

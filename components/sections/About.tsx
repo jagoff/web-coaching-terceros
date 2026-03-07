@@ -1,8 +1,47 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, type Variants } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+
+const slideReveal: Variants = {
+  hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const credentialStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } },
+};
+
+const credentialPop: Variants = {
+  hidden: { opacity: 0, scale: 0.8, y: 10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 18 },
+  },
+};
+
+const statReveal: Variants = {
+  hidden: { opacity: 0, y: 24, scale: 0.9 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: 0.5 + i * 0.1,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
 
 const credentials = [
   "ICF Certified Coach · PCC Level",
@@ -27,6 +66,8 @@ const floatingBadges = [
 export default function About() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
     <section
@@ -35,13 +76,14 @@ export default function About() {
       ref={ref}
     >
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-28 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28 items-center">
           {/* Image column */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0, 0, 0.2, 1] as [number, number, number, number] }}
-            className="relative order-2 lg:order-1"
+            custom={-60}
+            variants={slideReveal}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="relative order-2 lg:order-1 mt-4 lg:mt-0"
           >
             {/* Badge */}
             <div className="mb-10 flex justify-start">
@@ -92,9 +134,9 @@ export default function About() {
             {floatingBadges.map((badge) => (
               <motion.div
                 key={badge.text}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: badge.delay, duration: 0.5, ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number] }}
+                initial={{ opacity: 0, scale: 0.6, y: 20, filter: "blur(6px)" }}
+                animate={isInView ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" } : {}}
+                transition={{ delay: badge.delay + 0.3, type: "spring", stiffness: 260, damping: 16 }}
                 className="absolute badge hidden lg:flex"
                 style={{
                   top: badge.top,
@@ -110,12 +152,13 @@ export default function About() {
 
           {/* Text column */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0, 0, 0.2, 1] as [number, number, number, number], delay: 0.15 }}
+            custom={60}
+            variants={slideReveal}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="order-1 lg:order-2"
           >
-            <h2 className="heading-xl mb-10" style={{ fontFamily: "var(--font-heading)" }}>
+            <h2 className="heading-xl mb-6 sm:mb-10" style={{ fontFamily: "var(--font-heading)" }}>
               Transformé mi vida.{" "}
               <br />
               <span className="text-gradient">Ahora te ayudo a</span>
@@ -123,9 +166,9 @@ export default function About() {
               transformar la tuya.
             </h2>
 
-            <div className="divider-gold-left mb-10" />
+            <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-8">
+            <p className="lead-text mb-6 sm:mb-8">
               Soy Valentina, coach certificada con más de 10 años acompañando
               a personas y empresas en sus puntos de inflexión. Empecé desde
               cero — sin red de seguridad, sin hoja de ruta. Solo la certeza
@@ -139,14 +182,19 @@ export default function About() {
             </p>
 
             {/* Credentials */}
-            <div className="flex flex-wrap gap-4 mb-14">
+            <motion.div
+              variants={credentialStagger}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-14"
+            >
               {credentials.map((cred) => (
-                <div key={cred} className="credential-chip">
+                <motion.div key={cred} variants={credentialPop} className="credential-chip" whileHover={{ scale: 1.05, y: -2 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                   <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
                   <span>{cred}</span>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 gap-8 pt-10 border-t"
@@ -154,10 +202,13 @@ export default function About() {
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
+                  custom={i}
+                  variants={statReveal}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
                   className="text-center sm:text-left"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <p className="stat-number">{stat.number}</p>
                   <p className="stat-label">{stat.label}</p>

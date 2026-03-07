@@ -56,7 +56,7 @@ export default function Footer() {
   return (
     <footer className="footer-bg" role="contentinfo">
       <div className="container">
-        <div className="py-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14 lg:gap-20">
+        <div className="py-16 sm:py-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-14 lg:gap-20">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4">

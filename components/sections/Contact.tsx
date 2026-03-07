@@ -1,7 +1,41 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
+
+const slideLeft: Variants = {
+  hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const slideRight: Variants = {
+  hidden: { opacity: 0, x: 50, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 },
+  },
+};
+
+const promiseStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+};
+
+const promiseItem: Variants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 import {
   CheckCircle2,
   MessageCircle,
@@ -84,46 +118,51 @@ export default function Contact() {
       />
 
       <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-28 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28 items-start">
           {/* Left copy */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0, 0, 0.2, 1] as [number, number, number, number] }}
+            variants={slideLeft}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             <span className="badge mb-6 inline-flex">Contacto</span>
 
             <h2
-              className="heading-xl mb-10"
+              className="heading-xl mb-6 sm:mb-10"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               ¿Listo para cambiar{" "}
               <span className="text-gradient">el guión?</span>
             </h2>
 
-            <div className="divider-gold-left mb-10" />
+            <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-12">
+            <p className="lead-text mb-8 sm:mb-12">
               Tu primera sesión de diagnóstico es completamente gratuita. Sin
               compromiso. Sin presión. Solo 45 minutos que pueden cambiar el
               rumbo de todo.
             </p>
 
-            <ul className="space-y-5 mb-14">
+            <motion.ul
+              variants={promiseStagger}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="space-y-4 sm:space-y-5 mb-10 sm:mb-14"
+            >
               {[
                 "Sin venta agresiva",
                 "Conversación real y auténtica",
                 "Claridad garantizada",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
+                <motion.li key={item} variants={promiseItem} className="flex items-center gap-3">
                   <CheckCircle2
                     size={18}
                     style={{ color: "var(--gold-primary)", flexShrink: 0 }}
                   />
                   <span style={{ color: "var(--text-secondary)" }}>{item}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
 
             {/* Contact alternatives */}
             <div
@@ -195,11 +234,11 @@ export default function Contact() {
 
           {/* Right form */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0, 0, 0.2, 1] as [number, number, number, number], delay: 0.15 }}
+            variants={slideRight}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
-            <div className="glass-card p-10 md:p-12">
+            <div className="glass-card p-6 sm:p-10 md:p-12">
               <AnimatePresence mode="wait">
                 {status === "success" ? (
                   <motion.div

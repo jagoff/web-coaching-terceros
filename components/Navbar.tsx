@@ -96,8 +96,8 @@ export default function Navbar() {
 
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-md transition-colors"
-              style={{ color: "var(--text-secondary)" }}
+              className="lg:hidden flex items-center justify-center rounded-md transition-colors"
+              style={{ width: 44, height: 44, color: "var(--text-secondary)" }}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={mobileOpen}

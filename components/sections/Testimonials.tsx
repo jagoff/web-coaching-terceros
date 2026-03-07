@@ -1,8 +1,23 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView, type Variants } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+
+const headerStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const blurUp: Variants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const testimonials = [
   {
@@ -85,13 +100,22 @@ export default function Testimonials() {
 
   const variants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 60 : -60,
+      x: dir > 0 ? 80 : -80,
       opacity: 0,
+      scale: 0.95,
+      filter: "blur(4px)",
     }),
-    center: { x: 0, opacity: 1 },
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+    },
     exit: (dir: number) => ({
-      x: dir > 0 ? -60 : 60,
+      x: dir > 0 ? -80 : 80,
       opacity: 0,
+      scale: 0.95,
+      filter: "blur(4px)",
     }),
   };
 
@@ -105,19 +129,17 @@ export default function Testimonials() {
     >
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center mb-6"
-          >
+        <motion.div
+          variants={headerStagger}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-14 md:mb-24"
+        >
+          <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">Testimonios</span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
@@ -125,18 +147,16 @@ export default function Testimonials() {
             <span className="text-gradient">dieron el paso</span>
           </motion.h2>
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
             className="divider-gold mt-6"
           />
-        </div>
+        </motion.div>
 
         {/* Carousel */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl mx-auto"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
@@ -153,7 +173,7 @@ export default function Testimonials() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col h-full"
               >
                 {/* Stars */}
@@ -207,13 +227,15 @@ export default function Testimonials() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center justify-between mt-12">
+          <div className="flex items-center justify-between mt-8 sm:mt-12">
             {/* Prev / Next */}
             <div className="flex gap-3">
               <button
                 onClick={prev}
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+                className="rounded-full flex items-center justify-center transition-all duration-200"
                 style={{
+                  width: 44,
+                  height: 44,
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid var(--dark-border)",
                   color: "var(--text-secondary)",
@@ -232,8 +254,10 @@ export default function Testimonials() {
               </button>
               <button
                 onClick={next}
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+                className="rounded-full flex items-center justify-center transition-all duration-200"
                 style={{
+                  width: 44,
+                  height: 44,
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid var(--dark-border)",
                   color: "var(--text-secondary)",
