@@ -56,9 +56,9 @@ export default function Footer() {
   return (
     <footer className="footer-bg" role="contentinfo">
       <div className="container">
-        <div className="py-16 sm:py-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-14 lg:gap-20">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
+        <div className="py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-16">
+          {/* Brand + Social */}
+          <div>
             <div className="mb-4">
               <a
                 href="#"
@@ -77,7 +77,7 @@ export default function Footer() {
               </a>
             </div>
             <p
-              className="text-sm leading-relaxed mb-10"
+              className="text-sm leading-relaxed mb-6"
               style={{ color: "var(--text-muted)" }}
             >
               Coaching que transforma.
@@ -117,59 +117,59 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h3
-              className="text-xs font-bold uppercase tracking-widest mb-7"
-              style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-            >
-              Navegación
-            </h3>
-            <ul className="space-y-5">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <ScrollLink
-                    href={link.href}
-                    className="text-sm transition-colors duration-200 footer-link"
-                  >
-                    {link.label}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3
-              className="text-xs font-bold uppercase tracking-widest mb-7"
-              style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-            >
-              Servicios
-            </h3>
-            <ul className="space-y-5">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <ScrollLink
-                    href={link.href}
-                    className="text-sm transition-colors duration-200 footer-link"
-                  >
-                    {link.label}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
+          {/* Links — Navigation + Services combined */}
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <h3
+                className="text-xs font-bold uppercase tracking-widest mb-5"
+                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+              >
+                Navegación
+              </h3>
+              <ul className="space-y-3">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <ScrollLink
+                      href={link.href}
+                      className="text-sm transition-colors duration-200 footer-link"
+                    >
+                      {link.label}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3
+                className="text-xs font-bold uppercase tracking-widest mb-5"
+                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+              >
+                Servicios
+              </h3>
+              <ul className="space-y-3">
+                {serviceLinks.map((link) => (
+                  <li key={link.label}>
+                    <ScrollLink
+                      href={link.href}
+                      className="text-sm transition-colors duration-200 footer-link"
+                    >
+                      {link.label}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Contact */}
           <div>
             <h3
-              className="text-xs font-bold uppercase tracking-widest mb-7"
+              className="text-xs font-bold uppercase tracking-widest mb-5"
               style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
             >
               Contacto
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-4">
               <li>
                 <a
                   href="mailto:hola@eleva.coaching"
