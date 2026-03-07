@@ -56,67 +56,7 @@ export default function Footer() {
   return (
     <footer className="footer-bg" role="contentinfo">
       <div className="container">
-        <div className="py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-16">
-          {/* Brand + Social */}
-          <div>
-            <div className="mb-4">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToTop();
-                }}
-                aria-label="ELEVA Coaching — inicio"
-              >
-                <span
-                  className="text-gradient font-black text-3xl tracking-tight"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  ELEVA
-                </span>
-              </a>
-            </div>
-            <p
-              className="text-sm leading-relaxed mb-6"
-              style={{ color: "var(--text-muted)" }}
-            >
-              Coaching que transforma.
-              <br />
-              Para personas que saben que pueden más.
-            </p>
-
-            {/* Social */}
-            <div className="flex gap-3">
-              {socialLinks.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid var(--dark-border)",
-                    color: "var(--text-muted)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "var(--gold-primary)";
-                    e.currentTarget.style.color = "var(--gold-primary)";
-                    e.currentTarget.style.background = "rgba(212,175,55,0.08)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "var(--dark-border)";
-                    e.currentTarget.style.color = "var(--text-muted)";
-                    e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                  }}
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-
+        <div className="py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
           {/* Links — Navigation + Services combined */}
           <div className="grid grid-cols-2 gap-6">
             <div>
@@ -219,12 +159,38 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="py-10 border-t flex flex-col sm:flex-row items-center justify-between gap-8"
+          className="py-8 border-t flex flex-col sm:flex-row items-center justify-between gap-6"
           style={{ borderColor: "var(--dark-border)" }}
         >
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
             © 2026 ELEVA Coaching. Todos los derechos reservados.
           </p>
+
+          {/* Social */}
+          <div className="flex gap-3">
+            {socialLinks.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                style={{
+                  color: "var(--text-muted)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--gold-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--text-muted)";
+                }}
+              >
+                <Icon size={15} />
+              </a>
+            ))}
+          </div>
+
           <div className="flex gap-6">
             {legalLinks.map((link) => (
               <a
