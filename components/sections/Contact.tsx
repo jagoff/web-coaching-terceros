@@ -190,7 +190,7 @@ export default function Contact() {
                     size={18}
                     style={{ color: "var(--gold-primary)", flexShrink: 0 }}
                   />
-                  <span style={{ color: "var(--text-secondary)" }}>{item}</span>
+                  <span style={{ color: "var(--text-secondary)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>{item}</span>
                 </motion.li>
               ))}
             </motion.ul>
