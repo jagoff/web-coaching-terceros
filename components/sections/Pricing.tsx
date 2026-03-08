@@ -180,13 +180,14 @@ export default function Pricing() {
                 <span className="price-period">{plan.period}</span>
               </div>
 
-              {/* Description */}
+              {/* Description — fixed height so features align across cards */}
               <p
-                className="text-sm mb-10 pb-10 border-b"
+                className="text-sm pb-8 mb-8 border-b"
                 style={{
                   color: "var(--text-muted)",
                   lineHeight: 1.8,
                   borderColor: "rgba(255,255,255,0.06)",
+                  minHeight: "4.5rem",
                 }}
               >
                 {plan.description}
