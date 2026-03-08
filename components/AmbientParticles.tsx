@@ -75,15 +75,24 @@ export default function AmbientParticles() {
   if (!ready) return null;
 
   return (
-    <Particles
-      id="ambient-particles"
-      options={particlesConfig}
+    <div
       style={{
         position: "fixed",
-        inset: 0,
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
         zIndex: 0,
         pointerEvents: "none",
+        overflow: "hidden",
       }}
-    />
+      aria-hidden="true"
+    >
+      <Particles
+        id="ambient-particles"
+        options={particlesConfig}
+        style={{ width: "100%", height: "100%" }}
+      />
+    </div>
   );
 }
