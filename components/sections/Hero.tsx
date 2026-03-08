@@ -299,7 +299,7 @@ export default function Hero() {
           {/* Social proof */}
           <motion.div
             variants={revealUp}
-            className="flex items-center justify-center mt-12 sm:mt-20"
+            className="flex items-center justify-center mt-12 sm:mt-20 pb-16"
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
               Más de{" "}
