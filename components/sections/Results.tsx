@@ -4,21 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
-
-const headerStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
-
-const blurUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const statCard: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.9, filter: "blur(6px)" },
@@ -38,35 +24,35 @@ const statCard: Variants = {
 const stats = [
   {
     prefix: "+",
-    value: 500,
+    value: 20,
     suffix: "",
-    display: "+500",
-    label: "Vidas transformadas",
-    description: "Personas que ya dieron el paso",
+    display: "+20",
+    label: "Años en tecnología",
+    description: "Desde infraestructura hasta liderazgo",
   },
   {
     prefix: "",
-    value: 10,
+    value: 6,
     suffix: "+",
-    display: "10+",
-    label: "Años de experiencia",
-    description: "Certificada y en constante formación",
+    display: "6+",
+    label: "Años de coaching ágil",
+    description: "Transformando startups y empresas tech",
   },
   {
     prefix: "",
-    value: 87,
-    suffix: "%",
-    display: "87%",
-    label: "Tasa de satisfacción",
-    description: "Clientes que logran sus objetivos",
-  },
-  {
-    prefix: "",
-    value: 4.9,
+    value: 6,
     suffix: "",
-    display: "4.9",
-    label: "Valoración media",
-    description: "Basada en reseñas verificadas",
+    display: "6",
+    label: "Certificaciones activas",
+    description: "Scrum, UX, Security, Leadership",
+  },
+  {
+    prefix: "",
+    value: 3,
+    suffix: "",
+    display: "3",
+    label: "Empresas co-fundadas",
+    description: "Moka, Nodok.AI, AyP",
   },
 ];
 
@@ -167,7 +153,7 @@ export default function Results() {
             <span className="text-gradient">hablan por sí solos</span>
           </motion.h2>
           <motion.div
-            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
+            variants={dividerGrow}
             className="divider-gold mt-6"
           />
         </motion.div>
@@ -225,16 +211,16 @@ export default function Results() {
             className="lead-text max-w-2xl mx-auto mb-10"
             style={{ color: "var(--text-secondary)" }}
           >
-            Cada número representa una persona que decidió que merecía más.{" "}
+            Cada número representa experiencia real construyendo equipos y organizaciones.{" "}
             <strong style={{ color: "var(--text-primary)" }}>
-              ¿Cuándo es tu turno?
+              ¿Hablamos de tu próximo paso?
             </strong>
           </p>
           <button
             className="btn-primary"
             onClick={() => handleScroll("#contacto")}
           >
-            Comienza tu transformación <ArrowRight size={16} className="inline ml-1" />
+            Empezá tu transformación <ArrowRight size={16} className="inline ml-1" />
           </button>
         </motion.div>
       </div>

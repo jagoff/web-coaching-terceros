@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform, type Variants } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 const slideReveal: Variants = {
@@ -44,30 +44,30 @@ const statReveal: Variants = {
 };
 
 const credentials = [
-  "ICF Certified Coach · PCC Level",
-  "Máster en Psicología Organizacional",
-  "NLP Practitioner Certificada",
-  "Especialista en Neurociencia del Liderazgo",
+  "Professional Scrum™ with UX (PSU I)",
+  "Scrum Grand Master · UTN",
+  "Strategic Leadership · UTN",
+  "Product Owner · UTN",
+  "CompTIA Security+",
+  "Red Hat Certified Sysadmin",
 ];
 
 const stats = [
-  { number: "+500", label: "Clientes" },
-  { number: "10+", label: "Años exp. certificada" },
-  { number: "87%", label: "Logran sus objetivos" },
-  { number: "4.9", label: "Valoración media" },
+  { number: "20+", label: "Años en tecnología" },
+  { number: "6+", label: "Años de coaching ágil" },
+  { number: "6", label: "Certificaciones activas" },
+  { number: "3", label: "Empresas co-fundadas" },
 ];
 
 const floatingBadges = [
-  { text: "+500 clientes", top: "12%", right: "4%", delay: 0.2 },
-  { text: "10 años", bottom: "25%", left: "4%", delay: 0.5 },
-  { text: "ICF Certified", top: "55%", right: "4%", delay: 0.8 },
+  { text: "+20 años tech", top: "12%", right: "4%", delay: 0.2 },
+  { text: "Scrum Master", bottom: "25%", left: "4%", delay: 0.5 },
+  { text: "PSU I Certified", top: "55%", right: "4%", delay: 0.8 },
 ];
 
 export default function About() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
     <section
@@ -125,7 +125,7 @@ export default function About() {
                 style={{ borderRadius: "var(--radius-md)" }}
               >
                 <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--gold-primary)" }}>
-                  ICF Certified PCC
+                  PSU I Certified
                 </p>
               </div>
             </div>
@@ -159,26 +159,27 @@ export default function About() {
             className="order-1 lg:order-2"
           >
             <h2 className="heading-xl mb-6 sm:mb-10" style={{ fontFamily: "var(--font-heading)" }}>
-              Transformé mi vida.{" "}
+              De la tecnología{" "}
               <br />
-              <span className="text-gradient">Ahora te ayudo a</span>
+              <span className="text-gradient">a transformar</span>
               <br />
-              transformar la tuya.
+              organizaciones.
             </h2>
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
             <p className="lead-text mb-6 sm:mb-8">
-              Soy Valentina, coach certificada con más de 10 años acompañando
-              a personas y empresas en sus puntos de inflexión. Empecé desde
-              cero — sin red de seguridad, sin hoja de ruta. Solo la certeza
-              de que había algo más.
+              Soy Fernando, con más de 20 años en tecnología y 6+ años
+              como consultor ágil independiente. Pasé de administrar servidores
+              a liderar operaciones y transformar culturas organizacionales
+              en startups y empresas tech.
             </p>
 
             <p className="mb-12" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
-              Mi metodología combina neurociencia aplicada, psicología positiva
-              y estrategia de negocios. No te digo qué hacer — te acompaño a
-              descubrirlo tú mismo, de forma más rápida y con menos dolor.
+              Mi enfoque combina metodologías ágiles, liderazgo estratégico
+              y un approach human-centric. No te digo qué hacer — te acompaño
+              a construir equipos autónomos, procesos escalables y una cultura
+              que impulse resultados.
             </p>
 
             {/* Credentials */}

@@ -971,6 +971,49 @@ html.lenis, html.lenis body {
   color: var(--text-primary);
 }
 
+/* Contact info links in footer */
+.contact-link {
+  color: var(--text-muted);
+  transition: color var(--transition-base);
+}
+
+.contact-link:hover {
+  color: var(--text-primary);
+}
+
+/* Social icon buttons */
+.social-icon {
+  color: var(--text-muted);
+  transition: color var(--transition-base);
+}
+
+.social-icon:hover {
+  color: var(--gold-primary);
+}
+
+/* Testimonial nav button */
+.testimonial-nav-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--dark-border);
+  color: var(--text-secondary);
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.testimonial-nav-btn:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+/* Mobile nav link */
+.mobile-nav-link {
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+}
+
+.mobile-nav-link:hover {
+  color: var(--gold-primary);
+}
+
 /* ============================================================
    UTILIDADES DE TIPOGRAFÍA
    ============================================================ */

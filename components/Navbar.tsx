@@ -153,9 +153,8 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07, duration: 0.3 }}
-                  className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer transition-colors"
+                  className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
                   style={{
-                    color: "var(--text-secondary)",
                     borderTop: "none",
                     borderLeft: "none",
                     borderRight: "none",
@@ -163,12 +162,6 @@ export default function Navbar() {
                     fontFamily: "var(--font-heading)",
                   }}
                   onClick={() => handleLinkClick(link.href)}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "var(--gold-primary)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "var(--text-secondary)")
-                  }
                 >
                   {link.label}
                 </motion.button>
@@ -181,7 +174,7 @@ export default function Navbar() {
                 className="btn-primary w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >
-                Agenda tu sesión gratuita
+                Agendá tu sesión gratuita
               </button>
             </div>
           </motion.div>

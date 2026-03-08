@@ -3,21 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Search, Compass, Zap, Star } from "lucide-react";
-
-const headerStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
-
-const blurUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const stepReveal: Variants = {
   hidden: { opacity: 0, y: 50, rotateY: -8, filter: "blur(4px)" },
@@ -40,28 +26,28 @@ const steps = [
     icon: Search,
     title: "Diagnóstico",
     description:
-      "Exploramos dónde estás, a dónde quieres llegar y qué te ha impedido llegar hasta ahora. Sin juicios, sin guiones.",
+      "Analizamos tu organización, equipo o liderazgo actual. Identificamos fricciones, oportunidades y el punto de partida real.",
   },
   {
     number: "02",
     icon: Compass,
     title: "Diseño",
     description:
-      "Construimos tu hoja de ruta personalizada: objetivos SMART, estrategias concretas y métricas de progreso reales.",
+      "Co-creamos una hoja de ruta a medida: objetivos claros, métricas de avance y estrategia ágil adaptada a tu contexto.",
   },
   {
     number: "03",
     icon: Zap,
     title: "Ejecución",
     description:
-      "Sesiones regulares de coaching. Revisamos avances, resolvemos obstáculos y mantenemos el momentum semana a semana.",
+      "Sesiones de coaching y acompañamiento en el día a día. Iteramos, removemos impedimentos y mantenemos el foco.",
   },
   {
     number: "04",
     icon: Star,
-    title: "Integración",
+    title: "Autonomía",
     description:
-      "Consolidamos aprendizajes y construyes autonomía. Al terminar no dependes de mí — tienes las herramientas para seguir solo.",
+      "Consolidamos prácticas, transferimos herramientas y construís la capacidad interna para seguir evolucionando sin depender de mí.",
   },
 ];
 
@@ -91,11 +77,11 @@ export default function Process() {
             <span className="text-gradient">4 pasos</span>
           </motion.h2>
           <motion.p variants={blurUp} className="lead-text">
-            No existe el cambio sin estructura. Mi metodología garantiza que
-            cada sesión tenga un propósito claro y un avance medible.
+            Sin estructura no hay transformación duradera. Mi metodología
+            garantiza que cada paso tenga propósito claro y avance medible.
           </motion.p>
           <motion.div
-            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
+            variants={dividerGrow}
             className="divider-gold mt-6"
           />
         </motion.div>

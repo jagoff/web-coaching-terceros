@@ -40,7 +40,7 @@ import {
   CheckCircle2,
   MessageCircle,
   Mail,
-  Instagram,
+  Linkedin,
   ArrowRight,
   Loader2,
   CheckCheck,
@@ -53,22 +53,25 @@ export default function Contact() {
   const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
 
   const [form, setForm] = useState({
-    name: "",
+    nombre: "",
     email: "",
-    phone: "",
-    service: "",
-    message: "",
+    telefono: "",
+    servicio: "",
+    mensaje: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [apiError, setApiError] = useState("");
 
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!form.name.trim()) errs.name = "El nombre es obligatorio";
+    if (!form.nombre.trim()) errs.nombre = "El nombre es obligatorio";
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       errs.email = "Introduce un email válido";
-    if (!form.phone.trim()) errs.phone = "El teléfono es obligatorio";
-    if (!form.service) errs.service = "Selecciona un servicio";
+    if (!form.telefono.trim()) errs.telefono = "El teléfono es obligatorio";
+    if (!form.servicio) errs.servicio = "Selecciona un servicio";
+    if (!form.mensaje.trim() || form.mensaje.trim().length < 10)
+      errs.mensaje = "Cuéntanos brevemente tu situación (mín. 10 caracteres)";
     return errs;
   };
 
@@ -93,8 +96,27 @@ export default function Contact() {
       return;
     }
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 1800));
-    setStatus("success");
+    setApiError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setStatus("error");
+        setApiError(data.error ?? "Ocurrió un error. Intenta de nuevo.");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setStatus("error");
+      setApiError("Error de conexión. Verifica tu internet e intenta de nuevo.");
+    }
   };
 
   return (
@@ -131,16 +153,16 @@ export default function Contact() {
               className="heading-xl mb-6 sm:mb-10"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              ¿Listo para cambiar{" "}
-              <span className="text-gradient">el guión?</span>
+              ¿Listo para dar{" "}
+              <span className="text-gradient">el próximo paso?</span>
             </h2>
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
             <p className="lead-text mb-8 sm:mb-12">
               Tu primera sesión de diagnóstico es completamente gratuita. Sin
-              compromiso. Sin presión. Solo 45 minutos que pueden cambiar el
-              rumbo de todo.
+              compromiso. Sin presión. Solo 45 minutos para analizar dónde
+              estás y hacia dónde querés ir.
             </p>
 
             <motion.ul
@@ -170,7 +192,7 @@ export default function Contact() {
               style={{ borderColor: "var(--dark-border)" }}
             >
               <a
-                href="https://wa.me/34600000000"
+                href="https://wa.me/5493425153999"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group transition-colors"
@@ -186,12 +208,12 @@ export default function Contact() {
                   <MessageCircle size={18} />
                 </div>
                 <span className="group-hover:text-white transition-colors">
-                  +34 600 000 000 (WhatsApp)
+                  +54 9 342 515-3999 (WhatsApp)
                 </span>
               </a>
 
               <a
-                href="mailto:hola@eleva.coaching"
+                href="mailto:fernandoferrari@gmail.com"
                 className="flex items-center gap-3 group transition-colors"
                 style={{ color: "var(--text-secondary)" }}
               >
@@ -205,12 +227,12 @@ export default function Contact() {
                   <Mail size={18} />
                 </div>
                 <span className="group-hover:text-white transition-colors">
-                  hola@eleva.coaching
+                  fernandoferrari@gmail.com
                 </span>
               </a>
 
               <a
-                href="https://instagram.com/eleva.coaching"
+                href="https://linkedin.com/in/fernandorferrari"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group transition-colors"
@@ -223,10 +245,10 @@ export default function Contact() {
                     color: "var(--gold-primary)",
                   }}
                 >
-                  <Instagram size={18} />
+                  <Linkedin size={18} />
                 </div>
                 <span className="group-hover:text-white transition-colors">
-                  @eleva.coaching
+                  /in/fernandorferrari
                 </span>
               </a>
             </div>
@@ -280,34 +302,34 @@ export default function Contact() {
                   >
                     {/* Name */}
                     <div className="form-group">
-                      <label htmlFor="name" className="form-label">
+                      <label htmlFor="nombre" className="form-label">
                         Nombre completo <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <input
-                        id="name"
-                        name="name"
+                        id="nombre"
+                        name="nombre"
                         type="text"
                         autoComplete="name"
                         placeholder="Tu nombre"
                         className="form-input"
-                        value={form.name}
+                        value={form.nombre}
                         onChange={handleChange}
-                        aria-describedby={errors.name ? "name-error" : undefined}
-                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.nombre ? "nombre-error" : undefined}
+                        aria-invalid={!!errors.nombre}
                         style={
-                          errors.name
+                          errors.nombre
                             ? { borderColor: "#ef4444" }
                             : {}
                         }
                       />
-                      {errors.name && (
+                      {errors.nombre && (
                         <p
-                          id="name-error"
+                          id="nombre-error"
                           role="alert"
                           className="text-xs mt-1"
                           style={{ color: "#ef4444" }}
                         >
-                          {errors.name}
+                          {errors.nombre}
                         </p>
                       )}
                     </div>
@@ -338,24 +360,24 @@ export default function Contact() {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="phone" className="form-label">
+                        <label htmlFor="telefono" className="form-label">
                           WhatsApp / Teléfono <span style={{ color: "var(--gold-primary)" }}>*</span>
                         </label>
                         <input
-                          id="phone"
-                          name="phone"
+                          id="telefono"
+                          name="telefono"
                           type="tel"
                           autoComplete="tel"
                           placeholder="+34 600 000 000"
                           className="form-input"
-                          value={form.phone}
+                          value={form.telefono}
                           onChange={handleChange}
-                          aria-invalid={!!errors.phone}
-                          style={errors.phone ? { borderColor: "#ef4444" } : {}}
+                          aria-invalid={!!errors.telefono}
+                          style={errors.telefono ? { borderColor: "#ef4444" } : {}}
                         />
-                        {errors.phone && (
+                        {errors.telefono && (
                           <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
-                            {errors.phone}
+                            {errors.telefono}
                           </p>
                         )}
                       </div>
@@ -363,48 +385,54 @@ export default function Contact() {
 
                     {/* Service */}
                     <div className="form-group">
-                      <label htmlFor="service" className="form-label">
+                      <label htmlFor="servicio" className="form-label">
                         ¿Qué te interesa más? <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <select
-                        id="service"
-                        name="service"
+                        id="servicio"
+                        name="servicio"
                         className="form-input form-select"
-                        value={form.service}
+                        value={form.servicio}
                         onChange={handleChange}
-                        aria-invalid={!!errors.service}
-                        style={errors.service ? { borderColor: "#ef4444" } : {}}
+                        aria-invalid={!!errors.servicio}
+                        style={errors.servicio ? { borderColor: "#ef4444" } : {}}
                       >
                         <option value="" disabled>
                           Selecciona una opción
                         </option>
-                        <option value="vida">Coaching de Vida</option>
-                        <option value="negocios">Coaching de Negocios</option>
-                        <option value="ambas">Ambas áreas</option>
-                        <option value="nosé">Aún no lo sé</option>
+                        <option value="liderazgo">Coaching de Liderazgo</option>
+                        <option value="organizacional">Consultoría Organizacional</option>
+                        <option value="ambos">Ambos servicios</option>
                       </select>
-                      {errors.service && (
+                      {errors.servicio && (
                         <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
-                          {errors.service}
+                          {errors.servicio}
                         </p>
                       )}
                     </div>
 
                     {/* Message */}
                     <div className="form-group">
-                      <label htmlFor="message" className="form-label">
+                      <label htmlFor="mensaje" className="form-label">
                         Cuéntame brevemente tu situación{" "}
-                        <span style={{ color: "var(--text-muted)" }}>(opcional)</span>
+                        <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <textarea
-                        id="message"
-                        name="message"
+                        id="mensaje"
+                        name="mensaje"
                         className="form-input form-textarea"
                         placeholder="¿Qué te trae aquí? ¿Qué quieres cambiar?"
-                        value={form.message}
+                        value={form.mensaje}
                         onChange={handleChange}
                         rows={4}
+                        aria-invalid={!!errors.mensaje}
+                        style={errors.mensaje ? { borderColor: "#ef4444" } : {}}
                       />
+                      {errors.mensaje && (
+                        <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
+                          {errors.mensaje}
+                        </p>
+                      )}
                     </div>
 
                     {/* Submit */}
@@ -418,13 +446,28 @@ export default function Contact() {
                           <Loader2 size={16} className="inline animate-spin mr-2" />
                           Enviando...
                         </>
+                      ) : status === "error" ? (
+                        <>
+                          Reintentar{" "}
+                          <ArrowRight size={16} className="inline ml-1" />
+                        </>
                       ) : (
                         <>
-                          Agenda mi sesión gratuita{" "}
+                          Agendá mi sesión gratuita{" "}
                           <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
                     </button>
+
+                    {apiError && (
+                      <p
+                        role="alert"
+                        className="text-xs text-center"
+                        style={{ color: "#ef4444" }}
+                      >
+                        {apiError}
+                      </p>
+                    )}
 
                     <p
                       className="text-xs text-center"

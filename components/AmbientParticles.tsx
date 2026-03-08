@@ -66,14 +66,28 @@ const particlesConfig: ISourceOptions = {
 
 export default function AmbientParticles() {
   const [ready, setReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => setReady(true));
   }, []);
 
   if (!ready) return null;
+
+  const mobileOverrides: ISourceOptions = {
+    ...particlesConfig,
+    fpsLimit: 30,
+    particles: {
+      ...particlesConfig.particles,
+      number: {
+        value: 10,
+        density: { enable: true, width: 1920, height: 1080 },
+      },
+    },
+  };
 
   return (
     <div
@@ -91,7 +105,7 @@ export default function AmbientParticles() {
     >
       <Particles
         id="ambient-particles"
-        options={particlesConfig}
+        options={isMobile ? mobileOverrides : particlesConfig}
         style={{ width: "100%", height: "100%" }}
       />
     </div>

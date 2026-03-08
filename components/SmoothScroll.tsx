@@ -23,13 +23,15 @@ export default function SmoothScroll({
     // Expose lenis on window so nav scrollTo calls can use it
     (window as unknown as Record<string, unknown>).__lenis = lenis;
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       delete (window as unknown as Record<string, unknown>).__lenis;
     };

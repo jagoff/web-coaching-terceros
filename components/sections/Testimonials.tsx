@@ -1,41 +1,27 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence, useInView, type Variants } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-
-const headerStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
-
-const blurUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const testimonials = [
   {
     id: 1,
     quote:
-      "Llevaba 3 años sintiéndome estancada en mi empresa. En 6 meses con Valentina no solo dupliqué mis ingresos — encontré por qué me levanto cada mañana. Eso no tiene precio.",
-    name: "María González",
-    role: "CEO & Fundadora",
-    company: "MG Studio",
+      "Teníamos un equipo de 15 devs y cero estructura. Fernando nos ayudó a implementar Scrum de verdad, no el Scrum de manual. En 6 meses duplicamos la velocidad de entrega.",
+    name: "Martín González",
+    role: "CTO & Co-founder",
+    company: "NexoLab",
     initials: "MG",
     avatarBg: "linear-gradient(135deg, #4c1d95, #7c3aed)",
   },
   {
     id: 2,
     quote:
-      "Era muy escéptico del coaching. Pensaba que era solo 'hablar de sentimientos'. Resultó ser la herramienta más poderosa que he usado para mi negocio. ROI del 400% en el primer año.",
+      "Era escéptico del coaching organizacional. Pensaba que era solo 'hablar de procesos'. Resultó ser lo más transformador que hicimos como startup. La cultura cambió por completo.",
     name: "Carlos Mendoza",
-    role: "Director Comercial",
+    role: "CEO",
     company: "TechHispano",
     initials: "CM",
     avatarBg: "linear-gradient(135deg, #1e3a8a, #1d4ed8)",
@@ -43,29 +29,29 @@ const testimonials = [
   {
     id: 3,
     quote:
-      "Pasé de querer dejarlo todo a construir la vida que siempre quise. El proceso fue intenso, honesto y completamente transformador. Lo recomendaría a cualquier persona lista para crecer.",
+      "Pasé de ser dev senior a liderar un equipo de 20 personas sin saber cómo. Fernando me dio las herramientas y la confianza para hacerlo bien. Hoy me siento un líder de verdad.",
     name: "Andrea Ruiz",
-    role: "Emprendedora & Madre",
-    company: "",
+    role: "Engineering Manager",
+    company: "Globant",
     initials: "AR",
     avatarBg: "linear-gradient(135deg, #881337, #be123c)",
   },
   {
     id: 4,
     quote:
-      "Llegué con una crisis de identidad a los 45. Salí con un plan de vida claro, un negocio nuevo y la mejor versión de mí mismo. Literalmente, me cambió la vida.",
+      "Nuestra startup crecía rápido pero todo se rompía. Fer nos ayudó a profesionalizar operaciones sin perder la agilidad. Fue un antes y un después para la empresa.",
     name: "Roberto Alvarado",
-    role: "Consultor Independiente",
-    company: "",
+    role: "COO",
+    company: "FastTrack AI",
     initials: "RA",
     avatarBg: "linear-gradient(135deg, #064e3b, #047857)",
   },
   {
     id: 5,
     quote:
-      "El acompañamiento fue transformador en el sentido más literal. Mi empresa creció un 40% ese año y mi equipo se convirtió en el activo más sólido que tengo.",
+      "El acompañamiento de Fernando fue clave. Mi equipo pasó de apagar incendios a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
     name: "Jorge Paredes",
-    role: "Fundador",
+    role: "VP of Engineering",
     company: "DataSur",
     initials: "JP",
     avatarBg: "linear-gradient(135deg, #92400e, #d97706)",
@@ -147,7 +133,7 @@ export default function Testimonials() {
             <span className="text-gradient">dieron el paso</span>
           </motion.h2>
           <motion.div
-            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
+            variants={dividerGrow}
             className="divider-gold mt-6"
           />
         </motion.div>
@@ -232,45 +218,17 @@ export default function Testimonials() {
             <div className="flex gap-3">
               <button
                 onClick={prev}
-                className="rounded-full flex items-center justify-center transition-all duration-200"
-                style={{
-                  width: 44,
-                  height: 44,
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid var(--dark-border)",
-                  color: "var(--text-secondary)",
-                }}
+                className="rounded-full flex items-center justify-center testimonial-nav-btn"
+                style={{ width: 44, height: 44 }}
                 aria-label="Testimonio anterior"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "var(--gold-primary)";
-                  e.currentTarget.style.color = "var(--gold-primary)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "var(--dark-border)";
-                  e.currentTarget.style.color = "var(--text-secondary)";
-                }}
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 onClick={next}
-                className="rounded-full flex items-center justify-center transition-all duration-200"
-                style={{
-                  width: 44,
-                  height: 44,
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid var(--dark-border)",
-                  color: "var(--text-secondary)",
-                }}
+                className="rounded-full flex items-center justify-center testimonial-nav-btn"
+                style={{ width: 44, height: 44 }}
                 aria-label="Siguiente testimonio"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "var(--gold-primary)";
-                  e.currentTarget.style.color = "var(--gold-primary)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "var(--dark-border)";
-                  e.currentTarget.style.color = "var(--text-secondary)";
-                }}
               >
                 <ChevronRight size={18} />
               </button>

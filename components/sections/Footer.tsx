@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 
 const navLinks = [
@@ -13,16 +13,14 @@ const navLinks = [
 ];
 
 const serviceLinks = [
-  { label: "Coaching de Vida", href: "#servicios" },
-  { label: "Coaching de Negocios", href: "#servicios" },
+  { label: "Coaching de Liderazgo", href: "#servicios" },
+  { label: "Consultoría Organizacional", href: "#servicios" },
   { label: "Sesión Gratuita", href: "#contacto" },
-  { label: "Programa Élite", href: "#precios" },
+  { label: "Consultoría Continua", href: "#precios" },
 ];
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com/eleva.coaching" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/eleva-coaching" },
-  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@eleva.coaching" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/fernandorferrari" },
 ];
 
 const legalLinks = [
@@ -112,36 +110,22 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:hola@eleva.coaching"
-                  className="flex items-center gap-2 text-sm transition-colors"
-                  style={{ color: "var(--text-muted)" }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "var(--text-primary)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "var(--text-muted)")
-                  }
+                  href="mailto:fernandoferrari@gmail.com"
+                  className="flex items-center gap-2 text-sm contact-link"
                 >
                   <Mail size={14} className="flex-shrink-0" />
-                  hola@eleva.coaching
+                  fernandoferrari@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/34600000000"
+                  href="https://wa.me/5493425153999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm transition-colors"
-                  style={{ color: "var(--text-muted)" }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "var(--text-primary)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "var(--text-muted)")
-                  }
+                  className="flex items-center gap-2 text-sm contact-link"
                 >
                   <Phone size={14} className="flex-shrink-0" />
-                  +34 600 000 000
+                  +54 9 342 515-3999
                 </a>
               </li>
               <li>
@@ -150,7 +134,7 @@ export default function Footer() {
                   style={{ color: "var(--text-muted)" }}
                 >
                   <MapPin size={14} className="flex-shrink-0 mt-0.5" />
-                  España · Online (todo el mundo)
+                  Santa Fe, Argentina · Online (todo el mundo)
                 </span>
               </li>
             </ul>
@@ -175,16 +159,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
-                style={{
-                  color: "var(--text-muted)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--gold-primary)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--text-muted)";
-                }}
+                className="w-8 h-8 rounded-full flex items-center justify-center social-icon"
               >
                 <Icon size={15} />
               </a>

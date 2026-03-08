@@ -22,27 +22,27 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://coaching-landing-cyan.vercel.app"
   ),
-  title: "ELEVA Coaching | Transforma Tu Vida y Tu Negocio",
+  title: "ELEVA Coaching | Liderazgo Ágil y Transformación Organizacional",
   description:
-    "Coaching de vida y negocios para personas que saben que pueden más. Metodología probada, resultados medibles y acompañamiento real. Agenda tu sesión gratuita.",
+    "Coaching de liderazgo y consultoría organizacional para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
   keywords:
-    "coaching de vida, coaching de negocios, coach ejecutivo, transformación personal, liderazgo, desarrollo personal, España",
-  authors: [{ name: "ELEVA Coaching" }],
-  creator: "ELEVA Coaching",
+    "coaching de liderazgo, consultoría organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina",
+  authors: [{ name: "Fernando Ferrari" }],
+  creator: "Fernando Ferrari",
   openGraph: {
-    title: "ELEVA Coaching | Transforma Tu Vida y Tu Negocio",
+    title: "ELEVA Coaching | Liderazgo Ágil y Transformación Organizacional",
     description:
-      "Coaching de vida y negocios para personas que saben que pueden más. Más de 500 clientes transformados. 10 años de experiencia certificada.",
-    url: "https://eleva.coaching",
+      "Coaching de liderazgo y consultoría organizacional para líderes tech y startups. +20 años en tecnología. 6+ años de consultoría ágil.",
+    url: "https://coaching-landing-cyan.vercel.app",
     siteName: "ELEVA Coaching",
     locale: "es_ES",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ELEVA Coaching | Transforma Tu Vida y Tu Negocio",
+    title: "ELEVA Coaching | Liderazgo Ágil y Transformación Organizacional",
     description:
-      "Coaching de vida y negocios para personas que saben que pueden más.",
+      "Coaching de liderazgo y consultoría organizacional para líderes tech y startups.",
   },
   robots: {
     index: true,

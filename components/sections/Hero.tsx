@@ -77,8 +77,9 @@ export default function Hero() {
 
   useEffect(() => {
     setMounted(true);
+    const count = window.innerWidth < 768 ? 12 : 35;
     setParticles(
-      Array.from({ length: 35 }, (_, i) => ({
+      Array.from({ length: count }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
@@ -187,7 +188,7 @@ export default function Hero() {
           {/* Badge */}
           <motion.div variants={revealScale} className="badge mb-8">
             <Sparkles size={12} fill="currentColor" />
-            COACHING EJECUTIVO · RESULTADOS REALES
+            COACHING ORGANIZACIONAL · LIDERAZGO ÁGIL
           </motion.div>
 
           {/* Headline — each line reveals separately */}
@@ -196,13 +197,13 @@ export default function Hero() {
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
           >
             <motion.span variants={revealUp} className="block">
-              Deja de sobrevivir.
+              Transformá tu equipo.
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
-              Empieza a liderar
+              Liderá con propósito.
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
-              tu propia vida.
+              Escalá sin límites.
             </motion.span>
           </motion.h1>
 
@@ -218,10 +219,10 @@ export default function Hero() {
             variants={revealUp}
             className="lead-text max-w-2xl mb-8 sm:mb-12"
           >
-            Coaching de vida y negocios para personas que saben que pueden
-            más — y están listas para demostrarlo.
+            Coaching y consultoría organizacional para líderes tech y startups
+            que quieren crecer de forma ágil, humana y sostenible.
             <br className="hidden sm:block" />
-            Metodología probada. Resultados medibles. Acompañamiento real.
+            +20 años en tecnología. Metodología probada. Resultados reales.
           </motion.p>
 
           {/* CTAs */}
@@ -236,7 +237,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Agenda tu sesión gratuita →
+              Agendá tu sesión gratuita →
             </motion.button>
             <motion.button
               className="btn-secondary"
@@ -245,7 +246,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Ver cómo funciona ↓
+              Conocé el método ↓
             </motion.button>
           </motion.div>
 
@@ -256,10 +257,10 @@ export default function Hero() {
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
               Más de{" "}
-              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>500 clientes</span>{" "}
-              transformados ·{" "}
-              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>10 años</span>{" "}
-              de experiencia certificada
+              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>20 años</span>{" "}
+              en tecnología ·{" "}
+              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>6+ años</span>{" "}
+              de consultoría ágil
             </p>
           </motion.div>
         </motion.div>

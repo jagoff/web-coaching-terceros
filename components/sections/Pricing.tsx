@@ -4,21 +4,7 @@ import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
-
-const headerStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
-
-const blurUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const planCard: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: 6, filter: "blur(6px)" },
@@ -53,10 +39,10 @@ const plans = [
   {
     id: "individual",
     name: "Sesión Individual",
-    price: "€197",
+    price: "USD 150",
     period: "/ sesión",
     description:
-      "Resolver un punto de bloqueo específico o explorar el proceso antes de comprometerte.",
+      "Para resolver un punto de bloqueo específico o explorar si el proceso es para vos.",
     features: [
       "1 sesión de 90 minutos",
       "Plan de acción post-sesión",
@@ -69,16 +55,16 @@ const plans = [
   {
     id: "transformacion",
     name: "Programa Transformación",
-    price: "€1.497",
+    price: "USD 1.200",
     period: "/ 3 meses",
     description:
-      "El proceso completo. Transformación real, medible y duradera.",
+      "El proceso completo para transformar tu liderazgo o tu organización de forma medible.",
     features: [
       "12 sesiones (1 por semana)",
-      "Sesión de diagnóstico inicial",
-      "Recursos y herramientas premium",
+      "Diagnóstico organizacional inicial",
+      "Frameworks y herramientas ágiles",
       "Soporte WhatsApp entre sesiones",
-      "Plan estratégico personalizado",
+      "Hoja de ruta estratégica personalizada",
       "Grabaciones + resúmenes escritos",
     ],
     cta: "Comenzar ahora",
@@ -87,17 +73,17 @@ const plans = [
   },
   {
     id: "elite",
-    name: "Mentoría Élite",
-    price: "€4.800",
+    name: "Consultoría Continua",
+    price: "USD 4.000",
     period: "/ 12 meses",
     description:
-      "Acompañamiento continuo de alto nivel para líderes que buscan resultados extraordinarios.",
+      "Acompañamiento de alto nivel para líderes y organizaciones que buscan resultados sostenibles.",
     features: [
       "Todo lo del Programa Transformación",
       "Sesiones adicionales según necesidad",
       "Acceso directo y prioritario",
       "Revisión trimestral de objetivos",
-      "Acceso a comunidad privada de clientes",
+      "Acceso a comunidad privada de líderes",
     ],
     cta: "Solicitar información",
     featured: false,
@@ -137,10 +123,10 @@ export default function Pricing() {
             className="text-sm"
             style={{ color: "var(--text-muted)" }}
           >
-            Todas las modalidades incluyen sesión de diagnóstico gratuita · Sin permanencia forzada
+            Todas las modalidades incluyen sesión de diagnóstico gratuita · Sin permanencia forzada · Online (todo el mundo)
           </motion.p>
           <motion.div
-            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
+            variants={dividerGrow}
             className="divider-gold mt-6"
           />
         </motion.div>
@@ -230,13 +216,13 @@ export default function Pricing() {
         >
           <MessageCircle size={18} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-            ¿Tienes dudas sobre qué plan es el adecuado para ti?{" "}
+            ¿Tenés dudas sobre qué plan se adapta mejor a tu caso?{" "}
             <button
               className="underline transition-colors bg-transparent border-0 cursor-pointer p-0"
               style={{ color: "var(--gold-primary)" }}
               onClick={() => handleScroll("#contacto")}
             >
-              Escríbeme y lo hablamos sin compromiso.
+              Escribime y lo hablamos sin compromiso.
             </button>
           </p>
         </motion.div>

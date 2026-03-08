@@ -4,21 +4,7 @@ import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
-
-const sectionStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-};
-
-const blurUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const cardReveal: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: 8, filter: "blur(6px)" },
@@ -51,35 +37,35 @@ const benefitItem: Variants = {
 
 const services = [
   {
-    id: "vida",
+    id: "liderazgo",
     icon: Flame,
-    title: "Coaching de Vida",
+    title: "Coaching de Liderazgo",
     description:
-      "Para quienes sienten que están viviendo la vida de alguien más. Juntos clarificamos tu propósito, eliminamos los bloqueos invisibles y construimos la versión más auténtica de ti.",
+      "Para líderes tech y founders que quieren potenciar su impacto, construir equipos de alto rendimiento y liderar con visión estratégica sin perder lo humano.",
     benefits: [
-      "Claridad de propósito y dirección",
-      "Gestión emocional y resiliencia",
-      "Relaciones más profundas y auténticas",
-      "Confianza radical en tus decisiones",
-      "Balance vida-trabajo real y sostenible",
+      "Liderazgo auténtico y estratégico",
+      "Gestión y motivación de equipos tech",
+      "Toma de decisiones en entornos complejos",
+      "Comunicación efectiva con stakeholders",
+      "Balance entre ejecución y visión",
     ],
-    cta: "Quiero transformar mi vida",
+    cta: "Quiero potenciar mi liderazgo",
     featured: false,
   },
   {
-    id: "negocios",
+    id: "organizacional",
     icon: Gem,
-    title: "Coaching de Negocios",
+    title: "Consultoría Organizacional",
     description:
-      "Para emprendedores y líderes que quieren llevar su empresa al siguiente nivel sin sacrificar su bienestar. Estrategia, mentalidad y ejecución — todo en uno.",
+      "Para startups y empresas que necesitan profesionalizar operaciones, adoptar agilidad real y construir una cultura que escale junto con el negocio.",
     benefits: [
-      "Liderazgo de alto rendimiento",
-      "Claridad estratégica y foco ejecutivo",
-      "Sistemas que escalan sin depender de ti",
-      "Gestión y motivación de equipos",
-      "Crecimiento sostenible y rentable",
+      "Transformación ágil a medida",
+      "Diseño de procesos escalables",
+      "Cultura organizacional human-centric",
+      "Métricas de eficiencia y mejora continua",
+      "Alineación estratégica de equipos",
     ],
-    cta: "Quiero escalar mi negocio",
+    cta: "Quiero transformar mi empresa",
     featured: true,
     badge: "MÁS SOLICITADO",
   },
@@ -94,7 +80,7 @@ export default function Services() {
       <div className="container">
         {/* Section header */}
         <motion.div
-          variants={sectionStagger}
+          variants={headerStagger}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="text-center mb-14 md:mb-24"
@@ -111,7 +97,7 @@ export default function Services() {
             <span className="text-gradient">elevar</span> más?
           </motion.h2>
           <motion.div
-            variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
+            variants={dividerGrow}
             className="divider-gold mt-6"
           />
         </motion.div>
