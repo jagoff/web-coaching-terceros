@@ -211,17 +211,17 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           className="flex flex-col items-center"
-          style={{ paddingTop: "clamp(80px, 12vh, 140px)", paddingBottom: "clamp(40px, 6vh, 80px)" }}
+          style={{ paddingTop: "clamp(64px, 10vh, 120px)", paddingBottom: "clamp(32px, 5vh, 60px)" }}
         >
           {/* Badge */}
-          <motion.div variants={revealScale} className="badge mb-5">
+          <motion.div variants={revealScale} className="badge mb-4">
             <Sparkles size={12} fill="currentColor" />
             COACHING ORGANIZACIONAL · LIDERAZGO ÁGIL
           </motion.div>
 
           {/* Headline — each line reveals separately */}
           <motion.h1
-            className="display-text max-w-5xl mb-4 sm:mb-6"
+            className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
           >
             <motion.span variants={revealUp} className="block">
@@ -238,7 +238,7 @@ export default function Hero() {
           {/* Decorative line */}
           <motion.div
             variants={lineGrow}
-            className="divider-gold mb-10"
+            className="divider-gold mb-6"
             style={{ width: "80px", height: "3px" }}
           />
 
