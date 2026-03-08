@@ -193,10 +193,13 @@ export default function Services() {
 
                 {/* CTA */}
                 <button
-                  className="btn-secondary"
+                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all"
+                  style={{ color: "var(--gold-primary)" }}
                   onClick={() => scrollToElement("#contacto")}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; e.currentTarget.style.gap = "12px"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.gap = "8px"; }}
                 >
-                  {service.cta} <ArrowRight size={16} className="inline ml-1" />
+                  {service.cta} <ArrowRight size={16} />
                 </button>
               </motion.div>
             );
