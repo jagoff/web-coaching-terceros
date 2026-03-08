@@ -298,7 +298,7 @@ export async function sendContactEmail(
     const resend = new Resend(apiKey);
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "tu sitio web";
-    const fromAddress = `Coaching <no-reply@${new URL(siteUrl).hostname}>`;
+    const fromAddress = `ELEVA Coaching <onboarding@resend.dev>`;
 
     // Enviar confirmación al cliente y notificación al coach en paralelo
     const [confirmResult, notifResult] = await Promise.allSettled([
