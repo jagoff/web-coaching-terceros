@@ -68,7 +68,6 @@ export default function Contact() {
     if (!form.nombre.trim()) errs.nombre = "El nombre es obligatorio";
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       errs.email = "Introduce un email válido";
-    if (!form.telefono.trim()) errs.telefono = "El teléfono es obligatorio";
     if (!form.servicio) errs.servicio = "Selecciona un servicio";
     if (!form.mensaje.trim() || form.mensaje.trim().length < 10)
       errs.mensaje = "Cuéntanos brevemente tu situación (mín. 10 caracteres)";
@@ -361,7 +360,7 @@ export default function Contact() {
 
                       <div className="form-group">
                         <label htmlFor="telefono" className="form-label">
-                          WhatsApp / Teléfono <span style={{ color: "var(--gold-primary)" }}>*</span>
+                          WhatsApp / Teléfono <span className="text-xs" style={{ color: "var(--text-muted)" }}>(opcional)</span>
                         </label>
                         <input
                           id="telefono"
@@ -438,7 +437,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="btn-primary w-full mt-2"
+                      className="btn-primary w-full mt-6"
                       disabled={status === "loading"}
                     >
                       {status === "loading" ? (
