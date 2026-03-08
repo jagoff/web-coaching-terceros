@@ -11,7 +11,6 @@ import {
   Footer,
   ScrollProgress,
   SmoothScroll,
-  WhatsAppButton,
 } from "@/components/DynamicSections";
 
 export default function Home() {
@@ -30,7 +29,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <WhatsAppButton />
     </SmoothScroll>
   );
 }
