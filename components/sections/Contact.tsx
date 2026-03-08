@@ -238,7 +238,7 @@ export default function Contact() {
                     key="form"
                     onSubmit={handleSubmit}
                     noValidate
-                    className="space-y-7"
+                    className="space-y-6 sm:space-y-7"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
@@ -253,7 +253,7 @@ export default function Contact() {
                         type="text"
                         autoComplete="name"
                         placeholder={t.contact.form.nombre.placeholder}
-                        className="form-input"
+                        className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
                         value={form.nombre}
                         onChange={handleChange}
                         aria-describedby={errors.nombre ? "nombre-error" : undefined}
@@ -277,7 +277,7 @@ export default function Contact() {
                     </div>
 
                     {/* Email + Phone grid */}
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
                       <div className="form-group">
                         <label htmlFor="email" className="form-label">
                           {t.contact.form.email.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
@@ -288,7 +288,7 @@ export default function Contact() {
                           type="email"
                           autoComplete="email"
                           placeholder={t.contact.form.email.placeholder}
-                          className="form-input"
+                          className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
                           value={form.email}
                           onChange={handleChange}
                           aria-invalid={!!errors.email}
@@ -310,8 +310,8 @@ export default function Contact() {
                           name="telefono"
                           type="tel"
                           autoComplete="tel"
-                          placeholder={t.contact.form.empresa.placeholder}
-                          className="form-input"
+                          placeholder={language === 'es' ? '+54 9 3425 000000' : '+1 555 000 000'}
+                          className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
                           value={form.telefono}
                           onChange={handleChange}
                           aria-invalid={!!errors.telefono}
@@ -333,7 +333,7 @@ export default function Contact() {
                       <select
                         id="servicio"
                         name="servicio"
-                        className="form-input form-select"
+                        className="form-input form-select text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
                         value={form.servicio}
                         onChange={handleChange}
                         aria-invalid={!!errors.servicio}
@@ -362,7 +362,7 @@ export default function Contact() {
                       <textarea
                         id="mensaje"
                         name="mensaje"
-                        className="form-input form-textarea"
+                        className="form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px]"
                         placeholder={language === 'es' ? '¿Qué te trae aquí? ¿Qué quieres cambiar?' : 'What brings you here? What do you want to change?'}
                         value={form.mensaje}
                         onChange={handleChange}
@@ -380,7 +380,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="btn-primary w-full !mt-16"
+                      className="btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px]"
                       disabled={status === "loading"}
                     >
                       {status === "loading" ? (
