@@ -54,7 +54,7 @@ function ScrollLink({
 
 export default function Footer() {
   return (
-    <footer className="footer-bg pt-24 sm:pt-28" role="contentinfo">
+    <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
       <div className="container">
         <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 lg:gap-16">
           {/* Links — Navigation + Services combined */}
