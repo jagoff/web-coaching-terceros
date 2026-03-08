@@ -2,9 +2,10 @@ import type { ContactFormData } from "./validations";
 
 // Nombres legibles para los tipos de servicio
 const SERVICIOS_LABELS: Record<ContactFormData["servicio"], string> = {
-  vida: "Coaching de Vida",
-  negocios: "Coaching de Negocios",
-  ambos: "Coaching de Vida y Negocios",
+  liderazgo: "Coaching de Liderazgo",
+  organizacional: "Consultoría Organizacional",
+  ambos: "Coaching de Liderazgo + Consultoría",
+  otros: "Otros",
 };
 
 // Template HTML del email de confirmación enviado al cliente

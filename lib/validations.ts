@@ -32,8 +32,8 @@ export const contactFormSchema = z.object({
     .max(2000, "El mensaje no puede exceder 2000 caracteres")
     .trim(),
 
-  servicio: z.enum(["vida", "negocios", "ambos"] as const, {
-    error: "El servicio debe ser: vida, negocios o ambos",
+  servicio: z.enum(["liderazgo", "organizacional", "ambos", "otros"] as const, {
+    error: "El servicio debe ser: liderazgo, organizacional, ambos u otros",
   }),
 });
 

@@ -15,7 +15,7 @@ interface RateLimitEntry {
 
 const rateLimitMap = new Map<string, RateLimitEntry>();
 
-const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_MAX = 10; // Aumentado para desarrollo
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hora
 
 function getRateLimitEntry(ip: string): RateLimitEntry {
