@@ -151,26 +151,26 @@ export default function Services() {
                   />
                 )}
 
-                {/* Badge */}
-                {service.badge && (
-                  <span className="badge text-xs absolute" style={{ top: "1.5rem", right: "1.5rem" }}>
-                    {service.badge}
-                  </span>
-                )}
-
-                {/* Icon */}
-                <motion.div
-                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6"
-                  style={{
-                    background: "rgba(212,175,55,0.12)",
-                    border: "1px solid rgba(212,175,55,0.25)",
-                    color: "var(--gold-primary)",
-                  }}
-                  whileHover={{ scale: 1.15, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                >
-                  <Icon size={26} strokeWidth={1.5} />
-                </motion.div>
+                {/* Icon + Badge row */}
+                <div className="flex items-center justify-between mb-6">
+                  <motion.div
+                    className="w-14 h-14 rounded-lg flex items-center justify-center"
+                    style={{
+                      background: "rgba(212,175,55,0.12)",
+                      border: "1px solid rgba(212,175,55,0.25)",
+                      color: "var(--gold-primary)",
+                    }}
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    <Icon size={26} strokeWidth={1.5} />
+                  </motion.div>
+                  {service.badge && (
+                    <span className="badge text-xs">
+                      {service.badge}
+                    </span>
+                  )}
+                </div>
 
                 <h3
                   className="heading-md mb-6"
