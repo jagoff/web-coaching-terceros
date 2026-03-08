@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 
 const navLinks = [
@@ -9,8 +9,7 @@ const navLinks = [
   { label: "Mi Método", href: "#proceso" },
   { label: "Testimonios", href: "#testimonios" },
   { label: "Precios", href: "#precios" },
-  { label: "Contacto", href: "#contacto" },
-];
+  ];
 
 const serviceLinks = [
   { label: "Coaching de Liderazgo", href: "#servicios" },
@@ -91,49 +90,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3
-              className="text-xs font-bold uppercase tracking-widest mb-5"
-              style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-            >
-              Contacto
-            </h3>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href="mailto:fernandoferrari@gmail.com"
-                  className="flex items-center gap-2 text-sm contact-link"
-                >
-                  <Mail size={14} className="flex-shrink-0" />
-                  fernandoferrari@gmail.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com/in/fernandorferrari"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm contact-link"
-                >
-                  <Linkedin size={14} className="flex-shrink-0" />
-                  /in/fernandorferrari
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/jago_ff"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm contact-link"
-                >
-                  <Instagram size={14} className="flex-shrink-0" />
-                  @jago_ff
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+                  </div>
 
         {/* Bottom bar */}
         <div
