@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 
 const rotatingPhrases = [
@@ -312,26 +312,36 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — animated mouse */}
       <motion.button
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.8, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer bg-transparent border-0 z-10"
-        style={{ color: "var(--text-muted)" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer bg-transparent border-0 z-10"
         onClick={() => handleScroll("#sobre-mi")}
-        whileHover={{ color: "var(--gold-primary)" }}
         aria-label="Desplazarse hacia abajo"
       >
-        <span className="text-xs uppercase tracking-widest" style={{ letterSpacing: "0.2em" }}>
-          Descubre más
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
+        <div
+          className="relative rounded-full"
+          style={{
+            width: 24,
+            height: 40,
+            border: "2px solid var(--text-muted)",
+            transition: "border-color 0.3s",
+          }}
         >
-          <ArrowDown size={20} />
-        </motion.div>
+          <motion.div
+            className="absolute left-1/2 -translate-x-1/2 rounded-full"
+            style={{
+              width: 4,
+              height: 8,
+              top: 6,
+              background: "var(--gold-primary)",
+            }}
+            animate={{ y: [0, 14, 0], opacity: [1, 0.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
       </motion.button>
     </section>
   );
