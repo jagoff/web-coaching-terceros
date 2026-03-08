@@ -212,7 +212,7 @@ export default function Pricing() {
 
               {/* CTA */}
               <button
-                className={plan.featured ? "btn-primary" : "btn-secondary"}
+                className="btn-secondary"
                 onClick={() => handleScroll("#contacto")}
               >
                 {plan.cta} <ArrowRight size={14} className="inline ml-1" />
