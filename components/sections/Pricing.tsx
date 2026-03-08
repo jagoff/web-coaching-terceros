@@ -159,20 +159,24 @@ export default function Pricing() {
               whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(212,175,55,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* Plan name + badge row */}
-              <div className="flex items-center justify-between mb-5">
-                <p
-                  className="text-xs font-bold uppercase tracking-widest"
-                  style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+              {/* Badge — absolute so it doesn't affect flow */}
+              {plan.badge && (
+                <span
+                  className="badge text-xs px-3 py-1 absolute"
+                  style={{ top: "clamp(1.25rem, 3vw, 1.75rem)", right: "clamp(1.25rem, 3vw, 1.75rem)" }}
+                  aria-label="Plan más popular"
                 >
-                  {plan.name}
-                </p>
-                {plan.badge && (
-                  <span className="badge text-xs px-3 py-1" aria-label="Plan más popular">
-                    {plan.badge}
-                  </span>
-                )}
-              </div>
+                  {plan.badge}
+                </span>
+              )}
+
+              {/* Plan name */}
+              <p
+                className="text-xs font-bold uppercase tracking-widest mb-5"
+                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+              >
+                {plan.name}
+              </p>
 
               {/* Price */}
               <div className="flex items-baseline gap-1 mb-5">
@@ -180,14 +184,14 @@ export default function Pricing() {
                 <span className="price-period">{plan.period}</span>
               </div>
 
-              {/* Description — fixed height so features align across cards */}
+              {/* Description */}
               <p
                 className="text-sm pb-8 mb-8 border-b"
                 style={{
                   color: "var(--text-muted)",
                   lineHeight: 1.8,
                   borderColor: "rgba(255,255,255,0.06)",
-                  minHeight: "4.5rem",
+                  minHeight: "5.5rem",
                 }}
               >
                 {plan.description}
