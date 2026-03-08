@@ -243,7 +243,16 @@ export default function Hero() {
           />
 
           {/* Rotating pain-point phrases */}
-          <motion.div variants={revealUp} className="max-w-2xl mb-4 sm:mb-6" style={{ minHeight: "5.5rem" }}>
+          <motion.div
+            variants={revealUp}
+            className="max-w-2xl mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-xl"
+            style={{
+              minHeight: "5.5rem",
+              background: "rgba(255,255,255,0.03)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(212,175,55,0.12)",
+            }}
+          >
             <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
               ¿Te suena esto?
             </p>
