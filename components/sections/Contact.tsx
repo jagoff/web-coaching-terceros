@@ -303,7 +303,7 @@ export default function Contact() {
 
                       <div className="form-group">
                         <label htmlFor="telefono" className="form-label">
-                          {t.contact.form.empresa.label} <span className="text-xs" style={{ color: "var(--text-muted)" }}>({language === 'es' ? 'opcional' : 'optional'})</span>
+                          {language === 'es' ? 'Teléfono' : 'Phone'} <span className="text-xs" style={{ color: "var(--text-muted)" }}>({language === 'es' ? 'opcional' : 'optional'})</span>
                         </label>
                         <input
                           id="telefono"
