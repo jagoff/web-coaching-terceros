@@ -292,7 +292,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Conocé el método ↓
+              Conocé nuestro método ↓
             </motion.button>
           </motion.div>
 
