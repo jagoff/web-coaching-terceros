@@ -215,7 +215,7 @@ export default function Pricing() {
                 className="btn-secondary"
                 onClick={() => handleScroll("#contacto")}
               >
-                {plan.cta} <ArrowRight size={14} className="inline ml-1" />
+                <span>{plan.cta}</span> <ArrowRight size={14} className="flex-shrink-0 ml-1" />
               </button>
             </motion.div>
           ))}
