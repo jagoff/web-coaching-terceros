@@ -192,7 +192,7 @@ export default function Testimonials() {
                     lineHeight: 1.9,
                   }}
                 >
-                  "{t.quote}"
+                  {t.quote}
                 </blockquote>
 
                 {/* Author */}
