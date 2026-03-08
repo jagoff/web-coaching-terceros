@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
+import { scrollToElement } from "@/lib/scroll";
 
 const sectionStagger: Variants = {
   hidden: {},
@@ -206,7 +207,8 @@ export default function Services() {
 
                 {/* CTA */}
                 <button
-                  className={service.featured ? "btn-primary" : "btn-secondary"}
+                  className="btn-secondary"
+                  onClick={() => scrollToElement("#contacto")}
                 >
                   {service.cta} <ArrowRight size={16} className="inline ml-1" />
                 </button>
