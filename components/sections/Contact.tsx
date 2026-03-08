@@ -163,6 +163,16 @@ export default function Contact() {
               {t.contact.subtitle}
             </p>
 
+            {/* Urgency indicator */}
+            <div className="mb-8 p-4 rounded-lg" style={{
+              background: "rgba(124,107,196,0.1)",
+              border: "1px solid rgba(124,107,196,0.2)",
+            }}>
+              <p className="text-sm text-center" style={{ color: "var(--gold-primary)" }}>
+                🎯 Solo <span className="font-bold">3 cupos disponibles</span> este mes para acompañamiento personalizado
+              </p>
+            </div>
+
             <motion.ul
               variants={promiseStagger}
               initial="hidden"

@@ -65,8 +65,7 @@ export default function Navbar() {
                 ELEVA
               </span>
               <span
-                className="hidden sm:block text-xs font-semibold uppercase tracking-[0.15em]"
-                style={{ color: "var(--text-muted)" }}
+                className="hidden sm:block text-xs font-semibold uppercase tracking-[0.15em] text-muted"
               >
                 Coaching
               </span>
@@ -89,11 +88,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <button
-                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
-                style={{
-                  borderColor: "var(--gold-border)",
-                  color: "var(--text-secondary)",
-                }}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors border-gold-border text-text-secondary"
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
                 <span className="text-sm">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
@@ -110,15 +105,14 @@ export default function Navbar() {
 
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden flex items-center justify-center rounded-md transition-colors"
-              style={{ width: 44, height: 44, color: "var(--text-secondary)" }}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={mobileOpen}
-              aria-controls="mobile-menu"
-            >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+                className="lg:hidden flex items-center justify-center rounded-md transition-colors w-11 h-11 text-text-secondary"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-menu"
+              >
+                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
           </div>
         </div>
       </nav>
@@ -150,8 +144,7 @@ export default function Navbar() {
                 ELEVA
               </span>
               <button
-                className="flex items-center justify-center rounded-md"
-                style={{ width: 44, height: 44, color: "var(--text-secondary)" }}
+                className="flex items-center justify-center rounded-md w-11 h-11 text-text-secondary"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >

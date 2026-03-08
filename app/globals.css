@@ -5,8 +5,6 @@
    ============================================================ */
 
 @import "tailwindcss";
-@source "../components";
-@source "../app";
 
 /* ============================================================
    CSS CUSTOM PROPERTIES
@@ -966,6 +964,15 @@ html.lenis, html.lenis body {
   .glass-card {
     border-radius: var(--radius-lg);
   }
+}
+
+/* ---- Text color utilities ---- */
+.text-text-muted {
+  color: var(--text-muted);
+}
+
+.border-gold-border {
+  border-color: var(--gold-border);
 }
 
 /* ============================================================

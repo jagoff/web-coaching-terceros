@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PHONE = "5493425153999";
-const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coaching/consultoría.";
+const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coaching/consultoría. Vi tu web y quiero agendar la sesión gratuita.";
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
@@ -49,7 +49,7 @@ export default function WhatsAppButton() {
                 transition={{ duration: 0.3 }}
                 className="whatsapp-tooltip"
               >
-                ¿Hablamos?
+                ¿Charlamos por WhatsApp?
               </motion.span>
             )}
           </AnimatePresence>
