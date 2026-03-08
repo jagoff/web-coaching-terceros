@@ -171,7 +171,7 @@ export default function Contact() {
               className="space-y-4 sm:space-y-5 mb-10 sm:mb-14"
             >
               {[
-                "Sin venta agresiva",
+                "30 minutos que sirven",
                 "Conversación real y auténtica",
                 "Claridad garantizada",
               ].map((item) => (
