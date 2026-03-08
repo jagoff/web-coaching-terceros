@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Search, Compass, Zap, Star } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const stepReveal: Variants = {
   hidden: { opacity: 0, y: 50, rotateY: -8, filter: "blur(4px)" },
@@ -20,40 +21,38 @@ const stepReveal: Variants = {
   }),
 };
 
-const steps = [
-  {
-    number: "01",
-    icon: Search,
-    title: "Diagnóstico",
-    description:
-      "Analizamos tu organización, equipo o liderazgo actual. Identificamos fricciones, oportunidades y el punto de partida real.",
-  },
-  {
-    number: "02",
-    icon: Compass,
-    title: "Diseño",
-    description:
-      "Co-creamos una hoja de ruta a medida: objetivos claros, métricas de avance y estrategia ágil adaptada a tu contexto.",
-  },
-  {
-    number: "03",
-    icon: Zap,
-    title: "Ejecución",
-    description:
-      "Sesiones de coaching y acompañamiento en el día a día. Iteramos, removemos impedimentos y mantenemos el foco.",
-  },
-  {
-    number: "04",
-    icon: Star,
-    title: "Autonomía",
-    description:
-      "Consolidamos prácticas, transferimos herramientas y construís la capacidad interna para seguir evolucionando sin depender de mí.",
-  },
-];
 
 export default function Process() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  const steps = [
+    {
+      number: "01",
+      icon: Search,
+      title: t.process.steps.diagnostico.title,
+      description: t.process.steps.diagnostico.description,
+    },
+    {
+      number: "02",
+      icon: Compass,
+      title: t.process.steps.diseno.title,
+      description: t.process.steps.diseno.description,
+    },
+    {
+      number: "03",
+      icon: Zap,
+      title: t.process.steps.ejecucion.title,
+      description: t.process.steps.ejecucion.description,
+    },
+    {
+      number: "04",
+      icon: Star,
+      title: t.process.steps.autonomia.title,
+      description: t.process.steps.autonomia.description,
+    },
+  ];
 
   return (
     <section id="proceso" className="section section-surface section-gold-border-top" ref={ref}>
@@ -66,19 +65,18 @@ export default function Process() {
           className="text-center mb-14 md:mb-24 max-w-3xl mx-auto"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">El Proceso</span>
+            <span className="badge">{t.process.badge}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
             style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
           >
-            Tu transformación en{" "}
-            <span className="text-gradient">4 pasos</span>
+            {t.process.title}{" "}
+            <span className="text-gradient">{t.process.title2}</span> {t.process.title3}
           </motion.h2>
           <motion.p variants={blurUp} className="lead-text">
-            Sin estructura no hay transformación duradera. Mi metodología
-            garantiza que cada paso tenga propósito claro y avance medible.
+            {t.process.subtitle}
           </motion.p>
           <motion.div
             variants={dividerGrow}

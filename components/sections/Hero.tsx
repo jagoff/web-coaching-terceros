@@ -270,7 +270,7 @@ export default function Hero() {
             className="relative max-w-2xl mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-xl"
             style={{
               minHeight: "5.5rem",
-              background: "rgba(255,255,255,0.03)",
+              background: "rgba(0,0,0,0.25)",
               backdropFilter: "blur(12px)",
               border: "1px solid rgba(124,107,196,0.12)",
             }}

@@ -96,8 +96,8 @@ export default function Navbar() {
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
-                <span className="text-sm">🇺🇸</span>
-                <span className="text-sm font-medium">EN</span>
+                <span className="text-sm">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               <button
                 className="btn-primary"

@@ -5,6 +5,7 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const cardReveal: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: 8, filter: "blur(6px)" },
@@ -35,45 +36,33 @@ const benefitItem: Variants = {
   },
 };
 
-const services = [
-  {
-    id: "liderazgo",
-    icon: Flame,
-    title: "Coaching de Liderazgo",
-    description:
-      "Para líderes tech y founders que quieren potenciar su impacto, construir equipos de alto rendimiento y liderar con visión estratégica sin perder lo humano.",
-    benefits: [
-      "Liderazgo auténtico y estratégico",
-      "Gestión y motivación de equipos tech",
-      "Toma de decisiones en entornos complejos",
-      "Comunicación efectiva con stakeholders",
-      "Balance entre ejecución y visión",
-    ],
-    cta: "Quiero potenciar mi liderazgo",
-    featured: false,
-  },
-  {
-    id: "organizacional",
-    icon: Gem,
-    title: "Consultoría Organizacional",
-    description:
-      "Para startups y empresas que necesitan profesionalizar operaciones, adoptar agilidad real y construir una cultura que escale junto con el negocio.",
-    benefits: [
-      "Transformación ágil a medida",
-      "Diseño de procesos escalables",
-      "Cultura organizacional human-centric",
-      "Métricas de eficiencia y mejora continua",
-      "Alineación estratégica de equipos",
-    ],
-    cta: "Quiero transformar mi empresa",
-    featured: true,
-    badge: "MÁS SOLICITADO",
-  },
-];
 
 export default function Services() {
+  const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const services = [
+    {
+      id: "liderazgo",
+      icon: Flame,
+      title: t.services.items.liderazgo.title,
+      description: t.services.items.liderazgo.description,
+      benefits: t.services.items.liderazgo.benefits,
+      cta: t.services.items.liderazgo.benefits[0],
+      featured: false,
+    },
+    {
+      id: "organizacional",
+      icon: Gem,
+      title: t.services.items.organizacional.title,
+      description: t.services.items.organizacional.description,
+      benefits: t.services.items.organizacional.benefits,
+      cta: t.services.items.organizacional.benefits[0],
+      featured: true,
+      badge: language === 'es' ? 'MÁS SOLICITADO' : 'MOST POPULAR',
+    },
+  ];
 
   return (
     <section id="servicios" className="section section-dark" ref={ref}>
@@ -86,15 +75,14 @@ export default function Services() {
           className="text-center mb-14 md:mb-24"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">Servicios</span>
+            <span className="badge">{t.services.badge}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            ¿En qué área necesitas{" "}
-            <span className="text-gradient">elevar</span> más?
+            {t.services.title}
           </motion.h2>
           <motion.div
             variants={dividerGrow}

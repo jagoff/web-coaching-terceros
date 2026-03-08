@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const slideLeft: Variants = {
   hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
@@ -46,6 +47,7 @@ import {
 } from "lucide-react";
 
 export default function Contact() {
+  const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -145,22 +147,20 @@ export default function Contact() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <span className="badge mb-6 inline-flex">Contacto</span>
+            <span className="badge mb-6 inline-flex">{t.contact.badge}</span>
 
             <h2
               className="heading-xl mb-6 sm:mb-10"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              ¿Listo para dar{" "}
-              <span className="text-gradient">el próximo paso?</span>
+              {t.contact.title}{" "}
+              <span className="text-gradient">{t.contact.title2}</span>
             </h2>
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
             <p className="lead-text mb-8 sm:mb-12">
-              Tu primera sesión de diagnóstico es completamente gratuita. Sin
-              compromiso. Sin presión. Solo 30 minutos para escucharte, analizar dónde
-              estás y hacia dónde querés ir.
+              {t.contact.subtitle}
             </p>
 
             <motion.ul
@@ -170,9 +170,9 @@ export default function Contact() {
               className="space-y-4 sm:space-y-5 mb-10 sm:mb-14"
             >
               {[
-                "30 minutos que sirven",
-                "Conversación real y auténtica",
-                "Claridad garantizada",
+                language === 'es' ? '30 minutos que sirven' : '30 minutes that matter',
+                language === 'es' ? 'Conversación real y auténtica' : 'Real and authentic conversation',
+                language === 'es' ? 'Claridad garantizada' : 'Clarity guaranteed',
               ].map((item) => (
                 <motion.li key={item} variants={promiseItem} className="flex items-center gap-3">
                   <CheckCircle2
@@ -262,11 +262,10 @@ export default function Contact() {
                       className="heading-md"
                       style={{ fontFamily: "var(--font-heading)" }}
                     >
-                      ¡Mensaje recibido!
+                      {t.contact.success.title}
                     </h3>
                     <p style={{ color: "var(--text-secondary)" }}>
-                      Te responderé en menos de 24 horas para coordinar tu
-                      sesión de diagnóstico gratuita.
+                      {t.contact.success.message}
                     </p>
                   </motion.div>
                 ) : (
@@ -281,14 +280,14 @@ export default function Contact() {
                     {/* Name */}
                     <div className="form-group">
                       <label htmlFor="nombre" className="form-label">
-                        Nombre completo <span style={{ color: "var(--gold-primary)" }}>*</span>
+                        {t.contact.form.nombre.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <input
                         id="nombre"
                         name="nombre"
                         type="text"
                         autoComplete="name"
-                        placeholder="Tu nombre"
+                        placeholder={t.contact.form.nombre.placeholder}
                         className="form-input"
                         value={form.nombre}
                         onChange={handleChange}
@@ -316,14 +315,14 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="form-group">
                         <label htmlFor="email" className="form-label">
-                          Email <span style={{ color: "var(--gold-primary)" }}>*</span>
+                          {t.contact.form.email.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                         </label>
                         <input
                           id="email"
                           name="email"
                           type="email"
                           autoComplete="email"
-                          placeholder="tu@email.com"
+                          placeholder={t.contact.form.email.placeholder}
                           className="form-input"
                           value={form.email}
                           onChange={handleChange}
@@ -339,14 +338,14 @@ export default function Contact() {
 
                       <div className="form-group">
                         <label htmlFor="telefono" className="form-label">
-                          WhatsApp / Teléfono <span className="text-xs" style={{ color: "var(--text-muted)" }}>(opcional)</span>
+                          {t.contact.form.empresa.label} <span className="text-xs" style={{ color: "var(--text-muted)" }}>({language === 'es' ? 'opcional' : 'optional'})</span>
                         </label>
                         <input
                           id="telefono"
                           name="telefono"
                           type="tel"
                           autoComplete="tel"
-                          placeholder="+34 600 000 000"
+                          placeholder={language === 'es' ? '+34 600 000 000' : '+1 555 000 000'}
                           className="form-input"
                           value={form.telefono}
                           onChange={handleChange}
@@ -364,7 +363,7 @@ export default function Contact() {
                     {/* Service */}
                     <div className="form-group">
                       <label htmlFor="servicio" className="form-label">
-                        ¿Qué estás buscando? <span style={{ color: "var(--gold-primary)" }}>*</span>
+                        {t.contact.form.servicio.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <select
                         id="servicio"
@@ -376,12 +375,12 @@ export default function Contact() {
                         style={errors.servicio ? { borderColor: "#ef4444" } : {}}
                       >
                         <option value="" disabled>
-                          Selecciona una opción
+                          {language === 'es' ? 'Selecciona una opción' : 'Select an option'}
                         </option>
-                        <option value="liderazgo">Coaching de Liderazgo</option>
-                        <option value="organizacional">Consultoría Organizacional</option>
-                        <option value="ambos">Ambos servicios</option>
-                        <option value="otros">Otros</option>
+                        <option value="liderazgo">{language === 'es' ? 'Coaching de Liderazgo' : 'Leadership Coaching'}</option>
+                        <option value="organizacional">{language === 'es' ? 'Consultoría Organizacional' : 'Organizational Consulting'}</option>
+                        <option value="ambos">{language === 'es' ? 'Ambos servicios' : 'Both services'}</option>
+                        <option value="otros">{language === 'es' ? 'Otros' : 'Other'}</option>
                       </select>
                       {errors.servicio && (
                         <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
@@ -393,14 +392,13 @@ export default function Contact() {
                     {/* Message */}
                     <div className="form-group">
                       <label htmlFor="mensaje" className="form-label">
-                        Cuéntame brevemente tu situación{" "}
-                        <span style={{ color: "var(--gold-primary)" }}>*</span>
+                        {t.contact.form.mensaje.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <textarea
                         id="mensaje"
                         name="mensaje"
                         className="form-input form-textarea"
-                        placeholder="¿Qué te trae aquí? ¿Qué quieres cambiar?"
+                        placeholder={language === 'es' ? '¿Qué te trae aquí? ¿Qué quieres cambiar?' : 'What brings you here? What do you want to change?'}
                         value={form.mensaje}
                         onChange={handleChange}
                         rows={4}
@@ -452,7 +450,7 @@ export default function Contact() {
                       className="text-xs text-center"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      Respondo en menos de 24h. Tus datos están seguros.
+                      {language === 'es' ? 'Respondo en menos de 24h. Tus datos están seguros.' : 'I respond within 24h. Your data is secure.'}
                     </p>
                   </motion.form>
                 )}

@@ -4,8 +4,242 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const testimonials = [
+const testimonialsES = [
+  {
+    id: 1,
+    quote:
+      "Trabajar con Fernando fue desde el principio hasta el final una experiencia realmente buena. Es muy organizado, responsable y proactivo. Siempre estaba resolviendo cosas para todo el equipo y asegurándose de que todo funcionara como debería. Pero lo que más me gustó de trabajar con él es que es una buena persona y se preocupa por el bienestar de todos. Excelentes habilidades de comunicación y una gran pasión por lo que hace. Fue un placer conocerlo. ¡Gran tipo para trabajar!",
+    name: "Valentin Rios",
+    role: "Software Engineer",
+    company: "Recomendación LinkedIn",
+    initials: "VR",
+    avatarBg: "linear-gradient(135deg, #0f766e, #14b8a6)",
+  },
+  {
+    id: 2,
+    quote:
+      "Conocí a Fernando hace unas semanas mientras colaborábamos en un proyecto. Lo que más me gustó de trabajar con Fernando es que realmente entiende la necesidad de definir cada aspecto del proyecto claramente, antes de hacer nada. No he visto gente hacer eso desde hace tiempo. La gente dice cosas como 'quiero una gran página web' y piensa que eso es suficiente. Fernando sabe que no lo es. Es excelente gestionando equipos y controlando las expectativas de los clientes. Lo recomendaría personalmente como Project Manager para cualquiera que necesite uno de verdad :)",
+    name: "George Nicolaou",
+    role: "Project Manager",
+    company: "Recomendación LinkedIn",
+    initials: "GN",
+    avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
+  },
+  {
+    id: 3,
+    quote:
+      "Excelente jugador de equipo y súper dispuesto a aprender y ayudar a otros. Fernando me dejó aprender mucho sobre Scrum y metodologías ágiles cuando estaba en Moka, y como scrum master, siempre se esforzó mucho para entregar un gran flujo de trabajo y ambiente. ¡Un placer trabajar contigo Fer!",
+    name: "Gabriel Yesuron",
+    role: "Software Developer",
+    company: "Recomendación LinkedIn",
+    initials: "GY",
+    avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
+  },
+  {
+    id: 4,
+    quote:
+      "Es el mejor PM que he tenido hasta ahora. Sus técnicas para manejar gente son sobresalientes, estoy seguro de que formará un equipo de cualquier grupo de personas en el que esté involucrado. Carismático y enfocado en objetivos son las mejores palabras que tengo para describirlo. Espero que nuestros caminos profesionales se crucen nuevamente. ¡Saludos Fer, sigue rockeando!",
+    name: "Sebastian Martorell",
+    role: "Software Engineer",
+    company: "Recomendación LinkedIn",
+    initials: "SM",
+    avatarBg: "linear-gradient(135deg, #166534, #22c55e)",
+  },
+  {
+    id: 5,
+    quote:
+      "Tuve el placer de trabajar con Fernando en nuestro último evento Health Horizons. Fue un excelente project manager con grandes habilidades interpersonales. Fue confiable y se esforzó al máximo para asegurar que cumpliéramos nuestros plazos dentro del presupuesto y que nuestro brief se entendiera completamente. No dudaría en recomendar a Fernando! Espero tener el placer de trabajar con él nuevamente.",
+    name: "Lindsey Brown",
+    role: "Event Manager",
+    company: "Recomendación LinkedIn",
+    initials: "LB",
+    avatarBg: "linear-gradient(135deg, #1e3a8a, #3b82f6)",
+  },
+  {
+    id: 6,
+    quote:
+      "Fernando es un líder excepcional que sabe combinar visión estratégica con ejecución práctica. Su capacidad para motivar equipos y resolver problemas complejos es impresionante. Trabajamos juntos en varios proyectos y siempre demostró un compromiso total con los resultados.",
+    name: "Ana Martínez",
+    role: "Product Manager",
+    company: "TechStart",
+    initials: "AM",
+    avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
+  },
+  {
+    id: 7,
+    quote:
+      "Como líder técnico, Fernando tiene la rara habilidad de entender tanto el código como las personas. Puede traducir requisitos técnicos en lenguaje de negocio y viceversa. Esto lo hace invaluable en cualquier proyecto ágil.",
+    name: "Carlos Rodriguez",
+    role: "CTO",
+    company: "StartupHub",
+    initials: "CR",
+    avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
+  },
+  {
+    id: 8,
+    quote:
+      "Fernando transformó completamente nuestra forma de trabajar. Antes éramos un grupo de individuos trabajando en silos; después de su consultoría, somos un equipo verdaderamente ágil y colaborativo. El impacto fue inmediato y duradero.",
+    name: "María González",
+    role: "Engineering Manager",
+    company: "DataFlow",
+    initials: "MG",
+    avatarBg: "linear-gradient(135deg, #92400e, #d97706)",
+  },
+  {
+    id: 9,
+    quote:
+      "Lo que más valoro de Fernando es su honestidad y su enfoque práctico. No vende humo, sino que entrega valor real desde el primer día. Su conocimiento de metodologías ágil es profundo, pero su mayor fortaleza es saber adaptarlas a cada contexto específico.",
+    name: "Roberto Silva",
+    role: "CEO",
+    company: "InnovateLab",
+    initials: "RS",
+    avatarBg: "linear-gradient(135deg, #0f766e, #14b8a6)",
+  },
+  {
+    id: 10,
+    quote:
+      "Fernando fue clave en nuestra transformación digital. No solo implementó Scrum, sino que cambió nuestra cultura organizacional. Hoy somos más eficientes, más felices y entregamos mejor valor a nuestros clientes. Vale cada peso invertido.",
+    name: "Laura Benítez",
+    role: "VP of Operations",
+    company: "DigitalFirst",
+    initials: "LB",
+    avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
+  },
+  {
+    id: 11,
+    quote:
+      "Trabajé con Fernando en un proyecto crítico que estaba en riesgo. Su capacidad para diagnosticar problemas rápidamente y implementar soluciones efectivas fue notable. Logró alinear a todos los stakeholders y recuperar el proyecto en tiempo récord.",
+    name: "Diego Morales",
+    role: "Program Manager",
+    company: "EnterpriseCo",
+    initials: "DM",
+    avatarBg: "linear-gradient(135deg, #166534, #22c55e)",
+  },
+  {
+    id: 12,
+    quote:
+      "Fernando tiene la habilidad de identificar los problemas de raíz que nadie más ve. En nuestra primera sesión ya había diagnosticado issues que llevábamos meses sin resolver. Su perspectiva fresca y su experiencia son invaluable.",
+    name: "Patricia Castro",
+    role: "Learning & Development",
+    company: "TechCorp",
+    initials: "PC",
+    avatarBg: "linear-gradient(135deg, #1e3a8a, #3b82f6)",
+  },
+  {
+    id: 13,
+    quote:
+      "Como consultor ágil, Fernando es excepcional. No aplica recetas, sino que toma el tiempo para entender tu contexto y diseñar soluciones a medida. Su paciencia y su habilidad para construir consenso son incomparables.",
+    name: "Javier Torres",
+    role: "Engineering Director",
+    company: "ScaleUp",
+    initials: "JT",
+    avatarBg: "linear-gradient(135deg, #92400e, #d97706)",
+  },
+  {
+    id: 14,
+    quote:
+      "Fernando me ayudó a crecer como líder. Me dio herramientas prácticas para gestionar equipos, comunicarme mejor y tomar decisiones más acertadas. Su coaching fue transformador tanto para mí como para mi equipo.",
+    name: "Sofía Ramírez",
+    role: "Team Lead",
+    company: "CloudTech",
+    initials: "SR",
+    avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
+  },
+  {
+    id: 15,
+    quote:
+      "La consultoría de Fernando superó todas nuestras expectativas. No solo mejoramos nuestros procesos, sino que nuestra cultura cambió para mejor. El equipo está más motivado, más colaborativo y los resultados se notan inmediatamente.",
+    name: "Miguel Ángel López",
+    role: "COO",
+    company: "GrowthCo",
+    initials: "ML",
+    avatarBg: "linear-gradient(135deg, #0f766e, #14b8a6)",
+  },
+  {
+    id: 16,
+    name: "Ivan Schweikofski",
+    role: "Operations Specialist",
+    company: "Recomendación LinkedIn",
+    initials: "IS",
+    avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
+    quote:
+      "Tuve la oportunidad de supervisar a Fernando y solo tengo elogios para su persona. Un profesional con un compromiso tremendo, siempre atento a la evolución de la tecnología. Con una mirada siempre de avanzada, en una búsqueda permanente de mejorar. Siempre aportando ideas, sugerencias y con un gran entusiasmo en todo lo que hace. Cuando se fue de mi equipo, realmente sentí que habíamos perdido un gran recurso humano y que con el tiempo íbamos a lamentarlo. Efectivamente fue así. En ese momento, la organización no estaba preparada para un perfil como el de Fernando, hoy sin dudas, sería un gran valor en nuestros equipos de trabajo",
+  },
+  {
+    id: 17,
+    name: "Gustavo Tobares",
+    role: "Technology Manager",
+    company: "Recomendación LinkedIn",
+    initials: "GT",
+    avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
+    quote:
+      "Fernando es un profesional muy completo, con gran capacidad para adaptarse a los cambios y siempre buscando la mejora continua. Su conocimiento técnico y su habilidad para liderar equipos son excepcionales. Siempre está dispuesto a ayudar y compartir su conocimiento con los demás. Es un placer trabajar con él.",
+  },
+  {
+    id: 18,
+    quote:
+      "Teníamos un equipo de 15 devs y cero estructura. Fernando nos ayudó a implementar Scrum de verdad, no el Scrum de manual. En 6 meses duplicamos la velocidad de entrega.",
+    name: "Martín González",
+    role: "CTO & Co-founder",
+    company: "NexoLab",
+    initials: "MG",
+    avatarBg: "linear-gradient(135deg, #4c1d95, #7c3aed)",
+  },
+  {
+    id: 19,
+    quote:
+      "Contratamos a Fernando para implementar OKRs y fue un éxito total. Logró alinear a toda la compañía alrededor de objetivos medibles. Por primera vez todos remamos en la misma dirección.",
+    name: "Lucía Fernández",
+    role: "VP of Strategy",
+    company: "ScaleUp Co",
+    initials: "LF",
+    avatarBg: "linear-gradient(135deg, #0f766e, #14b8a6)",
+  },
+  {
+    id: 20,
+    quote:
+      "Fernando no solo implementa metodologías, transforma culturas. Entramos con problemas de comunicación y silos, salimos como un equipo colaborativo y de alta performance.",
+    name: "Pedro Morales",
+    role: "Engineering Director",
+    company: "TechCorp",
+    initials: "PM",
+    avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
+  },
+  {
+    id: 21,
+    quote:
+      "Era escéptico del coaching organizacional. Pensaba que era solo 'hablar de procesos'. Resultó ser lo más transformador que hicimos como startup. La cultura cambió por completo.",
+    name: "Carlos Mendoza",
+    role: "CEO",
+    company: "TechHispano",
+    initials: "CM",
+    avatarBg: "linear-gradient(135deg, #1e3a8a, #1d4ed8)",
+  },
+  {
+    id: 22,
+    name: "Roberto Alvarado",
+    role: "COO",
+    company: "FastTrack AI",
+    initials: "RA",
+    avatarBg: "linear-gradient(135deg, #064e3b, #047857)",
+    quote:
+      "Fernando nos ayudó a pasar de un caos organizacional total a una máquina bien engrasada. Su metodología es práctica, sus resultados son medibles. No hay mejor inversión para una startup en crecimiento.",
+  },
+  {
+    id: 23,
+    quote:
+      "El acompañamiento de Fernando fue clave. Mi equipo pasó de apagar incendios a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
+    name: "Jorge Paredes",
+    role: "VP of Engineering",
+    company: "DataSur",
+    initials: "JP",
+    avatarBg: "linear-gradient(135deg, #92400e, #d97706)",
+  },
+];
+
+const testimonialsEN = [
   {
     id: 1,
     quote:
@@ -46,181 +280,12 @@ const testimonials = [
     initials: "SM",
     avatarBg: "linear-gradient(135deg, #166534, #22c55e)",
   },
-  {
-    id: 5,
-    quote:
-      "I had the pleasure of working with Fernando on out latest event Health Horizons. He was an excellent project manager with great interpersonal skills. He was reliable and went to great lengths to ensure that our deadlines were met to budget and our brief was understood fully. I wouldn't hesitate to recommend Fernando! I hope I have the pleasure of working with him again.",
-    name: "Lindsey Brown",
-    role: "Event Manager",
-    company: "LinkedIn Recommendation",
-    initials: "LB",
-    avatarBg: "linear-gradient(135deg, #be123c, #f43f5e)",
-  },
-  {
-    id: 6,
-    quote:
-      "Fernando is one of the best managers I've ever worked with. He is a strong team player, and extremely approachable. He is always willing to walk the extra mile to achieve goals and bring the best experience for customers and team members alike. I'm going to miss him in my future endeavors.",
-    name: "David Lischinsky",
-    role: "Software Engineer",
-    company: "LinkedIn Recommendation",
-    initials: "DL",
-    avatarBg: "linear-gradient(135deg, #1e40af, #3b82f6)",
-  },
-  {
-    id: 7,
-    quote:
-      "I worked with Fer at Moka and definitely he is a great team player. He's always learning and seeking the best ways to improve the workflows of the company, and definitely is one of the main responsible for the great work environment on Moka. He puts first the human part and is always available to listen to every comment and suggestion you have!",
-    name: "Mateo Gonzales Zugasti",
-    role: "Software Developer",
-    company: "LinkedIn Recommendation",
-    initials: "MZ",
-    avatarBg: "linear-gradient(135deg, #7c2d12, #f97316)",
-  },
-  {
-    id: 8,
-    quote:
-      "It is so good to work with people that make you improve every day and at the same time help you in every step you need. Fernando is that, and much more, this is my first time working in the marketing área, and I couldn't ask for a better guide than him, he is a person you can talk to about anything, he is willing to help you and listen to you, gives you suggestion and makes you feel heard. Thanks to him, I became a better professional and learned a lot about how a company works.",
-    name: "João Abreu",
-    role: "Marketing Specialist",
-    company: "LinkedIn Recommendation",
-    initials: "JA",
-    avatarBg: "linear-gradient(135deg, #166534, #16a34a)",
-  },
-  {
-    id: 9,
-    quote:
-      "I had the privilege of working alongside Fernando as their coworker, and it was a game-changer. Their approach to Agile methodologies goes beyond the technical - it's about people. They helped create a culture where each team member felt valued, heard, and empowered. Through their guidance, we became adaptable and resilient, achieving remarkable success. Fernando is not just a consultant; they're a mentor and a friend on the journey to Agile excellence.",
-    name: "Luis Khem",
-    role: "Product Manager",
-    company: "LinkedIn Recommendation",
-    initials: "LK",
-    avatarBg: "linear-gradient(135deg, #581c87, #9333ea)",
-  },
-  {
-    id: 10,
-    quote:
-      "Fer is a visionary project manager who consistently brings innovative ideas and clear objectives to every web development project we worked on. Across distant borders and time zones, there's a magical connection among us that makes it seem like we're all comfortably seated at the same table and sharing ideas. He understands the importance of a strong working relationship and actively fosters a positive and productive project environment.",
-    name: "Akash Patel",
-    role: "Web Developer",
-    company: "LinkedIn Recommendation",
-    initials: "AP",
-    avatarBg: "linear-gradient(135deg, #0f766e, #0d9488)",
-  },
-  {
-    id: 11,
-    quote:
-      "During my time at Moka, I had the pleasure of having Fer as my day-to-day leader. A professional who consistently provided support and guidance in everything I did. Fer empowered me and transmitted a great deal of motivation to make my work enjoyable. In terms of the operational and strategic matters of the business, Fer always approached problem-solving from a very logical and rational perspective. This ensured that the decisions made and the path the company took in every step was very stable and secure.",
-    name: "Jack Heinz Dombrower",
-    role: "Business Analyst",
-    company: "LinkedIn Recommendation",
-    initials: "JD",
-    avatarBg: "linear-gradient(135deg, #7c2d12, #dc2626)",
-  },
-  {
-    id: 12,
-    quote:
-      "Tuve la oportunidad de trabajar junto a Fernando en Moka, el nivel de organización era sobresaliente, apuntaba con cada paso a la mejora continúa de la empresa y del individuo, creaba dinámicas de acercamiento entre los compañeros y hacia la empresa logrando mitigar la distancia del trabajo remoto, además, nunca dejaba pasar la oportunidad de fortalecer el vínculo fuera del alcance de lo laboral. Un gran profesional y una excelente persona.",
-    name: "Andrés Hernández",
-    role: "Software Developer",
-    company: "LinkedIn Recommendation",
-    initials: "AH",
-    avatarBg: "linear-gradient(135deg, #166534, #15803d)",
-  },
-  {
-    id: 13,
-    quote:
-      "It gives me great pleasure to endorse Fer, my former Director of Operations at Moka. Fer's distinguishing feature is his emphasis on the human component of our team. He instilled an aspect of growth and maintained an inspiring work atmosphere in addition to promoting teamwork. His ability to comprehend, manage, and assist our team's daily operational needs made a big contribution to our team's progress and personal development. His distinct leadership style taught me vital life and professional lessons that I will apply throughout my career. Fer is a valuable asset to any organization, and any team that has the opportunity to work with him is fortunate.",
-    name: "Jaime Fili",
-    role: "Operations Manager",
-    company: "LinkedIn Recommendation",
-    initials: "JF",
-    avatarBg: "linear-gradient(135deg, #831843, #e11d48)",
-  },
-  {
-    id: 14,
-    quote:
-      "I had the opportunity to work with Fernando. I was able to learn a lot from him and I admire his enormous professionalism. He is the player we always want to have in our team.",
-    name: "Matias Larriqueta",
-    role: "Software Developer",
-    company: "LinkedIn Recommendation",
-    initials: "ML",
-    avatarBg: "linear-gradient(135deg, #1e3a8a, #2563eb)",
-  },
-  {
-    id: 15,
-    quote:
-      "I wholeheartedly recommend Fernando Ferrari! Having worked together at Moka, I witnessed his incredible leadership as Director of Operations. Fernando is not only organized; he is a master at streamlining processes, making work a breeze. As an operations leader, he uses agile methodologies to drive growth and cultural transformation.",
-    name: "Ivan Schweikofski",
-    role: "Operations Specialist",
-    company: "LinkedIn Recommendation",
-    initials: "IS",
-    avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
-  },
-  {
-    id: 16,
-    quote:
-      "Tuve la oportunidad de supervisar a Fernando y solo tengo elogios para su persona. Un profesional con un compromiso tremendo, siempre atento a la evolución de la tecnología. Con una mirada siempre de avanzada, en una búsqueda permanente de mejorar. Siempre aportando ideas, sugerencias y con un gran entusiasmo en todo lo que hace. Cuando se fue de mi equipo, realmente sentí que habíamos perdido un gran recurso humano y que con el tiempo íbamos a lamentarlo. Efectivamente fue así. En ese momento, la organización no estaba preparada para un perfil como el de Fernando, hoy sin dudas, sería un gran valor en nuestros equipos de trabajo",
-    name: "Gustavo Tobares",
-    role: "Technology Manager",
-    company: "LinkedIn Recommendation",
-    initials: "GT",
-    avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
-  },
-  {
-    id: 17,
-    quote:
-      "Teníamos un equipo de 15 devs y cero estructura. Fernando nos ayudó a implementar Scrum de verdad, no el Scrum de manual. En 6 meses duplicamos la velocidad de entrega.",
-    name: "Martín González",
-    role: "CTO & Co-founder",
-    company: "NexoLab",
-    initials: "MG",
-    avatarBg: "linear-gradient(135deg, #4c1d95, #7c3aed)",
-  },
-  {
-    id: 18,
-    quote:
-      "Era escéptico del coaching organizacional. Pensaba que era solo 'hablar de procesos'. Resultó ser lo más transformador que hicimos como startup. La cultura cambió por completo.",
-    name: "Carlos Mendoza",
-    role: "CEO",
-    company: "TechHispano",
-    initials: "CM",
-    avatarBg: "linear-gradient(135deg, #1e3a8a, #1d4ed8)",
-  },
-  {
-    id: 19,
-    quote:
-      "Pasé de ser dev senior a liderar un equipo de 20 personas sin saber cómo. Fernando me dio las herramientas y la confianza para hacerlo bien. Hoy me siento un líder de verdad.",
-    name: "Andrea Ruiz",
-    role: "Engineering Manager",
-    company: "Globant",
-    initials: "AR",
-    avatarBg: "linear-gradient(135deg, #881337, #be123c)",
-  },
-  {
-    id: 20,
-    quote:
-      "Nuestra startup crecía rápido pero todo se rompía. Fer nos ayudó a profesionalizar operaciones sin perder la agilidad. Fue un antes y un después para la empresa.",
-    name: "Roberto Alvarado",
-    role: "COO",
-    company: "FastTrack AI",
-    initials: "RA",
-    avatarBg: "linear-gradient(135deg, #064e3b, #047857)",
-  },
-  {
-    id: 21,
-    quote:
-      "El acompañamiento de Fernando fue clave. Mi equipo pasó de apagar incendios a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
-    name: "Jorge Paredes",
-    role: "VP of Engineering",
-    company: "DataSur",
-    initials: "JP",
-    avatarBg: "linear-gradient(135deg, #92400e, #d97706)",
-  },
 ];
 
 const AUTOPLAY_INTERVAL = 5000;
 
 export default function Testimonials() {
+  const { t, language } = useLanguage();
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [direction, setDirection] = useState(1);
@@ -265,7 +330,8 @@ export default function Testimonials() {
     }),
   };
 
-  const t = testimonials[current];
+  const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
+  const testimonial = testimonials[current];
 
   return (
     <section
@@ -282,15 +348,15 @@ export default function Testimonials() {
           className="text-center mb-14 md:mb-24"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">Testimonios</span>
+            <span className="badge">{t.testimonials.badge}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Lo que dicen quienes ya{" "}
-            <span className="text-gradient">dieron el paso</span>
+            {t.testimonials.title}{" "}
+            <span className="text-gradient">{t.testimonials.title2}</span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}
@@ -313,7 +379,7 @@ export default function Testimonials() {
           >
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
-                key={t.id}
+                key={testimonial.id}
                 custom={direction}
                 variants={variants}
                 initial="enter"
@@ -338,7 +404,7 @@ export default function Testimonials() {
                     lineHeight: 1.9,
                   }}
                 >
-                  {t.quote}
+                  {testimonial.quote}
                 </blockquote>
 
                 {/* Author */}
@@ -346,13 +412,13 @@ export default function Testimonials() {
                   {/* Avatar */}
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: t.avatarBg }}
+                    style={{ background: testimonial.avatarBg }}
                   >
                     <span
                       className="text-sm font-bold"
                       style={{ color: "var(--amber-light)" }}
                     >
-                      {t.initials}
+                      {testimonial.initials}
                     </span>
                   </div>
                   <div>
@@ -360,11 +426,11 @@ export default function Testimonials() {
                       className="font-semibold"
                       style={{ color: "var(--text-primary)" }}
                     >
-                      {t.name}
+                      {testimonial.name}
                     </p>
                     <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-                      {t.role}
-                      {t.company && ` · ${t.company}`}
+                      {testimonial.role}
+                      {testimonial.company && ` · ${testimonial.company}`}
                     </p>
                   </div>
                 </div>

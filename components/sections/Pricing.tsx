@@ -5,6 +5,7 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const planCard: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: 6, filter: "blur(6px)" },
@@ -35,67 +36,49 @@ const featureItem: Variants = {
   },
 };
 
-const plans = [
-  {
-    id: "individual",
-    name: "Sesión Individual",
-    price: "USD 150",
-    period: "/ sesión",
-    description:
-      "Para resolver un punto de bloqueo específico o explorar si el proceso es para vos.",
-    features: [
-      "1 sesión de 90 minutos",
-      "Plan de acción post-sesión",
-      "Soporte por email 7 días",
-    ],
-    cta: "Reservar sesión",
-    featured: false,
-    badge: null,
-  },
-  {
-    id: "transformacion",
-    name: "Programa Transformación",
-    price: "USD 1.200",
-    period: "/ 3 meses",
-    description:
-      "El proceso completo para transformar tu liderazgo o tu organización de forma medible.",
-    features: [
-      "12 sesiones (1 por semana)",
-      "Diagnóstico organizacional inicial",
-      "Frameworks y herramientas ágiles",
-      "Soporte WhatsApp entre sesiones",
-      "Hoja de ruta estratégica personalizada",
-      "Grabaciones + resúmenes escritos",
-    ],
-    cta: "Comenzar ahora",
-    featured: true,
-    badge: "Más Popular",
-  },
-  {
-    id: "elite",
-    name: "Consultoría Continua",
-    price: "USD 4.000",
-    period: "/ 12 meses",
-    description:
-      "Acompañamiento de alto nivel para líderes y organizaciones que buscan resultados sostenibles.",
-    features: [
-      "Todo lo del Programa Transformación",
-      "Sesiones adicionales según necesidad",
-      "Acceso directo y prioritario",
-      "Revisión trimestral de objetivos",
-      "Acceso a comunidad privada de líderes",
-    ],
-    cta: "Solicitar información",
-    featured: false,
-    badge: null,
-  },
-];
 
 export default function Pricing() {
+  const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const handleScroll = (href: string) => scrollToElement(href);
+
+  const plans = [
+    {
+      id: "individual",
+      name: t.pricing.plans.liderazgo.name,
+      price: t.pricing.plans.liderazgo.price,
+      period: t.pricing.plans.liderazgo.period,
+      description: t.pricing.plans.liderazgo.description,
+      features: t.pricing.plans.liderazgo.features,
+      cta: t.pricing.plans.liderazgo.cta,
+      featured: false,
+      badge: null,
+    },
+    {
+      id: "transformacion",
+      name: t.pricing.plans.organizacional.name,
+      price: t.pricing.plans.organizacional.price,
+      period: t.pricing.plans.organizacional.period,
+      description: t.pricing.plans.organizacional.description,
+      features: t.pricing.plans.organizacional.features,
+      cta: t.pricing.plans.organizacional.cta,
+      featured: true,
+      badge: language === 'es' ? 'Más Popular' : 'Most Popular',
+    },
+    {
+      id: "elite",
+      name: t.pricing.plans.personalizado.name,
+      price: t.pricing.plans.personalizado.price,
+      period: t.pricing.plans.personalizado.period,
+      description: t.pricing.plans.personalizado.description,
+      features: t.pricing.plans.personalizado.features,
+      cta: t.pricing.plans.personalizado.cta,
+      featured: false,
+      badge: null,
+    },
+  ];
 
   return (
     <section id="precios" className="section section-surface section-gold-border-top" ref={ref}>
@@ -108,22 +91,22 @@ export default function Pricing() {
           className="text-center mb-12 md:mb-20"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">Inversión</span>
+            <span className="badge">{t.pricing.badge}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Elige tu nivel de{" "}
-            <span className="text-gradient">compromiso</span>
+            {t.pricing.title}{" "}
+            <span className="text-gradient">{t.pricing.title2}</span>
           </motion.h2>
           <motion.p
             variants={blurUp}
             className="text-sm"
             style={{ color: "var(--text-muted)" }}
           >
-            Todas las modalidades incluyen sesión de diagnóstico gratuita · Sin permanencia forzada · Online (todo el mundo)
+            {t.pricing.subtitle}
           </motion.p>
           <motion.div
             variants={dividerGrow}
