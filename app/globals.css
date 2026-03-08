@@ -770,7 +770,7 @@ html.lenis, html.lenis body {
 }
 
 .testimonial-card::before {
-  content: '"';
+  content: '';
   position: absolute;
   top: 1.5rem;
   left: 2rem;
@@ -871,7 +871,7 @@ html.lenis, html.lenis body {
 .price-amount {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(2.25rem, 3.5vw, 3.25rem);
+  font-size: clamp(2rem, 3vw, 2.75rem);
   line-height: 1.2;
   color: var(--gold-primary);
 }
