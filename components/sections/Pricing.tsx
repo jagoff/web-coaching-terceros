@@ -159,25 +159,20 @@ export default function Pricing() {
               whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(212,175,55,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* Popular badge */}
-              {plan.badge && (
-                <div
-                  className="absolute -top-4 left-1/2 -translate-x-1/2"
-                  aria-label="Plan más popular"
+              {/* Plan name + badge row */}
+              <div className="flex items-center justify-between mb-5">
+                <p
+                  className="text-xs font-bold uppercase tracking-widest"
+                  style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 >
-                  <span className="badge text-xs px-4 py-1.5 shadow-gold-sm">
+                  {plan.name}
+                </p>
+                {plan.badge && (
+                  <span className="badge text-xs px-3 py-1" aria-label="Plan más popular">
                     {plan.badge}
                   </span>
-                </div>
-              )}
-
-              {/* Plan name */}
-              <p
-                className="text-xs font-bold uppercase tracking-widest mb-5"
-                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-              >
-                {plan.name}
-              </p>
+                )}
+              </div>
 
               {/* Price */}
               <div className="flex items-baseline gap-1 mb-5">
