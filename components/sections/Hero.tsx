@@ -3,8 +3,10 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const rotatingPhrases = [
+
+const rotatingPhrasesES = [
   "Mi equipo no toma decisiones sin mí",
   "Las reuniones no llevan a nada concreto",
   "Estamos creciendo pero todo se rompe",
@@ -25,6 +27,29 @@ const rotatingPhrases = [
   "Tomo decisiones con datos incompletos siempre",
   "Perdemos clientes por problemas que podríamos evitar",
   "El equipo espera que yo tenga todas las respuestas",
+];
+
+const rotatingPhrasesEN = [
+  "My team doesn't make decisions without me",
+  "Meetings don't lead to anything concrete",
+  "We're growing but everything breaks",
+  "I can't delegate without losing control",
+  "The team has talent but doesn't perform",
+  "We're always putting out fires, never preventing",
+  "I have too many priorities and don't advance in any",
+  "I don't know if my team is aligned with objectives",
+  "I hire well but people leave quickly",
+  "We work a lot but results aren't visible",
+  "There's no time to think, only to react",
+  "Each area goes its own way and nobody coordinates",
+  "The feedback I give doesn't generate real changes",
+  "My workday never ends and I'm still behind",
+  "I know what needs to be done but not how to start",
+  "The processes that worked before no longer scale",
+  "There are conflicts in the team that nobody mentions",
+  "I always make decisions with incomplete data",
+  "We lose clients due to problems we could avoid",
+  "The team expects me to have all the answers",
 ];
 
 type Particle = {
@@ -87,9 +112,12 @@ const ctaReveal: Variants = {
 };
 
 export default function Hero() {
+  const { language } = useLanguage();
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
+  
+  const rotatingPhrases = language === 'es' ? rotatingPhrasesES : rotatingPhrasesEN;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -219,13 +247,13 @@ export default function Hero() {
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
           >
             <motion.span variants={revealUp} className="block">
-              Transformá tu equipo.
+              {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
-              Liderá con propósito.
+              {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
-              Escalá sin límites.
+              {language === 'es' ? 'Escalá sin límites.' : 'Scale without limits.'}
             </motion.span>
           </motion.h1>
 
@@ -268,7 +296,14 @@ export default function Hero() {
                 exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="lead-text italic"
-                style={{ color: "var(--gold-light)", fontFamily: "var(--font-heading)", fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" }}
+                style={{ 
+                  background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  fontFamily: "var(--font-heading)", 
+                  fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
+                }}
               >
                 &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
               </motion.p>
@@ -280,8 +315,10 @@ export default function Hero() {
             variants={revealUp}
             className="lead-text max-w-2xl mb-8 sm:mb-12"
           >
-            Coaching y consultoría organizacional para líderes tech y startups
-            que quieren crecer de forma ágil, humana y sostenible.
+            {language === 'es' 
+              ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
+              : 'Leadership coaching and organizational consulting for tech leaders and startups that want to grow in an agile, human, and sustainable way.'
+            }
           </motion.p>
 
           {/* CTAs */}
@@ -296,7 +333,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Agendá tu sesión gratuita →
+              {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
             </motion.button>
             <motion.button
               className="btn-secondary"
@@ -305,7 +342,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Conocé nuestro método ↓
+              {language === 'es' ? 'Conocé nuestro método ↓' : 'Learn our method ↓'}
             </motion.button>
           </motion.div>
 
@@ -315,11 +352,10 @@ export default function Hero() {
             className="flex items-center justify-center mt-12 sm:mt-20 pb-16"
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
-              Más de{" "}
-              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>20 años</span>{" "}
-              en tecnología ·{" "}
-              <span style={{ color: "var(--gold-primary)", fontWeight: 600 }}>6+ años</span>{" "}
-              de consultoría ágil
+              {language === 'es' 
+                ? 'Más de 20 años en tecnología · 11+ años de consultoría ágil'
+                : 'Over 20 years in technology · 11+ years of agile consulting'
+              }
             </p>
           </motion.div>
         </motion.div>

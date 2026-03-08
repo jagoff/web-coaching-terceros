@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const slideReveal: Variants = {
   hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
@@ -52,12 +53,6 @@ const credentials = [
   "unFIX Foundation Workshop",
 ];
 
-const stats = [
-  { number: "20+", label: "Años en tecnología" },
-  { number: "11+", label: "Años de coaching ágil" },
-  { number: "9+", label: "Certificaciones activas" },
-  { number: "6", label: "Empresas co-fundadas" },
-];
 
 const INSTAGRAM_URL = "https://www.instagram.com/jago_ff";
 
@@ -96,8 +91,16 @@ const instaCard: Variants = {
 };
 
 export default function About() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const stats = [
+    { number: "20+", label: t.about.stats.tecnologia },
+    { number: "11+", label: t.about.stats.coaching },
+    { number: "9+", label: t.about.stats.certificaciones },
+    { number: "6", label: t.about.stats.empresas },
+  ];
 
   return (
     <section
@@ -117,7 +120,7 @@ export default function About() {
           >
             {/* Badge */}
             <div className="mb-10 flex justify-start">
-              <span className="badge">Sobre mí</span>
+              <span className="badge">{t.about.badge}</span>
             </div>
 
             {/* Instagram grid */}
@@ -179,31 +182,25 @@ export default function About() {
             className="order-1 lg:order-2"
           >
             <h2 className="heading-xl mb-6 sm:mb-10" style={{ fontFamily: "var(--font-heading)" }}>
-              De la tecnología{" "}
+              {t.about.title1}{" "}
               <br />
-              <span className="text-gradient">a transformar</span>
+              <span className="text-gradient">{t.about.title2}</span>
               <br />
-              organizaciones.
+              {t.about.title3}
             </h2>
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
             <p className="lead-text mb-6 sm:mb-8">
-              Soy Fernando, con más de 20 años en tecnología y 11+ años
-              como consultor ágil independiente. Pasé de administrar servidores
-              a liderar operaciones y transformar culturas organizacionales
-              en startups y empresas tech.
+              {t.about.intro}
             </p>
 
             <p className="lead-text mb-12">
-              Mi enfoque combina metodologías ágiles, liderazgo estratégico
-              y un approach human-centric. No te digo qué hacer — te acompaño
-              a construir equipos autónomos, procesos escalables y una cultura
-              que impulse resultados.
+              {t.about.approach}
             </p>
 
             <h3 className="text-lg font-semibold mb-6" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
-              <span className="text-gradient">Certificaciones</span> internacionales
+              <span className="text-gradient">{t.about.certificaciones.split(' ')[0]}</span> {t.about.certificaciones.split(' ')[1]}
             </h3>
 
             {/* Credentials */}
