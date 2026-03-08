@@ -71,7 +71,7 @@ export default function Process() {
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
           >
             Tu transformación en{" "}
             <span className="text-gradient">4 pasos</span>

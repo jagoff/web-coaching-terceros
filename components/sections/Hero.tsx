@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 
 const rotatingPhrases = [
@@ -213,12 +212,6 @@ export default function Hero() {
           className="flex flex-col items-center"
           style={{ paddingTop: "clamp(64px, 10vh, 120px)", paddingBottom: "clamp(32px, 5vh, 60px)" }}
         >
-          {/* Badge */}
-          <motion.div variants={revealScale} className="badge mb-4">
-            <Sparkles size={12} fill="currentColor" />
-            COACHING ORGANIZACIONAL · LIDERAZGO ÁGIL
-          </motion.div>
-
           {/* Headline — each line reveals separately */}
           <motion.h1
             className="display-text max-w-5xl mb-3 sm:mb-4"

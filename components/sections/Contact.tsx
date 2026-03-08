@@ -38,7 +38,6 @@ const promiseItem: Variants = {
 };
 import {
   CheckCircle2,
-  MessageCircle,
   Mail,
   Linkedin,
   ArrowRight,
@@ -190,27 +189,6 @@ export default function Contact() {
               className="space-y-6 pt-12 border-t"
               style={{ borderColor: "var(--dark-border)" }}
             >
-              <a
-                href="https://wa.me/5493425153999"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group transition-colors"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
-                  style={{
-                    background: "rgba(212,175,55,0.1)",
-                    color: "var(--gold-primary)",
-                  }}
-                >
-                  <MessageCircle size={18} />
-                </div>
-                <span className="group-hover:text-white transition-colors">
-                  +54 9 342 515-3999 (WhatsApp)
-                </span>
-              </a>
-
               <a
                 href="mailto:fernandoferrari@gmail.com"
                 className="flex items-center gap-3 group transition-colors"

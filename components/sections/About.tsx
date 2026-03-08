@@ -175,7 +175,7 @@ export default function About() {
               en startups y empresas tech.
             </p>
 
-            <p className="mb-12" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
+            <p className="lead-text mb-12">
               Mi enfoque combina metodologías ágiles, liderazgo estratégico
               y un approach human-centric. No te digo qué hacer — te acompaño
               a construir equipos autónomos, procesos escalables y una cultura

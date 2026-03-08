@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MapPin, Linkedin } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 
 const navLinks = [
@@ -19,9 +19,6 @@ const serviceLinks = [
   { label: "Consultoría Continua", href: "#precios" },
 ];
 
-const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/fernandorferrari" },
-];
 
 
 function ScrollLink({
@@ -114,13 +111,13 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/5493425153999"
+                  href="https://linkedin.com/in/fernandorferrari"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm contact-link"
                 >
-                  <Phone size={14} className="flex-shrink-0" />
-                  +54 9 342 515-3999
+                  <Linkedin size={14} className="flex-shrink-0" />
+                  /in/fernandorferrari
                 </a>
               </li>
               <li>
@@ -138,22 +135,9 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="py-8 border-t flex items-center justify-center gap-3"
+          className="py-8 border-t"
           style={{ borderColor: "var(--dark-border)" }}
-        >
-          {socialLinks.map(({ icon: Icon, label, href }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="w-8 h-8 rounded-full flex items-center justify-center social-icon"
-            >
-              <Icon size={15} />
-            </a>
-          ))}
-        </div>
+        />
       </div>
     </footer>
   );
