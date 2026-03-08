@@ -195,53 +195,7 @@ export default function Contact() {
               ))}
             </motion.ul>
 
-            {/* Contact alternatives */}
-            <div
-              className="space-y-6 pt-12 border-t"
-              style={{ borderColor: "var(--dark-border)" }}
-            >
-              <a
-                href="mailto:fernandoferrari@gmail.com"
-                className="flex items-center gap-3 group transition-colors"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "rgba(124,107,196,0.1)",
-                    color: "var(--gold-primary)",
-                  }}
-                >
-                  <Mail size={18} />
-                </div>
-                <span className="group-hover:text-white transition-colors">
-                  fernandoferrari@gmail.com
-                </span>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/fernandorferrari"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group transition-colors"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "rgba(124,107,196,0.1)",
-                    color: "var(--gold-primary)",
-                  }}
-                >
-                  <Linkedin size={18} />
-                </div>
-                <span className="group-hover:text-white transition-colors">
-                  /in/fernandorferrari
-                </span>
-              </a>
-
-                          </div>
-          </motion.div>
+                      </motion.div>
 
           {/* Right form */}
           <motion.div
