@@ -69,8 +69,8 @@ export default function SocialProofToast() {
               width: 36,
               height: 36,
               borderRadius: "50%",
-              background: "rgba(212, 175, 55, 0.12)",
-              border: "1px solid rgba(212, 175, 55, 0.25)",
+              background: "rgba(167, 139, 250, 0.12)",
+              border: "1px solid rgba(167, 139, 250, 0.25)",
               color: "var(--gold-primary)",
             }}
           >

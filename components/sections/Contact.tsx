@@ -40,6 +40,7 @@ import {
   CheckCircle2,
   Mail,
   Linkedin,
+  Instagram,
   ArrowRight,
   Loader2,
   CheckCheck,
@@ -197,7 +198,7 @@ export default function Contact() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(212,175,55,0.1)",
+                    background: "rgba(167,139,250,0.1)",
                     color: "var(--gold-primary)",
                   }}
                 >
@@ -218,7 +219,7 @@ export default function Contact() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(212,175,55,0.1)",
+                    background: "rgba(167,139,250,0.1)",
                     color: "var(--gold-primary)",
                   }}
                 >
@@ -226,6 +227,27 @@ export default function Contact() {
                 </div>
                 <span className="group-hover:text-white transition-colors">
                   /in/fernandorferrari
+                </span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/jago_ff"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group transition-colors"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: "rgba(167,139,250,0.1)",
+                    color: "var(--gold-primary)",
+                  }}
+                >
+                  <Instagram size={18} />
+                </div>
+                <span className="group-hover:text-white transition-colors">
+                  @jago_ff
                 </span>
               </a>
             </div>
@@ -251,7 +273,7 @@ export default function Contact() {
                     <div
                       className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
                       style={{
-                        background: "rgba(212,175,55,0.15)",
+                        background: "rgba(167,139,250,0.15)",
                         border: "1px solid var(--gold-primary)",
                       }}
                     >

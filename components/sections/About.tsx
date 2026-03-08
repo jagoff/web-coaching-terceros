@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Instagram, ExternalLink } from "lucide-react";
 
 const slideReveal: Variants = {
   hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
@@ -59,11 +59,41 @@ const stats = [
   { number: "4", label: "Empresas co-fundadas" },
 ];
 
-const floatingBadges = [
-  { text: "+20 años tech", top: "12%", right: "4%", delay: 0.2 },
-  { text: "Scrum Master", bottom: "25%", left: "4%", delay: 0.5 },
-  { text: "PSU I Certified", top: "55%", right: "4%", delay: 0.8 },
+const INSTAGRAM_URL = "https://www.instagram.com/jago_ff";
+
+const instagramPosts = [
+  "C2OEy3wR00Z",
+  "DRf9MgBjBpk",
+  "C7FrLQHxAA-",
+  "C66kOA6uCt2",
+  "CXzdfE2O3b6",
+  "CRuVZZ5n3Ol",
+  "B-AI5jKH_QC",
+  "B9P_cZxnw_A",
+  "B64Kku9HSCZ",
+  "B6BfByZnOn3",
+  "B8Y4ePxn3yt",
+  "C4tG_41KXCV",
+  "BsObYi7gI5s",
+  "BrYzUSLAoJW",
+  "BqbMSdOgtSO",
+  "B6JTAE0Hb0T",
 ];
+
+const instaStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+};
+
+const instaCard: Variants = {
+  hidden: { opacity: 0, scale: 0.92, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function About() {
   const ref = useRef<HTMLDivElement>(null);
@@ -90,64 +120,88 @@ export default function About() {
               <span className="badge">Sobre mí</span>
             </div>
 
-            {/* Photo placeholder with gradient */}
-            <div className="relative rounded-lg overflow-hidden max-w-md mx-auto lg:mx-0" style={{ aspectRatio: "3/4" }}>
-              {/* Gradient photo placeholder */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(160deg, #1A1A26 0%, #12121A 40%, rgba(212,175,55,0.08) 70%, #0A0A0F 100%)",
-                }}
-              />
-              {/* Decorative frame */}
-              <div
-                className="absolute inset-0 rounded-lg"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(212,175,55,0.15) 0%, transparent 40%, rgba(245,158,11,0.08) 100%)",
-                }}
-              />
-              {/* Coach silhouette shape */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-5/6">
-                <div
-                  className="w-full h-full rounded-t-full"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(212,175,55,0.12) 0%, rgba(26,26,38,0.8) 100%)",
-                  }}
-                />
-              </div>
-
-              {/* ICF badge overlay */}
-              <div
-                className="absolute top-6 left-6 glass-card-sm px-4 py-2"
-                style={{ borderRadius: "var(--radius-md)" }}
+            {/* Instagram header */}
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group"
               >
-                <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--gold-primary)" }}>
-                  PSU I Certified
-                </p>
-              </div>
+                <div
+                  className="flex items-center justify-center rounded-full flex-shrink-0"
+                  style={{
+                    width: 36,
+                    height: 36,
+                    background: "rgba(167,139,250,0.08)",
+                    border: "1px solid rgba(167,139,250,0.25)",
+                  }}
+                >
+                  <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>@jago_ff</p>
+                  <p className="text-xs" style={{ color: "var(--text-muted)" }}>Seguime en Instagram</p>
+                </div>
+              </a>
+              <motion.a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary inline-flex items-center gap-1"
+                style={{ padding: "0.5rem 1rem", fontSize: "0.75rem" }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                Seguime
+                <ExternalLink size={11} />
+              </motion.a>
             </div>
 
-            {/* Floating badges */}
-            {floatingBadges.map((badge) => (
-              <motion.div
-                key={badge.text}
-                initial={{ opacity: 0, scale: 0.6, y: 20, filter: "blur(6px)" }}
-                animate={isInView ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" } : {}}
-                transition={{ delay: badge.delay + 0.3, type: "spring", stiffness: 260, damping: 16 }}
-                className="absolute badge hidden lg:flex"
-                style={{
-                  top: badge.top,
-                  bottom: badge.bottom,
-                  left: badge.left,
-                  right: badge.right,
-                }}
-              >
-                {badge.text}
-              </motion.div>
-            ))}
+            {/* Instagram grid */}
+            <motion.div
+              variants={instaStagger}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-3 gap-2"
+            >
+              {instagramPosts.map((shortcode, i) => {
+                const isFirst = i === 0;
+                return (
+                <motion.a
+                  key={shortcode}
+                  href={`https://www.instagram.com/p/${shortcode}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={instaCard}
+                  className="relative rounded-lg overflow-hidden"
+                  style={{
+                    aspectRatio: "1/1",
+                    border: "1px solid rgba(167,139,250,0.12)",
+                    background: "rgba(19,18,27,0.6)",
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <img
+                    src={`/api/instagram/${shortcode}`}
+                    alt="Post de Instagram @jago_ff"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full transition-all duration-500"
+                    style={{
+                      objectFit: "cover",
+                      filter: isFirst ? "grayscale(0%)" : "grayscale(100%)",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.filter = "grayscale(0%)")}
+                    onMouseLeave={(e) => {
+                      if (!isFirst) e.currentTarget.style.filter = "grayscale(100%)";
+                    }}
+                  />
+                </motion.a>
+                );
+              })}
+            </motion.div>
           </motion.div>
 
           {/* Text column */}

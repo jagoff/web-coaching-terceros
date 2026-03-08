@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MapPin, Linkedin } from "lucide-react";
+import { Mail, MapPin, Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 
 const navLinks = [
@@ -118,6 +118,17 @@ export default function Footer() {
                 >
                   <Linkedin size={14} className="flex-shrink-0" />
                   /in/fernandorferrari
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/jago_ff"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm contact-link"
+                >
+                  <Instagram size={14} className="flex-shrink-0" />
+                  @jago_ff
                 </a>
               </li>
               <li>

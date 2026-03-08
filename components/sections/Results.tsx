@@ -115,7 +115,7 @@ export default function Results() {
       ref={ref}
       style={{
         background:
-          "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%), var(--dark-surface)",
+          "radial-gradient(ellipse at 50% 0%, rgba(167,139,250,0.08) 0%, transparent 60%), var(--dark-surface)",
       }}
     >
       {/* Decorative orb with scroll parallax */}
@@ -184,7 +184,7 @@ export default function Results() {
               {/* Separator */}
               <div
                 className="w-10 h-px mx-auto mb-5"
-                style={{ background: "rgba(212,175,55,0.3)" }}
+                style={{ background: "rgba(167,139,250,0.3)" }}
               />
 
               <p

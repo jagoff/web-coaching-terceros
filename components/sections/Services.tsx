@@ -118,13 +118,13 @@ export default function Services() {
                   perspective: "800px",
                   ...(service.featured
                     ? {
-                        borderColor: "rgba(212,175,55,0.45)",
+                        borderColor: "rgba(167,139,250,0.45)",
                         boxShadow:
-                          "0 0 40px rgba(212,175,55,0.12), 0 8px 32px rgba(0,0,0,0.5)",
+                          "0 0 40px rgba(167,139,250,0.12), 0 8px 32px rgba(0,0,0,0.5)",
                       }
                     : {}),
                 }}
-                whileHover={{ y: -6, boxShadow: service.featured ? "0 0 60px rgba(212,175,55,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
+                whileHover={{ y: -6, boxShadow: service.featured ? "0 0 60px rgba(167,139,250,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 {/* Featured glow background */}
@@ -133,7 +133,7 @@ export default function Services() {
                     className="absolute inset-0 pointer-events-none opacity-20"
                     style={{
                       background:
-                        "radial-gradient(ellipse at top right, rgba(212,175,55,0.25) 0%, transparent 60%)",
+                        "radial-gradient(ellipse at top right, rgba(167,139,250,0.25) 0%, transparent 60%)",
                     }}
                   />
                 )}
@@ -143,8 +143,8 @@ export default function Services() {
                   <motion.div
                     className="w-14 h-14 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(212,175,55,0.12)",
-                      border: "1px solid rgba(212,175,55,0.25)",
+                      background: "rgba(167,139,250,0.12)",
+                      border: "1px solid rgba(167,139,250,0.25)",
                       color: "var(--gold-primary)",
                     }}
                     whileHover={{ scale: 1.15, rotate: 5 }}

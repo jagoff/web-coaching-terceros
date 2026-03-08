@@ -142,7 +142,7 @@ export default function Pricing() {
               animate={isInView ? "visible" : "hidden"}
               className={`pricing-card flex flex-col relative${plan.featured ? " featured animated-border" : ""}`}
               style={{ perspective: "800px" }}
-              whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(212,175,55,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
+              whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(167,139,250,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Badge row — fixed height keeps all cards aligned */}

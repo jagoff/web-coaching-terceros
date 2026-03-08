@@ -17,7 +17,7 @@ const particlesConfig: ISourceOptions = {
       value: 28,
       density: { enable: true, width: 1920, height: 1080 },
     },
-    color: { value: ["#D4AF37", "#F59E0B", "#E8C94A"] },
+    color: { value: ["#A78BFA", "#D4956A", "#C4B5FC"] },
     opacity: {
       value: { min: 0.02, max: 0.1 },
       animation: {
