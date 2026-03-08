@@ -385,7 +385,7 @@ export default function Contact() {
                     {/* Service */}
                     <div className="form-group">
                       <label htmlFor="servicio" className="form-label">
-                        ¿Qué te interesa más? <span style={{ color: "var(--gold-primary)" }}>*</span>
+                        ¿Qué estás buscando? <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
                       <select
                         id="servicio"
