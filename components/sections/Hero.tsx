@@ -11,6 +11,21 @@ const rotatingPhrases = [
   "Estamos creciendo pero todo se rompe",
   "No logro delegar sin perder el control",
   "El equipo tiene talento pero no rinde",
+  "Siempre apagamos incendios, nunca prevenimos",
+  "Tengo demasiadas prioridades y no avanzo en ninguna",
+  "No sé si mi equipo está alineado con los objetivos",
+  "Contrato bien pero la gente se va rápido",
+  "Trabajamos mucho pero los resultados no se ven",
+  "No hay tiempo para pensar, solo para reaccionar",
+  "Cada área va por su cuenta y nadie coordina",
+  "El feedback que doy no genera cambios reales",
+  "Mi jornada no termina nunca y sigo atrasado",
+  "Sé lo que hay que hacer pero no cómo arrancarlo",
+  "Los procesos que funcionaban antes ya no escalan",
+  "Hay conflictos en el equipo que nadie nombra",
+  "Tomo decisiones con datos incompletos siempre",
+  "Perdemos clientes por problemas que podríamos evitar",
+  "El equipo espera que yo tenga todas las respuestas",
 ];
 
 type Particle = {
