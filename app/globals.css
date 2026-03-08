@@ -432,7 +432,7 @@ p {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, rgba(124,107,196,0.40) 0%, rgba(124,107,196,0.10) 100%);
-  margin-top: 2rem;
+  margin-top: 6.75rem;
 }
 
 /* ---- Formulario ---- */
@@ -786,7 +786,10 @@ html.lenis, html.lenis body {
   font-weight: 900;
   font-size: 5rem;
   line-height: 1;
-  color: rgba(124, 107, 196, 0.08);
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   position: absolute;
   top: 0;
   left: 50%;
@@ -804,7 +807,7 @@ html.lenis, html.lenis body {
   background: rgba(124, 107, 196, 0.10);
   border: 1px solid rgba(124, 107, 196, 0.25);
   border-radius: 50%;
-  margin: 3.5rem auto 1.5rem;
+  margin: 5.5rem auto 1.5rem;
   color: var(--gold-primary);
   transition: background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }

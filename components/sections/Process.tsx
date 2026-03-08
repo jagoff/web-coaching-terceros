@@ -123,7 +123,22 @@ export default function Process() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   {/* Ghost number */}
-                  <span className="step-number" aria-hidden="true">
+                  <span 
+                    className="step-number" 
+                    aria-hidden="true"
+                    style={{
+                      background: i === 0 
+                        ? "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%)"
+                        : i === 1
+                        ? "linear-gradient(135deg, #8B7BD4 0%, #D4956A 55%, #A89FE8 100%)"
+                        : i === 2
+                        ? "linear-gradient(135deg, #9A8BE4 0%, #E0A57A 55%, #B3AFF8 100%)"
+                        : "linear-gradient(135deg, #A99BF4 0%, #ECB58A 55%, #BEBFFF 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
                     {step.number}
                   </span>
 
@@ -136,14 +151,7 @@ export default function Process() {
                     <Icon size={22} strokeWidth={1.5} />
                   </motion.div>
 
-                  {/* Number label */}
-                  <p
-                    className="text-xs font-bold uppercase tracking-widest mb-2"
-                    style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-                  >
-                    {step.number}
-                  </p>
-
+                  
                   <h3
                     className="text-lg font-semibold mb-5"
                     style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}
