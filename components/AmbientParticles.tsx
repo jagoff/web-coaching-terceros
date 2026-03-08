@@ -7,6 +7,7 @@ import type { ISourceOptions } from "@tsparticles/engine";
 
 const particlesConfig: ISourceOptions = {
   fullScreen: { enable: false },
+  background: { color: { value: "transparent" } },
   fpsLimit: 60,
   detectRetina: true,
   pauseOnBlur: true,
@@ -82,7 +83,7 @@ export default function AmbientParticles() {
         left: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: 0,
+        zIndex: 1,
         pointerEvents: "none",
         overflow: "hidden",
       }}
