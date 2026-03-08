@@ -452,7 +452,7 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Agendá mi sesión gratuita{" "}
+                          Agendá tu sesión gratuita{" "}
                           <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
