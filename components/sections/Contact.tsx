@@ -174,21 +174,6 @@ export default function Contact() {
               </p>
             </div>
 
-            <motion.div
-              variants={headerStagger}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="text-center mb-8 md:mb-12"
-            >
-              {[
-                language === 'es' ? '30 minutos que sirven' : '30 minutes that matter',
-                language === 'es' ? 'Conversación real y auténtica' : 'Real and authentic conversation',
-                language === 'es' ? 'Claridad garantizada' : 'Clarity guaranteed',
-              ].map((item) => (
-                <motion.p key={item} className="text-lg text-center mb-4">{item}</motion.p>
-              ))}
-            </motion.div>
-
             <motion.ul
               variants={promiseStagger}
               initial="hidden"
