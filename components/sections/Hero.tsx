@@ -81,8 +81,6 @@ export default function Hero() {
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
 
   useEffect(() => {
     setMounted(true);
@@ -189,9 +187,8 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Main content — fades out on scroll */}
-      <motion.div
-        style={{ opacity: contentOpacity, y: contentY }}
+      {/* Main content */}
+      <div
         className="container relative z-10 flex flex-col items-center text-center"
       >
         <motion.div
@@ -298,7 +295,7 @@ export default function Hero() {
             </p>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.button
