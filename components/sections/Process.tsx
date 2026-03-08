@@ -172,7 +172,7 @@ export default function Process() {
                   {/* Mobile connector */}
                   {i < steps.length - 1 && (
                     <div
-                      className="lg:hidden mx-auto mt-4 w-px h-8 opacity-30"
+                      className="sm:hidden mx-auto mt-4 w-px h-8 opacity-30"
                       style={{
                         background: "linear-gradient(180deg, var(--gold-primary), transparent)",
                       }}

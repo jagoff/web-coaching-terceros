@@ -136,8 +136,8 @@ export default function Navbar() {
                 ELEVA
               </span>
               <button
-                className="flex items-center justify-center w-10 h-10 rounded-md"
-                style={{ color: "var(--text-secondary)" }}
+                className="flex items-center justify-center rounded-md"
+                style={{ width: 44, height: 44, color: "var(--text-secondary)" }}
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >
