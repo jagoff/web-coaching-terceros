@@ -211,17 +211,17 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           className="flex flex-col items-center"
-          style={{ paddingTop: "clamp(120px, 18vh, 180px)", paddingBottom: "clamp(60px, 10vh, 120px)" }}
+          style={{ paddingTop: "clamp(80px, 12vh, 140px)", paddingBottom: "clamp(40px, 6vh, 80px)" }}
         >
           {/* Badge */}
-          <motion.div variants={revealScale} className="badge mb-8">
+          <motion.div variants={revealScale} className="badge mb-5">
             <Sparkles size={12} fill="currentColor" />
             COACHING ORGANIZACIONAL · LIDERAZGO ÁGIL
           </motion.div>
 
           {/* Headline — each line reveals separately */}
           <motion.h1
-            className="display-text max-w-5xl mb-6 sm:mb-10"
+            className="display-text max-w-5xl mb-4 sm:mb-6"
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
           >
             <motion.span variants={revealUp} className="block">
