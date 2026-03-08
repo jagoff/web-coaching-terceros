@@ -68,6 +68,7 @@
 
   /* --- Espaciado --- */
   --section-padding-y: clamp(6rem, 12vw, 10rem);
+  --section-padding-y-compact: clamp(2rem, 4vw, 3rem);
   --container-px:      clamp(1.25rem, 4vw, 3rem);
   --max-width:         1280px;
   --radius-sm:         8px;
@@ -646,9 +647,16 @@ html.lenis, html.lenis body {
   background: var(--gradient-hero);
 }
 
-/* Section */
+/* Padding de sección */
 .section {
   padding: var(--section-padding-y) 0;
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 100px;
+}
+
+.section-compact {
+  padding: var(--section-padding-y-compact) 0;
   position: relative;
   overflow: hidden;
   scroll-margin-top: 100px;

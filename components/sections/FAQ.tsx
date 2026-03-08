@@ -58,14 +58,14 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="section section-dark" ref={ref}>
+    <section id="faq" className="section section-dark section-compact" ref={ref}>
       <div className="container">
         {/* Section header */}
         <motion.div
           variants={headerStagger}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-14 md:mb-24"
+          className="text-center mb-8 md:mb-12"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">Preguntas Frecuentes</span>

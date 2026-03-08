@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const slideLeft: Variants = {
   hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
@@ -121,8 +122,8 @@ export default function Contact() {
 
   return (
     <section
-      id="contacto"
-      className="section section-dark relative overflow-hidden"
+      id="contact"
+      className="section section-compact"
       ref={ref}
     >
       {/* Glow with scroll parallax */}
@@ -159,12 +160,12 @@ export default function Contact() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-8 sm:mb-12">
+            <p className="lead-text mb-4 sm:mb-6">
               {t.contact.subtitle}
             </p>
 
             {/* Urgency indicator */}
-            <div className="mb-8 p-4 rounded-lg" style={{
+            <div className="mb-4 p-4 rounded-lg" style={{
               background: "rgba(124,107,196,0.1)",
               border: "1px solid rgba(124,107,196,0.2)",
             }}>
@@ -172,6 +173,21 @@ export default function Contact() {
                 🎯 Solo <span className="font-bold">3 cupos disponibles</span> este mes para acompañamiento personalizado
               </p>
             </div>
+
+            <motion.div
+              variants={headerStagger}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="text-center mb-8 md:mb-12"
+            >
+              {[
+                language === 'es' ? '30 minutos que sirven' : '30 minutes that matter',
+                language === 'es' ? 'Conversación real y auténtica' : 'Real and authentic conversation',
+                language === 'es' ? 'Claridad garantizada' : 'Clarity guaranteed',
+              ].map((item) => (
+                <motion.p key={item} className="text-lg text-center mb-4">{item}</motion.p>
+              ))}
+            </motion.div>
 
             <motion.ul
               variants={promiseStagger}
@@ -355,7 +371,7 @@ export default function Contact() {
                           name="telefono"
                           type="tel"
                           autoComplete="tel"
-                          placeholder={language === 'es' ? '+34 600 000 000' : '+1 555 000 000'}
+                          placeholder={t.contact.form.empresa.placeholder}
                           className="form-input"
                           value={form.telefono}
                           onChange={handleChange}

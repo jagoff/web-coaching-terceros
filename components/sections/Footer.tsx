@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Mi Método", href: "#proceso" },
   { label: "Testimonios", href: "#testimonios" },
   { label: "Precios", href: "#precios" },
-  ];
+];
 
 const serviceLinks = [
   { label: "Coaching de Liderazgo", href: "#servicios" },

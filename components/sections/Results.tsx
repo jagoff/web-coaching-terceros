@@ -149,8 +149,8 @@ export default function Results() {
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Los números{" "}
-            <span className="text-gradient">hablan por sí solos</span>
+            Transformación en{" "}
+            <span className="text-gradient">Números</span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}
