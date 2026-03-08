@@ -44,8 +44,8 @@ const statReveal: Variants = {
 };
 
 const credentials = [
-  "Advanced Certified ScrumMaster · UTN",
-  "Advanced Certified Scrum Product Owner · UTN",
+  "Advanced Certified ScrumMaster",
+  "Advanced Certified Scrum Product Owner",
   "Professional Scrum™ with UX (PSU I)",
   "Management 3.0 Metrics & OKR's",
   "unFIX Foundation Workshop",
