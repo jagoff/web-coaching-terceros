@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "¿La sesión de diagnóstico tiene algún costo?",
     answer:
-      "No. La primera sesión de 45 minutos es completamente gratuita y sin compromiso. Sirve para entender tu situación, definir objetivos y ver si tiene sentido trabajar juntos.",
+      "No. La primera sesión de 30 minutos es completamente gratuita y sin compromiso. Sirve para entender tu situación, definir objetivos y ver si tiene sentido trabajar juntos.",
   },
   {
     question: "¿Trabajás con empresas fuera de Argentina?",

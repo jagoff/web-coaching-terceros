@@ -160,7 +160,7 @@ export default function Contact() {
 
             <p className="lead-text mb-8 sm:mb-12">
               Tu primera sesión de diagnóstico es completamente gratuita. Sin
-              compromiso. Sin presión. Solo 45 minutos para analizar dónde
+              compromiso. Sin presión. Solo 30 minutos para analizar dónde
               estás y hacia dónde querés ir.
             </p>
 
