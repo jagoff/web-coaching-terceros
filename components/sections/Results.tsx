@@ -48,9 +48,9 @@ const stats = [
   },
   {
     prefix: "",
-    value: 3,
+    value: 4,
     suffix: "",
-    display: "3",
+    display: "4",
     label: "Empresas co-fundadas",
     description: "Moka, Nodok.AI, AyP",
   },

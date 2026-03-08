@@ -56,7 +56,7 @@ const stats = [
   { number: "20+", label: "Años en tecnología" },
   { number: "6+", label: "Años de coaching ágil" },
   { number: "20+", label: "Certificaciones activas" },
-  { number: "3", label: "Empresas co-fundadas" },
+  { number: "4", label: "Empresas co-fundadas" },
 ];
 
 const floatingBadges = [
