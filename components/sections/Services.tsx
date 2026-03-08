@@ -153,7 +153,7 @@ export default function Services() {
 
                 {/* Badge */}
                 {service.badge && (
-                  <div className="flex mb-4">
+                  <div className="flex justify-end mb-4">
                     <span className="badge text-xs">{service.badge}</span>
                   </div>
                 )}
