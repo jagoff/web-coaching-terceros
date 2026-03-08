@@ -40,7 +40,6 @@ import {
   CheckCircle2,
   Mail,
   Linkedin,
-  Instagram,
   ArrowRight,
   Loader2,
   CheckCheck,
@@ -230,27 +229,7 @@ export default function Contact() {
                 </span>
               </a>
 
-              <a
-                href="https://www.instagram.com/jago_ff"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group transition-colors"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "rgba(124,107,196,0.1)",
-                    color: "var(--gold-primary)",
-                  }}
-                >
-                  <Instagram size={18} />
-                </div>
-                <span className="group-hover:text-white transition-colors">
-                  @jago_ff
-                </span>
-              </a>
-            </div>
+                          </div>
           </motion.div>
 
           {/* Right form */}
@@ -402,6 +381,7 @@ export default function Contact() {
                         <option value="liderazgo">Coaching de Liderazgo</option>
                         <option value="organizacional">Consultoría Organizacional</option>
                         <option value="ambos">Ambos servicios</option>
+                        <option value="otros">Otros</option>
                       </select>
                       {errors.servicio && (
                         <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>

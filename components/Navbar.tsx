@@ -4,18 +4,21 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const navLinks = [
-  { label: "Sobre mí", href: "#sobre-mi" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Método", href: "#proceso" },
-  { label: "Testimonios", href: "#testimonios" },
-  { label: "Precios", href: "#precios" },
-];
 
 export default function Navbar() {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.sobreMi, href: "#sobre-mi" },
+    { label: t.nav.servicios, href: "#servicios" },
+    { label: t.nav.metodo, href: "#proceso" },
+    { label: t.nav.testimonios, href: "#testimonios" },
+    { label: t.nav.precios, href: "#precios" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -86,11 +89,22 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <button
+                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
+                style={{
+                  borderColor: "var(--gold-border)",
+                  color: "var(--text-secondary)",
+                }}
+                onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+              >
+                <span className="text-sm">🇺🇸</span>
+                <span className="text-sm font-medium">EN</span>
+              </button>
+              <button
                 className="btn-primary"
                 style={{ padding: "0.875rem 1.75rem", fontSize: "0.875rem" }}
                 onClick={() => handleLinkClick("#contacto")}
               >
-                Sesión gratuita
+                {t.nav.sesionGratuita}
               </button>
             </div>
 
@@ -174,7 +188,7 @@ export default function Navbar() {
                 className="btn-primary w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >
-                Agendá tu sesión gratuita
+                {t.nav.sesionGratuita}
               </button>
             </div>
           </motion.div>

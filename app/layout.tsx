@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { DynamicNavbar, CursorGlow, AmbientParticles } from "@/components/DynamicSections";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -61,12 +62,14 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
-        <AmbientParticles />
-        <div className="noise-overlay" aria-hidden="true" />
-        <CursorGlow />
-        <DynamicNavbar />
-        <WhatsAppButton />
-        {children}
+        <LanguageProvider>
+          <AmbientParticles />
+          <div className="noise-overlay" aria-hidden="true" />
+          <CursorGlow />
+          <DynamicNavbar />
+          <WhatsAppButton />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

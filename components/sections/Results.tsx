@@ -32,9 +32,9 @@ const stats = [
   },
   {
     prefix: "",
-    value: 6,
+    value: 11,
     suffix: "+",
-    display: "6+",
+    display: "11+",
     label: "Años de coaching ágil",
     description: "Transformando startups y empresas tech",
   },

@@ -54,9 +54,9 @@ const credentials = [
 
 const stats = [
   { number: "20+", label: "Años en tecnología" },
-  { number: "6+", label: "Años de coaching ágil" },
-  { number: "20+", label: "Certificaciones activas" },
-  { number: "4", label: "Empresas co-fundadas" },
+  { number: "11+", label: "Años de coaching ágil" },
+  { number: "9+", label: "Certificaciones activas" },
+  { number: "6", label: "Empresas co-fundadas" },
 ];
 
 const INSTAGRAM_URL = "https://www.instagram.com/jago_ff";
@@ -120,45 +120,6 @@ export default function About() {
               <span className="badge">Sobre mí</span>
             </div>
 
-            {/* Instagram header */}
-            <div className="flex items-center justify-between gap-3 mb-4">
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group"
-              >
-                <div
-                  className="flex items-center justify-center rounded-full flex-shrink-0"
-                  style={{
-                    width: 36,
-                    height: 36,
-                    background: "rgba(124,107,196,0.08)",
-                    border: "1px solid rgba(124,107,196,0.25)",
-                  }}
-                >
-                  <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>@jago_ff</p>
-                  <p className="text-xs" style={{ color: "var(--text-muted)" }}>Seguime en Instagram</p>
-                </div>
-              </a>
-              <motion.a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary inline-flex items-center gap-1"
-                style={{ padding: "0.5rem 1rem", fontSize: "0.75rem" }}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                Seguime
-                <ExternalLink size={11} />
-              </motion.a>
-            </div>
-
             {/* Instagram grid */}
             <motion.div
               variants={instaStagger}
@@ -192,10 +153,15 @@ export default function About() {
                     style={{
                       objectFit: "cover",
                       filter: isFirst ? "grayscale(0%)" : "grayscale(100%)",
+                      transform: "scale(1)",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.filter = "grayscale(0%)")}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.filter = "grayscale(0%)";
+                      e.currentTarget.style.transform = "scale(1.08)";
+                    }}
                     onMouseLeave={(e) => {
                       if (!isFirst) e.currentTarget.style.filter = "grayscale(100%)";
+                      e.currentTarget.style.transform = "scale(1)";
                     }}
                   />
                 </motion.a>
@@ -223,7 +189,7 @@ export default function About() {
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
             <p className="lead-text mb-6 sm:mb-8">
-              Soy Fernando, con más de 20 años en tecnología y 6+ años
+              Soy Fernando, con más de 20 años en tecnología y 11+ años
               como consultor ágil independiente. Pasé de administrar servidores
               a liderar operaciones y transformar culturas organizacionales
               en startups y empresas tech.
@@ -235,6 +201,10 @@ export default function About() {
               a construir equipos autónomos, procesos escalables y una cultura
               que impulse resultados.
             </p>
+
+            <h3 className="text-lg font-semibold mb-6" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+              <span className="text-gradient">Certificaciones</span> internacionales
+            </h3>
 
             {/* Credentials */}
             <motion.div

@@ -393,6 +393,10 @@ p {
   line-height: 1.2;
   color: var(--gold-primary);
   margin-bottom: 0.5rem;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stat-label {
