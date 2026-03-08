@@ -437,7 +437,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="btn-primary w-full mt-6"
+                      className="btn-primary w-full !mt-12"
                       disabled={status === "loading"}
                     >
                       {status === "loading" ? (
