@@ -15,3 +15,4 @@ export const Hero = dynamic(() => import("@/components/sections/Hero"), { ssr: f
 export const DynamicNavbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
 export const SmoothScroll  = dynamic(() => import("@/components/SmoothScroll"), { ssr: false });
 export const CursorGlow    = dynamic(() => import("@/components/CursorGlow"), { ssr: false });
+export const AmbientParticles = dynamic(() => import("@/components/AmbientParticles"), { ssr: false });
