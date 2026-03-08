@@ -163,7 +163,7 @@ export default function Pricing() {
               </p>
 
               {/* Price */}
-              <div className="flex items-baseline gap-1 mb-5">
+              <div className="flex items-baseline gap-1 mb-5 flex-nowrap">
                 <span className="price-amount">{plan.price}</span>
                 <span className="price-period">{plan.period}</span>
               </div>

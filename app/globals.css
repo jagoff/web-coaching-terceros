@@ -849,7 +849,7 @@ html.lenis, html.lenis body {
 .price-amount {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
   line-height: 1.2;
   color: var(--gold-primary);
   white-space: nowrap;
