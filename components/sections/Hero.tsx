@@ -245,7 +245,7 @@ export default function Hero() {
           {/* Rotating pain-point phrases */}
           <motion.div
             variants={revealUp}
-            className="max-w-2xl mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-xl"
+            className="relative max-w-2xl mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-xl"
             style={{
               minHeight: "5.5rem",
               background: "rgba(255,255,255,0.03)",
@@ -253,6 +253,16 @@ export default function Hero() {
               border: "1px solid rgba(212,175,55,0.12)",
             }}
           >
+            {/* Subtle gold radial glow behind */}
+            <div
+              className="absolute inset-0 -z-10 rounded-xl"
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(212,175,55,0.08) 0%, transparent 70%)",
+                transform: "scale(1.3)",
+                filter: "blur(20px)",
+              }}
+              aria-hidden="true"
+            />
             <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
               ¿Te suena esto?
             </p>
