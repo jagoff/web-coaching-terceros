@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
+
+const rotatingPhrases = [
+  "Mi equipo no toma decisiones sin mí",
+  "Las reuniones no llevan a nada concreto",
+  "Estamos creciendo pero todo se rompe",
+  "No logro delegar sin perder el control",
+  "El equipo tiene talento pero no rinde",
+];
 
 type Particle = {
   id: number;
@@ -67,6 +75,7 @@ const ctaReveal: Variants = {
 export default function Hero() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [phraseIndex, setPhraseIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -90,6 +99,13 @@ export default function Hero() {
         drift: (Math.random() - 0.5) * 30,
       }))
     );
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
+    }, 3500);
+    return () => clearInterval(interval);
   }, []);
 
   const handleScroll = (href: string) => scrollToElement(href);
@@ -214,6 +230,26 @@ export default function Hero() {
             style={{ width: "80px", height: "3px" }}
           />
 
+          {/* Rotating pain-point phrases */}
+          <motion.div variants={revealUp} className="max-w-2xl mb-4 sm:mb-6" style={{ minHeight: "5.5rem" }}>
+            <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+              ¿Te suena esto?
+            </p>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={phraseIndex}
+                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="lead-text italic"
+                style={{ color: "var(--gold-light)", fontFamily: "var(--font-heading)", fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" }}
+              >
+                &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
+              </motion.p>
+            </AnimatePresence>
+          </motion.div>
+
           {/* Subheadline */}
           <motion.p
             variants={revealUp}
@@ -221,8 +257,6 @@ export default function Hero() {
           >
             Coaching y consultoría organizacional para líderes tech y startups
             que quieren crecer de forma ágil, humana y sostenible.
-            <br className="hidden sm:block" />
-            +20 años en tecnología. Metodología probada. Resultados reales.
           </motion.p>
 
           {/* CTAs */}

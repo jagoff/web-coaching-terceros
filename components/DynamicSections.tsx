@@ -11,11 +11,13 @@ export const Testimonials  = dynamic(() => import("@/components/sections/Testimo
 export const Results       = dynamic(() => import("@/components/sections/Results"));
 export const Pricing       = dynamic(() => import("@/components/sections/Pricing"));
 export const Contact       = dynamic(() => import("@/components/sections/Contact"));
+export const FAQ           = dynamic(() => import("@/components/sections/FAQ"));
 export const Footer        = dynamic(() => import("@/components/sections/Footer"));
 export const DynamicNavbar = dynamic(() => import("@/components/Navbar"));
 
 // Client-only: depend on window/DOM APIs at module level
-export const ScrollProgress   = dynamic(() => import("@/components/ScrollProgress"),   { ssr: false });
-export const SmoothScroll     = dynamic(() => import("@/components/SmoothScroll"),     { ssr: false });
-export const CursorGlow       = dynamic(() => import("@/components/CursorGlow"),       { ssr: false });
-export const AmbientParticles = dynamic(() => import("@/components/AmbientParticles"), { ssr: false });
+export const ScrollProgress    = dynamic(() => import("@/components/ScrollProgress"),    { ssr: false });
+export const SmoothScroll      = dynamic(() => import("@/components/SmoothScroll"),      { ssr: false });
+export const CursorGlow        = dynamic(() => import("@/components/CursorGlow"),        { ssr: false });
+export const AmbientParticles  = dynamic(() => import("@/components/AmbientParticles"),  { ssr: false });
+export const SocialProofToast  = dynamic(() => import("@/components/SocialProofToast"),  { ssr: false });

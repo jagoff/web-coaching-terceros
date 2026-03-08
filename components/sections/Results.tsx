@@ -40,11 +40,11 @@ const stats = [
   },
   {
     prefix: "",
-    value: 6,
-    suffix: "",
-    display: "6",
+    value: 20,
+    suffix: "+",
+    display: "20+",
     label: "Certificaciones activas",
-    description: "Scrum, UX, Security, Leadership",
+    description: "Scrum, UX, Management 3.0, Security",
   },
   {
     prefix: "",

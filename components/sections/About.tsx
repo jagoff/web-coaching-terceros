@@ -44,18 +44,17 @@ const statReveal: Variants = {
 };
 
 const credentials = [
+  "Advanced Certified ScrumMaster · UTN",
+  "Advanced Certified Scrum Product Owner · UTN",
   "Professional Scrum™ with UX (PSU I)",
-  "Scrum Grand Master · UTN",
-  "Strategic Leadership · UTN",
-  "Product Owner · UTN",
-  "CompTIA Security+",
-  "Red Hat Certified Sysadmin",
+  "Management 3.0 Metrics & OKR's",
+  "unFIX Foundation Workshop",
 ];
 
 const stats = [
   { number: "20+", label: "Años en tecnología" },
   { number: "6+", label: "Años de coaching ágil" },
-  { number: "6", label: "Certificaciones activas" },
+  { number: "20+", label: "Certificaciones activas" },
   { number: "3", label: "Empresas co-fundadas" },
 ];
 

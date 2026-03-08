@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { DynamicNavbar, CursorGlow, AmbientParticles } from "@/components/DynamicSections";
+import { DynamicNavbar, CursorGlow, AmbientParticles, SocialProofToast } from "@/components/DynamicSections";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -64,6 +64,7 @@ export default function RootLayout({
         <div className="noise-overlay" aria-hidden="true" />
         <CursorGlow />
         <DynamicNavbar />
+        <SocialProofToast />
         {children}
       </body>
     </html>

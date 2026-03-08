@@ -6,6 +6,7 @@ import {
   Testimonials,
   Results,
   Pricing,
+  FAQ,
   Contact,
   Footer,
   ScrollProgress,
@@ -24,6 +25,7 @@ export default function Home() {
         <Testimonials />
         <Results />
         <Pricing />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
