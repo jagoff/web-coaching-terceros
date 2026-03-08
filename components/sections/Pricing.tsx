@@ -215,10 +215,10 @@ export default function Pricing() {
           className="text-center mt-12 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <MessageCircle size={18} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-          <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+          <p className="text-base" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
             ¿Tenés dudas sobre qué plan se adapta mejor a tu caso?{" "}
             <button
-              className="underline transition-colors bg-transparent border-0 cursor-pointer p-0"
+              className="underline transition-colors bg-transparent border-0 cursor-pointer p-0 text-base"
               style={{ color: "var(--gold-primary)" }}
               onClick={() => handleScroll("#contacto")}
             >
