@@ -159,16 +159,14 @@ export default function Pricing() {
               whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(212,175,55,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* Badge — absolute so it doesn't affect flow */}
-              {plan.badge && (
-                <span
-                  className="badge text-xs px-3 py-1 absolute"
-                  style={{ top: "clamp(1.25rem, 3vw, 1.75rem)", right: "clamp(1.25rem, 3vw, 1.75rem)" }}
-                  aria-label="Plan más popular"
-                >
-                  {plan.badge}
-                </span>
-              )}
+              {/* Badge row — fixed height keeps all cards aligned */}
+              <div className="flex justify-end mb-4" style={{ minHeight: "1.75rem" }}>
+                {plan.badge && (
+                  <span className="badge text-xs px-3 py-1" aria-label="Plan más popular">
+                    {plan.badge}
+                  </span>
+                )}
+              </div>
 
               {/* Plan name */}
               <p
