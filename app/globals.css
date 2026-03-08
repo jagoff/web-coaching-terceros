@@ -14,47 +14,47 @@
 
 :root {
   /* --- Fondos --- */
-  --dark-base:       #0B0A10;
-  --dark-surface:    #13121B;
-  --dark-elevated:   #1C1A28;
-  --dark-border:     #2E2A3E;
-  --dark-footer:     #08070D;
+  --dark-base:       #0C0A12;
+  --dark-surface:    #14121D;
+  --dark-elevated:   #1D1A2A;
+  --dark-border:     #302A40;
+  --dark-footer:     #09080E;
 
-  /* --- Lavender (primario) --- */
-  --gold-primary:    #A78BFA;
-  --gold-light:      #C4B5FC;
-  --gold-dark:       #7C5CC7;
-  --gold-muted:      rgba(167, 139, 250, 0.15);
-  --gold-border:     rgba(167, 139, 250, 0.20);
-  --gold-border-hover: rgba(167, 139, 250, 0.50);
+  /* --- Deep Violet (primario) --- */
+  --gold-primary:    #7C6BC4;
+  --gold-light:      #9D8FD8;
+  --gold-dark:       #5B4A9E;
+  --gold-muted:      rgba(124, 107, 196, 0.15);
+  --gold-border:     rgba(124, 107, 196, 0.20);
+  --gold-border-hover: rgba(124, 107, 196, 0.50);
 
-  /* --- Warm Gold / Copper (secundario) --- */
-  --amber-primary:   #D4956A;
-  --amber-light:     #E8B898;
-  --amber-dark:      #B87A4A;
+  /* --- Terracotta (secundario) --- */
+  --amber-primary:   #C87B5A;
+  --amber-light:     #DFA080;
+  --amber-dark:      #A8603E;
 
   /* --- Texto --- */
-  --text-primary:    #F0ECE5;
-  --text-secondary:  #D1CBC0;
-  --text-muted:      #8B8898;
-  --text-disabled:   #4B4858;
+  --text-primary:    #EDE8F0;
+  --text-secondary:  #CEC8D6;
+  --text-muted:      #8A8494;
+  --text-disabled:   #4C4858;
 
   /* --- Gradientes --- */
-  --gradient-gold:    linear-gradient(135deg, #A78BFA 0%, #D4956A 50%, #A78BFA 100%);
-  --gradient-gold-h:  linear-gradient(90deg,  #A78BFA 0%, #D4956A 100%);
+  --gradient-gold:    linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #7C6BC4 100%);
+  --gradient-gold-h:  linear-gradient(90deg,  #7C6BC4 0%, #C87B5A 100%);
   --gradient-hero:
-    radial-gradient(ellipse at 20% 50%, rgba(167,139,250,0.14) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(212,149,106,0.09) 0%, transparent 50%),
-    linear-gradient(180deg, #0B0A10 0%, #13121B 100%);
-  --gradient-glow:    radial-gradient(ellipse at center, rgba(167,139,250,0.18) 0%, transparent 70%);
+    radial-gradient(ellipse at 20% 50%, rgba(124,107,196,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(200,123,90,0.09) 0%, transparent 50%),
+    linear-gradient(180deg, #0C0A12 0%, #14121D 100%);
+  --gradient-glow:    radial-gradient(ellipse at center, rgba(124,107,196,0.18) 0%, transparent 70%);
 
   /* --- Sombras --- */
   --shadow-sm:        0 2px 8px rgba(0, 0, 0, 0.40);
   --shadow-md:        0 8px 32px rgba(0, 0, 0, 0.50);
   --shadow-lg:        0 20px 60px rgba(0, 0, 0, 0.60);
-  --shadow-gold-sm:   0 4px 20px rgba(167, 139, 250, 0.25);
-  --shadow-gold-md:   0 8px 40px rgba(167, 139, 250, 0.35);
-  --shadow-gold-lg:   0 16px 60px rgba(167, 139, 250, 0.45);
+  --shadow-gold-sm:   0 4px 20px rgba(124, 107, 196, 0.25);
+  --shadow-gold-md:   0 8px 40px rgba(124, 107, 196, 0.35);
+  --shadow-gold-lg:   0 16px 60px rgba(124, 107, 196, 0.45);
 
   /* --- Tipografía --- */
   --font-heading:    var(--font-playfair), Georgia, serif;
@@ -109,7 +109,7 @@ body {
 
 /* Selección de texto */
 ::selection {
-  background-color: rgba(167, 139, 250, 0.30);
+  background-color: rgba(124, 107, 196, 0.30);
   color: var(--text-primary);
 }
 
@@ -189,7 +189,7 @@ p {
 
 /* Texto con gradiente dorado */
 .text-gradient {
-  background: linear-gradient(135deg, #A78BFA 0%, #D4956A 55%, #C4B5FC 100%);
+  background: linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -199,7 +199,7 @@ p {
 /* ---- Glass Card ---- */
 
 .glass-card {
-  background: rgba(19, 18, 27, 0.60);
+  background: rgba(20, 18, 29, 0.60);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   border: 1px solid var(--gold-border);
@@ -209,12 +209,12 @@ p {
 
 .glass-card:hover {
   border-color: var(--gold-border-hover);
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(167, 139, 250, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(124, 107, 196, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* Variante ligera */
 .glass-card-sm {
-  background: rgba(19, 18, 27, 0.70);
+  background: rgba(20, 18, 29, 0.70);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--gold-border);
@@ -251,7 +251,7 @@ p {
 
 .btn-primary {
   background: var(--gold-primary);
-  color: #0B0A10;
+  color: #0C0A12;
   font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 700;
@@ -270,7 +270,7 @@ p {
 }
 
 .btn-primary:hover {
-  background: #C4B5FC;
+  background: #9D8FD8;
   transform: scale(1.025) translateY(-1px);
 }
 
@@ -309,7 +309,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: 1.5px solid rgba(167, 139, 250, 0.55);
+  border: 1.5px solid rgba(124, 107, 196, 0.55);
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition:
@@ -321,10 +321,10 @@ p {
 }
 
 .btn-secondary:hover {
-  background: rgba(167, 139, 250, 0.08);
+  background: rgba(124, 107, 196, 0.08);
   border-color: var(--gold-primary);
   transform: scale(1.02) translateY(-1px);
-  box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
+  box-shadow: 0 0 20px rgba(124, 107, 196, 0.15);
 }
 
 .btn-secondary:active {
@@ -338,8 +338,8 @@ p {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  background: rgba(167, 139, 250, 0.08);
-  border: 1px solid rgba(167, 139, 250, 0.30);
+  background: rgba(124, 107, 196, 0.08);
+  border: 1px solid rgba(124, 107, 196, 0.30);
   border-radius: var(--radius-pill);
   color: var(--gold-primary);
   font-family: var(--font-body);
@@ -360,11 +360,11 @@ p {
 }
 
 .orb-gold {
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.20) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(124, 107, 196, 0.20) 0%, transparent 70%);
 }
 
 .orb-amber {
-  background: radial-gradient(circle, rgba(212, 149, 106, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 123, 90, 0.15) 0%, transparent 70%);
 }
 
 /* ---- Separador decorativo ---- */
@@ -431,7 +431,7 @@ p {
 .step-connector {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, rgba(167,139,250,0.40) 0%, rgba(167,139,250,0.10) 100%);
+  background: linear-gradient(90deg, rgba(124,107,196,0.40) 0%, rgba(124,107,196,0.10) 100%);
   margin-top: 2rem;
 }
 
@@ -473,7 +473,7 @@ p {
 .form-input:focus {
   border-color: var(--gold-primary);
   background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+  box-shadow: 0 0 0 3px rgba(124, 107, 196, 0.12);
 }
 
 .form-input:focus::placeholder {
@@ -483,7 +483,7 @@ p {
 .form-select {
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A78BFA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237C6BC4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 3rem;
@@ -512,12 +512,12 @@ p {
 /* Glow pulsante */
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.20),
-                0 0 40px rgba(167, 139, 250, 0.10);
+    box-shadow: 0 0 20px rgba(124, 107, 196, 0.20),
+                0 0 40px rgba(124, 107, 196, 0.10);
   }
   50% {
-    box-shadow: 0 0 40px rgba(167, 139, 250, 0.45),
-                0 0 80px rgba(167, 139, 250, 0.20),
+    box-shadow: 0 0 40px rgba(124, 107, 196, 0.45),
+                0 0 80px rgba(124, 107, 196, 0.20),
                 0 0 120px rgba(212, 149, 106, 0.10);
   }
 }
@@ -689,7 +689,7 @@ html.lenis, html.lenis body {
 }
 
 .navbar.scrolled {
-  background: rgba(11, 10, 16, 0.85);
+  background: rgba(12, 10, 18, 0.85);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   padding: 1rem 0;
@@ -739,7 +739,7 @@ html.lenis, html.lenis body {
    ============================================================ */
 
 .testimonial-card {
-  background: rgba(19, 18, 27, 0.80);
+  background: rgba(20, 18, 29, 0.80);
   border: 1px solid var(--dark-border);
   border-radius: var(--radius-lg);
   padding: clamp(2rem, 4vw, 3rem);
@@ -786,7 +786,7 @@ html.lenis, html.lenis body {
   font-weight: 900;
   font-size: 5rem;
   line-height: 1;
-  color: rgba(167, 139, 250, 0.08);
+  color: rgba(124, 107, 196, 0.08);
   position: absolute;
   top: 0;
   left: 50%;
@@ -801,8 +801,8 @@ html.lenis, html.lenis body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(167, 139, 250, 0.10);
-  border: 1px solid rgba(167, 139, 250, 0.25);
+  background: rgba(124, 107, 196, 0.10);
+  border: 1px solid rgba(124, 107, 196, 0.25);
   border-radius: 50%;
   margin: 3.5rem auto 1.5rem;
   color: var(--gold-primary);
@@ -810,9 +810,9 @@ html.lenis, html.lenis body {
 }
 
 .process-step:hover .step-icon {
-  background: rgba(167, 139, 250, 0.18);
+  background: rgba(124, 107, 196, 0.18);
   border-color: var(--gold-primary);
-  box-shadow: 0 0 20px rgba(167, 139, 250, 0.25);
+  box-shadow: 0 0 20px rgba(124, 107, 196, 0.25);
 }
 
 /* ============================================================
@@ -820,7 +820,7 @@ html.lenis, html.lenis body {
    ============================================================ */
 
 .pricing-card {
-  background: rgba(19, 18, 27, 0.70);
+  background: rgba(20, 18, 29, 0.70);
   border: 1px solid var(--dark-border);
   border-radius: var(--radius-lg);
   padding: clamp(2rem, 4vw, 3rem);
@@ -828,14 +828,14 @@ html.lenis, html.lenis body {
 }
 
 .pricing-card:hover {
-  border-color: rgba(167, 139, 250, 0.30);
+  border-color: rgba(124, 107, 196, 0.30);
   
 }
 
 .pricing-card.featured {
-  background: rgba(11, 10, 16, 0.97);
-  border-color: rgba(167, 139, 250, 0.45);
-  box-shadow: 0 0 40px rgba(167, 139, 250, 0.12), var(--shadow-md);
+  background: rgba(12, 10, 18, 0.97);
+  border-color: rgba(124, 107, 196, 0.45);
+  box-shadow: 0 0 40px rgba(124, 107, 196, 0.12), var(--shadow-md);
   
   position: relative;
 }
@@ -935,7 +935,7 @@ html.lenis, html.lenis body {
 }
 
 .scroll-dot.active .scroll-dot-inner {
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 8px rgba(124, 107, 196, 0.5);
 }
 
 /* Hide on mobile — too small for touch */
@@ -1487,12 +1487,12 @@ html.lenis, html.lenis body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background: rgba(19, 18, 27, 0.92);
+  background: rgba(20, 18, 29, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--gold-border);
   border-radius: var(--radius-md);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(167, 139, 250, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 107, 196, 0.08);
   z-index: 90;
   pointer-events: none;
   /* Safe area for notched phones */
@@ -1532,8 +1532,8 @@ html.lenis, html.lenis body {
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(167,139,250,0.07) 0%,
-    rgba(167,139,250,0.03) 30%,
+    rgba(124,107,196,0.07) 0%,
+    rgba(124,107,196,0.03) 30%,
     transparent 70%
   );
   transform: translate(-50%, -50%);
@@ -1592,12 +1592,12 @@ html.lenis, html.lenis body {
   padding: 1.5px;
   background: conic-gradient(
     from var(--border-angle, 0deg),
-    rgba(167, 139, 250, 0.08) 0%,
-    rgba(167, 139, 250, 0.6) 15%,
-    rgba(212, 149, 106, 0.8) 30%,
-    rgba(196, 181, 252, 0.6) 45%,
-    rgba(167, 139, 250, 0.08) 55%,
-    rgba(167, 139, 250, 0.08) 100%
+    rgba(124, 107, 196, 0.08) 0%,
+    rgba(124, 107, 196, 0.6) 15%,
+    rgba(200, 123, 90, 0.8) 30%,
+    rgba(157, 143, 216, 0.6) 45%,
+    rgba(124, 107, 196, 0.08) 55%,
+    rgba(124, 107, 196, 0.08) 100%
   );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1616,9 +1616,9 @@ html.lenis, html.lenis body {
   background: conic-gradient(
     from var(--border-angle, 0deg),
     transparent 0%,
-    rgba(167, 139, 250, 0.15) 15%,
+    rgba(124, 107, 196, 0.15) 15%,
     rgba(212, 149, 106, 0.25) 30%,
-    rgba(167, 139, 250, 0.15) 45%,
+    rgba(124, 107, 196, 0.15) 45%,
     transparent 55%
   );
   filter: blur(12px);
@@ -1641,7 +1641,7 @@ html.lenis, html.lenis body {
 .animate-spin { animation: spin 1s linear infinite; }
 
 /* ---- Ring utility ---- */
-.ring-1 { box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.3); }
+.ring-1 { box-shadow: 0 0 0 1px rgba(124, 107, 196, 0.3); }
 
 /* ---- Shadow gold sm utility ---- */
 .shadow-gold-sm { box-shadow: var(--shadow-gold-sm); }

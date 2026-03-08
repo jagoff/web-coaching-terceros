@@ -16,7 +16,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0B0A10 0%, #13121B 40%, #0B0A10 100%)",
+          background: "linear-gradient(135deg, #0C0A12 0%, #14121D 40%, #0C0A12 100%)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -29,7 +29,7 @@ export default async function Image() {
             height: 500,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(167,139,250,0.25) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(124,107,196,0.25) 0%, transparent 70%)",
             top: "-10%",
             left: "-10%",
             filter: "blur(60px)",
@@ -42,7 +42,7 @@ export default async function Image() {
             height: 400,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(212,149,106,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(200,123,90,0.15) 0%, transparent 70%)",
             bottom: "-15%",
             right: "-5%",
             filter: "blur(80px)",
@@ -62,7 +62,7 @@ export default async function Image() {
             style={{
               width: 40,
               height: 2,
-              background: "linear-gradient(90deg, #A78BFA, #D4956A)",
+              background: "linear-gradient(90deg, #7C6BC4, #C87B5A)",
               borderRadius: 1,
             }}
           />
@@ -70,7 +70,7 @@ export default async function Image() {
             style={{
               fontSize: 16,
               fontWeight: 600,
-              color: "#A78BFA",
+              color: "#7C6BC4",
               letterSpacing: "0.15em",
               textTransform: "uppercase" as const,
             }}
@@ -81,7 +81,7 @@ export default async function Image() {
             style={{
               width: 40,
               height: 2,
-              background: "linear-gradient(90deg, #D4956A, #A78BFA)",
+              background: "linear-gradient(90deg, #C87B5A, #7C6BC4)",
               borderRadius: 1,
             }}
           />
@@ -93,7 +93,7 @@ export default async function Image() {
             fontSize: 80,
             fontWeight: 900,
             letterSpacing: "-0.02em",
-            background: "linear-gradient(135deg, #A78BFA 0%, #D4956A 55%, #C4B5FC 100%)",
+            background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%)",
             backgroundClip: "text",
             color: "transparent",
             lineHeight: 1.1,
@@ -142,7 +142,7 @@ export default async function Image() {
                 style={{
                   fontSize: 32,
                   fontWeight: 900,
-                  color: "#A78BFA",
+                  color: "#7C6BC4",
                 }}
               >
                 {stat.number}

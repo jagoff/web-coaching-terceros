@@ -198,7 +198,7 @@ export default function Contact() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(167,139,250,0.1)",
+                    background: "rgba(124,107,196,0.1)",
                     color: "var(--gold-primary)",
                   }}
                 >
@@ -219,7 +219,7 @@ export default function Contact() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(167,139,250,0.1)",
+                    background: "rgba(124,107,196,0.1)",
                     color: "var(--gold-primary)",
                   }}
                 >
@@ -240,7 +240,7 @@ export default function Contact() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(167,139,250,0.1)",
+                    background: "rgba(124,107,196,0.1)",
                     color: "var(--gold-primary)",
                   }}
                 >
@@ -273,7 +273,7 @@ export default function Contact() {
                     <div
                       className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
                       style={{
-                        background: "rgba(167,139,250,0.15)",
+                        background: "rgba(124,107,196,0.15)",
                         border: "1px solid var(--gold-primary)",
                       }}
                     >

@@ -120,7 +120,7 @@ export default function Navbar() {
             transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] }}
             className="fixed inset-0 flex flex-col lg:hidden"
             style={{
-              background: "rgba(11, 10, 16, 0.97)",
+              background: "rgba(12, 10, 18, 0.97)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
               zIndex: 110,

@@ -181,8 +181,8 @@ export default function Hero() {
                 top: `${p.y}%`,
                 width: p.size,
                 height: p.size,
-                background: `rgba(167, 139, 250, ${p.opacity})`,
-                boxShadow: p.size > 2.5 ? `0 0 ${p.size * 3}px rgba(167,139,250,0.3)` : "none",
+                background: `rgba(124, 107, 196, ${p.opacity})`,
+                boxShadow: p.size > 2.5 ? `0 0 ${p.size * 3}px rgba(124,107,196,0.3)` : "none",
               }}
               animate={{
                 y: [0, -30 - Math.random() * 20, 0],
@@ -243,14 +243,14 @@ export default function Hero() {
               minHeight: "5.5rem",
               background: "rgba(255,255,255,0.03)",
               backdropFilter: "blur(12px)",
-              border: "1px solid rgba(167,139,250,0.12)",
+              border: "1px solid rgba(124,107,196,0.12)",
             }}
           >
             {/* Subtle gold radial glow behind */}
             <div
               className="absolute inset-0 -z-10 rounded-xl"
               style={{
-                background: "radial-gradient(ellipse at center, rgba(167,139,250,0.08) 0%, transparent 70%)",
+                background: "radial-gradient(ellipse at center, rgba(124,107,196,0.08) 0%, transparent 70%)",
                 transform: "scale(1.3)",
                 filter: "blur(20px)",
               }}

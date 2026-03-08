@@ -16,7 +16,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0B0A10 0%, #13121B 40%, #0B0A10 100%)",
+          background: "linear-gradient(135deg, #0C0A12 0%, #14121D 40%, #0C0A12 100%)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -29,7 +29,7 @@ export default async function Image() {
             height: 500,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(167,139,250,0.25) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(124,107,196,0.25) 0%, transparent 70%)",
             top: "-10%",
             left: "-10%",
             filter: "blur(60px)",
@@ -42,7 +42,7 @@ export default async function Image() {
             fontSize: 80,
             fontWeight: 900,
             letterSpacing: "-0.02em",
-            background: "linear-gradient(135deg, #A78BFA 0%, #D4956A 55%, #C4B5FC 100%)",
+            background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%)",
             backgroundClip: "text",
             color: "transparent",
             lineHeight: 1.1,
@@ -72,14 +72,14 @@ export default async function Image() {
             marginTop: 32,
             padding: "10px 24px",
             borderRadius: 8,
-            background: "linear-gradient(135deg, #A78BFA 0%, #D4956A 100%)",
+            background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 100%)",
           }}
         >
           <span
             style={{
               fontSize: 16,
               fontWeight: 700,
-              color: "#0B0A10",
+              color: "#0C0A12",
               letterSpacing: "0.02em",
             }}
           >

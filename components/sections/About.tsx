@@ -133,8 +133,8 @@ export default function About() {
                   style={{
                     width: 36,
                     height: 36,
-                    background: "rgba(167,139,250,0.08)",
-                    border: "1px solid rgba(167,139,250,0.25)",
+                    background: "rgba(124,107,196,0.08)",
+                    border: "1px solid rgba(124,107,196,0.25)",
                   }}
                 >
                   <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
@@ -178,8 +178,8 @@ export default function About() {
                   className="relative rounded-lg overflow-hidden"
                   style={{
                     aspectRatio: "1/1",
-                    border: "1px solid rgba(167,139,250,0.12)",
-                    background: "rgba(19,18,27,0.6)",
+                    border: "1px solid rgba(124,107,196,0.12)",
+                    background: "rgba(20,18,29,0.6)",
                   }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
