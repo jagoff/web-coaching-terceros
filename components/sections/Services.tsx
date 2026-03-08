@@ -79,7 +79,7 @@ const services = [
       "Gestión y motivación de equipos",
       "Crecimiento sostenible y rentable",
     ],
-    cta: "Escala mi negocio",
+    cta: "Quiero escalar mi negocio",
     featured: true,
     badge: "MÁS SOLICITADO",
   },
