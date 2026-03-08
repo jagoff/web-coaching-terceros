@@ -47,6 +47,7 @@ const credentials = [
   "Advanced Certified ScrumMaster",
   "Advanced Certified Scrum Product Owner",
   "Professional Scrum™ with UX (PSU I)",
+  "Agile Coach",
   "Management 3.0 Metrics & OKR's",
   "unFIX Foundation Workshop",
 ];
