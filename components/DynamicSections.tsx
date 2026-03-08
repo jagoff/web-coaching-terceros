@@ -21,3 +21,4 @@ export const SmoothScroll      = dynamic(() => import("@/components/SmoothScroll
 export const CursorGlow        = dynamic(() => import("@/components/CursorGlow"),        { ssr: false });
 export const AmbientParticles  = dynamic(() => import("@/components/AmbientParticles"),  { ssr: false });
 export const SocialProofToast  = dynamic(() => import("@/components/SocialProofToast"),  { ssr: false });
+export const WhatsAppButton    = dynamic(() => import("@/components/WhatsAppButton"),    { ssr: false });
