@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MapPin, Linkedin, Instagram } from "lucide-react";
+import { Mail, Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 
 const navLinks = [
@@ -130,15 +130,6 @@ export default function Footer() {
                   <Instagram size={14} className="flex-shrink-0" />
                   @jago_ff
                 </a>
-              </li>
-              <li>
-                <span
-                  className="flex items-start gap-2 text-sm"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  <MapPin size={14} className="flex-shrink-0 mt-0.5" />
-                  Santa Fe, Argentina · Online (todo el mundo)
-                </span>
               </li>
             </ul>
           </div>

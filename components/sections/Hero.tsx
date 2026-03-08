@@ -126,7 +126,8 @@ export default function Hero() {
     <section
       id="inicio"
       ref={sectionRef}
-      className="hero-bg relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
+      className="hero-bg relative flex min-h-screen flex-col items-center overflow-hidden"
+      style={{ paddingTop: "clamp(2.25rem, 6vh, 4.25rem)" }}
       aria-label="Sección principal"
     >
       {/* Decorative orbs with scroll parallax */}
