@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { DynamicNavbar, CursorGlow, AmbientParticles, WhatsAppButton } from "@/components/DynamicSections";
+import { DynamicNavbar, CursorGlow, AmbientParticles } from "@/components/DynamicSections";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",

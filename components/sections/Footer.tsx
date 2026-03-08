@@ -23,11 +23,6 @@ const socialLinks = [
   { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/fernandorferrari" },
 ];
 
-const legalLinks = [
-  { label: "Política de privacidad", href: "#" },
-  { label: "Aviso legal", href: "#" },
-  { label: "Cookies", href: "#" },
-];
 
 function ScrollLink({
   href,
@@ -143,40 +138,21 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="py-8 border-t flex flex-col sm:flex-row items-center justify-between gap-6"
+          className="py-8 border-t flex items-center justify-center gap-3"
           style={{ borderColor: "var(--dark-border)" }}
         >
-          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2026 ELEVA Coaching. Todos los derechos reservados.
-          </p>
-
-          {/* Social */}
-          <div className="flex gap-3">
-            {socialLinks.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="w-8 h-8 rounded-full flex items-center justify-center social-icon"
-              >
-                <Icon size={15} />
-              </a>
-            ))}
-          </div>
-
-          <div className="flex gap-6">
-            {legalLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-xs footer-link transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+          {socialLinks.map(({ icon: Icon, label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="w-8 h-8 rounded-full flex items-center justify-center social-icon"
+            >
+              <Icon size={15} />
+            </a>
+          ))}
         </div>
       </div>
     </footer>
