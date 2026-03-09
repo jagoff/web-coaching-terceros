@@ -230,8 +230,9 @@ p {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 900;
   border-radius: var(--radius-pill);
   transition: all var(--transition-base);
   cursor: pointer;
@@ -244,16 +245,18 @@ p {
   .btn-primary,
   .btn-secondary {
     padding: 1.125rem 2.25rem;
-    font-size: 1rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.625rem;
+    font-weight: 900;
   }
 }
 
 .btn-primary {
   background: var(--gold-primary);
   color: #0C0A12;
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 700;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   border: none;
@@ -303,9 +306,9 @@ p {
   padding: calc(1rem - 1.5px) calc(2.5rem - 1.5px);
   background: transparent;
   color: var(--gold-primary);
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   border: 1.5px solid rgba(124, 107, 196, 0.55);

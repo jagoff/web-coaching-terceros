@@ -231,14 +231,14 @@ export default function InstagramCarousel() {
                 fill
                 className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
                 style={{ 
-                  filter: postNum === 5 ? "none !important" : "grayscale(100%) !important"
+                  filter: postNum === 5 ? "none" : "grayscale(100%)"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.filter = "none";
                   e.currentTarget.style.transform = "scale(1.05)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = postNum === 5 ? "none !important" : "grayscale(100%) !important";
+                  e.currentTarget.style.filter = postNum === 5 ? "none" : "grayscale(100%)";
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               />

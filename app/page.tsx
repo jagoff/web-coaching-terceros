@@ -23,7 +23,7 @@ export default function Home() {
       <Results />
       <Pricing />
       <FAQ />
-      <CalBooking />
+      <Contact />
       <Footer />
     </main>
   );
