@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, Linkedin } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -176,13 +176,63 @@ export default function Navbar() {
             </nav>
 
             {/* CTA */}
-            <div className="px-8 pb-12">
+            <div className="px-8 pb-8">
               <button
                 className="btn-primary w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
               </button>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="px-8 pb-12">
+              <div className="flex justify-center gap-6">
+                <a
+                  href="https://www.instagram.com/jago_ff"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200"
+                  style={{
+                    background: "rgba(167,139,250,0.08)",
+                    border: "1px solid rgba(167,139,250,0.25)",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Track social media click
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'instagram_click', {
+                        event_category: 'social',
+                        event_label: 'mobile_menu'
+                      });
+                    }
+                  }}
+                >
+                  <Instagram size={20} style={{ color: "var(--gold-primary)" }} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/fernandorferrari/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200"
+                  style={{
+                    background: "rgba(167,139,250,0.08)",
+                    border: "1px solid rgba(167,139,250,0.25)",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Track social media click
+                    if (typeof window !== 'undefined' && window.gtag) {
+                      window.gtag('event', 'linkedin_click', {
+                        event_category: 'social',
+                        event_label: 'mobile_menu'
+                      });
+                    }
+                  }}
+                >
+                  <Linkedin size={20} style={{ color: "var(--gold-primary)" }} />
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
