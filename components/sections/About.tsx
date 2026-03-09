@@ -56,24 +56,7 @@ const credentials = [
 
 const INSTAGRAM_URL = "https://www.instagram.com/jago_ff";
 
-const instagramPosts = [
-  "C2OEy3wR00Z",
-  "DRf9MgBjBpk",
-  "C7FrLQHxAA-",
-  "C66kOA6uCt2",
-  "CXzdfE2O3b6",
-  "CRuVZZ5n3Ol",
-  "B-AI5jKH_QC",
-  "B9P_cZxnw_A",
-  "B64Kku9HSCZ",
-  "B6BfByZnOn3",
-  "B8Y4ePxn3yt",
-  "C4tG_41KXCV",
-  "BsObYi7gI5s",
-  "BrYzUSLAoJW",
-  "BqbMSdOgtSO",
-  "B6JTAE0Hb0T",
-];
+const instagramPosts = [5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12];
 
 const instaStagger: Variants = {
   hidden: {},
@@ -109,7 +92,7 @@ export default function About() {
       ref={ref}
     >
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
           {/* Image column */}
           <motion.div
             custom={-60}
@@ -119,7 +102,7 @@ export default function About() {
             className="relative order-2 lg:order-1 mt-4 lg:mt-0"
           >
             {/* Badge */}
-            <div className="mb-10 flex justify-start">
+            <div className="mb-3 flex justify-start">
               <span className="badge">{t.about.badge}</span>
             </div>
 
@@ -130,12 +113,12 @@ export default function About() {
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-3 gap-2"
             >
-              {instagramPosts.map((shortcode, i) => {
+              {instagramPosts.map((postNum, i) => {
                 const isFirst = i === 0;
                 return (
                 <motion.a
-                  key={shortcode}
-                  href={`https://www.instagram.com/p/${shortcode}/`}
+                  key={postNum}
+                  href={`https://www.instagram.com/jago_ff/`}
                   target="_blank"
                   rel="noopener noreferrer"
                   variants={instaCard}
@@ -149,8 +132,8 @@ export default function About() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <img
-                    src={`/api/instagram/${shortcode}`}
-                    alt="Post de Instagram @jago_ff"
+                    src={`/img/insta-${postNum}.png`}
+                    alt={`Post de Instagram @jago_ff - ${postNum}`}
                     loading="lazy"
                     className="absolute inset-0 w-full h-full transition-all duration-500"
                     style={{

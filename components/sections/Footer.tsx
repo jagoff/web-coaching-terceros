@@ -157,10 +157,6 @@ export default function Footer() {
             © 2024 ELEVA Coaching. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }}>
-            <a href="mailto:fernandoferrari@gmail.com" className="footer-link">
-              fernandoferrari@gmail.com
-            </a>
-            <span className="hidden sm:inline">·</span>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>
           </div>
         </div>
