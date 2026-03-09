@@ -32,20 +32,6 @@ const credentialPop: Variants = {
   },
 };
 
-const statReveal: Variants = {
-  hidden: { opacity: 0, y: 24, scale: 0.9 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: 0.5 + i * 0.1,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
 const credentials = [
   "Advanced Certified ScrumMaster",
   "Advanced Certified Scrum Product Owner",
