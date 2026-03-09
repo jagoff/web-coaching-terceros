@@ -12,7 +12,7 @@ const rotatingPhrasesES = [
   "Estamos creciendo pero todo se rompe",
   "No logro delegar sin perder el control",
   "El equipo tiene talento pero no rinde",
-  "Siempre apagamos incendios, nunca prevenimos",
+  "Siempre apagamos incendios 🔥, nunca prevenimos",
   "Tengo demasiadas prioridades y no avanzo en ninguna",
   "No sé si mi equipo está alineado con los objetivos",
   "Contrato bien pero la gente se va rápido",
