@@ -504,17 +504,8 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          {Object.keys(errors).length === 0 && Object.values(form).every(v => v.trim()) ? (
-                            <>
-                              <CheckCircle2 size={16} className="inline mr-2" />
-                              Todo listo - Enviar mensaje
-                            </>
-                          ) : (
-                            <>
-                              Agendá tu sesión gratuita{" "}
-                              <ArrowRight size={16} className="inline ml-1" />
-                            </>
-                          )}
+                          Agendá tu sesión gratuita{" "}
+                          <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
                     </button>
