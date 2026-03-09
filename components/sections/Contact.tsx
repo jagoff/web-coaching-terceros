@@ -163,23 +163,35 @@ export default function Contact() {
     setApiError("");
 
     try {
-      const res = await fetch("/api/contact", {
+      // Formspree configuration
+      const formEndpoint = "https://formspree.io/f/mnjgjjon";
+      
+      const response = await fetch(formEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.nombre,
+          email: form.email,
+          message: form.mensaje,
+          _subject: `Nuevo contacto desde web: ${form.nombre}`,
+        }),
       });
-      const data = await res.json();
 
-      if (!res.ok || !data.success) {
-        setStatus("error");
-        setApiError(data.error ?? "Ocurrió un error. Intenta de nuevo.");
-        return;
+      if (response.ok) {
+        setStatus("success");
+        setForm({ nombre: "", email: "", mensaje: "" });
+        setTouched({});
+        setErrors({});
+      } else {
+        throw new Error("Error al enviar el formulario");
       }
-
-      setStatus("success");
+      
     } catch {
       setStatus("error");
-      setApiError("Error de conexión. Verifica tu internet e intenta de nuevo.");
+      setApiError("Error al enviar el mensaje. Por favor intenta más tarde.");
     }
   };
 
