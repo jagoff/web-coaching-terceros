@@ -5,7 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Instagram, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
-const instagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
+const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
+
+// Function to shuffle array
+const shuffleArray = (array: number[]) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
 
 const carouselVariants = {
   enter: (direction: number) => ({
@@ -32,7 +42,14 @@ const swipePower = (offset: number, velocity: number) => {
 export default function InstagramCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
   const [isDragging, setIsDragging] = useState(false);
+  const [instagramImages, setInstagramImages] = useState<number[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Shuffle images on component mount
+  useEffect(() => {
+    const shuffled = shuffleArray(baseInstagramImages);
+    setInstagramImages(shuffled);
+  }, []);
 
   const imageIndex = Math.abs(page) % instagramImages.length;
   const currentImage = instagramImages[imageIndex];
