@@ -1593,6 +1593,14 @@ html.lenis, html.lenis body {
 }
 
 /* ============================================================
+   FORCE COLOR — for specific images that should always be in color
+   ============================================================ */
+
+.force-color {
+  filter: none !important;
+}
+
+/* ============================================================
    CURSOR GLOW — radial spotlight following mouse
    ============================================================ */
 

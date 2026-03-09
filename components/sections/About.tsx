@@ -140,7 +140,7 @@ export default function About() {
             </p>
 
             <h3 className="text-lg font-semibold mb-6" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
-              <span className="text-gradient">{t.about.certificaciones.split(' ')[0]}</span> {t.about.certificaciones.split(' ')[1]}
+              {t.about.certificaciones}
             </h3>
 
             {/* Credentials */}
