@@ -337,15 +337,28 @@ p {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  background: rgba(124, 107, 196, 0.08);
-  border: 1px solid rgba(124, 107, 196, 0.30);
+  background: linear-gradient(135deg, rgba(124, 107, 196, 0.25) 0%, rgba(200, 123, 90, 0.15) 100%);
+  border: 1px solid rgba(124, 107, 196, 0.50);
   border-radius: var(--radius-pill);
   color: var(--gold-primary);
   font-family: var(--font-body);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.10em;
   text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(124, 107, 196, 0.20);
+}
+
+/* Mobile-specific badge improvements */
+@media (max-width: 640px) {
+  .badge {
+    background: linear-gradient(135deg, rgba(124, 107, 196, 0.35) 0%, rgba(200, 123, 90, 0.25) 100%);
+    border: 1px solid rgba(124, 107, 196, 0.70);
+    color: #E0D5FF;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(124, 107, 196, 0.30);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
 }
 
 /* ---- Glow effects ---- */
@@ -675,6 +688,11 @@ html.lenis, html.lenis body {
 /* Borde superior decorativo dorado */
 .section-gold-border-top {
   border-top: 1px solid var(--gold-border);
+}
+
+/* Sección sin padding superior */
+.section-no-padding-top {
+  padding-top: 0 !important;
 }
 
 /* Footer */
