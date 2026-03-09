@@ -235,7 +235,7 @@ p {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
+  padding: 0.875rem 1.25rem;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.625rem;
   font-weight: 900;
@@ -250,7 +250,7 @@ p {
 @media (min-width: 640px) {
   .btn-primary,
   .btn-secondary {
-    padding: 1.125rem 2.25rem;
+    padding: 1.125rem 1.75rem;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 0.625rem;
     font-weight: 900;
