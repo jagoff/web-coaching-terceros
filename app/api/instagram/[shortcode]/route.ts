@@ -7,13 +7,13 @@ export async function GET(
   const { shortcode } = await context.params;
 
   try {
-    // Usar imágenes placeholder de picsum que son JPG reales
-    const imageUrl = `https://picsum.photos/300/300?random=${shortcode}`;
+    // Construir la URL real de Instagram
+    const instagramUrl = `https://www.instagram.com/p/${shortcode}/media`;
     
-    const response = await fetch(imageUrl);
+    const response = await fetch(instagramUrl);
     
     if (!response.ok) {
-      throw new Error('Failed to fetch image');
+      throw new Error('Failed to fetch Instagram image');
     }
 
     const imageBuffer = await response.arrayBuffer();
@@ -27,21 +27,7 @@ export async function GET(
   } catch (error) {
     console.error('Error fetching Instagram image:', error);
     
-    // Fallback a un SVG base64 convertido a data URL
-    const svgFallback = `
-      <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-        <rect width="300" height="300" fill="#2a2a3e"/>
-        <rect x="50" y="50" width="200" height="200" fill="none" stroke="#7c6bc4" stroke-width="2" rx="20"/>
-        <text x="150" y="150" text-anchor="middle" fill="#7c6bc4" font-family="Arial" font-size="16">
-          Instagram ${shortcode}
-        </text>
-      </svg>
-    `;
-
-    const base64Svg = Buffer.from(svgFallback.trim()).toString('base64');
-    const dataUrl = `data:image/svg+xml;base64,${base64Svg}`;
-
-    // Redirigir a una imagen placeholder real
+    // Fallback a una imagen placeholder real
     return NextResponse.redirect(`https://picsum.photos/300/300?random=${shortcode}`);
   }
 }

@@ -4,7 +4,6 @@ import "./globals.css";
 import { DynamicNavbar } from "@/components/DynamicSections";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import ClientLayout from "@/components/ClientLayout";
-import GoogleTagManager from "@/components/GoogleTagManager";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -60,11 +59,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark" suppressHydrationWarning>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PE7S1C5PX8"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-PE7S1C5PX8');
+          `
+        }} />
+      </head>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <GoogleTagManager />
         <LanguageProvider>
           <ClientLayout>
             {children}
