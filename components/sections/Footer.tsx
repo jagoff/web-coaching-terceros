@@ -103,48 +103,51 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h3
-              className="text-xs font-bold uppercase tracking-widest mb-5"
-              style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-            >
-              Navegación
-            </h3>
-            <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <ScrollLink
-                    href={link.href}
-                    className="text-sm transition-colors duration-200 footer-link"
-                  >
-                    {link.label}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Navigation & Services - Side by side on mobile */}
+          <div className="grid grid-cols-2 gap-8">
+            {/* Navigation */}
+            <div>
+              <h3
+                className="text-xs font-bold uppercase tracking-widest mb-5"
+                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+              >
+                Navegación
+              </h3>
+              <ul className="space-y-3">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <ScrollLink
+                      href={link.href}
+                      className="text-sm transition-colors duration-200 footer-link"
+                    >
+                      {link.label}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Services */}
-          <div>
-            <h3
-              className="text-xs font-bold uppercase tracking-widest mb-5"
-              style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
-            >
-              Servicios
-            </h3>
-            <ul className="space-y-3">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <ScrollLink
-                    href={link.href}
-                    className="text-sm transition-colors duration-200 footer-link"
-                  >
-                    {link.label}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
+            {/* Services */}
+            <div>
+              <h3
+                className="text-xs font-bold uppercase tracking-widest mb-5"
+                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+              >
+                Servicios
+              </h3>
+              <ul className="space-y-3">
+                {serviceLinks.map((link) => (
+                  <li key={link.label}>
+                    <ScrollLink
+                      href={link.href}
+                      className="text-sm transition-colors duration-200 footer-link"
+                    >
+                      {link.label}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
