@@ -57,8 +57,6 @@ export default function Contact() {
   const [form, setForm] = useState({
     nombre: "",
     email: "",
-    telefono: "",
-    servicio: "",
     mensaje: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -70,7 +68,6 @@ export default function Contact() {
     if (!form.nombre.trim()) errs.nombre = "El nombre es obligatorio";
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       errs.email = "Introduce un email válido";
-    if (!form.servicio) errs.servicio = "Selecciona un servicio";
     if (!form.mensaje.trim() || form.mensaje.trim().length < 10)
       errs.mensaje = "Cuéntanos brevemente tu situación (mín. 10 caracteres)";
     return errs;
@@ -78,7 +75,7 @@ export default function Contact() {
 
   const handleChange = (
     e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      HTMLInputElement | HTMLTextAreaElement
     >
   ) => {
     const { name, value } = e.target;
@@ -86,7 +83,10 @@ export default function Contact() {
       ...prev,
       [name]: value,
     }));
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -276,80 +276,26 @@ export default function Contact() {
                       )}
                     </div>
 
-                    {/* Email + Phone grid */}
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="form-group">
-                        <label htmlFor="email" className="form-label">
-                          {t.contact.form.email.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
-                        </label>
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          autoComplete="email"
-                          placeholder={t.contact.form.email.placeholder}
-                          className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
-                          value={form.email}
-                          onChange={handleChange}
-                          aria-invalid={!!errors.email}
-                          style={errors.email ? { borderColor: "#ef4444" } : {}}
-                        />
-                        {errors.email && (
-                          <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
-                            {errors.email}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="telefono" className="form-label">
-                          {language === 'es' ? 'Teléfono' : 'Phone'} <span className="text-xs" style={{ color: "var(--text-muted)" }}>({language === 'es' ? 'opcional' : 'optional'})</span>
-                        </label>
-                        <input
-                          id="telefono"
-                          name="telefono"
-                          type="tel"
-                          autoComplete="tel"
-                          placeholder={language === 'es' ? '+54 9 3425 000000' : '+1 555 000 000'}
-                          className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
-                          value={form.telefono}
-                          onChange={handleChange}
-                          aria-invalid={!!errors.telefono}
-                          style={errors.telefono ? { borderColor: "#ef4444" } : {}}
-                        />
-                        {errors.telefono && (
-                          <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
-                            {errors.telefono}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Service */}
+                    {/* Email */}
                     <div className="form-group">
-                      <label htmlFor="servicio" className="form-label">
-                        {t.contact.form.servicio.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
+                      <label htmlFor="email" className="form-label">
+                        {t.contact.form.email.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
-                      <select
-                        id="servicio"
-                        name="servicio"
-                        className="form-input form-select text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
-                        value={form.servicio}
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        placeholder={t.contact.form.email.placeholder}
+                        className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
+                        value={form.email}
                         onChange={handleChange}
-                        aria-invalid={!!errors.servicio}
-                        style={errors.servicio ? { borderColor: "#ef4444" } : {}}
-                      >
-                        <option value="" disabled>
-                          {language === 'es' ? 'Selecciona una opción' : 'Select an option'}
-                        </option>
-                        <option value="liderazgo">{language === 'es' ? 'Coaching de Liderazgo' : 'Leadership Coaching'}</option>
-                        <option value="organizacional">{language === 'es' ? 'Consultoría Organizacional' : 'Organizational Consulting'}</option>
-                        <option value="ambos">{language === 'es' ? 'Ambos servicios' : 'Both services'}</option>
-                        <option value="otros">{language === 'es' ? 'Otros' : 'Other'}</option>
-                      </select>
-                      {errors.servicio && (
+                        aria-invalid={!!errors.email}
+                        style={errors.email ? { borderColor: "#ef4444" } : {}}
+                      />
+                      {errors.email && (
                         <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
-                          {errors.servicio}
+                          {errors.email}
                         </p>
                       )}
                     </div>

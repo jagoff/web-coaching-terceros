@@ -48,33 +48,27 @@ export default function Pricing() {
     {
       id: "individual",
       name: t.pricing.plans.liderazgo.name,
-      price: t.pricing.plans.liderazgo.price,
-      period: t.pricing.plans.liderazgo.period,
       description: t.pricing.plans.liderazgo.description,
       features: t.pricing.plans.liderazgo.features,
-      cta: t.pricing.plans.liderazgo.cta,
+      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
       featured: false,
       badge: null,
     },
     {
       id: "transformacion",
       name: t.pricing.plans.organizacional.name,
-      price: t.pricing.plans.organizacional.price,
-      period: t.pricing.plans.organizacional.period,
       description: t.pricing.plans.organizacional.description,
       features: t.pricing.plans.organizacional.features,
-      cta: t.pricing.plans.organizacional.cta,
+      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
       featured: true,
       badge: language === 'es' ? 'Más Popular' : 'Most Popular',
     },
     {
       id: "elite",
       name: t.pricing.plans.personalizado.name,
-      price: t.pricing.plans.personalizado.price,
-      period: t.pricing.plans.personalizado.period,
       description: t.pricing.plans.personalizado.description,
       features: t.pricing.plans.personalizado.features,
-      cta: t.pricing.plans.personalizado.cta,
+      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
       featured: false,
       badge: null,
     },
@@ -145,19 +139,12 @@ export default function Pricing() {
                 {plan.name}
               </p>
 
-              {/* Price */}
-              <div className="flex items-baseline gap-1 mb-5 flex-nowrap">
-                <span className="price-amount">{plan.price}</span>
-                <span className="price-period">{plan.period}</span>
-              </div>
-
               {/* Description */}
               <p
-                className="text-sm pb-8 mb-8 border-b"
+                className="text-sm pb-8 mb-8"
                 style={{
                   color: "var(--text-muted)",
                   lineHeight: 1.8,
-                  borderColor: "rgba(255,255,255,0.06)",
                   minHeight: "5.5rem",
                 }}
               >
@@ -169,7 +156,7 @@ export default function Pricing() {
                 variants={featureStagger}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="space-y-4 mb-12 flex-1"
+                className="space-y-4 mb-8 flex-1"
               >
                 {plan.features.map((feature) => (
                   <motion.li key={feature} variants={featureItem} className="pricing-feature">
@@ -181,7 +168,7 @@ export default function Pricing() {
 
               {/* CTA */}
               <button
-                className="btn-secondary"
+                className={`btn-primary w-full ${plan.featured ? 'btn-gold' : ''}`}
                 onClick={() => handleScroll("#contacto")}
               >
                 <span>{plan.cta}</span> <ArrowRight size={14} className="flex-shrink-0 ml-1" />

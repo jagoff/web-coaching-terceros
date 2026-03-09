@@ -221,9 +221,9 @@ export const translations: Record<Language, Translations> = {
     },
     
     services: {
-      badge: 'Transformación Real',
+      badge: 'Servicios',
       title: 'Deja de apagar incendios',
-      subtitle: 'Soluciones prácticas para líderes que quieren resultados medibles, no más teoría.',
+      subtitle: 'Cada organización es única. Mis servicios se adaptan a tus necesidades específicas, combinando frameworks probados con enfoque personalizado.',
       items: {
         liderazgo: {
           title: 'Coaching de Liderazgo',
@@ -295,10 +295,10 @@ export const translations: Record<Language, Translations> = {
     },
     
     pricing: {
-      badge: 'Precios',
-      title: 'Inversión que',
-      title2: 'multiplica valor',
-      subtitle: 'Planes flexibles adaptados a diferentes necesidades y etapas de crecimiento.',
+      badge: 'Planes',
+      title: 'Encuentra tu',
+      title2: 'plan ideal',
+      subtitle: 'Cada plan está diseñado para diferentes necesidades. Consultemos cuál se adapta mejor a vos.',
       plans: {
         liderazgo: {
           name: 'Coaching de Liderazgo',
@@ -434,7 +434,7 @@ export const translations: Record<Language, Translations> = {
     
     services: {
       badge: 'Services',
-      title: 'Tailored solutions',
+      title: 'Stop putting out fires',
       subtitle: 'Every organization is unique. My services adapt to your specific needs, combining proven frameworks with personalized approach.',
       items: {
         liderazgo: {
@@ -507,10 +507,10 @@ export const translations: Record<Language, Translations> = {
     },
     
     pricing: {
-      badge: 'Pricing',
-      title: 'Investment that',
-      title2: 'multiplies value',
-      subtitle: 'Flexible plans adapted to different needs and growth stages.',
+      badge: 'Plans',
+      title: 'Find your',
+      title2: 'ideal plan',
+      subtitle: 'Each plan is designed for different needs. Let us help you find the best fit for you.',
       plans: {
         liderazgo: {
           name: 'Leadership Coaching',

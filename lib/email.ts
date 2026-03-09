@@ -1,16 +1,7 @@
 import type { ContactFormData } from "./validations";
 
-// Nombres legibles para los tipos de servicio
-const SERVICIOS_LABELS: Record<ContactFormData["servicio"], string> = {
-  liderazgo: "Coaching de Liderazgo",
-  organizacional: "Consultoría Organizacional",
-  ambos: "Coaching de Liderazgo + Consultoría",
-  otros: "Otros",
-};
-
 // Template HTML del email de confirmación enviado al cliente
 function buildConfirmationEmailHtml(data: ContactFormData): string {
-  const servicioLabel = SERVICIOS_LABELS[data.servicio];
 
   return `
 <!DOCTYPE html>
@@ -149,18 +140,6 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
           <span class="summary-label">Email</span>
           <span class="summary-value">${data.email}</span>
         </div>
-        ${
-          data.telefono
-            ? `<div class="summary-row">
-          <span class="summary-label">Teléfono</span>
-          <span class="summary-value">${data.telefono}</span>
-        </div>`
-            : ""
-        }
-        <div class="summary-row">
-          <span class="summary-label">Servicio</span>
-          <span class="summary-value">${servicioLabel}</span>
-        </div>
         <div class="summary-row">
           <span class="summary-label">Mensaje</span>
           <span class="summary-value">${data.mensaje}</span>
@@ -186,7 +165,6 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
 
 // Template HTML de notificación interna enviado al coach
 function buildNotificationEmailHtml(data: ContactFormData): string {
-  const servicioLabel = SERVICIOS_LABELS[data.servicio];
   const now = new Date().toLocaleString("es-MX", {
     timeZone: "America/Mexico_City",
     dateStyle: "full",
@@ -198,7 +176,7 @@ function buildNotificationEmailHtml(data: ContactFormData): string {
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Nuevo contacto desde el sitio web</title>
+  <title>Nuevo contacto desde formulario web</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f4f7; margin: 0; padding: 0; }
     .wrapper { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 10px; overflow: hidden; }
@@ -227,18 +205,6 @@ function buildNotificationEmailHtml(data: ContactFormData): string {
       <div class="field">
         <div class="label">Email</div>
         <div class="value">${data.email}</div>
-      </div>
-      ${
-        data.telefono
-          ? `<div class="field">
-        <div class="label">Teléfono</div>
-        <div class="value">${data.telefono}</div>
-      </div>`
-          : ""
-      }
-      <div class="field">
-        <div class="label">Servicio de interés</div>
-        <div class="value"><span class="badge">${servicioLabel}</span></div>
       </div>
       <div class="field">
         <div class="label">Mensaje</div>
@@ -311,7 +277,7 @@ export async function sendContactEmail(
       resend.emails.send({
         from: fromAddress,
         to: contactEmail,
-        subject: `Nuevo contacto: ${data.nombre} — ${data.servicio}`,
+        subject: `Nuevo contacto: ${data.nombre} — Consulta web`,
         html: buildNotificationEmailHtml(data),
         replyTo: data.email,
       }),
