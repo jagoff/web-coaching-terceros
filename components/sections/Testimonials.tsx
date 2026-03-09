@@ -292,6 +292,13 @@ export default function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
+  // Set random initial index when component mounts
+  useEffect(() => {
+    const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
+    const randomIndex = Math.floor(Math.random() * testimonials.length);
+    setCurrent(randomIndex);
+  }, [language]);
+
   const goTo = useCallback(
     (index: number, dir: number) => {
       setDirection(dir);
