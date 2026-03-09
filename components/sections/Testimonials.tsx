@@ -394,6 +394,23 @@ export default function Testimonials() {
                 exit="exit"
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col h-full"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                dragMomentum={false}
+                onDragEnd={(e, info) => {
+                  const { offset, velocity } = info;
+                  const swipeThreshold = 50;
+                  
+                  if (offset.x < -swipeThreshold) {
+                    // Swipe izquierda → siguiente
+                    next();
+                  } else if (offset.x > swipeThreshold) {
+                    // Swipe derecha → anterior
+                    prev();
+                  }
+                }}
+                style={{ cursor: 'grab' }}
               >
                 {/* Stars */}
                 <div className="stars mb-4 mt-2" aria-label="5 estrellas">
