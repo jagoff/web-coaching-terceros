@@ -490,7 +490,7 @@ export default function Contact() {
                         Object.keys(errors).length === 0 && Object.values(form).every(v => v.trim()) ? "animate-glow" : 
                         ""
                       }`}
-                      disabled={status === "loading" || Object.keys(errors).length > 0}
+                      disabled={status === "loading"}
                     >
                       {status === "loading" ? (
                         <>
