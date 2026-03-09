@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Instagram, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
-const instagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 10];
+const instagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
 
 const carouselVariants = {
   enter: (direction: number) => ({
