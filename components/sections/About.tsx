@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const slideReveal: Variants = {
@@ -107,54 +108,36 @@ export default function About() {
               <span className="badge">{t.about.badge}</span>
             </div>
 
-            {/* Instagram grid */}
-            <motion.div
-              variants={instaStagger}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid grid-cols-3 gap-2"
-            >
-              {instagramPosts.map((postNum, i) => {
-                const isFirst = i === 0;
+            {/* Instagram grid - Next.js Image */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {[5, 1, 2, 3, 4, 6].map((postNum, i) => {
                 return (
-                <motion.a
+                <div
                   key={postNum}
-                  href={`https://www.instagram.com/jago_ff/`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variants={instaCard}
-                  className="relative rounded-lg overflow-hidden"
+                  className="relative"
                   style={{
-                    aspectRatio: "1/1",
-                    border: "1px solid rgba(124,107,196,0.12)",
-                    background: "rgba(20,18,29,0.6)",
+                    width: "100%",
+                    paddingBottom: "100%",
+                    border: "1px solid #7C6BC4",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    backgroundColor: "#14121D",
                   }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <img
-                    src={`/img/insta-${postNum}.png`}
+                  <Image
+                    src={`/insta-${postNum}.png`}
                     alt={`Post de Instagram @jago_ff - ${postNum}`}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full transition-all duration-500"
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
                     style={{
                       objectFit: "cover",
-                      filter: isFirst ? "grayscale(0%)" : "grayscale(100%)",
-                      transform: "scale(1)",
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.filter = "grayscale(0%)";
-                      e.currentTarget.style.transform = "scale(1.08)";
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isFirst) e.currentTarget.style.filter = "grayscale(100%)";
-                      e.currentTarget.style.transform = "scale(1)";
-                    }}
+                    priority={i === 0}
                   />
-                </motion.a>
+                </div>
                 );
               })}
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Text column */}
