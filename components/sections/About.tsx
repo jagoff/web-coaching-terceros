@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink } from "lucide-react";
+import InstagramCarousel from "./InstagramCarousel";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -108,36 +109,8 @@ export default function About() {
               <span className="badge">{t.about.badge}</span>
             </div>
 
-            {/* Instagram grid - Next.js Image */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {[5, 1, 2, 8, 4, 6, 9, 7].map((postNum, i) => {
-                return (
-                <div
-                  key={postNum}
-                  className="relative"
-                  style={{
-                    width: "100%",
-                    paddingBottom: "100%",
-                    border: "1px solid #7C6BC4",
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                    backgroundColor: "#14121D",
-                  }}
-                >
-                  <Image
-                    src={`/insta-${postNum}.png`}
-                    alt={`Post de Instagram @jago_ff - ${postNum}`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
-                    style={{
-                      objectFit: "cover",
-                    }}
-                    priority={i === 0}
-                  />
-                </div>
-                );
-              })}
-            </div>
+            {/* Instagram Carousel - Mobile First */}
+            <InstagramCarousel />
           </motion.div>
 
           {/* Text column */}
