@@ -45,6 +45,9 @@ import {
   ArrowRight,
   Loader2,
   CheckCheck,
+  AlertCircle,
+  User,
+  MessageSquare,
 } from "lucide-react";
 
 export default function Contact() {
@@ -60,33 +63,93 @@ export default function Contact() {
     mensaje: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [apiError, setApiError] = useState("");
 
+  // Real-time validation function
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case "nombre":
+        if (!value.trim()) return "El nombre es obligatorio";
+        if (value.trim().length < 2) return "El nombre debe tener al menos 2 caracteres";
+        if (value.trim().length > 50) return "El nombre no puede exceder 50 caracteres";
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) return "Solo letras y espacios permitidos";
+        return "";
+      
+      case "email":
+        if (!value.trim()) return "El email es obligatorio";
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) return "Introduce un email válido";
+        if (value.length > 100) return "Email demasiado largo";
+        return "";
+      
+      case "mensaje":
+        if (!value.trim()) return "El mensaje es obligatorio";
+        if (value.trim().length < 10) return "Cuéntanos más (mínimo 10 caracteres)";
+        if (value.trim().length > 500) return "El mensaje no puede exceder 500 caracteres";
+        return "";
+      
+      default:
+        return "";
+    }
+  };
+
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!form.nombre.trim()) errs.nombre = "El nombre es obligatorio";
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      errs.email = "Introduce un email válido";
-    if (!form.mensaje.trim() || form.mensaje.trim().length < 10)
-      errs.mensaje = "Cuéntanos brevemente tu situación (mín. 10 caracteres)";
+    Object.keys(form).forEach((key) => {
+      const error = validateField(key, form[key as keyof typeof form]);
+      if (error) errs[key] = error;
+    });
     return errs;
   };
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
+    
+    // Real-time validation for touched fields
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors((prev) => ({
+        ...prev,
+        [name]: error,
+      }));
     }
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({
+      ...prev,
+      [name]: true,
+    }));
+    
+    // Validate on blur
+    const error = validateField(name, value);
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
+  // Get field status for visual feedback
+  const getFieldStatus = (fieldName: string) => {
+    const hasValue = form[fieldName as keyof typeof form].trim().length > 0;
+    const hasError = errors[fieldName];
+    const isTouched = touched[fieldName];
+    
+    if (!isTouched) return "default";
+    if (hasError) return "error";
+    if (hasValue) return "success";
+    return "default";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -245,89 +308,189 @@ export default function Contact() {
                     {/* Name */}
                     <div className="form-group">
                       <label htmlFor="nombre" className="form-label">
+                        <User size={16} className="inline mr-2" />
                         {t.contact.form.nombre.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
-                      <input
-                        id="nombre"
-                        name="nombre"
-                        type="text"
-                        autoComplete="name"
-                        placeholder={t.contact.form.nombre.placeholder}
-                        className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
-                        value={form.nombre}
-                        onChange={handleChange}
-                        aria-describedby={errors.nombre ? "nombre-error" : undefined}
-                        aria-invalid={!!errors.nombre}
-                        style={
-                          errors.nombre
-                            ? { borderColor: "#ef4444" }
-                            : {}
-                        }
-                      />
+                      <div className="relative">
+                        <input
+                          id="nombre"
+                          name="nombre"
+                          type="text"
+                          autoComplete="name"
+                          placeholder={t.contact.form.nombre.placeholder}
+                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
+                            getFieldStatus('nombre') === 'success' ? 'border-green-500 bg-green-50/10' : 
+                            getFieldStatus('nombre') === 'error' ? 'border-red-500 bg-red-50/10' : 
+                            'border-gray-600'
+                          }`}
+                          value={form.nombre}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          aria-describedby={errors.nombre ? "nombre-error" : undefined}
+                          aria-invalid={!!errors.nombre}
+                        />
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          {getFieldStatus('nombre') === 'success' && (
+                            <CheckCircle2 size={20} className="text-green-500" />
+                          )}
+                          {getFieldStatus('nombre') === 'error' && (
+                            <AlertCircle size={20} className="text-red-500" />
+                          )}
+                        </div>
+                      </div>
                       {errors.nombre && (
-                        <p
+                        <motion.p
                           id="nombre-error"
                           role="alert"
-                          className="text-xs mt-1"
+                          className="text-xs mt-2 flex items-center gap-1"
                           style={{ color: "#ef4444" }}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
                         >
+                          <AlertCircle size={12} />
                           {errors.nombre}
-                        </p>
+                        </motion.p>
+                      )}
+                      {!errors.nombre && touched.nombre && form.nombre && (
+                        <motion.p
+                          className="text-xs mt-2 text-green-500 flex items-center gap-1"
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <CheckCircle2 size={12} />
+                          Nombre válido
+                        </motion.p>
                       )}
                     </div>
 
                     {/* Email */}
                     <div className="form-group">
                       <label htmlFor="email" className="form-label">
+                        <Mail size={16} className="inline mr-2" />
                         {t.contact.form.email.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        placeholder={t.contact.form.email.placeholder}
-                        className="form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px]"
-                        value={form.email}
-                        onChange={handleChange}
-                        aria-invalid={!!errors.email}
-                        style={errors.email ? { borderColor: "#ef4444" } : {}}
-                      />
+                      <div className="relative">
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          placeholder={t.contact.form.email.placeholder}
+                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
+                            getFieldStatus('email') === 'success' ? 'border-green-500 bg-green-50/10' : 
+                            getFieldStatus('email') === 'error' ? 'border-red-500 bg-red-50/10' : 
+                            'border-gray-600'
+                          }`}
+                          value={form.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          aria-invalid={!!errors.email}
+                        />
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          {getFieldStatus('email') === 'success' && (
+                            <CheckCircle2 size={20} className="text-green-500" />
+                          )}
+                          {getFieldStatus('email') === 'error' && (
+                            <AlertCircle size={20} className="text-red-500" />
+                          )}
+                        </div>
+                      </div>
                       {errors.email && (
-                        <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
+                        <motion.p
+                          role="alert"
+                          className="text-xs mt-2 flex items-center gap-1"
+                          style={{ color: "#ef4444" }}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <AlertCircle size={12} />
                           {errors.email}
-                        </p>
+                        </motion.p>
+                      )}
+                      {!errors.email && touched.email && form.email && (
+                        <motion.p
+                          className="text-xs mt-2 text-green-500 flex items-center gap-1"
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <CheckCircle2 size={12} />
+                          Email válido
+                        </motion.p>
                       )}
                     </div>
 
                     {/* Message */}
                     <div className="form-group">
                       <label htmlFor="mensaje" className="form-label">
+                        <MessageSquare size={16} className="inline mr-2" />
                         {t.contact.form.mensaje.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
                       </label>
-                      <textarea
-                        id="mensaje"
-                        name="mensaje"
-                        className="form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px]"
-                        placeholder={language === 'es' ? '¿Qué te trae aquí? ¿Qué quieres cambiar?' : 'What brings you here? What do you want to change?'}
-                        value={form.mensaje}
-                        onChange={handleChange}
-                        rows={4}
-                        aria-invalid={!!errors.mensaje}
-                        style={errors.mensaje ? { borderColor: "#ef4444" } : {}}
-                      />
-                      {errors.mensaje && (
-                        <p role="alert" className="text-xs mt-1" style={{ color: "#ef4444" }}>
-                          {errors.mensaje}
-                        </p>
-                      )}
+                      <div className="relative">
+                        <textarea
+                          id="mensaje"
+                          name="mensaje"
+                          className={`form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px] pr-12 transition-all duration-200 ${
+                            getFieldStatus('mensaje') === 'success' ? 'border-green-500 bg-green-50/10' : 
+                            getFieldStatus('mensaje') === 'error' ? 'border-red-500 bg-red-50/10' : 
+                            'border-gray-600'
+                          }`}
+                          placeholder={language === 'es' ? '¿Qué te trae aquí? ¿Qué quieres cambiar?' : 'What brings you here? What do you want to change?'}
+                          value={form.mensaje}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          rows={4}
+                          aria-invalid={!!errors.mensaje}
+                        />
+                        <div className="absolute right-3 top-4">
+                          {getFieldStatus('mensaje') === 'success' && (
+                            <CheckCircle2 size={20} className="text-green-500" />
+                          )}
+                          {getFieldStatus('mensaje') === 'error' && (
+                            <AlertCircle size={20} className="text-red-500" />
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-start mt-2">
+                        {errors.mensaje ? (
+                          <motion.p
+                            role="alert"
+                            className="text-xs flex items-center gap-1"
+                            style={{ color: "#ef4444" }}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                          >
+                            <AlertCircle size={12} />
+                            {errors.mensaje}
+                          </motion.p>
+                        ) : (
+                          <div>
+                            {!errors.mensaje && touched.mensaje && form.mensaje && (
+                              <motion.p
+                                className="text-xs text-green-500 flex items-center gap-1"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                              >
+                                <CheckCircle2 size={12} />
+                                Mensaje válido
+                              </motion.p>
+                            )}
+                          </div>
+                        )}
+                        <span className="text-xs" style={{ color: "var(--text-muted)" }}>
+                          {form.mensaje.trim().length}/500
+                        </span>
+                      </div>
                     </div>
 
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px]"
-                      disabled={status === "loading"}
+                      className={`btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 ${
+                        status === "loading" ? "opacity-75 cursor-not-allowed" : 
+                        Object.keys(errors).length === 0 && Object.values(form).every(v => v.trim()) ? "animate-glow" : 
+                        ""
+                      }`}
+                      disabled={status === "loading" || Object.keys(errors).length > 0}
                     >
                       {status === "loading" ? (
                         <>
@@ -341,11 +504,40 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Agendá tu sesión gratuita{" "}
-                          <ArrowRight size={16} className="inline ml-1" />
+                          {Object.keys(errors).length === 0 && Object.values(form).every(v => v.trim()) ? (
+                            <>
+                              <CheckCircle2 size={16} className="inline mr-2" />
+                              Todo listo - Enviar mensaje
+                            </>
+                          ) : (
+                            <>
+                              Agendá tu sesión gratuita{" "}
+                              <ArrowRight size={16} className="inline ml-1" />
+                            </>
+                          )}
                         </>
                       )}
                     </button>
+
+                    {/* Form completion indicator */}
+                    {Object.keys(form).some(key => form[key as keyof typeof form]) && (
+                      <div className="mt-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
+                        <div className="flex items-center justify-between text-xs">
+                          <span style={{ color: "var(--text-muted)" }}>
+                            Progreso del formulario
+                          </span>
+                          <span style={{ color: "var(--text-muted)" }}>
+                            {Object.values(form).filter(v => v.trim()).length}/3 campos completados
+                          </span>
+                        </div>
+                        <div className="mt-2 w-full bg-gray-700 rounded-full h-2">
+                          <div 
+                            className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${(Object.values(form).filter(v => v.trim()).length / 3) * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
 
                     {apiError && (
                       <p
