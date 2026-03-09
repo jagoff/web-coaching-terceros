@@ -31,6 +31,12 @@
   --amber-light:     #DFA080;
   --amber-dark:      #A8603E;
 
+  /* --- CTA Naranja Energético --- */
+  --cta-primary:     #FF6B35;
+  --cta-hover:       #FF8555;
+  --cta-glow:        rgba(255, 107, 53, 0.4);
+  --cta-glow-hover:  rgba(255, 107, 53, 0.6);
+
   /* --- Texto --- */
   --text-primary:    #EDE8F0;
   --text-secondary:  #CEC8D6;
@@ -252,28 +258,23 @@ p {
 }
 
 .btn-primary {
-  background: var(--gold-primary);
+  background: var(--cta-primary);
   color: #0C0A12;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.625rem;
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   border: none;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  box-shadow: none;
-  transition:
-    background-color 0.3s var(--ease-smooth),
-    transform 0.25s var(--ease-smooth);
+  box-shadow: 0 0 30px var(--cta-glow);
   position: relative;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .btn-primary:hover {
-  background: #9D8FD8;
+  background: var(--cta-hover);
   transform: scale(1.025) translateY(-1px);
+  box-shadow: 0 0 40px var(--cta-glow-hover);
 }
 
 .btn-primary:active {
@@ -391,7 +392,7 @@ p {
   /* Reduce glow effects */
   .animate-glow {
     animation: none !important;
-    box-shadow: 0 2px 8px rgba(124, 107, 196, 0.2) !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
   }
   
   /* Optimize backdrop filters */
