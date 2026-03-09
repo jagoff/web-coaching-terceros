@@ -47,7 +47,7 @@ export default function Footer() {
       <div className="container">
         <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 flex flex-col justify-start">
             <h3
               className="text-gradient font-heading font-black text-2xl tracking-tight mb-4"
               style={{ fontFamily: "var(--font-heading)" }}
