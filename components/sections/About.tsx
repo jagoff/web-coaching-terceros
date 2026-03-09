@@ -110,7 +110,7 @@ export default function About() {
 
             {/* Instagram grid - Next.js Image */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {[5, 1, 2, 3, 4, 6].map((postNum, i) => {
+              {[5, 1, 2, 3, 4, 6, 13, 14].map((postNum, i) => {
                 return (
                 <div
                   key={postNum}
