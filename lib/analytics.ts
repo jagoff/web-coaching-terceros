@@ -1,4 +1,4 @@
-// Google Analytics / Tag Manager tracking utilities
+// Google Analytics 4 tracking utilities
 import { useEffect } from 'react';
 
 declare global {
@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-// Initialize dataLayer
+// Initialize dataLayer and gtag
 if (typeof window !== 'undefined') {
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function(...args: any[]) {

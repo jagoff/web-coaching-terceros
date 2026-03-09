@@ -4,27 +4,27 @@ import { useEffect } from "react";
 
 export default function GoogleTagManager() {
   useEffect(() => {
-    // Google Tag Manager
-    (function(w: any, d: any, s: string, l: string, i: string) {
-      w[l] = w[l] || [];
-      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode?.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-MMR8L48T');
+    // Google Analytics 4 (gtag.js)
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-PE7S1C5PX8';
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PE7S1C5PX8');
+    `;
+    document.head.appendChild(script2);
+
+    return () => {
+      // Cleanup scripts on unmount
+      document.head.removeChild(script1);
+      document.head.removeChild(script2);
+    };
   }, []);
 
-  return (
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-MMR8L48T"
-        height="0"
-        width="0"
-        style={{ display: 'none', visibility: 'hidden' }}
-      />
-    </noscript>
-  );
+  return null; // No noscript needed for gtag.js
 }
