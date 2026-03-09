@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Flame } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -230,7 +230,7 @@ const testimonialsES = [
   {
     id: 23,
     quote:
-      "El acompañamiento de Fernando fue clave. Mi equipo pasó de apagar incendios a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
+      "El acompañamiento de Fernando fue clave. Mi equipo pasó de apagar incendios 🔥 a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
     name: "Jorge Paredes",
     role: "VP of Engineering",
     company: "DataSur",
