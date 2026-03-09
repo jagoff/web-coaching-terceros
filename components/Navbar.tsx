@@ -175,16 +175,6 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* CTA */}
-            <div className="px-8 pb-8">
-              <button
-                className="btn-primary w-full"
-                onClick={() => handleLinkClick("#contacto")}
-              >
-                {t.nav.sesionGratuita}
-              </button>
-            </div>
-
             {/* Social Media Links */}
             <div className="px-8 pb-12">
               <div className="flex justify-center gap-6">
