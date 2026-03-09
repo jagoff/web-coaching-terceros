@@ -4,6 +4,7 @@ import "./globals.css";
 import { DynamicNavbar } from "@/components/DynamicSections";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import ClientLayout from "@/components/ClientLayout";
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -61,7 +62,9 @@ export default function RootLayout({
     <html lang="es" className="dark" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
+        suppressHydrationWarning
       >
+        <GoogleTagManager />
         <LanguageProvider>
           <ClientLayout>
             {children}

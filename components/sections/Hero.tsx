@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
-
+import { analytics } from "@/lib/analytics";
 
 const rotatingPhrasesES = [
   "Mi equipo no toma decisiones sin mí",
@@ -328,7 +328,10 @@ export default function Hero() {
           >
             <motion.button
               className="btn-primary animate-glow"
-              onClick={() => handleScroll("#contacto")}
+              onClick={() => {
+                analytics.trackCTAClick('sesion_gratuita', 'hero_principal');
+                handleScroll("#contacto");
+              }}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -337,7 +340,10 @@ export default function Hero() {
             </motion.button>
             <motion.button
               className="btn-secondary"
-              onClick={() => handleScroll("#proceso")}
+              onClick={() => {
+                analytics.trackCTAClick('conocer_metodo', 'hero_secundario');
+                handleScroll("#proceso");
+              }}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
