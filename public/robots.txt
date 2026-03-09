@@ -1,0 +1,47 @@
+# Robots.txt para ELEVA Coaching
+# https://coaching-landing-cyan.vercel.app
+
+User-agent: *
+Allow: /
+
+# Priorizar páginas importantes
+Allow: /
+Allow: /#sobre-mi
+Allow: /#servicios
+Allow: /#proceso
+Allow: /#testimonios
+Allow: /#precios
+Allow: /#contacto
+
+# Sitemap location
+Sitemap: https://coaching-landing-cyan.vercel.app/sitemap.xml
+
+# Bloquear rutas de admin y APIs (si existieran)
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+
+# Bloquear archivos de sistema
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Permitir imágenes importantes para SEO
+Allow: /insta-*.png
+Allow: /img/
+
+# User-agent específicos para bots conocidos
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+Allow: /insta-*.png
+
+User-agent: Twitterbot
+Allow: /
+
+# Rate limiting para evitar sobrecarga
+Crawl-delay: 1
