@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendContactEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,17 +24,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Aquí iría la lógica para enviar el email
-    // Por ahora, simulamos un envío exitoso
-    console.log('Formulario recibido:', { nombre, email, mensaje });
-    
-    // Simular delay de red
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Enviar email real
+    const emailResult = await sendContactEmail({
+      nombre,
+      email,
+      mensaje
+    });
+
+    if (!emailResult.success) {
+      console.error('Error al enviar email:', emailResult.error);
+      return NextResponse.json(
+        { error: 'No se pudo enviar el mensaje. Por favor intenta más tarde.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('✅ Email enviado exitosamente a fernandoferrari@gmail.com');
+    console.log('Datos:', { nombre, email, mensaje });
 
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Formulario enviado correctamente' 
+        message: 'Mensaje enviado correctamente. Te responderemos en menos de 24 horas.',
+        messageId: emailResult.messageId
       },
       { status: 200 }
     );
