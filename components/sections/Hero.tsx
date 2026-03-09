@@ -244,7 +244,7 @@ export default function Hero() {
           {/* Headline — each line reveals separately */}
           <motion.h1
             className="display-text max-w-5xl mb-3 sm:mb-4"
-            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15" }}
+            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
             <motion.span variants={revealUp} className="block">
               {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
@@ -353,7 +353,7 @@ export default function Hero() {
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
               {language === 'es' 
-                ? 'Más de 20 años en tecnología · 11+ años de consultoría ágil'
+                ? 'Más de 20 años en tecnología · 11+ años de consultoría'
                 : 'Over 20 years in technology · 11+ years of agile consulting'
               }
             </p>

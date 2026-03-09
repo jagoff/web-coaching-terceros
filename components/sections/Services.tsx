@@ -82,7 +82,7 @@ export default function Services() {
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            {t.services.title}
+            <span className="text-gradient">{t.services.title}</span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}

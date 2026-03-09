@@ -90,6 +90,7 @@ export default function About() {
       id="sobre-mi"
       className="section section-surface section-gold-border-top"
       ref={ref}
+      style={{ paddingBottom: "clamp(2rem, 4vw, 3rem)" }}
     >
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
