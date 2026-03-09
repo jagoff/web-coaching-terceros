@@ -327,7 +327,7 @@ export default function ContactFormspree() {
                     )}
 
                     <p className="text-xs text-center" style={{ color: "var(--text-muted)" }}>
-                      {language === 'es' ? 'Respondo en menos de 24h. Tus datos están seguros.' : 'I respond within 24h. Your data is secure.'}
+                      {language === 'es' ? 'Pronto nos estaremos comunicando.' : 'We will contact you soon.'}
                     </p>
                   </motion.form>
                 )}
