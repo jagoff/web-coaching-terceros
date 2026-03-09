@@ -150,8 +150,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="py-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderColor: "var(--dark-border)" }}
+          className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
             © 2024 ELEVA Coaching. Todos los derechos reservados.
