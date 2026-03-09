@@ -10,7 +10,7 @@ export const Process       = dynamic(() => import("@/components/sections/Process
 export const Testimonials  = dynamic(() => import("@/components/sections/Testimonials"));
 export const Results       = dynamic(() => import("@/components/sections/Results"));
 export const Pricing       = dynamic(() => import("@/components/sections/Pricing"));
-export const Contact       = dynamic(() => import("@/components/sections/Contact"));
+export const Contact       = dynamic(() => import("@/components/sections/ContactFormspree"));
 export const FAQ           = dynamic(() => import("@/components/sections/FAQ"));
 export const Footer        = dynamic(() => import("@/components/sections/Footer"));
 export const DynamicNavbar = dynamic(() => import("@/components/Navbar"));
