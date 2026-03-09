@@ -80,13 +80,6 @@ export default function About() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const stats = [
-    { number: "20+", label: t.about.stats.tecnologia },
-    { number: "11+", label: t.about.stats.coaching },
-    { number: "9+", label: t.about.stats.certificaciones },
-    { number: "6", label: t.about.stats.empresas },
-  ];
-
   return (
     <section
       id="sobre-mi"
@@ -157,26 +150,6 @@ export default function About() {
                 </motion.div>
               ))}
             </motion.div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-8 pt-10 border-t"
-              style={{ borderColor: "var(--dark-border)" }}>
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  custom={i}
-                  variants={statReveal}
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
-                  className="text-center sm:text-left"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <p className="stat-number">{stat.number}</p>
-                  <p className="stat-label">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>
