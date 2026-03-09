@@ -136,6 +136,15 @@ export interface Translations {
     title: string;
     title2: string;
     subtitle: string;
+    booking: {
+      title: string;
+      subtitle: string;
+      instantBooking: string;
+      instantBookingDesc: string;
+      autoReminder: string;
+      autoReminderDesc: string;
+      confirmationText: string;
+    };
     form: {
       nombre: {
         label: string;
@@ -350,6 +359,15 @@ export const translations: Record<Language, Translations> = {
       title: 'Comencemos',
       title2: 'la conversación',
       subtitle: 'La primera sesión es completamente gratuita. Sin compromiso, solo para conocernos y ver cómo puedo ayudarte.',
+      booking: {
+        title: 'Agenda tu sesión gratuita',
+        subtitle: 'Selecciona el horario que mejor te convenga y confirma en 2 minutos.',
+        instantBooking: 'Agenda instantánea',
+        instantBookingDesc: 'Sin esperas, confirmación inmediata',
+        autoReminder: 'Recordatorio automático',
+        autoReminderDesc: 'No te olvidarás de la sesión',
+        confirmationText: 'Tu horario se guardará automáticamente. Recibirás un email de confirmación.',
+      },
       form: {
         nombre: {
           label: 'Nombre completo',
@@ -562,6 +580,15 @@ export const translations: Record<Language, Translations> = {
       title: 'Let\'s start',
       title2: 'the conversation',
       subtitle: 'The first session is completely free. No commitment, just to get to know each other and see how I can help you.',
+      booking: {
+        title: 'Book your free session',
+        subtitle: 'Select the time that works best for you and confirm in 2 minutes.',
+        instantBooking: 'Instant booking',
+        instantBookingDesc: 'No waiting, instant confirmation',
+        autoReminder: 'Auto reminder',
+        autoReminderDesc: 'You won\'t forget the session',
+        confirmationText: 'Your schedule will be saved automatically. You will receive a confirmation email.',
+      },
       form: {
         nombre: {
           label: 'Full name',

@@ -230,13 +230,13 @@ export default function InstagramCarousel() {
                 alt={`Post de Instagram @jago_ff - ${postNum}`}
                 fill
                 className="object-cover transition-all duration-500"
-                style={{ filter: "grayscale(100%)" }}
+                style={{ filter: postNum === 5 ? "grayscale(0%)" : "grayscale(100%)" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.filter = "grayscale(0%)";
                   e.currentTarget.style.transform = "scale(1.05)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = "grayscale(100%)";
+                  e.currentTarget.style.filter = postNum === 5 ? "grayscale(0%)" : "grayscale(100%)";
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               />

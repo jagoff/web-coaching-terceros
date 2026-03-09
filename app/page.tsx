@@ -8,6 +8,7 @@ import {
   Pricing,
   FAQ,
   Contact,
+  CalBooking,
   Footer,
 } from "@/components/DynamicSections";
 
@@ -22,7 +23,7 @@ export default function Home() {
       <Results />
       <Pricing />
       <FAQ />
-      <Contact />
+      <CalBooking />
       <Footer />
     </main>
   );

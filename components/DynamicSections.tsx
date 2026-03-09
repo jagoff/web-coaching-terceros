@@ -11,6 +11,7 @@ export const Testimonials  = dynamic(() => import("@/components/sections/Testimo
 export const Results       = dynamic(() => import("@/components/sections/Results"));
 export const Pricing       = dynamic(() => import("@/components/sections/Pricing"));
 export const Contact       = dynamic(() => import("@/components/sections/Contact"));
+export const CalBooking    = dynamic(() => import("@/components/sections/CalBookingSimple"));
 export const FAQ           = dynamic(() => import("@/components/sections/FAQ"));
 export const Footer        = dynamic(() => import("@/components/sections/Footer"));
 export const DynamicNavbar = dynamic(() => import("@/components/Navbar"));
