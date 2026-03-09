@@ -94,8 +94,10 @@ export default function InstagramCarousel() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={1}
               onDragStart={() => setIsDragging(true)}
-              onDragEnd={() => setIsDragging(false)}
-              onDragEnd={handleSwipeEnd}
+              onDragEnd={(e, info) => {
+                setIsDragging(false);
+                handleSwipeEnd(e, info);
+              }}
               className="absolute inset-0 cursor-grab active:cursor-grabbing"
               ref={carouselRef}
             >
