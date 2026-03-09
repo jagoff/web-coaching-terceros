@@ -698,7 +698,6 @@ html.lenis, html.lenis body {
 /* Footer */
 .footer-bg {
   background-color: var(--dark-footer);
-  border-top: 1px solid var(--dark-border);
 }
 
 /* ============================================================
