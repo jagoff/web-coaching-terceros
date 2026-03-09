@@ -41,13 +41,14 @@ export default function InstagramCarousel() {
     setPage([page + newDirection, newDirection]);
   };
 
-  const handleSwipeEnd = (e: any, { offset, velocity }: any) => {
-    const swipe = swipePower(offset.x, velocity.x);
-
-    if (swipe < -swipeConfidenceThreshold) {
-      paginate(1);
-    } else if (swipe > swipeConfidenceThreshold) {
-      paginate(-1);
+  const handleSwipeEnd = (e: any, info: any) => {
+    const { offset } = info;
+    
+    // Umbral más simple y directo
+    if (offset.x < -50) {
+      paginate(1); // Swipe izquierda → siguiente
+    } else if (offset.x > 50) {
+      paginate(-1); // Swipe derecha → anterior
     }
   };
 
@@ -92,7 +93,8 @@ export default function InstagramCarousel() {
               }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1}
+              dragElastic={0.2}
+              dragMomentum={false}
               onDragStart={() => setIsDragging(true)}
               onDragEnd={(e, info) => {
                 setIsDragging(false);
