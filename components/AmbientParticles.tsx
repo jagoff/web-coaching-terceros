@@ -79,12 +79,28 @@ export default function AmbientParticles() {
 
   const mobileOverrides: ISourceOptions = {
     ...particlesConfig,
-    fpsLimit: 30,
+    fpsLimit: 20, // Reduced from 30 for better performance
     particles: {
       ...particlesConfig.particles,
       number: {
-        value: 10,
-        density: { enable: true, width: 1920, height: 1080 },
+        value: 5, // Reduced from 10 for mobile
+        density: { enable: false }, // Disable density calculation
+      },
+      opacity: {
+        value: { min: 0.01, max: 0.05 }, // Reduced opacity
+        animation: {
+          enable: false, // Disable animation on mobile
+        },
+      },
+      size: {
+        value: { min: 1, max: 2 }, // Smaller particles
+        animation: {
+          enable: false, // Disable size animation
+        },
+      },
+      move: {
+        speed: 0.1, // Slower movement
+        enable: true,
       },
     },
   };

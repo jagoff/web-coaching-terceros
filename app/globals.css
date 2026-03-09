@@ -361,6 +361,50 @@ p {
   }
 }
 
+/* ============================================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   ============================================================ */
+
+/* Reduce animations on mobile for better performance */
+@media (max-width: 640px) {
+  /* Disable or reduce complex animations */
+  .motion-div,
+  [data-framer-motion] {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Reduce transform complexity */
+  .motion-div:hover {
+    transform: none !important;
+  }
+  
+  /* Optimize particle effects */
+  .particle {
+    opacity: 0.3 !important;
+    animation: none !important;
+  }
+  
+  /* Reduce glow effects */
+  .animate-glow {
+    animation: none !important;
+    box-shadow: 0 2px 8px rgba(124, 107, 196, 0.2) !important;
+  }
+  
+  /* Optimize backdrop filters */
+  .glass-card {
+    backdrop-filter: none !important;
+    background: rgba(19, 18, 27, 0.9) !important;
+  }
+  
+  /* Reduce complex gradients */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--gold-primary), var(--amber-primary)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+}
+
 /* ---- Glow effects ---- */
 
 /* Orbe de luz difusa (decorativo) */
