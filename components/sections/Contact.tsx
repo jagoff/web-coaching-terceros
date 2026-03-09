@@ -185,7 +185,7 @@ export default function Contact() {
 
   return (
     <section
-      id="contact"
+      id="contacto"
       className="section section-compact"
       ref={ref}
     >
