@@ -4,7 +4,6 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { analytics } from "@/lib/analytics";
 
 const rotatingPhrasesES = [
   "Mi equipo no toma decisiones sin mí",

@@ -190,8 +190,8 @@ export default function Navbar() {
                   onClick={(e) => {
                     e.stopPropagation();
                     // Track social media click
-                    if (typeof window !== 'undefined' && window.gtag) {
-                      window.gtag('event', 'instagram_click', {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                      (window as any).gtag('event', 'instagram_click', {
                         event_category: 'social',
                         event_label: 'mobile_menu'
                       });
@@ -212,8 +212,8 @@ export default function Navbar() {
                   onClick={(e) => {
                     e.stopPropagation();
                     // Track social media click
-                    if (typeof window !== 'undefined' && window.gtag) {
-                      window.gtag('event', 'linkedin_click', {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                      (window as any).gtag('event', 'linkedin_click', {
                         event_category: 'social',
                         event_label: 'mobile_menu'
                       });
