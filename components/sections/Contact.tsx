@@ -519,26 +519,6 @@ export default function Contact() {
                       )}
                     </button>
 
-                    {/* Form completion indicator */}
-                    {Object.keys(form).some(key => form[key as keyof typeof form]) && (
-                      <div className="mt-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
-                        <div className="flex items-center justify-between text-xs">
-                          <span style={{ color: "var(--text-muted)" }}>
-                            Progreso del formulario
-                          </span>
-                          <span style={{ color: "var(--text-muted)" }}>
-                            {Object.values(form).filter(v => v.trim()).length}/3 campos completados
-                          </span>
-                        </div>
-                        <div className="mt-2 w-full bg-gray-700 rounded-full h-2">
-                          <div 
-                            className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${(Object.values(form).filter(v => v.trim()).length / 3) * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                    )}
-
                     {apiError && (
                       <p
                         role="alert"
