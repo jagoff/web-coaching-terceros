@@ -1,0 +1,160 @@
+
+Running 55 tests using 7 workers
+
+✅ Hero section exists
+✅ Stats count correct: [33m4[39m
+✅ Scroll indicator exists
+🔍 CTA button color detected: rgb(255, 107, 53)
+✅ CTA button has orange color
+✅ Theme toggle exists
+📊 Page structure: {
+  h1: [33m1[39m,
+  [32m'.btn-primary'[39m: [33m7[39m,
+  footer: [33m1[39m,
+  [32m'#inicio'[39m: [33m1[39m,
+  [32m'.stat-number'[39m: [33m4[39m
+}
+✅ Page structure validation passed
+✅ Footer sections exist
+  ✓   7 [chromium] › tests/visual-validation.spec.ts:10:7 › Visual Validation - Complete Site Check › CTA buttons exist and have orange color (25.1s)
+  ✓   2 [chromium] › tests/visual-validation.spec.ts:58:7 › Visual Validation - Complete Site Check › scroll indicator exists (25.1s)
+  ✓   5 [chromium] › tests/visual-validation.spec.ts:29:7 › Visual Validation - Complete Site Check › stats count is correct (25.2s)
+  ✓   6 [chromium] › tests/visual-validation.spec.ts:35:7 › Visual Validation - Complete Site Check › footer sections exist (25.2s)
+  ✓   4 [chromium] › tests/visual-validation.spec.ts:48:7 › Visual Validation - Complete Site Check › hero section exists (25.2s)
+  ✓   1 [chromium] › tests/visual-validation.spec.ts:68:7 › Visual Validation - Complete Site Check › page structure validation (25.2s)
+✅ Theme switching works
+  ✓   3 [chromium] › tests/visual-validation.spec.ts:88:7 › Visual Validation - Complete Site Check › theme toggle functionality (26.9s)
+✅ Navigation links functional
+✅ Social links exist
+✅ Contact form elements exist
+  ✓   9 [chromium] › tests/visual-validation.spec.ts:134:7 › Visual Validation - Complete Site Check › navigation functionality (4.5s)
+  ✓  11 [chromium] › tests/visual-validation.spec.ts:161:7 › Visual Validation - Complete Site Check › social links exist (4.5s)
+  ✓  10 [chromium] › tests/visual-validation.spec.ts:146:7 › Visual Validation - Complete Site Check › contact form exists (4.6s)
+✅ Mobile responsive layout correct
+  ✓   8 [chromium] › tests/visual-validation.spec.ts:118:7 › Visual Validation - Complete Site Check › mobile responsive check (4.9s)
+🔍 CTA button color detected: rgb(255, 107, 53)
+✅ CTA button has orange color
+  ✓  13 [firefox] › tests/visual-validation.spec.ts:10:7 › Visual Validation - Complete Site Check › CTA buttons exist and have orange color (3.5s)
+✅ Stats count correct: [33m4[39m
+  ✓  12 [firefox] › tests/visual-validation.spec.ts:29:7 › Visual Validation - Complete Site Check › stats count is correct (3.3s)
+✅ Footer sections exist
+  ✓  14 [firefox] › tests/visual-validation.spec.ts:35:7 › Visual Validation - Complete Site Check › footer sections exist (3.4s)
+📊 Page structure: {
+  h1: [33m1[39m,
+  [32m'.btn-primary'[39m: [33m7[39m,
+  footer: [33m1[39m,
+  [32m'#inicio'[39m: [33m1[39m,
+  [32m'.stat-number'[39m: [33m4[39m
+}
+✅ Page structure validation passed
+  ✓  16 [firefox] › tests/visual-validation.spec.ts:68:7 › Visual Validation - Complete Site Check › page structure validation (4.0s)
+✅ Theme toggle exists
+✅ Scroll indicator exists
+  ✓  17 [firefox] › tests/visual-validation.spec.ts:58:7 › Visual Validation - Complete Site Check › scroll indicator exists (4.6s)
+✅ Theme switching works
+✅ Mobile responsive layout correct
+✅ Hero section exists
+  ✓  19 [firefox] › tests/visual-validation.spec.ts:118:7 › Visual Validation - Complete Site Check › mobile responsive check (4.3s)
+  ✓  18 [firefox] › tests/visual-validation.spec.ts:88:7 › Visual Validation - Complete Site Check › theme toggle functionality (5.5s)
+  ✓  15 [firefox] › tests/visual-validation.spec.ts:48:7 › Visual Validation - Complete Site Check › hero section exists (4.6s)
+✅ Navigation links functional
+  ✓  20 [firefox] › tests/visual-validation.spec.ts:134:7 › Visual Validation - Complete Site Check › navigation functionality (4.5s)
+✅ Contact form elements exist
+  ✓  21 [firefox] › tests/visual-validation.spec.ts:146:7 › Visual Validation - Complete Site Check › contact form exists (4.2s)
+✅ Social links exist
+  ✓  22 [firefox] › tests/visual-validation.spec.ts:161:7 › Visual Validation - Complete Site Check › social links exist (3.6s)
+🔍 CTA button color detected: rgb(255, 107, 53)
+✅ CTA button has orange color
+✅ Footer sections exist
+✅ Stats count correct: [33m4[39m
+  ✓  23 [webkit] › tests/visual-validation.spec.ts:10:7 › Visual Validation - Complete Site Check › CTA buttons exist and have orange color (3.8s)
+✅ Hero section exists
+  ✓  24 [webkit] › tests/visual-validation.spec.ts:35:7 › Visual Validation - Complete Site Check › footer sections exist (3.8s)
+  ✓  25 [webkit] › tests/visual-validation.spec.ts:29:7 › Visual Validation - Complete Site Check › stats count is correct (4.0s)
+  ✓  26 [webkit] › tests/visual-validation.spec.ts:48:7 › Visual Validation - Complete Site Check › hero section exists (4.2s)
+✅ Scroll indicator exists
+  ✓  27 [webkit] › tests/visual-validation.spec.ts:58:7 › Visual Validation - Complete Site Check › scroll indicator exists (4.8s)
+📊 Page structure: {
+  h1: [33m1[39m,
+  [32m'.btn-primary'[39m: [33m7[39m,
+  footer: [33m1[39m,
+  [32m'#inicio'[39m: [33m1[39m,
+  [32m'.stat-number'[39m: [33m4[39m
+}
+✅ Page structure validation passed
+  ✓  28 [webkit] › tests/visual-validation.spec.ts:68:7 › Visual Validation - Complete Site Check › page structure validation (4.8s)
+✅ Mobile responsive layout correct
+  ✓  29 [webkit] › tests/visual-validation.spec.ts:118:7 › Visual Validation - Complete Site Check › mobile responsive check (3.8s)
+✅ Navigation links functional
+✅ Contact form elements exist
+✅ Social links exist
+  ✓  30 [webkit] › tests/visual-validation.spec.ts:134:7 › Visual Validation - Complete Site Check › navigation functionality (4.1s)
+  ✓  31 [webkit] › tests/visual-validation.spec.ts:146:7 › Visual Validation - Complete Site Check › contact form exists (4.2s)
+  ✓  33 [webkit] › tests/visual-validation.spec.ts:161:7 › Visual Validation - Complete Site Check › social links exist (4.1s)
+✅ Theme toggle exists
+✅ Theme switching works
+  ✓  32 [webkit] › tests/visual-validation.spec.ts:88:7 › Visual Validation - Complete Site Check › theme toggle functionality (5.6s)
+🔍 CTA button color detected: rgb(255, 107, 53)
+✅ CTA button has orange color
+✅ Stats count correct: [33m4[39m
+✅ Footer sections exist
+  ✓  34 [Mobile Chrome] › tests/visual-validation.spec.ts:10:7 › Visual Validation - Complete Site Check › CTA buttons exist and have orange color (3.2s)
+  ✓  35 [Mobile Chrome] › tests/visual-validation.spec.ts:29:7 › Visual Validation - Complete Site Check › stats count is correct (3.3s)
+✅ Hero section exists
+  ✓  36 [Mobile Chrome] › tests/visual-validation.spec.ts:35:7 › Visual Validation - Complete Site Check › footer sections exist (3.1s)
+  ✓  37 [Mobile Chrome] › tests/visual-validation.spec.ts:48:7 › Visual Validation - Complete Site Check › hero section exists (3.2s)
+✅ Scroll indicator exists
+📊 Page structure: {
+  h1: [33m1[39m,
+  [32m'.btn-primary'[39m: [33m7[39m,
+  footer: [33m1[39m,
+  [32m'#inicio'[39m: [33m1[39m,
+  [32m'.stat-number'[39m: [33m4[39m
+}
+✅ Page structure validation passed
+  ✓  38 [Mobile Chrome] › tests/visual-validation.spec.ts:58:7 › Visual Validation - Complete Site Check › scroll indicator exists (3.4s)
+  ✓  39 [Mobile Chrome] › tests/visual-validation.spec.ts:68:7 › Visual Validation - Complete Site Check › page structure validation (3.8s)
+✅ Navigation links functional
+✅ Contact form elements exist
+✅ Mobile responsive layout correct
+✅ Social links exist
+  ✓  42 [Mobile Chrome] › tests/visual-validation.spec.ts:134:7 › Visual Validation - Complete Site Check › navigation functionality (3.4s)
+  ✓  43 [Mobile Chrome] › tests/visual-validation.spec.ts:146:7 › Visual Validation - Complete Site Check › contact form exists (3.3s)
+  ✓  40 [Mobile Chrome] › tests/visual-validation.spec.ts:118:7 › Visual Validation - Complete Site Check › mobile responsive check (3.6s)
+  ✓  44 [Mobile Chrome] › tests/visual-validation.spec.ts:161:7 › Visual Validation - Complete Site Check › social links exist (3.3s)
+✅ Theme toggle exists
+✅ Theme switching works
+  ✓  41 [Mobile Chrome] › tests/visual-validation.spec.ts:88:7 › Visual Validation - Complete Site Check › theme toggle functionality (4.6s)
+✅ Stats count correct: [33m4[39m
+🔍 CTA button color detected: rgb(255, 107, 53)
+✅ CTA button has orange color
+  ✓  46 [Mobile Safari] › tests/visual-validation.spec.ts:29:7 › Visual Validation - Complete Site Check › stats count is correct (3.7s)
+  ✓  45 [Mobile Safari] › tests/visual-validation.spec.ts:10:7 › Visual Validation - Complete Site Check › CTA buttons exist and have orange color (4.0s)
+✅ Scroll indicator exists
+✅ Hero section exists
+✅ Footer sections exist
+  ✓  48 [Mobile Safari] › tests/visual-validation.spec.ts:58:7 › Visual Validation - Complete Site Check › scroll indicator exists (4.3s)
+  ✓  49 [Mobile Safari] › tests/visual-validation.spec.ts:48:7 › Visual Validation - Complete Site Check › hero section exists (4.4s)
+  ✓  47 [Mobile Safari] › tests/visual-validation.spec.ts:35:7 › Visual Validation - Complete Site Check › footer sections exist (4.6s)
+📊 Page structure: {
+  h1: [33m1[39m,
+  [32m'.btn-primary'[39m: [33m7[39m,
+  footer: [33m1[39m,
+  [32m'#inicio'[39m: [33m1[39m,
+  [32m'.stat-number'[39m: [33m4[39m
+}
+✅ Page structure validation passed
+✅ Navigation links functional
+  ✓  50 [Mobile Safari] › tests/visual-validation.spec.ts:68:7 › Visual Validation - Complete Site Check › page structure validation (4.6s)
+  ✓  52 [Mobile Safari] › tests/visual-validation.spec.ts:134:7 › Visual Validation - Complete Site Check › navigation functionality (3.6s)
+✅ Mobile responsive layout correct
+  ✓  51 [Mobile Safari] › tests/visual-validation.spec.ts:118:7 › Visual Validation - Complete Site Check › mobile responsive check (4.2s)
+✅ Contact form elements exist
+✅ Social links exist
+  ✓  53 [Mobile Safari] › tests/visual-validation.spec.ts:146:7 › Visual Validation - Complete Site Check › contact form exists (3.1s)
+  ✓  55 [Mobile Safari] › tests/visual-validation.spec.ts:161:7 › Visual Validation - Complete Site Check › social links exist (3.0s)
+✅ Theme toggle exists
+✅ Theme switching works
+  ✓  54 [Mobile Safari] › tests/visual-validation.spec.ts:88:7 › Visual Validation - Complete Site Check › theme toggle functionality (4.7s)
+
+  55 passed (1.1m)

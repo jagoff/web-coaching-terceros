@@ -1,0 +1,181 @@
+/* Theme-specific CSS variables and styles */
+
+/* Light theme variables */
+:root.light {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-surface: #FFFFFF;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+  --border-primary: #E5E7EB;
+  --border-secondary: #D1D5DB;
+  
+  /* Component-specific light theme */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  
+  /* Keep brand colors consistent */
+  --gold-primary: #C87B5A;
+  --gold-light: #DFA080;
+  --gold-dark: #A8603E;
+  --violet-primary: #7C6BC4;
+  --violet-light: #9D8FD8;
+  --violet-dark: #6B5B94;
+  
+  /* CTA stays orange */
+  --cta-primary: #FF6B35;
+  --cta-hover: #FF8555;
+  --cta-glow: rgba(255, 107, 53, 0.4);
+  --cta-glow-hover: rgba(255, 107, 53, 0.6);
+}
+
+/* Dark theme variables (default) */
+:root.dark {
+  --bg-primary: #0C0A12;
+  --bg-secondary: #131220;
+  --bg-surface: #1A1825;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A8A8B3;
+  --text-muted: #6B6B7B;
+  --border-primary: #2A2A3A;
+  --border-secondary: #3A3A4A;
+  
+  /* Component-specific dark theme */
+  --glass-bg: rgba(26, 24, 37, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* System theme (respects OS preference) */
+@media (prefers-color-scheme: light) {
+  :root.system {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-surface: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
+    --border-primary: #E5E7EB;
+    --border-secondary: #D1D5DB;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.system {
+    --bg-primary: #0C0A12;
+    --bg-secondary: #131220;
+    --bg-surface: #1A1825;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A8A8B3;
+    --text-muted: #6B6B7B;
+    --border-primary: #2A2A3A;
+    --border-secondary: #3A3A4A;
+    --glass-bg: rgba(26, 24, 37, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Theme transitions */
+* {
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              color 0.3s ease;
+}
+
+/* Light theme specific component adjustments */
+:root.light .hero-bg {
+  background: linear-gradient(135deg, #F8F9FA 0%, #E5E7EB 50%, #FFFFFF 100%);
+}
+
+:root.light .glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+:root.light .footer-bg {
+  background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+  border-top: 1px solid var(--border-primary);
+}
+
+:root.light .noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+/* Enhanced dark theme */
+:root.dark .hero-bg {
+  background: linear-gradient(135deg, #0C0A12 0%, #131220 50%, #1A1825 100%);
+}
+
+:root.dark .orb-gold {
+  background: radial-gradient(circle, rgba(200, 123, 90, 0.4) 0%, transparent 70%);
+}
+
+:root.dark .orb-violet {
+  background: radial-gradient(circle, rgba(124, 107, 196, 0.3) 0%, transparent 70%);
+}
+
+/* Theme toggle animations */
+.theme-toggle {
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Loading progress theme adjustments */
+.loading-progress {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:root.light .loading-progress {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Error boundary theme adjustments */
+.error-boundary {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+}
+
+/* Microinteractions theme adjustments */
+.interactive-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+:root.light .interactive-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+:root.dark .interactive-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating particles theme adjustments */
+.floating-particle {
+  background: var(--violet-primary);
+  opacity: 0.3;
+}
+
+:root.light .floating-particle {
+  opacity: 0.2;
+}
+
+/* Responsive theme adjustments */
+@media (max-width: 768px) {
+  :root.light {
+    --bg-secondary: #FFFFFF;
+    --border-primary: #F3F4F6;
+  }
+  
+  :root.dark {
+    --bg-secondary: #0C0A12;
+    --border-primary: #1A1825;
+  }
+}

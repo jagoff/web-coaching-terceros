@@ -74,24 +74,25 @@ export default function CalBookingSimple() {
       />
 
       <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 xl:gap-28 items-start">
           {/* Left copy */}
           <motion.div
             variants={slideLeft}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            className="space-y-6 lg:space-y-0"
           >
-            <span className="badge mb-6 inline-flex">{t.contact.badge}</span>
+            <span className="badge mb-4 sm:mb-6 inline-flex">{t.contact.badge}</span>
 
             <h2
-              className="heading-xl mb-6 sm:mb-10"
+              className="heading-xl mb-4 sm:mb-6 lg:mb-10"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               {t.contact.title}{" "}
               <span className="text-gradient">{t.contact.title2}</span>
             </h2>
 
-            <div className="divider-gold-left mb-6 sm:mb-10" />
+            <div className="divider-gold-left mb-4 sm:mb-6 lg:mb-10" />
 
             <p className="lead-text mb-4 sm:mb-6">
               {t.contact.subtitle}
@@ -174,8 +175,8 @@ export default function CalBookingSimple() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <div className="glass-card p-6 sm:p-8 md:p-10" style={{ minHeight: "600px" }}>
-              <div className="mb-6">
+            <div className="glass-card p-4 sm:p-6 md:p-8 lg:p-10" style={{ minHeight: "500px" }}>
+              <div className="mb-4 sm:mb-6">
                 <h3
                   className="heading-md mb-2"
                   style={{ fontFamily: "var(--font-heading)" }}
@@ -188,15 +189,20 @@ export default function CalBookingSimple() {
               </div>
 
               {/* Cal.com Iframe - Solución directa */}
-              <div className="calcom-widget-container" style={{ minHeight: "500px" }}>
+              <div className="calcom-widget-container" style={{ 
+                minHeight: "400px", 
+                maxHeight: "70vh",
+                height: "clamp(400px, 60vh, 500px)"
+              }}>
                 <iframe
                   src={calComUrl}
                   style={{
                     width: "100%",
-                    height: "500px",
+                    height: "100%",
                     border: "none",
                     borderRadius: "8px",
                     background: "white",
+                    touchAction: "manipulation",
                   }}
                   frameBorder="0"
                   title="Booking Calendar"
@@ -204,7 +210,7 @@ export default function CalBookingSimple() {
                 />
               </div>
 
-              <div className="mt-6 text-center">
+              <div className="mt-4 sm:mt-6 text-center">
                 <p
                   className="text-xs"
                   style={{ color: "var(--text-muted)" }}

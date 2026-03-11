@@ -4,7 +4,9 @@
    Fuentes: Playfair Display (headings) + Inter (body)
    ============================================================ */
 
-@import "tailwindcss";
+@import "./globals-theme.css";
+
+@tailwind base;
 
 /* ============================================================
    CSS CUSTOM PROPERTIES
@@ -407,6 +409,30 @@ p {
     background: linear-gradient(90deg, var(--gold-primary), var(--amber-primary)) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
+  }
+
+  /* Mobile-specific iframe optimizations */
+  .calcom-widget-container {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .calcom-widget-container iframe {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Better touch targets */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Reduce motion on scroll */
+  .orb {
+    transform: translateZ(0);
+    will-change: opacity;
   }
 }
 

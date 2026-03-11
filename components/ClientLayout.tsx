@@ -18,6 +18,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {isClient && <AmbientParticles />}
       <div className="noise-overlay" aria-hidden="true" />
       {isClient && <CursorGlow />}
+      
       <DynamicNavbar />
       {isClient && <WhatsAppButton />}
       {children}

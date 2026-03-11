@@ -14,7 +14,7 @@ export const Contact       = dynamic(() => import("@/components/sections/Contact
 export const CalBooking    = dynamic(() => import("@/components/sections/CalBookingSimple"));
 export const FAQ           = dynamic(() => import("@/components/sections/FAQ"));
 export const Footer        = dynamic(() => import("@/components/sections/Footer"));
-export const DynamicNavbar = dynamic(() => import("@/components/Navbar"));
+export const DynamicNavbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
 
 // Client-only: depend on window/DOM APIs at module level
 export const ScrollProgress    = dynamic(() => import("@/components/ScrollProgress"),    { ssr: false });

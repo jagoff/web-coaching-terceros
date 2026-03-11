@@ -2,6 +2,7 @@
 
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
+import { FooterSuspense } from "@/components/ui/SuspenseWrapper";
 
 const navLinks = [
   { label: "Sobre mí", href: "#sobre-mi" },
@@ -43,7 +44,8 @@ function ScrollLink({
 
 export default function Footer() {
   return (
-    <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
+    <FooterSuspense>
+      <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
       <div className="container">
         <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
           {/* Brand */}
@@ -164,5 +166,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </FooterSuspense>
   );
 }

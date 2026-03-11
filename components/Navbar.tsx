@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Instagram, Linkedin } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,6 +11,20 @@ export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentWord, setCurrentWord] = useState(0);
+
+  // Rotating words for branding
+  const rotatingWordsES = ['ELEVA', 'ELEVATE', 'ELEVARSE', 'ELEVARNOS', 'ELEVAREMOS'];
+  const rotatingWordsEN = ['ELEVA', 'ELEVATE', 'ELEVATE', 'ELEVATE US', 'WE WILL ELEVATE'];
+  const rotatingWords = language === 'es' ? rotatingWordsES : rotatingWordsEN;
+
+  // Rotate words every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [rotatingWords.length]);
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "#sobre-mi" },
@@ -66,8 +80,13 @@ export default function Navbar() {
               </span>
               <span
                 className="hidden sm:block text-xs font-semibold uppercase tracking-[0.15em] text-muted"
+                style={{
+                  transition: 'all 0.5s ease-in-out',
+                  opacity: 0.9,
+                  transform: 'translateY(0)'
+                }}
               >
-                Coaching
+                {rotatingWords[currentWord]}
               </span>
             </a>
 
@@ -88,7 +107,12 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <button
-                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors border-gold-border text-text-secondary"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
+                style={{
+                  background: "rgba(124,107,196,0.08)",
+                  borderColor: "rgba(124,107,196,0.2)",
+                  color: "var(--gold-primary)",
+                }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
                 <span className="text-sm">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
@@ -103,9 +127,30 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile hamburger */}
-            <button
-                className="lg:hidden flex items-center justify-center rounded-md transition-colors w-11 h-11 text-text-secondary"
+            {/* Mobile hamburger + language */}
+            <div className="lg:hidden flex items-center gap-3">
+              {/* Mobile language button - BIG and VISIBLE */}
+              <button
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border-2"
+                style={{
+                  background: "rgba(124,107,196,0.2)",
+                  borderColor: "rgba(124,107,196,0.5)",
+                  color: "#7C6BC4",
+                  fontSize: "13px",
+                  fontWeight: "700",
+                  minWidth: "80px",
+                  height: "44px",
+                  boxShadow: "0 2px 8px rgba(124,107,196,0.3)",
+                  textShadow: "0 1px 2px rgba(0,0,0,0.3)"
+                }}
+                onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+              >
+                <span style={{ fontSize: "16px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span style={{ fontSize: "12px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+              </button>
+              
+              <button
+                className="flex items-center justify-center rounded-md transition-colors w-11 h-11 text-text-secondary bg-transparent border-0"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
                 aria-expanded={mobileOpen}
@@ -113,6 +158,7 @@ export default function Navbar() {
               >
                 {mobileOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -122,16 +168,16 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 flex flex-col lg:hidden"
             style={{
-              background: "rgba(12, 10, 18, 0.97)",
+              background: "rgba(12, 10, 18, 0.98)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
-              zIndex: 110,
+              zIndex: 9999,
             }}
           >
             {/* Header */}
@@ -162,9 +208,6 @@ export default function Navbar() {
                   transition={{ delay: i * 0.07, duration: 0.3 }}
                   className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
                   style={{
-                    borderTop: "none",
-                    borderLeft: "none",
-                    borderRight: "none",
                     borderBottom: "1px solid var(--dark-border)",
                     fontFamily: "var(--font-heading)",
                   }}
@@ -175,53 +218,37 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Social Media Links */}
-            <div className="px-8 pb-12">
-              <div className="flex justify-center gap-6">
-                <a
-                  href="https://www.instagram.com/jago_ff"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200"
+            {/* Mobile CTA Button */}
+            <div className="px-8 pb-6">
+              <button
+                className="btn-primary w-full"
+                onClick={() => handleLinkClick("#contacto")}
+              >
+                {t.nav.sesionGratuita}
+              </button>
+            </div>
+
+            {/* Language Toggle */}
+            <div className="px-8 pb-8">
+              <div className="flex justify-center">
+                <button
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl border-2"
                   style={{
-                    background: "rgba(167,139,250,0.08)",
-                    border: "1px solid rgba(167,139,250,0.25)",
+                    background: "rgba(124,107,196,0.25)",
+                    borderColor: "rgba(124,107,196,0.6)",
+                    color: "#7C6BC4",
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    boxShadow: "0 4px 16px rgba(124,107,196,0.4)",
+                    textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                    minWidth: "140px",
+                    height: "56px"
                   }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Track social media click
-                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                      (window as any).gtag('event', 'instagram_click', {
-                        event_category: 'social',
-                        event_label: 'mobile_menu'
-                      });
-                    }
-                  }}
+                  onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
                 >
-                  <Instagram size={20} style={{ color: "var(--gold-primary)" }} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/fernandorferrari/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200"
-                  style={{
-                    background: "rgba(167,139,250,0.08)",
-                    border: "1px solid rgba(167,139,250,0.25)",
-                  }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Track social media click
-                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                      (window as any).gtag('event', 'linkedin_click', {
-                        event_category: 'social',
-                        event_label: 'mobile_menu'
-                      });
-                    }
-                  }}
-                >
-                  <Linkedin size={20} style={{ color: "var(--gold-primary)" }} />
-                </a>
+                  <span style={{ fontSize: "20px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                  <span style={{ fontSize: "14px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                </button>
               </div>
             </div>
           </motion.div>
