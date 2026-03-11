@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/contexts/LanguageContext";
-import ClientLayout from "@/components/ClientLayout";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -75,11 +73,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <LanguageProvider>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
-        </LanguageProvider>
+        {children}
       </body>
     </html>
   );
