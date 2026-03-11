@@ -258,8 +258,8 @@ p {
 }
 
 .btn-primary {
-  background: var(--cta-primary);
-  color: #0C0A12;
+  background: var(--cta-primary) !important;
+  color: #0C0A12 !important;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -272,7 +272,7 @@ p {
 }
 
 .btn-primary:hover {
-  background: var(--cta-hover);
+  background: var(--cta-hover) !important;
   transform: scale(1.025) translateY(-1px);
   box-shadow: 0 0 40px var(--cta-glow-hover);
 }
@@ -392,6 +392,7 @@ p {
   /* Reduce glow effects */
   .animate-glow {
     animation: none !important;
+    background: var(--cta-primary) !important;
     box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
   }
   
