@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { DynamicNavbar } from "@/components/DynamicSections";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { ThemeProvider } from "@/contexts/ThemeContext";
-import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
-import { GlobalLoadingProgress } from "@/components/ui/LoadingProgress";
-import { FloatingParticles } from "@/components/ui/Microinteractions";
 import ClientLayout from "@/components/ClientLayout";
 import JsonLd from "@/components/JsonLd";
 
@@ -82,15 +77,11 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <ErrorBoundary>
-          <ThemeProvider>
-            <LanguageProvider>
-              <ClientLayout>
-                {children}
-              </ClientLayout>
-            </LanguageProvider>
-          </ThemeProvider>
-        </ErrorBoundary>
+        <LanguageProvider>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </LanguageProvider>
       </body>
     </html>
   );
