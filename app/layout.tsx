@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import ClientLayout from "@/components/ClientLayout";
+import JsonLd from "@/components/JsonLd";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -57,6 +60,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <JsonLd />
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-PE7S1C5PX8"></script>
         <script dangerouslySetInnerHTML={{
@@ -73,7 +77,11 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <LanguageProvider>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </LanguageProvider>
       </body>
     </html>
   );
