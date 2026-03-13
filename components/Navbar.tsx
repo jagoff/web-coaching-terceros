@@ -129,28 +129,24 @@ export default function Navbar() {
 
             {/* Mobile hamburger + language */}
             <div className="lg:hidden flex items-center gap-3">
-              {/* Mobile language button - EXTRA VISIBLE */}
+              {/* Mobile language button - BACKUP */}
               <button
-                className="flex items-center gap-2 px-4 py-3 rounded-xl border-2"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border-2"
                 style={{
-                  background: "rgba(199, 123, 90, 0.2)",
-                  borderColor: "rgba(199, 123, 90, 0.5)",
-                  color: "#C87B5A",
-                  fontSize: "14px",
-                  fontWeight: "800",
-                  minWidth: "90px",
-                  height: "48px",
-                  boxShadow: "0 3px 12px rgba(199, 123, 90, 0.4)",
-                  textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-                  position: "relative",
-                  zIndex: 50,
-                  borderStyle: "solid",
-                  borderWidth: "2px"
+                  background: "rgba(124,107,196,0.2)",
+                  borderColor: "rgba(124,107,196,0.5)",
+                  color: "#7C6BC4",
+                  fontSize: "13px",
+                  fontWeight: "700",
+                  minWidth: "80px",
+                  height: "44px",
+                  boxShadow: "0 2px 8px rgba(124,107,196,0.3)",
+                  textShadow: "0 1px 2px rgba(0,0,0,0.3)"
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
-                <span style={{ fontSize: "18px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span style={{ fontSize: "13px", fontWeight: "900" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                <span style={{ fontSize: "16px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span style={{ fontSize: "12px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               
               <button
