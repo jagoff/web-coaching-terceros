@@ -107,8 +107,6 @@ export default function Hero() {
   const orb1Ref = useRef<HTMLDivElement>(null);
   const orb2Ref = useRef<HTMLDivElement>(null);
   const orb3Ref = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -134,21 +132,13 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  // Animaciones GSAP
+  // Animaciones GSAP - Sin overlay, sin carga
   useEffect(() => {
     if (!mounted) return;
 
     const tl = gsap.timeline();
 
-    // Estado inicial: overlay oscuro, contenido casi invisible
-    if (overlayRef.current) {
-      gsap.set(overlayRef.current, { opacity: 1 });
-    }
-    if (contentRef.current) {
-      gsap.set(contentRef.current, { opacity: 0.1 });
-    }
-
-    // Animar el título inmediatamente (pero oculto por el overlay)
+    // Animar el título inmediatamente
     if (heroTitleRef.current) {
       tl.fromTo(
         heroTitleRef.current.children,
@@ -179,11 +169,8 @@ export default function Hero() {
       );
     }
 
-    // Animar frase rotante (SIEMPRE visible sobre el overlay)
+    // Animar frase rotante
     if (rotatingPhraseRef.current) {
-      // Asegurar que la frase esté por encima del overlay
-      gsap.set(rotatingPhraseRef.current, { zIndex: 30 });
-      
       tl.fromTo(
         rotatingPhraseRef.current,
         { opacity: 0, y: 20, filter: "blur(4px)" },
@@ -265,29 +252,6 @@ export default function Hero() {
     };
   }, [mounted]);
 
-  // Animación del reveal cuando se completa
-  useEffect(() => {
-    if (phraseIndex === 1 && overlayRef.current && contentRef.current) {
-      const tl = gsap.timeline();
-      
-      // Transición suave: overlay desaparece, contenido aparece completamente
-      tl.to(overlayRef.current, {
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.inOut"
-      })
-      .to(contentRef.current, {
-        opacity: 1,
-        duration: 1.2,
-        ease: "power2.inOut"
-      }, "-=1.2");
-
-      return () => {
-        tl.kill();
-      };
-    }
-  }, [phraseIndex]);
-
   const handleScroll = (href: string) => scrollToElement(href);
 
   return (
@@ -298,16 +262,6 @@ export default function Hero() {
       style={{ paddingTop: "clamp(2.25rem, 6vh, 4.25rem)" }}
       aria-label="Sección principal"
     >
-      {/* Overlay oscuro para efecto de reveal */}
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 z-20 pointer-events-none"
-        style={{
-          background: "rgba(0, 0, 0, 0.7)",
-          transition: "opacity 1.5s ease-in-out"
-        }}
-      />
-
       {/* Coaching Words Background Animation */}
       <CoachingWordsBackground />
 
@@ -371,13 +325,9 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Main content con wrapper para control de visibilidad */}
+      {/* Main content */}
       <div
-        ref={contentRef}
         className="container relative z-10 flex flex-col items-center text-center"
-        style={{
-          transition: "opacity 1.2s ease-in-out"
-        }}
       >
         <div
           className="flex flex-col items-center"
@@ -406,6 +356,47 @@ export default function Hero() {
             className="divider-gold mb-6"
             style={{ width: "80px", height: "3px" }}
           />
+
+          {/* Rotating pain-point phrases */}
+          <div
+            ref={rotatingPhraseRef}
+            className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl"
+            style={{
+              minHeight: "5.5rem",
+              background: "transparent",
+              backdropFilter: "blur(15px)",
+              border: "1px solid rgba(124,107,196,0.03)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.2)",
+              position: "relative"
+            }}
+          >
+            {/* Subtle gold radial glow behind */}
+            <div
+              className="absolute inset-0 -z-10 rounded-2xl"
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(124,107,196,0.01) 0%, transparent 40%)",
+                transform: "scale(1.8)",
+                filter: "blur(50px)",
+              }}
+              aria-hidden="true"
+            />
+            <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+              ¿Te suena esto?
+            </p>
+            <p
+              className="lead-text italic"
+              style={{ 
+                background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontFamily: "var(--font-heading)", 
+                fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
+              }}
+            >
+              &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
+            </p>
+          </div>
 
           {/* Subheadline */}
           <p
@@ -450,52 +441,6 @@ export default function Hero() {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Rotating pain-point phrases - FUERA DEL WRAPPER PERO EN POSICIÓN CORRECTA */}
-      <div
-        ref={rotatingPhraseRef}
-        className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl mx-auto"
-        style={{
-          minHeight: "5.5rem",
-          background: "transparent",
-          backdropFilter: "blur(15px)",
-          border: "1px solid rgba(124,107,196,0.03)",
-          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.2)",
-          position: "relative",
-          zIndex: 30, // Por encima del overlay
-          pointerEvents: "auto",
-          // Posicionamiento relativo para estar en su lugar correcto
-          marginTop: "-200px", // Ajustar para que esté después del título y línea
-          marginBottom: "100px" // Espacio para el siguiente elemento
-        }}
-      >
-        {/* Subtle gold radial glow behind */}
-        <div
-          className="absolute inset-0 -z-10 rounded-2xl"
-          style={{
-            background: "radial-gradient(ellipse at center, rgba(124,107,196,0.01) 0%, transparent 40%)",
-            transform: "scale(1.8)",
-            filter: "blur(50px)",
-          }}
-          aria-hidden="true"
-        />
-        <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
-          ¿Te suena esto?
-        </p>
-        <p
-          className="lead-text italic"
-          style={{ 
-            background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            fontFamily: "var(--font-heading)", 
-            fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
-          }}
-        >
-          &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
-        </p>
       </div>
 
       {/* Scroll indicator */}
