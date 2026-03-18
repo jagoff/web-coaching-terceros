@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { gsap } from "gsap";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import CoachingWordsBackground from "@/components/CoachingWordsBackground";
@@ -102,6 +103,9 @@ export default function Hero() {
   const rotatingPhraseRef = useRef<HTMLDivElement>(null);
   const socialProofRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLButtonElement>(null);
+  const orb1Ref = useRef<HTMLDivElement>(null);
+  const orb2Ref = useRef<HTMLDivElement>(null);
+  const orb3Ref = useRef<HTMLDivElement>(null);
   
   const { animate, staggerAnimate } = useGSAPAnimation();
 
@@ -129,6 +133,126 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  // Animaciones GSAP
+  useEffect(() => {
+    if (!mounted) return;
+
+    const tl = gsap.timeline();
+
+    // Animar el título inmediatamente
+    if (heroTitleRef.current) {
+      tl.fromTo(
+        heroTitleRef.current.children,
+        { opacity: 0, y: 40, filter: "blur(8px)" },
+        { 
+          opacity: 1, 
+          y: 0, 
+          filter: "blur(0px)",
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out"
+        }
+      );
+    }
+
+    // Animar línea divisora
+    if (heroDividerRef.current) {
+      tl.fromTo(
+        heroDividerRef.current,
+        { scaleX: 0, opacity: 0 },
+        { 
+          scaleX: 1, 
+          opacity: 1, 
+          duration: 0.6, 
+          ease: "power2.inOut" 
+        },
+        "-=0.3"
+      );
+    }
+
+    // Animar frase rotante
+    if (rotatingPhraseRef.current) {
+      tl.fromTo(
+        rotatingPhraseRef.current,
+        { opacity: 0, y: 20, filter: "blur(4px)" },
+        { 
+          opacity: 1, 
+          y: 0, 
+          filter: "blur(0px)",
+          duration: 0.5,
+          ease: "power2.out"
+        },
+        "-=0.2"
+      );
+    }
+
+    // Animar subtítulo
+    if (heroSubtitleRef.current) {
+      tl.fromTo(
+        heroSubtitleRef.current,
+        { opacity: 0, y: 30, filter: "blur(6px)" },
+        { 
+          opacity: 1, 
+          y: 0, 
+          filter: "blur(0px)",
+          duration: 0.6,
+          ease: "power3.out"
+        },
+        "-=0.2"
+      );
+    }
+
+    // Animar CTA
+    if (heroCTARef.current) {
+      tl.fromTo(
+        heroCTARef.current.children,
+        { opacity: 0, y: 20, scale: 0.98 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "back.out(1.2)"
+        },
+        "-=0.3"
+      );
+    }
+
+    // Animar social proof
+    if (socialProofRef.current) {
+      tl.fromTo(
+        socialProofRef.current,
+        { opacity: 0, y: 20 },
+        { 
+          opacity: 1, 
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out"
+        },
+        "-=0.2"
+      );
+    }
+
+    // Animar scroll indicator
+    if (scrollIndicatorRef.current) {
+      tl.fromTo(
+        scrollIndicatorRef.current,
+        { opacity: 0 },
+        { 
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out"
+        },
+        "+=0.5"
+      );
+    }
+
+    return () => {
+      tl.kill();
+    };
+  }, [mounted]);
+
   const handleScroll = (href: string) => scrollToElement(href);
 
   return (
@@ -142,8 +266,8 @@ export default function Hero() {
       {/* Coaching Words Background Animation */}
       <CoachingWordsBackground />
 
-      {/* Decorative orbs with scroll parallax */}
-      <motion.div style={{ y: orbY1 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {/* Decorative orbs */}
+      <div ref={orb1Ref} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-gold animate-float-slow"
           style={{
@@ -154,8 +278,8 @@ export default function Hero() {
             opacity: 0.6,
           }}
         />
-      </motion.div>
-      <motion.div style={{ y: orbY2 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      </div>
+      <div ref={orb2Ref} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-amber animate-float"
           style={{
@@ -167,8 +291,8 @@ export default function Hero() {
             animationDelay: "2s",
           }}
         />
-      </motion.div>
-      <motion.div style={{ y: orbY3 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      </div>
+      <div ref={orb3Ref} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-gold"
           style={{
@@ -180,13 +304,13 @@ export default function Hero() {
             filter: "blur(100px)",
           }}
         />
-      </motion.div>
+      </div>
 
-      {/* Floating particles — varied drift + pulse */}
+      {/* Floating particles */}
       {mounted && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           {particles.map((p) => (
-            <motion.div
+            <div
               key={p.id}
               className="absolute rounded-full"
               style={{
@@ -197,18 +321,6 @@ export default function Hero() {
                 background: `rgba(124, 107, 196, ${p.opacity})`,
                 boxShadow: p.size > 2.5 ? `0 0 ${p.size * 3}px rgba(124,107,196,0.3)` : "none",
               }}
-              animate={{
-                y: [0, -30 - Math.random() * 20, 0],
-                x: [0, p.drift, 0],
-                opacity: [p.opacity * 0.4, p.opacity, p.opacity * 0.4],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: p.duration,
-                delay: p.delay,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
             />
           ))}
         </div>
@@ -218,39 +330,37 @@ export default function Hero() {
       <div
         className="container relative z-10 flex flex-col items-center text-center"
       >
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
+        <div
           className="flex flex-col items-center"
           style={{ paddingTop: "clamp(64px, 10vh, 120px)", paddingBottom: "clamp(32px, 5vh, 60px)" }}
         >
-          {/* Headline — each line reveals separately */}
-          <motion.h1
+          {/* Headline */}
+          <h1
+            ref={heroTitleRef}
             className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
-            <motion.span variants={revealUp} className="block">
+            <span className="block">
               {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
-            </motion.span>
-            <motion.span variants={revealUp} className="block text-gradient mt-3">
+            </span>
+            <span className="block text-gradient mt-3">
               {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
-            </motion.span>
-            <motion.span variants={revealUp} className="block mt-3">
+            </span>
+            <span className="block mt-3">
               {language === 'es' ? 'Escalá sin límites.' : 'Scale without limits.'}
-            </motion.span>
-          </motion.h1>
+            </span>
+          </h1>
 
           {/* Decorative line */}
-          <motion.div
-            variants={lineGrow}
+          <div
+            ref={heroDividerRef}
             className="divider-gold mb-6"
             style={{ width: "80px", height: "3px" }}
           />
 
           {/* Rotating pain-point phrases */}
-          <motion.div
-            variants={revealUp}
+          <div
+            ref={rotatingPhraseRef}
             className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl"
             style={{
               minHeight: "5.5rem",
@@ -274,67 +384,54 @@ export default function Hero() {
             <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
               ¿Te suena esto?
             </p>
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={phraseIndex}
-                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="lead-text italic"
-                style={{ 
-                  background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  fontFamily: "var(--font-heading)", 
-                  fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
-                }}
-              >
-                &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
-              </motion.p>
-            </AnimatePresence>
-          </motion.div>
+            <p
+              className="lead-text italic"
+              style={{ 
+                background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontFamily: "var(--font-heading)", 
+                fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
+              }}
+            >
+              &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
+            </p>
+          </div>
 
           {/* Subheadline */}
-          <motion.p
-            variants={revealUp}
+          <p
+            ref={heroSubtitleRef}
             className="lead-text max-w-2xl mb-8 sm:mb-12"
           >
             {language === 'es' 
               ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
               : 'Leadership coaching and organizational consulting for tech leaders and startups that want to grow in an agile, human, and sustainable way.'
             }
-          </motion.p>
+          </p>
 
           {/* CTAs */}
-          <motion.div
-            variants={ctaReveal}
+          <div
+            ref={heroCTARef}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
           >
-            <motion.button
+            <button
               className="btn-primary animate-glow"
               onClick={() => handleScroll("#contacto")}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
-            </motion.button>
-            <motion.button
+            </button>
+            <button
               className="btn-secondary"
               onClick={() => handleScroll("#proceso")}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {language === 'es' ? 'Conocé nuestro método ↓' : 'Learn our method ↓'}
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
 
           {/* Social proof */}
-          <motion.div
-            variants={revealUp}
+          <div
+            ref={socialProofRef}
             className="flex items-center justify-center mt-12 sm:mt-20 pb-16"
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
@@ -343,15 +440,13 @@ export default function Hero() {
                 : 'Over 20 years in technology · 11+ years of agile consulting'
               }
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
-      {/* Scroll indicator — animated mouse */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+      {/* Scroll indicator */}
+      <button
+        ref={scrollIndicatorRef}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer bg-transparent border-0 z-10"
         onClick={() => handleScroll("#sobre-mi")}
         aria-label="Desplazarse hacia abajo"
@@ -365,7 +460,7 @@ export default function Hero() {
             transition: "border-color 0.3s",
           }}
         >
-          <motion.div
+          <div
             className="absolute left-1/2 -translate-x-1/2 rounded-full"
             style={{
               width: 4,
@@ -373,11 +468,9 @@ export default function Hero() {
               top: 6,
               background: "var(--gold-primary)",
             }}
-            animate={{ y: [0, 14, 0], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-      </motion.button>
+      </button>
     </section>
   );
 }

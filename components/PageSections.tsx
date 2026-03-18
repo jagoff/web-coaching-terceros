@@ -3,13 +3,13 @@
 import dynamic from "next/dynamic";
 
 // Client-side dynamic imports for page sections
-export const Hero          = dynamic(() => import("@/components/sections/Hero"), { 
+export const Hero          = dynamic(() => import("@/components/sections/HeroGSAP"), { 
   ssr: false,
   loading: () => <div className="min-h-screen flex items-center justify-center">
     <div className="text-white text-xl">Cargando...</div>
   </div>
 });
-export const About         = dynamic(() => import("@/components/sections/About"), { ssr: false });
+export const About         = dynamic(() => import("@/components/sections/AboutGSAP"), { ssr: false });
 export const Services      = dynamic(() => import("@/components/sections/Services"), { ssr: false });
 export const Process       = dynamic(() => import("@/components/sections/Process"), { ssr: false });
 export const Testimonials  = dynamic(() => import("@/components/sections/Testimonials"), { ssr: false });

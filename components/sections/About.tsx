@@ -8,27 +8,27 @@ import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const slideReveal: Variants = {
-  hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
+  hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(4px)" }),
   visible: {
     opacity: 1,
     x: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const credentialStagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
 };
 
 const credentialPop: Variants = {
-  hidden: { opacity: 0, scale: 0.8, y: 10 },
+  hidden: { opacity: 0, scale: 0.85, y: 8 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 18 },
+    transition: { type: "spring", stiffness: 350, damping: 20 },
   },
 };
 
@@ -65,7 +65,7 @@ const instaCard: Variants = {
 export default function About() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-120px" });
   const [shuffledCredentials, setCredentials] = useState(credentials);
   const [buttonPosition, setButtonPosition] = useState(0);
   const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});

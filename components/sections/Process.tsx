@@ -15,7 +15,7 @@ const stepReveal: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.7,
-      delay: 0.35 + i * 0.15,
+      delay: 0.6 + i * 0.15,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -25,7 +25,7 @@ const stepReveal: Variants = {
 export default function Process() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   const steps = [
     {

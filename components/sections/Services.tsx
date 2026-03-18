@@ -16,7 +16,7 @@ const cardReveal: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.8,
-      delay: 0.3 + i * 0.2,
+      delay: 0.5 + i * 0.2,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -24,7 +24,7 @@ const cardReveal: Variants = {
 
 const benefitStagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.4 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.6 } },
 };
 
 const benefitItem: Variants = {
@@ -40,7 +40,7 @@ const benefitItem: Variants = {
 export default function Services() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const services = [
     {
