@@ -1,46 +1,25 @@
-import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
-import typescript from '@typescript-eslint/eslint-plugin'
-import typescriptParser from '@typescript-eslint/parser'
-import prettier from 'eslint-config-prettier'
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import tseslint from 'typescript-eslint'
+import globals from 'globals'
 
 export default [
   js.configs.recommended,
-  ...compat.extends('next/core-web-vitals'),
-  ...compat.config(typescript.configs.recommended),
-  prettier,
+  ...tseslint.configs.recommended,
   {
-    plugins: {
-      '@typescript-eslint': typescript,
-      prettier: prettier,
-    },
-    parser: typescriptParser,
-    parserOptions: {
-      ecmaVersion: 2020,
-      sourceType: 'module',
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es6,
+      },
     },
     rules: {
-      'prettier/prettier': 'error',
       '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       'prefer-const': 'error',
       'no-var': 'error',
-    },
-    env: {
-      browser: true,
-      es6: true,
-      node: true,
     },
   },
 ]

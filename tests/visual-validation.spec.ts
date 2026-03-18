@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test';
 test.describe('Visual Validation - Complete Site Check', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    // Wait for page to be ready
+    // Wait for page to be ready and animations to start
     await page.waitForLoadState('domcontentloaded');
-    await page.waitForTimeout(500); // Reduced wait time
+    await page.waitForTimeout(3000); // Wait for initial animations
   });
 
   test('CTA buttons exist and have orange color', async ({ page }) => {
@@ -28,12 +28,19 @@ test.describe('Visual Validation - Complete Site Check', () => {
   });
 
   test('stats count is correct', async ({ page }) => {
+    // Wait for results section to be visible
+    await page.waitForTimeout(4000); // Wait for scroll animations
+    
     const statNumbers = await page.locator('.stat-number').count();
     expect(statNumbers).toBe(4);
     console.log('✅ Stats count correct:', statNumbers);
   });
 
   test('footer sections exist', async ({ page }) => {
+    // Scroll to bottom to ensure footer is loaded
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(2000);
+    
     const footer = await page.locator('footer').count();
     expect(footer).toBe(1);
     
@@ -70,6 +77,9 @@ test.describe('Visual Validation - Complete Site Check', () => {
   });
 
   test('page structure validation', async ({ page }) => {
+    // Wait for all sections to be loaded
+    await page.waitForTimeout(4000);
+    
     const elements = {
       'h1': await page.locator('h1').count(),
       '.btn-primary': await page.locator('.btn-primary').count(),
@@ -121,7 +131,11 @@ test.describe('Visual Validation - Complete Site Check', () => {
 
   test('mobile responsive check', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(2000);
+    
+    // Scroll to bottom to ensure footer is loaded
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(2000);
     
     const footer = await page.locator('footer').count();
     expect(footer).toBe(1);
@@ -151,6 +165,13 @@ test.describe('Visual Validation - Complete Site Check', () => {
   });
 
   test('contact form exists', async ({ page }) => {
+    // Scroll to contact section
+    await page.evaluate(() => {
+      const contact = document.querySelector('#contacto');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+    });
+    await page.waitForTimeout(2000);
+    
     const contactSection = await page.locator('#contacto').count();
     
     if (contactSection > 0) {

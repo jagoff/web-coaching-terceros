@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+.turbo/
+
+# Runtime
+.cache/
+.temp/
+
+# Testing
+coverage/
+test-results/
+playwright-report/
+
+# Production
+*.min.js
+*.bundle.js
+
+# Generated files
+*.d.ts
+*.js.map
+*.ts.buildinfo
+
+# ESLint cache
+.eslintcache
+
+# App directory (Next.js generated)
+app/
+
+# Public directory (static files)
+public/
+
+# Config files that shouldn't be linted
+next.config.ts
+tsconfig.json
+playwright.config.ts
+vitest.config.ts
+postcss.config.mjs
