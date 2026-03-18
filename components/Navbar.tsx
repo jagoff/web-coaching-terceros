@@ -30,7 +30,6 @@ export default function Navbar() {
     { label: t.nav.sobreMi, href: "#sobre-mi" },
     { label: t.nav.servicios, href: "#servicios" },
     { label: t.nav.testimonios, href: "#testimonios" },
-    { label: t.nav.precios, href: "#precios" },
     { label: t.nav.preguntasFrecuentes, href: "#faq" },
   ];
 
@@ -91,7 +90,7 @@ export default function Navbar() {
             </a>
 
             {/* Desktop nav links */}
-            <ul className="hidden lg:flex items-center gap-10 xl:gap-12 list-none">
+            <ul className="hidden lg:flex items-center gap-12 xl:gap-16 list-none">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
