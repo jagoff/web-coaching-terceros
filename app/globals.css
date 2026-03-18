@@ -36,8 +36,8 @@
   /* --- CTA Naranja Energético --- */
   --cta-primary:     #FF6B35;
   --cta-hover:       #FF8555;
-  --cta-glow:        rgba(255, 107, 53, 0.4);
-  --cta-glow-hover:  rgba(255, 107, 53, 0.6);
+  --cta-glow:        rgba(255, 107, 53, 0.15);
+  --cta-glow-hover:  rgba(255, 107, 53, 0.25);
 
   /* --- Texto --- */
   --text-primary:    #EDE8F0;
@@ -58,9 +58,9 @@
   --shadow-sm:        0 2px 8px rgba(0, 0, 0, 0.40);
   --shadow-md:        0 8px 32px rgba(0, 0, 0, 0.50);
   --shadow-lg:        0 20px 60px rgba(0, 0, 0, 0.60);
-  --shadow-gold-sm:   0 4px 20px rgba(124, 107, 196, 0.25);
-  --shadow-gold-md:   0 8px 40px rgba(124, 107, 196, 0.35);
-  --shadow-gold-lg:   0 16px 60px rgba(124, 107, 196, 0.45);
+  --shadow-gold-sm:   0 4px 12px rgba(124, 107, 196, 0.12);
+  --shadow-gold-md:   0 8px 24px rgba(124, 107, 196, 0.18);
+  --shadow-gold-lg:   0 12px 40px rgba(124, 107, 196, 0.22);
 
   /* --- Tipografía --- */
   --font-heading:    var(--font-playfair), Georgia, serif;
@@ -216,7 +216,7 @@ p {
 
 .glass-card:hover {
   border-color: var(--gold-border-hover);
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(124, 107, 196, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(124, 107, 196, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* Variante ligera */
@@ -266,8 +266,8 @@ p {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: none;
-  box-shadow: 0 0 30px var(--cta-glow);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 16px var(--cta-glow);
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -276,7 +276,8 @@ p {
 .btn-primary:hover {
   background: var(--cta-hover) !important;
   transform: scale(1.025) translateY(-1px);
-  box-shadow: 0 0 40px var(--cta-glow-hover);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 20px var(--cta-glow-hover);
 }
 
 .btn-primary:active {
@@ -308,13 +309,13 @@ p {
   gap: 0.5rem;
   padding: calc(1rem - 1.5px) calc(2.5rem - 1.5px);
   background: transparent;
-  color: var(--gold-primary);
+  color: var(--text-primary);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.625rem;
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: 1.5px solid rgba(124, 107, 196, 0.55);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition:
@@ -326,10 +327,10 @@ p {
 }
 
 .btn-secondary:hover {
-  background: rgba(124, 107, 196, 0.08);
-  border-color: var(--gold-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.7);
   transform: scale(1.02) translateY(-1px);
-  box-shadow: 0 0 20px rgba(124, 107, 196, 0.15);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
 }
 
 .btn-secondary:active {
@@ -447,11 +448,11 @@ p {
 }
 
 .orb-gold {
-  background: radial-gradient(circle, rgba(124, 107, 196, 0.20) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(124, 107, 196, 0.08) 0%, transparent 70%);
 }
 
 .orb-amber {
-  background: radial-gradient(circle, rgba(200, 123, 90, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 123, 90, 0.06) 0%, transparent 70%);
 }
 
 /* ---- Separador decorativo ---- */
@@ -603,13 +604,12 @@ p {
 /* Glow pulsante */
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(124, 107, 196, 0.20),
-                0 0 40px rgba(124, 107, 196, 0.10);
+    box-shadow: 0 0 12px rgba(124, 107, 196, 0.10),
+                0 0 20px rgba(124, 107, 196, 0.05);
   }
   50% {
-    box-shadow: 0 0 40px rgba(124, 107, 196, 0.45),
-                0 0 80px rgba(124, 107, 196, 0.20),
-                0 0 120px rgba(212, 149, 106, 0.10);
+    box-shadow: 0 0 20px rgba(124, 107, 196, 0.18),
+                0 0 36px rgba(124, 107, 196, 0.08);
   }
 }
 
