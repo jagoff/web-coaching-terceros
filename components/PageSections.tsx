@@ -10,10 +10,10 @@ export const Hero          = dynamic(() => import("@/components/sections/HeroGSA
   </div>
 });
 export const About         = dynamic(() => import("@/components/sections/AboutGSAP"), { ssr: false });
-export const Services      = dynamic(() => import("@/components/sections/Services"), { ssr: false });
-export const Process       = dynamic(() => import("@/components/sections/Process"), { ssr: false });
+export const Services      = dynamic(() => import("@/components/sections/ServicesGSAP"), { ssr: false });
+export const Process       = dynamic(() => import("@/components/sections/ProcessGSAP"), { ssr: false });
 export const Testimonials  = dynamic(() => import("@/components/sections/Testimonials"), { ssr: false });
-export const Results       = dynamic(() => import("@/components/sections/Results"), { ssr: false });
+export const Results       = dynamic(() => import("@/components/sections/ResultsGSAP"), { ssr: false });
 export const Pricing       = dynamic(() => import("@/components/sections/Pricing"), { ssr: false });
 export const Contact       = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
 export const CalBooking    = dynamic(() => import("@/components/sections/CalBookingSimple"), { 
