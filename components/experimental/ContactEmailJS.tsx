@@ -151,7 +151,7 @@ export default function ContactEmailJS() {
                     className="flex flex-col items-center justify-center text-center py-8 gap-6"
                   >
                     <div className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
-                      style={{ background: "rgba(124,107,196,0.15)", border: "1px solid var(--gold-primary)" }}>
+                      style={{ background: "rgba(34, 197, 94, 0.15)", border: "1px solid rgba(34, 197, 94, 0.3)" }}>
                       <CheckCircle2 size={28} style={{ color: "#22c55e" }} />
                     </div>
                     <h3 className="heading-md" style={{ fontFamily: "var(--font-heading)" }}>

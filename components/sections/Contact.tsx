@@ -48,6 +48,7 @@ import {
   AlertCircle,
   User,
   MessageSquare,
+  Calendar,
 } from "lucide-react";
 
 export default function Contact() {
@@ -185,6 +186,12 @@ export default function Contact() {
         setForm({ nombre: "", email: "", mensaje: "" });
         setTouched({});
         setErrors({});
+        
+        // Scroll to center of form to show success message properly
+        const contactSection = document.getElementById('contacto');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       } else {
         throw new Error("Error al enviar el formulario");
       }
@@ -292,11 +299,14 @@ export default function Contact() {
                     <div
                       className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
                       style={{
-                        background: "rgba(124,107,196,0.15)",
-                        border: "1px solid var(--gold-primary)",
+                        background: "rgba(34, 197, 94, 0.15)",
+                        border: "1px solid rgba(34, 197, 94, 0.3)",
                       }}
                     >
-                      <CheckCheck size={28} style={{ color: "var(--gold-primary)" }} />
+                      <div className="flex items-center gap-1">
+                        <CheckCircle2 size={24} style={{ color: "#22c55e" }} />
+                        <CheckCircle2 size={24} style={{ color: "#22c55e" }} />
+                      </div>
                     </div>
                     <h3
                       className="heading-md"
@@ -307,6 +317,34 @@ export default function Contact() {
                     <p style={{ color: "var(--text-secondary)" }}>
                       {t.contact.success.message}
                     </p>
+                    
+                    {/* Cal.com CTA */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="mt-6"
+                    >
+                      <motion.a
+                        href="https://cal.com/fferrari/30min"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 px-6 py-3 rounded-lg"
+                        style={{
+                          background: "var(--gradient-gold)",
+                          color: "white",
+                          textDecoration: "none",
+                          fontWeight: "600",
+                          transition: "var(--transition-base)"
+                        }}
+                        whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Calendar size={18} />
+                        Agendar sesión gratuita ahora
+                        <ArrowRight size={16} />
+                      </motion.a>
+                    </motion.div>
                   </motion.div>
                 ) : (
                   <motion.form
@@ -497,7 +535,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className={`btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 ${
+                      className={`btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 rounded-lg ${
                         status === "loading" ? "opacity-75 cursor-not-allowed" : 
                         Object.keys(errors).length === 0 && Object.values(form).every(v => v.trim()) ? "animate-glow" : 
                         ""
@@ -516,7 +554,7 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Agendá tu sesión gratuita{" "}
+                          Enviar y Agendar Sesión{" "}
                           <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}

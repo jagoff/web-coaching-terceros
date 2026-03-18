@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform, type Variants } from "frame
 import { ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const statCard: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.9, filter: "blur(6px)" },
@@ -21,52 +22,92 @@ const statCard: Variants = {
   }),
 };
 
-const stats = [
-  {
-    prefix: "+",
-    value: 20,
-    suffix: "",
-    display: "+20",
-    label: "Años en tecnología",
-    description: "Desde infraestructura hasta liderazgo",
-  },
-  {
-    prefix: "",
-    value: 11,
-    suffix: "+",
-    display: "11+",
-    label: "Años de coaching ágil",
-    description: "Transformando startups y empresas tech",
-  },
-  {
-    prefix: "",
-    value: 9,
-    suffix: "+",
-    display: "9+",
-    label: "Certificaciones activas",
-    description: "Scrum, UX, Management 3.0, Security",
-  },
-  {
-    prefix: "",
-    value: 6,
-    suffix: "",
-    display: "6",
-    label: "Empresas co-fundadas",
-    description: "Moka, Nodok.AI, AyP",
-  },
-];
+export default function Results() {
+  const { t, language } = useLanguage();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
 
-function CountUp({
-  value,
-  prefix,
-  suffix,
-  started,
-}: {
-  value: number;
-  prefix: string;
-  suffix: string;
-  started: boolean;
-}) {
+  const stats = language === 'es' ? [
+    {
+      prefix: "+",
+      value: 20,
+      suffix: "",
+      display: "+20",
+      label: "Años en tecnología",
+      description: "Desde infraestructura hasta liderazgo",
+    },
+    {
+      prefix: "",
+      value: 11,
+      suffix: "+",
+      display: "11+",
+      label: "Años de coaching ágil",
+      description: "Transformando startups y empresas tech",
+    },
+    {
+      prefix: "",
+      value: 9,
+      suffix: "+",
+      display: "9+",
+      label: "Certificaciones activas",
+      description: "Scrum, UX, Management 3.0, Security",
+    },
+    {
+      prefix: "",
+      value: 6,
+      suffix: "",
+      display: "6",
+      label: "Empresas co-fundadas",
+      description: "Moka, Nodok.AI, AyP",
+    },
+  ] : [
+    {
+      prefix: "+",
+      value: 20,
+      suffix: "",
+      display: "+20",
+      label: "Years in technology",
+      description: "From infrastructure to leadership",
+    },
+    {
+      prefix: "",
+      value: 11,
+      suffix: "+",
+      display: "11+",
+      label: "Years of agile coaching",
+      description: "Transforming startups and tech companies",
+    },
+    {
+      prefix: "",
+      value: 9,
+      suffix: "+",
+      display: "9+",
+      label: "Active certifications",
+      description: "Scrum, UX, Management 3.0, Security",
+    },
+    {
+      prefix: "",
+      value: 6,
+      suffix: "",
+      display: "6",
+      label: "Companies co-founded",
+      description: "Moka, Nodok.AI, AyP",
+    },
+  ];
+
+  function CountUp({
+    value,
+    prefix,
+    suffix,
+    started,
+  }: {
+    value: number;
+    prefix: string;
+    suffix: string;
+    started: boolean;
+  }) {
   const [displayed, setDisplayed] = useState(0);
   const isDecimal = value % 1 !== 0;
 
@@ -79,11 +120,10 @@ function CountUp({
     const timer = setInterval(() => {
       frame++;
       const progress = frame / totalFrames;
-      // ease-out cubic for a snappy feel
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayed(eased * value);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      setDisplayed(value * easeOutQuart);
+
       if (frame >= totalFrames) {
-        setDisplayed(value);
         clearInterval(timer);
       }
     }, duration / totalFrames);
@@ -94,19 +134,11 @@ function CountUp({
   const fmt = isDecimal ? displayed.toFixed(1) : Math.round(displayed).toString();
 
   return (
-    <span>
+    <span className="stat-number">
       {prefix}{fmt}{suffix}
     </span>
   );
 }
-
-export default function Results() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const orbY = useTransform(scrollYProgress, [0, 1], [60, -60]);
-
-  const handleScroll = (href: string) => scrollToElement(href);
 
   return (
     <section
@@ -142,15 +174,15 @@ export default function Results() {
           className="text-center mb-14 md:mb-24"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">Impacto Real</span>
+            <span className="badge">{language === 'es' ? 'Impacto Real' : 'Real Impact'}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Transformación en{" "}
-            <span className="text-gradient">Números</span>
+            {language === 'es' ? 'Transformación en' : 'Transformation in'}{" "}
+            <span className="text-gradient">{language === 'es' ? 'Números' : 'Numbers'}</span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}
@@ -172,35 +204,27 @@ export default function Results() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Number */}
-              <p className="stat-number mb-2">
-                <CountUp
-                  value={stat.value}
-                  prefix={stat.prefix}
-                  suffix={stat.suffix}
-                  started={isInView}
-                />
-              </p>
-
-              {/* Separator */}
-              <div
-                className="w-10 h-px mx-auto mb-5"
-                style={{ background: "rgba(124,107,196,0.3)" }}
+              <CountUp
+                value={stat.value}
+                prefix={stat.prefix}
+                suffix={stat.suffix}
+                started={isInView}
               />
 
-              <p
-                className="text-sm font-semibold uppercase tracking-wider mb-3"
-                style={{ color: "var(--text-primary)", letterSpacing: "0.08em" }}
-              >
+              {/* Label */}
+              <h3 className="heading-sm mt-3 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
                 {stat.label}
-              </p>
-              <p className="text-sm" style={{ color: "var(--text-muted)", lineHeight: "1.6" }}>
+              </h3>
+
+              {/* Description */}
+              <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
                 {stat.description}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Call to action */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
@@ -211,16 +235,24 @@ export default function Results() {
             className="lead-text max-w-2xl mx-auto mb-10"
             style={{ color: "var(--text-secondary)" }}
           >
-            Cada número representa experiencia real construyendo equipos y organizaciones.{" "}
+            {language === 'es' 
+              ? 'Cada número representa experiencia real construyendo equipos y organizaciones.' 
+              : 'Every number represents real experience building teams and organizations.'
+            }{" "}
             <strong style={{ color: "var(--text-primary)" }}>
-              ¿Hablamos de tu próximo paso?
+              {language === 'es' ? '¿Hablamos de tu próximo paso?' : 'Shall we talk about your next step?'}
             </strong>
           </p>
           <button
             className="btn-primary"
-            onClick={() => handleScroll("#contacto")}
+            onClick={() => {
+              const target = document.querySelector("#contacto");
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
-            Empezá tu transformación <ArrowRight size={16} className="inline ml-1" />
+            {language === 'es' ? 'Empezá tu transformación' : 'Start your transformation'} <ArrowRight size={16} className="inline ml-1" />
           </button>
         </motion.div>
       </div>

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
+import CoachingWordsBackground from "@/components/CoachingWordsBackground";
 
 const rotatingPhrasesES = [
   "Mi equipo no toma decisiones sin mí",
@@ -26,6 +27,17 @@ const rotatingPhrasesES = [
   "Tomo decisiones con datos incompletos siempre",
   "Perdemos clientes por problemas que podríamos evitar",
   "El equipo espera que yo tenga todas las respuestas",
+  "Nuestras daily meetings duran 45 minutos y no resuelven nada",
+  "Los devs dicen 'terminado' pero siempre hay bugs en producción",
+  "Cambio prioridades cada dos días y nadie sabe qué hacer",
+  "El frontend y el backend no se hablan, siempre es culpa del otro",
+  "Hacemos overtime pero seguimos entregando tarde",
+  "Mi mejor dev está por renunciar y no sé por qué",
+  "Implementamos Scrum pero solo son reuniones de más",
+  "Los stakeholders cambian el alcance sin aviso",
+  "No sé qué hace cada uno en el equipo",
+  "Las retrospectivas son silencio incómodo y nada cambia",
+  "El cliente nunca está contento con lo que entregamos",
 ];
 
 const rotatingPhrasesEN = [
@@ -49,6 +61,17 @@ const rotatingPhrasesEN = [
   "I always make decisions with incomplete data",
   "We lose clients due to problems we could avoid",
   "The team expects me to have all the answers",
+  "Our daily meetings last 45 minutes and solve nothing",
+  "Devs say 'done' but there are always bugs in production",
+  "I change priorities every two days and nobody knows what to do",
+  "Frontend and backend don't talk, it's always the other's fault",
+  "We work overtime but still deliver late",
+  "My best dev is about to quit and I don't know why",
+  "We implemented Scrum but it's just more meetings",
+  "Stakeholders change scope without notice",
+  "I don't know what each person on the team does",
+  "Retrospectives are awkward silence and nothing changes",
+  "The client is never happy with what we deliver",
 ];
 
 type Particle = {
@@ -157,6 +180,9 @@ export default function Hero() {
       style={{ paddingTop: "clamp(2.25rem, 6vh, 4.25rem)" }}
       aria-label="Sección principal"
     >
+      {/* Coaching Words Background Animation */}
+      <CoachingWordsBackground />
+
       {/* Decorative orbs with scroll parallax */}
       <motion.div style={{ y: orbY1 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
@@ -266,21 +292,23 @@ export default function Hero() {
           {/* Rotating pain-point phrases */}
           <motion.div
             variants={revealUp}
-            className="relative max-w-2xl mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-xl"
+            className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl"
             style={{
               minHeight: "5.5rem",
-              background: "rgba(0,0,0,0.25)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(124,107,196,0.12)",
+              background: "transparent",
+              backdropFilter: "blur(15px)",
+              border: "1px solid rgba(124,107,196,0.03)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.2)",
+              position: "relative"
             }}
           >
             {/* Subtle gold radial glow behind */}
             <div
-              className="absolute inset-0 -z-10 rounded-xl"
+              className="absolute inset-0 -z-10 rounded-2xl"
               style={{
-                background: "radial-gradient(ellipse at center, rgba(124,107,196,0.08) 0%, transparent 70%)",
-                transform: "scale(1.3)",
-                filter: "blur(20px)",
+                background: "radial-gradient(ellipse at center, rgba(124,107,196,0.01) 0%, transparent 40%)",
+                transform: "scale(1.8)",
+                filter: "blur(50px)",
               }}
               aria-hidden="true"
             />

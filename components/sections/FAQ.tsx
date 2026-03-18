@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const faqStagger: Variants = {
   hidden: {},
@@ -20,35 +21,8 @@ const faqItem: Variants = {
   },
 };
 
-const faqs = [
-  {
-    question: "¿Para quién es este servicio?",
-    answer:
-      "Para líderes tech, founders de startups, CTOs y managers que sienten que su equipo podría rendir más, que las decisiones se estancan o que la cultura no escala al mismo ritmo que el negocio.",
-  },
-  {
-    question: "¿Qué diferencia hay entre coaching y consultoría?",
-    answer:
-      "El coaching te acompaña a encontrar tus propias respuestas y desarrollar habilidades de liderazgo. La consultoría aporta frameworks, procesos y estrategias concretas. Mi enfoque combina ambos según lo que necesites.",
-  },
-  {
-    question: "¿Cuánto tiempo dura un proceso típico?",
-    answer:
-      "Un proceso de coaching individual suele durar entre 8 y 12 sesiones (2-3 meses). La consultoría organizacional varía según la complejidad, pero los primeros resultados se ven en las primeras 4-6 semanas.",
-  },
-  {
-    question: "¿La sesión de diagnóstico tiene algún costo?",
-    answer:
-      "No. La primera sesión de 30 minutos es completamente gratuita y sin compromiso. Sirve para entender tu situación, definir objetivos y ver si tiene sentido trabajar juntos.",
-  },
-  {
-    question: "¿Trabajás con empresas fuera de Argentina?",
-    answer:
-      "Sí. Trabajo con líderes y equipos de toda Latinoamérica y España. Las sesiones son 100% remotas por videollamada, lo que permite flexibilidad total de horarios.",
-  },
-];
-
 export default function FAQ() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -68,14 +42,14 @@ export default function FAQ() {
           className="text-center mb-8 md:mb-12"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">Preguntas Frecuentes</span>
+            <span className="badge">{t.faq.badge}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Resolvé tus <span className="text-gradient">dudas</span>
+            {t.faq.title} <span className="text-gradient">{t.faq.title2}</span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}
@@ -90,7 +64,7 @@ export default function FAQ() {
           animate={isInView ? "visible" : "hidden"}
           className="max-w-3xl mx-auto flex flex-col"
         >
-          {faqs.map((faq, i) => (
+          {t.faq.items.map((faq, i) => (
             <motion.div
               key={i}
               variants={faqItem}

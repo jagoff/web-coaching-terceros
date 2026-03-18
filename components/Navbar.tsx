@@ -19,19 +19,19 @@ export default function Navbar() {
   const rotatingWords = language === 'es' ? rotatingWordsES : rotatingWordsEN;
 
   // Rotate words every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [rotatingWords.length]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, [rotatingWords.length]);
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "#sobre-mi" },
     { label: t.nav.servicios, href: "#servicios" },
-    { label: t.nav.metodo, href: "#proceso" },
     { label: t.nav.testimonios, href: "#testimonios" },
     { label: t.nav.precios, href: "#precios" },
+    { label: t.nav.preguntasFrecuentes, href: "#faq" },
   ];
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function Navbar() {
             <a
               href="#"
               className="flex items-center gap-2 group"
-              aria-label="ELEVA Coaching — inicio"
+              aria-label={`ELEVA ${language === 'es' ? 'CONSULTORA' : 'CONSULTING'} — inicio`}
               onClick={(e) => {
                 e.preventDefault();
                 scrollToTop();
@@ -81,12 +81,12 @@ export default function Navbar() {
               <span
                 className="hidden sm:block text-xs font-semibold uppercase tracking-[0.15em] text-muted"
                 style={{
-                  transition: 'all 0.5s ease-in-out',
                   opacity: 0.9,
-                  transform: 'translateY(0)'
+                  alignSelf: "flex-end",
+                  paddingBottom: "0.2rem"
                 }}
               >
-                {rotatingWords[currentWord]}
+                {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
               </span>
             </a>
 
@@ -183,12 +183,24 @@ export default function Navbar() {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b"
               style={{ borderColor: "var(--dark-border)" }}>
-              <span
-                className="text-gradient font-heading font-black text-2xl tracking-tight"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                ELEVA
-              </span>
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-gradient font-heading font-black text-2xl tracking-tight"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  ELEVA
+                </span>
+                <span
+                  className="text-xs font-semibold uppercase tracking-[0.15em] text-muted"
+                  style={{
+                    opacity: 0.9,
+                    alignSelf: "flex-end",
+                    paddingBottom: "0.2rem"
+                  }}
+                >
+                  {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
+                </span>
+              </div>
               <button
                 className="flex items-center justify-center rounded-md w-11 h-11 text-text-secondary"
                 onClick={() => setMobileOpen(false)}

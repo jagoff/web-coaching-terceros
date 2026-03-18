@@ -3,8 +3,9 @@ import { test, expect } from '@playwright/test';
 test.describe('Visual Validation - Complete Site Check', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1000);
+    // Wait for page to be ready
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(500); // Reduced wait time
   });
 
   test('CTA buttons exist and have orange color', async ({ page }) => {
@@ -36,11 +37,14 @@ test.describe('Visual Validation - Complete Site Check', () => {
     const footer = await page.locator('footer').count();
     expect(footer).toBe(1);
     
-    const navHeader = await page.locator('h3:has-text("Navegación")').count();
-    const servicesHeader = await page.locator('h3:has-text("Servicios")').count();
+    // Check for both Spanish and English navigation headers
+    const navHeaderES = await page.locator('h3:has-text("Navegación")').count();
+    const navHeaderEN = await page.locator('h3:has-text("Navigation")').count();
+    const servicesHeaderES = await page.locator('h3:has-text("Servicios")').count();
+    const servicesHeaderEN = await page.locator('h3:has-text("Services")').count();
     
-    expect(navHeader).toBe(1);
-    expect(servicesHeader).toBe(1);
+    expect(navHeaderES + navHeaderEN).toBe(1);
+    expect(servicesHeaderES + servicesHeaderEN).toBe(1);
     
     console.log('✅ Footer sections exist');
   });
@@ -122,11 +126,14 @@ test.describe('Visual Validation - Complete Site Check', () => {
     const footer = await page.locator('footer').count();
     expect(footer).toBe(1);
     
-    const navHeader = await page.locator('h3:has-text("Navegación")').count();
-    const servicesHeader = await page.locator('h3:has-text("Servicios")').count();
+    // Check for both Spanish and English navigation headers
+    const navHeaderES = await page.locator('h3:has-text("Navegación")').count();
+    const navHeaderEN = await page.locator('h3:has-text("Navigation")').count();
+    const servicesHeaderES = await page.locator('h3:has-text("Servicios")').count();
+    const servicesHeaderEN = await page.locator('h3:has-text("Services")').count();
     
-    expect(navHeader).toBe(1);
-    expect(servicesHeader).toBe(1);
+    expect(navHeaderES + navHeaderEN).toBe(1);
+    expect(servicesHeaderES + servicesHeaderEN).toBe(1);
     
     console.log('✅ Mobile responsive layout correct');
   });

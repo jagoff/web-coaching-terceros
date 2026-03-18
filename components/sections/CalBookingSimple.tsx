@@ -99,14 +99,51 @@ export default function CalBookingSimple() {
             </p>
 
             {/* Urgency indicator */}
-            <div className="mb-4 p-4 rounded-lg" style={{
-              background: "rgba(124,107,196,0.1)",
-              border: "1px solid rgba(124,107,196,0.2)",
-            }}>
-              <p className="text-sm text-center" style={{ color: "var(--gold-primary)" }}>
-                🎯 Solo <span className="font-bold">3 cupos disponibles</span> este mes para acompañamiento personalizado
-              </p>
-            </div>
+            <motion.div 
+              className="mb-4 p-4 rounded-xl"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ 
+                duration: 1.2, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.6 
+              }}
+              style={{
+                background: "linear-gradient(135deg, rgba(124,107,196,0.06) 0%, rgba(124,107,196,0.10) 100%)",
+                border: "1px solid rgba(124,107,196,0.12)",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 4px 20px rgba(124,107,196,0.08)"
+              }}
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 8px 30px rgba(124,107,196,0.15)",
+                transition: { duration: 0.3 }
+              }}
+            >
+              <motion.p 
+                className="text-sm text-center"
+                style={{ color: "var(--gold-primary)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 1.2
+                }}
+              >
+                🎯 Solo <motion.span 
+                  className="font-bold"
+                  animate={{ 
+                    opacity: [0.8, 1, 0.8],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >3 cupos disponibles</motion.span> este mes para acompañamiento personalizado
+              </motion.p>
+            </motion.div>
 
             <motion.ul
               variants={promiseStagger}

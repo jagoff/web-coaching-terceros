@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AmbientParticles from "./AmbientParticles";
-import CursorGlow from "./CursorGlow";
-import WhatsAppButton from "./WhatsAppButton";
-import { DynamicNavbar } from "./DynamicSections";
+import dynamic from "next/dynamic";
+
+// Import dynamic components directly in ClientLayout to avoid module conflicts
+const DynamicNavbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
+const AmbientParticles = dynamic(() => import("@/components/AmbientParticles"), { ssr: false });
+const CursorGlow = dynamic(() => import("@/components/CursorGlow"), { ssr: false });
+const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"), { ssr: false });
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);

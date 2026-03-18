@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Hero,
   About,
@@ -10,7 +12,9 @@ import {
   Contact,
   CalBooking,
   Footer,
-} from "@/components/DynamicSections";
+  CaseStudies,
+} from "@/components/PageSections";
+import WhatsAppBooking from "@/components/WhatsAppBooking";
 
 export default function Home() {
   return (
@@ -21,10 +25,12 @@ export default function Home() {
       <Process />
       <Testimonials />
       <Results />
+      <CaseStudies />
       <Pricing />
       <FAQ />
       <Contact />
       <Footer />
+      <WhatsAppBooking />
     </main>
   );
 }

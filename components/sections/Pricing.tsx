@@ -186,13 +186,24 @@ export default function Pricing() {
         >
           <MessageCircle size={18} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
           <p className="text-base" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
-            ¿Tenés dudas sobre qué plan se adapta mejor a tu caso?{" "}
+            {language === 'es' 
+              ? '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?' 
+              : 'Not sure which plan best fits your needs?'
+            }{" "}
             <button
               className="underline transition-colors bg-transparent border-0 cursor-pointer p-0 text-base"
               style={{ color: "var(--gold-primary)" }}
-              onClick={() => handleScroll("#contacto")}
+              onClick={() => {
+                const target = document.querySelector("#contacto");
+                if (target) {
+                  target.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
-              Escribime y lo hablamos sin compromiso.
+              {language === 'es' 
+                ? 'Escribime y lo hablamos sin compromiso.' 
+                : 'Write to me and we\'ll discuss it with no commitment.'
+              }
             </button>
           </p>
         </motion.div>

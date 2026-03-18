@@ -9,6 +9,7 @@ export interface Translations {
     testimonios: string;
     precios: string;
     sesionGratuita: string;
+    preguntasFrecuentes: string;
   };
   
   // Hero
@@ -68,6 +69,7 @@ export interface Translations {
     title2: string;
     title3: string;
     subtitle: string;
+    linkedinButton: string;
     steps: {
       diagnostico: {
         title: string;
@@ -180,6 +182,17 @@ export interface Translations {
     };
   };
   
+  // FAQ
+  faq: {
+    badge: string;
+    title: string;
+    title2: string;
+    items: {
+      question: string;
+      answer: string;
+    }[];
+  };
+  
   // Footer
   footer: {
     description: string;
@@ -189,6 +202,7 @@ export interface Translations {
       metodo: string;
       testimonios: string;
       precios: string;
+      preguntasFrecuentes: string;
     };
     rights: string;
   };
@@ -199,10 +213,11 @@ export const translations: Record<Language, Translations> = {
     nav: {
       sobreMi: 'Sobre mí',
       servicios: 'Servicios',
-      metodo: 'Mi Método',
+      metodo: '¡Tenes que vivirlo!',
       testimonios: 'Testimonios',
       precios: 'Precios',
       sesionGratuita: 'Sesión gratuita',
+      preguntasFrecuentes: 'Preguntas Frecuentes',
     },
     
     hero: {
@@ -218,9 +233,9 @@ export const translations: Record<Language, Translations> = {
       title1: 'De la tecnología',
       title2: 'a transformar',
       title3: 'organizaciones.',
-      intro: 'Soy Fernando, con más de 20 años en tecnología y 11+ años como consultor ágil independiente. Pasé de administrar servidores a liderar operaciones y transformar culturas organizacionales en startups y empresas tech.',
-      approach: 'Mi enfoque combina metodologías ágiles, liderazgo estratégico y un approach human-centric. No te digo qué hacer — te acompaño a construir equipos autónomos, procesos escalables y una cultura que impulse resultados.',
-      certificaciones: 'Certificaciones internacionales',
+      intro: 'Soy Fernando. Más de 20 años en tecnología y 11+ como consultor ágil independiente. Empecé arreglando computadoras, pasé por administración de servidores, y hoy lidero operaciones y acompaño transformaciones culturales en startups y empresas tech. Mi enfoque combina metodologías ágiles, liderazgo estratégico y una mirada donde las personas van primero. No te digo qué hacer — te acompaño a construir equipos autónomos, procesos escalables y una cultura que impulse resultados.',
+      approach: '',
+      certificaciones: 'Certificaciones internacionales comprobables',
       stats: {
         tecnologia: 'Años en tecnología',
         coaching: 'Años de coaching ágil',
@@ -271,11 +286,12 @@ export const translations: Record<Language, Translations> = {
     },
     
     process: {
-      badge: 'Mi Método',
-      title: '4 pasos hacia',
-      title2: '',
-      title3: 'la transformación',
+      badge: '¡Tenes que vivirlo!',
+      title: 'Estos son mis 4 pasos hacia',
+      title2: 'la transformación positiva',
+      title3: '',
       subtitle: 'Un proceso estructurado pero flexible, adaptado a tu realidad y objetivos específicos.',
+      linkedinButton: 'Ver certificaciones en LinkedIn',
       steps: {
         diagnostico: {
           title: 'Diagnóstico',
@@ -398,8 +414,32 @@ export const translations: Record<Language, Translations> = {
       },
       success: {
         title: '¡Mensaje enviado!',
-        message: 'Gracias por contactarme. Te responderé dentro de las 24 horas hábiles.',
+        message: 'Gracias por contactarme. Te responderé dentro de las 24 horas hábiles. Aprovecha para agendar el día y la hora.',
       },
+    },
+    
+    faq: {
+      badge: 'Preguntas Frecuentes',
+      title: 'Resolvé tus',
+      title2: 'dudas',
+      items: [
+        {
+          question: '¿Para quién es este servicio?',
+          answer: 'Para líderes tech, founders de startups, CTOs y managers que sienten que su equipo podría rendir más, que las decisiones se estancan o que la cultura no escala al mismo ritmo que el negocio.',
+        },
+        {
+          question: '¿Qué diferencia hay entre coaching y consultoría?',
+          answer: 'El coaching te acompaña a encontrar tus propias respuestas y desarrollar habilidades de liderazgo. La consultoría aporta frameworks, procesos y estrategias concretas. Mi enfoque combina ambos según lo que necesites.',
+        },
+        {
+          question: '¿Cuánto tiempo dura un proceso típico?',
+          answer: 'Un proceso de coaching individual suele durar entre 8 y 12 sesiones (2-3 meses). La consultoría organizacional varía según la complejidad, pero los primeros resultados se ven en las primeras 4-6 semanas.',
+        },
+        {
+          question: '¿La sesión de diagnóstico tiene algún costo?',
+          answer: 'No. La primera sesión de 30 minutos es completamente gratuita y sin compromiso. Sirve para entender tu situación, definir objetivos y ver si tiene sentido trabajar juntos.',
+        },
+      ],
     },
     
     footer: {
@@ -407,9 +447,10 @@ export const translations: Record<Language, Translations> = {
       navLinks: {
         sobreMi: 'Sobre mí',
         servicios: 'Servicios',
-        metodo: 'Mi Método',
+        metodo: '¡Tenes que vivirlo!',
         testimonios: 'Testimonios',
         precios: 'Precios',
+        preguntasFrecuentes: 'Preguntas Frecuentes',
       },
       rights: 'Todos los derechos reservados.',
     },
@@ -419,10 +460,11 @@ export const translations: Record<Language, Translations> = {
     nav: {
       sobreMi: 'About me',
       servicios: 'Services',
-      metodo: 'My Method',
+      metodo: 'You have to experience it!',
       testimonios: 'Testimonials',
       precios: 'Pricing',
       sesionGratuita: 'Free session',
+      preguntasFrecuentes: 'FAQ',
     },
     
     hero: {
@@ -438,9 +480,9 @@ export const translations: Record<Language, Translations> = {
       title1: 'From technology',
       title2: 'to transforming',
       title3: 'organizations.',
-      intro: "I'm Fernando, with over 20 years in technology and 11+ years as an independent agile consultant. I went from managing servers to leading operations and transforming organizational cultures in startups and tech companies.",
-      approach: 'My approach combines agile methodologies, strategic leadership, and a human-centric approach. I don\'t tell you what to do — I accompany you to build autonomous teams, scalable processes, and a culture that drives results.',
-      certificaciones: 'International certifications',
+      intro: "I'm Fernando. Over 20 years in technology and 11+ as an independent agile consultant. I started fixing computers, went through server administration, and today I lead operations and accompany cultural transformations in startups and tech companies. My approach combines agile methodologies, strategic leadership, and a perspective where people come first. I don't tell you what to do — I accompany you to build autonomous teams, scalable processes, and a culture that drives results.",
+      approach: '',
+      certificaciones: 'Verifiable international certifications',
       stats: {
         tecnologia: 'Years in technology',
         coaching: 'Years of agile coaching',
@@ -491,11 +533,12 @@ export const translations: Record<Language, Translations> = {
     },
     
     process: {
-      badge: 'My Method',
-      title: '4 steps towards',
-      title2: '',
-      title3: 'transformation',
+      badge: 'You have to experience it!',
+      title: 'These are my 4 steps towards',
+      title2: 'positive transformation',
+      title3: '',
       subtitle: 'A structured but flexible process, adapted to your reality and specific objectives.',
+      linkedinButton: 'View certifications on LinkedIn',
       steps: {
         diagnostico: {
           title: 'Diagnosis',
@@ -618,8 +661,32 @@ export const translations: Record<Language, Translations> = {
       },
       success: {
         title: 'Message sent!',
-        message: 'Thank you for contacting me. I will respond within 24 business hours.',
+        message: 'Thank you for contacting me. I will respond within 24 business hours. Take advantage to schedule your day and time.',
       },
+    },
+    
+    faq: {
+      badge: 'Frequently Asked Questions',
+      title: 'Resolve your',
+      title2: 'doubts',
+      items: [
+        {
+          question: 'Who is this service for?',
+          answer: 'For tech leaders, startup founders, CTOs, and managers who feel their team could perform better, decisions are stuck, or culture doesn\'t scale at the same pace as the business.',
+        },
+        {
+          question: 'What is the difference between coaching and consulting?',
+          answer: 'Coaching helps you find your own answers and develop leadership skills. Consulting provides frameworks, processes, and concrete strategies. My approach combines both based on what you need.',
+        },
+        {
+          question: 'How long does a typical process last?',
+          answer: 'Individual coaching usually lasts between 8-12 sessions (2-3 months). Organizational consulting varies depending on complexity, but first results are seen in the first 4-6 weeks.',
+        },
+        {
+          question: 'Is there any cost for the diagnosis session?',
+          answer: 'No. The first 30-minute session is completely free and without commitment. It serves to understand your situation, define objectives, and see if it makes sense to work together.',
+        },
+      ],
     },
     
     footer: {
@@ -627,9 +694,10 @@ export const translations: Record<Language, Translations> = {
       navLinks: {
         sobreMi: 'About me',
         servicios: 'Services',
-        metodo: 'My Method',
+        metodo: 'You have to experience it!',
         testimonios: 'Testimonials',
         precios: 'Pricing',
+        preguntasFrecuentes: 'FAQ',
       },
       rights: 'All rights reserved.',
     },

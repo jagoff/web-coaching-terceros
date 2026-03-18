@@ -15,7 +15,7 @@ const slideRight = {
   visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.9, delay: 0.15 } },
 };
 
-export default function ContactNetlify() {
+export default function ContactFormspree() {
   const { language } = useLanguage();
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -93,18 +93,21 @@ export default function ContactNetlify() {
     setApiError("");
 
     try {
-      // Netlify Forms configuration
-      const formEndpoint = "/";
-      
-      const formData = new FormData();
-      formData.append("form-name", "contact");
-      formData.append("nombre", form.nombre);
-      formData.append("email", form.email);
-      formData.append("mensaje", form.mensaje);
+      // Formspree configuration
+      const formEndpoint = "https://formspree.io/f/mnjgjjon";
       
       const response = await fetch(formEndpoint, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.nombre,
+          email: form.email,
+          message: form.mensaje,
+          _subject: `Nuevo contacto desde web: ${form.nombre}`,
+        }),
       });
 
       if (response.ok) {
@@ -156,7 +159,7 @@ export default function ContactNetlify() {
                     className="flex flex-col items-center justify-center text-center py-8 gap-6"
                   >
                     <div className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
-                      style={{ background: "rgba(124,107,196,0.15)", border: "1px solid var(--gold-primary)" }}>
+                      style={{ background: "rgba(34, 197, 94, 0.15)", border: "1px solid rgba(34, 197, 94, 0.3)" }}>
                       <CheckCircle2 size={28} style={{ color: "#22c55e" }} />
                     </div>
                     <h3 className="heading-md" style={{ fontFamily: "var(--font-heading)" }}>
@@ -171,8 +174,6 @@ export default function ContactNetlify() {
                   </motion.div>
                 ) : (
                   <motion.form key="form" onSubmit={sendEmail} noValidate className="space-y-6 sm:space-y-7">
-                    <input type="hidden" name="form-name" value="contact" />
-                    
                     {/* Name */}
                     <div className="form-group">
                       <label htmlFor="nombre" className="form-label">
@@ -326,7 +327,7 @@ export default function ContactNetlify() {
                     )}
 
                     <p className="text-xs text-center" style={{ color: "var(--text-muted)" }}>
-                      {language === 'es' ? 'Respondo en menos de 24h. Tus datos están seguros.' : 'I respond within 24h. Your data is secure.'}
+                      {language === 'es' ? 'Pronto nos estaremos comunicando.' : 'We will contact you soon.'}
                     </p>
                   </motion.form>
                 )}

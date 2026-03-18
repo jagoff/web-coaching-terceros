@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Instagram, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
 import Image from "next/image";
 
 const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
@@ -70,7 +70,7 @@ export default function InstagramCarousel() {
   };
 
   const handleImageClick = () => {
-    window.open(`https://www.instagram.com/p/C${currentImage}.../`, '_blank');
+    // No hacer nada - las imágenes ya no redirigen a Instagram
   };
 
   // Keyboard navigation
@@ -122,24 +122,15 @@ export default function InstagramCarousel() {
             >
               <Image
                 src={`/insta-${currentImage}.png`}
-                alt={`Post de Instagram @jago_ff - ${currentImage}`}
+                alt={`Post de Instagram @ferf.coach - ${currentImage}`}
                 fill
                 className="object-cover select-none"
                 draggable={false}
-                onClick={handleImageClick}
                 style={{ 
                   filter: isDragging ? "brightness(0.9)" : "brightness(1)",
                   cursor: isDragging ? "grabbing" : "grab"
                 }}
               />
-              
-              {/* Overlay con info */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white text-sm font-medium">Ver en Instagram</p>
-                  <p className="text-white/80 text-xs">@jago_ff</p>
-                </div>
-              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -176,14 +167,18 @@ export default function InstagramCarousel() {
           <ChevronRight size={16} />
         </button>
 
-        {/* Instagram link */}
-        <div className="flex items-center justify-between mt-4">
+        {/* Instagram info - con links */}
+        <div className="flex items-center justify-end mt-4">
           <a
-            href="https://www.instagram.com/jago_ff"
+            href="https://www.instagram.com/ferf.coach/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 group"
           >
+            <div>
+              <p className="text-xs font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
+            </div>
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
               style={{
@@ -193,20 +188,6 @@ export default function InstagramCarousel() {
             >
               <Instagram size={14} style={{ color: "var(--gold-primary)" }} />
             </div>
-            <div>
-              <p className="text-xs font-semibold" style={{ color: "var(--text-primary)" }}>@jago_ff</p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Seguime en Instagram</p>
-            </div>
-          </a>
-          <a
-            href="https://www.instagram.com/jago_ff"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary inline-flex items-center gap-1"
-            style={{ padding: "0.25rem 0.75rem", fontSize: "0.625rem" }}
-          >
-            Seguime
-            <ExternalLink size={10} />
           </a>
         </div>
       </div>
@@ -217,17 +198,16 @@ export default function InstagramCarousel() {
           {instagramImages.map((postNum, i) => (
             <div
               key={postNum}
-              className="relative rounded-lg overflow-hidden cursor-pointer group"
+              className="relative rounded-lg overflow-hidden group"
               style={{
                 aspectRatio: "1/1",
                 border: "1px solid rgba(167,139,250,0.12)",
                 backgroundColor: "rgba(19,18,27,0.6)",
               }}
-              onClick={() => window.open(`https://www.instagram.com/p/C${postNum}.../`, '_blank')}
             >
               <Image
                 src={`/insta-${postNum}.png`}
-                alt={`Post de Instagram @jago_ff - ${postNum}`}
+                alt={`Post de Instagram @ferf.coach - ${postNum}`}
                 fill
                 className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
                 style={{ 
@@ -244,6 +224,30 @@ export default function InstagramCarousel() {
               />
             </div>
           ))}
+        </div>
+        
+        {/* Instagram info para desktop - con link */}
+        <div className="flex items-center justify-center mt-6">
+          <a
+            href="https://www.instagram.com/ferf.coach/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 group"
+          >
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-105"
+              style={{
+                background: "rgba(167,139,250,0.08)",
+                border: "1px solid rgba(167,139,250,0.25)",
+              }}
+            >
+              <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
+            </div>
+            <div>
+              <p className="text-sm font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
+            </div>
+          </a>
         </div>
       </div>
     </div>

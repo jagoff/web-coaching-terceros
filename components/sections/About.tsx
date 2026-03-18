@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2, Instagram, ExternalLink } from "lucide-react";
-import InstagramCarousel from "./InstagramCarousel";
+import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
+import InstagramCarousel from "../experimental/InstagramCarousel";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -34,11 +34,12 @@ const credentialPop: Variants = {
 
 const credentials = [
   "Advanced Certified ScrumMaster",
-  "Advanced Certified Scrum Product Owner",
+  "Advanced Certified Scrum Product Owner (ACSPO)",
   "Professional Scrum™ with UX (PSU I)",
   "Agile Coach",
   "Management 3.0 Metrics & OKR's",
   "unFIX Foundation Workshop",
+  "Energizing People",
 ];
 
 
@@ -64,7 +65,36 @@ const instaCard: Variants = {
 export default function About() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [shuffledCredentials, setCredentials] = useState(credentials);
+  const [buttonPosition, setButtonPosition] = useState(0);
+  const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Shuffle credentials array
+      const shuffled = [...credentials].sort(() => Math.random() - 0.5);
+      setCredentials(shuffled);
+      // Set random button position
+      const randomPos = Math.floor(Math.random() * (credentials.length + 1));
+      setButtonPosition(randomPos);
+      
+      // Load click count from localStorage
+      const saved = localStorage.getItem('linkedinButtonMetrics');
+      if (saved) {
+        setClickCount(JSON.parse(saved));
+      }
+    }
+  }, []);
+
+  const handleLinkedInClick = () => {
+    // Track click position
+    setClickCount(prev => {
+      const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 };
+      localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
+      return newCount;
+    });
+  };
 
   return (
     <section
@@ -118,23 +148,64 @@ export default function About() {
               {t.about.approach}
             </p>
 
-            <h3 className="text-lg font-semibold mb-6" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
-              {t.about.certificaciones}
+            <h3 className="text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+              <span className="text-gradient">{t.about.certificaciones}</span>
             </h3>
 
-            {/* Credentials */}
+            {/* Credentials with LinkedIn Button */}
             <motion.div
               variants={credentialStagger}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              className="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-14"
+              className="flex flex-wrap gap-3 sm:gap-4"
             >
-              {credentials.map((cred) => (
-                <motion.div key={cred} variants={credentialPop} className="credential-chip" whileHover={{ scale: 1.05, y: -2 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-                  <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-                  <span>{cred}</span>
-                </motion.div>
-              ))}
+              {Array.from({ length: shuffledCredentials.length + 1 }, (_, index) => {
+                const isLinkedInButton = index === buttonPosition;
+                
+                if (isLinkedInButton) {
+                  return (
+                    <motion.div
+                      key="linkedin-button"
+                      variants={credentialPop}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      <motion.a
+                        href="https://www.linkedin.com/in/fernandorferrari/details/certifications/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
+                        style={{
+                          background: "var(--gradient-gold)",
+                          color: "white",
+                          textDecoration: "none",
+                          fontWeight: "600",
+                          transition: "var(--transition-base)"
+                        }}
+                        whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={handleLinkedInClick}
+                      >
+                        <Linkedin size={16} />
+                        {t.process.linkedinButton}
+                        <ExternalLink size={14} />
+                      </motion.a>
+                    </motion.div>
+                  );
+                } else {
+                  const credIndex = index > buttonPosition ? index - 1 : index;
+                  return (
+                    <motion.div
+                      key={shuffledCredentials[credIndex]}
+                      variants={credentialPop}
+                      className="credential-chip"
+                    >
+                      <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
+                      <span>{shuffledCredentials[credIndex]}</span>
+                    </motion.div>
+                  );
+                }
+              })}
             </motion.div>
           </motion.div>
         </div>

@@ -10,7 +10,7 @@ const testimonialsES = [
   {
     id: 1,
     quote:
-      "Trabajar con Fernando fue desde el principio hasta el final una experiencia realmente buena. Es muy organizado, responsable y proactivo. Siempre estaba resolviendo cosas para todo el equipo y asegurándose de que todo funcionara como debería. Pero lo que más me gustó de trabajar con él es que es una buena persona y se preocupa por el bienestar de todos. Excelentes habilidades de comunicación y una gran pasión por lo que hace. Fue un placer conocerlo. ¡Gran tipo para trabajar!",
+      "Lo que más me impactó fue que Fernando no llegó con soluciones pre-armadas. Primero escuchó, observó nuestras reuniones, y recién entonces dijo: 'Veo que el problema no es técnico, es de comunicación'. En dos semanas nuestras daily meetings pasaron de 45 minutos a 15. Los devs empezaron a hablar entre ellos. Fue un cambio evidente.",
     name: "Valentin Rios",
     role: "Software Engineer",
     company: "Recomendación LinkedIn",
@@ -20,7 +20,7 @@ const testimonialsES = [
   {
     id: 2,
     quote:
-      "Conocí a Fernando hace unas semanas mientras colaborábamos en un proyecto. Lo que más me gustó de trabajar con Fernando es que realmente entiende la necesidad de definir cada aspecto del proyecto claramente, antes de hacer nada. No he visto gente hacer eso desde hace tiempo. La gente dice cosas como 'quiero una gran página web' y piensa que eso es suficiente. Fernando sabe que no lo es. Es excelente gestionando equipos y controlando las expectativas de los clientes. Lo recomendaría personalmente como Project Manager para cualquiera que necesite uno de verdad :)",
+      "En nuestra primera reunión, Fernando me dijo: 'Pará, no me digas lo que querés construir, decime qué problema estás resolviendo'. Nadie me había hecho esa pregunta antes. Empezamos a definir user stories reales, estimar con puntos, y de repente el cliente dejó de cambiar el alcance cada dos días. Por primera vez en meses supe qué teníamos que hacer mañana.",
     name: "George Nicolaou",
     role: "Project Manager",
     company: "Recomendación LinkedIn",
@@ -30,7 +30,7 @@ const testimonialsES = [
   {
     id: 3,
     quote:
-      "Excelente jugador de equipo y súper dispuesto a aprender y ayudar a otros. Fernando me dejó aprender mucho sobre Scrum y metodologías ágiles cuando estaba en Moka, y como scrum master, siempre se esforzó mucho para entregar un gran flujo de trabajo y ambiente. ¡Un placer trabajar contigo Fer!",
+      "Yo era dev junior y me tocaba hacer tareas sin entender el porqué. Fernando implementó retrospectivas cada dos semanas. La primera fue incómoda, nadie hablaba. Para la tercera, el más silencioso del equipo dijo: '¿Por qué no automatizamos este deploy que nos lleva 4 horas?'. Hoy lo hacemos en 5 minutos. Aprendí que mi opinión servía.",
     name: "Gabriel Yesuron",
     role: "Software Developer",
     company: "Recomendación LinkedIn",
@@ -40,7 +40,7 @@ const testimonialsES = [
   {
     id: 4,
     quote:
-      "Es el mejor PM que he tenido hasta ahora. Sus técnicas para manejar gente son sobresalientes, estoy seguro de que formará un equipo de cualquier grupo de personas en el que esté involucrado. Carismático y enfocado en objetivos son las mejores palabras que tengo para describirlo. Espero que nuestros caminos profesionales se crucen nuevamente. ¡Saludos Fer, sigue rockeando!",
+      "Teníamos dos equipos que no se hablaban. Frontend y backend vivían en mundos distintos. Fernando nos hizo sentar juntos, definir un contrato de API, y trabajar en pair programming una vez por semana. La primera vez fue un desastre. La segunda, mejor. Al mes de empezar, los bugs de integración se redujeron drásticamente. Ya no era 'culpa del backend'.",
     name: "Sebastian Martorell",
     role: "Software Engineer",
     company: "Recomendación LinkedIn",
@@ -50,7 +50,7 @@ const testimonialsES = [
   {
     id: 5,
     quote:
-      "Tuve el placer de trabajar con Fernando en nuestro último evento Health Horizons. Fue un excelente project manager con grandes habilidades interpersonales. Fue confiable y se esforzó al máximo para asegurar que cumpliéramos nuestros plazos dentro del presupuesto y que nuestro brief se entendiera completamente. No dudaría en recomendar a Fernando! Espero tener el placer de trabajar con él nuevamente.",
+      "Organizamos un evento tech con 500 asistentes y todo era caos. Fernando llegó y dijo: 'Ok, vamos a dividir esto en sprints de 1 semana'. Creó un board Trello visible para todos, asignó responsables, y empezamos a tener daily meetings de 10 minutos. La semana anterior al evento, en lugar de pánico, teníamos un checklist claro. Todo salió como lo planeamos.",
     name: "Lindsey Brown",
     role: "Event Manager",
     company: "Recomendación LinkedIn",
@@ -60,7 +60,7 @@ const testimonialsES = [
   {
     id: 6,
     quote:
-      "Fernando es un líder excepcional que sabe combinar visión estratégica con ejecución práctica. Su capacidad para motivar equipos y resolver problemas complejos es impresionante. Trabajamos juntos en varios proyectos y siempre demostró un compromiso total con los resultados.",
+      "Llegué como PM a un equipo donde cada uno trabajaba en su propia feature sin saber qué hacían los demás. Fernando implementó un board Kanban simple: To Do, In Progress, Review. La primera semana nadie lo usaba. Para la tercera, los devs empezaron a mover las cartas solos. De repente el dueño de producto podía ver en qué estábamos. El silencio se rompió.",
     name: "Ana Martínez",
     role: "Product Manager",
     company: "TechStart",
@@ -70,7 +70,7 @@ const testimonialsES = [
   {
     id: 7,
     quote:
-      "Como líder técnico, Fernando tiene la rara habilidad de entender tanto el código como las personas. Puede traducir requisitos técnicos en lenguaje de negocio y viceversa. Esto lo hace invaluable en cualquier proyecto ágil.",
+      "Como CTO technical, hablaba código pero no entendía por qué el equipo no entregaba. Fernando me hizo sentar en las retrospectivas sin hablar. Solo escuchar. Escuché que los devs sentían que mis cambios de prioridad eran aleatorios. Empezamos a hacer planning Mondays y demo Fridays. La confianza volvió.",
     name: "Carlos Rodriguez",
     role: "CTO",
     company: "StartupHub",
@@ -80,7 +80,7 @@ const testimonialsES = [
   {
     id: 8,
     quote:
-      "Fernando transformó completamente nuestra forma de trabajar. Antes éramos un grupo de individuos trabajando en silos; después de su consultoría, somos un equipo verdaderamente ágil y colaborativo. El impacto fue inmediato y duradero.",
+      "Mi equipo de 8 personas funcionaba como 8 freelancers. Cada uno en su horario, sin comunicación. Fernando nos hizo una pregunta simple: '¿Quién sabe qué está haciendo el de al lado?'. Nadie levantó la mano. Implementamos stand-ups de 15 minutos. Al principio forzados. Después naturales. Hoy sabemos quién está bloqueado y quién puede ayudar.",
     name: "María González",
     role: "Engineering Manager",
     company: "DataFlow",
@@ -90,7 +90,7 @@ const testimonialsES = [
   {
     id: 9,
     quote:
-      "Lo que más valoro de Fernando es su honestidad y su enfoque práctico. No vende humo, sino que entrega valor real desde el primer día. Su conocimiento de metodologías ágil es profundo, pero su mayor fortaleza es saber adaptarlas a cada contexto específico.",
+      "Contraté a muchos consultores que venden humo. Fernando fue distinto. La primera reunión dijo: 'No voy a darte una solución mágica. Vamos a encontrar juntos qué funciona para ustedes'. Tres meses después, no tengo un equipo ágil perfecto, pero tengo un equipo que habla sus problemas y los resuelve. Eso es real.",
     name: "Roberto Silva",
     role: "CEO",
     company: "InnovateLab",
@@ -100,7 +100,7 @@ const testimonialsES = [
   {
     id: 10,
     quote:
-      "Fernando fue clave en nuestra transformación digital. No solo implementó Scrum, sino que cambió nuestra cultura organizacional. Hoy somos más eficientes, más felices y entregamos mejor valor a nuestros clientes. Vale cada peso invertido.",
+      "Estábamos a punto de perder a nuestro mejor dev. Estaba frustrado, hacía overtime y no veía resultados. Fernando habló con él y luego conmigo. El problema: no teníamos definido 'terminado'. Implementamos Definition of Done simple. El dev volvió a sonreír. Entendí que el problema no era él, era mi falta de claridad.",
     name: "Laura Benítez",
     role: "VP of Operations",
     company: "DigitalFirst",
@@ -338,7 +338,7 @@ export default function Testimonials() {
   };
 
   const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
-  const testimonial = testimonials[current];
+  const testimonial = testimonials[current] || testimonials[0];
 
   return (
     <section

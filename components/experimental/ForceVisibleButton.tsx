@@ -22,9 +22,9 @@ export default function ForceVisibleButton() {
         right: '20px',
         zIndex: 2147483647, // Maximum possible z-index
         display: 'block !important',
-        visibility: 'visible !important',
+        visibility: 'visible' as any,
         opacity: '1 !important',
-        pointerEvents: 'auto !important',
+        pointerEvents: 'auto' as any,
         background: '#FF0000',
         padding: '40px',
         borderRadius: '20px',
@@ -35,7 +35,7 @@ export default function ForceVisibleButton() {
         clip: 'auto !important',
         clipPath: 'none !important',
         mask: 'none !important',
-        webkitMask: 'none !important'
+        WebkitMask: 'none !important' as any
       }}
       onClick={() => {
         console.log('FORCE VISIBLE BUTTON CLICKED!');
@@ -49,7 +49,7 @@ export default function ForceVisibleButton() {
         textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
         marginBottom: '20px',
         display: 'block !important',
-        visibility: 'visible !important'
+        visibility: 'visible' as any
       }}>
         🚨 FORCE VISIBLE 🚨
       </div>
@@ -59,7 +59,7 @@ export default function ForceVisibleButton() {
         fontWeight: 'bold',
         marginBottom: '30px',
         display: 'block !important',
-        visibility: 'visible !important'
+        visibility: 'visible' as any
       }}>
         This button CANNOT be hidden by CSS
       </div>
@@ -72,7 +72,7 @@ export default function ForceVisibleButton() {
         fontWeight: '900',
         cursor: 'pointer',
         display: 'inline-block !important',
-        visibility: 'visible !important',
+        visibility: 'visible' as any,
         border: '4px solid #FFFF00'
       }}>
         🎯 CLICK ME!
