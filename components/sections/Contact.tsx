@@ -368,7 +368,7 @@ export default function Contact() {
                           type="text"
                           autoComplete="name"
                           placeholder={t.contact.form.nombre.placeholder}
-                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
+                          className={`form-input transition-all duration-200 ${
                             getFieldStatus('nombre') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('nombre') === 'error' ? 'border-red-500 bg-red-50/10' : 
                             'border-gray-600'
@@ -426,7 +426,7 @@ export default function Contact() {
                           type="email"
                           autoComplete="email"
                           placeholder={t.contact.form.email.placeholder}
-                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
+                          className={`form-input transition-all duration-200 ${
                             getFieldStatus('email') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('email') === 'error' ? 'border-red-500 bg-red-50/10' : 
                             'border-gray-600'
@@ -479,7 +479,7 @@ export default function Contact() {
                         <textarea
                           id="mensaje"
                           name="mensaje"
-                          className={`form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px] pr-12 transition-all duration-200 ${
+                          className={`form-input form-textarea transition-all duration-200 ${
                             getFieldStatus('mensaje') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('mensaje') === 'error' ? 'border-red-500 bg-red-50/10' : 
                             'border-gray-600'

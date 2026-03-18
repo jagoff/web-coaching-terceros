@@ -382,7 +382,7 @@ export default function Testimonials() {
         >
           <div
             className="testimonial-card relative overflow-hidden flex flex-col justify-between"
-            style={{ minHeight: '400px', height: '400px' }}
+            style={{ minHeight: '350px', maxHeight: '500px', height: 'auto' }}
           >
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div

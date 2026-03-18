@@ -217,7 +217,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07, duration: 0.3 }}
-                  className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
+                  className="text-center py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
                   style={{
                     borderBottom: "1px solid var(--dark-border)",
                     fontFamily: "var(--font-heading)",
@@ -230,37 +230,13 @@ export default function Navbar() {
             </nav>
 
             {/* Mobile CTA Button */}
-            <div className="px-8 pb-6">
+            <div className="px-8 pb-8">
               <button
                 className="btn-primary w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
               </button>
-            </div>
-
-            {/* Language Toggle */}
-            <div className="px-8 pb-8">
-              <div className="flex justify-center">
-                <button
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl border-2"
-                  style={{
-                    background: "rgba(124,107,196,0.25)",
-                    borderColor: "rgba(124,107,196,0.6)",
-                    color: "#7C6BC4",
-                    fontSize: "16px",
-                    fontWeight: "700",
-                    boxShadow: "0 4px 16px rgba(124,107,196,0.4)",
-                    textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-                    minWidth: "140px",
-                    height: "56px"
-                  }}
-                  onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-                >
-                  <span style={{ fontSize: "20px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                  <span style={{ fontSize: "14px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
-                </button>
-              </div>
             </div>
           </motion.div>
         )}
