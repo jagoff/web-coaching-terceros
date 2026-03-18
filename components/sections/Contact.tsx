@@ -535,7 +535,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className={`btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 rounded-lg ${
+                      className={`btn-primary w-full !mt-8 transition-all duration-200 rounded-lg ${
                         status === "loading" ? "opacity-75 cursor-not-allowed" : 
                         Object.keys(errors).length === 0 && Object.values(form).every(v => v.trim()) ? "animate-glow" : 
                         ""

@@ -342,7 +342,7 @@ export default function Hero() {
             <span className="block">
               {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
             </span>
-            <span className="block text-gradient mt-3">
+            <span className="block text-gradient mt-3" data-text={language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}>
               {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
             </span>
             <span className="block mt-3">

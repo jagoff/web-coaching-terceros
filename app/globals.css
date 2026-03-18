@@ -397,11 +397,61 @@ p {
   }
 }
 
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .text-gradient {
+    background: none;
+    color: #D4CAD8;
+    -webkit-text-fill-color: #D4CAD8;
+  }
+  
+  .btn-secondary {
+    background: rgba(139, 122, 210, 0.15);
+    border-color: rgba(212, 202, 216, 0.8);
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #FFFFFF;
+    --text-secondary: #E8E0F0;
+    --text-muted: #C8B8D8;
+    --gold-primary: #9B8AE2;
+    --gold-border: rgba(155, 138, 226, 0.4);
+  }
+  
+  .text-gradient {
+    background: none;
+    color: #E8E0F0;
+    -webkit-text-fill-color: #E8E0F0;
+  }
+  
+  .btn-secondary {
+    background: rgba(155, 138, 226, 0.2);
+    border-color: #9B8AE2;
+    color: #FFFFFF;
+  }
+  
+  .badge {
+    background: rgba(155, 138, 226, 0.3);
+    border-color: #9B8AE2;
+    color: #FFFFFF;
+  }
+}
+
 /* ============================================================
    MOBILE PERFORMANCE OPTIMIZATIONS
    ============================================================ */
 
-/* Reduce animations on mobile for better performance */
+/* Mobile performance optimizations - Enhanced */
 @media (max-width: 640px) {
   /* Disable or reduce complex animations */
   .motion-div,
@@ -415,28 +465,29 @@ p {
     transform: none !important;
   }
   
-  /* Optimize particle effects */
+  /* Optimize particle effects - Better visibility */
   .particle {
-    opacity: 0.3 !important;
+    opacity: 0.6 !important;
     animation: none !important;
   }
   
-  /* Reduce glow effects */
+  /* Reduce glow effects but maintain visibility */
   .animate-glow {
     animation: none !important;
     background: var(--cta-primary) !important;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4) !important;
   }
   
-  /* Optimize backdrop filters */
+  /* Optimize backdrop filters - Keep some effects */
   .glass-card {
-    backdrop-filter: none !important;
-    background: rgba(19, 18, 27, 0.9) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    background: rgba(19, 18, 27, 0.85) !important;
   }
   
-  /* Reduce complex gradients */
+  /* Simplify gradients for better performance */
   .text-gradient {
-    background: linear-gradient(90deg, var(--gold-primary), var(--amber-primary)) !important;
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light)) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
   }
@@ -463,6 +514,17 @@ p {
   .orb {
     transform: translateZ(0);
     will-change: opacity;
+  }
+  
+  /* Improve mobile form inputs */
+  .form-input {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    min-height: 48px;
+  }
+  
+  .form-textarea {
+    font-size: 16px !important;
+    min-height: 120px;
   }
 }
 

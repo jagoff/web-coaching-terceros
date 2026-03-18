@@ -1,0 +1,609 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation "Navegación principal" [ref=e2]:
+    - generic [ref=e4]:
+      - link "ELEVA CONSULTORA — inicio" [ref=e5] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e6]: ELEVA
+        - generic [ref=e7]: CONSULTORA
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - button "Sobre mí" [ref=e10] [cursor=pointer]
+        - listitem [ref=e11]:
+          - button "Servicios" [ref=e12] [cursor=pointer]
+        - listitem [ref=e13]:
+          - button "Testimonios" [ref=e14] [cursor=pointer]
+        - listitem [ref=e15]:
+          - button "Preguntas Frecuentes" [ref=e16] [cursor=pointer]
+      - generic [ref=e17]:
+        - button "🇺🇸 EN" [ref=e18]:
+          - generic [ref=e19]: 🇺🇸
+          - generic [ref=e20]: EN
+        - button "Sesión gratuita" [ref=e21] [cursor=pointer]
+  - link "Contactar por WhatsApp" [ref=e23] [cursor=pointer]:
+    - /url: https://wa.me/5493425153999?text=Hola%20Fernando%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20tu%20servicio%20de%20coaching%2Fconsultor%C3%ADa.%20Vi%20tu%20web%20y%20quiero%20agendar%20la%20sesi%C3%B3n%20gratuita.
+    - img [ref=e24]
+  - main [ref=e26]:
+    - region "Sección principal" [ref=e27]:
+      - generic:
+        - generic: ESCALABILIDAD
+        - generic: CRECIMIENTO
+        - generic: LIDERAZGO
+        - generic: RESILIENCIA
+        - generic: TRANSFORMACIÓN
+        - generic: AUTONOMÍA
+        - generic: CONEXIÓN
+        - generic: EQUILIBRIO
+        - generic: ESCALABILIDAD
+        - generic: RESILIENCIA
+        - generic: CONFIANZA
+        - generic: PODER
+        - generic: FOCO
+        - generic: FOCO
+        - generic: CONEXIÓN
+        - generic: CONFIANZA
+        - generic: ESCALABILIDAD
+        - generic: SINERGIA
+        - generic: EQUILIBRIO
+        - generic: CRECIMIENTO
+      - generic [ref=e29]:
+        - heading "Transformá tu equipo. Liderá con propósito. Escalá sin límites." [level=1] [ref=e30]:
+          - generic [ref=e31]: Transformá tu equipo.
+          - generic [ref=e32]: Liderá con propósito.
+          - generic [ref=e33]: Escalá sin límites.
+        - generic [ref=e35]:
+          - paragraph [ref=e37]: ¿Te suena esto?
+          - paragraph [ref=e38]: “Trabajamos mucho pero los resultados no se ven”
+        - paragraph [ref=e39]: Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.
+        - generic [ref=e40]:
+          - button "Agendá tu sesión gratuita →" [ref=e41] [cursor=pointer]
+          - button "Conocé nuestro método ↓" [ref=e42] [cursor=pointer]
+        - paragraph [ref=e44]: Más de 20 años en tecnología · 11+ años de consultoría
+      - button "Desplazarse hacia abajo" [ref=e45] [cursor=pointer]
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e53]: Sobre mí
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - img "Post de Instagram @ferf.coach - 6" [ref=e58]
+            - img "Post de Instagram @ferf.coach - 4" [ref=e60]
+            - img "Post de Instagram @ferf.coach - 11" [ref=e62]
+            - img "Post de Instagram @ferf.coach - 2" [ref=e64]
+            - img "Post de Instagram @ferf.coach - 5" [ref=e66]
+            - img "Post de Instagram @ferf.coach - 1" [ref=e68]
+            - img "Post de Instagram @ferf.coach - 7" [ref=e70]
+            - img "Post de Instagram @ferf.coach - 8" [ref=e72]
+            - img "Post de Instagram @ferf.coach - 9" [ref=e74]
+          - link "@ferf.coach Instagram" [ref=e76] [cursor=pointer]:
+            - /url: https://www.instagram.com/ferf.coach/
+            - img [ref=e78]
+            - generic [ref=e81]:
+              - paragraph [ref=e82]: "@ferf.coach"
+              - paragraph [ref=e83]: Instagram
+      - generic [ref=e84]:
+        - heading "De la tecnología a transformar organizaciones." [level=2] [ref=e85]:
+          - generic [ref=e86]: De la tecnología
+          - text: a transformar
+          - text: organizaciones.
+        - paragraph [ref=e87]: Soy Fernando. Más de 20 años en tecnología y 11+ como consultor ágil independiente. Empecé arreglando computadoras, pasé por administración de servidores, y hoy lidero operaciones y acompaño transformaciones culturales en startups y empresas tech. Mi enfoque combina metodologías ágiles, liderazgo estratégico y una mirada donde las personas van primero. No te digo qué hacer — te acompaño a construir equipos autónomos, procesos escalables y una cultura que impulse resultados.
+        - paragraph
+        - heading "Certificaciones internacionales comprobables" [level=3] [ref=e88]
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - img [ref=e91]
+            - generic [ref=e94]: Agile Coach
+          - generic [ref=e95]:
+            - img [ref=e96]
+            - generic [ref=e99]: Energizing People
+          - generic [ref=e100]:
+            - img [ref=e101]
+            - generic [ref=e104]: Management 3.0 Metrics & OKR's
+          - generic [ref=e105]:
+            - img [ref=e106]
+            - text: Ver certificaciones en LinkedIn
+            - img [ref=e110]
+          - generic [ref=e114]:
+            - img [ref=e115]
+            - generic [ref=e118]: unFIX Foundation Workshop
+          - generic [ref=e119]:
+            - img [ref=e120]
+            - generic [ref=e123]: Advanced Certified Scrum Product Owner (ACSPO)
+          - generic [ref=e124]:
+            - img [ref=e125]
+            - generic [ref=e128]: Advanced Certified ScrumMaster
+          - generic [ref=e129]:
+            - img [ref=e130]
+            - generic [ref=e133]: Professional Scrum™ with UX (PSU I)
+    - generic [ref=e135]:
+      - generic [ref=e136]:
+        - generic [ref=e138]: Servicios
+        - heading "Deja de apagar incendios" [level=2] [ref=e139]
+      - generic [ref=e140]:
+        - generic [ref=e141] [cursor=pointer]:
+          - img [ref=e144]
+          - heading "Coaching de Liderazgo" [level=3] [ref=e146]
+          - paragraph [ref=e147]: Para líderes y managers que quieren potenciar su impacto, desarrollar equipos de alto rendimiento y navegar la complejidad del entorno actual.
+          - list [ref=e148]:
+            - listitem [ref=e149]:
+              - img [ref=e150]
+              - generic [ref=e153]: Liderazgo situacional y adaptativo
+            - listitem [ref=e154]:
+              - img [ref=e155]
+              - generic [ref=e158]: Comunicación efectiva y feedback
+            - listitem [ref=e159]:
+              - img [ref=e160]
+              - generic [ref=e163]: Gestión de conflictos y negociación
+            - listitem [ref=e164]:
+              - img [ref=e165]
+              - generic [ref=e168]: Desarrollo de equipos autónomos
+            - listitem [ref=e169]:
+              - img [ref=e170]
+              - generic [ref=e173]: Inteligencia emocional y empatía
+          - button "Liderazgo situacional y adaptativo" [ref=e174]:
+            - text: Liderazgo situacional y adaptativo
+            - img [ref=e175]
+        - generic [ref=e177] [cursor=pointer]:
+          - generic [ref=e178]:
+            - img [ref=e180]
+            - generic [ref=e183]: MÁS SOLICITADO
+          - heading "Consultoría Organizacional" [level=3] [ref=e184]
+          - paragraph [ref=e185]: Para startups y empresas que necesitan profesionalizar operaciones, adoptar agilidad real y construir una cultura que escale junto con el negocio.
+          - list [ref=e186]:
+            - listitem [ref=e187]:
+              - img [ref=e188]
+              - generic [ref=e191]: Transformación ágil a medida
+            - listitem [ref=e192]:
+              - img [ref=e193]
+              - generic [ref=e196]: Diseño de procesos escalables
+            - listitem [ref=e197]:
+              - img [ref=e198]
+              - generic [ref=e201]: Estructura organizacional flexible
+            - listitem [ref=e202]:
+              - img [ref=e203]
+              - generic [ref=e206]: Métricas y KPIs significativos
+            - listitem [ref=e207]:
+              - img [ref=e208]
+              - generic [ref=e211]: Gestión del cambio cultural
+          - button "Transformación ágil a medida" [ref=e212]:
+            - text: Transformación ágil a medida
+            - img [ref=e213]
+    - generic [ref=e216]:
+      - generic [ref=e217]:
+        - generic [ref=e219]: ¡Tenes que vivirlo!
+        - heading "Estos son mis 4 pasos hacia la transformación positiva" [level=2] [ref=e220]
+        - paragraph [ref=e221]: Un proceso estructurado pero flexible, adaptado a tu realidad y objetivos específicos.
+      - generic [ref=e224]:
+        - generic [ref=e225]:
+          - generic: "01"
+          - img [ref=e227]
+          - heading "Diagnóstico" [level=3] [ref=e230]
+          - paragraph [ref=e231]: Analizamos tu organización, equipo o liderazgo actual. Identificamos fricciones, oportunidades y el punto de partida real.
+        - generic [ref=e232]:
+          - generic: "02"
+          - img [ref=e234]
+          - heading "Diseño" [level=3] [ref=e237]
+          - paragraph [ref=e238]: "Co-creamos una hoja de ruta a medida: objetivos claros, métricas de avance y estrategia ágil adaptada a tu contexto."
+        - generic [ref=e239]:
+          - generic: "03"
+          - img [ref=e241]
+          - heading "Ejecución" [level=3] [ref=e243]
+          - paragraph [ref=e244]: Sesiones de coaching y acompañamiento en el día a día. Iteramos, removemos impedimentos y mantenemos el foco.
+        - generic [ref=e245]:
+          - generic: "04"
+          - img [ref=e247]
+          - heading "Autonomía" [level=3] [ref=e249]
+          - paragraph [ref=e250]: Consolidamos prácticas, transferimos herramientas y construís la capacidad interna para seguir evolucionando sin depender de mí.
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e255]: Testimonios
+        - heading "Resultados que hablan solos" [level=2] [ref=e256]
+      - generic [ref=e257]:
+        - generic [ref=e259]:
+          - generic "5 estrellas" [ref=e260]:
+            - img [ref=e261]
+            - img [ref=e263]
+            - img [ref=e265]
+            - img [ref=e267]
+            - img [ref=e269]
+          - blockquote [ref=e271]: Como CTO technical, hablaba código pero no entendía por qué el equipo no entregaba. Fernando me hizo sentar en las retrospectivas sin hablar. Solo escuchar. Escuché que los devs sentían que mis cambios de prioridad eran aleatorios. Empezamos a hacer planning Mondays y demo Fridays. La confianza volvió.
+          - generic [ref=e272]:
+            - generic [ref=e274]: CR
+            - generic [ref=e275]:
+              - paragraph [ref=e276]: Carlos Rodriguez
+              - paragraph [ref=e277]: CTO · StartupHub
+        - generic [ref=e278]:
+          - generic [ref=e279]:
+            - button "Testimonio anterior" [ref=e280]:
+              - img [ref=e281]
+            - button "Siguiente testimonio" [ref=e283]:
+              - img [ref=e284]
+          - tablist "Indicadores de testimonio" [ref=e286]:
+            - tab "Testimonio 1" [ref=e287]
+            - tab "Testimonio 2" [ref=e288]
+            - tab "Testimonio 3" [ref=e289]
+            - tab "Testimonio 4" [ref=e290]
+            - tab "Testimonio 5" [ref=e291]
+            - tab "Testimonio 6" [ref=e292]
+            - tab "Testimonio 7" [selected] [ref=e293]
+            - tab "Testimonio 8" [ref=e294]
+            - tab "Testimonio 9" [ref=e295]
+            - tab "Testimonio 10" [ref=e296]
+            - tab "Testimonio 11" [ref=e297]
+            - tab "Testimonio 12" [ref=e298]
+            - tab "Testimonio 13" [ref=e299]
+            - tab "Testimonio 14" [ref=e300]
+            - tab "Testimonio 15" [ref=e301]
+            - tab "Testimonio 16" [ref=e302]
+            - tab "Testimonio 17" [ref=e303]
+            - tab "Testimonio 18" [ref=e304]
+            - tab "Testimonio 19" [ref=e305]
+            - tab "Testimonio 20" [ref=e306]
+            - tab "Testimonio 21" [ref=e307]
+            - tab "Testimonio 22" [ref=e308]
+            - tab "Testimonio 23" [ref=e309]
+          - paragraph [ref=e310]: 7 / 23
+    - generic [ref=e312]:
+      - generic [ref=e313]:
+        - generic [ref=e315]: Impacto Real
+        - heading "Transformación en Números" [level=2] [ref=e316]
+      - generic [ref=e317]:
+        - generic [ref=e318] [cursor=pointer]:
+          - generic [ref=e319]: "+0"
+          - heading "Años en tecnología" [level=3] [ref=e320]
+          - paragraph [ref=e321]: Desde infraestructura hasta liderazgo
+        - generic [ref=e322] [cursor=pointer]:
+          - generic [ref=e323]: 0+
+          - heading "Años de coaching ágil" [level=3] [ref=e324]
+          - paragraph [ref=e325]: Transformando startups y empresas tech
+        - generic [ref=e326] [cursor=pointer]:
+          - generic [ref=e327]: 0+
+          - heading "Certificaciones activas" [level=3] [ref=e328]
+          - paragraph [ref=e329]: Scrum, UX, Management 3.0, Security
+        - generic [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: "0"
+          - heading "Empresas co-fundadas" [level=3] [ref=e332]
+          - paragraph [ref=e333]: Moka, Nodok.AI, AyP
+      - generic [ref=e334]:
+        - paragraph [ref=e335]:
+          - text: Cada número representa experiencia real construyendo equipos y organizaciones.
+          - strong [ref=e336]: ¿Hablamos de tu próximo paso?
+        - button "Empezá tu transformación" [ref=e337] [cursor=pointer]:
+          - text: Empezá tu transformación
+          - img [ref=e338]
+    - generic [ref=e341]:
+      - generic [ref=e342]:
+        - generic [ref=e344]: CASOS DE ESTUDIO
+        - heading "Transformaciones Reales" [level=2] [ref=e345]
+        - paragraph [ref=e346]: No solo mejoramos procesos, transformamos culturas y generamos resultados medibles. Estos son ejemplos concretos de equipos que pasaron del caos a la autonomía.
+      - generic [ref=e347]:
+        - generic [ref=e348]:
+          - generic [ref=e349]:
+            - heading "NexoLab" [level=4] [ref=e350]
+            - paragraph [ref=e351]: Transformación Ágil
+            - paragraph [ref=e352]: "Qué se hizo: Implementación de Scrum real (no de manual)"
+            - paragraph [ref=e353]: CTO & Co-founder · 15 devs · 3 meses
+          - generic [ref=e354]:
+            - generic [ref=e355]:
+              - generic [ref=e356]:
+                - img [ref=e358]
+                - heading "ANTES" [level=5] [ref=e361]
+              - list [ref=e362]:
+                - listitem [ref=e363]:
+                  - generic [ref=e364]: •
+                  - generic [ref=e365]: Sin estructura de trabajo definida
+                - listitem [ref=e366]:
+                  - generic [ref=e367]: •
+                  - generic [ref=e368]: Entregas inconsistentes y fuera de tiempo
+                - listitem [ref=e369]:
+                  - generic [ref=e370]: •
+                  - generic [ref=e371]: Alta rotación de talento
+                - listitem [ref=e372]:
+                  - generic [ref=e373]: •
+                  - generic [ref=e374]: Comunicación fragmentada entre equipos
+            - generic [ref=e375]:
+              - generic [ref=e376]:
+                - img [ref=e378]
+                - heading "INTERVENCIÓN" [level=5] [ref=e383]
+              - list [ref=e384]:
+                - listitem [ref=e385]:
+                  - generic [ref=e386]: →
+                  - generic [ref=e387]: Implementación de Scrum real (no de manual)
+                - listitem [ref=e388]:
+                  - generic [ref=e389]: →
+                  - generic [ref=e390]: Definition of Done clara y medible
+                - listitem [ref=e391]:
+                  - generic [ref=e392]: →
+                  - generic [ref=e393]: Retrospectivas quincenales con acción concreta
+                - listitem [ref=e394]:
+                  - generic [ref=e395]: →
+                  - generic [ref=e396]: Daily meetings de 45→15 minutos
+            - generic [ref=e397]:
+              - generic [ref=e398]:
+                - img [ref=e400]
+                - heading "RESULTADOS" [level=5] [ref=e403]
+              - list [ref=e404]:
+                - listitem [ref=e405]:
+                  - generic [ref=e406]: ✓
+                  - generic [ref=e407]: Velocidad de entrega duplicada
+                - listitem [ref=e408]:
+                  - generic [ref=e409]: ✓
+                  - generic [ref=e410]: "Deploy automation: 4hs→5 minutos"
+                - listitem [ref=e411]:
+                  - generic [ref=e412]: ✓
+                  - generic [ref=e413]: Retención de talento +35%
+                - listitem [ref=e414]:
+                  - generic [ref=e415]: ✓
+                  - generic [ref=e416]: Equipos colaborativos vs silos
+          - button "Ver transformación completa" [ref=e418] [cursor=pointer]:
+            - text: Ver transformación completa
+            - img [ref=e419]
+        - generic [ref=e421]:
+          - generic [ref=e422]:
+            - heading "DataFlow" [level=4] [ref=e423]
+            - paragraph [ref=e424]: Comunicación y Procesos
+            - paragraph [ref=e425]: "Qué se hizo: Pair programming semanal cross-equipo"
+            - paragraph [ref=e426]: Engineering Manager · 8 personas · 2 meses
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - generic [ref=e429]:
+                - img [ref=e431]
+                - heading "ANTES" [level=5] [ref=e434]
+              - list [ref=e435]:
+                - listitem [ref=e436]:
+                  - generic [ref=e437]: •
+                  - generic [ref=e438]: Frontend y backend no se comunicaban
+                - listitem [ref=e439]:
+                  - generic [ref=e440]: •
+                  - generic [ref=e441]: Bugs de integración constantes
+                - listitem [ref=e442]:
+                  - generic [ref=e443]: •
+                  - generic [ref=e444]: Cultura de culpa ('culpa del backend')
+                - listitem [ref=e445]:
+                  - generic [ref=e446]: •
+                  - generic [ref=e447]: Progreso invisible para stakeholders
+            - generic [ref=e448]:
+              - generic [ref=e449]:
+                - img [ref=e451]
+                - heading "INTERVENCIÓN" [level=5] [ref=e456]
+              - list [ref=e457]:
+                - listitem [ref=e458]:
+                  - generic [ref=e459]: →
+                  - generic [ref=e460]: Pair programming semanal cross-equipo
+                - listitem [ref=e461]:
+                  - generic [ref=e462]: →
+                  - generic [ref=e463]: Contrato de API compartido
+                - listitem [ref=e464]:
+                  - generic [ref=e465]: →
+                  - generic [ref=e466]: Board Kanban visible para todos
+                - listitem [ref=e467]:
+                  - generic [ref=e468]: →
+                  - generic [ref=e469]: Demo Fridays con stakeholders
+            - generic [ref=e470]:
+              - generic [ref=e471]:
+                - img [ref=e473]
+                - heading "RESULTADOS" [level=5] [ref=e476]
+              - list [ref=e477]:
+                - listitem [ref=e478]:
+                  - generic [ref=e479]: ✓
+                  - generic [ref=e480]: Bugs de integración reducidos drásticamente
+                - listitem [ref=e481]:
+                  - generic [ref=e482]: ✓
+                  - generic [ref=e483]: Tiempo de ciclo -40%
+                - listitem [ref=e484]:
+                  - generic [ref=e485]: ✓
+                  - generic [ref=e486]: Colaboración natural vs forzada
+                - listitem [ref=e487]:
+                  - generic [ref=e488]: ✓
+                  - generic [ref=e489]: Visibilidad clara del progreso
+          - button "Ver transformación completa" [ref=e491] [cursor=pointer]:
+            - text: Ver transformación completa
+            - img [ref=e492]
+        - generic [ref=e494]:
+          - generic [ref=e495]:
+            - heading "ScaleUp Co" [level=4] [ref=e496]
+            - paragraph [ref=e497]: Escalabilidad
+            - paragraph [ref=e498]: "Qué se hizo: Implementación de OKRs company-wide"
+            - paragraph [ref=e499]: VP of Strategy · 50+ empleados · 4 meses
+          - generic [ref=e500]:
+            - generic [ref=e501]:
+              - generic [ref=e502]:
+                - img [ref=e504]
+                - heading "ANTES" [level=5] [ref=e507]
+              - list [ref=e508]:
+                - listitem [ref=e509]:
+                  - generic [ref=e510]: •
+                  - generic [ref=e511]: Procesos que no escalaban con el negocio
+                - listitem [ref=e512]:
+                  - generic [ref=e513]: •
+                  - generic [ref=e514]: Decisiones centralizadas en CEO
+                - listitem [ref=e515]:
+                  - generic [ref=e516]: •
+                  - generic [ref=e517]: Prioridades cambiantes sin aviso
+                - listitem [ref=e518]:
+                  - generic [ref=e519]: •
+                  - generic [ref=e520]: Equipos sin autonomía real
+            - generic [ref=e521]:
+              - generic [ref=e522]:
+                - img [ref=e524]
+                - heading "INTERVENCIÓN" [level=5] [ref=e529]
+              - list [ref=e530]:
+                - listitem [ref=e531]:
+                  - generic [ref=e532]: →
+                  - generic [ref=e533]: Implementación de OKRs company-wide
+                - listitem [ref=e534]:
+                  - generic [ref=e535]: →
+                  - generic [ref=e536]: Delegación efectiva con autonomía
+                - listitem [ref=e537]:
+                  - generic [ref=e538]: →
+                  - generic [ref=e539]: Planning Mondays estructurados
+                - listitem [ref=e540]:
+                  - generic [ref=e541]: →
+                  - generic [ref=e542]: Sistema de comunicación clara
+            - generic [ref=e543]:
+              - generic [ref=e544]:
+                - img [ref=e546]
+                - heading "RESULTADOS" [level=5] [ref=e549]
+              - list [ref=e550]:
+                - listitem [ref=e551]:
+                  - generic [ref=e552]: ✓
+                  - generic [ref=e553]: Alineación completa de la compañía
+                - listitem [ref=e554]:
+                  - generic [ref=e555]: ✓
+                  - generic [ref=e556]: Toma de decisiones distribuida
+                - listitem [ref=e557]:
+                  - generic [ref=e558]: ✓
+                  - generic [ref=e559]: Procesos escalables y predecibles
+                - listitem [ref=e560]:
+                  - generic [ref=e561]: ✓
+                  - generic [ref=e562]: Cultura de alta autonomía
+          - button "Ver transformación completa" [ref=e564] [cursor=pointer]:
+            - text: Ver transformación completa
+            - img [ref=e565]
+      - generic [ref=e567]:
+        - paragraph [ref=e568]:
+          - text: Cada transformación requiere un enfoque único.
+          - strong [ref=e569]: ¿Cuál es tu caso específico?
+        - button "Analizar tu caso" [ref=e570] [cursor=pointer]:
+          - text: Analizar tu caso
+          - img [ref=e571]
+    - generic [ref=e574]:
+      - generic [ref=e575]:
+        - generic [ref=e577]: Planes
+        - heading "Encuentra tu plan ideal" [level=2] [ref=e578]
+        - paragraph [ref=e579]: Cada plan está diseñado para diferentes necesidades. Consultemos cuál se adapta mejor a vos.
+      - generic [ref=e580]:
+        - generic [ref=e581]:
+          - paragraph [ref=e583]: Coaching de Liderazgo
+          - paragraph [ref=e584]: Sesiones individuales de 60 minutos para desarrollo de liderazgo.
+          - list [ref=e585]:
+            - listitem [ref=e586]:
+              - img [ref=e587]
+              - generic [ref=e590]: Sesión 1:1 de 60 minutos
+            - listitem [ref=e591]:
+              - img [ref=e592]
+              - generic [ref=e595]: Evaluación 360° inicial
+            - listitem [ref=e596]:
+              - img [ref=e597]
+              - generic [ref=e600]: Plan de desarrollo personalizado
+            - listitem [ref=e601]:
+              - img [ref=e602]
+              - generic [ref=e605]: Material y recursos exclusivos
+            - listitem [ref=e606]:
+              - img [ref=e607]
+              - generic [ref=e610]: Soporte por email entre sesiones
+          - button "Consultar por este plan" [ref=e611] [cursor=pointer]:
+            - generic [ref=e612]: Consultar por este plan
+            - img [ref=e613]
+        - generic [ref=e615]:
+          - generic "Plan más popular" [ref=e617]: Más Popular
+          - paragraph [ref=e618]: Consultoría Organizacional
+          - paragraph [ref=e619]: Consultoría para transformación ágil y optimización de procesos.
+          - list [ref=e620]:
+            - listitem [ref=e621]:
+              - img [ref=e622]
+              - generic [ref=e625]: Diagnóstico organizacional
+            - listitem [ref=e626]:
+              - img [ref=e627]
+              - generic [ref=e630]: Diseño de procesos ágiles
+            - listitem [ref=e631]:
+              - img [ref=e632]
+              - generic [ref=e635]: Capacitación para equipos
+            - listitem [ref=e636]:
+              - img [ref=e637]
+              - generic [ref=e640]: Métricas y seguimiento
+            - listitem [ref=e641]:
+              - img [ref=e642]
+              - generic [ref=e645]: Documentación completa
+          - button "Consultar por este plan" [ref=e646] [cursor=pointer]:
+            - generic [ref=e647]: Consultar por este plan
+            - img [ref=e648]
+        - generic [ref=e650]:
+          - paragraph [ref=e652]: Plan Personalizado
+          - paragraph [ref=e653]: Soluciones integrales a medida para tu organización.
+          - list [ref=e654]:
+            - listitem [ref=e655]:
+              - img [ref=e656]
+              - generic [ref=e659]: Diagnóstico sin cargo
+            - listitem [ref=e660]:
+              - img [ref=e661]
+              - generic [ref=e664]: Propuesta personalizada
+            - listitem [ref=e665]:
+              - img [ref=e666]
+              - generic [ref=e669]: Combinación de servicios
+            - listitem [ref=e670]:
+              - img [ref=e671]
+              - generic [ref=e674]: Flexibilidad de horarios
+          - button "Consultar por este plan" [ref=e675] [cursor=pointer]:
+            - generic [ref=e676]: Consultar por este plan
+            - img [ref=e677]
+      - generic [ref=e679]:
+        - img [ref=e680]
+        - paragraph [ref=e682]:
+          - text: ¿Tenés dudas sobre qué plan se adapta mejor a tu caso?
+          - button "Escribime y lo hablamos sin compromiso." [ref=e683] [cursor=pointer]
+    - generic [ref=e685]:
+      - generic [ref=e686]:
+        - generic [ref=e688]: Preguntas Frecuentes
+        - heading "Resolvé tus dudas" [level=2] [ref=e689]
+      - generic [ref=e690]:
+        - button "¿Para quién es este servicio?" [ref=e692] [cursor=pointer]:
+          - generic [ref=e693]: ¿Para quién es este servicio?
+          - img [ref=e695]
+        - button "¿Qué diferencia hay entre coaching y consultoría?" [ref=e698] [cursor=pointer]:
+          - generic [ref=e699]: ¿Qué diferencia hay entre coaching y consultoría?
+          - img [ref=e701]
+        - button "¿Cuánto tiempo dura un proceso típico?" [ref=e704] [cursor=pointer]:
+          - generic [ref=e705]: ¿Cuánto tiempo dura un proceso típico?
+          - img [ref=e707]
+        - button "¿La sesión de diagnóstico tiene algún costo?" [ref=e710] [cursor=pointer]:
+          - generic [ref=e711]: ¿La sesión de diagnóstico tiene algún costo?
+          - img [ref=e713]
+    - generic [ref=e717]:
+      - generic [ref=e718]:
+        - generic [ref=e719]: Contacto
+        - heading "Comencemos la conversación" [level=2] [ref=e720]
+        - paragraph [ref=e722]: La primera sesión es completamente gratuita. Sin compromiso, solo para conocernos y ver cómo puedo ayudarte.
+        - paragraph [ref=e724]: 🎯 Solo 3 cupos disponibles este mes para acompañamiento personalizado
+        - list [ref=e725]:
+          - listitem [ref=e726]:
+            - img [ref=e727]
+            - generic [ref=e730]: 30 minutos que sirven
+          - listitem [ref=e731]:
+            - img [ref=e732]
+            - generic [ref=e735]: Conversación real y auténtica
+          - listitem [ref=e736]:
+            - img [ref=e737]
+            - generic [ref=e740]: Claridad garantizada
+      - generic [ref=e743]:
+        - generic [ref=e744]:
+          - generic [ref=e745]:
+            - img [ref=e746]
+            - text: Nombre completo *
+          - textbox "Nombre completo *" [ref=e750]:
+            - /placeholder: Tu nombre
+        - generic [ref=e751]:
+          - generic [ref=e752]:
+            - img [ref=e753]
+            - text: Email *
+          - textbox "Email *" [ref=e757]:
+            - /placeholder: tu@email.com
+        - generic [ref=e758]:
+          - generic [ref=e759]:
+            - img [ref=e760]
+            - text: Mensaje *
+          - textbox "Mensaje *" [ref=e763]:
+            - /placeholder: ¿Qué te trae aquí? ¿Qué quieres cambiar?
+          - generic [ref=e765]: 0/500
+        - button "Enviar y Agendar Sesión" [ref=e766] [cursor=pointer]:
+          - text: Enviar y Agendar Sesión
+          - img [ref=e767]
+        - paragraph [ref=e769]: Respondo en menos de 24h. Tus datos están seguros.
+    - link [ref=e770] [cursor=pointer]:
+      - /url: https://wa.me/5493425153999?text=Hola!%20Quiero%20agendar%20una%20sesi%C3%B3n%20gratuita%20de%20consultor%C3%ADa.%20%C2%BFQu%C3%A9%20fechas%20y%20horarios%20tienes%20disponibles%3F
+      - img [ref=e771]
+  - button "Open Next.js Dev Tools" [ref=e778] [cursor=pointer]:
+    - img [ref=e779]
+  - alert [ref=e782]
+```
