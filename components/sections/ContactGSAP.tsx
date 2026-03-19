@@ -462,7 +462,7 @@ export default function ContactGSAP() {
                         : "border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)]"
                     } focus:border-[var(--gold-primary)] focus:outline-none`}
                     style={{ color: "var(--text-primary)" }}
-                    placeholder={language === 'es' ? 'Tu nombre completo' : 'Your full name'}
+                    placeholder={language === 'es' ? 'Contanos como te llamas!' : 'Tell us your name!'}
                   />
                 </div>
                 {errors.nombre && touched.nombre && (
