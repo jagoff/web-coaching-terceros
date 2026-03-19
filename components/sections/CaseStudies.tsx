@@ -220,7 +220,7 @@ export default function CaseStudies() {
 
               {/* Timeline Content - 3 Column Layout */}
               <div className="grid grid-cols-3 gap-4 flex-1">
-                {/* ANTES */}
+                {/* ANTES - DIAGNÓSTICO */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <div 
@@ -233,7 +233,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "#ef4444" }}
                     >
-                      ANTES
+                      DIAGNÓSTICO
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -248,7 +248,7 @@ export default function CaseStudies() {
                   </ul>
                 </div>
 
-                {/* INTERVENCIÓN */}
+                {/* INTERVENCIÓN - DISEÑO */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <div 
@@ -261,7 +261,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "var(--gold-primary)" }}
                     >
-                      INTERVENCIÓN
+                      DISEÑO
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -276,7 +276,7 @@ export default function CaseStudies() {
                   </ul>
                 </div>
 
-                {/* RESULTADOS */}
+                {/* RESULTADOS - EJECUCIÓN + AUTONOMÍA */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <div 
@@ -289,7 +289,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "#22c55e" }}
                     >
-                      RESULTADOS
+                      EJECUCIÓN → AUTONOMÍA
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -306,7 +306,7 @@ export default function CaseStudies() {
               </div>
             </motion.div>
 
-            {/* CTA ABAJO DEL CUADRO - FUERA DEL TEXTBOX */}
+            {/* CTA ABAJO DEL CUADRO - ALINEADO A LA DERECHA */}
             <div className="mt-4 flex justify-end">
               <button
                 className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group"
