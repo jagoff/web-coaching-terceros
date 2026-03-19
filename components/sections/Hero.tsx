@@ -327,9 +327,9 @@ export default function Hero() {
               <img 
                 src="/img/this-is-fine-dog .png" 
                 alt="Avatar - ¿Te suena esto?"
-                className="w-12 h-12 object-contain rounded-full"
+                className="w-20 h-20 object-contain"
                 style={{ 
-                  filter: 'drop-shadow(0 0 6px rgba(255, 107, 53, 0.3))',
+                  filter: 'drop-shadow(0 0 8px rgba(255, 107, 53, 0.4))',
                   animation: 'pulse 2s infinite'
                 }}
               />
