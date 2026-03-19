@@ -39,6 +39,17 @@
   --cta-glow:        rgba(255, 107, 53, 0.15);
   --cta-glow-hover:  rgba(255, 107, 53, 0.25);
 
+  /* --- Variantes de Naranja para Probar --- */
+  --cta-orange-vibrant:    #FF5722;  /* Naranja vibrante - corta más */
+  --cta-orange-warm:       #FF7043;  /* Naranja cálido */
+  --cta-orange-bright:     #FF9800;  /* Naranja brillante */
+  --cta-orange-amber:      #FFA726;  /* Ámbar naranja */
+  --cta-orange-deep:       #E65100;  /* Naranja profundo */
+  --cta-orange-coral:      #FF6F61;  /* Coral */
+  --cta-orange-sunset:     #FF6B35;  /* Atardecer (actual) */
+  --cta-orange-fire:       #FF4500;  /* Fuego */
+  --cta-orange-tangerine:  #FF9100;  /* Mandarina */
+
   /* --- Texto (Enhanced Contrast) --- */
   --text-primary:    #F5F0FF;
   --text-secondary:  #D4CCE8;
@@ -267,14 +278,130 @@ p {
   background: var(--cta-primary) !important;
   color: #0C0A12 !important;
   font-family: var(--font-body);
-  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 16px var(--cta-glow);
-  position: relative;
-  overflow: hidden;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  padding: 0.875rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
   white-space: nowrap;
+}
+
+/* --- Variantes de CTA Naranja para Probar --- */
+.btn-primary-vibrant {
+  background: var(--cta-orange-vibrant) !important;
+  color: #FFFFFF !important;
+  border-color: var(--cta-orange-vibrant);
+  box-shadow: 0 0 20px rgba(255, 87, 34, 0.3);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  padding: 0.875rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary-vibrant:hover {
+  background: #FF7043 !important;
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.3);
+}
+
+.btn-primary-warm {
+  background: var(--cta-orange-warm) !important;
+  color: #FFFFFF !important;
+  border-color: var(--cta-orange-warm);
+  box-shadow: 0 0 20px rgba(255, 112, 67, 0.3);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  padding: 0.875rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary-warm:hover {
+  background: #FF8A65 !important;
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 0 15px rgba(255, 112, 67, 0.3);
+}
+
+.btn-primary-bright {
+  background: var(--cta-orange-bright) !important;
+  color: #FFFFFF !important;
+  border-color: var(--cta-orange-bright);
+  box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  padding: 0.875rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary-bright:hover {
+  background: #FFA726 !important;
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
+}
+
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #FF6B35 0%, #FF9800 50%, #FF5722 100%) !important;
+  color: #FFFFFF !important;
+  border: none;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.875rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #FF8555 0%, #FFA726 50%, #FF7043 100%) !important;
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-primary-outline {
+  background: transparent !important;
+  color: var(--cta-orange-vibrant) !important;
+  border: 2px solid var(--cta-orange-vibrant);
+  box-shadow: none;
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.875rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary-outline:hover {
+  background: var(--cta-orange-vibrant) !important;
+  color: #FFFFFF !important;
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.3);
 }
 
 .btn-primary:hover {
@@ -376,68 +503,212 @@ p {
    MOBILE PERFORMANCE OPTIMIZATIONS
    ============================================================ */
 
-/* Reduce animations on mobile for better performance */
+/* MOBILE DEBUG - Safari iOS specific fixes */
 @media (max-width: 640px) {
-  /* Disable or reduce complex animations */
-  .motion-div,
-  [data-framer-motion] {
-    animation-duration: 0.2s !important;
-    transition-duration: 0.2s !important;
+  /* DEBUG: Make transforms visible immediately */
+  .step-icon {
+    transform: scale(1) !important;
+    transition: transform 0.3s ease !important;
+    -webkit-transform: scale(1) !important;
+    -webkit-transition: -webkit-transform 0.3s ease !important;
   }
   
-  /* Reduce transform complexity */
-  .motion-div:hover {
-    transform: none !important;
+  .step-icon:active {
+    transform: scale(1.5) rotate(15deg) !important;
+    -webkit-transform: scale(1.5) rotate(15deg) !important;
+    background: rgba(124, 107, 196, 0.3) !important;
   }
   
-  /* Optimize particle effects */
+  .process-step {
+    transform: translateY(0) !important;
+    -webkit-transform: translateY(0) !important;
+    transition: transform 0.3s ease !important;
+    -webkit-transition: -webkit-transform 0.3s ease !important;
+  }
+  
+  .process-step:active {
+    transform: translateY(-10px) scale(1.02) !important;
+    -webkit-transform: translateY(-10px) scale(1.02) !important;
+    background: rgba(124, 107, 196, 0.1) !important;
+  }
+  
+  .btn-primary {
+    transform: scale(1) !important;
+    -webkit-transform: scale(1) !important;
+    transition: transform 0.2s ease !important;
+    -webkit-transition: -webkit-transform 0.2s ease !important;
+  }
+  
+  .btn-primary:active {
+    transform: scale(1.1) !important;
+    -webkit-transform: scale(1.1) !important;
+  }
+  
+  /* DEBUG: Make particles visible */
   .particle {
     opacity: 0.3 !important;
-    animation: none !important;
+    background: rgba(255, 107, 53, 0.5) !important;
   }
   
-  /* Reduce glow effects */
-  .animate-glow {
-    animation: none !important;
-    background: var(--cta-primary) !important;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
-  }
-  
-  /* Optimize backdrop filters */
-  .glass-card {
-    backdrop-filter: none !important;
-    background: rgba(19, 18, 27, 0.9) !important;
-  }
-  
-  /* Reduce complex gradients */
-  .text-gradient {
-    background: linear-gradient(90deg, var(--gold-primary), var(--amber-primary)) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-  }
-
-  /* Mobile-specific iframe optimizations */
-  .calcom-widget-container {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .calcom-widget-container iframe {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Better touch targets */
-  .btn-primary,
-  .btn-secondary {
-    min-height: 48px;
-    min-width: 48px;
-  }
-
-  /* Reduce motion on scroll */
+  /* DEBUG: Make orbs visible */
   .orb {
-    transform: translateZ(0);
-    will-change: opacity;
+    opacity: 0.3 !important;
+  }
+  
+  /* DEBUG: Simple glow */
+  .animate-glow {
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.3) !important;
+    -webkit-box-shadow: 0 0 10px rgba(255, 107, 53, 0.3) !important;
+  }
+  
+  /* FIX: Pricing section mobile visibility - Safari iOS */
+  .pricing-card {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    background: rgba(20, 18, 29, 0.9) !important;
+    border: 1px solid var(--gold-border) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 2rem !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Ensure pricing grid works on mobile - Safari iOS */
+  .grid.grid-cols-1 {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+  
+  /* Safari iOS specific grid fix */
+  @media (max-width: 640px) {
+    .grid.sm\:grid-cols-2 {
+      display: block !important; /* Change to block for Safari */
+      width: 100% !important;
+    }
+    
+    .grid.sm\:grid-cols-2 > * {
+      display: block !important;
+      width: 100% !important;
+      margin-bottom: 1rem !important;
+    }
+  }
+  
+  /* Make featured pricing card visible */
+  .pricing-card.featured {
+    background: rgba(12, 10, 18, 0.95) !important;
+    border-color: var(--gold-primary) !important;
+    box-shadow: 0 0 20px rgba(124, 107, 196, 0.2) !important;
+    -webkit-box-shadow: 0 0 20px rgba(124, 107, 196, 0.2) !important;
+  }
+  
+  /* Ensure pricing section is visible - Safari iOS */
+  #precios {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Force pricing cards to be visible - Safari iOS */
+  #precios .pricing-card {
+    visibility: visible !important;
+    display: flex !important;
+    position: relative !important;
+    float: none !important;
+    clear: both !important;
+  }
+  
+  /* Safari iOS specific: Fix any potential -webkit- issues */
+  * {
+    -webkit-box-sizing: border-box !important;
+    -webkit-tap-highlight-color: rgba(124, 107, 196, 0.1) !important;
+  }
+  
+  /* Safari iOS: Ensure sections are visible */
+  section {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Mobile black text for CTA button */
+  .mobile-black-text {
+    color: #000000 !important;
+  }
+  
+  .mobile-black-text:active {
+    color: #000000 !important;
+  }
+  
+  /* FIX: Case Studies section mobile visibility */
+  #casos-de-estudio {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .glass-card {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: rgba(20, 18, 29, 0.9) !important;
+    border: 1px solid rgba(124, 107, 196, 0.3) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Case studies grid mobile fix */
+  .grid.grid-cols-1.lg\:grid-cols-3 {
+    display: block !important; /* Change to block on mobile */
+  }
+  
+  .grid.grid-cols-1.lg\:grid-cols-3 > * {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* 3-column timeline mobile fix - Keep grid layout */
+  .grid.grid-cols-3 {
+    display: grid !important; /* Keep grid on mobile */
+    grid-template-columns: 1fr !important; /* Single column on mobile */
+    gap: 1rem !important;
+  }
+  
+  .grid.grid-cols-3 > * {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+    padding: 1rem !important;
+    background: rgba(12, 10, 18, 0.5) !important;
+    border-radius: 12px !important;
+  }
+  
+  /* Ensure case study content is visible */
+  .case-study-content {
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Pulse animation for dog emoji */
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
   }
 }
 
