@@ -184,14 +184,14 @@ export default function CaseStudies() {
         {/* Case Studies Grid Layout - Side by Side */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 md:mb-16">
           {displayCases.map((caseStudy, i) => (
-            <motion.div
-              key={caseStudy.id}
-              custom={i}
-              variants={caseCard}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="glass-card p-6 relative overflow-hidden group"
-              style={{ perspective: "800px" }}
+            <div key={caseStudy.id}>
+              <motion.div
+                custom={i}
+                variants={caseCard}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                className="glass-card p-6 relative overflow-hidden group"
+                style={{ perspective: "800px" }}
               whileHover={{ y: -4, boxShadow: "0 0 60px rgba(124,107,196,0.15), 0 16px 48px rgba(0,0,0,0.4)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
@@ -304,22 +304,23 @@ export default function CaseStudies() {
                   </ul>
                 </div>
               </div>
-
-              {/* CTA - FUERA DEL TEXTBOX PERO DENTRO DEL CARD */}
-              <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(124,107,196,0.1)" }}>
-                <button
-                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group"
-                  style={{ color: "var(--gold-primary)" }}
-                  onClick={() => handleScroll("#contacto")}
-                >
-                  Ver transformación completa
-                  <ArrowRight 
-                    size={14} 
-                    className="transition-transform group-hover:translate-x-1" 
-                  />
-                </button>
-              </div>
             </motion.div>
+
+            {/* CTA ABAJO DEL CUADRO - FUERA DEL TEXTBOX */}
+            <div className="mt-4 flex justify-end">
+              <button
+                className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group"
+                style={{ color: "var(--gold-primary)" }}
+                onClick={() => handleScroll("#contacto")}
+              >
+                Ver transformación completa
+                <ArrowRight 
+                  size={14} 
+                  className="transition-transform group-hover:translate-x-1" 
+                />
+              </button>
+            </div>
+            </div>
           ))}
         </div>
 
