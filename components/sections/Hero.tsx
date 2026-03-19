@@ -148,17 +148,19 @@ export default function Hero() {
 
   useEffect(() => {
     setMounted(true);
-    const count = window.innerWidth < 768 ? 12 : 35;
+    // DEBUG: Make particles more visible on mobile
+    const count = window.innerWidth < 768 ? 8 : 20; // More particles on mobile for debugging
+    const isMobile = window.innerWidth < 768;
     setParticles(
       Array.from({ length: count }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        delay: Math.random() * 4,
-        duration: Math.random() * 4 + 6,
-        opacity: 0.2 + Math.random() * 0.5,
-        drift: (Math.random() - 0.5) * 30,
+        size: isMobile ? Math.random() * 4 + 2 : Math.random() * 2 + 0.5, // Larger on mobile for debugging
+        delay: Math.random() * 2,
+        duration: isMobile ? Math.random() * 2 + 2 : Math.random() * 2 + 4, // Faster on mobile
+        opacity: isMobile ? 0.4 + Math.random() * 0.4 : 0.1 + Math.random() * 0.3, // Much more visible on mobile
+        drift: isMobile ? (Math.random() - 0.5) * 20 : (Math.random() - 0.5) * 15, // More movement on mobile
       }))
     );
   }, []);
@@ -170,7 +172,16 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleScroll = (href: string) => scrollToElement(href);
+  const handleScroll = (href: string) => {
+    // Smooth scroll with performance optimization
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
     <section
@@ -312,9 +323,20 @@ export default function Hero() {
               }}
               aria-hidden="true"
             />
-            <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
-              ¿Te suena esto?
-            </p>
+            <div className="flex items-center gap-4 mb-4">
+              <img 
+                src="/img/this-is-fine-dog .png" 
+                alt="Avatar - ¿Te suena esto?"
+                className="w-12 h-12 object-contain rounded-full"
+                style={{ 
+                  filter: 'drop-shadow(0 0 6px rgba(255, 107, 53, 0.3))',
+                  animation: 'pulse 2s infinite'
+                }}
+              />
+              <p className="text-sm uppercase tracking-widest" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+                ¿Te suena esto?
+              </p>
+            </div>
             <AnimatePresence mode="wait">
               <motion.p
                 key={phraseIndex}
@@ -349,21 +371,6 @@ export default function Hero() {
                       "Mi jornada no termina nunca y sigo atrasado": ["jornada", "atrasado"],
                       "Sé lo que hay que hacer pero no cómo arrancarlo": ["arrancarlo"],
                       "Los procesos que funcionaban antes ya no escalan": ["escalan"],
-                      "Hay conflictos en el equipo que nadie nombra": ["conflictos"],
-                      "Tomo decisiones con datos incompletos siempre": ["decisiones", "incompletos"],
-                      "Perdemos clientes por problemas que podríamos evitar": ["clientes", "evitar"],
-                      "El equipo espera que yo tenga todas las respuestas": ["respuestas"],
-                      "Nuestras daily meetings duran 45 minutos y no resuelven nada": ["resuelven"],
-                      "Los devs dicen 'terminado' pero siempre hay bugs en producción": ["terminado", "bugs"],
-                      "Cambio prioridades cada dos días y nadie sabe qué hacer": ["prioridades"],
-                      "El frontend y el backend no se hablan, siempre es culpa del otro": ["hablan"],
-                      "Hacemos overtime pero seguimos entregando tarde": ["overtime", "tarde"],
-                      "Mi mejor dev está por renunciar y no sé por qué": ["renunciar"],
-                      "Implementamos Scrum pero solo son reuniones de más": ["Scrum"],
-                      "Los stakeholders cambian el alcance sin aviso": ["alcance"],
-                      "No sé qué hace cada uno en el equipo": ["equipo"],
-                      "Las retrospectivas son silencio incómodo y nada cambia": ["retrospectivas", "cambia"],
-                      "El cliente nunca está contento con lo que entregamos": ["contento"]
                     };
 
                     const keyWords = highlightMap[phrase] || [];
@@ -411,11 +418,11 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
           >
             <motion.button
-              className="btn-primary animate-glow"
+              className="btn-primary-gradient animate-glow mobile-black-text"
               onClick={() => handleScroll("#contacto")}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
             </motion.button>
