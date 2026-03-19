@@ -305,8 +305,8 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="mt-6 pt-4 border-t" style={{ borderColor: "rgba(124,107,196,0.1)" }}>
+              {/* CTA - FUERA DEL TEXTBOX PERO DENTRO DEL CARD */}
+              <div className="mt-4 pt-4 border-t" style={{ borderColor: "rgba(124,107,196,0.1)" }}>
                 <button
                   className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group"
                   style={{ color: "var(--gold-primary)" }}
