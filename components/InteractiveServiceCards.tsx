@@ -20,7 +20,7 @@ export default function InteractiveServiceCards() {
       id: 2,
       icon: Target,
       title: "Organizational Consulting",
-      description: "Transforma tu cultura empresarial",
+      description: "Transformá tu cultura empresarial",
       details: "Diseño de procesos ágiles, estructura organizacional flexible y métricas significativas para escalar tu negocio.",
       color: "from-blue-500 to-blue-700"
     },

@@ -182,6 +182,14 @@ export interface Translations {
     };
   };
   
+  // Case Studies
+  caseStudies: {
+    badge: string;
+    title: string;
+    title2: string;
+    subtitle: string;
+  };
+  
   // FAQ
   faq: {
     badge: string;
@@ -225,7 +233,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'para',
       title3: 'organizaciones que escalan',
       subtitle: 'Transformo equipos y culturas empresariales a través de coaching personalizado, metodologías ágiles y un enfoque human-centric.',
-      cta: 'Agenda tu sesión gratuita',
+      cta: 'Agendá tu sesión gratuita',
     },
     
     about: {
@@ -337,7 +345,7 @@ export const translations: Record<Language, Translations> = {
             'Material y recursos exclusivos',
             'Soporte por email entre sesiones',
           ],
-          cta: 'Comenzar ahora',
+          cta: 'Comenzá ahora',
         },
         organizacional: {
           name: 'Consultoría Organizacional',
@@ -351,7 +359,7 @@ export const translations: Record<Language, Translations> = {
             'Métricas y seguimiento',
             'Documentación completa',
           ],
-          cta: 'Consultar ahora',
+          cta: 'Consultá ahora',
         },
         personalizado: {
           name: 'Plan Personalizado',
@@ -364,7 +372,7 @@ export const translations: Record<Language, Translations> = {
             'Combinación de servicios',
             'Flexibilidad de horarios',
           ],
-          cta: 'Solicitar propuesta',
+          cta: 'Solicitá propuesta',
         },
       },
     },
@@ -375,9 +383,9 @@ export const translations: Record<Language, Translations> = {
       title2: 'la conversación',
       subtitle: 'La primera sesión es completamente gratuita. Sin compromiso, solo para conocernos y ver cómo puedo ayudarte.',
       booking: {
-        title: 'Agenda tu sesión gratuita',
+        title: 'Agendá tu sesión gratuita',
         subtitle: 'Selecciona el horario que mejor te convenga y confirma en 2 minutos.',
-        instantBooking: 'Agenda instantánea',
+        instantBooking: 'Agendá instantánea',
         instantBookingDesc: 'Sin esperas, confirmación inmediata',
         autoReminder: 'Recordatorio automático',
         autoReminderDesc: 'No te olvidarás de la sesión',
@@ -440,6 +448,13 @@ export const translations: Record<Language, Translations> = {
           answer: 'No. La primera sesión de 30 minutos es completamente gratuita y sin compromiso. Sirve para entender tu situación, definir objetivos y ver si tiene sentido trabajar juntos.',
         },
       ],
+    },
+    
+    caseStudies: {
+      badge: 'CASOS DE ESTUDIO',
+      title: 'Transformaciones',
+      title2: 'Reales',
+      subtitle: 'No solo mejoramos procesos, transformamos culturas y generamos resultados medibles. Estos son ejemplos concretos de equipos que pasaron del caos a la autonomía.',
     },
     
     footer: {
@@ -687,6 +702,13 @@ export const translations: Record<Language, Translations> = {
           answer: 'No. The first 30-minute session is completely free and without commitment. It serves to understand your situation, define objectives, and see if it makes sense to work together.',
         },
       ],
+    },
+    
+    caseStudies: {
+      badge: 'CASE STUDIES',
+      title: 'Real',
+      title2: 'Transformations',
+      subtitle: 'We don\'t just improve processes, we transform cultures and generate measurable results. These are concrete examples of teams that went from chaos to autonomy.',
     },
     
     footer: {

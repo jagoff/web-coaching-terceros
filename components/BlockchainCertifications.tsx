@@ -108,7 +108,7 @@ export default function BlockchainCertifications() {
                 Tu experiencia profesional finalmente vale lo que realmente vale
               </h3>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                Transforma tus credenciales profesionales en activos digitales inmutables. 
+                Transformá tus credenciales profesionales en activos digitales inmutables. 
                 Verificación global instantánea, imposibles de falsificar, y que se revalorizan con el tiempo.
               </p>
               

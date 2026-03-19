@@ -18,15 +18,15 @@ import WhatsAppBooking from "@/components/WhatsAppBooking";
 
 export default function Home() {
   return (
-    <main>
+    <main aria-label="Contenido principal de ELEVA CONSULTORA">
       <Hero />
       <About />
       <Services />
       <Process />
       <Testimonials />
-      <Pricing />
       <Results />
       <CaseStudies />
+      <Pricing />
       <FAQ />
       <Contact />
       <Footer />

@@ -8,19 +8,13 @@ const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coac
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [tooltip, setTooltip] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    // Show button after 2 seconds to avoid competing with initial load animations
-    const timer = setTimeout(() => setVisible(true), 2000);
+    // Show button after 3 seconds to avoid competing with initial load animations
+    const timer = setTimeout(() => setVisible(true), 3000);
     return () => clearTimeout(timer);
-  }, [mounted]);
+  }, []);
 
   useEffect(() => {
     if (!visible) return;
@@ -37,14 +31,13 @@ export default function WhatsAppButton() {
 
   return (
     <AnimatePresence>
-      {mounted && (
+      {visible && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8, y: visible ? 0 : 20 }}
-          exit={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
           className="whatsapp-fab"
-          style={{ pointerEvents: visible ? "auto" : "none" }}
         >
           {/* Tooltip */}
           <AnimatePresence>

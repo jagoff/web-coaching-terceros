@@ -40,7 +40,7 @@ const featureItem: Variants = {
 export default function Pricing() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-200px", amount: 0.1 });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const handleScroll = (href: string) => scrollToElement(href);
 
@@ -179,11 +179,10 @@ export default function Pricing() {
 
         {/* Footer note */}
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0.3, y: 20, filter: "blur(2px)" }}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-12"
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mt-12 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <MessageCircle size={18} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
           <p className="text-base" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>

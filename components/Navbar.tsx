@@ -30,7 +30,6 @@ export default function Navbar() {
     { label: t.nav.sobreMi, href: "#sobre-mi" },
     { label: t.nav.servicios, href: "#servicios" },
     { label: t.nav.testimonios, href: "#testimonios" },
-    { label: t.nav.precios, href: "#precios" },
     { label: t.nav.preguntasFrecuentes, href: "#faq" },
   ];
 
@@ -73,7 +72,7 @@ export default function Navbar() {
               }}
             >
               <span
-                className="text-gradient font-heading font-black text-2xl tracking-tight"
+                className="text-gradient font-heading font-black text-3xl tracking-tight leading-none"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 ELEVA
@@ -150,7 +149,7 @@ export default function Navbar() {
               </button>
               
               <button
-                className="flex items-center justify-center rounded-md transition-colors w-11 h-11 text-text-secondary bg-transparent border-0"
+                className="flex items-center justify-center rounded-md transition-colors min-w-[44px] min-h-[44px] text-text-secondary bg-transparent border-0"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
                 aria-expanded={mobileOpen}
@@ -185,7 +184,7 @@ export default function Navbar() {
               style={{ borderColor: "var(--dark-border)" }}>
               <div className="flex items-center gap-2">
                 <span
-                  className="text-gradient font-heading font-black text-2xl tracking-tight"
+                  className="text-gradient font-heading font-black text-3xl tracking-tight"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   ELEVA
@@ -202,7 +201,7 @@ export default function Navbar() {
                 </span>
               </div>
               <button
-                className="flex items-center justify-center rounded-md w-11 h-11 text-text-secondary"
+                className="flex items-center justify-center rounded-md min-w-[44px] min-h-[44px] text-text-secondary"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >
@@ -218,7 +217,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07, duration: 0.3 }}
-                  className="text-center py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
+                  className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
                   style={{
                     borderBottom: "1px solid var(--dark-border)",
                     fontFamily: "var(--font-heading)",
@@ -231,13 +230,37 @@ export default function Navbar() {
             </nav>
 
             {/* Mobile CTA Button */}
-            <div className="px-8 pb-8">
+            <div className="px-8 pb-6">
               <button
                 className="btn-primary w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
               </button>
+            </div>
+
+            {/* Language Toggle */}
+            <div className="px-8 pb-8">
+              <div className="flex justify-center">
+                <button
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl border-2"
+                  style={{
+                    background: "rgba(124,107,196,0.25)",
+                    borderColor: "rgba(124,107,196,0.6)",
+                    color: "#7C6BC4",
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    boxShadow: "0 4px 16px rgba(124,107,196,0.4)",
+                    textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                    minWidth: "140px",
+                    height: "56px"
+                  }}
+                  onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+                >
+                  <span style={{ fontSize: "20px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                  <span style={{ fontSize: "14px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

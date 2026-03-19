@@ -207,13 +207,17 @@ export default function InstagramGesturesCarousel() {
             <button
               key={index}
               onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`min-w-[44px] min-h-[44px] rounded-full transition-all duration-300 flex items-center justify-center ${
                 index === imageIndex
-                  ? "bg-[var(--gold-primary)] w-6"
-                  : "bg-gray-600 hover:bg-gray-500"
+                  ? "bg-[var(--gold-primary)] w-11"
+                  : "bg-gray-600 hover:bg-gray-500 w-11"
               }`}
               aria-label={`Ir a imagen ${index + 1}`}
-            />
+            >
+              <div className={`w-2 h-2 rounded-full ${
+                index === imageIndex ? "bg-white" : "bg-current"
+              }`} />
+            </button>
           ))}
         </div>
 
@@ -243,14 +247,14 @@ export default function InstagramGesturesCarousel() {
           <div className="flex gap-2">
             <button
               onClick={() => setSelectedImage(currentImage)}
-              className="p-2 rounded-full bg-black/50 text-white"
+              className="min-w-[44px] min-h-[44px] p-2 rounded-full bg-black/50 text-white flex items-center justify-center"
               aria-label="Ver imagen completa"
             >
               <ZoomIn size={14} />
             </button>
             <button
               onClick={shareImage}
-              className="p-2 rounded-full bg-black/50 text-white"
+              className="min-w-[44px] min-h-[44px] p-2 rounded-full bg-black/50 text-white flex items-center justify-center"
               aria-label="Compartir"
             >
               <Share2 size={14} />
@@ -342,7 +346,7 @@ export default function InstagramGesturesCarousel() {
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 z-10"
+                className="absolute top-4 right-4 min-w-[44px] min-h-[44px] p-2 rounded-full bg-white/20 text-white hover:bg-white/30 z-10 flex items-center justify-center"
                 aria-label="Cerrar"
               >
                 <X size={24} />

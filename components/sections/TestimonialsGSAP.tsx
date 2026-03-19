@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Star, Flame } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedFlame from "@/components/ui/AnimatedFlame";
 
 // Registrar ScrollTrigger
 if (typeof window !== 'undefined') {
@@ -387,7 +388,7 @@ export default function TestimonialsGSAP() {
         <div ref={headerRef} className="text-center mb-14 md:mb-20">
           <div ref={badgeRef} className="flex justify-center mb-6">
             <div className="badge">
-              <Flame size={16} className="mr-2" />
+              <AnimatedFlame size={16} className="mr-2" />
               {language === 'es' ? 'Casos Reales' : 'Real Stories'}
             </div>
           </div>

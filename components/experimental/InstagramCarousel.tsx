@@ -141,27 +141,31 @@ export default function InstagramCarousel() {
             <button
               key={index}
               onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`min-w-[44px] min-h-[44px] rounded-full transition-all duration-300 flex items-center justify-center ${
                 index === imageIndex
-                  ? "bg-[var(--gold-primary)] w-6"
-                  : "bg-gray-600 hover:bg-gray-500"
+                  ? "bg-[var(--gold-primary)] w-11"
+                  : "bg-gray-600 hover:bg-gray-500 w-11"
               }`}
               aria-label={`Ir a imagen ${index + 1}`}
-            />
+            >
+              <div className={`w-2 h-2 rounded-full ${
+                index === imageIndex ? "bg-white" : "bg-current"
+              }`} />
+            </button>
           ))}
         </div>
 
         {/* Navigation arrows */}
         <button
           onClick={() => paginate(-1)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200"
+          className="absolute left-2 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200"
           aria-label="Imagen anterior"
         >
           <ChevronLeft size={16} />
         </button>
         <button
           onClick={() => paginate(1)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200"
+          className="absolute right-2 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200"
           aria-label="Siguiente imagen"
         >
           <ChevronRight size={16} />

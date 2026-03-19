@@ -100,7 +100,7 @@ export default function MobileNavigation() {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="md:hidden p-2 rounded-lg bg-black/50 text-white hover:bg-black/70 transition-colors"
+        className="md:hidden min-w-[44px] min-h-[44px] p-2 rounded-lg bg-black/50 text-white hover:bg-black/70 transition-colors flex items-center justify-center"
         aria-label="Open menu"
       >
         <Menu size={24} />

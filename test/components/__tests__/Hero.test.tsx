@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import Hero from '@/components/sections/HeroGSAP'
+import Hero from '@/components/sections/Hero'
 
 // Mock the language context
 vi.mock('@/contexts/LanguageContext', () => ({
@@ -12,7 +12,7 @@ vi.mock('@/contexts/LanguageContext', () => ({
         title2: 'para',
         title3: 'organizaciones que escalan',
         subtitle: 'Transformo equipos y culturas empresariales...',
-        cta: 'Agenda tu sesión gratuita',
+        cta: 'Agendá tu sesión gratuita',
       },
     },
   }),
@@ -30,7 +30,7 @@ describe('Hero Component', () => {
   it('renders call to action button', () => {
     render(<Hero />)
     
-    const ctaButton = screen.getByText('Agenda tu sesión gratuita')
+    const ctaButton = screen.getByText('Agendá tu sesión gratuita')
     expect(ctaButton).toBeInTheDocument()
   })
-});
+})

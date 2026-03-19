@@ -15,7 +15,7 @@ const stepReveal: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.7,
-      delay: 0.6 + i * 0.15,
+      delay: 0.35 + i * 0.15,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -25,7 +25,7 @@ const stepReveal: Variants = {
 export default function Process() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const steps = [
     {
@@ -70,9 +70,9 @@ export default function Process() {
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
-            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
+            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }}
           >
-            <span className="text-gradient">{t.process.title}</span>{" "}
+            {t.process.title}{" "}
             <span className="text-gradient">{t.process.title2}</span> {t.process.title3}
           </motion.h2>
           <motion.p variants={blurUp} className="lead-text">
@@ -125,16 +125,13 @@ export default function Process() {
                     className="step-number" 
                     aria-hidden="true"
                     style={{
-                      background: i === 0 
-                        ? "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%)"
+                      color: i === 0 
+                        ? "#9D8FD8"
                         : i === 1
-                        ? "linear-gradient(135deg, #8B7BD4 0%, #D4956A 55%, #A89FE8 100%)"
+                        ? "#DFA080"
                         : i === 2
-                        ? "linear-gradient(135deg, #9A8BE4 0%, #E0A57A 55%, #B3AFF8 100%)"
-                        : "linear-gradient(135deg, #A99BF4 0%, #ECB58A 55%, #BEBFFF 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
+                        ? "#B19EF9"
+                        : "#FFB380",
                     }}
                   >
                     {step.number}
@@ -152,14 +149,44 @@ export default function Process() {
                   
                   <h3
                     className="text-lg font-semibold mb-5"
-                    style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}
+                    style={{ 
+                      fontFamily: "var(--font-heading)", 
+                      color: i === 0 
+                        ? "#9D8FD8"
+                        : i === 1
+                        ? "#DFA080"
+                        : i === 2
+                        ? "#B19EF9"
+                        : "#FFB380",
+                      fontSize: "clamp(1.375rem, 3vw, 1.75rem)",
+                      fontWeight: 700,
+                      textShadow: "0 0 10px rgba(124, 107, 196, 0.2)",
+                      letterSpacing: "0.02em"
+                    }}
                   >
                     {step.title}
                   </h3>
 
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)", lineHeight: "1.8" }}>
+                  <p className="text-body leading-relaxed" style={{ 
+                    color: "var(--text-secondary)", 
+                    lineHeight: "1.7",
+                    fontSize: "clamp(16px, 2vw, 18px)",
+                    fontWeight: 400
+                  }}>
                     {step.description}
                   </p>
+
+                  {/* Mobile enhancements */}
+                  <style jsx>{`
+                    @media (max-width: 640px) {
+                      h3 {
+                        font-size: clamp(1.625rem, 4vw, 2rem) !important;
+                      }
+                      p {
+                        font-size: clamp(18px, 2.5vw, 20px) !important;
+                      }
+                    }
+                  `}</style>
 
                   {/* Mobile connector */}
                   {i < steps.length - 1 && (

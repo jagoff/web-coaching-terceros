@@ -1,11 +1,166 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// Professional Fire Animation Component with GSAP
+const AnimatedFire = ({ className = "" }: { className?: string }) => {
+  const fireRef = useRef<HTMLSpanElement>(null);
+  const gradientRef = useRef<string>("linear-gradient(45deg, #808080, #909090, #808080, #909090)");
+
+  useEffect(() => {
+    const fire = fireRef.current;
+    if (!fire) return;
+
+    // Set initial state - completely invisible
+    gsap.set(fire, {
+      scale: 0,
+      opacity: 0,
+      rotation: 0,
+      filter: "blur(10px)"
+    });
+
+    // Create sophisticated ignition timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: fire,
+        start: "top 90%", // Earlier trigger
+        end: "top 70%",   // Shorter window
+        once: true,
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // WOW effect: Explosive appearance
+    tl.to(fire, {
+      scale: 1.5,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 0.4,
+      ease: "back.out(2.5)" // Explosive ease
+    });
+
+    // Progressive gradient animation
+    const gradients = [
+      "linear-gradient(45deg, #808080, #909090, #808080, #909090)", // Gray start
+      "linear-gradient(45deg, #A0A0A0, #B0B0B0, #A0A0A0, #B0B0B0)", // Light gray
+      "linear-gradient(45deg, #C0C0C0, #D0D0D0, #C0C0C0, #D0D0D0)", // Lighter gray
+      "linear-gradient(45deg, #E0E0E0, #F0F0F0, #E0E0E0, #F0F0F0)", // Almost white
+      "linear-gradient(45deg, #F0F0F0, #FFA040, #F0F0F0, #FFA040)", // First orange hint
+      "linear-gradient(45deg, #FFA040, #FFB050, #FFA040, #FFB050)", // More orange
+      "linear-gradient(45deg, #FFB050, #FFC060, #FFB050, #FFC060)", // Orange growing
+      "linear-gradient(45deg, #FFC060, #FFD070, #FFC060, #FFD070)", // More orange
+      "linear-gradient(45deg, #FFD070, #FFE080, #FFD070, #FFE080)", // Orange-yellow
+      "linear-gradient(45deg, #FFE080, #FFA500, #FFE080, #FFA500)", // Yellow-orange
+      "linear-gradient(45deg, #FFA500, #FFD700, #FFA500, #FFD700)", // Full orange/yellow
+      "linear-gradient(45deg, #FFD700, #FFB347, #FFD700, #FFB347)", // Light orange
+      "linear-gradient(45deg, #FFB347, #DFA080, #FFB347, #DFA080)", // Amber transition
+      "linear-gradient(45deg, #DFA080, #C87B5A, #DFA080, #C87B5A)", // More amber
+      "linear-gradient(45deg, #C87B5A, #9D8FD8, #C87B5A, #9D8FD8)", // Amber to violet
+      "linear-gradient(45deg, #9D8FD8, #7C6BC4, #9D8FD8, #7C6BC4)", // Violet transition
+      "linear-gradient(45deg, #7C6BC4, #9D8FD8, #C87B5A, #7C6BC4)", // Final gradient matching text
+    ];
+
+    // Animate gradient changes with faster timing
+    gradients.forEach((gradient, index) => {
+      tl.to(fire, {
+        duration: 0.1, // Even faster for wow effect
+        ease: "power2.inOut",
+        onUpdate: function() {
+          fire.style.background = gradient;
+          (fire.style as any).webkitBackgroundClip = "text";
+          (fire.style as any).webkitTextFillColor = "transparent";
+          fire.style.backgroundClip = "text";
+        }
+      });
+    });
+
+    // Final scale adjustment to settle
+    tl.to(fire, {
+      scale: 1.1,
+      duration: 0.3,
+      ease: "elastic.out(1, 0.5)" // Bouncy settle
+    });
+
+    // Return to original position briefly
+    tl.to(fire, {
+      scale: 1.0,
+      duration: 0.2,
+      ease: "power2.inOut"
+    });
+
+    // Final bounce back to settled position
+    tl.to(fire, {
+      scale: 1.1,
+      duration: 0.15,
+      ease: "back.out(1.2)"
+    });
+
+    // Scale and final effects
+    tl.to(fire, {
+      scale: 1.1,
+      opacity: 1,
+      duration: 0.3,
+      ease: "back.out(1.7)"
+    });
+
+    // Add subtle flickering after ignition
+    tl.to(fire, {
+      rotation: 2,
+      duration: 0.15,
+      ease: "sine.inOut"
+    })
+    .to(fire, {
+      rotation: -2,
+      duration: 0.15,
+      ease: "sine.inOut"
+    })
+    .to(fire, {
+      rotation: 1,
+      duration: 0.15,
+      ease: "sine.inOut"
+    })
+    .to(fire, {
+      rotation: 0,
+      duration: 0.15,
+      ease: "sine.inOut"
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      tl.kill();
+    };
+  }, []);
+
+  return (
+    <span
+      ref={fireRef}
+      className={`inline-block ${className}`}
+      style={{
+        display: "inline-block",
+        background: "linear-gradient(45deg, #808080, #909090, #808080, #909090)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        textShadow: "0 0 15px rgba(255, 165, 0, 0.4)",
+        fontSize: "1.1em",
+        fontWeight: "bold",
+        transformOrigin: "center"
+      }}
+    >
+      🔥
+    </span>
+  );
+};
 
 const cardReveal: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: 8, filter: "blur(6px)" },
@@ -16,7 +171,7 @@ const cardReveal: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.8,
-      delay: 0.5 + i * 0.2,
+      delay: 0.3 + i * 0.2,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -24,7 +179,7 @@ const cardReveal: Variants = {
 
 const benefitStagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.6 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.4 } },
 };
 
 const benefitItem: Variants = {
@@ -36,10 +191,11 @@ const benefitItem: Variants = {
   },
 };
 
+
 export default function Services() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-200px", amount: 0.1 });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const services = [
     {
@@ -81,7 +237,15 @@ export default function Services() {
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            <span className="text-gradient">{t.services.title}</span>
+            <span className="text-gradient">
+              {t.services.title.includes('apagar') ? (
+                <>
+                  Deja de ap<AnimatedFire />gar incendios
+                </>
+              ) : (
+                t.services.title
+              )}
+            </span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}

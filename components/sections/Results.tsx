@@ -16,7 +16,7 @@ const statCard: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.7,
-      delay: 0.7 + i * 0.12,
+      delay: 0.2 + i * 0.12,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -25,7 +25,7 @@ const statCard: Variants = {
 export default function Results() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
 

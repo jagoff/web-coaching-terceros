@@ -315,7 +315,7 @@ export default function ContactGSAP() {
                 style={{ color: "var(--text-secondary)" }}
               >
                 {language === 'es'
-                  ? 'Estoy listo para ayudarte a transformar tu equipo y alcanzar tus objetivos. Agenda una sesión gratuita sin compromiso.'
+                  ? 'Estoy listo para ayudarte a transformar tu equipo y alcanzar tus objetivos. Agendá una sesión gratuita sin compromiso.'
                   : 'I\'m ready to help you transform your team and achieve your goals. Schedule a free, no-obligation session.'}
               </p>
             </div>
@@ -522,6 +522,7 @@ export default function ContactGSAP() {
                   <textarea
                     id="mensaje"
                     name="mensaje"
+                    autoComplete="off"
                     value={form.mensaje}
                     onChange={handleChange}
                     onBlur={handleBlur}
