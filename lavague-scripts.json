@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "test:lavague": "npx playwright test tests/lavague-*.spec.ts --reporter=list",
+    "test:lavague:ui": "npx playwright test tests/lavague-*.spec.ts --ui",
+    "test:lavague:headed": "npx playwright test tests/lavague-*.spec.ts --headed"
+  }
+}

@@ -8,6 +8,7 @@ const DynamicNavbar = dynamic(() => import("@/components/Navbar"), { ssr: false 
 const AmbientParticles = dynamic(() => import("@/components/AmbientParticles"), { ssr: false });
 const CursorGlow = dynamic(() => import("@/components/CursorGlow"), { ssr: false });
 const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"), { ssr: false });
+const StarfieldBackground = dynamic(() => import("@/components/StarfieldBackground"), { ssr: false });
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
@@ -18,7 +19,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
+      {/* Starfield background - very subtle */}
+      {isClient && <StarfieldBackground />}
+      
+      {/* Ambient particles - original effect */}
       {isClient && <AmbientParticles />}
+      
       <div className="noise-overlay" aria-hidden="true" />
       {isClient && <CursorGlow />}
       

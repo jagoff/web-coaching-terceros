@@ -24,9 +24,9 @@ export default function Home() {
       <Services />
       <Process />
       <Testimonials />
+      <Pricing />
       <Results />
       <CaseStudies />
-      <Pricing />
       <FAQ />
       <Contact />
       <Footer />

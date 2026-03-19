@@ -36,11 +36,10 @@ const benefitItem: Variants = {
   },
 };
 
-
 export default function Services() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-200px", amount: 0.1 });
 
   const services = [
     {

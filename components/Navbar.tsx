@@ -30,6 +30,7 @@ export default function Navbar() {
     { label: t.nav.sobreMi, href: "#sobre-mi" },
     { label: t.nav.servicios, href: "#servicios" },
     { label: t.nav.testimonios, href: "#testimonios" },
+    { label: t.nav.precios, href: "#precios" },
     { label: t.nav.preguntasFrecuentes, href: "#faq" },
   ];
 

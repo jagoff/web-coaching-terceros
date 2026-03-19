@@ -54,7 +54,7 @@ import {
 export default function Contact() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-200px", amount: 0.1 });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
 

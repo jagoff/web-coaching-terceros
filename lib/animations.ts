@@ -4,7 +4,7 @@ import type { Variants } from "framer-motion";
 
 export const headerStagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.8 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
 };
 
 export const blurUp: Variants = {

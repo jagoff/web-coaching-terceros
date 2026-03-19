@@ -94,6 +94,8 @@ export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   
   const rotatingPhrases = language === 'es' ? rotatingPhrasesES : rotatingPhrasesEN;
+  const isAlignmentPhrase = rotatingPhrases[phraseIndex].includes('alineado') || rotatingPhrases[phraseIndex].includes('aligned');
+  
   const sectionRef = useRef<HTMLElement>(null);
   
   // Refs para GSAP
@@ -360,7 +362,9 @@ export default function Hero() {
           {/* Rotating pain-point phrases */}
           <div
             ref={rotatingPhraseRef}
-            className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl"
+            className={`relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl transition-all duration-500 ${
+              isAlignmentPhrase ? 'phrase-alignment-focused' : ''
+            }`}
             style={{
               minHeight: "5.5rem",
               background: "transparent",
@@ -384,12 +388,17 @@ export default function Hero() {
               ¿Te suena esto?
             </p>
             <p
-              className="lead-text italic"
+              className={`lead-text italic transition-all duration-500 ${
+                isAlignmentPhrase ? 'text-gold-enhanced' : ''
+              }`}
               style={{ 
-                background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                backgroundImage: isAlignmentPhrase 
+                  ? "linear-gradient(135deg, #D4CAD8 0%, #8B7AD2 60%, #ADA0E0 100%)"
+                  : "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                color: "transparent",
                 fontFamily: "var(--font-heading)", 
                 fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
               }}

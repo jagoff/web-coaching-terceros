@@ -485,11 +485,12 @@ p {
     background: rgba(19, 18, 27, 0.85) !important;
   }
   
-  /* Simplify gradients for better performance */
+  /* Simplify gradients for better performance on mobile */
   .text-gradient {
-    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light)) !important;
+    background: linear-gradient(135deg, #8B7AD2 0%, #D4CAD8 45%, #ADA0E0 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
   }
 
   /* Mobile-specific iframe optimizations */
@@ -1181,6 +1182,151 @@ html.lenis, html.lenis body {
 
 .border-gold-border {
   border-color: var(--gold-border);
+}
+
+/* ============================================================
+   SCROLL FAST FALLBACK - ASEGURAR VISIBILIDAD
+   ============================================================ */
+
+/* Fallback for fast scroll - ensure content is always visible */
+@media (prefers-reduced-motion: no-preference) {
+  /* If animations are disabled or fail, ensure content is visible */
+  .motion-fallback {
+    opacity: 0.8 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Mobile scroll optimization */
+@media (max-width: 768px) {
+  /* Reduce animation dependency on mobile */
+  [data-framer-motion] {
+    animation-duration: 0.3s !important;
+  }
+  
+  /* Ensure content visible during fast scroll */
+  .section > div > div {
+    min-height: auto !important;
+    opacity: 0.9 !important;
+  }
+}
+
+/* Touch device optimization */
+@media (pointer: coarse) {
+  /* For touch devices, reduce animation threshold */
+  [data-framer-motion] {
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* ============================================================
+   STARFIELD BACKGROUND - ESTRELLAS DESTELLANTES
+   ============================================================ */
+
+.starfield-optimized {
+  /* Performance optimizations */
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .starfield-optimized {
+    /* Reduce star density on mobile for performance */
+    opacity: 0.6;
+  }
+  
+  .starfield-optimized div {
+    animation-duration: 4s !important; /* Slower twinkle on mobile */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .starfield-optimized {
+    opacity: 0.8;
+  }
+  
+  .starfield-optimized div {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%) !important;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8) !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .starfield-optimized div {
+    animation: none !important;
+    opacity: 0.6 !important;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .starfield-optimized {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   FRASE DE ALINEACIÓN - RESALTADO SUTIL
+   ============================================================ */
+
+/* Resaltado específico para frase de alineación */
+.phrase-alignment-focused {
+  border: 1px solid rgba(139, 122, 210, 0.25) !important;
+  background: rgba(139, 122, 210, 0.08) !important;
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.2),
+    0 0 30px rgba(139, 122, 210, 0.12) !important;
+  position: relative;
+}
+
+/* Icono contextual de alineación */
+.phrase-alignment-focused::after {
+  content: "🎯";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  font-size: 18px;
+  opacity: 0.7;
+  animation: float 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+/* Texto dorado mejorado para frase de alineación */
+.text-gold-enhanced {
+  filter: brightness(1.1);
+}
+
+/* Mobile optimizations for alignment phrase */
+@media (max-width: 640px) {
+  .phrase-alignment-focused::after {
+    font-size: 16px;
+    top: -8px;
+    right: 8px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .phrase-alignment-focused {
+    border: 2px solid #9B8AE2 !important;
+    background: rgba(155, 138, 226, 0.15) !important;
+  }
+  
+  .phrase-alignment-focused::after {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .phrase-alignment-focused::after {
+    animation: none;
+  }
 }
 
 /* ============================================================
@@ -1892,6 +2038,8 @@ html.lenis, html.lenis body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  /* Ensure consistent positioning from mount */
+  will-change: transform, opacity;
 }
 
 .whatsapp-btn {
@@ -1905,6 +2053,8 @@ html.lenis, html.lenis body {
   color: #fff;
   box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Prevent layout shift during load */
+  position: relative;
 }
 
 .whatsapp-btn:hover {
@@ -1912,18 +2062,55 @@ html.lenis, html.lenis body {
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .whatsapp-fab {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .whatsapp-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .whatsapp-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 
 .whatsapp-tooltip {
   position: absolute;
   right: 68px;
-  white-space: nowrap;
-  padding: 0.5rem 0.875rem;
-  border-radius: var(--radius-md);
-  background: var(--dark-card);
-  border: 1px solid var(--dark-border);
-  color: var(--text-primary);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
+}
+
+/* ============================================================
+   ANTES SECTION COLOR OVERRIDE
+   ============================================================ */
+
+.antes-icon-color {
+  color: #f59e0b !important;
+}
+
+.antes-text {
+  color: #f59e0b !important;
+}
+
+.antes-icon svg {
+  color: #f59e0b !important;
+  fill: #f59e0b !important;
+}
+
+/* Higher specificity rules */
+div.antes-icon svg {
+  color: #f59e0b !important;
+  fill: #f59e0b !important;
+  stroke: #f59e0b !important;
+}
+
+.antes-icon svg path {
+  stroke: #f59e0b !important;
+  fill: #f59e0b !important;
 }

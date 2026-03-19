@@ -286,11 +286,12 @@ const AUTOPLAY_INTERVAL = 5000;
 
 export default function Testimonials() {
   const { t, language } = useLanguage();
+  const [showAll, setShowAll] = useState(false);
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [direction, setDirection] = useState(1);
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-200px", amount: 0.1 });
 
   // Set random initial index when component mounts
   useEffect(() => {
@@ -298,6 +299,23 @@ export default function Testimonials() {
     const randomIndex = Math.floor(Math.random() * testimonials.length);
     setCurrent(randomIndex);
   }, [language]);
+
+  // Randomly select 3 featured testimonials on component mount
+  const [featuredTestimonials, setFeaturedTestimonials] = useState<typeof testimonialsES>([]);
+
+  useEffect(() => {
+    const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
+    // Get 3 random testimonials
+    const shuffled = [...testimonials].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 3);
+    setFeaturedTestimonials(selected);
+  }, [language]);
+
+  // Generate random avatar URL based on testimonial ID for consistency
+  const getAvatarUrl = (id: number) => {
+    const seed = `testimonial-${id}`;
+    return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
+  };
 
   const goTo = useCallback(
     (index: number, dir: number) => {
@@ -371,146 +389,252 @@ export default function Testimonials() {
           />
         </motion.div>
 
-        {/* Carousel */}
+        {/* Featured Testimonials Grid or Full Carousel */}
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0.3, y: 20, filter: "blur(2px)" }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl mx-auto"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div
-            className="testimonial-card relative overflow-hidden flex flex-col justify-between"
-            style={{ minHeight: '350px', maxHeight: '500px', height: 'auto' }}
-          >
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={testimonial.id}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col h-full"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                dragMomentum={false}
-                onDragEnd={(e, info) => {
-                  const { offset, velocity } = info;
-                  const swipeThreshold = 50;
-                  
-                  if (offset.x < -swipeThreshold) {
-                    // Swipe izquierda → siguiente
-                    next();
-                  } else if (offset.x > swipeThreshold) {
-                    // Swipe derecha → anterior
-                    prev();
-                  }
-                }}
-                style={{ cursor: 'grab' }}
-              >
-                {/* Stars */}
-                <div className="stars mb-4 mt-2" aria-label="5 estrellas">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote
-                  className="text-lg leading-relaxed flex-1 mb-10"
-                  style={{
-                    color: "var(--text-secondary)",
-                    fontStyle: "italic",
-                    lineHeight: 1.9,
-                  }}
+          {!showAll ? (
+            // Featured Grid Layout
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {featuredTestimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.05 + index * 0.05 }}
+                  className="testimonial-card p-6 flex flex-col justify-between"
+                  style={{ minHeight: '320px', maxHeight: '400px', height: 'auto' }}
                 >
-                  {testimonial.quote}
-                </blockquote>
+                  {/* Stars */}
+                  <div className="stars mb-4" aria-label="5 estrellas">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={14} fill="currentColor" />
+                    ))}
+                  </div>
 
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                  {/* Avatar */}
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: testimonial.avatarBg }}
+                  {/* Quote */}
+                  <blockquote
+                    className="text-base leading-relaxed flex-1 mb-6"
+                    style={{
+                      color: "var(--text-secondary)",
+                      fontStyle: "italic",
+                      lineHeight: 1.8,
+                    }}
                   >
-                    <span
-                      className="text-sm font-bold"
-                      style={{ color: "var(--amber-light)" }}
-                    >
-                      {testimonial.initials}
-                    </span>
-                  </div>
-                  <div>
-                    <p
-                      className="font-semibold"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-                      {testimonial.role}
-                      {testimonial.company && ` · ${testimonial.company}`}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                    "{testimonial.quote}"
+                  </blockquote>
 
-          {/* Controls */}
-          <div className="flex items-center justify-between mt-8 sm:mt-12">
-            {/* Prev / Next */}
-            <div className="flex gap-3">
-              <button
-                onClick={prev}
-                className="rounded-full flex items-center justify-center testimonial-nav-btn"
-                style={{ width: 44, height: 44 }}
-                aria-label="Testimonio anterior"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                onClick={next}
-                className="rounded-full flex items-center justify-center testimonial-nav-btn"
-                style={{ width: 44, height: 44 }}
-                aria-label="Siguiente testimonio"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-
-            {/* Dots */}
-            <div className="flex gap-2" role="tablist" aria-label="Indicadores de testimonio">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  role="tab"
-                  aria-selected={i === current}
-                  aria-label={`Testimonio ${i + 1}`}
-                  onClick={() => goTo(i, i > current ? 1 : -1)}
-                  className="transition-all duration-300 rounded-full"
-                  style={{
-                    width: i === current ? 24 : 8,
-                    height: 8,
-                    background:
-                      i === current
-                        ? "var(--gold-primary)"
-                        : "var(--dark-border)",
-                  }}
-                />
+                  {/* Author */}
+                  <div className="flex items-center gap-3">
+                    {/* Avatar */}
+                    <div
+                      className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border-2"
+                      style={{ borderColor: testimonial.avatarBg.split(',')[0].replace('linear-gradient(135deg, ', '') }}
+                    >
+                      <img
+                        src={getAvatarUrl(testimonial.id)}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.style.background = testimonial.avatarBg;
+                            parent.innerHTML = `<span class="text-xs font-bold" style="color: var(--amber-light)">${testimonial.initials}</span>`;
+                          }
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <p
+                        className="font-semibold text-sm"
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        {testimonial.name}
+                      </p>
+                      <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+                        {testimonial.role}
+                        {testimonial.company && ` · ${testimonial.company}`}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
+          ) : (
+            // Full Carousel Layout
+            <div
+              className="testimonial-card relative overflow-hidden flex flex-col justify-between mb-12"
+              style={{ minHeight: '350px', maxHeight: '500px', height: 'auto' }}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={testimonial.id}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col h-full"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  dragMomentum={false}
+                  onDragEnd={(e, info) => {
+                    const { offset, velocity } = info;
+                    const swipeThreshold = 50;
+                    
+                    if (offset.x < -swipeThreshold) {
+                      // Swipe izquierda → siguiente
+                      next();
+                    } else if (offset.x > swipeThreshold) {
+                      // Swipe derecha → anterior
+                      prev();
+                    }
+                  }}
+                  style={{ cursor: 'grab' }}
+                >
+                  {/* Stars */}
+                  <div className="stars mb-4 mt-2" aria-label="5 estrellas">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={16} fill="currentColor" />
+                    ))}
+                  </div>
 
-            {/* Counter */}
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              {current + 1} / {testimonials.length}
-            </p>
+                  {/* Quote */}
+                  <blockquote
+                    className="text-lg leading-relaxed flex-1 mb-10"
+                    style={{
+                      color: "var(--text-secondary)",
+                      fontStyle: "italic",
+                      lineHeight: 1.9,
+                    }}
+                  >
+                    {testimonial.quote}
+                  </blockquote>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4">
+                    {/* Avatar */}
+                    <div
+                      className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2"
+                      style={{ borderColor: testimonial.avatarBg.split(',')[0].replace('linear-gradient(135deg, ', '') }}
+                    >
+                      <img
+                        src={getAvatarUrl(testimonial.id)}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.style.background = testimonial.avatarBg;
+                            parent.innerHTML = `<span class="text-sm font-bold" style="color: var(--amber-light)">${testimonial.initials}</span>`;
+                          }
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <p
+                        className="font-semibold"
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        {testimonial.name}
+                      </p>
+                      <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                        {testimonial.role}
+                        {testimonial.company && ` · ${testimonial.company}`}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
+
+          {/* View All / View Less Button */}
+          <div className="text-center mb-8">
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-3 rounded-full font-medium transition-all duration-300"
+              style={{
+                background: "var(--gold-primary)",
+                color: "var(--dark-bg)",
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {showAll 
+                ? (language === 'es' ? 'Ver menos testimonios' : 'View less testimonials')
+                : (language === 'es' ? `Ver todos los ${testimonials.length} testimonios` : `View all ${testimonials.length} testimonials`)
+              }
+            </motion.button>
           </div>
+
+          {/* Carousel Controls - Only show when viewing all */}
+          {showAll && (
+            <div className="flex items-center justify-between">
+              {/* Prev / Next */}
+              <div className="flex gap-3">
+                <button
+                  onClick={prev}
+                  className="rounded-full flex items-center justify-center testimonial-nav-btn"
+                  style={{ width: 44, height: 44 }}
+                  aria-label="Testimonio anterior"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  onClick={next}
+                  className="rounded-full flex items-center justify-center testimonial-nav-btn"
+                  style={{ width: 44, height: 44 }}
+                  aria-label="Siguiente testimonio"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+
+              {/* Dots */}
+              <div className="flex gap-2" role="tablist" aria-label="Indicadores de testimonio">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    role="tab"
+                    aria-selected={i === current}
+                    aria-label={`Testimonio ${i + 1}`}
+                    onClick={() => goTo(i, i > current ? 1 : -1)}
+                    className="transition-all duration-300 rounded-full"
+                    style={{
+                      width: i === current ? 24 : 8,
+                      height: 8,
+                      background:
+                        i === current
+                          ? "var(--gold-primary)"
+                          : "var(--dark-border)",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Counter */}
+              <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                {current + 1} / {testimonials.length}
+              </p>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
