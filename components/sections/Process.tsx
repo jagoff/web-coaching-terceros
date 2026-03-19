@@ -1,18 +1,47 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { Search, Compass, Zap, Star } from "lucide-react";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
+import { useInView, useScroll } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Target, Users, TrendingUp, Star } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 
-const stepReveal: Variants = {
-  hidden: { opacity: 0, y: 50, rotateY: -8, filter: "blur(4px)" },
-  visible: (i: number) => ({
+const headerStagger: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const blurUp: Variants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+  visible: {
     opacity: 1,
     y: 0,
-    rotateY: 0,
     filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const dividerGrow: Variants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const stepReveal: Variants = {
+  hidden: { opacity: 0, y: 60, scale: 0.95 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
     transition: {
       duration: 0.7,
       delay: 0.35 + i * 0.15,
@@ -21,38 +50,33 @@ const stepReveal: Variants = {
   }),
 };
 
+const steps = [
+  {
+    number: "01", 
+    icon: Target,
+    key: "diagnostico" as const,
+  },
+  {
+    number: "02", 
+    icon: Users,
+    key: "diseno" as const,
+  },
+  {
+    number: "03",
+    icon: TrendingUp,
+    key: "ejecucion" as const, 
+  },
+  {
+    number: "04",
+    icon: Star,
+    key: "autonomia" as const,
+  },
+];
 
 export default function Process() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-
-  const steps = [
-    {
-      number: "01",
-      icon: Search,
-      title: t.process.steps.diagnostico.title,
-      description: t.process.steps.diagnostico.description,
-    },
-    {
-      number: "02",
-      icon: Compass,
-      title: t.process.steps.diseno.title,
-      description: t.process.steps.diseno.description,
-    },
-    {
-      number: "03",
-      icon: Zap,
-      title: t.process.steps.ejecucion.title,
-      description: t.process.steps.ejecucion.description,
-    },
-    {
-      number: "04",
-      icon: Star,
-      title: t.process.steps.autonomia.title,
-      description: t.process.steps.autonomia.description,
-    },
-  ];
 
   return (
     <section id="proceso" className="section section-surface section-gold-border-top" ref={ref}>
@@ -117,7 +141,8 @@ export default function Process() {
                   animate={isInView ? "visible" : "hidden"}
                   className="process-step glass-card-sm group p-6"
                   style={{ perspective: "600px" }}
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -2 }} // Minimal hover
+                  whileTap={{ y: -8, scale: 1.05, zIndex: 10 }} // Dramatic tap effect
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   {/* Ghost number */}
@@ -140,7 +165,14 @@ export default function Process() {
                   {/* Icon circle */}
                   <motion.div
                     className="step-icon"
-                    whileHover={{ scale: 1.15, rotate: -5 }}
+                    style={{
+                      // DEBUG: Inline styles to ensure transforms work
+                      transform: 'scale(1)',
+                      transition: 'transform 0.3s ease',
+                      backgroundColor: 'rgba(124, 107, 196, 0.1)'
+                    }}
+                    whileHover={{ scale: 1.02 }} // Minimal hover
+                    whileTap={{ scale: 1.3, rotate: 10, zIndex: 15 }} // Dramatic tap effect
                     transition={{ type: "spring", stiffness: 400, damping: 12 }}
                   >
                     <Icon size={22} strokeWidth={1.5} />
@@ -164,7 +196,7 @@ export default function Process() {
                       letterSpacing: "0.02em"
                     }}
                   >
-                    {step.title}
+                    {t.process.steps[step.key].title}
                   </h3>
 
                   <p className="text-body leading-relaxed" style={{ 
@@ -173,7 +205,7 @@ export default function Process() {
                     fontSize: "clamp(16px, 2vw, 18px)",
                     fontWeight: 400
                   }}>
-                    {step.description}
+                    {t.process.steps[step.key].description}
                   </p>
 
                   {/* Mobile enhancements */}
