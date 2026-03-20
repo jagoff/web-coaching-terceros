@@ -5,6 +5,97 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Flame } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// Animated Star with Fire Effect
+const AnimatedStar = ({ index, delay = 0 }: { index: number; delay?: number }) => {
+  const starRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const star = starRef.current;
+    if (!star) return;
+
+    // Set initial state
+    gsap.set(star, {
+      scale: 0,
+      rotation: -180,
+      opacity: 0,
+    });
+
+    // Create timeline for star appearance
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: star,
+        start: "top 85%",
+        end: "top 70%",
+        once: true,
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // Star appearance with fire effect
+    tl.to(star, {
+      scale: 1.2,
+      rotation: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+      delay: delay
+    });
+
+    // Fire flicker effect
+    const flickers = [
+      { scale: 1.1, rotation: 5, duration: 0.1 },
+      { scale: 0.95, rotation: -3, duration: 0.1 },
+      { scale: 1.15, rotation: 8, duration: 0.15 },
+      { scale: 0.9, rotation: -5, duration: 0.1 },
+      { scale: 1.05, rotation: 3, duration: 0.1 },
+      { scale: 1, rotation: 0, duration: 0.2 },
+    ];
+
+    flickers.forEach((flicker, i) => {
+      tl.to(star, {
+        ...flicker,
+        ease: "power2.inOut"
+      });
+    });
+
+    // Add fire glow effect
+    tl.to(star, {
+      filter: "drop-shadow(0 0 8px rgba(255, 165, 0, 0.6))",
+      duration: 0.3,
+      ease: "power2.inOut"
+    })
+    .to(star, {
+      filter: "drop-shadow(0 0 4px rgba(255, 165, 0, 0.3))",
+      duration: 0.3,
+      ease: "power2.inOut"
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      tl.kill();
+    };
+  }, [delay]);
+
+  return (
+    <span 
+      ref={starRef}
+      className="inline-block"
+      style={{
+        color: "var(--amber-primary)",
+        display: "inline-block",
+        transformOrigin: "center"
+      }}
+    >
+      🔥
+    </span>
+  );
+};
 
 const testimonialsES = [
   {
@@ -230,7 +321,7 @@ const testimonialsES = [
   {
     id: 23,
     quote:
-      "El acompañamiento de Fernando fue clave. Mi equipo pasó de ap🔥gar incendios 🔥 a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
+      "El acompañamiento de Fernando fue clave. Mi equipo pasó de apagar incendios 🔥 a trabajar con foco y autonomía. La retención de talento mejoró un 35% ese año.",
     name: "Jorge Paredes",
     role: "VP of Engineering",
     company: "DataSur",
@@ -414,9 +505,15 @@ export default function Testimonials() {
               >
                 {/* Stars */}
                 <div className="stars mb-4 mt-2" aria-label="5 estrellas">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" />
-                  ))}
+                  {[...Array(5)].map((_, i) => {
+                    // Mix: positions 1, 3, 5 get fires, positions 2, 4 get stars
+                    const isFire = i % 2 === 0; // 0, 2, 4 = fires; 1, 3 = stars
+                    return isFire ? (
+                      <AnimatedStar key={i} index={i} delay={i * 0.1} />
+                    ) : (
+                      <Star key={i} size={16} fill="currentColor" style={{ display: "inline-block" }} />
+                    );
+                  })}
                 </div>
 
                 {/* Quote */}

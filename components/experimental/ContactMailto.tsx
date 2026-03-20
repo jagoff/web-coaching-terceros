@@ -17,6 +17,7 @@ const slideRight = {
 
 export default function ContactMailto() {
   const { language } = useLanguage();
+  console.log("🔥 CONTACT MAILTO COMPONENT LOADED");
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});

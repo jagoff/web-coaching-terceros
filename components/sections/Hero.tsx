@@ -282,13 +282,13 @@ export default function Hero() {
             className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
-            <motion.span variants={revealUp} className="block">
+            <motion.span variants={revealUp} className="block text-gradient">
               {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
             </motion.span>
-            <motion.span variants={revealUp} className="block mt-3">
+            <motion.span variants={revealUp} className="block mt-3 text-gradient">
               {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
             </motion.span>
-            <motion.span variants={revealUp} className="block mt-3">
+            <motion.span variants={revealUp} className="block mt-3 text-gradient">
               {language === 'es' ? 'Escalá sin límites.' : 'Scale without limits.'}
             </motion.span>
           </motion.h1>
@@ -325,7 +325,7 @@ export default function Hero() {
             />
             <div className="flex items-center gap-4 mb-4">
               <img 
-                src="/img/this-is-fine-dog .png" 
+                src="/img/this-is-fine-dog-optimized.png" 
                 alt="Avatar - ¿Te suena esto?"
                 className="w-16 h-16 object-contain rounded-full"
                 style={{ 
@@ -333,7 +333,7 @@ export default function Hero() {
                   animation: 'pulse 2s infinite'
                 }}
               />
-              <p className="text-sm uppercase tracking-widest" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+              <p className="text-base uppercase tracking-widest" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
                 ¿Te suena esto?
               </p>
             </div>

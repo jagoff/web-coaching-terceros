@@ -53,6 +53,7 @@ import {
 
 export default function Contact() {
   const { t, language } = useLanguage();
+  console.log("🔥 CONTACT COMPONENT LOADED - ESTE ES EL COMPONENTE ACTIVO");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -247,7 +248,13 @@ export default function Contact() {
             </p>
 
             {/* Urgency indicator */}
-            <div className="mb-4 p-4 rounded-lg" style={{
+            <div className="mb-4 p-4 rounded-lg text-center" style={{
+              marginTop: '1rem',
+              textAlign: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'column',
               background: "rgba(124,107,196,0.1)",
               border: "1px solid rgba(124,107,196,0.2)",
             }}>
@@ -356,7 +363,7 @@ export default function Contact() {
                     exit={{ opacity: 0 }}
                   >
                     {/* Name */}
-                    <div className="form-group">
+                    <div className="form-group relative">
                       <label htmlFor="nombre" className="form-label">
                         <User size={16} className="inline mr-2" />
                         {t.contact.form.nombre.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
@@ -368,7 +375,7 @@ export default function Contact() {
                           type="text"
                           autoComplete="name"
                           placeholder={t.contact.form.nombre.placeholder}
-                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
+                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 ${
                             getFieldStatus('nombre') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('nombre') === 'error' ? 'border-red-500 bg-red-50/10' : 
                             'border-gray-600'
@@ -379,14 +386,22 @@ export default function Contact() {
                           aria-describedby={errors.nombre ? "nombre-error" : undefined}
                           aria-invalid={!!errors.nombre}
                         />
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                          {getFieldStatus('nombre') === 'success' && (
-                            <CheckCircle2 size={20} className="text-green-500" />
-                          )}
-                          {getFieldStatus('nombre') === 'error' && (
-                            <AlertCircle size={20} className="text-red-500" />
-                          )}
-                        </div>
+                        {!errors.nombre && touched.nombre && form.nombre && (
+                          <div
+                            className="form-checkmark-right"
+                            style={{ 
+                              background: 'rgba(34, 197, 94, 0.1)', 
+                              border: '1px solid rgba(34, 197, 94, 0.3)',
+                              padding: '2px 4px', 
+                              borderRadius: '3px',
+                              fontSize: '9px',
+                              color: '#22c55e',
+                              fontWeight: '500'
+                            }}
+                          >
+                            ✓
+                          </div>
+                        )}
                       </div>
                       {errors.nombre && (
                         <motion.p
@@ -401,20 +416,10 @@ export default function Contact() {
                           {errors.nombre}
                         </motion.p>
                       )}
-                      {!errors.nombre && touched.nombre && form.nombre && (
-                        <motion.p
-                          className="text-xs mt-2 text-green-500 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                        >
-                          <CheckCircle2 size={12} />
-                          Nombre válido
-                        </motion.p>
-                      )}
                     </div>
 
                     {/* Email */}
-                    <div className="form-group">
+                    <div className="form-group relative">
                       <label htmlFor="email" className="form-label">
                         <Mail size={16} className="inline mr-2" />
                         {t.contact.form.email.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
@@ -426,7 +431,7 @@ export default function Contact() {
                           type="email"
                           autoComplete="email"
                           placeholder={t.contact.form.email.placeholder}
-                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
+                          className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 ${
                             getFieldStatus('email') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('email') === 'error' ? 'border-red-500 bg-red-50/10' : 
                             'border-gray-600'
@@ -436,14 +441,22 @@ export default function Contact() {
                           onBlur={handleBlur}
                           aria-invalid={!!errors.email}
                         />
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                          {getFieldStatus('email') === 'success' && (
-                            <CheckCircle2 size={20} className="text-green-500" />
-                          )}
-                          {getFieldStatus('email') === 'error' && (
-                            <AlertCircle size={20} className="text-red-500" />
-                          )}
-                        </div>
+                        {!errors.email && touched.email && form.email && (
+                          <div
+                            className="form-checkmark-right"
+                            style={{ 
+                              background: 'rgba(34, 197, 94, 0.1)', 
+                              border: '1px solid rgba(34, 197, 94, 0.3)',
+                              padding: '2px 4px', 
+                              borderRadius: '3px',
+                              fontSize: '9px',
+                              color: '#22c55e',
+                              fontWeight: '500'
+                            }}
+                          >
+                            ✓
+                          </div>
+                        )}
                       </div>
                       {errors.email && (
                         <motion.p
@@ -457,20 +470,10 @@ export default function Contact() {
                           {errors.email}
                         </motion.p>
                       )}
-                      {!errors.email && touched.email && form.email && (
-                        <motion.p
-                          className="text-xs mt-2 text-green-500 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                        >
-                          <CheckCircle2 size={12} />
-                          Email válido
-                        </motion.p>
-                      )}
                     </div>
 
                     {/* Message */}
-                    <div className="form-group">
+                    <div className="form-group relative">
                       <label htmlFor="mensaje" className="form-label">
                         <MessageSquare size={16} className="inline mr-2" />
                         {t.contact.form.mensaje.label} <span style={{ color: "var(--gold-primary)" }}>*</span>
@@ -480,7 +483,7 @@ export default function Contact() {
                           id="mensaje"
                           name="mensaje"
                           autoComplete="off"
-                          className={`form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px] pr-12 transition-all duration-200 ${
+                          className={`form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px] transition-all duration-200 ${
                             getFieldStatus('mensaje') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('mensaje') === 'error' ? 'border-red-500 bg-red-50/10' : 
                             'border-gray-600'
@@ -492,14 +495,22 @@ export default function Contact() {
                           rows={4}
                           aria-invalid={!!errors.mensaje}
                         />
-                        <div className="absolute right-3 top-4">
-                          {getFieldStatus('mensaje') === 'success' && (
-                            <CheckCircle2 size={20} className="text-green-500" />
-                          )}
-                          {getFieldStatus('mensaje') === 'error' && (
-                            <AlertCircle size={20} className="text-red-500" />
-                          )}
-                        </div>
+                        {!errors.mensaje && touched.mensaje && form.mensaje && (
+                          <div
+                            className="form-checkmark-right"
+                            style={{ 
+                              background: 'rgba(34, 197, 94, 0.1)', 
+                              border: '1px solid rgba(34, 197, 94, 0.3)',
+                              padding: '2px 4px', 
+                              borderRadius: '3px',
+                              fontSize: '9px',
+                              color: '#22c55e',
+                              fontWeight: '500'
+                            }}
+                          >
+                            ✓
+                          </div>
+                        )}
                       </div>
                       <div className="flex justify-between items-start mt-2">
                         {errors.mensaje ? (
@@ -514,18 +525,7 @@ export default function Contact() {
                             {errors.mensaje}
                           </motion.p>
                         ) : (
-                          <div>
-                            {!errors.mensaje && touched.mensaje && form.mensaje && (
-                              <motion.p
-                                className="text-xs text-green-500 flex items-center gap-1"
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                              >
-                                <CheckCircle2 size={12} />
-                                Mensaje válido
-                              </motion.p>
-                            )}
-                          </div>
+                          <div></div>
                         )}
                         <span className="text-xs" style={{ color: "var(--text-muted)" }}>
                           {form.mensaje.trim().length}/500

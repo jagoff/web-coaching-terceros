@@ -133,9 +133,20 @@ const caseStudies = [
 export default function CaseStudies() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-200px", amount: 0.1 });
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
   const [showAll, setShowAll] = useState(false);
   const [featuredCases, setFeaturedCases] = useState<typeof caseStudies>([]);
+  const [forceVisible, setForceVisible] = useState(false);
+
+  // Fallback: Force visibility after 2 seconds if animation hasn't triggered
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isInView) {
+        setForceVisible(true);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [isInView]);
 
   // Randomly select 2 featured case studies on component mount
   useEffect(() => {
@@ -149,13 +160,13 @@ export default function CaseStudies() {
   const displayCases = showAll ? caseStudies : featuredCases;
 
   return (
-    <section id="casos-de-estudio" className="section section-surface section-gold-border-top" ref={ref}>
+    <section id="casos-de-estudio" className="section section-surface section-gold-border-top max-sm:hidden" ref={ref} style={{ minHeight: '400px' }}>
       <div className="container">
         {/* Header */}
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView || forceVisible ? "visible" : "hidden"}
           className="text-center mb-12 md:mb-20"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -166,8 +177,7 @@ export default function CaseStudies() {
             className="heading-xl mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            {t.caseStudies.title}{" "}
-            <span className="text-gradient">{t.caseStudies.title2}</span>
+            {t.caseStudies.title} <span className="text-gradient">{t.caseStudies.title2}</span>
           </motion.h2>
           <motion.p
             variants={blurUp}
@@ -189,7 +199,7 @@ export default function CaseStudies() {
                 custom={i}
                 variants={caseCard}
                 initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                animate={isInView || forceVisible ? "visible" : "hidden"}
                 className="glass-card p-6 relative overflow-hidden group"
                 style={{ perspective: "800px" }}
               whileHover={{ y: -4, boxShadow: "0 0 60px rgba(124,107,196,0.15), 0 16px 48px rgba(0,0,0,0.4)" }}
@@ -207,12 +217,12 @@ export default function CaseStudies() {
                 >
                   {caseStudy.company}
                 </h4>
-                <p className="text-sm mb-2" style={{ color: "var(--text-muted)" }}>
-                  {caseStudy.category}
-                </p>
-                <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
-                  <span className="font-semibold">Qué se hizo:</span> {caseStudy.intervention.points[0]}
-                </p>
+                <div className="text-sm mb-2" style={{ color: "var(--text-muted)" }}>
+                  <span className="text-gradient">{caseStudy.category}</span>
+                </div>
+                <div className="text-xs" style={{ color: "var(--text-secondary)" }}>
+                  <span className="text-gradient">Qué se hizo:</span> {caseStudy.intervention.points[0]}
+                </div>
                 <p className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>
                   {caseStudy.role} · {caseStudy.teamSize} · {caseStudy.duration}
                 </p>
@@ -230,10 +240,9 @@ export default function CaseStudies() {
                       <TrendingUp size={12} style={{ color: "#ef4444" }} />
                     </div>
                     <h5 
-                      className="text-sm font-semibold"
-                      style={{ color: "#ef4444" }}
+                      className="text-sm font-semibold text-gradient"
                     >
-                      DIAGNÓSTICO
+                      {caseStudy.before.title}
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -258,10 +267,9 @@ export default function CaseStudies() {
                       <Users size={12} style={{ color: "var(--gold-primary)" }} />
                     </div>
                     <h5 
-                      className="text-sm font-semibold"
-                      style={{ color: "var(--gold-primary)" }}
+                      className="text-sm font-semibold text-gradient"
                     >
-                      DISEÑO
+                      {caseStudy.intervention.title}
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -286,10 +294,9 @@ export default function CaseStudies() {
                       <CheckCircle2 size={12} style={{ color: "#22c55e" }} />
                     </div>
                     <h5 
-                      className="text-sm font-semibold"
-                      style={{ color: "#22c55e" }}
+                      className="text-sm font-semibold text-gradient"
                     >
-                      EJECUCIÓN → AUTONOMÍA
+                      {caseStudy.results.title}
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -310,10 +317,9 @@ export default function CaseStudies() {
             <div className="mt-4 flex justify-end">
               <button
                 className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group"
-                style={{ color: "var(--gold-primary)" }}
                 onClick={() => handleScroll("#contacto")}
               >
-                Ver transformación completa
+                <span className="text-gradient">Ver transformación completa</span>
                 <ArrowRight 
                   size={14} 
                   className="transition-transform group-hover:translate-x-1" 

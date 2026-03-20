@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Safari iOS Debug</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(124, 107, 196, 0.1);
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0C0A12;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .section {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            width: 100%;
+            padding: 20px 0;
+        }
+        
+        .pricing-card {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            -webkit-transform: none;
+            background: rgba(20, 18, 29, 0.9);
+            border: 1px solid #7C6BC4;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            flex-direction: column;
+        }
+        
+        .pricing-card.featured {
+            background: rgba(12, 10, 18, 0.95);
+            border-color: #7C6BC4;
+            box-shadow: 0 0 20px rgba(124, 107, 196, 0.2);
+            -webkit-box-shadow: 0 0 20px rgba(124, 107, 196, 0.2);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background: #FF6B35;
+            color: #0C0A12;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+            transform: scale(1);
+            -webkit-transform: scale(1);
+        }
+        
+        .btn-primary:active {
+            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+            background: #FF8555;
+        }
+        
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .test-transform {
+            width: 80px;
+            height: 80px;
+            background: #7C6BC4;
+            border-radius: 50%;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+        }
+        
+        .test-transform:active {
+            transform: scale(1.5) rotate(45deg);
+            -webkit-transform: scale(1.5) rotate(45deg);
+            background: #FF6B35;
+        }
+        
+        h1, h2, h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 600;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            background: linear-gradient(135deg, rgba(124, 107, 196, 0.25) 0%, rgba(200, 123, 90, 0.15) 100%);
+            border: 1px solid rgba(124, 107, 196, 0.50);
+            border-radius: 25px;
+            color: #7C6BC4;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍎 Safari iOS Debug Test</h1>
+    
+    <div class="info">
+        <p><strong>Dispositivo:</strong> iPhone + Safari</p>
+        <p><strong>Tests:</strong> Transformaciones, Grid, Pricing</p>
+        <p><strong>Instrucciones:</strong> Toca todo para probar</p>
+    </div>
+    
+    <h2>Test 1: Transformación iOS</h2>
+    <div class="test-transform">🔥</div>
+    
+    <h2>Test 2: Sección Pricing (como en la web)</h2>
+    <section id="precios" class="section">
+        <div class="grid">
+            <div class="pricing-card">
+                <span class="badge">Plan 1</span>
+                <h3>Liderazgo Individual</h3>
+                <p>Coaching 1 a 1 para líderes</p>
+                <button class="btn-primary">Consultar</button>
+            </div>
+            
+            <div class="pricing-card featured">
+                <span class="badge">Más Popular</span>
+                <h3>Transformación Organizacional</h3>
+                <p>Consultoría para equipos completos</p>
+                <button class="btn-primary">Consultar</button>
+            </div>
+            
+            <div class="pricing-card">
+                <span class="badge">Plan 3</span>
+                <h3>Programa Personalizado</h3>
+                <p>Solución a medida para tu empresa</p>
+                <button class="btn-primary">Consultar</button>
+            </div>
+        </div>
+    </section>
+    
+    <div class="info">
+        <p><strong>Resultados esperados en Safari iOS:</strong></p>
+        <p>✅ Círculo: Debe agrandarse y rotar al tocar</p>
+        <p>✅ Tarjetas: Deben ser visibles en columna</p>
+        <p>✅ Botones: Deben hacerse más grandes al tocar</p>
+        <p>✅ Badge "Más Popular": Debe destacarse</p>
+    </div>
+    
+    <script>
+        // Safari iOS detection
+        document.addEventListener('DOMContentLoaded', function() {
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            if (isSafari && isIOS) {
+                console.log('✅ Safari iOS detectado');
+                document.body.style.background = 'linear-gradient(180deg, #0C0A12 0%, #14121D 100%)';
+            }
+            
+            // Touch events logging
+            document.addEventListener('touchstart', function(e) {
+                console.log('Touch start en:', e.target);
+            });
+            
+            document.addEventListener('touchend', function(e) {
+                console.log('Touch end en:', e.target);
+            });
+        });
+    </script>
+</body>
+</html>

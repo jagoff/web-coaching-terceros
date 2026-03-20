@@ -100,15 +100,14 @@ export default function CalBookingSimple() {
 
             {/* Urgency indicator */}
             <motion.div 
-              className="mb-4 p-4 rounded-xl"
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ 
-                duration: 1.2, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.6 
-              }}
+              className="mb-4 p-4 rounded-xl text-center"
               style={{
+                marginTop: '1rem',
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'column',
                 background: "linear-gradient(135deg, rgba(124,107,196,0.06) 0%, rgba(124,107,196,0.10) 100%)",
                 border: "1px solid rgba(124,107,196,0.12)",
                 backdropFilter: "blur(12px)",

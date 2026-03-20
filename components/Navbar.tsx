@@ -118,7 +118,7 @@ export default function Navbar() {
                 <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               <button
-                className="btn-primary"
+                className="btn-primary-vibrant"
                 style={{ padding: "0.875rem 1.75rem", fontSize: "0.875rem" }}
                 onClick={() => handleLinkClick("#contacto")}
               >
@@ -180,46 +180,34 @@ export default function Navbar() {
             }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b"
-              style={{ borderColor: "var(--dark-border)" }}>
-              <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between px-6 py-6">
+              <div className="flex items-center gap-3">
                 <span
-                  className="text-gradient font-heading font-black text-3xl tracking-tight"
+                  className="text-gradient font-black text-4xl"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   ELEVA
                 </span>
-                <span
-                  className="text-xs font-semibold uppercase tracking-[0.15em] text-muted"
-                  style={{
-                    opacity: 0.9,
-                    alignSelf: "flex-end",
-                    paddingBottom: "0.2rem"
-                  }}
-                >
-                  {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
-                </span>
               </div>
               <button
-                className="flex items-center justify-center rounded-md min-w-[44px] min-h-[44px] text-text-secondary"
+                className="flex items-center justify-center rounded-full w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >
-                <X size={22} />
+                <X size={20} />
               </button>
             </div>
 
             {/* Links */}
-            <nav className="flex flex-col flex-1 justify-center px-8 gap-2">
+            <nav className="flex flex-col flex-1 justify-center px-6 gap-1">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.3 }}
-                  className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                  className="text-left py-5 text-3xl font-bold bg-transparent cursor-pointer text-white hover:text-gradient transition-all"
                   style={{
-                    borderBottom: "1px solid var(--dark-border)",
                     fontFamily: "var(--font-heading)",
                   }}
                   onClick={() => handleLinkClick(link.href)}
@@ -230,9 +218,9 @@ export default function Navbar() {
             </nav>
 
             {/* Mobile CTA Button */}
-            <div className="px-8 pb-6">
+            <div className="px-6 pb-6">
               <button
-                className="btn-primary w-full"
+                className="btn-primary w-full text-lg py-4"
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
@@ -240,25 +228,14 @@ export default function Navbar() {
             </div>
 
             {/* Language Toggle */}
-            <div className="px-8 pb-8">
+            <div className="px-6 pb-8">
               <div className="flex justify-center">
                 <button
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl border-2"
-                  style={{
-                    background: "rgba(124,107,196,0.25)",
-                    borderColor: "rgba(124,107,196,0.6)",
-                    color: "#7C6BC4",
-                    fontSize: "16px",
-                    fontWeight: "700",
-                    boxShadow: "0 4px 16px rgba(124,107,196,0.4)",
-                    textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-                    minWidth: "140px",
-                    height: "56px"
-                  }}
+                  className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/15 transition-all"
                   onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
                 >
-                  <span style={{ fontSize: "20px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                  <span style={{ fontSize: "14px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                  <span className="text-2xl">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                  <span className="text-sm font-bold">{language === 'es' ? 'EN' : 'ES'}</span>
                 </button>
               </div>
             </div>

@@ -341,13 +341,31 @@ export default function Hero() {
             className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
-            <span className="block">
+            <span className="block hero-gradient-1" style={{
+              backgroundImage: "linear-gradient(135deg, #D4CAD8 0%, #8B7AD2 60%, #ADA0E0 100%) !important",
+              backgroundClip: "text !important",
+              WebkitBackgroundClip: "text !important",
+              WebkitTextFillColor: "transparent !important",
+              color: "transparent !important"
+            }}>
               {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
             </span>
-            <span className="block mt-3" data-text={language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}>
+            <span className="block mt-3 hero-gradient-2" data-text={language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'} style={{
+              backgroundImage: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%) !important",
+              backgroundClip: "text !important",
+              WebkitBackgroundClip: "text !important",
+              WebkitTextFillColor: "transparent !important",
+              color: "transparent !important"
+            }}>
               {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
             </span>
-            <span className="block mt-3">
+            <span className="block mt-3 hero-gradient-3" style={{
+              backgroundImage: "linear-gradient(135deg, #D4CAD8 0%, #8B7AD2 40%, var(--gold-primary) 100%) !important",
+              backgroundClip: "text !important",
+              WebkitBackgroundClip: "text !important",
+              WebkitTextFillColor: "transparent !important",
+              color: "transparent !important"
+            }}>
               {language === 'es' ? 'Escalá sin límites.' : 'Scale without limits.'}
             </span>
           </h1>

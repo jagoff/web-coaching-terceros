@@ -132,7 +132,13 @@ export default function CalBooking() {
             </p>
 
             {/* Urgency indicator */}
-            <div className="mb-4 p-4 rounded-lg" style={{
+            <div className="mb-4 p-4 rounded-lg text-center" style={{
+              marginTop: '1rem',
+              textAlign: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'column',
               background: "rgba(124,107,196,0.1)",
               border: "1px solid rgba(124,107,196,0.2)",
             }}>

@@ -25,7 +25,18 @@ const statCard: Variants = {
 export default function Results() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const [forceVisible, setForceVisible] = useState(false);
+
+  // Fallback: Force visibility after 2 seconds if animation hasn't triggered
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isInView) {
+        setForceVisible(true);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [isInView]);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
 
@@ -170,7 +181,7 @@ export default function Results() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView || forceVisible ? "visible" : "hidden"}
           className="text-center mb-14 md:mb-24"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -198,7 +209,7 @@ export default function Results() {
               custom={i}
               variants={statCard}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate={isInView || forceVisible ? "visible" : "hidden"}
               className="text-center"
               whileHover={{ scale: 1.06, y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -208,7 +219,7 @@ export default function Results() {
                 value={stat.value}
                 prefix={stat.prefix}
                 suffix={stat.suffix}
-                started={isInView}
+                started={isInView || forceVisible}
               />
 
               {/* Label */}
@@ -227,7 +238,7 @@ export default function Results() {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView || forceVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >

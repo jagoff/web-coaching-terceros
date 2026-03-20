@@ -1,0 +1,2367 @@
+{
+  "config": {
+    "configFile": "/Users/fer/repositories/coaching-landing/playwright.config.ts",
+    "rootDir": "/Users/fer/repositories/coaching-landing/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 7
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/fer/repositories/coaching-landing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 7
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/fer/repositories/coaching-landing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/fer/repositories/coaching-landing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 7
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/fer/repositories/coaching-landing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/fer/repositories/coaching-landing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 7
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/fer/repositories/coaching-landing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/fer/repositories/coaching-landing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 7
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/fer/repositories/coaching-landing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/fer/repositories/coaching-landing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 7
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/fer/repositories/coaching-landing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 7,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "case-studies-debug.spec.ts",
+      "file": "case-studies-debug.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Case Studies Debug - 3 Column Layout",
+          "file": "case-studies-debug.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "case studies should show 3-column layout on desktop",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12922,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📊 Found 4 case study cards\n"
+                        },
+                        {
+                          "text": "🔍 Grid classes: grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center\n"
+                        },
+                        {
+                          "text": "📱 lg:grid-cols-3: false, md:grid-cols-2: false\n"
+                        },
+                        {
+                          "text": "🖥️ Desktop 3-column layout found: false\n"
+                        },
+                        {
+                          "text": "📱 Mobile swipeable layout found: false\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.249Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7847c6b6c71efeb1f8d1-992108b54164faebf906",
+              "file": "case-studies-debug.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "case studies should show proper content structure",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 34222,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-debug.spec.ts",
+                            "column": 55,
+                            "line": 68
+                          },
+                          "message": "Error: locator.textContent: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('h4')\u001b[22m\n\n\n  66 |     \n  67 |     // Check company info\n> 68 |     const companyName = await firstCard.locator('h4').textContent();\n     |                                                       ^\n  69 |     console.log(`🏢 Company: ${companyName}`);\n  70 |     \n  71 |     const category = await firstCard.locator('text=Transformación Ágil').count();\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-debug.spec.ts:68:55"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.248Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-debug-Case-St-3fd16-ow-proper-content-structure-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-debug-Case-St-3fd16-ow-proper-content-structure-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-debug-Case-St-3fd16-ow-proper-content-structure-Mobile-Chrome/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "7847c6b6c71efeb1f8d1-3d0ccbde12f51906ad45",
+              "file": "case-studies-debug.spec.ts",
+              "line": 61,
+              "column": 7
+            },
+            {
+              "title": "tablet should show 2-column layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 12924,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📱 Tablet - Found 4 case study cards\n"
+                        },
+                        {
+                          "text": "📱 Tablet grid classes: grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center\n"
+                        },
+                        {
+                          "text": "📱 Tablet md:grid-cols-2: false\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.248Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7847c6b6c71efeb1f8d1-40d54b4096a29109671e",
+              "file": "case-studies-debug.spec.ts",
+              "line": 88,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "case-studies-final-verification.spec.ts",
+      "file": "case-studies-final-verification.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Case Studies Final Verification",
+          "file": "case-studies-final-verification.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "mobile cards show limited points with \"more\" indicator",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 13016,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:26:27",
+                        "location": {
+                          "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                          "column": 27,
+                          "line": 26
+                        },
+                        "snippet": "  24 |     // Should show limited points\n  25 |     expect(antesPoints).toBeLessThanOrEqual(3); // 2 points + \"más...\"\n> 26 |     expect(moreIndicator).toBeGreaterThan(0);\n     |                           ^\n  27 |     \n  28 |     // Check card height is reasonable\n  29 |     const boundingBox = await firstCard.boundingBox();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                            "column": 27,
+                            "line": 26
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  24 |     // Should show limited points\n  25 |     expect(antesPoints).toBeLessThanOrEqual(3); // 2 points + \"más...\"\n> 26 |     expect(moreIndicator).toBeGreaterThan(0);\n     |                           ^\n  27 |     \n  28 |     // Check card height is reasonable\n  29 |     const boundingBox = await firstCard.boundingBox();\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:26:27"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "📱 Mobile ANTES points: 0\n"
+                        },
+                        {
+                          "text": "📱 \"Más...\" indicator: false\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.252Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-d4659--points-with-more-indicator-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-d4659--points-with-more-indicator-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-d4659--points-with-more-indicator-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                        "column": 27,
+                        "line": 26
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e2fc6118b1ca0bdd42ed-6ecaeb33f41bb6734463",
+              "file": "case-studies-final-verification.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "modal opens and shows all content",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "timedOut",
+                      "duration": 34221,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                            "column": 21,
+                            "line": 45
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('text=Ver transformación completa')\u001b[22m\n\n\n  43 |     \n  44 |     // Open modal\n> 45 |     await ctaButton.click();\n     |                     ^\n  46 |     await page.waitForTimeout(500);\n  47 |     \n  48 |     // Check modal is visible\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:45:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.243Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-bd4ba-opens-and-shows-all-content-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-bd4ba-opens-and-shows-all-content-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-bd4ba-opens-and-shows-all-content-Mobile-Chrome/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e2fc6118b1ca0bdd42ed-dfe6eead0c7471e905fa",
+              "file": "case-studies-final-verification.spec.ts",
+              "line": 37,
+              "column": 7
+            },
+            {
+              "title": "modal closes properly",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "timedOut",
+                      "duration": 34221,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                            "column": 21,
+                            "line": 79
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('text=Ver transformación completa')\u001b[22m\n\n\n  77 |     \n  78 |     // Open modal\n> 79 |     await ctaButton.click();\n     |                     ^\n  80 |     await page.waitForTimeout(500);\n  81 |     \n  82 |     // Close with X button\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:79:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.254Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-5b29b-ation-modal-closes-properly-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-5b29b-ation-modal-closes-properly-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-5b29b-ation-modal-closes-properly-Mobile-Chrome/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e2fc6118b1ca0bdd42ed-6f3a9e8c48d77eb3215f",
+              "file": "case-studies-final-verification.spec.ts",
+              "line": 71,
+              "column": 7
+            },
+            {
+              "title": "desktop shows 3-column layout",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 13110,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:112:45",
+                        "location": {
+                          "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                          "column": 45,
+                          "line": 112
+                        },
+                        "snippet": "  110 |     // Check desktop layout is visible\n  111 |     const desktopLayout = firstCard.locator('.hidden.md\\\\:block');\n> 112 |     expect(await desktopLayout.isVisible()).toBeTruthy();\n      |                                             ^\n  113 |     \n  114 |     // Check 3-column grid\n  115 |     const grid = desktopLayout.locator('.grid.grid-cols-3');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                            "column": 45,
+                            "line": 112
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  110 |     // Check desktop layout is visible\n  111 |     const desktopLayout = firstCard.locator('.hidden.md\\\\:block');\n> 112 |     expect(await desktopLayout.isVisible()).toBeTruthy();\n      |                                             ^\n  113 |     \n  114 |     // Check 3-column grid\n  115 |     const grid = desktopLayout.locator('.grid.grid-cols-3');\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:112:45"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:15.237Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-f165d-sktop-shows-3-column-layout-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-f165d-sktop-shows-3-column-layout-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                        "column": 45,
+                        "line": 112
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e2fc6118b1ca0bdd42ed-b1380f982b69f3d37d1e",
+              "file": "case-studies-final-verification.spec.ts",
+              "line": 104,
+              "column": 7
+            },
+            {
+              "title": "tablet shows 2 cards side by side",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 7773,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"md:grid-cols-2\"\u001b[39m\nReceived string:    \u001b[31m\"grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"md:grid-cols-2\"\u001b[39m\nReceived string:    \u001b[31m\"grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center\"\u001b[39m\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:134:25",
+                        "location": {
+                          "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                          "column": 25,
+                          "line": 134
+                        },
+                        "snippet": "  132 |     \n  133 |     // Should have md:grid-cols-2\n> 134 |     expect(gridClasses).toContain('md:grid-cols-2');\n      |                         ^\n  135 |     \n  136 |     // Check we have multiple cards\n  137 |     const caseCards = await page.locator('.glass-card').count();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                            "column": 25,
+                            "line": 134
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"md:grid-cols-2\"\u001b[39m\nReceived string:    \u001b[31m\"grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center\"\u001b[39m\n\n  132 |     \n  133 |     // Should have md:grid-cols-2\n> 134 |     expect(gridClasses).toContain('md:grid-cols-2');\n      |                         ^\n  135 |     \n  136 |     // Check we have multiple cards\n  137 |     const caseCards = await page.locator('.glass-card').count();\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts:134:25"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "📱 Tablet grid classes: grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:29.103Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-fd098--shows-2-cards-side-by-side-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-fd098--shows-2-cards-side-by-side-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-verific-fd098--shows-2-cards-side-by-side-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final-verification.spec.ts",
+                        "column": 25,
+                        "line": 134
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e2fc6118b1ca0bdd42ed-efa9b135752c91562e85",
+              "file": "case-studies-final-verification.spec.ts",
+              "line": 124,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "case-studies-final.spec.ts",
+      "file": "case-studies-final.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Case Studies Final Verification",
+          "file": "case-studies-final.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "desktop should show 3-column layout inside cards",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 7641,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts:26:68",
+                        "location": {
+                          "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                          "column": 68,
+                          "line": 26
+                        },
+                        "snippet": "  24 |     console.log(`📋 Sections - ANTES: ${antesSection}, INTERVENCIÓN: ${intervencionSection}, RESULTADOS: ${resultadosSection}`);\n  25 |     \n> 26 |     expect(antesSection + intervencionSection + resultadosSection).toBe(3);\n     |                                                                    ^\n  27 |     \n  28 |     // Take screenshot\n  29 |     await page.screenshot({ "
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                            "column": 68,
+                            "line": 26
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n\n  24 |     console.log(`📋 Sections - ANTES: ${antesSection}, INTERVENCIÓN: ${intervencionSection}, RESULTADOS: ${resultadosSection}`);\n  25 |     \n> 26 |     expect(antesSection + intervencionSection + resultadosSection).toBe(3);\n     |                                                                    ^\n  27 |     \n  28 |     // Take screenshot\n  29 |     await page.screenshot({ \n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts:26:68"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🖥️ Desktop layout visible: false\n"
+                        },
+                        {
+                          "text": "📊 3-column grid found: false\n"
+                        },
+                        {
+                          "text": "📋 Sections - ANTES: 0, INTERVENCIÓN: 0, RESULTADOS: 0\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:35.520Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-745ef--column-layout-inside-cards-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-745ef--column-layout-inside-cards-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-745ef--column-layout-inside-cards-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                        "column": 68,
+                        "line": 26
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1a7f617c598069d9c90d-b97327c1f1173d2d31eb",
+              "file": "case-studies-final.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "mobile should show swipeable cards",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6441,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts:50:24",
+                        "location": {
+                          "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                          "column": 24,
+                          "line": 50
+                        },
+                        "snippet": "  48 |     console.log(`📱 Swipeable cards: ${swipeCards}`);\n  49 |     \n> 50 |     expect(swipeCards).toBe(3);\n     |                        ^\n  51 |     \n  52 |     // Take screenshot\n  53 |     await page.screenshot({ "
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                            "column": 24,
+                            "line": 50
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n\n  48 |     console.log(`📱 Swipeable cards: ${swipeCards}`);\n  49 |     \n> 50 |     expect(swipeCards).toBe(3);\n     |                        ^\n  51 |     \n  52 |     // Take screenshot\n  53 |     await page.screenshot({ \n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts:50:24"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "📱 Mobile layout visible: false\n"
+                        },
+                        {
+                          "text": "📱 Swipeable cards: 0\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:29.312Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-2bea2-should-show-swipeable-cards-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-2bea2-should-show-swipeable-cards-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-2bea2-should-show-swipeable-cards-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                        "column": 24,
+                        "line": 50
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1a7f617c598069d9c90d-43e4f189d49df1555520",
+              "file": "case-studies-final.spec.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "case studies content verification",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 6,
+                      "status": "timedOut",
+                      "duration": 39523,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts",
+                            "column": 55,
+                            "line": 66
+                          },
+                          "message": "Error: locator.textContent: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('h4')\u001b[22m\n\n\n  64 |     \n  65 |     // Check company info\n> 66 |     const companyName = await firstCard.locator('h4').textContent();\n     |                                                       ^\n  67 |     console.log(`🏢 Company: ${companyName}`);\n  68 |     \n  69 |     // Check category\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-final.spec.ts:66:55"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:35.495Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-f04e6-tudies-content-verification-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-final-Case-St-f04e6-tudies-content-verification-Mobile-Chrome/video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1a7f617c598069d9c90d-e5d0937c555a5c95b6e6",
+              "file": "case-studies-final.spec.ts",
+              "line": 59,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "case-studies-modal-debug.spec.ts",
+      "file": "case-studies-modal-debug.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Case Studies Modal Debug",
+          "file": "case-studies-modal-debug.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "mobile cards should not show all points",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7329,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📱 Mobile ANTES points: 0\n"
+                        },
+                        {
+                          "text": "📱 Card height: 538px\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:37.119Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "67d4c1a8e24fba1d1be5-1bae60ba0a936fd1a24a",
+              "file": "case-studies-modal-debug.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "modal should open and close correctly",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 33764,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-modal-debug.spec.ts",
+                            "column": 21,
+                            "line": 40
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('text=Ver transformación completa')\u001b[22m\n\n\n  38 |     \n  39 |     // Click to open modal\n> 40 |     await ctaButton.click();\n     |                     ^\n  41 |     await page.waitForTimeout(500);\n  42 |     \n  43 |     // Check modal is open\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-modal-debug.spec.ts:40:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:38.363Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-fae5f-ld-open-and-close-correctly-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-fae5f-ld-open-and-close-correctly-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-fae5f-ld-open-and-close-correctly-Mobile-Chrome/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "67d4c1a8e24fba1d1be5-c0249ec982c46161cebf",
+              "file": "case-studies-modal-debug.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "modal should show all points (not limited)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 34575,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-modal-debug.spec.ts",
+                            "column": 21,
+                            "line": 87
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('text=Ver transformación completa')\u001b[22m\n\n\n  85 |     const ctaButton = firstCard.locator('text=Ver transformación completa');\n  86 |     \n> 87 |     await ctaButton.click();\n     |                     ^\n  88 |     await page.waitForTimeout(500);\n  89 |     \n  90 |     const modal = page.locator('.fixed.inset-0').first();\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-modal-debug.spec.ts:87:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:48.365Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-916ff-how-all-points-not-limited--Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-916ff-how-all-points-not-limited--Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-916ff-how-all-points-not-limited--Mobile-Chrome/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "67d4c1a8e24fba1d1be5-2ded12401e291c43705a",
+              "file": "case-studies-modal-debug.spec.ts",
+              "line": 80,
+              "column": 7
+            },
+            {
+              "title": "modal overlay click should close",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 33494,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/case-studies-modal-debug.spec.ts",
+                            "column": 21,
+                            "line": 115
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.glass-card').first().locator('text=Ver transformación completa')\u001b[22m\n\n\n  113 |     const ctaButton = firstCard.locator('text=Ver transformación completa');\n  114 |     \n> 115 |     await ctaButton.click();\n      |                     ^\n  116 |     await page.waitForTimeout(500);\n  117 |     \n  118 |     // Click on overlay (outside modal content)\n    at /Users/fer/repositories/coaching-landing/tests/case-studies-modal-debug.spec.ts:115:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:45.311Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-46dc3--overlay-click-should-close-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-46dc3--overlay-click-should-close-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/case-studies-modal-debug-C-46dc3--overlay-click-should-close-Mobile-Chrome/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "67d4c1a8e24fba1d1be5-328d905782b10a26ad42",
+              "file": "case-studies-modal-debug.spec.ts",
+              "line": 108,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lavague-advanced-ai.spec.ts",
+      "file": "lavague-advanced-ai.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "LaVague Advanced AI - Natural Language Understanding",
+          "file": "lavague-advanced-ai.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "AI understands and describes the page purpose in natural language",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 13987,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🧠 AI: Analyzing page purpose using natural language understanding...\n"
+                        },
+                        {
+                          "text": "🧠 AI: Page Analysis Results:\n"
+                        },
+                        {
+                          "text": "   Title: ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional\n"
+                        },
+                        {
+                          "text": "   Main Heading: Transformá tu equipo.Liderá con propósito.Escalá sin límites.\n"
+                        },
+                        {
+                          "text": "   Sections found: \u001b[33m15\u001b[39m\n"
+                        },
+                        {
+                          "text": "🧠 AI: Natural Language Understanding Result:\n"
+                        },
+                        {
+                          "text": "   Detected Purpose: This is a professional coaching and leadership consulting landing page focused on team transformation and organizational development.\n"
+                        },
+                        {
+                          "text": "   Key Concepts: [ \u001b[32m'coaching'\u001b[39m, \u001b[32m'consultora'\u001b[39m, \u001b[32m'equipo'\u001b[39m, \u001b[32m'organizacional'\u001b[39m ]\n"
+                        },
+                        {
+                          "text": "✅ AI: Successfully understood page purpose in natural language\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:51.180Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fc267baca5d157f65f54-482a43d7b8ec10c9eda4",
+              "file": "lavague-advanced-ai.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "AI identifies and classifies all conversion opportunities",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 9041,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/fer/repositories/coaching-landing/tests/lavague-advanced-ai.spec.ts:144:37",
+                        "location": {
+                          "file": "/Users/fer/repositories/coaching-landing/tests/lavague-advanced-ai.spec.ts",
+                          "column": 37,
+                          "line": 144
+                        },
+                        "snippet": "  142 |     \n  143 |     expect(conversionAnalysis.length).toBeGreaterThan(3);\n> 144 |     expect(funnelStages.conversion).toBeGreaterThan(0);\n      |                                     ^\n  145 |     \n  146 |     console.log('✅ AI: Successfully identified and classified conversion opportunities');\n  147 |   });"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/fer/repositories/coaching-landing/tests/lavague-advanced-ai.spec.ts",
+                            "column": 37,
+                            "line": 144
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  142 |     \n  143 |     expect(conversionAnalysis.length).toBeGreaterThan(3);\n> 144 |     expect(funnelStages.conversion).toBeGreaterThan(0);\n      |                                     ^\n  145 |     \n  146 |     console.log('✅ AI: Successfully identified and classified conversion opportunities');\n  147 |   });\n    at /Users/fer/repositories/coaching-landing/tests/lavague-advanced-ai.spec.ts:144:37"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧠 AI: Identifying and classifying conversion opportunities...\n"
+                        },
+                        {
+                          "text": "🧠 AI: Conversion Analysis Results:\n"
+                        },
+                        {
+                          "text": "   1. CTA Button: \"Agendá tu sesión gratuita →\" (Visible: true)\n"
+                        },
+                        {
+                          "text": "   2. Social Media: \"@ferf.coachInstagram\" (Visible: true)\n"
+                        },
+                        {
+                          "text": "   3. Social Media: \"@ferf.coachInstagram\" (Visible: false)\n"
+                        },
+                        {
+                          "text": "   4. Social Media: \"Ver certificaciones en LinkedIn\" (Visible: true)\n"
+                        },
+                        {
+                          "text": "🧠 AI: Conversion Funnel Analysis: { awareness: \u001b[33m3\u001b[39m, consideration: \u001b[33m0\u001b[39m, conversion: \u001b[33m0\u001b[39m, retention: \u001b[33m0\u001b[39m }\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:51.186Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/lavague-advanced-ai-LaVagu-05fd6-ll-conversion-opportunities-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/lavague-advanced-ai-LaVagu-05fd6-ll-conversion-opportunities-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/fer/repositories/coaching-landing/test-results/lavague-advanced-ai-LaVagu-05fd6-ll-conversion-opportunities-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/fer/repositories/coaching-landing/tests/lavague-advanced-ai.spec.ts",
+                        "column": 37,
+                        "line": 144
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fc267baca5d157f65f54-a160304fd42073a74673",
+              "file": "lavague-advanced-ai.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "AI performs semantic content analysis and quality assessment",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 13941,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🧠 AI: Performing semantic content analysis...\n"
+                        },
+                        {
+                          "text": "🧠 AI: Content Quality Assessment:\n"
+                        },
+                        {
+                          "text": "   Total Word Count: \u001b[33m979\u001b[39m\n"
+                        },
+                        {
+                          "text": "   Unique Words: \u001b[33m598\u001b[39m\n"
+                        },
+                        {
+                          "text": "   Vocabulary Richness: 61.1%\n"
+                        },
+                        {
+                          "text": "   Emotional Tone: { positive: \u001b[33m2\u001b[39m, negative: \u001b[33m1\u001b[39m, action: \u001b[33m3\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🧠 AI: Content Quality Score: 75/100 { length: \u001b[33m25\u001b[39m, diversity: \u001b[33m25\u001b[39m, structure: \u001b[33m25\u001b[39m, emotion: \u001b[33m0\u001b[39m }\n"
+                        },
+                        {
+                          "text": "✅ AI: Semantic content analysis completed successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:53:51.190Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fc267baca5d157f65f54-c56913c067c8eb328026",
+              "file": "lavague-advanced-ai.spec.ts",
+              "line": 149,
+              "column": 7
+            },
+            {
+              "title": "AI simulates user journey with decision making",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 12540,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🧠 AI: Simulating intelligent user journey...\n"
+                        },
+                        {
+                          "text": "   🧠 AI Decision: Scanning page to understand value proposition...\n"
+                        },
+                        {
+                          "text": "   🧠 AI Understanding: Page offers \"Transformá tu equipo.Liderá con propósito.Escalá sin límites.\"\n"
+                        },
+                        {
+                          "text": "   🧠 AI Decision: Seeking social proof and testimonials...\n"
+                        },
+                        {
+                          "text": "   🧠 AI Finding: Found 1 testimonial sections\n"
+                        },
+                        {
+                          "text": "   🧠 AI Decision: Evaluating available services...\n"
+                        },
+                        {
+                          "text": "   🧠 AI Analysis: Available services: Deja de ap🔥gar incendios, Coaching de Liderazgo, Consultoría Organizacional\n"
+                        },
+                        {
+                          "text": "   🧠 AI Decision: Determining optimal conversion path...\n"
+                        },
+                        {
+                          "text": "   🧠 AI Conclusion: Page has good services and social proof - ready for conversion\n"
+                        },
+                        {
+                          "text": "✅ AI: Successfully completed intelligent user journey simulation\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:05.950Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fc267baca5d157f65f54-36b845f55186a6bbd140",
+              "file": "lavague-advanced-ai.spec.ts",
+              "line": 213,
+              "column": 7
+            },
+            {
+              "title": "AI generates natural language recommendations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6410,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🧠 AI: Generating natural language recommendations...\n"
+                        },
+                        {
+                          "text": "🧠 AI: Site Feature Analysis: {\n  hasVideo: \u001b[33mfalse\u001b[39m,\n  hasTestimonials: \u001b[33mtrue\u001b[39m,\n  hasPricing: \u001b[33mtrue\u001b[39m,\n  hasFAQ: \u001b[33mtrue\u001b[39m,\n  ctaCount: \u001b[33m62\u001b[39m,\n  imageCount: \u001b[33m10\u001b[39m,\n  formCount: \u001b[33m1\u001b[39m,\n  hasBlog: \u001b[33mfalse\u001b[39m,\n  hasCertifications: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🧠 AI: Natural Language Recommendations:\n"
+                        },
+                        {
+                          "text": "   1. Consider adding an introductory video to increase engagement and trust\n"
+                        },
+                        {
+                          "text": "   2. Consider adding a blog or resources section to demonstrate expertise and improve SEO\n"
+                        },
+                        {
+                          "text": "   3. Showcase certifications and credentials to build credibility and trust\n"
+                        },
+                        {
+                          "text": "🧠 AI: Overall Site Completeness: 67% (6/9)\n"
+                        },
+                        {
+                          "text": "🧠 AI Assessment: Good foundation with room for improvement\n"
+                        },
+                        {
+                          "text": "✅ AI: Successfully generated intelligent recommendations\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:05.865Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fc267baca5d157f65f54-d579ca21a145219657d9",
+              "file": "lavague-advanced-ai.spec.ts",
+              "line": 273,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "lavague-ai-test.spec.ts",
+      "file": "lavague-ai-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "LaVague-Style AI Testing - Natural Language Automation",
+          "file": "lavague-ai-test.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "AI should find and analyze the main coaching value proposition",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 6457,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Analyzing the main coaching value proposition...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found main headline: Transformá tu equipo.Liderá con propósito.Escalá sin límites.\n"
+                        },
+                        {
+                          "text": "✅ AI: Confirmed coaching value proposition detected\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:05.872Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-83be67bf22a295d28b48",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "AI should navigate through the coaching journey",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6894,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Starting coaching journey navigation...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found services: [\n  \u001b[32m'Deja de ap🔥gar incendios'\u001b[39m,\n  \u001b[32m'Coaching de Liderazgo'\u001b[39m,\n  \u001b[32m'Consultoría Organizacional'\u001b[39m\n]\n"
+                        },
+                        {
+                          "text": "✅ AI: Successfully navigated coaching journey\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:12.300Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-92ab65e86a8dce431f14",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "AI should validate the conversion funnel",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 11590,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Analyzing conversion funnel...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found 5 conversion points\n"
+                        },
+                        {
+                          "text": "🤖 AI: CTA 1: \"Empezá tu transformación\" - Visible: true\n"
+                        },
+                        {
+                          "text": "🤖 AI: CTA 2: \"Consultar por este plan\" - Visible: true\n"
+                        },
+                        {
+                          "text": "🤖 AI: CTA 3: \"Consultar por este plan\" - Visible: true\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found 4 form elements in contact section\n"
+                        },
+                        {
+                          "text": "✅ AI: Conversion funnel validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:12.353Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-b131ef70a572fef5eb0c",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 55,
+              "column": 7
+            },
+            {
+              "title": "AI should perform content quality analysis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 11760,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Performing content quality analysis...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Content word count: 736\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found relevant keywords: [ \u001b[32m'coaching'\u001b[39m, \u001b[32m'liderazgo'\u001b[39m, \u001b[32m'equipo'\u001b[39m, \u001b[32m'transformación'\u001b[39m, \u001b[32m'consultora'\u001b[39m ]\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found 32 heading elements\n"
+                        },
+                        {
+                          "text": "✅ AI: Content quality analysis completed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:19.681Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-621157d86b2640dfcda4",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "AI should test user interaction patterns",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 11688,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Testing user interaction patterns...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Scroll test successful - position: 364\n"
+                        },
+                        {
+                          "text": "✅ AI: User interaction patterns tested\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:19.661Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-3ca790edf5e061ec7d6b",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 123,
+              "column": 7
+            },
+            {
+              "title": "AI should validate accessibility and usability",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13723,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Performing accessibility and usability analysis...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Heading skip detected: h2 -> h4\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found 10 images, 0 without alt text\n"
+                        },
+                        {
+                          "text": "🤖 AI: Found 17 links, 3 with empty text\n"
+                        },
+                        {
+                          "text": "🤖 AI: Keyboard navigation test passed\n"
+                        },
+                        {
+                          "text": "✅ AI: Accessibility and usability validation completed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:20.031Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-c2e4da69b20a3181f866",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 166,
+              "column": 7
+            },
+            {
+              "title": "AI should generate comprehensive site report",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5974,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🤖 AI: Generating comprehensive site analysis report...\n"
+                        },
+                        {
+                          "text": "🤖 AI: Performance metrics: { loadTime: \u001b[33m0\u001b[39m, domContentLoaded: \u001b[33m0\u001b[39m, firstPaint: \u001b[33m64\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🤖 AI: Structure analysis: {\n  totalElements: \u001b[33m990\u001b[39m,\n  textNodes: \u001b[33m890\u001b[39m,\n  interactiveElements: \u001b[33m81\u001b[39m,\n  images: \u001b[33m10\u001b[39m,\n  forms: \u001b[33m1\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🤖 AI: Detected primary language: Spanish (ES: 5, EN: 3)\n"
+                        },
+                        {
+                          "text": "🤖 AI: === COMPREHENSIVE SITE ANALYSIS COMPLETE ===\n"
+                        },
+                        {
+                          "text": "🤖 AI: Site Type: Coaching/Consulting Landing Page\n"
+                        },
+                        {
+                          "text": "🤖 AI: Primary Language: Spanish\n"
+                        },
+                        {
+                          "text": "🤖 AI: Performance: Good ✅\n"
+                        },
+                        {
+                          "text": "🤖 AI: Structure: Well-organized ✅\n"
+                        },
+                        {
+                          "text": "🤖 AI: Interactive Elements: \u001b[33m81\u001b[39m\n"
+                        },
+                        {
+                          "text": "🤖 AI: Content Richness: High ✅\n"
+                        },
+                        {
+                          "text": "✅ AI: Comprehensive site analysis completed successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:19.205Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "62acb7bca26c6dc4c628-49623493becfc570e044",
+              "file": "lavague-ai-test.spec.ts",
+              "line": 216,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "visual-validation.spec.ts",
+      "file": "visual-validation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Visual Validation - Complete Site Check",
+          "file": "visual-validation.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CTA buttons exist and have orange color",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 7955,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔍 CTA button color detected: rgb(255, 107, 53)\n"
+                        },
+                        {
+                          "text": "✅ CTA button has orange color\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:20.937Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-d1d1cd0ddc9404c8d81c",
+              "file": "visual-validation.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "stats count is correct",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 10913,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Stats count correct: \u001b[33m4\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:23.970Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-1d9fc3a91ae96390a872",
+              "file": "visual-validation.spec.ts",
+              "line": 30,
+              "column": 7
+            },
+            {
+              "title": "footer sections exist",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9587,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Footer sections exist\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:25.242Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-1c003db7f1a87e8b84e4",
+              "file": "visual-validation.spec.ts",
+              "line": 36,
+              "column": 7
+            },
+            {
+              "title": "hero section exists",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3723,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Hero section exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:34.771Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-6417929f60561111ac60",
+              "file": "visual-validation.spec.ts",
+              "line": 52,
+              "column": 7
+            },
+            {
+              "title": "scroll indicator exists",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 11072,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Scroll indicator exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:28.918Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-ae4646c7d8a41f976ecd",
+              "file": "visual-validation.spec.ts",
+              "line": 62,
+              "column": 7
+            },
+            {
+              "title": "page structure validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 7701,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📊 Page structure: {\n  h1: \u001b[33m1\u001b[39m,\n  \u001b[32m'.btn-primary'\u001b[39m: \u001b[33m5\u001b[39m,\n  footer: \u001b[33m1\u001b[39m,\n  \u001b[32m'#inicio'\u001b[39m: \u001b[33m1\u001b[39m,\n  \u001b[32m'.stat-number'\u001b[39m: \u001b[33m4\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Page structure validation passed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:32.378Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-7cd16447f26cf9418bd2",
+              "file": "visual-validation.spec.ts",
+              "line": 72,
+              "column": 7
+            },
+            {
+              "title": "theme toggle functionality",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7511,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "ℹ️ Theme toggle not found\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:32.505Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-45f81f223110a01c7b75",
+              "file": "visual-validation.spec.ts",
+              "line": 92,
+              "column": 7
+            },
+            {
+              "title": "mobile responsive check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 8095,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Mobile responsive layout correct\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:34.843Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-5ec019ca11f3c8e1b765",
+              "file": "visual-validation.spec.ts",
+              "line": 122,
+              "column": 7
+            },
+            {
+              "title": "navigation functionality",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 5177,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Navigation links functional\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:34.911Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-43e2144afccaa7826277",
+              "file": "visual-validation.spec.ts",
+              "line": 141,
+              "column": 7
+            },
+            {
+              "title": "contact form exists",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7653,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Contact form elements exist\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:35.048Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-c0a1232e9fb5e27fe214",
+              "file": "visual-validation.spec.ts",
+              "line": 153,
+              "column": 7
+            },
+            {
+              "title": "social links exist",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2782,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Social links exist\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T17:54:40.019Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9e31641b31f07630ff7-a17838853b006f6495c6",
+              "file": "visual-validation.spec.ts",
+              "line": 168,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-19T17:53:14.028Z",
+    "duration": 88966.972,
+    "expected": 25,
+    "skipped": 0,
+    "unexpected": 13,
+    "flaky": 0
+  }
+}

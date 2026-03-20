@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
@@ -40,7 +40,18 @@ const featureItem: Variants = {
 export default function Pricing() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const [forceVisible, setForceVisible] = useState(false);
+
+  // Fallback: Force visibility after 2 seconds if animation hasn't triggered
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isInView) {
+        setForceVisible(true);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [isInView]);
 
   const handleScroll = (href: string) => scrollToElement(href);
 
@@ -81,7 +92,7 @@ export default function Pricing() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView || forceVisible ? "visible" : "hidden"}
           className="text-center mb-12 md:mb-20"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -109,17 +120,27 @@ export default function Pricing() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch mt-12 sm:mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch mt-12 sm:mt-20">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}
               custom={i}
               variants={planCard}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate={isInView || forceVisible ? "visible" : "hidden"}
               className={`pricing-card flex flex-col relative${plan.featured ? " featured animated-border" : ""}`}
-              style={{ perspective: "800px" }}
+              style={{ 
+                perspective: "800px",
+                // DEBUG: Force visibility on mobile
+                opacity: 1,
+                transform: 'none',
+                background: 'rgba(20, 18, 29, 0.9)',
+                border: '1px solid var(--gold-border)',
+                borderRadius: '24px',
+                padding: '2rem'
+              }}
               whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(124,107,196,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
+              whileTap={{ scale: 1.02 }} // Mobile touch support
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Badge row — fixed height keeps all cards aligned */}
@@ -155,7 +176,7 @@ export default function Pricing() {
               <motion.ul
                 variants={featureStagger}
                 initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                animate={isInView || forceVisible ? "visible" : "hidden"}
                 className="space-y-4 mb-8 flex-1"
               >
                 {plan.features.map((feature) => (
@@ -180,7 +201,7 @@ export default function Pricing() {
         {/* Footer note */}
         <motion.div
           initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView || forceVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mt-12 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >

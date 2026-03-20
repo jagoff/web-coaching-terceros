@@ -127,7 +127,7 @@ export default function InstagramCarousel() {
                 className="object-cover select-none"
                 draggable={false}
                 style={{ 
-                  filter: isDragging ? "brightness(0.9)" : "brightness(1)",
+                  filter: isDragging ? "grayscale(100%) brightness(0.8)" : "grayscale(100%)",
                   cursor: isDragging ? "grabbing" : "grab"
                 }}
               />
@@ -213,16 +213,16 @@ export default function InstagramCarousel() {
                 src={`/insta-${postNum}.png`}
                 alt={`Post de Instagram @ferf.coach - ${postNum}`}
                 fill
-                className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
+                className={`object-cover transition-all duration-500`}
                 style={{ 
-                  filter: postNum === 5 ? "none" : "grayscale(100%)"
+                  filter: "grayscale(100%)"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.filter = "none";
                   e.currentTarget.style.transform = "scale(1.05)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = postNum === 5 ? "none" : "grayscale(100%)";
+                  e.currentTarget.style.filter = "grayscale(100%)";
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               />

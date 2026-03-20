@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import "../styles/scrollbar.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -7,11 +7,11 @@ import ClientLayout from "@/components/ClientLayout";
 import JsonLdClient from "@/components/JsonLdClient";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal"],
   display: "swap",
 });
 
@@ -65,7 +65,7 @@ export default function RootLayout({
         {/* Analytics and JSON-LD moved to client components to prevent hydration issues */}
       </head>
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
         <LanguageProvider>
