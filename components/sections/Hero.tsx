@@ -338,6 +338,7 @@ export default function Hero() {
                 src="/img/this-is-fine-dog-optimized.png"
                 alt="Avatar - ¿Te suena esto?"
                 className="w-16 h-16 object-contain rounded-full"
+                loading="lazy"
                 style={{
                   filter: 'drop-shadow(0 0 8px rgba(255, 107, 53, 0.4))',
                   animation: 'pulse 2s infinite',

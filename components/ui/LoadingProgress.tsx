@@ -190,21 +190,15 @@ export function GlobalLoadingProgress() {
 
     // Listen to Next.js route events
     if (typeof window !== 'undefined') {
-      // @ts-expect-error - Next.js internal events
       window.addEventListener('routeChangeStart', handleStart)
-      // @ts-expect-error
       window.addEventListener('routeChangeComplete', handleComplete)
-      // @ts-expect-error
       window.addEventListener('routeChangeError', handleComplete)
     }
 
     return () => {
       if (typeof window !== 'undefined') {
-        // @ts-expect-error
         window.removeEventListener('routeChangeStart', handleStart)
-        // @ts-expect-error
         window.removeEventListener('routeChangeComplete', handleComplete)
-        // @ts-expect-error
         window.removeEventListener('routeChangeError', handleComplete)
       }
     }
