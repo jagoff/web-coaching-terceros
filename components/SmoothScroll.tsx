@@ -1,14 +1,10 @@
-"use client";
+'use client'
 
-import { useEffect, useRef } from "react";
-import Lenis from "lenis";
+import { useEffect, useRef } from 'react'
+import Lenis from 'lenis'
 
-export default function SmoothScroll({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const lenisRef = useRef<Lenis | null>(null);
+export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -16,26 +12,26 @@ export default function SmoothScroll({
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 1.5,
       smoothWheel: true,
-    });
+    })
 
-    lenisRef.current = lenis;
+    lenisRef.current = lenis
 
     // Expose lenis on window so nav scrollTo calls can use it
-    (window as unknown as Record<string, unknown>).__lenis = lenis;
+    ;(window as unknown as Record<string, unknown>).__lenis = lenis
 
-    let rafId: number;
+    let rafId: number
     function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
     }
-    rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf)
 
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-      delete (window as unknown as Record<string, unknown>).__lenis;
-    };
-  }, []);
+      cancelAnimationFrame(rafId)
+      lenis.destroy()
+      delete (window as unknown as Record<string, unknown>).__lenis
+    }
+  }, [])
 
-  return <>{children}</>;
+  return <>{children}</>
 }

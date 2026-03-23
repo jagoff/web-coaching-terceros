@@ -34,9 +34,7 @@
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: 
-    rgba(167, 139, 250, 0.8) 
-    rgba(19, 18, 27, 0.3);
+  scrollbar-color: rgba(167, 139, 250, 0.8) rgba(19, 18, 27, 0.3);
 }
 
 /* Flat scrollbar con gradiente sutil */

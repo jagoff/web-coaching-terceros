@@ -1,29 +1,29 @@
-"use client";
+'use client'
 
-import { motion } from 'framer-motion';
-import { Sun, Moon, Monitor } from 'lucide-react';
-import { useTheme } from '@/contexts/ThemeContext';
+import { motion } from 'framer-motion'
+import { Sun, Moon, Monitor } from 'lucide-react'
+import { useTheme } from '@/contexts/ThemeContext'
 
 export function ThemeToggle() {
-  const { theme, resolvedTheme, toggleTheme, setTheme } = useTheme();
+  const { theme, resolvedTheme, toggleTheme, setTheme } = useTheme()
 
   const getIcon = () => {
-    if (theme === 'light') return <Sun size={16} />;
-    if (theme === 'dark') return <Moon size={16} />;
-    return <Monitor size={16} />;
-  };
+    if (theme === 'light') return <Sun size={16} />
+    if (theme === 'dark') return <Moon size={16} />
+    return <Monitor size={16} />
+  }
 
   const getLabel = () => {
-    if (theme === 'light') return 'Light';
-    if (theme === 'dark') return 'Dark';
-    return 'System';
-  };
+    if (theme === 'light') return 'Light'
+    if (theme === 'dark') return 'Dark'
+    return 'System'
+  }
 
   const getNextTheme = () => {
-    if (theme === 'light') return 'dark';
-    if (theme === 'dark') return 'system';
-    return 'light';
-  };
+    if (theme === 'light') return 'dark'
+    if (theme === 'dark') return 'system'
+    return 'light'
+  }
 
   return (
     <motion.div
@@ -33,7 +33,7 @@ export function ThemeToggle() {
     >
       {/* Theme options */}
       <div className="flex items-center gap-1">
-        {(['light', 'dark', 'system'] as const).map((themeOption) => (
+        {(['light', 'dark', 'system'] as const).map(themeOption => (
           <motion.button
             key={themeOption}
             onClick={() => setTheme(themeOption)}
@@ -78,5 +78,5 @@ export function ThemeToggle() {
         <Moon size={16} className="block dark:hidden" />
       </motion.button>
     </motion.div>
-  );
+  )
 }

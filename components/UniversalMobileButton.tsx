@@ -1,23 +1,23 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 export default function UniversalMobileButton() {
-  const [show, setShow] = useState(false);
-  const [info, setInfo] = useState({ width: 0, mobile: false });
+  const [show, setShow] = useState(false)
+  const [info, setInfo] = useState({ width: 0, mobile: false })
 
   useEffect(() => {
     const update = () => {
-      const width = typeof window !== 'undefined' ? window.innerWidth : 0;
-      setInfo({ width, mobile: width <= 1024 });
-      setShow(width <= 1024);
-    };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
+      const width = typeof window !== 'undefined' ? window.innerWidth : 0
+      setInfo({ width, mobile: width <= 1024 })
+      setShow(width <= 1024)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
-  if (!show) return null;
+  if (!show) return null
 
   return (
     <div
@@ -32,7 +32,7 @@ export default function UniversalMobileButton() {
         borderRadius: '20px',
         border: '5px solid #FFD700',
         boxShadow: '0 0 50px rgba(255,20,147,0.9)',
-        textAlign: 'center'
+        textAlign: 'center',
       }}
     >
       <div style={{ color: 'white', fontSize: '24px', fontWeight: 'bold', marginBottom: '15px' }}>
@@ -50,12 +50,12 @@ export default function UniversalMobileButton() {
           borderRadius: '15px',
           fontSize: '24px',
           fontWeight: '900',
-          cursor: 'pointer'
+          cursor: 'pointer',
         }}
         onClick={() => alert('UNIVERSAL BUTTON WORKS! Width: ' + info.width)}
       >
         🎯 CLICK ME!
       </button>
     </div>
-  );
+  )
 }

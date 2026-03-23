@@ -1,38 +1,41 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Users, Target, Zap } from "lucide-react";
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronRight, Users, Target, Zap } from 'lucide-react'
 
 export default function InteractiveServiceCards() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState<number | null>(null)
 
   const services = [
     {
       id: 1,
       icon: Users,
-      title: "Leadership Coaching",
-      description: "Potencia tu impacto como líder",
-      details: "Sesiones 1:1 personalizadas para desarrollar habilidades de liderazgo situacional, comunicación efectiva e inteligencia emocional.",
-      color: "from-purple-500 to-purple-700"
+      title: 'Leadership Coaching',
+      description: 'Potencia tu impacto como líder',
+      details:
+        'Sesiones 1:1 personalizadas para desarrollar habilidades de liderazgo situacional, comunicación efectiva e inteligencia emocional.',
+      color: 'from-purple-500 to-purple-700',
     },
     {
       id: 2,
       icon: Target,
-      title: "Organizational Consulting",
-      description: "Transformá tu cultura empresarial",
-      details: "Diseño de procesos ágiles, estructura organizacional flexible y métricas significativas para escalar tu negocio.",
-      color: "from-blue-500 to-blue-700"
+      title: 'Organizational Consulting',
+      description: 'Transformá tu cultura empresarial',
+      details:
+        'Diseño de procesos ágiles, estructura organizacional flexible y métricas significativas para escalar tu negocio.',
+      color: 'from-blue-500 to-blue-700',
     },
     {
       id: 3,
       icon: Zap,
-      title: "Agile Transformation",
-      description: "Adopta agilidad real",
-      details: "Implementación de Scrum/Kanban, gestión del cambio cultural y creación de equipos autónomos de alto rendimiento.",
-      color: "from-green-500 to-green-700"
-    }
-  ];
+      title: 'Agile Transformation',
+      description: 'Adopta agilidad real',
+      details:
+        'Implementación de Scrum/Kanban, gestión del cambio cultural y creación de equipos autónomos de alto rendimiento.',
+      color: 'from-green-500 to-green-700',
+    },
+  ]
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-900 to-black">
@@ -67,11 +70,11 @@ export default function InteractiveServiceCards() {
                 {/* Front of Card */}
                 <motion.div
                   className={`absolute inset-0 rounded-xl bg-gradient-to-br ${service.color} p-8 flex flex-col justify-between backface-hidden`}
-                  animate={{ 
+                  animate={{
                     rotateY: activeCard === service.id ? 180 : 0,
                   }}
                   transition={{ duration: 0.6 }}
-                  style={{ transformStyle: "preserve-3d" }}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
                   <div>
                     <motion.div
@@ -84,7 +87,7 @@ export default function InteractiveServiceCards() {
                     <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
                     <p className="text-white/80">{service.description}</p>
                   </div>
-                  
+
                   <motion.div
                     className="flex items-center text-white"
                     whileHover={{ x: 5 }}
@@ -98,19 +101,19 @@ export default function InteractiveServiceCards() {
                 {/* Back of Card */}
                 <motion.div
                   className={`absolute inset-0 rounded-xl bg-gradient-to-br ${service.color} p-8 flex flex-col justify-center backface-hidden`}
-                  animate={{ 
+                  animate={{
                     rotateY: activeCard === service.id ? 0 : -180,
                   }}
                   transition={{ duration: 0.6 }}
-                  style={{ 
-                    transformStyle: "preserve-3d",
-                    rotateY: activeCard === service.id ? 180 : 0
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    rotateY: activeCard === service.id ? 180 : 0,
                   }}
                 >
                   <div className="text-white">
                     <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
                     <p className="text-white/90 leading-relaxed">{service.details}</p>
-                    
+
                     <motion.button
                       className="mt-6 bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full transition-colors"
                       whileHover={{ scale: 1.05 }}
@@ -126,5 +129,5 @@ export default function InteractiveServiceCards() {
         </div>
       </div>
     </section>
-  );
+  )
 }

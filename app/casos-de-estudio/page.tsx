@@ -1,3 +1,3 @@
-import CaseStudies from "@/components/sections/CaseStudies";
+import CaseStudies from '@/components/sections/CaseStudies'
 
-export default CaseStudies;
+export default CaseStudies

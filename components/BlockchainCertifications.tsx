@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import { Shield, QrCode, Trophy, Linkedin, ArrowRight, CheckCircle, Sparkles } from "lucide-react";
+import { motion } from 'framer-motion'
+import { Shield, QrCode, Trophy, Linkedin, ArrowRight, CheckCircle, Sparkles } from 'lucide-react'
 
 export default function BlockchainCertifications() {
   return (
@@ -12,11 +12,11 @@ export default function BlockchainCertifications() {
         className="absolute inset-0"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 50%, rgba(251, 146, 60, 0.1) 0%, transparent 50%)"
-          ]
+            'radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%)',
+            'radial-gradient(circle at 80% 50%, rgba(251, 146, 60, 0.1) 0%, transparent 50%)',
+          ],
         }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -31,7 +31,7 @@ export default function BlockchainCertifications() {
             <Sparkles size={16} className="text-yellow-400" />
             <span className="text-yellow-400 font-semibold">Tecnología Exclusiva</span>
           </div>
-          
+
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
               Certificados Inmutables
@@ -41,11 +41,11 @@ export default function BlockchainCertifications() {
               Verificados en Blockchain
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            La primera plataforma de certificaciones profesionales verificadas en blockchain. 
-            Tus credenciales ahora son permanentes, transferibles e imposibles de falsificar. 
-            El estándar de confianza del futuro consulting.
+            La primera plataforma de certificaciones profesionales verificadas en blockchain. Tus
+            credenciales ahora son permanentes, transferibles e imposibles de falsificar. El
+            estándar de confianza del futuro consulting.
           </p>
         </motion.div>
 
@@ -54,28 +54,32 @@ export default function BlockchainCertifications() {
           {[
             {
               icon: Shield,
-              title: "Blockchain Inmutable",
-              description: "Una vez en blockchain, nadie puede modificar ni eliminar tu certificado. Permanente como tu experiencia.",
-              gradient: "from-blue-500 to-purple-500"
+              title: 'Blockchain Inmutable',
+              description:
+                'Una vez en blockchain, nadie puede modificar ni eliminar tu certificado. Permanente como tu experiencia.',
+              gradient: 'from-blue-500 to-purple-500',
             },
             {
               icon: QrCode,
-              title: "Verificación Global",
-              description: "Cualquier empresa en cualquier país puede verificar tu certificado instantáneamente con un simple QR code.",
-              gradient: "from-green-500 to-teal-500"
+              title: 'Verificación Global',
+              description:
+                'Cualquier empresa en cualquier país puede verificar tu certificado instantáneamente con un simple QR code.',
+              gradient: 'from-green-500 to-teal-500',
             },
             {
               icon: Trophy,
-              title: "Activo Digital",
-              description: "Tu certificado es un NFT que puedes vender, transferir o usar como collateral. Se aprecia con el tiempo.",
-              gradient: "from-yellow-500 to-orange-500"
+              title: 'Activo Digital',
+              description:
+                'Tu certificado es un NFT que puedes vender, transferir o usar como collateral. Se aprecia con el tiempo.',
+              gradient: 'from-yellow-500 to-orange-500',
             },
             {
               icon: Linkedin,
-              title: "Badge LinkedIn",
-              description: "Badge verificado oficial que distingue tu perfil. Imposible de copiar, solo para certificados blockchain reales.",
-              gradient: "from-purple-500 to-pink-500"
-            }
+              title: 'Badge LinkedIn',
+              description:
+                'Badge verificado oficial que distingue tu perfil. Imposible de copiar, solo para certificados blockchain reales.',
+              gradient: 'from-purple-500 to-pink-500',
+            },
           ].map((feature, index) => (
             <motion.div
               key={index}
@@ -108,16 +112,17 @@ export default function BlockchainCertifications() {
                 Tu experiencia profesional finalmente vale lo que realmente vale
               </h3>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                Transformá tus credenciales profesionales en activos digitales inmutables. 
-                Verificación global instantánea, imposibles de falsificar, y que se revalorizan con el tiempo.
+                Transformá tus credenciales profesionales en activos digitales inmutables.
+                Verificación global instantánea, imposibles de falsificar, y que se revalorizan con
+                el tiempo.
               </p>
-              
+
               <div className="space-y-4 mb-8">
                 {[
-                  "🔒 Seguridad: Blockchain inmutable",
-                  "💎 Valor: Activo digital transferible", 
-                  "🌍 Confianza: Verificación global instantánea",
-                  "📈 ROI: +200% valor profesional y +30% salario"
+                  '🔒 Seguridad: Blockchain inmutable',
+                  '💎 Valor: Activo digital transferible',
+                  '🌍 Confianza: Verificación global instantánea',
+                  '📈 ROI: +200% valor profesional y +30% salario',
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle size={20} className="text-green-400" />
@@ -126,7 +131,7 @@ export default function BlockchainCertifications() {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative">
               <motion.div
                 className="bg-black/50 rounded-2xl p-8 border border-yellow-400/30"
@@ -167,16 +172,16 @@ export default function BlockchainCertifications() {
             <Trophy size={16} className="text-orange-400" />
             <span className="text-orange-400 font-semibold">Founding Members Program</span>
           </div>
-          
+
           <h3 className="text-3xl font-bold mb-4 text-white">
             Sé parte de los primeros 100 profesionales en Latinoamérica
           </h3>
-          
+
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Status exclusivo, beneficios permanentes y co-creación del estándar. 
-            Solo 37 cupos disponibles para acceso fundador con 75% descuento.
+            Status exclusivo, beneficios permanentes y co-creación del estándar. Solo 37 cupos
+            disponibles para acceso fundador con 75% descuento.
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
             <div className="text-center">
               <div className="text-sm text-gray-400 mb-1">Precio fundador</div>
@@ -192,7 +197,7 @@ export default function BlockchainCertifications() {
               <div className="text-2xl font-bold text-green-400">$8,000+</div>
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
               className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-black rounded-lg font-bold hover:from-yellow-600 hover:to-orange-600 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
@@ -225,9 +230,11 @@ export default function BlockchainCertifications() {
                 <Trophy key={i} size={24} className="text-yellow-400" />
               ))}
             </div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Lo que dicen los primeros usuarios</h3>
+            <h3 className="text-2xl font-bold mb-2 text-white">
+              Lo que dicen los primeros usuarios
+            </h3>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div
               className="bg-black/50 rounded-2xl p-6 border-l-4 border-yellow-400"
@@ -235,20 +242,20 @@ export default function BlockchainCertifications() {
               transition={{ duration: 0.3 }}
             >
               <p className="text-gray-300 mb-4 leading-relaxed">
-                "Mi certificado blockchain me consiguió un 30% más de salario. 
-                El HR escaneó el QR y dijo 'nunca había visto algo tan seguro'."
+                "Mi certificado blockchain me consiguió un 30% más de salario. El HR escaneó el QR y
+                dijo 'nunca había visto algo tan seguro'."
               </p>
               <div className="text-yellow-400 font-semibold">- Carlos M., CTO</div>
             </motion.div>
-            
+
             <motion.div
               className="bg-black/50 rounded-2xl p-6 border-l-4 border-yellow-400"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <p className="text-gray-300 mb-4 leading-relaxed">
-                "Finalmente mi experiencia de 15 años vale lo que realmente vale. 
-                Nadie puede dudar de mis credenciales ahora."
+                "Finalmente mi experiencia de 15 años vale lo que realmente vale. Nadie puede dudar
+                de mis credenciales ahora."
               </p>
               <div className="text-yellow-400 font-semibold">- Ana S., Agile Coach</div>
             </motion.div>
@@ -256,5 +263,5 @@ export default function BlockchainCertifications() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

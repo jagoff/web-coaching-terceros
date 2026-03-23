@@ -1,22 +1,21 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { scrollToElement, scrollToTop } from "@/lib/scroll";
-import { useLanguage } from "@/contexts/LanguageContext";
-
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
+import { scrollToElement, scrollToTop } from '@/lib/scroll'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Navbar() {
-  const { language, setLanguage, t } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [currentWord, setCurrentWord] = useState(0);
+  const { language, setLanguage, t } = useLanguage()
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [currentWord, setCurrentWord] = useState(0)
 
   // Rotating words for branding
-  const rotatingWordsES = ['ELEVA', 'ELEVATE', 'ELEVARSE', 'ELEVARNOS', 'ELEVAREMOS'];
-  const rotatingWordsEN = ['ELEVA', 'ELEVATE', 'ELEVATE', 'ELEVATE US', 'WE WILL ELEVATE'];
-  const rotatingWords = language === 'es' ? rotatingWordsES : rotatingWordsEN;
+  const rotatingWordsES = ['ELEVA', 'ELEVATE', 'ELEVARSE', 'ELEVARNOS', 'ELEVAREMOS']
+  const rotatingWordsEN = ['ELEVA', 'ELEVATE', 'ELEVATE', 'ELEVATE US', 'WE WILL ELEVATE']
+  const rotatingWords = language === 'es' ? rotatingWordsES : rotatingWordsEN
 
   // Rotate words every 2 seconds
   // useEffect(() => {
@@ -27,38 +26,42 @@ export default function Navbar() {
   // }, [rotatingWords.length]);
 
   const navLinks = [
-    { label: t.nav.sobreMi, href: "#sobre-mi" },
-    { label: t.nav.servicios, href: "#servicios" },
-    { label: t.nav.testimonios, href: "#testimonios" },
-    { label: t.nav.preguntasFrecuentes, href: "#faq" },
-  ];
+    { label: t.nav.sobreMi, href: '#sobre-mi' },
+    { label: t.nav.servicios, href: '#servicios' },
+    { label: t.nav.testimonios, href: '#testimonios' },
+    { label: t.nav.preguntasFrecuentes, href: '#faq' },
+  ]
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen])
 
   const handleLinkClick = (href: string) => {
-    setMobileOpen(false);
-    scrollToElement(href);
-  };
+    setMobileOpen(false)
+    scrollToElement(href)
+  }
 
   return (
     <>
-      <nav className={`navbar${scrolled ? " scrolled" : ""}`} role="navigation" aria-label="Navegación principal">
+      <nav
+        className={`navbar${scrolled ? ' scrolled' : ''}`}
+        role="navigation"
+        aria-label="Navegación principal"
+      >
         <div className="container">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -66,14 +69,14 @@ export default function Navbar() {
               href="#"
               className="flex items-center gap-2 group"
               aria-label={`ELEVA ${language === 'es' ? 'CONSULTORA' : 'CONSULTING'} — inicio`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToTop();
+              onClick={e => {
+                e.preventDefault()
+                scrollToTop()
               }}
             >
               <span
                 className="text-gradient font-heading font-black text-3xl tracking-tight leading-none"
-                style={{ fontFamily: "var(--font-heading)" }}
+                style={{ fontFamily: 'var(--font-heading)' }}
               >
                 ELEVA
               </span>
@@ -81,8 +84,8 @@ export default function Navbar() {
                 className="hidden sm:block text-xs font-semibold uppercase tracking-[0.15em] text-muted"
                 style={{
                   opacity: 0.9,
-                  alignSelf: "flex-end",
-                  paddingBottom: "0.2rem"
+                  alignSelf: 'flex-end',
+                  paddingBottom: '0.2rem',
                 }}
               >
                 {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
@@ -91,7 +94,7 @@ export default function Navbar() {
 
             {/* Desktop nav links */}
             <ul className="hidden lg:flex items-center gap-12 xl:gap-16 list-none">
-              {navLinks.map((link) => (
+              {navLinks.map(link => (
                 <li key={link.href}>
                   <button
                     className="nav-link bg-transparent border-0 cursor-pointer p-0"
@@ -108,9 +111,9 @@ export default function Navbar() {
               <button
                 className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
                 style={{
-                  background: "rgba(124,107,196,0.08)",
-                  borderColor: "rgba(124,107,196,0.2)",
-                  color: "var(--gold-primary)",
+                  background: 'rgba(124,107,196,0.08)',
+                  borderColor: 'rgba(124,107,196,0.2)',
+                  color: 'var(--gold-primary)',
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
@@ -119,8 +122,8 @@ export default function Navbar() {
               </button>
               <button
                 className="btn-primary-vibrant"
-                style={{ padding: "0.875rem 1.75rem", fontSize: "0.875rem" }}
-                onClick={() => handleLinkClick("#contacto")}
+                style={{ padding: '0.875rem 1.75rem', fontSize: '0.875rem' }}
+                onClick={() => handleLinkClick('#contacto')}
               >
                 {t.nav.sesionGratuita}
               </button>
@@ -132,26 +135,28 @@ export default function Navbar() {
               <button
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg border-2"
                 style={{
-                  background: "rgba(124,107,196,0.2)",
-                  borderColor: "rgba(124,107,196,0.5)",
-                  color: "#7C6BC4",
-                  fontSize: "13px",
-                  fontWeight: "700",
-                  minWidth: "80px",
-                  height: "44px",
-                  boxShadow: "0 2px 8px rgba(124,107,196,0.3)",
-                  textShadow: "0 1px 2px rgba(0,0,0,0.3)"
+                  background: 'rgba(124,107,196,0.2)',
+                  borderColor: 'rgba(124,107,196,0.5)',
+                  color: '#7C6BC4',
+                  fontSize: '13px',
+                  fontWeight: '700',
+                  minWidth: '80px',
+                  height: '44px',
+                  boxShadow: '0 2px 8px rgba(124,107,196,0.3)',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.3)',
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
-                <span style={{ fontSize: "16px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span style={{ fontSize: "12px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                <span style={{ fontSize: '16px' }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span style={{ fontSize: '12px', fontWeight: '800' }}>
+                  {language === 'es' ? 'EN' : 'ES'}
+                </span>
               </button>
-              
+
               <button
                 className="flex items-center justify-center rounded-md transition-colors min-w-[44px] min-h-[44px] text-text-secondary bg-transparent border-0"
                 onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+                aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
               >
@@ -173,9 +178,9 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 flex flex-col lg:hidden"
             style={{
-              background: "rgba(12, 10, 18, 0.98)",
-              backdropFilter: "blur(24px)",
-              WebkitBackdropFilter: "blur(24px)",
+              background: 'rgba(12, 10, 18, 0.98)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
               zIndex: 9999,
             }}
           >
@@ -184,7 +189,7 @@ export default function Navbar() {
               <div className="flex items-center gap-3">
                 <span
                   className="text-gradient font-black text-4xl"
-                  style={{ fontFamily: "var(--font-heading)" }}
+                  style={{ fontFamily: 'var(--font-heading)' }}
                 >
                   ELEVA
                 </span>
@@ -208,7 +213,7 @@ export default function Navbar() {
                   transition={{ delay: i * 0.08, duration: 0.4 }}
                   className="text-left py-5 text-3xl font-bold bg-transparent cursor-pointer text-white hover:text-gradient transition-all"
                   style={{
-                    fontFamily: "var(--font-heading)",
+                    fontFamily: 'var(--font-heading)',
                   }}
                   onClick={() => handleLinkClick(link.href)}
                 >
@@ -221,7 +226,7 @@ export default function Navbar() {
             <div className="px-6 pb-6">
               <button
                 className="btn-primary w-full text-lg py-4"
-                onClick={() => handleLinkClick("#contacto")}
+                onClick={() => handleLinkClick('#contacto')}
               >
                 {t.nav.sesionGratuita}
               </button>
@@ -243,5 +248,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </>
-  );
+  )
 }

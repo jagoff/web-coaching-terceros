@@ -1,78 +1,88 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { Playfair_Display, Inter, Space_Grotesk, Outfit, Poppins, Raleway, Montserrat, Lora, Merriweather } from 'next/font/google';
+import { useState } from 'react'
+import {
+  Playfair_Display,
+  Inter,
+  Space_Grotesk,
+  Outfit,
+  Poppins,
+  Raleway,
+  Montserrat,
+  Lora,
+  Merriweather,
+} from 'next/font/google'
 
 // Configuración de fuentes
 const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: "--font-playfair",
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  variable: '--font-playfair',
   display: 'swap',
-});
+})
 
 const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
   display: 'swap',
-});
+})
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
   display: 'swap',
-});
+})
 
 const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-outfit",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-outfit',
   display: 'swap',
-});
+})
 
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-poppins",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
   display: 'swap',
-});
+})
 
 const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-raleway",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-raleway',
   display: 'swap',
-});
+})
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-montserrat',
   display: 'swap',
-});
+})
 
 const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-lora",
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-lora',
   display: 'swap',
-});
+})
 
 const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-  variable: "--font-merriweather",
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  variable: '--font-merriweather',
   display: 'swap',
-});
+})
 
 interface FontOption {
-  name: string;
-  heading: string;
-  body: string;
-  className: string;
-  description: string;
+  name: string
+  heading: string
+  body: string
+  className: string
+  description: string
 }
 
 const fontOptions: FontOption[] = [
@@ -81,81 +91,80 @@ const fontOptions: FontOption[] = [
     heading: playfair.className,
     body: inter.className,
     className: playfair.className,
-    description: 'Elegante clásico, serif para headings, sans-serif para body'
+    description: 'Elegante clásico, serif para headings, sans-serif para body',
   },
   {
     name: 'Space Grotesk',
     heading: spaceGrotesk.className,
     body: spaceGrotesk.className,
     className: spaceGrotesk.className,
-    description: 'Moderno geometrico, excelente legibilidad en mobile'
+    description: 'Moderno geometrico, excelente legibilidad en mobile',
   },
   {
     name: 'Outfit',
     heading: outfit.className,
     body: outfit.className,
     className: outfit.className,
-    description: 'Contemporáneo limpio, diseñado para screens'
+    description: 'Contemporáneo limpio, diseñado para screens',
   },
   {
     name: 'Poppins',
     heading: poppins.className,
     body: poppins.className,
     className: poppins.className,
-    description: 'Amigable y redondeado, muy legible en mobile'
+    description: 'Amigable y redondeado, muy legible en mobile',
   },
   {
     name: 'Raleway',
     heading: raleway.className,
     body: inter.className,
     className: raleway.className,
-    description: 'Elegante sans-serif, moderno y profesional'
+    description: 'Elegante sans-serif, moderno y profesional',
   },
   {
     name: 'Montserrat',
     heading: montserrat.className,
     body: montserrat.className,
     className: montserrat.className,
-    description: 'Urbano y bold, excelente contraste'
+    description: 'Urbano y bold, excelente contraste',
   },
   {
     name: 'Lora + Inter',
     heading: lora.className,
     body: inter.className,
     className: lora.className,
-    description: 'Serif moderno, óptimo para lectura larga'
+    description: 'Serif moderno, óptimo para lectura larga',
   },
   {
     name: 'Merriweather + Inter',
     heading: merriweather.className,
     body: inter.className,
     className: merriweather.className,
-    description: 'Serif robusto, diseñado para lectura en pantalla'
-  }
-];
+    description: 'Serif robusto, diseñado para lectura en pantalla',
+  },
+]
 
 const sampleText = {
   heading: 'Transformación & Liderazgo',
   subheading: 'Eleva tu potencial',
   body: 'Descubrí cómo el coaching ágil puede transformar tu liderazgo y llevar tu equipo al siguiente nivel. Más de 20 años de experiencia en tecnología y metodologías ágiles.',
-  paragraph: 'Nuestro enfoque combina las mejores prácticas de agile coaching con herramientas de liderazgo modernas, creando una experiencia única que impulsa resultados reales y medibles.',
-  cta: 'Agendar Sesión Gratuita'
-};
+  paragraph:
+    'Nuestro enfoque combina las mejores prácticas de agile coaching con herramientas de liderazgo modernas, creando una experiencia única que impulsa resultados reales y medibles.',
+  cta: 'Agendar Sesión Gratuita',
+}
 
 export default function FontsDemo() {
-  const [selectedFont, setSelectedFont] = useState(0);
-  const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('mobile');
+  const [selectedFont, setSelectedFont] = useState(0)
+  const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('mobile')
 
-  const currentFont = fontOptions[selectedFont];
+  const currentFont = fontOptions[selectedFont]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Demo de Tipografías para Mobile
-          </h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Demo de Tipografías para Mobile</h1>
           <p className="text-gray-300">
             Compará diferentes fuentes y encontrá la mejor opción para tu sitio
           </p>
@@ -208,14 +217,13 @@ export default function FontsDemo() {
         </div>
 
         {/* Demo Content */}
-        <div className={`mx-auto ${
-          viewMode === 'mobile' ? 'max-w-md' : 'max-w-4xl'
-        }`}>
+        <div className={`mx-auto ${viewMode === 'mobile' ? 'max-w-md' : 'max-w-4xl'}`}>
           <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-200 shadow-2xl">
-            
             {/* Hero Section */}
             <div className="text-center mb-8">
-              <h1 className={`${currentFont.heading} text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight`}>
+              <h1
+                className={`${currentFont.heading} text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight`}
+              >
                 {sampleText.heading}
               </h1>
               <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto mb-4"></div>
@@ -236,21 +244,30 @@ export default function FontsDemo() {
 
             {/* Features Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              {['Liderazgo Ágil', 'Transformación Real', 'Resultados Medibles'].map((item, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-4 text-center border border-gray-200">
-                  <h3 className={`${currentFont.heading} text-lg font-semibold text-gray-900 mb-2`}>
-                    {item}
-                  </h3>
-                  <p className={`${currentFont.body} text-sm text-gray-600`}>
-                    Soluciones personalizadas para tu equipo
-                  </p>
-                </div>
-              ))}
+              {['Liderazgo Ágil', 'Transformación Real', 'Resultados Medibles'].map(
+                (item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-lg p-4 text-center border border-gray-200"
+                  >
+                    <h3
+                      className={`${currentFont.heading} text-lg font-semibold text-gray-900 mb-2`}
+                    >
+                      {item}
+                    </h3>
+                    <p className={`${currentFont.body} text-sm text-gray-600`}>
+                      Soluciones personalizadas para tu equipo
+                    </p>
+                  </div>
+                )
+              )}
             </div>
 
             {/* CTA Button */}
             <div className="text-center">
-              <button className={`${currentFont.body} bg-gradient-to-r from-purple-700 to-pink-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all transform hover:scale-105`}>
+              <button
+                className={`${currentFont.body} bg-gradient-to-r from-purple-700 to-pink-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all transform hover:scale-105`}
+              >
                 {sampleText.cta}
               </button>
             </div>
@@ -283,7 +300,8 @@ export default function FontsDemo() {
                 </div>
                 <div>
                   <p className={`${currentFont.body} text-base text-gray-700`}>
-                    Body Regular - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                    Body Regular - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                    eiusmod tempor incididunt ut labore.
                   </p>
                 </div>
                 <div>
@@ -300,14 +318,15 @@ export default function FontsDemo() {
                 <h3 className={`${currentFont.heading} text-xl font-semibold text-gray-900 mb-6`}>
                   Tests Específicos para Mobile
                 </h3>
-                
+
                 {/* Small Screen Readability */}
                 <div className="bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200">
                   <h4 className={`${currentFont.heading} text-lg font-semibold text-gray-900 mb-2`}>
                     Legibilidad en Pantalla Pequeña
                   </h4>
                   <p className={`${currentFont.body} text-sm text-gray-700 leading-relaxed`}>
-                    Este texto simula cómo se ve en un móvil. La legibilidad es clave para la experiencia de usuario. Fuentes con buen contraste y espaciado funcionan mejor.
+                    Este texto simula cómo se ve en un móvil. La legibilidad es clave para la
+                    experiencia de usuario. Fuentes con buen contraste y espaciado funcionan mejor.
                   </p>
                 </div>
 
@@ -317,10 +336,14 @@ export default function FontsDemo() {
                     Botones y Targets Táctiles
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
-                    <button className={`${currentFont.body} bg-purple-700 text-white py-3 px-4 rounded-lg font-medium text-sm`}>
+                    <button
+                      className={`${currentFont.body} bg-purple-700 text-white py-3 px-4 rounded-lg font-medium text-sm`}
+                    >
                       Primario
                     </button>
-                    <button className={`${currentFont.body} border border-purple-600 text-purple-700 py-3 px-4 rounded-lg font-medium text-sm`}>
+                    <button
+                      className={`${currentFont.body} border border-purple-600 text-purple-700 py-3 px-4 rounded-lg font-medium text-sm`}
+                    >
                       Secundario
                     </button>
                   </div>
@@ -333,7 +356,10 @@ export default function FontsDemo() {
                   </h4>
                   <div className="flex justify-around">
                     {['Inicio', 'Servicios', 'Sobre', 'Contacto'].map((item, index) => (
-                      <span key={index} className={`${currentFont.body} text-xs text-gray-600 text-center`}>
+                      <span
+                        key={index}
+                        className={`${currentFont.body} text-xs text-gray-600 text-center`}
+                      >
                         {item}
                       </span>
                     ))}
@@ -372,5 +398,5 @@ export default function FontsDemo() {
         </div>
       </div>
     </div>
-  );
+  )
 }

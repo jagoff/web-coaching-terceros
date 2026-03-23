@@ -1,35 +1,35 @@
-"use client";
+'use client'
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useRef, useState } from 'react'
+import { motion, useInView, AnimatePresence, type Variants } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
+import { headerStagger, blurUp, dividerGrow } from '@/lib/animations'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const faqStagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-};
+}
 
 const faqItem: Variants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
-};
+}
 
 export default function FAQ() {
-  const { t } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { t } = useLanguage()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggle = (i: number) => {
-    setOpenIndex(openIndex === i ? null : i);
-  };
+    setOpenIndex(openIndex === i ? null : i)
+  }
 
   return (
     <section id="faq" className="section section-dark section-compact" ref={ref}>
@@ -38,7 +38,7 @@ export default function FAQ() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="text-center mb-8 md:mb-12"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -47,29 +47,22 @@ export default function FAQ() {
           <motion.h2
             variants={blurUp}
             className="heading-xl"
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             {t.faq.title} <span className="text-gradient">{t.faq.title2}</span>
           </motion.h2>
-          <motion.div
-            variants={dividerGrow}
-            className="divider-gold mt-6"
-          />
+          <motion.div variants={dividerGrow} className="divider-gold mt-6" />
         </motion.div>
 
         {/* Accordion */}
         <motion.div
           variants={faqStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="max-w-3xl mx-auto flex flex-col"
         >
           {t.faq.items.map((faq, i) => (
-            <motion.div
-              key={i}
-              variants={faqItem}
-              className="faq-item"
-            >
+            <motion.div key={i} variants={faqItem} className="faq-item">
               <button
                 className="faq-question"
                 onClick={() => toggle(i)}
@@ -81,17 +74,17 @@ export default function FAQ() {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   className="flex-shrink-0"
                 >
-                  <ChevronDown size={20} style={{ color: "var(--gold-primary)" }} />
+                  <ChevronDown size={20} style={{ color: 'var(--gold-primary)' }} />
                 </motion.div>
               </button>
               <AnimatePresence initial={false}>
                 {openIndex === i && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
+                    animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ overflow: "hidden" }}
+                    style={{ overflow: 'hidden' }}
                   >
                     <p className="faq-answer">{faq.answer}</p>
                   </motion.div>
@@ -102,5 +95,5 @@ export default function FAQ() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

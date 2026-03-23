@@ -1,31 +1,31 @@
-"use client";
+'use client'
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
-import { scrollToElement } from "@/lib/scroll";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useRef, useState, useEffect } from 'react'
+import { motion, useInView, type Variants } from 'framer-motion'
+import { Flame, Gem, CheckCircle2, ArrowRight } from 'lucide-react'
+import { scrollToElement } from '@/lib/scroll'
+import { headerStagger, blurUp, dividerGrow } from '@/lib/animations'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const cardReveal: Variants = {
-  hidden: { opacity: 0, y: 50, rotateX: 8, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 50, rotateX: 8, filter: 'blur(6px)' },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     rotateX: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: {
       duration: 0.8,
       delay: 0.3 + i * 0.2,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
-};
+}
 
 const benefitStagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.06, delayChildren: 0.4 } },
-};
+}
 
 const benefitItem: Variants = {
   hidden: { opacity: 0, x: -16 },
@@ -34,28 +34,27 @@ const benefitItem: Variants = {
     x: 0,
     transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
   },
-};
-
+}
 
 export default function Services() {
-  const { t, language } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-30px" });
-  const [forceVisible, setForceVisible] = useState(false);
+  const { t, language } = useLanguage()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-30px' })
+  const [forceVisible, setForceVisible] = useState(false)
 
   // Fallback: Force visibility after 2 seconds if animation hasn't triggered
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isInView) {
-        setForceVisible(true);
+        setForceVisible(true)
       }
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [isInView]);
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [isInView])
 
   const services = [
     {
-      id: "liderazgo",
+      id: 'liderazgo',
       icon: Flame,
       title: t.services.items.liderazgo.title,
       description: t.services.items.liderazgo.description,
@@ -64,7 +63,7 @@ export default function Services() {
       featured: false,
     },
     {
-      id: "organizacional",
+      id: 'organizacional',
       icon: Gem,
       title: t.services.items.organizacional.title,
       description: t.services.items.organizacional.description,
@@ -73,7 +72,7 @@ export default function Services() {
       featured: true,
       badge: language === 'es' ? 'MÁS SOLICITADO' : 'MOST POPULAR',
     },
-  ];
+  ]
 
   return (
     <section id="servicios" className="section section-dark" ref={ref}>
@@ -82,7 +81,7 @@ export default function Services() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView || forceVisible ? "visible" : "hidden"}
+          animate={isInView || forceVisible ? 'visible' : 'hidden'}
           className="text-center mb-14 md:mb-24"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -91,48 +90,47 @@ export default function Services() {
           <motion.h2
             variants={blurUp}
             className="heading-xl"
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             <span className="text-gradient">
-            {t.services.title.includes('apagar') ? (
-              <>
-                Deja de apagar incendios
-              </>
-            ) : (
-              t.services.title
-            )}
-          </span>
+              {t.services.title.includes('apagar') ? (
+                <>Deja de apagar incendios</>
+              ) : (
+                t.services.title
+              )}
+            </span>
           </motion.h2>
-          <motion.div
-            variants={dividerGrow}
-            className="divider-gold mt-6"
-          />
+          <motion.div variants={dividerGrow} className="divider-gold mt-6" />
         </motion.div>
 
         {/* Service cards */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
           {services.map((service, i) => {
-            const Icon = service.icon;
+            const Icon = service.icon
             return (
               <motion.div
                 key={service.id}
                 custom={i}
                 variants={cardReveal}
                 initial="hidden"
-                animate={isInView || forceVisible ? "visible" : "hidden"}
-                className={`glass-card p-6 sm:p-10 md:p-12 flex flex-col group relative overflow-hidden${service.featured ? " ring-1" : ""}`}
+                animate={isInView || forceVisible ? 'visible' : 'hidden'}
+                className={`glass-card p-6 sm:p-10 md:p-12 flex flex-col group relative overflow-hidden${service.featured ? ' ring-1' : ''}`}
                 style={{
-                  perspective: "800px",
+                  perspective: '800px',
                   ...(service.featured
                     ? {
-                        borderColor: "rgba(124,107,196,0.45)",
-                        boxShadow:
-                          "0 0 40px rgba(124,107,196,0.12), 0 8px 32px rgba(0,0,0,0.5)",
+                        borderColor: 'rgba(124,107,196,0.45)',
+                        boxShadow: '0 0 40px rgba(124,107,196,0.12), 0 8px 32px rgba(0,0,0,0.5)',
                       }
                     : {}),
                 }}
-                whileHover={{ y: -6, boxShadow: service.featured ? "0 0 60px rgba(124,107,196,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: service.featured
+                    ? '0 0 60px rgba(124,107,196,0.2), 0 16px 48px rgba(0,0,0,0.5)'
+                    : '0 8px 32px rgba(0,0,0,0.4)',
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 {/* Featured glow background */}
                 {service.featured && (
@@ -140,7 +138,7 @@ export default function Services() {
                     className="absolute inset-0 pointer-events-none opacity-20"
                     style={{
                       background:
-                        "radial-gradient(ellipse at top right, rgba(124,107,196,0.25) 0%, transparent 60%)",
+                        'radial-gradient(ellipse at top right, rgba(124,107,196,0.25) 0%, transparent 60%)',
                     }}
                   />
                 )}
@@ -150,30 +148,30 @@ export default function Services() {
                   <motion.div
                     className="w-14 h-14 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(124,107,196,0.12)",
-                      border: "1px solid rgba(124,107,196,0.25)",
-                      color: "var(--gold-primary)",
+                      background: 'rgba(124,107,196,0.12)',
+                      border: '1px solid rgba(124,107,196,0.25)',
+                      color: 'var(--gold-primary)',
                     }}
                     whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                   >
                     <Icon size={26} strokeWidth={1.5} />
                   </motion.div>
-                  {service.badge && (
-                    <span className="badge text-xs">
-                      {service.badge}
-                    </span>
-                  )}
+                  {service.badge && <span className="badge text-xs">{service.badge}</span>}
                 </div>
 
-                <h3
-                  className="heading-md mb-6"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
+                <h3 className="heading-md mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
                   {service.title}
                 </h3>
 
-                <p className="mb-6 sm:mb-10" style={{ color: "var(--text-secondary)", lineHeight: "1.75" }}>
+                <p
+                  className={`mb-6 sm:mb-10 ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`}
+                  style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.75',
+                    fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)'
+                  }}
+                >
                   {service.description}
                 </p>
 
@@ -181,17 +179,24 @@ export default function Services() {
                 <motion.ul
                   variants={benefitStagger}
                   initial="hidden"
-                  animate={isInView || forceVisible ? "visible" : "hidden"}
+                  animate={isInView || forceVisible ? 'visible' : 'hidden'}
                   className="space-y-3 sm:space-y-4 mb-8 sm:mb-10 flex-1"
                 >
-                  {service.benefits.map((benefit) => (
-                    <motion.li key={benefit} variants={benefitItem} className="flex items-start gap-3">
+                  {service.benefits.map(benefit => (
+                    <motion.li
+                      key={benefit}
+                      variants={benefitItem}
+                      className="flex items-start gap-3"
+                    >
                       <CheckCircle2
                         size={16}
                         className="flex-shrink-0 mt-0.5"
-                        style={{ color: "var(--gold-primary)" }}
+                        style={{ color: 'var(--gold-primary)' }}
                       />
-                      <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                      <span className={`text-sm ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`} style={{ 
+                        color: 'var(--text-secondary)',
+                        fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)'
+                      }}>
                         {benefit}
                       </span>
                     </motion.li>
@@ -200,19 +205,29 @@ export default function Services() {
 
                 {/* CTA */}
                 <button
-                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
-                  style={{ color: "var(--gold-primary)", letterSpacing: "0.1em" }}
-                  onClick={() => scrollToElement("#contacto")}
-                  onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; e.currentTarget.style.gap = "12px"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.gap = "8px"; }}
+                  className={`inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`}
+                  style={{ 
+                    color: 'var(--gold-primary)', 
+                    letterSpacing: '0.1em',
+                    fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)'
+                  }}
+                  onClick={() => scrollToElement('#contacto')}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.opacity = '0.8'
+                    e.currentTarget.style.gap = '12px'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.opacity = '1'
+                    e.currentTarget.style.gap = '8px'
+                  }}
                 >
                   {service.cta} <ArrowRight size={16} />
                 </button>
               </motion.div>
-            );
+            )
           })}
         </div>
       </div>
     </section>
-  );
+  )
 }

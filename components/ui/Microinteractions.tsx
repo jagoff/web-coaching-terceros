@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { ArrowRight, Heart, Star, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { ArrowRight, Heart, Star, Sparkles } from 'lucide-react'
 
 // Enhanced button with microinteractions
 export function InteractiveButton({
@@ -14,34 +14,34 @@ export function InteractiveButton({
   className = '',
   ...props
 }: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  icon?: React.ReactNode;
-  className?: string;
-  [key: string]: any;
+  children: React.ReactNode
+  onClick?: () => void
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  icon?: React.ReactNode
+  className?: string
+  [key: string]: any
 }) {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false)
 
   const handleClick = () => {
-    setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 200);
-    onClick?.();
-  };
+    setIsClicked(true)
+    setTimeout(() => setIsClicked(false), 200)
+    onClick?.()
+  }
 
-  const baseClasses = "relative overflow-hidden transition-all duration-200";
+  const baseClasses = 'relative overflow-hidden transition-all duration-200'
   const variantClasses = {
-    primary: "btn-primary",
-    secondary: "btn-secondary", 
-    ghost: "p-2 rounded-lg hover:bg-gray-800/20 dark:hover:bg-gray-200/20"
-  };
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    ghost: 'p-2 rounded-lg hover:bg-gray-800/20 dark:hover:bg-gray-200/20',
+  }
 
   const sizeClasses = {
-    sm: "text-sm px-3 py-1.5",
-    md: "text-base px-4 py-2", 
-    lg: "text-lg px-6 py-3"
-  };
+    sm: 'text-sm px-3 py-1.5',
+    md: 'text-base px-4 py-2',
+    lg: 'text-lg px-6 py-3',
+  }
 
   return (
     <motion.button
@@ -57,19 +57,17 @@ export function InteractiveButton({
           className="absolute inset-0 bg-white/20 rounded-inherit"
           initial={{ scale: 0, opacity: 0.5 }}
           animate={{ scale: 4, opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         />
       )}
-      
+
       {/* Content */}
       <span className="relative z-10 flex items-center gap-2">
-        {icon && <motion.div
-          initial={{ x: -5 }}
-          animate={{ x: 0 }}
-          transition={{ delay: 0.1 }}
-        >
-          {icon}
-        </motion.div>}
+        {icon && (
+          <motion.div initial={{ x: -5 }} animate={{ x: 0 }} transition={{ delay: 0.1 }}>
+            {icon}
+          </motion.div>
+        )}
         {children}
         {variant === 'primary' && (
           <motion.div
@@ -82,7 +80,7 @@ export function InteractiveButton({
         )}
       </span>
     </motion.button>
-  );
+  )
 }
 
 // Floating action button with microinteractions
@@ -94,21 +92,21 @@ export function FloatingActionButton({
   tooltip,
   ...props
 }: {
-  icon: React.ReactNode;
-  onClick: () => void;
-  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
-  badge?: number | string;
-  tooltip?: string;
-  [key: string]: any;
+  icon: React.ReactNode
+  onClick: () => void
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
+  badge?: number | string
+  tooltip?: string
+  [key: string]: any
 }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false)
 
   const positionClasses = {
     'bottom-right': 'bottom-6 right-6',
     'bottom-left': 'bottom-6 left-6',
     'top-right': 'top-6 right-6',
-    'top-left': 'top-6 left-6'
-  };
+    'top-left': 'top-6 left-6',
+  }
 
   return (
     <motion.div
@@ -137,10 +135,7 @@ export function FloatingActionButton({
         )}
 
         {/* Icon */}
-        <motion.div
-          animate={{ rotate: isHovered ? 360 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <motion.div animate={{ rotate: isHovered ? 360 : 0 }} transition={{ duration: 0.3 }}>
           {icon}
         </motion.div>
 
@@ -159,7 +154,7 @@ export function FloatingActionButton({
         )}
       </motion.button>
     </motion.div>
-  );
+  )
 }
 
 // Interactive card with hover effects
@@ -170,29 +165,29 @@ export function InteractiveCard({
   hoverEffect = 'lift',
   ...props
 }: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-  hoverEffect?: 'lift' | 'glow' | 'scale' | 'slide';
-  [key: string]: any;
+  children: React.ReactNode
+  onClick?: () => void
+  className?: string
+  hoverEffect?: 'lift' | 'glow' | 'scale' | 'slide'
+  [key: string]: any
 }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false)
 
   const hoverVariants = {
     lift: {
       y: -8,
-      boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
+      boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
     },
     glow: {
-      boxShadow: "0 0 30px rgba(124,107,196,0.5)"
+      boxShadow: '0 0 30px rgba(124,107,196,0.5)',
     },
     scale: {
-      scale: 1.02
+      scale: 1.02,
     },
     slide: {
-      x: 8
-    }
-  };
+      x: 8,
+    },
+  }
 
   return (
     <motion.div
@@ -201,7 +196,7 @@ export function InteractiveCard({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={hoverVariants[hoverEffect]}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       {...props}
     >
       {/* Shimmer effect on hover */}
@@ -210,24 +205,24 @@ export function InteractiveCard({
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
           initial={{ x: -100 }}
           animate={{ x: 200 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         />
       )}
-      
+
       {children}
     </motion.div>
-  );
+  )
 }
 
 // Social proof with animations
 export function AnimatedSocialProof({
   text,
   icon,
-  delay = 0
+  delay = 0,
 }: {
-  text: string;
-  icon: React.ReactNode;
-  delay?: number;
+  text: string
+  icon: React.ReactNode
+  delay?: number
 }) {
   return (
     <motion.div
@@ -250,7 +245,7 @@ export function AnimatedSocialProof({
         {text}
       </motion.span>
     </motion.div>
-  );
+  )
 }
 
 // Interactive rating component
@@ -259,28 +254,28 @@ export function InteractiveRating({
   onChange,
   max = 5,
   size = 'md',
-  readonly = false
+  readonly = false,
 }: {
-  value: number;
-  onChange?: (value: number) => void;
-  max?: number;
-  size?: 'sm' | 'md' | 'lg';
-  readonly?: boolean;
+  value: number
+  onChange?: (value: number) => void
+  max?: number
+  size?: 'sm' | 'md' | 'lg'
+  readonly?: boolean
 }) {
-  const [hoverValue, setHoverValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(0)
 
   const sizeClasses = {
     sm: 'w-4 h-4',
     md: 'w-6 h-6',
-    lg: 'w-8 h-8'
-  };
+    lg: 'w-8 h-8',
+  }
 
   return (
     <div className="flex gap-1">
       {Array.from({ length: max }, (_, i) => {
-        const starValue = i + 1;
-        const isActive = starValue <= (hoverValue || value);
-        
+        const starValue = i + 1
+        const isActive = starValue <= (hoverValue || value)
+
         return (
           <motion.button
             key={i}
@@ -297,21 +292,21 @@ export function InteractiveRating({
           >
             <Star size="100%" fill={isActive ? 'currentColor' : 'none'} />
           </motion.button>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 // Floating particles background
 export function FloatingParticles() {
-  const [isClient, setIsClient] = useState(false);
-  
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const [isClient, setIsClient] = useState(false)
 
-  if (!isClient) return null;
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) return null
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -322,42 +317,42 @@ export function FloatingParticles() {
           initial={{
             x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
             y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-            scale: Math.random() * 2 + 0.5
+            scale: Math.random() * 2 + 0.5,
           }}
           animate={{
             y: [0, -100, 0],
             x: [0, Math.random() * 100 - 50, 0],
             opacity: [0, 1, 0],
-            scale: [1, 1.5, 1]
+            scale: [1, 1.5, 1],
           }}
           transition={{
             duration: Math.random() * 10 + 10,
             repeat: Infinity,
             delay: Math.random() * 5,
-            ease: "easeInOut"
+            ease: 'easeInOut',
           }}
         />
       ))}
     </div>
-  );
+  )
 }
 
 // Pulse animation for important elements
 export function Pulse({
   children,
   className = '',
-  color = 'violet'
+  color = 'violet',
 }: {
-  children: React.ReactNode;
-  className?: string;
-  color?: 'violet' | 'amber' | 'green' | 'red';
+  children: React.ReactNode
+  className?: string
+  color?: 'violet' | 'amber' | 'green' | 'red'
 }) {
   const colorClasses = {
     violet: 'bg-violet-500',
     amber: 'bg-amber-500',
     green: 'bg-green-500',
-    red: 'bg-red-500'
-  };
+    red: 'bg-red-500',
+  }
 
   return (
     <div className={`relative inline-block ${className}`}>
@@ -365,17 +360,15 @@ export function Pulse({
         className={`absolute inset-0 ${colorClasses[color]} rounded-full opacity-75`}
         animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.75, 0, 0.75]
+          opacity: [0.75, 0, 0.75],
         }}
         transition={{
           duration: 2,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: 'easeInOut',
         }}
       />
-      <div className="relative">
-        {children}
-      </div>
+      <div className="relative">{children}</div>
     </div>
-  );
+  )
 }

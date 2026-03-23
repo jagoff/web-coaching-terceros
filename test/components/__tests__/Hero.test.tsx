@@ -21,7 +21,7 @@ vi.mock('@/contexts/LanguageContext', () => ({
 describe('Hero Component', () => {
   it('renders hero title correctly', () => {
     render(<Hero />)
-    
+
     expect(screen.getByText('Liderazgo ágil')).toBeInTheDocument()
     expect(screen.getByText('para')).toBeInTheDocument()
     expect(screen.getByText('organizaciones que escalan')).toBeInTheDocument()
@@ -29,7 +29,7 @@ describe('Hero Component', () => {
 
   it('renders call to action button', () => {
     render(<Hero />)
-    
+
     const ctaButton = screen.getByText('Agendá tu sesión gratuita')
     expect(ctaButton).toBeInTheDocument()
   })

@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { useInView, useScroll } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Target, Users, TrendingUp, Star } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import { useRef } from 'react'
+import { useInView, useScroll } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { Target, Users, TrendingUp, Star } from 'lucide-react'
+import { motion, type Variants } from 'framer-motion'
 
 const headerStagger: Variants = {
   hidden: { opacity: 0 },
@@ -15,17 +15,17 @@ const headerStagger: Variants = {
       delayChildren: 0.3,
     },
   },
-};
+}
 
 const blurUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
   },
-};
+}
 
 const dividerGrow: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
@@ -34,11 +34,11 @@ const dividerGrow: Variants = {
     opacity: 1,
     transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
   },
-};
+}
 
 const stepReveal: Variants = {
   hidden: { opacity: 0, y: 60, scale: 0.95 },
-  visible: (i) => ({
+  visible: i => ({
     opacity: 1,
     y: 0,
     scale: 1,
@@ -48,35 +48,35 @@ const stepReveal: Variants = {
       ease: [0.22, 1, 0.36, 1],
     },
   }),
-};
+}
 
 const steps = [
   {
-    number: "01", 
+    number: '01',
     icon: Target,
-    key: "diagnostico" as const,
+    key: 'diagnostico' as const,
   },
   {
-    number: "02", 
+    number: '02',
     icon: Users,
-    key: "diseno" as const,
+    key: 'diseno' as const,
   },
   {
-    number: "03",
+    number: '03',
     icon: TrendingUp,
-    key: "ejecucion" as const, 
+    key: 'ejecucion' as const,
   },
   {
-    number: "04",
+    number: '04',
     icon: Star,
-    key: "autonomia" as const,
+    key: 'autonomia' as const,
   },
-];
+]
 
 export default function Process() {
-  const { language, t } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { language, t } = useLanguage()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section id="proceso" className="section section-surface section-gold-border-top" ref={ref}>
@@ -85,7 +85,7 @@ export default function Process() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="text-center mb-14 md:mb-24 max-w-3xl mx-auto"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -94,18 +94,15 @@ export default function Process() {
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
-            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }}
+            style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 4vw, 2.5rem)' }}
           >
-            {t.process.title}{" "}
-            <span className="text-gradient">{t.process.title2}</span> {t.process.title3}
+            {t.process.title} <span className="text-gradient">{t.process.title2}</span>{' '}
+            {t.process.title3}
           </motion.h2>
           <motion.p variants={blurUp} className="lead-text">
             {t.process.subtitle}
           </motion.p>
-          <motion.div
-            variants={dividerGrow}
-            className="divider-gold mt-6"
-          />
+          <motion.div variants={dividerGrow} className="divider-gold mt-6" />
         </motion.div>
 
         {/* Steps — desktop horizontal / mobile vertical */}
@@ -119,44 +116,43 @@ export default function Process() {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 1.2, delay: 0.6, ease: [0, 0, 0.2, 1] as [number, number, number, number] }}
+              transition={{
+                duration: 1.2,
+                delay: 0.6,
+                ease: [0, 0, 0.2, 1] as [number, number, number, number],
+              }}
               className="step-connector mx-auto"
               style={{
-                width: "calc(100% - 120px)",
-                marginLeft: "60px",
-                transformOrigin: "left",
+                width: 'calc(100% - 120px)',
+                marginLeft: '60px',
+                transformOrigin: 'left',
               }}
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 relative z-10">
             {steps.map((step, i) => {
-              const Icon = step.icon;
+              const Icon = step.icon
               return (
                 <motion.div
                   key={step.number}
                   custom={i}
                   variants={stepReveal}
                   initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
+                  animate={isInView ? 'visible' : 'hidden'}
                   className="process-step glass-card-sm group p-6"
-                  style={{ perspective: "600px" }}
+                  style={{ perspective: '600px' }}
                   whileHover={{ y: -2 }} // Minimal hover
                   whileTap={{ y: -8, scale: 1.05, zIndex: 10 }} // Dramatic tap effect
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
                   {/* Ghost number */}
-                  <span 
-                    className="step-number" 
+                  <span
+                    className="step-number"
                     aria-hidden="true"
                     style={{
-                      color: i === 0 
-                        ? "#9D8FD8"
-                        : i === 1
-                        ? "#DFA080"
-                        : i === 2
-                        ? "#B19EF9"
-                        : "#FFB380",
+                      color:
+                        i === 0 ? '#9D8FD8' : i === 1 ? '#DFA080' : i === 2 ? '#B19EF9' : '#FFB380',
                     }}
                   >
                     {step.number}
@@ -169,42 +165,39 @@ export default function Process() {
                       // DEBUG: Inline styles to ensure transforms work
                       transform: 'scale(1)',
                       transition: 'transform 0.3s ease',
-                      backgroundColor: 'rgba(124, 107, 196, 0.1)'
+                      backgroundColor: 'rgba(124, 107, 196, 0.1)',
                     }}
                     whileHover={{ scale: 1.02 }} // Minimal hover
                     whileTap={{ scale: 1.3, rotate: 10, zIndex: 15 }} // Dramatic tap effect
-                    transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 12 }}
                   >
                     <Icon size={22} strokeWidth={1.5} />
                   </motion.div>
 
-                  
                   <h3
                     className="text-lg font-semibold mb-5"
-                    style={{ 
-                      fontFamily: "var(--font-heading)", 
-                      color: i === 0 
-                        ? "#9D8FD8"
-                        : i === 1
-                        ? "#DFA080"
-                        : i === 2
-                        ? "#B19EF9"
-                        : "#FFB380",
-                      fontSize: "clamp(1.375rem, 3vw, 1.75rem)",
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      color:
+                        i === 0 ? '#9D8FD8' : i === 1 ? '#DFA080' : i === 2 ? '#B19EF9' : '#FFB380',
+                      fontSize: 'clamp(1.375rem, 3vw, 1.75rem)',
                       fontWeight: 700,
-                      textShadow: "0 0 10px rgba(124, 107, 196, 0.2)",
-                      letterSpacing: "0.02em"
+                      textShadow: '0 0 10px rgba(124, 107, 196, 0.2)',
+                      letterSpacing: '0.02em',
                     }}
                   >
                     {t.process.steps[step.key].title}
                   </h3>
 
-                  <p className="text-body leading-relaxed" style={{ 
-                    color: "var(--text-secondary)", 
-                    lineHeight: "1.7",
-                    fontSize: "clamp(16px, 2vw, 18px)",
-                    fontWeight: 400
-                  }}>
+                  <p
+                    className="text-body leading-relaxed"
+                    style={{
+                      color: 'var(--text-secondary)',
+                      lineHeight: '1.7',
+                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      fontWeight: 400,
+                    }}
+                  >
                     {t.process.steps[step.key].description}
                   </p>
 
@@ -225,17 +218,17 @@ export default function Process() {
                     <div
                       className="sm:hidden mx-auto mt-4 w-px h-8 opacity-30"
                       style={{
-                        background: "linear-gradient(180deg, var(--gold-primary), transparent)",
+                        background: 'linear-gradient(180deg, var(--gold-primary), transparent)',
                       }}
                       aria-hidden="true"
                     />
                   )}
                 </motion.div>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

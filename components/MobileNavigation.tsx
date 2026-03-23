@@ -1,47 +1,47 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu, ChevronDown } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { translations } from "@/lib/translations";
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X, Menu, ChevronDown } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { translations } from '@/lib/translations'
 
 export default function MobileNavigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const { language } = useLanguage();
-  const t = translations[language];
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const { language } = useLanguage()
+  const t = translations[language]
 
   // Lock body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'
     }
     return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
 
   // Close menu on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsOpen(false);
-        setActiveDropdown(null);
+        setIsOpen(false)
+        setActiveDropdown(null)
       }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, []);
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [])
 
   const navItems = [
     {
       key: 'sobreMi',
       label: t.nav.sobreMi,
       href: '#about',
-      hasDropdown: false
+      hasDropdown: false,
     },
     {
       key: 'servicios',
@@ -51,49 +51,49 @@ export default function MobileNavigation() {
       dropdown: [
         { label: 'Leadership Coaching', href: '#leadership' },
         { label: 'Agile Consulting', href: '#agile' },
-        { label: 'Team Transformation', href: '#team' }
-      ]
+        { label: 'Team Transformation', href: '#team' },
+      ],
     },
     {
       key: 'metodo',
       label: t.nav.metodo,
       href: '#process',
-      hasDropdown: false
+      hasDropdown: false,
     },
     {
       key: 'testimonios',
       label: t.nav.testimonios,
       href: '#testimonials',
-      hasDropdown: false
+      hasDropdown: false,
     },
     {
       key: 'precios',
       label: t.nav.precios,
       href: '#pricing',
-      hasDropdown: false
+      hasDropdown: false,
     },
     {
       key: 'preguntasFrecuentes',
       label: t.nav.preguntasFrecuentes,
       href: '#faq',
-      hasDropdown: false
-    }
-  ];
+      hasDropdown: false,
+    },
+  ]
 
   const handleNavClick = (href: string) => {
-    setIsOpen(false);
-    setActiveDropdown(null);
-    
+    setIsOpen(false)
+    setActiveDropdown(null)
+
     // Smooth scroll to section
-    const element = document.querySelector(href);
+    const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-  };
+  }
 
   const toggleDropdown = (key: string) => {
-    setActiveDropdown(activeDropdown === key ? null : key);
-  };
+    setActiveDropdown(activeDropdown === key ? null : key)
+  }
 
   return (
     <>
@@ -146,7 +146,7 @@ export default function MobileNavigation() {
 
               {/* Navigation Items */}
               <nav className="p-6 space-y-2">
-                {navItems.map((item) => (
+                {navItems.map(item => (
                   <div key={item.key}>
                     {item.hasDropdown ? (
                       <div>
@@ -162,7 +162,7 @@ export default function MobileNavigation() {
                             }`}
                           />
                         </button>
-                        
+
                         <AnimatePresence>
                           {activeDropdown === item.key && (
                             <motion.div
@@ -216,8 +216,8 @@ export default function MobileNavigation() {
                       <button
                         onClick={() => {
                           // Handle language change
-                          const newLang = language === 'es' ? 'en' : 'es';
-                          window.location.href = `?lang=${newLang}`;
+                          const newLang = language === 'es' ? 'en' : 'es'
+                          window.location.href = `?lang=${newLang}`
                         }}
                         className={`px-3 py-1 rounded-full text-sm transition-colors ${
                           language === 'es'
@@ -229,8 +229,8 @@ export default function MobileNavigation() {
                       </button>
                       <button
                         onClick={() => {
-                          const newLang = language === 'en' ? 'es' : 'en';
-                          window.location.href = `?lang=${newLang}`;
+                          const newLang = language === 'en' ? 'es' : 'en'
+                          window.location.href = `?lang=${newLang}`
                         }}
                         className={`px-3 py-1 rounded-full text-sm transition-colors ${
                           language === 'en'
@@ -249,5 +249,5 @@ export default function MobileNavigation() {
         )}
       </AnimatePresence>
     </>
-  );
+  )
 }

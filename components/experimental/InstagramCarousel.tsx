@@ -1,101 +1,101 @@
-"use client";
+'use client'
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
-import Image from "next/image";
+import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Instagram } from 'lucide-react'
+import Image from 'next/image'
 
-const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
+const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11]
 
 // Function to shuffle array
 const shuffleArray = (array: number[]) => {
-  const newArray = [...array];
+  const newArray = [...array]
   for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
   }
-  return newArray;
-};
+  return newArray
+}
 
 const carouselVariants = {
   enter: (direction: number) => ({
     x: direction > 0 ? 1000 : -1000,
-    opacity: 0
+    opacity: 0,
   }),
   center: {
     zIndex: 1,
     x: 0,
-    opacity: 1
+    opacity: 1,
   },
   exit: (direction: number) => ({
     zIndex: 0,
     x: direction < 0 ? 1000 : -1000,
-    opacity: 0
-  })
-};
+    opacity: 0,
+  }),
+}
 
-const swipeConfidenceThreshold = 10000;
+const swipeConfidenceThreshold = 10000
 const swipePower = (offset: number, velocity: number) => {
-  return Math.min(Math.max(offset * velocity, 0), swipeConfidenceThreshold);
-};
+  return Math.min(Math.max(offset * velocity, 0), swipeConfidenceThreshold)
+}
 
 export default function InstagramCarousel() {
-  const [[page, direction], setPage] = useState([0, 0]);
-  const [isDragging, setIsDragging] = useState(false);
-  const [instagramImages, setInstagramImages] = useState<number[]>([]);
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const [[page, direction], setPage] = useState([0, 0])
+  const [isDragging, setIsDragging] = useState(false)
+  const [instagramImages, setInstagramImages] = useState<number[]>([])
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   // Shuffle images on component mount
   useEffect(() => {
-    const shuffled = shuffleArray(baseInstagramImages);
-    setInstagramImages(shuffled);
-  }, []);
+    const shuffled = shuffleArray(baseInstagramImages)
+    setInstagramImages(shuffled)
+  }, [])
 
-  const imageIndex = Math.abs(page) % instagramImages.length;
-  const currentImage = instagramImages[imageIndex];
+  const imageIndex = Math.abs(page) % instagramImages.length
+  const currentImage = instagramImages[imageIndex]
 
   const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
-  };
+    setPage([page + newDirection, newDirection])
+  }
 
   const handleSwipeEnd = (e: any, info: any) => {
-    const { offset } = info;
-    
+    const { offset } = info
+
     // Umbral más simple y directo
     if (offset.x < -50) {
-      paginate(1); // Swipe izquierda → siguiente
+      paginate(1) // Swipe izquierda → siguiente
     } else if (offset.x > 50) {
-      paginate(-1); // Swipe derecha → anterior
+      paginate(-1) // Swipe derecha → anterior
     }
-  };
+  }
 
   const handleImageClick = () => {
     // No hacer nada - las imágenes ya no redirigen a Instagram
-  };
+  }
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') paginate(-1);
-      if (e.key === 'ArrowRight') paginate(1);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [page]);
+      if (e.key === 'ArrowLeft') paginate(-1)
+      if (e.key === 'ArrowRight') paginate(1)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [page])
 
   // Auto-advance (optional)
   useEffect(() => {
     const timer = setInterval(() => {
-      paginate(1);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [page]);
+      paginate(1)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [page])
 
   return (
     <div className="relative w-full">
       {/* Mobile Carousel - Visible solo en mobile */}
       <div className="block sm:hidden">
-        <div className="relative overflow-hidden rounded-lg" style={{ aspectRatio: "1/1" }}>
+        <div className="relative overflow-hidden rounded-lg" style={{ aspectRatio: '1/1' }}>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={page}
@@ -105,8 +105,8 @@ export default function InstagramCarousel() {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
+                x: { type: 'spring', stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
               }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
@@ -114,8 +114,8 @@ export default function InstagramCarousel() {
               dragMomentum={false}
               onDragStart={() => setIsDragging(true)}
               onDragEnd={(e, info) => {
-                setIsDragging(false);
-                handleSwipeEnd(e, info);
+                setIsDragging(false)
+                handleSwipeEnd(e, info)
               }}
               className="absolute inset-0 cursor-grab active:cursor-grabbing"
               ref={carouselRef}
@@ -126,9 +126,9 @@ export default function InstagramCarousel() {
                 fill
                 className="object-cover select-none"
                 draggable={false}
-                style={{ 
-                  filter: isDragging ? "grayscale(100%) brightness(0.8)" : "grayscale(100%)",
-                  cursor: isDragging ? "grabbing" : "grab"
+                style={{
+                  filter: currentImage === 5 ? 'none' : (isDragging ? 'grayscale(100%) brightness(0.8)' : 'grayscale(100%)'),
+                  cursor: isDragging ? 'grabbing' : 'grab',
                 }}
               />
             </motion.div>
@@ -143,14 +143,16 @@ export default function InstagramCarousel() {
               onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
               className={`min-w-[44px] min-h-[44px] rounded-full transition-all duration-300 flex items-center justify-center ${
                 index === imageIndex
-                  ? "bg-[var(--gold-primary)] w-11"
-                  : "bg-gray-600 hover:bg-gray-500 w-11"
+                  ? 'bg-[var(--gold-primary)] w-11'
+                  : 'bg-gray-600 hover:bg-gray-500 w-11'
               }`}
               aria-label={`Ir a imagen ${index + 1}`}
             >
-              <div className={`w-2 h-2 rounded-full ${
-                index === imageIndex ? "bg-white" : "bg-current"
-              }`} />
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  index === imageIndex ? 'bg-white' : 'bg-current'
+                }`}
+              />
             </button>
           ))}
         </div>
@@ -180,17 +182,24 @@ export default function InstagramCarousel() {
             className="flex items-center gap-2 group"
           >
             <div>
-              <p className="text-xs font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
+              <p
+                className="text-xs font-semibold group-hover:text-purple-400 transition-colors"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                @ferf.coach
+              </p>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                Instagram
+              </p>
             </div>
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
               style={{
-                background: "rgba(167,139,250,0.08)",
-                border: "1px solid rgba(167,139,250,0.25)",
+                background: 'rgba(167,139,250,0.08)',
+                border: '1px solid rgba(167,139,250,0.25)',
               }}
             >
-              <Instagram size={14} style={{ color: "var(--gold-primary)" }} />
+              <Instagram size={14} style={{ color: 'var(--gold-primary)' }} />
             </div>
           </a>
         </div>
@@ -204,9 +213,9 @@ export default function InstagramCarousel() {
               key={postNum}
               className="relative rounded-lg overflow-hidden group"
               style={{
-                aspectRatio: "1/1",
-                border: "1px solid rgba(167,139,250,0.12)",
-                backgroundColor: "rgba(19,18,27,0.6)",
+                aspectRatio: '1/1',
+                border: '1px solid rgba(167,139,250,0.12)',
+                backgroundColor: 'rgba(19,18,27,0.6)',
               }}
             >
               <Image
@@ -214,22 +223,22 @@ export default function InstagramCarousel() {
                 alt={`Post de Instagram @ferf.coach - ${postNum}`}
                 fill
                 className={`object-cover transition-all duration-500`}
-                style={{ 
-                  filter: "grayscale(100%)"
+                style={{
+                  filter: postNum === 5 ? 'none' : 'grayscale(100%)',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.filter = "none";
-                  e.currentTarget.style.transform = "scale(1.05)";
+                onMouseEnter={e => {
+                  e.currentTarget.style.filter = 'none'
+                  e.currentTarget.style.transform = 'scale(1.05)'
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = "grayscale(100%)";
-                  e.currentTarget.style.transform = "scale(1)";
+                onMouseLeave={e => {
+                  e.currentTarget.style.filter = postNum === 5 ? 'none' : 'grayscale(100%)'
+                  e.currentTarget.style.transform = 'scale(1)'
                 }}
               />
             </div>
           ))}
         </div>
-        
+
         {/* Instagram info para desktop - con link */}
         <div className="flex items-center justify-center mt-6">
           <a
@@ -241,19 +250,26 @@ export default function InstagramCarousel() {
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-105"
               style={{
-                background: "rgba(167,139,250,0.08)",
-                border: "1px solid rgba(167,139,250,0.25)",
+                background: 'rgba(167,139,250,0.08)',
+                border: '1px solid rgba(167,139,250,0.25)',
               }}
             >
-              <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
+              <Instagram size={16} style={{ color: 'var(--gold-primary)' }} />
             </div>
             <div>
-              <p className="text-sm font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
+              <p
+                className="text-sm font-semibold group-hover:text-purple-400 transition-colors"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                @ferf.coach
+              </p>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                Instagram
+              </p>
             </div>
           </a>
         </div>
       </div>
     </div>
-  );
+  )
 }

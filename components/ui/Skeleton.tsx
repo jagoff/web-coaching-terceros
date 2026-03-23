@@ -1,11 +1,11 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, type Variants } from 'framer-motion'
 
 interface SkeletonProps {
-  className?: string;
-  variant?: 'text' | 'circular' | 'rectangular' | 'rounded';
-  width?: string | number;
-  height?: string | number;
-  lines?: number;
+  className?: string
+  variant?: 'text' | 'circular' | 'rectangular' | 'rounded'
+  width?: string | number
+  height?: string | number
+  lines?: number
 }
 
 const skeletonVariants: Variants = {
@@ -16,31 +16,31 @@ const skeletonVariants: Variants = {
       duration: 1.5,
       ease: [0.4, 0, 0.6, 1],
       repeat: Infinity,
-      repeatType: "reverse" as const
-    }
-  }
-};
+      repeatType: 'reverse' as const,
+    },
+  },
+}
 
-export function Skeleton({ 
-  className = '', 
-  variant = 'text', 
-  width, 
-  height, 
-  lines = 1 
+export function Skeleton({
+  className = '',
+  variant = 'text',
+  width,
+  height,
+  lines = 1,
 }: SkeletonProps) {
-  const baseClasses = "bg-gray-800/50 dark:bg-gray-700/50";
-  
+  const baseClasses = 'bg-gray-800/50 dark:bg-gray-700/50'
+
   const variantClasses = {
     text: 'h-4 rounded',
     circular: 'rounded-full',
     rectangular: 'rounded-md',
-    rounded: 'rounded-lg'
-  };
+    rounded: 'rounded-lg',
+  }
 
   const style = {
     width: width || (variant === 'text' ? '100%' : '40px'),
     height: height || (variant === 'text' ? '1rem' : '40px'),
-  };
+  }
 
   if (variant === 'text' && lines > 1) {
     return (
@@ -51,7 +51,7 @@ export function Skeleton({
             className={`${baseClasses} ${variantClasses[variant]}`}
             style={{
               ...style,
-              width: i === lines - 1 ? '70%' : '100%' // Last line shorter
+              width: i === lines - 1 ? '70%' : '100%', // Last line shorter
             }}
             variants={skeletonVariants}
             initial="hidden"
@@ -59,7 +59,7 @@ export function Skeleton({
           />
         ))}
       </div>
-    );
+    )
   }
 
   return (
@@ -70,7 +70,7 @@ export function Skeleton({
       initial="hidden"
       animate="visible"
     />
-  );
+  )
 }
 
 // Preset components for common use cases
@@ -78,39 +78,21 @@ export function HeroSkeleton() {
   return (
     <div className="space-y-6 max-w-4xl mx-auto text-center">
       {/* Title skeleton */}
-      <Skeleton 
-        variant="text" 
-        height="3.5rem" 
-        width="80%" 
-        className="mx-auto"
-      />
-      
+      <Skeleton variant="text" height="3.5rem" width="80%" className="mx-auto" />
+
       {/* Subtitle skeleton */}
-      <Skeleton 
-        variant="text" 
-        height="1.5rem" 
-        width="60%" 
-        className="mx-auto"
-      />
-      
+      <Skeleton variant="text" height="1.5rem" width="60%" className="mx-auto" />
+
       {/* Description skeleton */}
       <Skeleton variant="text" lines={3} className="mx-auto max-w-2xl" />
-      
+
       {/* CTA buttons skeleton */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <Skeleton 
-          variant="rounded" 
-          width="200px" 
-          height="3rem"
-        />
-        <Skeleton 
-          variant="rectangular" 
-          width="180px" 
-          height="3rem"
-        />
+        <Skeleton variant="rounded" width="200px" height="3rem" />
+        <Skeleton variant="rectangular" width="180px" height="3rem" />
       </div>
     </div>
-  );
+  )
 }
 
 export function StatsSkeleton() {
@@ -118,41 +100,22 @@ export function StatsSkeleton() {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12 lg:gap-16">
       {Array.from({ length: 4 }, (_, i) => (
         <div key={i} className="text-center">
-          <Skeleton 
-            variant="text" 
-            height="3rem" 
-            width="100px" 
-            className="mx-auto mb-2"
-          />
-          <Skeleton 
-            variant="text" 
-            height="1rem" 
-            width="120px" 
-            className="mx-auto"
-          />
+          <Skeleton variant="text" height="3rem" width="100px" className="mx-auto mb-2" />
+          <Skeleton variant="text" height="1rem" width="120px" className="mx-auto" />
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 export function CardSkeleton() {
   return (
     <div className="glass-card p-6 sm:p-8">
-      <Skeleton 
-        variant="text" 
-        height="1.5rem" 
-        width="70%" 
-        className="mb-4"
-      />
+      <Skeleton variant="text" height="1.5rem" width="70%" className="mb-4" />
       <Skeleton variant="text" lines={3} className="mb-6" />
-      <Skeleton 
-        variant="rounded" 
-        width="120px" 
-        height="2.5rem"
-      />
+      <Skeleton variant="rounded" width="120px" height="2.5rem" />
     </div>
-  );
+  )
 }
 
 export function FooterSkeleton() {
@@ -160,41 +123,26 @@ export function FooterSkeleton() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {/* Brand section */}
       <div className="lg:col-span-2">
-        <Skeleton 
-          variant="text" 
-          height="2rem" 
-          width="80px" 
-          className="mb-4"
-        />
+        <Skeleton variant="text" height="2rem" width="80px" className="mb-4" />
         <Skeleton variant="text" lines={3} className="mb-6" />
         <div className="flex gap-4">
           <Skeleton variant="circular" width="40px" height="40px" />
           <Skeleton variant="circular" width="40px" height="40px" />
         </div>
       </div>
-      
+
       {/* Navigation sections */}
       <div>
-        <Skeleton 
-          variant="text" 
-          height="1rem" 
-          width="100px" 
-          className="mb-4"
-        />
+        <Skeleton variant="text" height="1rem" width="100px" className="mb-4" />
         <div className="space-y-3">
           {Array.from({ length: 5 }, (_, i) => (
             <Skeleton key={i} variant="text" height="1rem" width="80px" />
           ))}
         </div>
       </div>
-      
+
       <div>
-        <Skeleton 
-          variant="text" 
-          height="1rem" 
-          width="100px" 
-          className="mb-4"
-        />
+        <Skeleton variant="text" height="1rem" width="100px" className="mb-4" />
         <div className="space-y-3">
           {Array.from({ length: 4 }, (_, i) => (
             <Skeleton key={i} variant="text" height="1rem" width="100px" />
@@ -202,5 +150,5 @@ export function FooterSkeleton() {
         </div>
       </div>
     </div>
-  );
+  )
 }

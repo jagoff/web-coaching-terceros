@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Hero,
@@ -13,8 +13,8 @@ import {
   CalBooking,
   Footer,
   CaseStudies,
-} from "@/components/PageSections";
-import WhatsAppBooking from "@/components/WhatsAppBooking";
+} from '@/components/PageSections'
+import WhatsAppBooking from '@/components/WhatsAppBooking'
 
 export default function Home() {
   return (
@@ -32,5 +32,5 @@ export default function Home() {
       <Footer />
       <WhatsAppBooking />
     </main>
-  );
+  )
 }

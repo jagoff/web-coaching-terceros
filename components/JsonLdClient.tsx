@@ -12,7 +12,8 @@ export default function JsonLdClient() {
           '@id': 'https://coaching-landing-cyan.vercel.app#person',
           name: 'Fernando Ferrari',
           jobTitle: 'Agile Coach & Leadership Consultant',
-          description: 'Coach de liderazgo y consultoría organizacional con más de 20 años en tecnología',
+          description:
+            'Coach de liderazgo y consultoría organizacional con más de 20 años en tecnología',
           url: 'https://coaching-landing-cyan.vercel.app',
           sameAs: [
             'https://www.instagram.com/jago_ff',
@@ -31,7 +32,8 @@ export default function JsonLdClient() {
           '@type': 'Organization',
           '@id': 'https://coaching-landing-cyan.vercel.app#organization',
           name: 'ELEVA CONSULTORA',
-          description: 'Transformando líderes y organizaciones a través de la consultoría estratégica y coaching ágil',
+          description:
+            'Transformando líderes y organizaciones a través de la consultoría estratégica y coaching ágil',
           url: 'https://coaching-landing-cyan.vercel.app',
           founder: {
             '@type': 'Person',
@@ -51,7 +53,8 @@ export default function JsonLdClient() {
           '@type': 'WebSite',
           '@id': 'https://coaching-landing-cyan.vercel.app#website',
           name: 'ELEVA CONSULTORA',
-          description: 'Consultoría organizacional y coaching de liderazgo para líderes tech y startups',
+          description:
+            'Consultoría organizacional y coaching de liderazgo para líderes tech y startups',
           url: 'https://coaching-landing-cyan.vercel.app',
           inLanguage: 'es',
           isAccessibleForFree: true,
@@ -64,7 +67,8 @@ export default function JsonLdClient() {
           '@type': 'Service',
           '@id': 'https://coaching-landing-cyan.vercel.app#leadership-coaching',
           name: 'Coaching de Liderazgo',
-          description: 'Para líderes y managers que quieren potenciar su impacto y desarrollar equipos de alto rendimiento',
+          description:
+            'Para líderes y managers que quieren potenciar su impacto y desarrollar equipos de alto rendimiento',
           provider: {
             '@type': 'Organization',
             '@id': 'https://coaching-landing-cyan.vercel.app#organization',
@@ -82,7 +86,8 @@ export default function JsonLdClient() {
           '@type': 'Service',
           '@id': 'https://coaching-landing-cyan.vercel.app#organizational-consulting',
           name: 'Consultoría Organizacional',
-          description: 'Para startups y empresas que necesitan profesionalizar operaciones y adoptar agilidad real',
+          description:
+            'Para startups y empresas que necesitan profesionalizar operaciones y adoptar agilidad real',
           provider: {
             '@type': 'Organization',
             '@id': 'https://coaching-landing-cyan.vercel.app#organization',
@@ -103,13 +108,13 @@ export default function JsonLdClient() {
     const script = document.createElement('script')
     script.type = 'application/ld+json'
     script.textContent = JSON.stringify(jsonLdData)
-    
+
     // Prevent duplicate injection
     const existingScript = document.querySelector('script[type="application/ld+json"]')
     if (existingScript) {
       existingScript.remove()
     }
-    
+
     document.head.appendChild(script)
 
     // Cleanup on unmount

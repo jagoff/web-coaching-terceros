@@ -1,8 +1,7 @@
-import type { ContactFormData } from "./validations";
+import type { ContactFormData } from './validations'
 
 // Template HTML del email de confirmación enviado al cliente
 function buildConfirmationEmailHtml(data: ContactFormData): string {
-
   return `
 <!DOCTYPE html>
 <html lang="es">
@@ -154,22 +153,22 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
     <div class="footer">
       <p>
         &copy; ${new Date().getFullYear()} Coaching. Todos los derechos reservados.<br />
-        <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? "#"}">Visitar sitio web</a>
+        <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? '#'}">Visitar sitio web</a>
       </p>
     </div>
   </div>
 </body>
 </html>
-  `.trim();
+  `.trim()
 }
 
 // Template HTML de notificación interna enviado al coach
 function buildNotificationEmailHtml(data: ContactFormData): string {
-  const now = new Date().toLocaleString("es-MX", {
-    timeZone: "America/Mexico_City",
-    dateStyle: "full",
-    timeStyle: "short",
-  });
+  const now = new Date().toLocaleString('es-MX', {
+    timeZone: 'America/Mexico_City',
+    dateStyle: 'full',
+    timeStyle: 'short',
+  })
 
   return `
 <!DOCTYPE html>
@@ -214,64 +213,62 @@ function buildNotificationEmailHtml(data: ContactFormData): string {
   </div>
 </body>
 </html>
-  `.trim();
+  `.trim()
 }
 
 // Resultado tipado del envío de email
 export type SendEmailResult =
   | { success: true; messageId?: string }
-  | { success: false; error: string };
+  | { success: false; error: string }
 
 /**
  * Envía los emails de confirmación al cliente y notificación al coach.
  * - En desarrollo (NODE_ENV !== "production") solo loguea en consola.
  * - En producción utiliza la API de Resend; requiere RESEND_API_KEY y CONTACT_EMAIL.
  */
-export async function sendContactEmail(
-  data: ContactFormData
-): Promise<SendEmailResult> {
-  const isDev = process.env.NODE_ENV !== "production";
+export async function sendContactEmail(data: ContactFormData): Promise<SendEmailResult> {
+  const isDev = process.env.NODE_ENV !== 'production'
 
   if (isDev) {
     // Modo desarrollo: simular envío sin llamadas externas
-    console.log("\n========================================");
-    console.log("[EMAIL] Modo desarrollo — simulando envío");
-    console.log("----------------------------------------");
-    console.log("Para:", data.email);
-    console.log("Asunto: Hemos recibido tu mensaje");
-    console.log("Datos del formulario:", JSON.stringify(data, null, 2));
-    console.log("========================================\n");
-    return { success: true };
+    console.log('\n========================================')
+    console.log('[EMAIL] Modo desarrollo — simulando envío')
+    console.log('----------------------------------------')
+    console.log('Para:', data.email)
+    console.log('Asunto: Hemos recibido tu mensaje')
+    console.log('Datos del formulario:', JSON.stringify(data, null, 2))
+    console.log('========================================\n')
+    return { success: true }
   }
 
   // Modo producción: enviar con Resend
-  const apiKey = process.env.RESEND_API_KEY;
-  const contactEmail = process.env.CONTACT_EMAIL;
+  const apiKey = process.env.RESEND_API_KEY
+  const contactEmail = process.env.CONTACT_EMAIL
 
   if (!apiKey) {
-    console.error("[EMAIL] Falta la variable de entorno RESEND_API_KEY");
-    return { success: false, error: "Configuración de email incompleta" };
+    console.error('[EMAIL] Falta la variable de entorno RESEND_API_KEY')
+    return { success: false, error: 'Configuración de email incompleta' }
   }
 
   if (!contactEmail) {
-    console.error("[EMAIL] Falta la variable de entorno CONTACT_EMAIL");
-    return { success: false, error: "Configuración de email incompleta" };
+    console.error('[EMAIL] Falta la variable de entorno CONTACT_EMAIL')
+    return { success: false, error: 'Configuración de email incompleta' }
   }
 
   try {
     // Importación dinámica para evitar errores en build si resend no está configurado
-    const { Resend } = await import("resend");
-    const resend = new Resend(apiKey);
+    const { Resend } = await import('resend')
+    const resend = new Resend(apiKey)
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "tu sitio web";
-    const fromAddress = `ELEVA Coaching <onboarding@resend.dev>`;
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'tu sitio web'
+    const fromAddress = `ELEVA Coaching <onboarding@resend.dev>`
 
     // Enviar confirmación al cliente y notificación al coach en paralelo
     const [confirmResult, notifResult] = await Promise.allSettled([
       resend.emails.send({
         from: fromAddress,
         to: data.email,
-        subject: "Hemos recibido tu mensaje — nos pondremos en contacto pronto",
+        subject: 'Hemos recibido tu mensaje — nos pondremos en contacto pronto',
         html: buildConfirmationEmailHtml(data),
       }),
       resend.emails.send({
@@ -281,33 +278,30 @@ export async function sendContactEmail(
         html: buildNotificationEmailHtml(data),
         replyTo: data.email,
       }),
-    ]);
+    ])
 
     // Reportar errores individuales sin bloquear la respuesta principal
-    if (confirmResult.status === "rejected") {
-      console.error("[EMAIL] Error al enviar confirmación al cliente:", confirmResult.reason);
+    if (confirmResult.status === 'rejected') {
+      console.error('[EMAIL] Error al enviar confirmación al cliente:', confirmResult.reason)
     }
-    if (notifResult.status === "rejected") {
-      console.error("[EMAIL] Error al enviar notificación al coach:", notifResult.reason);
+    if (notifResult.status === 'rejected') {
+      console.error('[EMAIL] Error al enviar notificación al coach:', notifResult.reason)
     }
 
     // El envío se considera exitoso si al menos uno de los dos llegó
-    const anySuccess =
-      confirmResult.status === "fulfilled" || notifResult.status === "fulfilled";
+    const anySuccess = confirmResult.status === 'fulfilled' || notifResult.status === 'fulfilled'
 
     if (!anySuccess) {
-      return { success: false, error: "No se pudo enviar ninguno de los emails" };
+      return { success: false, error: 'No se pudo enviar ninguno de los emails' }
     }
 
     const messageId =
-      confirmResult.status === "fulfilled"
-        ? (confirmResult.value.data?.id ?? undefined)
-        : undefined;
+      confirmResult.status === 'fulfilled' ? (confirmResult.value.data?.id ?? undefined) : undefined
 
-    return { success: true, messageId };
+    return { success: true, messageId }
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Error desconocido";
-    console.error("[EMAIL] Error inesperado:", message);
-    return { success: false, error: message };
+    const message = err instanceof Error ? err.message : 'Error desconocido'
+    console.error('[EMAIL] Error inesperado:', message)
+    return { success: false, error: message }
   }
 }

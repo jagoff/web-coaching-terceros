@@ -1,5 +1,5 @@
-import TestPage from "@/components/TestPage";
+import TestPage from '@/components/TestPage'
 
 export default function Test() {
-  return <TestPage />;
+  return <TestPage />
 }

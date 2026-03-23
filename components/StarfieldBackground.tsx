@@ -1,31 +1,31 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react'
 
 interface Star {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  opacity: number;
-  twinkleSpeed: number;
-  twinkleDelay: number;
+  id: number
+  x: number
+  y: number
+  size: number
+  opacity: number
+  twinkleSpeed: number
+  twinkleDelay: number
 }
 
 export default function StarfieldBackground() {
-  const [stars, setStars] = useState<Star[]>([]);
-  const [mounted, setMounted] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [stars, setStars] = useState<Star[]>([])
+  const [mounted, setMounted] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setMounted(true);
-    
+    setMounted(true)
+
     // Generate stars based on viewport size
     const generateStars = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const starCount = Math.floor((width * height) / 15000); // ~1 star per 15,000px²
-      
+      const width = window.innerWidth
+      const height = window.innerHeight
+      const starCount = Math.floor((width * height) / 15000) // ~1 star per 15,000px²
+
       const newStars: Star[] = Array.from({ length: starCount }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
@@ -34,22 +34,22 @@ export default function StarfieldBackground() {
         opacity: Math.random() * 0.8 + 0.2, // 0.2 to 1.0
         twinkleSpeed: Math.random() * 3 + 2, // 2s to 5s
         twinkleDelay: Math.random() * 5, // 0s to 5s delay
-      }));
-      
-      setStars(newStars);
-    };
+      }))
 
-    generateStars();
-    
+      setStars(newStars)
+    }
+
+    generateStars()
+
     const handleResize = () => {
-      generateStars();
-    };
+      generateStars()
+    }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return (
     <div
@@ -60,7 +60,7 @@ export default function StarfieldBackground() {
         background: 'transparent',
       }}
     >
-      {stars.map((star) => (
+      {stars.map(star => (
         <div
           key={star.id}
           className="absolute rounded-full"
@@ -76,10 +76,11 @@ export default function StarfieldBackground() {
           }}
         />
       ))}
-      
+
       <style jsx>{`
         @keyframes twinkle {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.2;
             transform: scale(1);
           }
@@ -90,5 +91,5 @@ export default function StarfieldBackground() {
         }
       `}</style>
     </div>
-  );
+  )
 }

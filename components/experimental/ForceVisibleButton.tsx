@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 export default function ForceVisibleButton() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-    console.log('ForceVisibleButton mounted');
-  }, []);
+    setMounted(true)
+    console.log('ForceVisibleButton mounted')
+  }, [])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return (
-    <div 
+    <div
       id="force-visible-button"
       style={{
         position: 'absolute',
@@ -35,48 +35,54 @@ export default function ForceVisibleButton() {
         clip: 'auto !important',
         clipPath: 'none !important',
         mask: 'none !important',
-        WebkitMask: 'none !important' as any
+        WebkitMask: 'none !important' as any,
       }}
       onClick={() => {
-        console.log('FORCE VISIBLE BUTTON CLICKED!');
-        alert('FORCE VISIBLE BUTTON WORKS!');
+        console.log('FORCE VISIBLE BUTTON CLICKED!')
+        alert('FORCE VISIBLE BUTTON WORKS!')
       }}
     >
-      <div style={{
-        color: '#FFFFFF',
-        fontSize: '32px',
-        fontWeight: '900',
-        textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-        marginBottom: '20px',
-        display: 'block !important',
-        visibility: 'visible' as any
-      }}>
+      <div
+        style={{
+          color: '#FFFFFF',
+          fontSize: '32px',
+          fontWeight: '900',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+          marginBottom: '20px',
+          display: 'block !important',
+          visibility: 'visible' as any,
+        }}
+      >
         🚨 FORCE VISIBLE 🚨
       </div>
-      <div style={{
-        color: '#FFFFFF',
-        fontSize: '24px',
-        fontWeight: 'bold',
-        marginBottom: '30px',
-        display: 'block !important',
-        visibility: 'visible' as any
-      }}>
+      <div
+        style={{
+          color: '#FFFFFF',
+          fontSize: '24px',
+          fontWeight: 'bold',
+          marginBottom: '30px',
+          display: 'block !important',
+          visibility: 'visible' as any,
+        }}
+      >
         This button CANNOT be hidden by CSS
       </div>
-      <div style={{
-        background: '#FFFFFF',
-        color: '#FF0000',
-        padding: '20px 40px',
-        borderRadius: '15px',
-        fontSize: '28px',
-        fontWeight: '900',
-        cursor: 'pointer',
-        display: 'inline-block !important',
-        visibility: 'visible' as any,
-        border: '4px solid #FFFF00'
-      }}>
+      <div
+        style={{
+          background: '#FFFFFF',
+          color: '#FF0000',
+          padding: '20px 40px',
+          borderRadius: '15px',
+          fontSize: '28px',
+          fontWeight: '900',
+          cursor: 'pointer',
+          display: 'inline-block !important',
+          visibility: 'visible' as any,
+          border: '4px solid #FFFF00',
+        }}
+      >
         🎯 CLICK ME!
       </div>
     </div>
-  );
+  )
 }

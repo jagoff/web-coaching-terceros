@@ -1,33 +1,34 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const PHONE = "5493425153999";
-const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coaching/consultoría. Vi tu web y quiero agendar la sesión gratuita.";
+const PHONE = '5493425153999'
+const MESSAGE =
+  'Hola Fernando, me interesa saber más sobre tu servicio de coaching/consultoría. Vi tu web y quiero agendar la sesión gratuita.'
 
 export default function WhatsAppButton() {
-  const [visible, setVisible] = useState(false);
-  const [tooltip, setTooltip] = useState(false);
+  const [visible, setVisible] = useState(false)
+  const [tooltip, setTooltip] = useState(false)
 
   useEffect(() => {
     // Show button after 3 seconds to avoid competing with initial load animations
-    const timer = setTimeout(() => setVisible(true), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    const timer = setTimeout(() => setVisible(true), 3000)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
-    if (!visible) return;
+    if (!visible) return
     // Show tooltip briefly after button appears
-    const show = setTimeout(() => setTooltip(true), 1500);
-    const hide = setTimeout(() => setTooltip(false), 6000);
+    const show = setTimeout(() => setTooltip(true), 1500)
+    const hide = setTimeout(() => setTooltip(false), 6000)
     return () => {
-      clearTimeout(show);
-      clearTimeout(hide);
-    };
-  }, [visible]);
+      clearTimeout(show)
+      clearTimeout(hide)
+    }
+  }, [visible])
 
-  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(MESSAGE)}`;
+  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(MESSAGE)}`
 
   return (
     <AnimatePresence>
@@ -36,7 +37,7 @@ export default function WhatsAppButton() {
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           className="whatsapp-fab"
         >
           {/* Tooltip */}
@@ -71,5 +72,5 @@ export default function WhatsAppButton() {
         </motion.div>
       )}
     </AnimatePresence>
-  );
+  )
 }

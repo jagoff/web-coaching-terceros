@@ -1,39 +1,59 @@
-"use client";
+'use client'
 
-import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const coachingWords = [
-  "PROPÓSITO", "TRANSFORMACIÓN", "AUTONOMÍA", "CONFIANZA", "ESCALABILIDAD",
-  "LIDERAZGO", "CLARIDAD", "FOCO", "IMPACTO", "LEGADO", "VISIÓN", "EQUILIBRIO",
-  "CONEXIÓN", "CRECIMIENTO", "RESILIENCIA", "AUTENTICIDAD", "FLUJO", "MAESTRÍA",
-  "INNOVACIÓN", "SINERGIA", "TRASCENDENCIA", "EVOLUCIÓN", "CONCIENCIA", "PODER"
-];
+  'PROPÓSITO',
+  'TRANSFORMACIÓN',
+  'AUTONOMÍA',
+  'CONFIANZA',
+  'ESCALABILIDAD',
+  'LIDERAZGO',
+  'CLARIDAD',
+  'FOCO',
+  'IMPACTO',
+  'LEGADO',
+  'VISIÓN',
+  'EQUILIBRIO',
+  'CONEXIÓN',
+  'CRECIMIENTO',
+  'RESILIENCIA',
+  'AUTENTICIDAD',
+  'FLUJO',
+  'MAESTRÍA',
+  'INNOVACIÓN',
+  'SINERGIA',
+  'TRASCENDENCIA',
+  'EVOLUCIÓN',
+  'CONCIENCIA',
+  'PODER',
+]
 
 interface FloatingWord {
-  id: number;
-  text: string;
-  x: number;
-  y: number;
-  fontSize: number;
-  opacity: number;
-  duration: number;
-  delay: number;
+  id: number
+  text: string
+  x: number
+  y: number
+  fontSize: number
+  opacity: number
+  duration: number
+  delay: number
 }
 
 export default function CoachingWordsBackground() {
-  const [words, setWords] = useState<FloatingWord[]>([]);
-  const [mounted, setMounted] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [words, setWords] = useState<FloatingWord[]>([])
+  const [mounted, setMounted] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setMounted(true);
-    
+    setMounted(true)
+
     // Generar palabras flotantes con posiciones aleatorias
     const generateWords = () => {
-      const newWords: FloatingWord[] = [];
-      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 20;
-      
+      const newWords: FloatingWord[] = []
+      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 20
+
       for (let i = 0; i < wordCount; i++) {
         newWords.push({
           id: i,
@@ -44,25 +64,25 @@ export default function CoachingWordsBackground() {
           opacity: Math.random() * 0.15 + 0.05, // 0.05 a 0.20
           duration: Math.random() * 20 + 15, // 15s a 35s
           delay: Math.random() * 10, // 0s a 10s
-        });
+        })
       }
-      return newWords;
-    };
+      return newWords
+    }
 
-    setWords(generateWords());
-  }, []);
+    setWords(generateWords())
+  }, [])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="absolute inset-0 pointer-events-none overflow-hidden"
       aria-hidden="true"
       style={{ zIndex: 1 }}
     >
       <AnimatePresence>
-        {words.map((word) => (
+        {words.map(word => (
           <motion.div
             key={word.id}
             className="absolute font-bold tracking-wider"
@@ -75,44 +95,44 @@ export default function CoachingWordsBackground() {
                 rgba(255, 107, 53, ${word.opacity}) 0%, 
                 rgba(200, 123, 90, ${word.opacity * 0.8}) 50%,
                 rgba(255, 133, 85, ${word.opacity}) 100%)`,
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
               filter: `blur(${0.5 + word.opacity * 2}px)`,
-              transform: "translate(-50%, -50%)",
-              whiteSpace: "nowrap",
+              transform: 'translate(-50%, -50%)',
+              whiteSpace: 'nowrap',
             }}
-            initial={{ 
-              opacity: 0, 
+            initial={{
+              opacity: 0,
               scale: 0.8,
-              filter: "blur(8px)",
-              y: 20
+              filter: 'blur(8px)',
+              y: 20,
             }}
             animate={{
               opacity: [0, word.opacity, word.opacity * 0.3, word.opacity, word.opacity * 0.5, 0],
               scale: [0.8, 1, 1.1, 1, 0.9, 0.8],
               filter: [
-                "blur(8px)", 
-                `blur(${0.5 + word.opacity * 2}px)`, 
-                "blur(1px)",
+                'blur(8px)',
                 `blur(${0.5 + word.opacity * 2}px)`,
-                "blur(2px)",
-                "blur(8px)"
+                'blur(1px)',
+                `blur(${0.5 + word.opacity * 2}px)`,
+                'blur(2px)',
+                'blur(8px)',
               ],
               y: [20, 0, -10, 5, -5, 20],
               x: [0, Math.sin(word.id) * 10, Math.cos(word.id) * 15, Math.sin(word.id) * 8, 0],
             }}
-            exit={{ 
-              opacity: 0, 
+            exit={{
+              opacity: 0,
               scale: 0.8,
-              filter: "blur(8px)",
-              y: 20
+              filter: 'blur(8px)',
+              y: 20,
             }}
             transition={{
               duration: word.duration,
               delay: word.delay,
               repeat: Infinity,
-              repeatType: "loop",
+              repeatType: 'loop',
               ease: [0.22, 1, 0.36, 1],
               times: [0, 0.1, 0.3, 0.5, 0.7, 1],
             }}
@@ -159,9 +179,9 @@ export default function CoachingWordsBackground() {
         transition={{
           duration: 20,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       />
     </div>
-  );
+  )
 }
