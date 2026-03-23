@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import page from '../page'
 
 export const metadata: Metadata = {
   title: 'ELEVA Coaching | Agile Leadership and Organizational Transformation',
@@ -9,4 +8,13 @@ export const metadata: Metadata = {
     'leadership coaching, organizational consulting, agile coaching, agile transformation, scrum, tech leadership, startups',
 }
 
-export default page
+export default function EnglishPage() {
+  return (
+    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1>Loading English Version...</h1>
+        <p>Please wait while we prepare the content.</p>
+      </div>
+    </div>
+  )
+}

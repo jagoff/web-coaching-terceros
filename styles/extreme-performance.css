@@ -1,0 +1,170 @@
+/* ============================================================
+   EXTREME PERFORMANCE CSS
+   Zero JavaScript animations approach
+   ============================================================ */
+
+/* Critical CSS - Above the fold */
+.critical-above-fold {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Hardware acceleration for all animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Optimized animations - No JavaScript */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(124, 107, 196, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(124, 107, 196, 0.6);
+  }
+}
+
+@keyframes scroll-mouse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(14px); }
+}
+
+/* CSS-only scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px) translateZ(0);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+/* Optimized text rendering */
+.text-optimized {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Container queries for performance */
+@container (min-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container (min-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .auto-dark {
+    filter: brightness(0.9) contrast(1.1);
+  }
+}
+
+/* Image optimization */
+img {
+  image-rendering: optimizeQuality;
+  image-rendering: -webkit-optimize-contrast;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+
+/* Performance monitoring */
+.performance-marker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 255, 0, 0.1);
+  color: #00ff00;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-family: monospace;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Lazy loading placeholder */
+.lazy-placeholder {
+  background: linear-gradient(90deg, 
+    rgba(124, 107, 196, 0.1) 0%, 
+    rgba(124, 107, 196, 0.2) 50%, 
+    rgba(124, 107, 196, 0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Optimized backdrop filters */
+.backdrop-blur-optimized {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  isolation: isolate;
+}
+
+/* Scroll performance */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Memory optimization */
+.memory-efficient {
+  contain: strict;
+  content-visibility: hidden;
+  contain-intrinsic-size: 0 100px;
+}
+
+.memory-efficient.visible {
+  content-visibility: visible;
+}

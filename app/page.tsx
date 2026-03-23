@@ -1,36 +1,20 @@
-'use client'
+import { Metadata } from 'next'
 
-import {
-  Hero,
-  About,
-  Services,
-  Process,
-  Testimonials,
-  Results,
-  Pricing,
-  FAQ,
-  Contact,
-  CalBooking,
-  Footer,
-  CaseStudies,
-} from '@/components/PageSections'
-import WhatsAppBooking from '@/components/WhatsAppBooking'
+export const metadata: Metadata = {
+  title: 'ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional',
+  description:
+    'Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.',
+  keywords:
+    'coaching de liderazgo, consultoría organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina',
+}
 
 export default function Home() {
   return (
-    <main aria-label="Contenido principal de ELEVA CONSULTORA">
-      <Hero />
-      <About />
-      <Services />
-      <Process />
-      <Testimonials />
-      <Results />
-      <CaseStudies />
-      <Pricing />
-      <FAQ />
-      <Contact />
-      <Footer />
-      <WhatsAppBooking />
-    </main>
+    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1>Loading...</h1>
+        <p>Preparing your optimized experience...</p>
+      </div>
+    </div>
   )
 }
