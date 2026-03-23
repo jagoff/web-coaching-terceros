@@ -454,7 +454,7 @@ export default function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               style={{
-                fontSize: 'clamp(15px, 1.6vw, 16px)',
+                fontSize: 'var(--text-body)',
                 fontWeight: 500,
                 padding: '14px 32px'
               }}

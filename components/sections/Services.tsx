@@ -93,7 +93,7 @@ export default function Services() {
             className="heading-xl"
             style={{ 
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(32px, 3.5vw, 36px)',
+              fontSize: 'var(--text-h2)',
               fontWeight: 600,
               color: 'var(--text-primary)'
             }}
@@ -166,7 +166,11 @@ export default function Services() {
                   {service.badge && <span className="badge text-xs">{service.badge}</span>}
                 </div>
 
-                <h3 className="heading-md mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                <h3 className="heading-md mb-6" style={{ 
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'var(--text-h3)',
+              fontWeight: 600
+            }}>
                   {service.title}
                 </h3>
 
@@ -176,7 +180,7 @@ export default function Services() {
                     color: 'var(--text-secondary)', 
                     lineHeight: '1.6',
                     fontFamily: 'var(--font-body)',
-                    fontSize: 'clamp(16px, 1.8vw, 18px)',
+                    fontSize: 'var(--text-body)',
                     fontWeight: 400
                   }}
                 >
@@ -204,7 +208,7 @@ export default function Services() {
                       <span className="text-sm" style={{ 
                         color: 'var(--text-secondary)',
                         fontFamily: 'var(--font-body)',
-                        fontSize: 'clamp(16px, 1.8vw, 18px)',
+                        fontSize: 'var(--text-body)',
                         fontWeight: 400,
                         lineHeight: '1.6'
                       }}>

@@ -344,8 +344,10 @@ export default function Hero() {
             className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{
               fontFamily: 'var(--font-heading)',
-              lineHeight: '1.15',
-              fontSize: 'clamp(2.25rem, 4.8vw, 3.75rem)',
+              fontSize: 'var(--text-h1)',
+              fontWeight: 600,
+              letterSpacing: '-0.5px',
+              lineHeight: '1.08',
             }}
           >
             <span
@@ -442,7 +444,7 @@ export default function Hero() {
                 WebkitTextFillColor: 'transparent',
                 color: 'transparent',
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)',
+                fontSize: 'var(--text-small)',
               }}
             >
               &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
@@ -450,7 +452,14 @@ export default function Hero() {
           </div>
 
           {/* Subheadline */}
-          <p ref={heroSubtitleRef} className="lead-text max-w-2xl mb-8 sm:mb-12" style={{fontFamily: 'var(--font-roboto)'}}>
+          <p ref={heroSubtitleRef} className="lead-text max-w-2xl mb-8 sm:mb-12" style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 'var(--text-body)',
+            fontWeight: 400,
+            color: 'var(--text-secondary)',
+            marginTop: '20px',
+            lineHeight: '1.6'
+          }}>
             {language === 'es'
               ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
               : 'Leadership coaching and organizational consulting for tech leaders and startups that want to grow in an agile, human, and sustainable way.'}

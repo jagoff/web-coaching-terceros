@@ -131,7 +131,7 @@ export default function About() {
           >
             <h2 className="heading-xl mb-6 sm:mb-10" style={{ 
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(32px, 3.5vw, 36px)',
+              fontSize: 'var(--text-h2)',
               fontWeight: 600,
               color: 'var(--text-primary)'
             }}>
@@ -143,7 +143,7 @@ export default function About() {
 
             <p className="lead-text mb-6 sm:mb-8" style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(16px, 1.8vw, 18px)',
+              fontSize: 'var(--text-body)',
               fontWeight: 400,
               lineHeight: '1.6',
               color: 'var(--text-secondary)'
@@ -151,7 +151,7 @@ export default function About() {
 
             <p className="lead-text mb-12" style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(16px, 1.8vw, 18px)',
+              fontSize: 'var(--text-body)',
               fontWeight: 400,
               lineHeight: '1.6',
               color: 'var(--text-secondary)'

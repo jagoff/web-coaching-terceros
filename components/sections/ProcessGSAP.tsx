@@ -221,7 +221,12 @@ export default function ProcessGSAP() {
           <h2
             ref={titleRef}
             className="heading-xl mb-4"
-            style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}
+            style={{ 
+              fontFamily: 'var(--font-heading)', 
+              fontSize: 'var(--text-h2)',
+              fontWeight: 600,
+              color: 'var(--text-primary)'
+            }}
           >
             {t.process.title} <span className="text-gradient">{t.process.title2}</span>{' '}
             {t.process.title3}

@@ -180,8 +180,8 @@ export default function Process() {
                       fontFamily: 'var(--font-heading)',
                       color:
                         i === 0 ? '#9D8FD8' : i === 1 ? '#DFA080' : i === 2 ? '#B19EF9' : '#FFB380',
-                      fontSize: 'clamp(1.375rem, 3vw, 1.75rem)',
-                      fontWeight: 700,
+                      fontSize: 'var(--text-h3)',
+                      fontWeight: 600,
                       letterSpacing: '0.02em',
                     }}
                   >
@@ -193,7 +193,7 @@ export default function Process() {
                     style={{
                       color: 'var(--text-secondary)',
                       lineHeight: '1.6',
-                      fontSize: 'clamp(16px, 1.8vw, 18px)',
+                      fontSize: 'var(--text-body)',
                       fontWeight: 400,
                       fontFamily: 'var(--font-body)'
                     }}
@@ -205,10 +205,10 @@ export default function Process() {
                   <style jsx>{`
                     @media (max-width: 640px) {
                       h3 {
-                        font-size: clamp(1.625rem, 4vw, 2rem) !important;
+                        font-size: var(--text-h3) !important;
                       }
                       p {
-                        font-size: clamp(18px, 2.5vw, 20px) !important;
+                        font-size: var(--text-body) !important;
                       }
                     }
                   `}</style>
