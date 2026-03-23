@@ -171,11 +171,11 @@ export default function Services() {
                 </h3>
 
                 <p
-                  className={`mb-6 sm:mb-10 ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`}
+                  className="mb-6 sm:mb-10"
                   style={{ 
                     color: 'var(--text-secondary)', 
                     lineHeight: '1.6',
-                    fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 'clamp(16px, 1.8vw, 18px)',
                     fontWeight: 400
                   }}
@@ -201,9 +201,9 @@ export default function Services() {
                         className="flex-shrink-0 mt-0.5"
                         style={{ color: 'var(--gold-primary)' }}
                       />
-                      <span className={`text-sm ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`} style={{ 
+                      <span className="text-sm" style={{ 
                         color: 'var(--text-secondary)',
-                        fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)',
+                        fontFamily: 'var(--font-body)',
                         fontSize: 'clamp(16px, 1.8vw, 18px)',
                         fontWeight: 400,
                         lineHeight: '1.6'
@@ -216,11 +216,11 @@ export default function Services() {
 
                 {/* CTA */}
                 <button
-                  className={`inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`}
+                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
                   style={{ 
                     color: 'var(--gold-primary)', 
                     letterSpacing: '0.1em',
-                    fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)'
+                    fontFamily: 'var(--font-body)'
                   }}
                   onClick={() => scrollToElement('#contacto')}
                   onMouseEnter={e => {

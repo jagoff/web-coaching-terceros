@@ -192,9 +192,10 @@ export default function Process() {
                     className="text-body leading-relaxed"
                     style={{
                       color: 'var(--text-secondary)',
-                      lineHeight: '1.7',
-                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      lineHeight: '1.6',
+                      fontSize: 'clamp(16px, 1.8vw, 18px)',
                       fontWeight: 400,
+                      fontFamily: 'var(--font-body)'
                     }}
                   >
                     {t.process.steps[step.key].description}
