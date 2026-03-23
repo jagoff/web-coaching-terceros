@@ -1,20 +1,39 @@
-import { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional',
-  description:
-    'Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.',
-}
+import {
+  Hero,
+  About,
+  Services,
+  Process,
+  Testimonials,
+  Results,
+  Pricing,
+  FAQ,
+  Contact,
+  CalBooking,
+  Footer,
+  CaseStudies,
+} from '@/components/PageSections'
+import WhatsAppBooking from '@/components/WhatsAppBooking'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
 export default function Home() {
   return (
-    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textAlign: 'center' }}>
-      <div>
-        <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>ELEVA CONSULTORA</h1>
-        <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>Liderazgo Ágil y Transformación Organizacional</p>
-        <p style={{ opacity: 0.7 }}>Loading optimized experience...</p>
-        <p style={{ opacity: 0.5, fontSize: '0.9rem' }}>Please wait while we prepare your content</p>
-      </div>
-    </div>
+    <LanguageProvider>
+      <main aria-label="Contenido principal de ELEVA CONSULTORA">
+        <Hero />
+        <About />
+        <Services />
+        <Process />
+        <Testimonials />
+        <Results />
+        <CaseStudies />
+        <Pricing />
+        <FAQ />
+        <Contact />
+        <Footer />
+        <WhatsAppBooking />
+      </main>
+    </LanguageProvider>
   )
 }
