@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import LoadingFallback from '@/components/ui/LoadingFallback'
 
 // Client-side dynamic imports for page sections
-export const Hero = dynamic(() => import('@/components/sections/HeroStandalone'), {
+export const Hero = dynamic(() => import('@/components/sections/Hero'), {
   ssr: false,
   loading: () => <LoadingFallback />,
 })
@@ -43,7 +43,7 @@ export const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
   loading: () => <LoadingFallback />
 })
 export const Footer = dynamic(() => import('@/components/sections/Footer'), { ssr: false })
-export const CaseStudies = dynamic(() => import('@/components/sections/CaseStudiesOptimized'), {
+export const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies'), {
   ssr: false,
   loading: () => <LoadingFallback />
 })
