@@ -83,6 +83,7 @@ export default function Services() {
           initial="hidden"
           animate={isInView || forceVisible ? 'visible' : 'hidden'}
           className="text-center mb-14 md:mb-24"
+          style={{ marginBottom: 'clamp(24px, 3vw, 32px)' }}
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">{t.services.badge}</span>
@@ -90,7 +91,12 @@ export default function Services() {
           <motion.h2
             variants={blurUp}
             className="heading-xl"
-            style={{ fontFamily: 'var(--font-heading)' }}
+            style={{ 
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(32px, 3.5vw, 36px)',
+              fontWeight: 600,
+              color: 'var(--text-primary)'
+            }}
           >
             <span className="text-gradient">
               {t.services.title.includes('apagar') ? (
@@ -104,7 +110,7 @@ export default function Services() {
         </motion.div>
 
         {/* Service cards */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto" style={{ gap: 'clamp(16px, 2vw, 24px)' }}>
           {services.map((service, i) => {
             const Icon = service.icon
             return (
@@ -168,8 +174,10 @@ export default function Services() {
                   className={`mb-6 sm:mb-10 ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`}
                   style={{ 
                     color: 'var(--text-secondary)', 
-                    lineHeight: '1.75',
-                    fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)'
+                    lineHeight: '1.6',
+                    fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)',
+                    fontSize: 'clamp(16px, 1.8vw, 18px)',
+                    fontWeight: 400
                   }}
                 >
                   {service.description}
@@ -195,7 +203,10 @@ export default function Services() {
                       />
                       <span className={`text-sm ${(service.id === 'liderazgo' || service.id === 'organizacional') ? 'font-roboto' : ''}`} style={{ 
                         color: 'var(--text-secondary)',
-                        fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)'
+                        fontFamily: (service.id === 'liderazgo' || service.id === 'organizacional') ? 'var(--font-roboto)' : 'var(--font-body)',
+                        fontSize: 'clamp(16px, 1.8vw, 18px)',
+                        fontWeight: 400,
+                        lineHeight: '1.6'
                       }}>
                         {benefit}
                       </span>

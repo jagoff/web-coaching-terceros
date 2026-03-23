@@ -287,8 +287,10 @@ export default function Hero() {
             className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{
               fontFamily: 'var(--font-heading)',
-              lineHeight: '1.15',
-              fontSize: 'clamp(2.25rem, 4.8vw, 3.75rem)',
+              fontSize: 'clamp(48px, 5.5vw, 56px)',
+              fontWeight: 600,
+              letterSpacing: '-0.5px',
+              lineHeight: '1.08',
             }}
           >
             <motion.span variants={revealUp} className="block text-gradient">
@@ -426,7 +428,14 @@ export default function Hero() {
           </motion.div>
 
           {/* Subheadline */}
-          <motion.p variants={revealUp} className="lead-text max-w-2xl mb-8 sm:mb-12" style={{fontFamily: 'var(--font-roboto)'}}>
+          <motion.p variants={revealUp} className="lead-text max-w-2xl mb-8 sm:mb-12" style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(18px, 2vw, 20px)',
+            fontWeight: 400,
+            color: 'var(--text-secondary)',
+            marginTop: '20px',
+            lineHeight: '1.6'
+          }}>
             {language === 'es'
               ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
               : 'Leadership coaching and organizational consulting for tech leaders and startups that want to grow in an agile, human, and sustainable way.'}
@@ -436,6 +445,7 @@ export default function Hero() {
           <motion.div
             variants={ctaReveal}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
+            style={{ marginBottom: 'clamp(24px, 3vw, 32px)' }}
           >
             <motion.button
               className="btn-primary-gradient animate-glow mobile-black-text"
@@ -443,6 +453,11 @@ export default function Hero() {
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              style={{
+                fontSize: 'clamp(15px, 1.6vw, 16px)',
+                fontWeight: 500,
+                padding: '14px 32px'
+              }}
             >
               {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
             </motion.button>

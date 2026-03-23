@@ -129,16 +129,33 @@ export default function About() {
             animate={isInView ? 'visible' : 'hidden'}
             className="order-1 lg:order-2"
           >
-            <h2 className="heading-xl mb-6 sm:mb-10" style={{ fontFamily: 'var(--font-heading)' }}>
+            <h2 className="heading-xl mb-6 sm:mb-10" style={{ 
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(32px, 3.5vw, 36px)',
+              fontWeight: 600,
+              color: 'var(--text-primary)'
+            }}>
               {t.about.title1} <span className="text-gradient">{t.about.title2}</span>{' '}
               {t.about.title3}
             </h2>
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-6 sm:mb-8">{t.about.intro}</p>
+            <p className="lead-text mb-6 sm:mb-8" style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(16px, 1.8vw, 18px)',
+              fontWeight: 400,
+              lineHeight: '1.6',
+              color: 'var(--text-secondary)'
+            }}>{t.about.intro}</p>
 
-            <p className="lead-text mb-12">{t.about.approach}</p>
+            <p className="lead-text mb-12" style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(16px, 1.8vw, 18px)',
+              fontWeight: 400,
+              lineHeight: '1.6',
+              color: 'var(--text-secondary)'
+            }}>{t.about.approach}</p>
 
             <h3
               className="text-2xl md:text-3xl font-semibold mb-6"

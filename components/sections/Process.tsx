@@ -182,7 +182,6 @@ export default function Process() {
                         i === 0 ? '#9D8FD8' : i === 1 ? '#DFA080' : i === 2 ? '#B19EF9' : '#FFB380',
                       fontSize: 'clamp(1.375rem, 3vw, 1.75rem)',
                       fontWeight: 700,
-                      textShadow: '0 0 10px rgba(124, 107, 196, 0.2)',
                       letterSpacing: '0.02em',
                     }}
                   >
