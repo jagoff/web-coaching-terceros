@@ -329,7 +329,7 @@ p {
   color: #0c0a12 !important;
   font-family: var(--font-body);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 500;
   border-radius: var(--radius-pill);
   border: 2px solid transparent;
@@ -347,7 +347,7 @@ p {
   box-shadow: 0 0 20px rgba(255, 87, 34, 0.3);
   font-family: var(--font-body);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   border-radius: var(--radius-pill);
   border: 2px solid transparent;
@@ -370,7 +370,7 @@ p {
   box-shadow: 0 0 20px rgba(255, 112, 67, 0.3);
   font-family: var(--font-body);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   border-radius: var(--radius-pill);
   border: 2px solid transparent;
@@ -393,7 +393,7 @@ p {
   box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
   font-family: var(--font-body);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   border-radius: var(--radius-pill);
   border: 2px solid transparent;
@@ -418,7 +418,7 @@ p {
   box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
   font-family: var(--font-body);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   border-radius: var(--radius-pill);
   padding: 0.875rem 1.5rem;
@@ -440,7 +440,7 @@ p {
   box-shadow: none;
   font-family: var(--font-body);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   border-radius: var(--radius-pill);
   padding: 0.875rem 1.5rem;
@@ -497,7 +497,7 @@ p {
   font-size: clamp(14px, 0.875rem, 16px);
   font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   border-radius: var(--radius-pill);
   cursor: pointer;
@@ -535,7 +535,7 @@ p {
   font-size: clamp(13px, 0.8125rem, 14px);
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   box-shadow: 0 2px 8px rgba(124, 107, 196, 0.2);
 }
 
@@ -950,7 +950,7 @@ p {
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   margin-top: 0;
 }
 
@@ -1492,7 +1492,7 @@ html.lenis body {
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--text-secondary);
   white-space: nowrap;
   padding: 0.25rem 0.625rem;
@@ -1718,7 +1718,7 @@ html.lenis body {
   font-weight: 600;
   font-size: clamp(12px, 0.75rem, 13px);
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--text-muted);
 }
 
@@ -2217,7 +2217,7 @@ html.lenis body {
   font-style: italic;
 }
 .uppercase {
-  text-transform: uppercase;
+  text-transform: none;
 }
 .tracking-tight {
   letter-spacing: -0.025em;

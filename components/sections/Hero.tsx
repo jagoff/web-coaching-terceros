@@ -338,7 +338,7 @@ export default function Hero() {
             <div className="flex items-center gap-4 mb-4">
               <img
                 src="/img/this-is-fine-dog-optimized.png"
-                alt="Avatar - ¿Te suena esto?"
+                alt="Avatar - ¿TE SUENA ESTO?"
                 className="w-16 h-16 object-contain rounded-full"
                 loading="lazy"
                 style={{
@@ -350,7 +350,7 @@ export default function Hero() {
                 className="text-base uppercase tracking-widest"
                 style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}
               >
-                ¿Te suena esto?
+                ¿TE SUENA ESTO?
               </p>
             </div>
             <AnimatePresence mode="wait">
@@ -459,7 +459,7 @@ export default function Hero() {
                 padding: '14px 32px'
               }}
             >
-              {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
+              {language === 'es' ? 'Agendá tu Sesión gratuita →' : 'Book your Free session →'}
             </motion.button>
             <motion.button
               className="btn-secondary"
@@ -468,7 +468,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
-              {language === 'es' ? 'Conocé nuestro método ↓' : 'Learn our method ↓'}
+              {language === 'es' ? 'Conocé nuestro Método ↓' : 'Learn our Method ↓'}
             </motion.button>
           </motion.div>
 

@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 import ClientLayout from '@/components/ClientLayout'
 import JsonLdClient from '@/components/JsonLdClient'
 import AnalyticsScripts from '@/components/AnalyticsScripts'
+import { Analytics } from '@vercel/analytics/next'
 import { validateEnv } from '@/lib/env-validation'
 
 const spaceGrotesk = Space_Grotesk({
@@ -83,6 +84,7 @@ export default function RootLayout({
             <AnalyticsScripts />
             <JsonLdClient />
             {children}
+            <Analytics />
           </ClientLayout>
         </LanguageProvider>
       </body>

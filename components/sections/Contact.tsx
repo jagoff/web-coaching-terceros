@@ -352,7 +352,7 @@ export default function Contact() {
                         whileTap={{ scale: 0.98 }}
                       >
                         <Calendar size={18} />
-                        Agendar sesión gratuita ahora
+                        Agendar Sesión gratuita ahora
                         <ArrowRight size={16} />
                       </motion.a>
                     </motion.div>
@@ -599,7 +599,7 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Enviar y agendar sesión <ArrowRight size={16} className="inline ml-1" />
+                          Enviar y Agendar sesión <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
                     </button>

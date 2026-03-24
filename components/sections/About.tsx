@@ -79,18 +79,18 @@ export default function About() {
       setButtonPosition(randomPos)
 
       // Load click count from localStorage
-      const saved = localStorage.getItem('linkedinButtonMetrics')
+      const saved = localStorage.getItem('credentialButtonMetrics')
       if (saved) {
         setClickCount(JSON.parse(saved))
       }
     }
   }, [])
 
-  const handleLinkedInClick = () => {
-    // Track click position
+  const handleCredentialClick = () => {
+    // Track credential interaction
     setClickCount(prev => {
       const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 }
-      localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount))
+      localStorage.setItem('credentialButtonMetrics', JSON.stringify(newCount))
       return newCount
     })
   }
@@ -164,7 +164,7 @@ export default function About() {
               <span className="text-gradient">{t.about.certificaciones}</span>
             </h3>
 
-            {/* Credentials with LinkedIn Button */}
+            {/* Credentials with Certification Button */}
             <motion.div
               variants={credentialStagger}
               initial="hidden"
@@ -172,12 +172,12 @@ export default function About() {
               className="flex flex-wrap gap-3 sm:gap-4"
             >
               {Array.from({ length: shuffledCredentials.length + 1 }, (_, index) => {
-                const isLinkedInButton = index === buttonPosition
+                const isCertificationButton = index === buttonPosition
 
-                if (isLinkedInButton) {
+                if (isCertificationButton) {
                   return (
                     <motion.div
-                      key="linkedin-button"
+                      key="certification-button"
                       variants={credentialPop}
                       whileHover={{ scale: 1.05, y: -2 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -196,7 +196,7 @@ export default function About() {
                         }}
                         whileHover={{ scale: 1.05, boxShadow: '0 8px 25px rgba(124,107,196,0.3)' }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={handleLinkedInClick}
+                        onClick={handleCredentialClick}
                       >
                         <ExternalLink size={16} />
                         {t.process.linkedinButton}

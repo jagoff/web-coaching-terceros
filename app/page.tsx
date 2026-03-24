@@ -1,9 +1,8 @@
 'use client'
 
 import {
-  HeroAdaptive,
-  About,
-  ServicesAdaptive,
+  Hero,
+  Services,
   Process,
   Testimonials,
   Pricing,
@@ -11,21 +10,28 @@ import {
   Contact,
   Footer,
   CaseStudies,
-} from '@/components/PageSectionsAdaptive'
+} from '@/components/PageSections'
 import dynamic from 'next/dynamic'
-import ProactiveCTA from '@/components/ProactiveCTA'
+import WhatsAppBooking from '@/components/WhatsAppBooking'
 
-const WhatsAppBooking = dynamic(() => import('@/components/WhatsAppBooking'), {
+const About = dynamic(() => import('@/components/sections/About'), {
   ssr: false,
-  loading: () => null,
+  loading: () => (
+    <section className="min-h-screen flex items-center justify-center">
+      <div className="animate-pulse text-center">
+        <div className="h-12 bg-gray-200 rounded w-64 mx-auto mb-4"></div>
+        <div className="h-6 bg-gray-200 rounded w-96 mx-auto"></div>
+      </div>
+    </section>
+  )
 })
 
 export default function Home() {
   return (
     <main aria-label="Contenido principal de ELEVA CONSULTORA">
-      <HeroAdaptive />
+      <Hero />
       <About />
-      <ServicesAdaptive />
+      <Services />
       <Process />
       <Testimonials />
       <CaseStudies />
@@ -34,9 +40,6 @@ export default function Home() {
       <Contact />
       <Footer />
       <WhatsAppBooking />
-      <ProactiveCTA trigger="exit_intent" />
-      <ProactiveCTA trigger="scroll_depth" />
-      <ProactiveCTA trigger="time_based" />
     </main>
   )
 }

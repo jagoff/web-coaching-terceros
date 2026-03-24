@@ -360,7 +360,7 @@ export default function CaseStudies() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {showAll ? 'ver menos transformaciones' : 'ver todas las transformaciones'}
+            {showAll ? 'Ver menos transformaciones' : 'Ver todas las transformaciones'}
           </motion.button>
         </div>
       </div>
