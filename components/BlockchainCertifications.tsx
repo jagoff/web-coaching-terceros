@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Shield, QrCode, Trophy, Linkedin, ArrowRight, CheckCircle, Sparkles } from 'lucide-react'
+import { Shield, QrCode, Trophy, ArrowRight, CheckCircle, Sparkles, ExternalLink } from 'lucide-react'
 
 export default function BlockchainCertifications() {
   return (
@@ -74,7 +74,7 @@ export default function BlockchainCertifications() {
               gradient: 'from-yellow-500 to-orange-500',
             },
             {
-              icon: Linkedin,
+              icon: ExternalLink,
               title: 'Badge LinkedIn',
               description:
                 'Badge verificado oficial que distingue tu perfil. Imposible de copiar, solo para certificados blockchain reales.',
