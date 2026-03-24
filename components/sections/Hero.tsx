@@ -419,7 +419,7 @@ export default function Hero() {
                       )
                     })
 
-                    return `&ldquo;${highlightedPhrase}&rdquo;`
+                    return `'${highlightedPhrase}'`
                   })(),
                 }}
               />
