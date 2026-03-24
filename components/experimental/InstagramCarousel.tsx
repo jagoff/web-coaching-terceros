@@ -226,28 +226,9 @@ export default function InstagramCarousel() {
           ))}
         </div>
         
-        {/* Instagram info para desktop - con link */}
+        {/* Instagram info para desktop - eliminado */}
         <div className="flex items-center justify-center mt-6">
-          <a
-            href="https://www.instagram.com/ferf.coach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 group"
-          >
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-105"
-              style={{
-                background: "rgba(167,139,250,0.08)",
-                border: "1px solid rgba(167,139,250,0.25)",
-              }}
-            >
-              <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
-            </div>
-            <div>
-              <p className="text-sm font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
-            </div>
-          </a>
+          {/* Espacio vacío - icono y texto eliminados */}
         </div>
       </div>
     </div>
