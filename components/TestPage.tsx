@@ -19,7 +19,6 @@ export default function TestPage() {
         isMobile: width <= 1024,
         time: new Date().toLocaleTimeString(),
       })
-      console.log('TestPage - Updated:', { width, isMobile: width <= 1024 })
     }
 
     update()

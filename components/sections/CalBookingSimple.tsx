@@ -51,8 +51,6 @@ export default function CalBookingSimple() {
   const eventTypeId = process.env.NEXT_PUBLIC_CALCOM_EVENT_TYPE_ID || '30min'
   const calComUrl = `https://cal.com/${CalComUsername}/${eventTypeId}`
 
-  console.log('Cal.com URL:', calComUrl)
-
   return (
     <section id="contacto" className="section section-compact" ref={ref}>
       {/* Glow with scroll parallax */}

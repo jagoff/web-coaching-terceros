@@ -122,7 +122,6 @@ export default function Pricing() {
               className={`pricing-card flex flex-col relative${plan.featured ? ' featured animated-border' : ''}`}
               style={{
                 perspective: '800px',
-                // DEBUG: Force visibility on mobile
                 opacity: 1,
                 transform: 'none',
                 background: plan.featured 

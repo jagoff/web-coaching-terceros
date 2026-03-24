@@ -111,7 +111,6 @@ export default function ProactiveCTA({ trigger }: ProactiveCTAProps) {
   const handlePrimaryAction = () => {
     if (profile?.persona === 'founder' && content.timeSlots.length > 0) {
       // Handle time slot selection
-      console.log('Show time slots:', content.timeSlots)
     } else {
       // Navigate to contact
       window.location.href = '#contact'

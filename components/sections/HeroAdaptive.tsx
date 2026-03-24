@@ -87,7 +87,6 @@ export default function HeroAdaptive() {
 
   const handleTimeSlot = (time: string) => {
     // Here you would integrate with your booking system
-    console.log(`Scheduled call for ${time}`)
     setShowTimeSlots(false)
   }
 
@@ -116,7 +115,6 @@ export default function HeroAdaptive() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        {/* Profile indicator for debugging */}
         <div className="absolute top-0 right-0 text-xs text-gray-400">
           {profile.persona} • {profile.urgencyLevel} • {Math.round(profile.confidence * 100)}%
         </div>

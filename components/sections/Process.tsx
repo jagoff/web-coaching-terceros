@@ -162,7 +162,6 @@ export default function Process() {
                   <motion.div
                     className="step-icon"
                     style={{
-                      // DEBUG: Inline styles to ensure transforms work
                       transform: 'scale(1)',
                       transition: 'transform 0.3s ease',
                       backgroundColor: 'rgba(124, 107, 196, 0.1)',

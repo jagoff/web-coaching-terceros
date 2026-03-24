@@ -133,7 +133,7 @@ export default function InstagramGesturesCarousel() {
           url: `https://www.instagram.com/ferf.coach/`,
         })
       } catch (err) {
-        console.log('Share cancelled')
+        // Share cancelled
       }
     } else {
       navigator.clipboard.writeText('https://www.instagram.com/ferf.coach/')

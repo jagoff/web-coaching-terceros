@@ -140,19 +140,18 @@ export default function Hero() {
 
   useEffect(() => {
     setMounted(true)
-    // DEBUG: Make particles more visible on mobile
-    const count = window.innerWidth < 768 ? 8 : 20 // More particles on mobile for debugging
+    const count = window.innerWidth < 768 ? 8 : 20
     const isMobile = window.innerWidth < 768
     setParticles(
       Array.from({ length: count }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: isMobile ? Math.random() * 4 + 2 : Math.random() * 2 + 0.5, // Larger on mobile for debugging
+        size: isMobile ? Math.random() * 4 + 2 : Math.random() * 2 + 0.5,
         delay: Math.random() * 2,
-        duration: isMobile ? Math.random() * 2 + 2 : Math.random() * 2 + 4, // Faster on mobile
-        opacity: isMobile ? 0.4 + Math.random() * 0.4 : 0.1 + Math.random() * 0.3, // Much more visible on mobile
-        drift: isMobile ? (Math.random() - 0.5) * 20 : (Math.random() - 0.5) * 15, // More movement on mobile
+        duration: isMobile ? Math.random() * 2 + 2 : Math.random() * 2 + 4,
+        opacity: isMobile ? 0.4 + Math.random() * 0.4 : 0.1 + Math.random() * 0.3,
+        drift: isMobile ? (Math.random() - 0.5) * 20 : (Math.random() - 0.5) * 15
       }))
     )
   }, [])

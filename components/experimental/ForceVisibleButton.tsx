@@ -7,7 +7,6 @@ export default function ForceVisibleButton() {
 
   useEffect(() => {
     setMounted(true)
-    console.log('ForceVisibleButton mounted')
   }, [])
 
   if (!mounted) return null
@@ -38,7 +37,6 @@ export default function ForceVisibleButton() {
         WebkitMask: 'none !important' as any,
       }}
       onClick={() => {
-        console.log('FORCE VISIBLE BUTTON CLICKED!')
         alert('FORCE VISIBLE BUTTON WORKS!')
       }}
     >

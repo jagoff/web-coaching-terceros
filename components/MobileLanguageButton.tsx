@@ -15,7 +15,6 @@ export default function MobileLanguageButton() {
       setInfo({ width, isMobile })
       setVisible(isMobile)
 
-      console.log('MobileLanguageButton - Width:', width, 'Mobile:', isMobile, 'Visible:', visible)
     }
 
     updateInfo()
@@ -60,7 +59,6 @@ export default function MobileLanguageButton() {
           height: '60px',
         }}
         onClick={() => {
-          console.log('SEPARATE BUTTON CLICKED!')
           setLanguage(language === 'es' ? 'en' : 'es')
         }}
       >

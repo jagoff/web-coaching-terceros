@@ -25,7 +25,6 @@ const slideRight = {
 
 export default function ContactFormspree() {
   const { language } = useLanguage()
-  console.log('🔥 CONTACT FORMSPREE COMPONENT LOADED')
   const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})

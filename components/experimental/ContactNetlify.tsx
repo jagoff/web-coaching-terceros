@@ -25,7 +25,6 @@ const slideRight = {
 
 export default function ContactNetlify() {
   const { language } = useLanguage()
-  console.log('🔥 CONTACT NETLIFY COMPONENT LOADED')
   const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})

@@ -25,7 +25,6 @@ const slideRight = {
 
 export default function ContactEmailJS() {
   const { language } = useLanguage()
-  console.log('🔥 CONTACT EMAILJS COMPONENT LOADED')
   const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -110,7 +109,6 @@ export default function ContactEmailJS() {
       // Simulación del envío (reemplazar con EmailJS real)
       await new Promise(resolve => setTimeout(resolve, 2000))
 
-      console.log('Email enviado:', form)
       setStatus('success')
       setForm({ nombre: '', email: '', mensaje: '' })
       setTouched({})

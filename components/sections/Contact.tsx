@@ -57,7 +57,6 @@ const promiseItem: Variants = {
 
 export default function Contact() {
   const { t, language } = useLanguage()
-  console.log('🔥 CONTACT COMPONENT LOADED - ESTE ES EL COMPONENTE ACTIVO')
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })

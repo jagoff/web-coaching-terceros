@@ -73,12 +73,7 @@ export default function CalBooking() {
   const CalComUsername = process.env.NEXT_PUBLIC_CALCOM_USERNAME || 'your-username'
   const eventTypeId = process.env.NEXT_PUBLIC_CALCOM_EVENT_TYPE_ID || '1'
 
-  // Debug: Verificar que las variables se están leyendo correctamente
-  console.log('Cal.com config:', { CalComUsername, eventTypeId })
-
-  // URL completa para debugging
   const calComUrl = `https://cal.com/${CalComUsername}/${eventTypeId}`
-  console.log('Cal.com URL:', calComUrl)
 
   return (
     <section id="contacto" className="section section-compact" ref={ref}>
