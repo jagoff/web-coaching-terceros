@@ -40,6 +40,7 @@ const credentials = [
   "Management 3.0 Metrics & OKR's",
   "unFIX Foundation Workshop",
   "Energizing People",
+  "Fundamentals Online Workshop",
 ];
 
 
