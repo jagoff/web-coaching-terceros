@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Instagram } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 
 const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11, 20, 21, 22, 23, 24, 25]
