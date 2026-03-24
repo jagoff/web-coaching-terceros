@@ -130,8 +130,7 @@ export default function Navbar() {
                 className="btn-primary"
                 style={{ 
                   padding: "0.875rem 1.75rem", 
-                  fontSize: "0.875rem",
-                  color: "white !important"
+                  fontSize: "0.875rem"
                 }}
                 onClick={() => handleLinkClick("#contacto")}
               >
@@ -246,9 +245,6 @@ export default function Navbar() {
             <div className="px-8 pb-6">
               <button
                 className="btn-primary w-full"
-                style={{ 
-                  color: "white !important"
-                }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}

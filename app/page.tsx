@@ -5,7 +5,6 @@ import {
   About,
   Services,
   Process,
-  Testimonials,
   Results,
   Pricing,
   FAQ,
@@ -14,6 +13,7 @@ import {
   Footer,
   CaseStudies,
 } from "@/components/PageSections";
+import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 
 export default function Home() {

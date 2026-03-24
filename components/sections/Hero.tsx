@@ -287,7 +287,12 @@ export default function Hero() {
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
               {language === 'es' ? (
-                <>Escalá <span className="text-gradient">sin límites</span>.</>
+                <> <span style={{
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>Escalá</span> sin límites.</>
               ) : (
                 <>Scale <span className="text-gradient">without limits</span>.</>
               )}
@@ -324,7 +329,7 @@ export default function Hero() {
               }}
               aria-hidden="true"
             />
-            <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+            <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
               ¿Te suena esto?
             </p>
             <AnimatePresence mode="wait">
@@ -341,7 +346,7 @@ export default function Hero() {
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                   fontFamily: "var(--font-heading)", 
-                  fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
+                  fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
                 }}
               >
                 &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
@@ -356,7 +361,7 @@ export default function Hero() {
             style={{ 
               fontFamily: "var(--font-modern)",
               fontWeight: 400,
-              fontSize: "clamp(1.0625rem, 2vw, 1.25rem)",
+              fontSize: "clamp(1.25rem, 2.2vw, 1.4rem)",
               lineHeight: 1.85,
               color: "var(--text-secondary)"
             }}
