@@ -140,9 +140,10 @@ export default function About() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-6 sm:mb-8">
-              {t.about.intro}
-            </p>
+            <div 
+              className="lead-text mb-6 sm:mb-8"
+              dangerouslySetInnerHTML={{ __html: t.about.intro }}
+            />
 
             <p className="lead-text mb-12">
               {t.about.approach}
