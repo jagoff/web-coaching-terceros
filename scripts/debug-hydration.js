@@ -7,6 +7,8 @@
 
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, relative } from 'path';
+import path from 'path';
+import fs from 'fs';
 
 const HYDRATION_ISSUES = [
   'typeof window',
