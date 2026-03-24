@@ -13,7 +13,7 @@ export default function JsonLdClient() {
           name: 'Fernando Ferrari',
           jobTitle: 'Agile Coach & Leadership Consultant',
           description:
-            'Coach de liderazgo y consultoría organizacional con más de 20 años en tecnología',
+            'Coach de liderazgo y consultoría organizacional especializado en transformación ágil',
           url: 'https://coaching-landing-cyan.vercel.app',
           sameAs: [
             'https://www.instagram.com/jago_ff',

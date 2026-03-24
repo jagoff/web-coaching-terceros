@@ -51,6 +51,10 @@ const nextConfig = {
           key: 'Referrer-Policy',
           value: 'strict-origin-when-cross-origin',
         },
+        {
+          key: 'Permissions-Policy',
+          value: 'camera=(), microphone=(), geolocation=()',
+        },
       ],
     },
     {
@@ -68,6 +72,32 @@ const nextConfig = {
         {
           key: 'Cache-Control',
           value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
+      source: '/fonts/(.*)',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
+      source: '/api/:path*',
+      headers: [
+        {
+          key: 'Access-Control-Allow-Origin',
+          value: process.env.NEXT_PUBLIC_SITE_URL || '*',
+        },
+        {
+          key: 'Access-Control-Allow-Methods',
+          value: 'GET, POST, PUT, DELETE, OPTIONS',
+        },
+        {
+          key: 'Access-Control-Allow-Headers',
+          value: 'Content-Type, Authorization',
         },
       ],
     },

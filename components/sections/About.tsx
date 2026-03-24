@@ -70,19 +70,25 @@ export default function About() {
   const [clickCount, setClickCount] = useState<{ [key: number]: number }>({})
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Shuffle credentials array
-      const shuffled = [...credentials].sort(() => Math.random() - 0.5)
-      setCredentials(shuffled)
-      // Set random button position
-      const randomPos = Math.floor(Math.random() * (credentials.length + 1))
-      setButtonPosition(randomPos)
+    // Use deterministic shuffle based on string values
+    const shuffled = [...credentials].sort((a, b) => {
+      const seedA = a.charCodeAt(0)
+      const seedB = b.charCodeAt(0)
+      return seedA - seedB
+    })
+    setCredentials(shuffled)
+    // Set deterministic button position
+    const randomPos = credentials.length % 2 // Simple deterministic position
+    setButtonPosition(randomPos)
 
-      // Load click count from localStorage
+    // Load click count from localStorage only on client
+    try {
       const saved = localStorage.getItem('linkedinButtonMetrics')
       if (saved) {
         setClickCount(JSON.parse(saved))
       }
+    } catch (e) {
+      // Ignore localStorage errors
     }
   }, [])
 
@@ -100,7 +106,10 @@ export default function About() {
       id="sobre-mi"
       className="section section-surface section-gold-border-top"
       ref={ref}
-      style={{ paddingBottom: 'clamp(2rem, 4vw, 3rem)' }}
+      style={{ 
+        paddingTop: 'clamp(0.5rem, 1vw, 1rem)',
+        paddingBottom: 'clamp(2rem, 4vw, 3rem)' 
+      }}
     >
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
@@ -133,21 +142,52 @@ export default function About() {
               fontFamily: 'var(--font-heading)',
               fontSize: 'var(--text-h2)',
               fontWeight: 600,
-              color: 'var(--text-primary)'
+              lineHeight: '1.2',
+              letterSpacing: '-0.02em'
             }}>
-              {t.about.title1} <span className="text-gradient">{t.about.title2}</span>{' '}
-              {t.about.title3}
+              <span className="text-gradient">
+                {t.about.title1} {t.about.title2} {t.about.title3}
+              </span>
             </h2>
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-6 sm:mb-8" style={{
+            <div className="lead-text mb-6 sm:mb-8" style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--text-body)',
               fontWeight: 400,
               lineHeight: '1.6',
-              color: 'var(--text-secondary)'
-            }}>{t.about.intro}</p>
+              color: 'var(--text-secondary)',
+            }}>
+              {t.about.intro.split('Escribime a fernandoferrari@gmail.com').map((part, index) => 
+                index === 0 ? (
+                  <span key={index}>{part}</span>
+                ) : (
+                  <span key={index}>
+                    <a 
+                      href="mailto:fernandoferrari@gmail.com" 
+                      style={{ 
+                        color: 'var(--gold-primary)', 
+                        textDecoration: 'underline',
+                        textDecorationColor: 'var(--gold-primary)',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.color = 'var(--gold-secondary)';
+                        e.currentTarget.style.textDecorationColor = 'var(--gold-secondary)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.color = 'var(--gold-primary)';
+                        e.currentTarget.style.textDecorationColor = 'var(--gold-primary)';
+                      }}
+                    >
+                      Escribime a fernandoferrari@gmail.com
+                    </a>
+                    {part}
+                  </span>
+                )
+              )}
+            </div>
 
             <p className="lead-text mb-12" style={{
               fontFamily: 'var(--font-body)',

@@ -49,21 +49,28 @@ export default function CoachingWordsBackground() {
   useEffect(() => {
     setMounted(true)
 
-    // Generar palabras flotantes con posiciones aleatorias
+    // Generar palabras flotantes con posiciones deterministas
     const generateWords = () => {
       const newWords: FloatingWord[] = []
-      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 20
+      const wordCount = 20 // Fixed count to avoid hydration issues
+
+      // Use deterministic random function
+      const random = (seed: number) => {
+        const x = Math.sin(seed) * 10000
+        return x - Math.floor(x)
+      }
 
       for (let i = 0; i < wordCount; i++) {
+        const seed = i * 1000
         newWords.push({
           id: i,
-          text: coachingWords[Math.floor(Math.random() * coachingWords.length)],
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          fontSize: Math.random() * 1.5 + 0.8, // 0.8rem a 2.3rem
-          opacity: Math.random() * 0.15 + 0.05, // 0.05 a 0.20
-          duration: Math.random() * 20 + 15, // 15s a 35s
-          delay: Math.random() * 10, // 0s a 10s
+          text: coachingWords[Math.floor(random(seed) * coachingWords.length)],
+          x: random(seed + 1) * 100,
+          y: random(seed + 2) * 100,
+          fontSize: random(seed + 3) * 1.5 + 0.8,
+          opacity: random(seed + 4) * 0.15 + 0.05,
+          duration: random(seed + 5) * 20 + 15,
+          delay: random(seed + 6) * 10,
         })
       }
       return newWords
@@ -72,14 +79,12 @@ export default function CoachingWordsBackground() {
     setWords(generateWords())
   }, [])
 
-  if (!mounted) return null
-
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 pointer-events-none overflow-hidden"
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+      style={{ opacity: mounted ? 1 : 0, zIndex: 1 }}
       aria-hidden="true"
-      style={{ zIndex: 1 }}
     >
       <AnimatePresence>
         {words.map(word => (

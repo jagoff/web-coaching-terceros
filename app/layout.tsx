@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 import ClientLayout from '@/components/ClientLayout'
 import JsonLdClient from '@/components/JsonLdClient'
 import AnalyticsScripts from '@/components/AnalyticsScripts'
+import { validateEnv } from '@/lib/env-validation'
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
@@ -70,6 +71,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Analytics and JSON-LD moved to client components to prevent hydration issues */}
       </head>
       <body

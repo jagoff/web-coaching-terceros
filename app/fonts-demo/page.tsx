@@ -150,7 +150,7 @@ const sampleText = {
   body: 'Descubrí cómo el coaching ágil puede transformar tu liderazgo y llevar tu equipo al siguiente nivel. Más de 20 años de experiencia en tecnología y metodologías ágiles.',
   paragraph:
     'Nuestro enfoque combina las mejores prácticas de agile coaching con herramientas de liderazgo modernas, creando una experiencia única que impulsa resultados reales y medibles.',
-  cta: 'Agendar Sesión Gratuita',
+  cta: 'Agendar sesión gratuita',
 }
 
 export default function FontsDemo() {

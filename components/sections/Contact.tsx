@@ -330,15 +330,25 @@ export default function Contact() {
                         href="https://cal.com/fferrari/30min"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-6 py-3 rounded-lg"
+                        className="btn-primary-vibrant inline-flex items-center gap-3 px-6 py-3 rounded-lg"
                         style={{
-                          background: 'var(--gradient-gold)',
-                          color: 'white',
+                          borderRadius: '16px',
+                          fontSize: 'calc(var(--text-body) - 6px)',
+                          fontFamily: 'var(--font-body)',
+                          fontWeight: 600,
+                          letterSpacing: '0.04em',
+                          textTransform: 'none',
+                          border: '2px solid transparent',
+                          boxShadow: '0 0 20px rgba(255, 87, 34, 0.3)',
+                          transition: 'all 0.3s ease',
                           textDecoration: 'none',
-                          fontWeight: '600',
-                          transition: 'var(--transition-base)',
                         }}
-                        whileHover={{ scale: 1.05, boxShadow: '0 8px 25px rgba(124,107,196,0.3)' }}
+                        whileHover={{ 
+                          scale: 1.02, 
+                          translateY: -1,
+                          background: '#ff7043',
+                          boxShadow: '0 0 25px rgba(255, 87, 34, 0.4)'
+                        }}
                         whileTap={{ scale: 0.98 }}
                       >
                         <Calendar size={18} />
@@ -543,7 +553,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className={`btn-primary w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 rounded-lg ${
+                      className={`btn-primary-vibrant w-full !mt-8 text-base sm:text-sm py-4 sm:py-3 min-h-[56px] sm:min-h-[48px] transition-all duration-200 ${
                         status === 'loading'
                           ? 'opacity-75 cursor-not-allowed'
                           : Object.keys(errors).length === 0 &&
@@ -551,6 +561,31 @@ export default function Contact() {
                             ? 'animate-glow'
                             : ''
                       }`}
+                      style={{
+                        borderRadius: '16px',
+                        fontSize: 'calc(var(--text-body) - 6px)',
+                        fontFamily: 'var(--font-body)',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        textTransform: 'none',
+                        border: '2px solid transparent',
+                        boxShadow: '0 0 20px rgba(255, 87, 34, 0.3)',
+                        transition: 'all 0.3s ease',
+                      }}
+                      onMouseOver={(e) => {
+                        if (status !== 'loading') {
+                          e.currentTarget.style.background = '#ff7043';
+                          e.currentTarget.style.transform = 'scale(1.02) translateY(-1px)';
+                          e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 87, 34, 0.4)';
+                        }
+                      }}
+                      onMouseOut={(e) => {
+                        if (status !== 'loading') {
+                          e.currentTarget.style.background = 'var(--cta-orange-vibrant)';
+                          e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 87, 34, 0.3)';
+                        }
+                      }}
                       disabled={status === 'loading'}
                     >
                       {status === 'loading' ? (
@@ -564,7 +599,7 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Enviar y Agendar Sesión <ArrowRight size={16} className="inline ml-1" />
+                          Enviar y agendar sesión <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
                     </button>

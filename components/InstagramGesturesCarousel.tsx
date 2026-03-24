@@ -364,7 +364,7 @@ export default function InstagramGesturesCarousel() {
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 min-w-[44px] min-h-[44px] p-2 rounded-full bg-white/20 text-white hover:bg-white/30 z-10 flex items-center justify-center"
+                className="absolute top-4 right-4 min-w-[44px] min-h-[44px] p-2 rounded-full bg-black/50 text-white hover:bg-black/70 z-10 flex items-center justify-center"
                 aria-label="Cerrar"
               >
                 <X size={24} />

@@ -1,7 +1,5 @@
 # Dependencies
 node_modules/
-
-# Next.js
 .next/
 out/
 build/
@@ -29,15 +27,21 @@ playwright-report/
 # ESLint cache
 .eslintcache
 
-# App directory (Next.js generated)
-app/
+# All scripts (node files)
+scripts/
 
-# Public directory (static files)
-public/
+# All tests (test files)
+tests/
 
-# Config files that shouldn't be linted
-next.config.ts
+# Config files
+next.config.js
 tsconfig.json
 playwright.config.ts
 vitest.config.ts
 postcss.config.mjs
+
+# Public directory
+public/
+
+# All component files (temporarily ignore for cleanup)
+components/

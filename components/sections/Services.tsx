@@ -56,19 +56,23 @@ export default function Services() {
     {
       id: 'liderazgo',
       icon: Flame,
-      title: t.services.items.liderazgo.title,
-      description: t.services.items.liderazgo.description,
-      benefits: t.services.items.liderazgo.benefits,
-      cta: t.services.items.liderazgo.benefits[0],
+      title: language === 'es' ? 'Liderazgo de Alto Impacto' : 'High-Impact Leadership',
+      description: language === 'es' 
+        ? 'Transformá tu estilo de liderazgo para potenciar equipos autónomos y tomar mejores decisiones bajo presión.'
+        : 'Transform your leadership style to empower autonomous teams and make better decisions under pressure.',
+      benefits: t.services.items.liderazgo.benefits.slice(0, 4),
+      cta: language === 'es' ? 'Potenciar mi liderazgo' : 'Boost my leadership',
       featured: false,
     },
     {
       id: 'organizacional',
       icon: Gem,
-      title: t.services.items.organizacional.title,
-      description: t.services.items.organizacional.description,
-      benefits: t.services.items.organizacional.benefits,
-      cta: t.services.items.organizacional.benefits[0],
+      title: language === 'es' ? 'Escala sin Caos' : 'Scale Without Chaos',
+      description: language === 'es'
+        ? 'Implementá sistemas que crezcan con tu equipo, eliminen cuellos de botella y mantengan la velocidad.'
+        : 'Implement systems that grow with your team, eliminate bottlenecks, and maintain velocity.',
+      benefits: t.services.items.organizacional.benefits.slice(0, 4),
+      cta: language === 'es' ? 'Escalar mi equipo' : 'Scale my team',
       featured: true,
       badge: language === 'es' ? 'MÁS SOLICITADO' : 'MOST POPULAR',
     },
@@ -99,11 +103,7 @@ export default function Services() {
             }}
           >
             <span className="text-gradient">
-              {t.services.title.includes('apagar') ? (
-                <>Deja de apagar incendios</>
-              ) : (
-                t.services.title
-              )}
+              {t.services.title}
             </span>
           </motion.h2>
           <motion.div variants={dividerGrow} className="divider-gold mt-6" />
@@ -121,6 +121,7 @@ export default function Services() {
                 initial="hidden"
                 animate={isInView || forceVisible ? 'visible' : 'hidden'}
                 className={`glass-card p-6 sm:p-10 md:p-12 flex flex-col group relative overflow-hidden${service.featured ? ' ring-1' : ''}`}
+                data-testid={`service-${service.id}`}
                 style={{
                   perspective: '800px',
                   ...(service.featured
@@ -158,8 +159,17 @@ export default function Services() {
                       border: '1px solid rgba(124,107,196,0.25)',
                       color: 'var(--gold-primary)',
                     }}
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                    whileHover={{ 
+                      scale: 1.15, 
+                      rotate: 360,
+                      transition: { 
+                        type: 'spring', 
+                        stiffness: 200, 
+                        damping: 15,
+                        duration: 0.6
+                      }
+                    }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Icon size={26} strokeWidth={1.5} />
                   </motion.div>
@@ -175,7 +185,7 @@ export default function Services() {
                 </h3>
 
                 <p
-                  className="mb-6 sm:mb-10"
+                  className="mb-6 sm:mb-10 service-description"
                   style={{ 
                     color: 'var(--text-secondary)', 
                     lineHeight: '1.6',

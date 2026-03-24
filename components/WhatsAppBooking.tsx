@@ -1,26 +1,11 @@
 'use client'
 
 import { MessageCircle } from 'lucide-react'
-import { useState, useEffect } from 'react'
 
 export default function WhatsAppBooking() {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
   const phoneNumber = '5493425153999'
-
-  const message = encodeURIComponent(
-    'Hola! Quiero agendá una sesión gratuita de consultoría. ¿Qué fechas y horarios tienes disponibles? Transformá tus credenciales profesionales en activos digitales inmutables.'
-  )
-
+  const message = encodeURIComponent('Hola! Quiero agendá una sesión gratuita de consultoría.')
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
-
-  if (!isClient) {
-    return null
-  }
 
   return (
     <a

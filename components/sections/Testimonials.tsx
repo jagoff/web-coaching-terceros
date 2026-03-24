@@ -382,10 +382,12 @@ export default function Testimonials() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
-  // Set random initial index when component mounts
+  // Set deterministic initial index when component mounts
   useEffect(() => {
     const testimonials = language === 'es' ? testimonialsES : testimonialsEN
-    const randomIndex = Math.floor(Math.random() * testimonials.length)
+    // Use hash of language to create deterministic but varied starting point
+    const seed = language === 'es' ? 123 : 456
+    const randomIndex = Math.floor((Math.sin(seed) * 10000 - Math.floor(Math.sin(seed) * 10000)) * testimonials.length)
     setCurrent(randomIndex)
   }, [language])
 

@@ -22,10 +22,6 @@ export const Testimonials = dynamic(() => import('@/components/sections/Testimon
   ssr: false,
   loading: () => <LoadingFallback />
 })
-export const Results = dynamic(() => import('@/components/sections/Results'), { 
-  ssr: false,
-  loading: () => <LoadingFallback />
-})
 export const Pricing = dynamic(() => import('@/components/sections/Pricing'), { 
   ssr: false,
   loading: () => <LoadingFallback />
@@ -33,10 +29,6 @@ export const Pricing = dynamic(() => import('@/components/sections/Pricing'), {
 export const Contact = dynamic(() => import('@/components/sections/Contact'), { 
   ssr: false,
   loading: () => <LoadingFallback />
-})
-export const CalBooking = dynamic(() => import('@/components/sections/CalBookingSimple'), {
-  ssr: false,
-  loading: () => <LoadingFallback />,
 })
 export const FAQ = dynamic(() => import('@/components/sections/FAQ'), { 
   ssr: false,

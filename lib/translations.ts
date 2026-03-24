@@ -1,3 +1,27 @@
+// Hero title combinations
+const heroTitleCombinations = [
+  {
+    title1: 'Líderes que inspiran.',
+    title2: 'Equipos que',
+    title3: 'perduran.',
+  },
+  {
+    title1: 'El cambio empieza',
+    title2: 'por quien',
+    title3: 'lidera.',
+  },
+  {
+    title1: 'Menos gestión.',
+    title2: 'Más',
+    title3: 'liderazgo.',
+  },
+  {
+    title1: 'Tu equipo ya tiene',
+    title2: 'lo que necesita.',
+    title3: 'Vos también.',
+  },
+]
+
 export type Language = 'es' | 'en'
 
 export interface Translations {
@@ -229,9 +253,9 @@ export const translations: Record<Language, Translations> = {
     },
 
     hero: {
-      title1: 'Liderazgo ágil',
-      title2: 'para',
-      title3: 'organizaciones que escalan',
+      title1: heroTitleCombinations[0].title1,
+      title2: heroTitleCombinations[0].title2,
+      title3: heroTitleCombinations[0].title3,
       subtitle:
         'Transformo equipos y culturas empresariales a través de coaching personalizado, metodologías ágiles y un enfoque human-centric.',
       cta: 'Agendá tu sesión gratuita',
@@ -372,7 +396,7 @@ export const translations: Record<Language, Translations> = {
             'Métricas y seguimiento',
             'Documentación completa',
           ],
-          cta: 'Consultá ahora',
+          cta: 'Consulta este plan',
         },
         personalizado: {
           name: 'Plan Personalizado',

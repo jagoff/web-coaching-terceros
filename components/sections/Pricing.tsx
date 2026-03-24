@@ -60,7 +60,7 @@ export default function Pricing() {
       name: t.pricing.plans.liderazgo.name,
       description: t.pricing.plans.liderazgo.description,
       features: t.pricing.plans.liderazgo.features,
-      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
+      cta: t.pricing.plans.liderazgo.cta,
       featured: false,
       badge: null,
     },
@@ -69,7 +69,7 @@ export default function Pricing() {
       name: t.pricing.plans.organizacional.name,
       description: t.pricing.plans.organizacional.description,
       features: t.pricing.plans.organizacional.features,
-      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
+      cta: t.pricing.plans.organizacional.cta,
       featured: true,
       badge: language === 'es' ? 'Más Popular' : 'Most Popular',
     },
@@ -78,7 +78,7 @@ export default function Pricing() {
       name: t.pricing.plans.personalizado.name,
       description: t.pricing.plans.personalizado.description,
       features: t.pricing.plans.personalizado.features,
-      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
+      cta: t.pricing.plans.personalizado.cta,
       featured: false,
       badge: null,
     },
@@ -125,10 +125,17 @@ export default function Pricing() {
                 // DEBUG: Force visibility on mobile
                 opacity: 1,
                 transform: 'none',
-                background: 'rgba(20, 18, 29, 0.9)',
-                border: '1px solid var(--gold-border)',
+                background: plan.featured 
+                  ? 'linear-gradient(135deg, rgba(124,107,196,0.15) 0%, rgba(255,107,53,0.08) 100%)'
+                  : 'rgba(20, 18, 29, 0.9)',
+                border: plan.featured
+                  ? '2px solid var(--gold-primary)'
+                  : '1px solid var(--gold-border)',
                 borderRadius: '24px',
                 padding: '2rem',
+                boxShadow: plan.featured
+                  ? '0 0 40px rgba(124,107,196,0.15), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
+                  : 'none',
               }}
               whileHover={{
                 y: -8,
@@ -142,7 +149,17 @@ export default function Pricing() {
               {/* Badge row — fixed height keeps all cards aligned */}
               <div className="flex justify-end mb-4" style={{ minHeight: '1.75rem' }}>
                 {plan.badge && (
-                  <span className="badge text-xs px-3 py-1" aria-label="Plan más popular">
+                  <span 
+                    className="text-xs px-3 py-1 font-semibold" 
+                    aria-label="Plan más popular"
+                    style={{
+                      background: 'var(--gradient-gold)',
+                      color: 'white',
+                      borderRadius: '20px',
+                      boxShadow: '0 4px 12px rgba(124,107,196,0.3)',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                    }}
+                  >
                     {plan.badge}
                   </span>
                 )}
@@ -185,10 +202,40 @@ export default function Pricing() {
 
               {/* CTA */}
               <button
-                className={`btn-primary w-full ${plan.featured ? 'btn-gold' : ''}`}
+                className={`btn-primary-vibrant w-full ${plan.featured ? 'featured' : ''}`}
                 onClick={() => handleScroll('#contacto')}
+                style={{
+                  minHeight: plan.featured ? '56px' : '48px',
+                  borderRadius: '16px',
+                  fontSize: 'calc(var(--text-body) - 6px)',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
+                  textTransform: 'none',
+                  border: plan.featured 
+                    ? '2px solid rgba(255,255,255,0.3)'
+                    : '2px solid transparent',
+                  boxShadow: plan.featured
+                    ? '0 0 30px rgba(255, 87, 34, 0.4), 0 8px 24px rgba(0,0,0,0.3)'
+                    : '0 0 20px rgba(255, 87, 34, 0.3)',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseOver={(e) => {
+                  if (plan.featured) {
+                    e.currentTarget.style.background = '#ff7043';
+                    e.currentTarget.style.transform = 'scale(1.02) translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 87, 34, 0.5), 0 12px 32px rgba(0,0,0,0.4)';
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (plan.featured) {
+                    e.currentTarget.style.background = 'var(--cta-orange-vibrant)';
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 87, 34, 0.4), 0 8px 24px rgba(0,0,0,0.3)';
+                  }
+                }}
               >
-                <span>{plan.cta}</span> <ArrowRight size={14} className="flex-shrink-0 ml-1" />
+                <span style={{ marginRight: '6px' }}>{plan.cta}</span> <ArrowRight size={14} className="flex-shrink-0" />
               </button>
             </motion.div>
           ))}
@@ -202,25 +249,24 @@ export default function Pricing() {
           className="text-center mt-12 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <MessageCircle size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
-          <p className="text-base" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
-            {language === 'es'
-              ? '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?'
-              : 'Not sure which plan best fits your needs?'}{' '}
+          <div className="text-base" style={{ color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+            <p style={{ margin: 0, marginBottom: '0.5rem' }}>
+              {language === 'es'
+                ? '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?'
+                : 'Not sure which plan best fits your needs?'}
+            </p>
             <button
               className="underline transition-colors bg-transparent border-0 cursor-pointer p-0 text-base"
               style={{ color: 'var(--gold-primary)' }}
               onClick={() => {
-                const target = document.querySelector('#contacto')
-                if (target) {
-                  target.scrollIntoView({ behavior: 'smooth' })
-                }
+                window.location.href = 'mailto:fernandoferrari@gmail.com?subject=Consulta sobre planes de coaching&body=Hola Fernando, tengo dudas sobre cuál plan se adapta mejor a mi caso. ¿Podemos conversar?'
               }}
             >
               {language === 'es'
                 ? 'Escribime y lo hablamos sin compromiso.'
                 : "Write to me and we'll discuss it with no commitment."}
             </button>
-          </p>
+          </div>
         </motion.div>
       </div>
     </section>

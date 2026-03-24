@@ -119,7 +119,7 @@ export default function InteractiveServiceCards() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Agendar Sesión
+                      Agendar sesión
                     </motion.button>
                   </div>
                 </motion.div>

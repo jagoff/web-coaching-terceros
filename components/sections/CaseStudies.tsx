@@ -148,10 +148,11 @@ export default function CaseStudies() {
     return () => clearTimeout(timer)
   }, [isInView])
 
-  // Randomly select 2 featured case studies on component mount
+  // Select 1 featured case study deterministically on component mount
   useEffect(() => {
-    const shuffled = [...caseStudies].sort(() => 0.5 - Math.random())
-    const selected = shuffled.slice(0, 2)
+    // Use deterministic selection based on array length
+    const startIndex = caseStudies.length % 3
+    const selected = caseStudies.slice(startIndex, startIndex + 1)
     setFeaturedCases(selected)
   }, [])
 
@@ -190,8 +191,8 @@ export default function CaseStudies() {
           <motion.div variants={dividerGrow} className="divider-gold mt-6" />
         </motion.div>
 
-        {/* Case Studies Grid Layout - Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 md:mb-16">
+        {/* Case Studies Grid Layout - Centered when showing 1 case */}
+        <div className={`${displayCases.length === 1 ? 'max-w-2xl mx-auto' : 'grid grid-cols-1 lg:grid-cols-3 gap-8'} mb-8 md:mb-12`}>
           {displayCases.map((caseStudy, i) => (
             <div key={caseStudy.id}>
               <motion.div
@@ -199,7 +200,7 @@ export default function CaseStudies() {
                 variants={caseCard}
                 initial="hidden"
                 animate={isInView || forceVisible ? 'visible' : 'hidden'}
-                className="glass-card p-6 relative overflow-hidden group"
+                className="glass-card p-4 relative overflow-hidden group"
                 style={{ perspective: '800px' }}
                 whileHover={{
                   y: -4,
@@ -209,11 +210,11 @@ export default function CaseStudies() {
               >
                 {/* Company Header */}
                 <div
-                  className="mb-6 pb-4 border-b"
+                  className="mb-4 pb-3 border-b"
                   style={{ borderColor: 'rgba(124,107,196,0.2)' }}
                 >
                   <h4
-                    className="heading-md mb-2 font-bold"
+                    className="heading-md mb-1 font-bold"
                     style={{
                       fontFamily: 'var(--font-heading)',
                       color: 'var(--gold-primary)',
@@ -222,7 +223,7 @@ export default function CaseStudies() {
                   >
                     {caseStudy.company}
                   </h4>
-                  <div className="text-sm mb-2" style={{ color: 'var(--text-muted)' }}>
+                  <div className="text-sm mb-1" style={{ color: 'var(--text-muted)' }}>
                     <span className="text-gradient">{caseStudy.category}</span>
                   </div>
                   <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>
@@ -235,10 +236,10 @@ export default function CaseStudies() {
                 </div>
 
                 {/* Timeline Content - 3 Column Layout */}
-                <div className="grid grid-cols-3 gap-4 flex-1">
+                <div className="grid grid-cols-3 gap-2 flex-1">
                   {/* ANTES - DIAGNÓSTICO */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-2">
                       <div
                         className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
                         style={{
@@ -252,7 +253,7 @@ export default function CaseStudies() {
                         {caseStudy.before.title}
                       </h5>
                     </div>
-                    <ul className="space-y-2 text-sm">
+                    <ul className="space-y-1 text-sm">
                       {caseStudy.before.points.map((point, idx) => (
                         <li
                           key={idx}
@@ -270,7 +271,7 @@ export default function CaseStudies() {
 
                   {/* INTERVENCIÓN - DISEÑO */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-2">
                       <div
                         className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
                         style={{
@@ -284,7 +285,7 @@ export default function CaseStudies() {
                         {caseStudy.intervention.title}
                       </h5>
                     </div>
-                    <ul className="space-y-2 text-sm">
+                    <ul className="space-y-1 text-sm">
                       {caseStudy.intervention.points.map((point, idx) => (
                         <li
                           key={idx}
@@ -302,7 +303,7 @@ export default function CaseStudies() {
 
                   {/* RESULTADOS - EJECUCIÓN + AUTONOMÍA */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-2">
                       <div
                         className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
                         style={{
@@ -316,7 +317,7 @@ export default function CaseStudies() {
                         {caseStudy.results.title}
                       </h5>
                     </div>
-                    <ul className="space-y-2 text-sm">
+                    <ul className="space-y-1 text-sm">
                       {caseStudy.results.points.map((point, idx) => (
                         <li
                           key={idx}
@@ -355,15 +356,11 @@ export default function CaseStudies() {
         <div className="text-center mb-12">
           <motion.button
             onClick={() => setShowAll(!showAll)}
-            className="px-6 py-3 rounded-full font-medium transition-all duration-300"
-            style={{
-              background: 'var(--gold-primary)',
-              color: 'var(--dark-bg)',
-            }}
+            className="btn-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {showAll ? 'Ver menos transformaciones' : 'Ver más transformaciones'}
+            {showAll ? 'ver menos transformaciones' : 'ver todas las transformaciones'}
           </motion.button>
         </div>
       </div>

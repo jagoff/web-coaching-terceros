@@ -22,7 +22,7 @@ test.describe('Case Studies Modal Debug', () => {
     expect(antesPoints).toBeLessThan(10) // Reasonable limit for mobile
 
     // Check if cards are too tall
-    const cardHeight = await firstCard.evaluate(el => el.offsetHeight)
+    const cardHeight = await firstCard.evaluate(el => (el as HTMLElement).offsetHeight)
     console.log(`📱 Card height: ${cardHeight}px`)
 
     // Mobile cards should be reasonable height
@@ -104,7 +104,7 @@ test.describe('Case Studies Modal Debug', () => {
     expect(antesPointsInModal).toBeGreaterThan(3)
 
     // Check modal height
-    const modalHeight = await modalContent.evaluate(el => el.offsetHeight)
+    const modalHeight = await modalContent.evaluate(el => (el as HTMLElement).offsetHeight)
     console.log(`🔮 Modal height: ${modalHeight}px`)
 
     // Modal should be tall enough for all content
