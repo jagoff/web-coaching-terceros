@@ -4,13 +4,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, ChevronLeft, Check, X, BarChart3, Users, Target, Zap, Shield, TrendingUp } from "lucide-react";
 import { headerStagger, blurUp } from "@/lib/animations";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function MadurezEmpresarial() {
+  const { language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResults, setShowResults] = useState(false);
 
-  const questions = [
+  const questionsES = [
     {
       id: "estructura",
       category: "Organización",
@@ -78,6 +80,76 @@ export default function MadurezEmpresarial() {
     }
   ];
 
+  const questionsEN = [
+    {
+      id: "estructura",
+      category: "Organization",
+      icon: <Target size={24} />,
+      question: "How would you describe your team structure?",
+      options: [
+        { value: "caotica", label: "Completely chaotic, no defined roles", score: 1 },
+        { value: "informal", label: "Informal, with basic but unclear roles", score: 2 },
+        { value: "definida", label: "Defined but rigid", score: 3 },
+        { value: "agil", label: "Agile and adaptable", score: 4 },
+        { value: "autonoma", label: "Completely autonomous and self-organized", score: 5 }
+      ]
+    },
+    {
+      id: "comunicacion",
+      category: "Communication",
+      icon: <Users size={24} />,
+      question: "How does communication flow in your company?",
+      options: [
+        { value: "nula", label: "Practically no communication exists", score: 1 },
+        { value: "unidireccional", label: "Only top-down", score: 2 },
+        { value: "limitada", label: "Limited to occasional meetings", score: 3 },
+        { value: "frecuente", label: "Frequent but not very effective", score: 4 },
+        { value: "transparente", label: "Completely transparent and effective", score: 5 }
+      ]
+    },
+    {
+      id: "procesos",
+      category: "Processes",
+      icon: <Zap size={24} />,
+      question: "How mature are your work processes?",
+      options: [
+        { value: "inexistentes", label: "No defined processes", score: 1 },
+        { value: "basicos", label: "Very basic and disorganized processes", score: 2 },
+        { value: "documentados", label: "Documented but rarely followed", score: 3 },
+        { value: "optimizados", label: "Optimized but resistant to change", score: 4 },
+        { value: "mejora continua", label: "In constant continuous improvement", score: 5 }
+      ]
+    },
+    {
+      id: "tecnologia",
+      category: "Technology",
+      icon: <Shield size={24} />,
+      question: "How do you use technology to optimize operations?",
+      options: [
+        { value: "manual", label: "Everything is manual or paper-based", score: 1 },
+        { value: "basica", label: "Basic tools but poorly integrated", score: 2 },
+        { value: "moderna", label: "Modern tools but underutilized", score: 3 },
+        { value: "integrada", label: "Well integrated but with gaps", score: 4 },
+        { value: "estrategica", label: "Completely strategic and automated", score: 5 }
+      ]
+    },
+    {
+      id: "liderazgo",
+      category: "Leadership",
+      icon: <TrendingUp size={24} />,
+      question: "What leadership style predominates in your organization?",
+      options: [
+        { value: "autoritario", label: "Authoritarian and controlling", score: 1 },
+        { value: "paternalista", label: "Paternalistic and protective", score: 2 },
+        { value: "transaccional", label: "Transactional and reactive", score: 3 },
+        { value: "transformacional", label: "Transformational and visionary", score: 4 },
+        { value: "servidor", label: "Servant leadership and empowerment", score: 5 }
+      ]
+    }
+  ];
+
+  const questions = language === 'es' ? questionsES : questionsEN;
+
   const handleAnswer = (questionId: string, value: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
   };
@@ -107,49 +179,81 @@ export default function MadurezEmpresarial() {
     const maxScore = questions.length * 5;
     const percentage = (totalScore / maxScore) * 100;
 
-    let level = "Inicial";
+    let level = "";
     let description = "";
     let recommendations = [];
 
     if (percentage <= 40) {
-      level = "Inicial";
-      description = "Tu organización está en las primeras etapas de madurez. Hay mucho potencial para crecer.";
-      recommendations = [
+      level = language === 'es' ? "Inicial" : "Initial";
+      description = language === 'es' 
+        ? "Tu organización está en las primeras etapas de madurez. Hay mucho potencial para crecer."
+        : "Your organization is in the early stages of maturity. There's great potential for growth.";
+      recommendations = language === 'es' ? [
         "Establecer roles y responsabilidades claras",
         "Implementar canales de comunicación básicos",
         "Documentar procesos fundamentales",
         "Adoptar herramientas tecnológicas básicas",
         "Desarrollar habilidades de liderazgo"
+      ] : [
+        "Establish clear roles and responsibilities",
+        "Implement basic communication channels",
+        "Document fundamental processes",
+        "Adopt basic technological tools",
+        "Develop leadership skills"
       ];
     } else if (percentage <= 60) {
-      level = "En Desarrollo";
-      description = "Tu organización tiene bases sólidas pero necesita optimización.";
-      recommendations = [
+      level = language === 'es' ? "En Desarrollo" : "In Development";
+      description = language === 'es'
+        ? "Tu organización tiene bases sólidas pero necesita optimización."
+        : "Your organization has solid foundations but needs optimization.";
+      recommendations = language === 'es' ? [
         "Optimizar procesos existentes",
         "Mejorar la comunicación interdepartamental",
         "Integrar mejor las herramientas tecnológicas",
         "Desarrollar liderazgo colaborativo",
         "Establecer métricas de desempeño"
+      ] : [
+        "Optimize existing processes",
+        "Improve interdepartmental communication",
+        "Better integrate technological tools",
+        "Develop collaborative leadership",
+        "Establish performance metrics"
       ];
     } else if (percentage <= 80) {
-      level = "Madura";
-      description = "Tu organización es madura pero puede alcanzar la excelencia.";
-      recommendations = [
+      level = language === 'es' ? "Madura" : "Mature";
+      description = language === 'es'
+        ? "Tu organización es madura pero puede alcanzar la excelencia."
+        : "Your organization is mature but can achieve excellence.";
+      recommendations = language === 'es' ? [
         "Implementar mejora continua sistemática",
         "Fomentar la innovación y experimentación",
         "Desarrollar liderazgo estratégico",
         "Optimizar la automatización",
         "Crear cultura de aprendizaje"
+      ] : [
+        "Implement systematic continuous improvement",
+        "Foster innovation and experimentation",
+        "Develop strategic leadership",
+        "Optimize automation",
+        "Create learning culture"
       ];
     } else {
-      level = "Excelencia";
-      description = "Tu organización está en un nivel de excelencia. ¡Felicidades!";
-      recommendations = [
+      level = language === 'es' ? "Excelencia" : "Excellence";
+      description = language === 'es'
+        ? "Tu organización está en un nivel de excelencia. ¡Felicidades!"
+        : "Your organization is at an excellence level. Congratulations!";
+      recommendations = language === 'es' ? [
         "Mantener la cultura de mejora continua",
         "Compartir conocimientos con la industria",
         "Explorar nuevas fronteras de innovación",
         "Mentorear a otras organizaciones",
         "Escalar tu modelo de éxito"
+      ] : [
+        "Maintain continuous improvement culture",
+        "Share knowledge with the industry",
+        "Explore new innovation frontiers",
+        "Mentor other organizations",
+        "Scale your success model"
       ];
     }
 
@@ -169,13 +273,13 @@ export default function MadurezEmpresarial() {
           >
             <div className="text-center mb-12">
               <h1 className="heading-xl mb-6">
-                Resultados de tu
+                {language === 'es' ? 'Resultados de tu' : 'Your'}{' '}
                 <span style={{
                   background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text"
-                }}> Diagnóstico</span>
+                }}>{language === 'es' ? 'Diagnóstico' : 'Diagnosis'}</span>
               </h1>
               <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-8"></div>
             </div>
@@ -185,7 +289,7 @@ export default function MadurezEmpresarial() {
                 <div className="text-6xl font-bold text-gradient mb-4">
                   {results.percentage.toFixed(0)}%
                 </div>
-                <h2 className="text-3xl font-bold mb-4">Nivel: {results.level}</h2>
+                <h2 className="text-3xl font-bold mb-4">{language === 'es' ? 'Nivel:' : 'Level:'} {results.level}</h2>
                 <p className="text-xl text-text-secondary max-w-2xl mx-auto">
                   {results.description}
                 </p>
@@ -193,7 +297,7 @@ export default function MadurezEmpresarial() {
 
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm text-text-muted">Puntuación Total</span>
+                  <span className="text-sm text-text-muted">{language === 'es' ? 'Puntuación Total' : 'Total Score'}</span>
                   <span className="text-sm text-text-muted">{results.totalScore}/{results.maxScore}</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-4">
@@ -224,7 +328,7 @@ export default function MadurezEmpresarial() {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold mb-4">Recomendaciones para ti:</h3>
+                <h3 className="text-xl font-bold mb-4">{language === 'es' ? 'Recomendaciones para ti:' : 'Recommendations for you:'}</h3>
                 <ul className="space-y-3">
                   {results.recommendations.map((rec, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -245,7 +349,7 @@ export default function MadurezEmpresarial() {
                 }}
                 className="btn-primary"
               >
-                Reintentar Test
+                {language === 'es' ? 'Reintentar Test' : 'Retake Test'}
               </button>
             </div>
           </motion.div>
@@ -266,20 +370,23 @@ export default function MadurezEmpresarial() {
         >
           <div className="text-center mb-12">
             <h1 className="heading-xl mb-6">
-              Test de
-              <span className="text-gradient"> Madurez Empresarial</span>
+              {language === 'es' ? 'Test de' : 'Organizational'}{' '}
+              <span className="text-gradient">{language === 'es' ? 'Madurez Empresarial' : 'Maturity Test'}</span>
             </h1>
             <p className="lead-text max-w-2xl mx-auto">
-              Descubre en qué nivel se encuentra tu organización y obtén recomendaciones personalizadas para mejorar.
+              {language === 'es' 
+                ? 'Descubre en qué nivel se encuentra tu organización y obtén recomendaciones personalizadas para mejorar.'
+                : 'Discover your organization\'s maturity level and get personalized recommendations for improvement.'
+              }
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mt-8"></div>
           </div>
 
-          <div className="glass-card p-8">
+          <div className="glass-card p-8 mb-8">
             {/* Progress Bar */}
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-sm text-text-muted">Pregunta {currentStep + 1} de {questions.length}</span>
+                <span className="text-sm text-text-muted">{language === 'es' ? 'Pregunta' : 'Question'} {currentStep + 1} {language === 'es' ? 'de' : 'of'} {questions.length}</span>
                 <span className="text-sm text-text-muted">{Math.round(((currentStep + 1) / questions.length) * 100)}%</span>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2">
@@ -329,14 +436,14 @@ export default function MadurezEmpresarial() {
                 className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <ChevronLeft size={20} className="inline mr-2" />
-                Anterior
+                {language === 'es' ? 'Anterior' : 'Previous'}
               </button>
               <button
                 onClick={nextStep}
                 disabled={!answers[currentQuestion.id]}
                 className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {currentStep === questions.length - 1 ? 'Ver Resultados' : 'Siguiente'}
+                {currentStep === questions.length - 1 ? (language === 'es' ? 'Ver Resultados' : 'View Results') : (language === 'es' ? 'Siguiente' : 'Next')}
                 <ChevronRight size={20} className="inline ml-2" />
               </button>
             </div>
