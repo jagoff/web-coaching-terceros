@@ -233,7 +233,7 @@ export const translations: Record<Language, Translations> = {
       title1: 'De la tecnología',
       title2: 'a transformar',
       title3: 'organizaciones.',
-      intro: 'Soy Fernando. Más de 20 años en tecnología y 11+ como consultor ágil independiente. Empecé arreglando computadoras, pasé por administración de servidores, y hoy lidero operaciones y acompaño transformaciones culturales en startups y empresas tech. Mi enfoque combina metodologías ágiles, liderazgo estratégico y una mirada donde las personas van primero. No te digo qué hacer — te acompaño a construir equipos autónomos, procesos escalables y una cultura que impulse resultados.',
+      intro: 'Soy Fernando. Más de 20 años en tecnología y 11+ como consultor ágil independiente. Empecé arreglando computadoras, pasé por administración de servidores, y hoy lidero operaciones y acompaño transformaciones culturales en startups y empresas tech.\n\nMi enfoque combina metodologías ágiles, liderazgo estratégico y una mirada donde las personas van primero.\n\nNo te digo qué hacer — te acompaño a construir equipos autónomos, procesos escalables y una cultura que impulse resultados.',
       approach: '',
       certificaciones: 'Certificaciones internacionales comprobables',
       stats: {
@@ -480,7 +480,7 @@ export const translations: Record<Language, Translations> = {
       title1: 'From technology',
       title2: 'to transforming',
       title3: 'organizations.',
-      intro: "I'm Fernando. Over 20 years in technology and 11+ as an independent agile consultant. I started fixing computers, went through server administration, and today I lead operations and accompany cultural transformations in startups and tech companies. My approach combines agile methodologies, strategic leadership, and a perspective where people come first. I don't tell you what to do — I accompany you to build autonomous teams, scalable processes, and a culture that drives results.",
+      intro: "I'm Fernando. Over 20 years in technology and 11+ as an independent agile consultant. I started fixing computers, went through server administration, and today I lead operations and accompany cultural transformations in startups and tech companies.\n\nMy approach combines agile methodologies, strategic leadership, and a perspective where people come first.\n\nI don't tell you what to do — I accompany you to build autonomous teams, scalable processes, and a culture that drives results.",
       approach: '',
       certificaciones: 'Verifiable international certifications',
       stats: {
