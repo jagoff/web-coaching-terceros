@@ -274,11 +274,11 @@ export default function Hero() {
             <motion.span variants={revealUp} className="block">
               {language === 'es' ? (
                 <>
-                  <span style={{ textDecoration: 'underline' }}>Transformá</span> tu equipo.
+                  <span className="text-gradient">Transformá</span> tu equipo.
                 </>
               ) : (
                 <>
-                  <span style={{ textDecoration: 'underline' }}>Transform</span> your team.
+                  <span className="text-gradient">Transform</span> your team.
                 </>
               )}
             </motion.span>
@@ -287,9 +287,9 @@ export default function Hero() {
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
               {language === 'es' ? (
-                <>Escalá <span style={{ textDecoration: 'underline' }}>sin límites</span>.</>
+                <>Escalá <span className="text-gradient">sin límites</span>.</>
               ) : (
-                <>Scale <span style={{ textDecoration: 'underline' }}>without limits</span>.</>
+                <>Scale <span className="text-gradient">without limits</span>.</>
               )}
             </motion.span>
           </motion.h1>
@@ -352,7 +352,14 @@ export default function Hero() {
           {/* Subheadline */}
           <motion.p
             variants={revealUp}
-            className="lead-text max-w-2xl mb-8 sm:mb-12"
+            className="max-w-2xl mb-8 sm:mb-12"
+            style={{ 
+              fontFamily: "var(--font-modern)",
+              fontWeight: 400,
+              fontSize: "clamp(1.0625rem, 2vw, 1.25rem)",
+              lineHeight: 1.85,
+              color: "var(--text-secondary)"
+            }}
           >
             {language === 'es' 
               ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
