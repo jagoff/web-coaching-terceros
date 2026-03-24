@@ -267,7 +267,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'a transformar',
       title3: 'organizaciones.',
       intro:
-        'Soy Fernando. Más de 20 años en tecnología y 11+ como consultor ágil independiente. Empecé arreglando computadoras, pasé por administración de servidores, y hoy lidero operaciones y acompaño transformaciones culturales en startups y empresas tech. Mi enfoque combina metodologías ágiles, liderazgo estratégico y una mirada donde las personas van primero. No te digo qué hacer — te acompaño a construir equipos autónomos, procesos escalables y una cultura que impulse resultados.',
+        'Soy Fernando. Más de 20 años en tecnología — desde infraestructura y operaciones hasta liderazgo estratégico y transformación cultural. Pasé por todos los roles: técnico, sysadmin, CIO, Scrum Master, Product Owner, Director de Operaciones. Lideré equipos en empresas de +1000 personas y acompañé startups a escalar sin perder su identidad. Hoy gestiono infraestructura cloud en Avature, co-fundé Nodok.AI, y llevo 11 años como consultor ágil independiente. No te doy frameworks de moda — te acompaño a construir equipos que funcionen sin vos encima, procesos que escalen, y una cultura donde la gente quiera quedarse.',
       approach: '',
       certificaciones: 'Certificaciones internacionales comprobables',
       stats: {
@@ -543,7 +543,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'to transforming',
       title3: 'organizations.',
       intro:
-        "I'm Fernando. Over 20 years in technology and 11+ as an independent agile consultant. I started fixing computers, went through server administration, and today I lead operations and accompany cultural transformations in startups and tech companies. My approach combines agile methodologies, strategic leadership, and a perspective where people come first. I don't tell you what to do — I accompany you to build autonomous teams, scalable processes, and a culture that drives results.",
+        "I'm Fernando. Over 20 years in technology — from infrastructure and operations to strategic leadership and cultural transformation. I've been through all the roles: technical, sysadmin, CIO, Scrum Master, Product Owner, Operations Director. I've led teams in companies with 1000+ people and helped startups scale without losing their identity. Today I manage cloud infrastructure at Avature, co-founded Nodok.AI, and have 11 years as an independent agile consultant. I don't give you trendy frameworks — I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.",
       approach: '',
       certificaciones: 'Verifiable international certifications',
       stats: {
