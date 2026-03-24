@@ -5,12 +5,25 @@ import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import { Instagram, X, ZoomIn, Share2 } from 'lucide-react'
 import Image from 'next/image'
 
-const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11]
+const allInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11, 12, 20, 21, 22, 23, 24, 25, 26]
+
+const getRandomSubset = (array: number[], count: number) => {
+  const shuffled = [...array].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, count)
+}
+
+const getImagePath = (imageNum: number) => {
+  if (imageNum >= 20 && imageNum <= 26) {
+    return `/img/IMG_777${imageNum - 20}.jpg`
+  }
+  return `/img/insta-${imageNum}.png`
+}
 
 const shuffleArray = (array: number[]) => {
   const newArray = [...array]
+  // Use deterministic shuffle based on array indices
   for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
+    const j = Math.floor((Math.sin(i * 1000) * 10000 - Math.floor(Math.sin(i * 1000) * 10000)) * (i + 1))
     ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
   }
   return newArray
@@ -28,16 +41,27 @@ export default function InstagramGesturesCarousel() {
   const controls = useAnimation()
 
   useEffect(() => {
-    const shuffled = shuffleArray(baseInstagramImages)
-    setInstagramImages(shuffled)
+    const randomSubset = getRandomSubset(allInstagramImages, 15)
+    setInstagramImages(randomSubset)
   }, [])
 
   const imageIndex = Math.abs(page) % instagramImages.length
   const currentImage = instagramImages[imageIndex]
 
+  const randomizeImages = () => {
+    const newRandomSubset = getRandomSubset(allInstagramImages, 15)
+    setInstagramImages(newRandomSubset)
+    setPage([0, 0]) // Reset to first image
+  }
+
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection])
     setIsZoomed(false)
+    
+    // Randomize images every 10 navigation actions
+    if (Math.abs(page + newDirection) % 10 === 0) {
+      randomizeImages()
+    }
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -45,7 +69,7 @@ export default function InstagramGesturesCarousel() {
     setTouchStart({
       x: touch.clientX,
       y: touch.clientY,
-      time: Date.now(),
+      time: performance.now(),
     })
   }
 
@@ -56,7 +80,7 @@ export default function InstagramGesturesCarousel() {
     setTouchEnd({
       x: touch.clientX,
       y: touch.clientY,
-      time: Date.now(),
+      time: performance.now(),
     })
     setIsDragging(true)
   }
@@ -105,7 +129,7 @@ export default function InstagramGesturesCarousel() {
       try {
         await navigator.share({
           title: 'ELEVA CONSULTING - Instagram',
-          text: `Mira esta imagen de @ferf.coach`,
+          text: `Mira esta imagen de coaching`,
           url: `https://www.instagram.com/ferf.coach/`,
         })
       } catch (err) {
@@ -117,7 +141,7 @@ export default function InstagramGesturesCarousel() {
   }
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" data-testid="instagram-carousel">
       {/* Mobile Touch Carousel */}
       <div className="block sm:hidden">
         <div
@@ -147,13 +171,13 @@ export default function InstagramGesturesCarousel() {
                 style={{ touchAction: 'none' }}
               >
                 <Image
-                  src={`/insta-${currentImage}.png`}
-                  alt={`Post de Instagram @ferf.coach - ${currentImage}`}
+                  src={getImagePath(currentImage)}
+                  alt={`Post de Instagram - ${currentImage}`}
                   fill
                   className="object-cover select-none"
                   draggable={false}
                   style={{
-                    filter: currentImage === 5 ? 'none' : (isDragging ? 'brightness(0.8) grayscale(100%)' : 'brightness(1) grayscale(100%)'),
+                    filter: (currentImage === 5 || currentImage === 20) ? 'none' : (isDragging ? 'brightness(0.8) grayscale(100%)' : 'brightness(1) grayscale(100%)'),
                     cursor: isZoomed ? 'zoom-out' : 'zoom-in',
                   }}
                 />
@@ -224,35 +248,7 @@ export default function InstagramGesturesCarousel() {
         </div>
 
         {/* Action buttons */}
-        <div className="flex items-center justify-between mt-4">
-          <a
-            href="https://www.instagram.com/ferf.coach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 group"
-          >
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
-              style={{
-                background: 'rgba(167,139,250,0.08)',
-                border: '1px solid rgba(167,139,250,0.25)',
-              }}
-            >
-              <Instagram size={14} style={{ color: 'var(--gold-primary)' }} />
-            </div>
-            <div>
-              <p
-                className="text-xs font-semibold group-hover:text-purple-400 transition-colors"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                @ferf.coach
-              </p>
-              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                Instagram
-              </p>
-            </div>
-          </a>
-
+        <div className="flex items-center justify-end mt-4">
           <div className="flex gap-2">
             <button
               onClick={() => setSelectedImage(currentImage)}
@@ -260,6 +256,13 @@ export default function InstagramGesturesCarousel() {
               aria-label="Ver imagen completa"
             >
               <ZoomIn size={14} />
+            </button>
+            <button
+              onClick={randomizeImages}
+              className="min-w-[44px] min-h-[44px] p-2 rounded-full bg-black/50 text-white flex items-center justify-center"
+              aria-label="Randomizar imágenes"
+            >
+              ↻
             </button>
             <button
               onClick={shareImage}
@@ -287,19 +290,19 @@ export default function InstagramGesturesCarousel() {
               onClick={() => setSelectedImage(postNum)}
             >
               <Image
-                src={`/insta-${postNum}.png`}
-                alt={`Post de Instagram @ferf.coach - ${postNum}`}
+                src={getImagePath(postNum)}
+                alt={`Post de Instagram - ${postNum}`}
                 fill
                 className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
                 style={{
-                  filter: postNum === 5 ? 'none' : 'grayscale(100%)',
+                  filter: (postNum === 5 || postNum === 20) ? 'none' : 'grayscale(100%)',
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.filter = 'none'
                   e.currentTarget.style.transform = 'scale(1.05)'
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.filter = postNum === 5 ? 'none' : 'grayscale(100%)'
+                  e.currentTarget.style.filter = (postNum === 5 || postNum === 20) ? 'none' : 'grayscale(100%)'
                   e.currentTarget.style.transform = 'scale(1)'
                 }}
               />
@@ -312,12 +315,11 @@ export default function InstagramGesturesCarousel() {
           ))}
         </div>
 
-        <div className="flex items-center justify-center mt-6">
-          <a
-            href="https://www.instagram.com/ferf.coach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 group"
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <button
+            onClick={randomizeImages}
+            className="flex items-center gap-2 group"
+            aria-label="Randomizar imágenes"
           >
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-105"
@@ -326,20 +328,20 @@ export default function InstagramGesturesCarousel() {
                 border: '1px solid rgba(167,139,250,0.25)',
               }}
             >
-              <Instagram size={16} style={{ color: 'var(--gold-primary)' }} />
+              <span style={{ color: 'var(--gold-primary)' }}>↻</span>
             </div>
             <div>
               <p
                 className="text-sm font-semibold group-hover:text-purple-400 transition-colors"
                 style={{ color: 'var(--text-primary)' }}
               >
-                @ferf.coach
+                Randomizar
               </p>
               <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                Instagram
+                Nuevas imágenes
               </p>
             </div>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -369,13 +371,13 @@ export default function InstagramGesturesCarousel() {
               </button>
 
               <Image
-                src={`/insta-${selectedImage}.png`}
-                alt={`Post de Instagram @ferf.coach - ${selectedImage}`}
+                src={getImagePath(selectedImage)}
+                alt={`Post de Instagram - ${selectedImage}`}
                 fill
                 className="object-contain"
                 draggable={false}
                 style={{
-                  filter: selectedImage === 5 ? 'none' : 'grayscale(100%)'
+                  filter: (selectedImage === 5 || selectedImage === 20) ? 'none' : 'grayscale(100%)'
                 }}
               />
             </motion.div>
