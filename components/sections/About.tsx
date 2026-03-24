@@ -140,13 +140,17 @@ export default function About() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-6 sm:mb-8">
-              {t.about.intro}
-            </p>
+            <div className="lead-text mb-6 sm:mb-8 space-y-4">
+              {t.about.intro.split('\n\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
 
-            <p className="lead-text mb-12">
-              {t.about.approach}
-            </p>
+            {t.about.approach && (
+              <p className="lead-text mb-12">
+                {t.about.approach}
+              </p>
+            )}
 
             <h3 className="text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
               <span className="text-gradient">{t.about.certificaciones}</span>

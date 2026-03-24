@@ -69,10 +69,15 @@ export default function AmbientParticles() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => setReady(true));
+    // Defer particle initialization to improve initial load
+    const timer = setTimeout(() => {
+      setIsMobile(window.innerWidth < 768);
+      initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      }).then(() => setReady(true));
+    }, 1000);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   if (!ready) return null;

@@ -4,7 +4,13 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
-import CoachingWordsBackground from "@/components/CoachingWordsBackground";
+import dynamic from "next/dynamic";
+
+// Lazy load CoachingWordsBackground for better initial load
+const CoachingWordsBackground = dynamic(
+  () => import("@/components/CoachingWordsBackground"),
+  { ssr: false }
+);
 
 const rotatingPhrasesES = [
   "Mi equipo no toma decisiones sin mí",
@@ -148,19 +154,23 @@ export default function Hero() {
 
   useEffect(() => {
     setMounted(true);
-    const count = window.innerWidth < 768 ? 12 : 35;
-    setParticles(
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        delay: Math.random() * 4,
-        duration: Math.random() * 4 + 6,
-        opacity: 0.2 + Math.random() * 0.5,
-        drift: (Math.random() - 0.5) * 30,
-      }))
-    );
+    // Defer particle generation to improve initial load
+    const timer = setTimeout(() => {
+      const count = window.innerWidth < 768 ? 8 : 25;
+      setParticles(
+        Array.from({ length: count }, (_, i) => ({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 3 + 1,
+          delay: Math.random() * 4,
+          duration: Math.random() * 4 + 6,
+          opacity: 0.2 + Math.random() * 0.5,
+          drift: (Math.random() - 0.5) * 30,
+        }))
+      );
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
