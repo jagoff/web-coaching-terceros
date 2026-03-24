@@ -115,12 +115,7 @@ export default function About() {
           >
             {/* Badge */}
             <div className="mb-3 flex justify-start">
-              <span style={{
-                background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text"
-              }}>{t.about.badge}</span>
+              <span className="badge">{t.about.badge}</span>
             </div>
 
             {/* Instagram Carousel - Mobile First */}
