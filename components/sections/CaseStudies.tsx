@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { ArrowRight, TrendingUp, Users, Clock, CheckCircle2 } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
@@ -134,8 +134,12 @@ export default function CaseStudies() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [showAll, setShowAll] = useState(false);
 
   const handleScroll = (href: string) => scrollToElement(href);
+
+  // Show only first case study initially
+  const displayedCases = showAll ? caseStudies : [caseStudies[0]];
 
   return (
     <section id="casos-de-estudio" className="section section-surface section-gold-border-top" ref={ref}>
@@ -171,9 +175,9 @@ export default function CaseStudies() {
           />
         </motion.div>
 
-        {/* Case Studies Grid Layout - Side by Side */}
+        {/* Case Studies Grid Layout - Show only first initially */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 md:mb-16">
-          {caseStudies.map((caseStudy, i) => (
+          {displayedCases.map((caseStudy, i) => (
             <motion.div
               key={caseStudy.id}
               custom={i}
@@ -319,11 +323,29 @@ export default function CaseStudies() {
           ))}
         </div>
 
+        {/* Show More/Less Button */}
+        {!showAll && caseStudies.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center mb-12 md:mb-16"
+          >
+            <button
+              className="btn-secondary"
+              onClick={() => setShowAll(true)}
+            >
+              Ver más casos de estudio
+              <ArrowRight size={16} className="inline ml-2" />
+            </button>
+          </motion.div>
+        )}
+
         {/* Footer CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: showAll ? 0.9 : 0.7 }}
           className="text-center"
         >
           <p className="lead-text max-w-2xl mx-auto mb-8" style={{ color: "var(--text-secondary)" }}>
