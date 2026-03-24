@@ -118,8 +118,12 @@ export default function Navbar() {
                 <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               <button
-                className="btn-primary"
-                style={{ padding: "0.875rem 1.75rem", fontSize: "0.875rem" }}
+                className={`btn-primary ${language === 'en' ? 'text-white' : ''}`}
+                style={{ 
+                  padding: "0.875rem 1.75rem", 
+                  fontSize: "0.875rem",
+                  color: language === 'en' ? 'white !important' : undefined
+                }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
@@ -232,7 +236,10 @@ export default function Navbar() {
             {/* Mobile CTA Button */}
             <div className="px-8 pb-6">
               <button
-                className="btn-primary w-full"
+                className={`btn-primary w-full ${language === 'en' ? 'text-white' : ''}`}
+                style={{ 
+                  color: language === 'en' ? 'white !important' : undefined
+                }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
