@@ -65,6 +65,8 @@
   /* --- Tipografía --- */
   --font-heading:    var(--font-playfair), Georgia, serif;
   --font-body:       var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-modern:     var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+  --font-roboto:     var(--font-roboto), system-ui, -apple-system, sans-serif;
 
   /* --- Transiciones --- */
   --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
@@ -261,7 +263,7 @@ p {
 
 .btn-primary {
   background: var(--cta-primary) !important;
-  color: #0C0A12 !important;
+  color: white !important;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
