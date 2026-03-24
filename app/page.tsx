@@ -12,7 +12,12 @@ import {
   CaseStudies,
 } from '@/components/PageSections'
 import dynamic from 'next/dynamic'
-import WhatsAppBooking from '@/components/WhatsAppBooking'
+
+// Dynamic import for WhatsAppBooking to prevent SSR issues
+const WhatsAppBooking = dynamic(() => import('@/components/WhatsAppBooking'), {
+  ssr: false,
+  loading: () => null // Don't show loading state
+})
 
 const About = dynamic(() => import('@/components/sections/About'), {
   ssr: false,
