@@ -134,7 +134,11 @@ export default function Pricing() {
               {/* Plan name */}
               <p
                 className="text-xs font-bold uppercase tracking-widest mb-5"
-                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+                style={{ 
+                  color: "var(--gold-primary)", 
+                  letterSpacing: "0.15em",
+                  fontSize: "0.875rem"
+                }}
               >
                 {plan.name}
               </p>
