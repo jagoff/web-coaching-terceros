@@ -16,14 +16,7 @@ import WhatsAppBooking from '@/components/WhatsAppBooking'
 
 const About = dynamic(() => import('@/components/sections/About'), {
   ssr: false,
-  loading: () => (
-    <section className="min-h-screen flex items-center justify-center">
-      <div className="animate-pulse text-center">
-        <div className="h-12 bg-gray-200 rounded w-64 mx-auto mb-4"></div>
-        <div className="h-6 bg-gray-200 rounded w-96 mx-auto"></div>
-      </div>
-    </section>
-  )
+  loading: () => <div>Loading...</div>
 })
 
 export default function Home() {
