@@ -267,7 +267,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'a transformar',
       title3: 'organizaciones.',
       intro:
-        'Soy Fernando. Más de 20 años en tecnología — desde infraestructura y operaciones hasta liderazgo estratégico y transformación cultural. Pasé por todos los roles: técnico, sysadmin, CIO, Scrum Master, Product Owner, Director de Operaciones. Lideré equipos en empresas de +1000 personas y acompañé startups a escalar sin perder su identidad. Hoy gestiono infraestructura cloud en Avature, co-fundé Nodok.AI, y llevo 11 años como consultor ágil independiente. No te doy frameworks de moda — te acompaño a construir equipos que funcionen sin vos encima, procesos que escalen, y una cultura donde la gente quiera quedarse.',
+        'Soy Fernando. Más de 20 años en tecnología — desde **infraestructura** y **operaciones** hasta **liderazgo estratégico** y **transformación cultural**. Pasé por todos los roles: **técnico**, **sysadmin**, **CIO**, **Scrum Master**, **Product Owner**, **Director de Operaciones**. Lideré equipos en empresas de +1000 personas y acompañé startups a **escalar sin perder su identidad**. Hoy gestiono **infraestructura cloud** en Avature, co-fundé **Nodok.AI**, y llevo 11 años como **consultor ágil independiente**. No te doy frameworks de moda — te acompaño a construir equipos que **funcionen sin vos encima**, procesos que **escalen**, y una cultura donde la **gente quiera quedarse**.',
       approach: '',
       certificaciones: 'Certificaciones internacionales comprobables',
       stats: {

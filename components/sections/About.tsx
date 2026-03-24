@@ -7,6 +7,11 @@ import InstagramCarousel from '../experimental/InstagramCarousel'
 import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 
+// Simple markdown processor for bold text
+const processBoldText = (text: string): string => {
+  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+}
+
 const slideReveal: Variants = {
   hidden: (dir: number) => ({ opacity: 0, x: dir, filter: 'blur(6px)' }),
   visible: {
@@ -141,13 +146,17 @@ export default function About() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-6 sm:mb-8" style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--text-body)',
-              fontWeight: 400,
-              lineHeight: '1.6',
-              color: 'var(--text-secondary)'
-            }}>{t.about.intro}</p>
+            <div 
+              className="lead-text mb-6 sm:mb-8" 
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--text-body)',
+                fontWeight: 400,
+                lineHeight: '1.6',
+                color: 'var(--text-secondary)'
+              }}
+              dangerouslySetInnerHTML={{ __html: processBoldText(t.about.intro) }}
+            />
 
             <p className="lead-text mb-12" style={{
               fontFamily: 'var(--font-body)',
