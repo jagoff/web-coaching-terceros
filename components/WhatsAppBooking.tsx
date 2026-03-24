@@ -12,13 +12,7 @@ export default function WhatsAppBooking() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-6 py-4 rounded-full shadow-lg transition-all hover:scale-105"
-      style={{
-        backgroundColor: '#25D366',
-        color: 'white',
-        fontWeight: '600',
-        fontSize: '16px',
-      }}
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-6 py-4 rounded-full shadow-lg transition-all hover:scale-105 whatsapp-button"
     >
       <MessageCircle size={24} />
       <span className="hidden sm:inline">Agendá por WhatsApp</span>
