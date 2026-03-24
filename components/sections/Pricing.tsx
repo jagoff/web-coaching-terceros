@@ -135,9 +135,12 @@ export default function Pricing() {
               <p
                 className="text-xs font-bold uppercase tracking-widest mb-5"
                 style={{ 
-                  color: "var(--gold-primary)", 
                   letterSpacing: "0.15em",
-                  fontSize: "0.875rem"
+                  fontSize: "0.875rem",
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
                 }}
               >
                 {plan.name}

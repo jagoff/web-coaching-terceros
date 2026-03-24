@@ -151,7 +151,11 @@ export default function Services() {
                   className="heading-md mb-6"
                   style={{ 
                     fontFamily: "var(--font-heading)",
-                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)"
+                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)",
+                    background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
                   }}
                 >
                   {service.title}
