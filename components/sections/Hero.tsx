@@ -272,13 +272,25 @@ export default function Hero() {
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
             <motion.span variants={revealUp} className="block">
-              {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
+              {language === 'es' ? (
+                <>
+                  <span style={{ textDecoration: 'underline' }}>Transformá</span> tu equipo.
+                </>
+              ) : (
+                <>
+                  <span style={{ textDecoration: 'underline' }}>Transform</span> your team.
+                </>
+              )}
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
               {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
-              {language === 'es' ? 'Escalá sin límites.' : 'Scale without limits.'}
+              {language === 'es' ? (
+                <>Escalá <span style={{ textDecoration: 'underline' }}>sin límites</span>.</>
+              ) : (
+                <>Scale <span style={{ textDecoration: 'underline' }}>without limits</span>.</>
+              )}
             </motion.span>
           </motion.h1>
 
