@@ -275,6 +275,16 @@ p {
   white-space: nowrap;
 }
 
+/* Ensure white text on mobile for btn-primary */
+@media (max-width: 639px) {
+  .btn-primary {
+    color: white !important;
+  }
+  .btn-primary * {
+    color: white !important;
+  }
+}
+
 .btn-primary:hover {
   background: var(--cta-hover) !important;
   transform: scale(1.025) translateY(-1px);
@@ -1387,6 +1397,41 @@ html.lenis, html.lenis body {
   .xl\:gap-12 { gap: 3rem; }
   .xl\:gap-24 { gap: 6rem; }
   .xl\:gap-28 { gap: 7rem; }
+}
+
+/* ---- Global Typography Scale Increase ---- */
+:root {
+  --scale-factor: 1.15;
+}
+
+/* Increase all text sizes by approximately 2px */
+html {
+  font-size: calc(1rem * var(--scale-factor));
+}
+
+/* Specific adjustments for different text elements */
+.text-xs { font-size: calc(0.75rem * var(--scale-factor)) !important; }
+.text-sm { font-size: calc(0.875rem * var(--scale-factor)) !important; }
+.text-base { font-size: calc(1rem * var(--scale-factor)) !important; }
+.text-lg { font-size: calc(1.125rem * var(--scale-factor)) !important; }
+.text-xl { font-size: calc(1.25rem * var(--scale-factor)) !important; }
+.text-2xl { font-size: calc(1.5rem * var(--scale-factor)) !important; }
+.text-3xl { font-size: calc(1.875rem * var(--scale-factor)) !important; }
+.text-4xl { font-size: calc(2.25rem * var(--scale-factor)) !important; }
+.text-5xl { font-size: calc(3rem * var(--scale-factor)) !important; }
+
+/* Badge font size */
+.badge {
+  font-size: calc(0.75rem * var(--scale-factor)) !important;
+}
+
+/* Button font sizes */
+.btn-primary {
+  font-size: calc(0.875rem * var(--scale-factor)) !important;
+}
+
+.btn-secondary {
+  font-size: calc(0.75rem * var(--scale-factor)) !important;
 }
 
 /* ---- Typography utilities ---- */
