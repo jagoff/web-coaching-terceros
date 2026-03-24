@@ -170,7 +170,12 @@ export default function MadurezEmpresarial() {
             <div className="text-center mb-12">
               <h1 className="heading-xl mb-6">
                 Resultados de tu
-                <span className="text-gradient"> Diagnóstico</span>
+                <span style={{
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}> Diagnóstico</span>
               </h1>
               <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-orange-500 mx-auto mb-8"></div>
             </div>

@@ -104,7 +104,15 @@ function SubtleCard({ title, description, delay }: { title: string; description:
       </motion.div>
       
       {/* Título */}
-      <h3 className="text-xl md:text-2xl font-light text-gray-300/80 mb-4">
+      <h3 
+        className="text-xl md:text-2xl font-light mb-4"
+        style={{
+          background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text"
+        }}
+      >
         {title}
       </h3>
       
