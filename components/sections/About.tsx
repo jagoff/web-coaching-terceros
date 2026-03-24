@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
+import { CheckCircle2, ExternalLink, Linkedin } from "lucide-react";
 import InstagramCarousel from "../experimental/InstagramCarousel";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";

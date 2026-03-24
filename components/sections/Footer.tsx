@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Instagram } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { FooterSuspense } from "@/components/ui/SuspenseWrapper";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -89,27 +89,7 @@ export default function Footer() {
               >
                 <Linkedin size={18} />
               </a>
-              <a
-                href="https://instagram.com/jago_ff"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
-                style={{
-                  background: "rgba(124,107,196,0.1)",
-                  color: "var(--gold-primary)",
-                  border: "1px solid var(--gold-border)"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(124,107,196,0.2)";
-                  e.currentTarget.style.transform = "scale(1.1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(124,107,196,0.1)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
-              >
-                <Instagram size={18} />
-              </a>
+
             </div>
           </div>
 

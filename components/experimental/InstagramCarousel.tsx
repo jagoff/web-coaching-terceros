@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
@@ -167,29 +167,6 @@ export default function InstagramCarousel() {
           <ChevronRight size={16} />
         </button>
 
-        {/* Instagram info - con links */}
-        <div className="flex items-center justify-end mt-4">
-          <a
-            href="https://www.instagram.com/ferf.coach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 group"
-          >
-            <div>
-              <p className="text-xs font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
-            </div>
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
-              style={{
-                background: "rgba(167,139,250,0.08)",
-                border: "1px solid rgba(167,139,250,0.25)",
-              }}
-            >
-              <Instagram size={14} style={{ color: "var(--gold-primary)" }} />
-            </div>
-          </a>
-        </div>
       </div>
 
       {/* Desktop Grid - Visible solo en desktop y tablet */}
@@ -224,30 +201,6 @@ export default function InstagramCarousel() {
               />
             </div>
           ))}
-        </div>
-        
-        {/* Instagram info para desktop - con link */}
-        <div className="flex items-center justify-center mt-6">
-          <a
-            href="https://www.instagram.com/ferf.coach/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 group"
-          >
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-105"
-              style={{
-                background: "rgba(167,139,250,0.08)",
-                border: "1px solid rgba(167,139,250,0.25)",
-              }}
-            >
-              <Instagram size={16} style={{ color: "var(--gold-primary)" }} />
-            </div>
-            <div>
-              <p className="text-sm font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
-            </div>
-          </a>
         </div>
       </div>
     </div>
