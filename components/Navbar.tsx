@@ -53,7 +53,16 @@ export default function Navbar() {
 
   const handleLinkClick = (href: string) => {
     setMobileOpen(false);
-    scrollToElement(href);
+    // For mobile, use native scroll to avoid Lenis issues
+    if (window.innerWidth < 1024) {
+      const el = document.querySelector(href);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    } else {
+      scrollToElement(href);
+    }
   };
 
   return (
@@ -118,11 +127,11 @@ export default function Navbar() {
                 <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               <button
-                className={`btn-primary ${language === 'en' ? 'text-white' : ''}`}
+                className="btn-primary"
                 style={{ 
                   padding: "0.875rem 1.75rem", 
                   fontSize: "0.875rem",
-                  color: language === 'en' ? 'white !important' : undefined
+                  color: "white !important"
                 }}
                 onClick={() => handleLinkClick("#contacto")}
               >
@@ -236,9 +245,9 @@ export default function Navbar() {
             {/* Mobile CTA Button */}
             <div className="px-8 pb-6">
               <button
-                className={`btn-primary w-full ${language === 'en' ? 'text-white' : ''}`}
+                className="btn-primary w-full"
                 style={{ 
-                  color: language === 'en' ? 'white !important' : undefined
+                  color: "white !important"
                 }}
                 onClick={() => handleLinkClick("#contacto")}
               >
