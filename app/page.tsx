@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Hero,
   About,
@@ -10,7 +8,6 @@ import {
   Pricing,
   FAQ,
   Contact,
-  CalBooking,
   Footer,
   CaseStudies,
 } from "@/components/PageSections";
