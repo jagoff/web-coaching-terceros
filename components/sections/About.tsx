@@ -120,7 +120,7 @@ export default function About() {
               style={{ 
                 display: 'block !important',
                 filter: 'brightness(1.1) contrast(1.1)',
-                opacity: 0.8
+                opacity: 1
               }}
             />
           </div>
@@ -136,7 +136,7 @@ export default function About() {
               style={{ 
                 display: 'block !important',
                 filter: 'brightness(1.1) contrast(1.1)',
-                opacity: 0.8
+                opacity: 1
               }}
             />
           </div>
