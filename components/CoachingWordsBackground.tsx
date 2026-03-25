@@ -71,7 +71,7 @@ export default function CoachingWordsBackground() {
               top: `${word.y}%`,
               fontSize: `${word.fontSize}rem`,
               opacity: word.opacity,
-              background: `linear-gradient(135deg, 
+              backgroundImage: `linear-gradient(135deg, 
                 rgba(124, 107, 196, ${word.opacity}) 0%, 
                 rgba(201, 123, 90, ${word.opacity * 0.8}) 50%,
                 rgba(124, 107, 196, ${word.opacity}) 100%)`,

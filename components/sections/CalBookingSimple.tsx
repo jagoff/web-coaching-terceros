@@ -121,7 +121,7 @@ export default function CalBookingSimple() {
               }}
             >
               <motion.p 
-                className="text-sm text-center"
+                className="text-lg text-center"
                 style={{ color: "var(--gold-primary)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

@@ -136,7 +136,7 @@ export default function CalBooking() {
               background: "rgba(124,107,196,0.1)",
               border: "1px solid rgba(124,107,196,0.2)",
             }}>
-              <p className="text-sm text-center" style={{ color: "var(--gold-primary)" }}>
+              <p className="text-lg text-center" style={{ color: "var(--gold-primary)" }}>
                 🎯 Solo <span className="font-bold">3 cupos disponibles</span> este mes para acompañamiento personalizado
               </p>
             </div>

@@ -251,7 +251,7 @@ export default function Contact() {
               background: "rgba(124,107,196,0.1)",
               border: "1px solid rgba(124,107,196,0.2)",
             }}>
-              <p className="text-center" style={{ fontSize: "0.875rem" }}>
+              <p className="text-center" style={{ fontSize: "1.125rem" }}>
                 🎯 Solo <span 
                   className="font-bold"
                   style={{

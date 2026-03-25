@@ -168,3 +168,4 @@ next-env.d.ts
 
 # Local development
 .local
+.env*.local

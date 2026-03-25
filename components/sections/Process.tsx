@@ -164,7 +164,7 @@ export default function Process() {
                       fontWeight: 400,
                       color: "var(--text-muted)", 
                       lineHeight: "2.0",
-                      fontSize: "20px"
+                      fontSize: "24px"
                     }}
                   >
                     {step.description}

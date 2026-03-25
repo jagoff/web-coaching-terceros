@@ -40,7 +40,7 @@ const caseStudies = [
       ]
     },
     intervention: {
-      title: "Intervención",
+      title: "Mientras",
       points: [
         "Implementación de Scrum real (no de manual)",
         "Definition of Done clara y medible",
@@ -75,7 +75,7 @@ const caseStudies = [
       ]
     },
     intervention: {
-      title: "Intervención",
+      title: "Mientras",
       points: [
         "Pair programming semanal cross-equipo",
         "Contrato de API compartido",
@@ -110,7 +110,7 @@ const caseStudies = [
       ]
     },
     intervention: {
-      title: "Intervención",
+      title: "Mientras",
       points: [
         "Implementación de OKRs company-wide",
         "Delegación efectiva con autonomía",
@@ -257,7 +257,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "var(--gold-primary)" }}
                     >
-                      INTERVENCIÓN
+                      MIENTRAS
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
