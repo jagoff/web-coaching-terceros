@@ -3,6 +3,7 @@ import { Playfair_Display, Inter, Space_Grotesk, Roboto } from "next/font/google
 import "./globals.css";
 import "../styles/scrollbar.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import ClientLayout from "@/components/ClientLayout";
 import JsonLdClient from "@/components/JsonLdClient";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
@@ -109,13 +110,15 @@ export default function RootLayout({
           Saltar al contenido principal
         </a>
         <LanguageProvider>
-          <ClientLayout>
-            <AnalyticsScripts />
-            <JsonLdClient />
-            <div id="main-content">
-              {children}
-            </div>
-          </ClientLayout>
+          <ThemeProvider>
+            <ClientLayout>
+              <AnalyticsScripts />
+              <JsonLdClient />
+              <div id="main-content">
+                {children}
+              </div>
+            </ClientLayout>
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>
