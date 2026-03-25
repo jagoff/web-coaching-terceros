@@ -281,6 +281,12 @@ export default function About() {
                 controls={true}
                 rel={false}
                 modestBranding={true}
+                showInfo={false}
+                allowFullscreen={false}
+                allowKeyboard={false}
+                showRelated={false}
+                enableCC={false}
+                enableAnnotations={false}
               />
             </motion.div>
           </motion.div>

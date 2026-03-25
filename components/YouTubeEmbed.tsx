@@ -24,6 +24,12 @@ interface YouTubeEmbedProps {
   controls?: boolean;
   rel?: boolean;
   modestBranding?: boolean;
+  showInfo?: boolean;
+  allowFullscreen?: boolean;
+  allowKeyboard?: boolean;
+  showRelated?: boolean;
+  enableCC?: boolean;
+  enableAnnotations?: boolean;
 }
 
 export default function YouTubeEmbed({
@@ -35,6 +41,12 @@ export default function YouTubeEmbed({
   controls = true,
   rel = false,
   modestBranding = true,
+  showInfo = false,
+  allowFullscreen = false,
+  allowKeyboard = false,
+  showRelated = false,
+  enableCC = false,
+  enableAnnotations = false,
 }: YouTubeEmbedProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -65,13 +77,16 @@ export default function YouTubeEmbed({
     autoplay: autoplay ? "1" : "0",
     mute: muted ? "1" : "0",
     controls: controls ? "1" : "0",
-    rel: rel ? "1" : "0",
+    rel: showRelated ? "1" : "0",
     modestbranding: modestBranding ? "1" : "0",
     playsinline: "1",
-    fs: "1",
-    cc_load_policy: "1",
-    iv_load_policy: "3",
+    fs: allowFullscreen ? "1" : "0",
+    cc_load_policy: enableCC ? "1" : "0",
+    iv_load_policy: enableAnnotations ? "1" : "3",
     autohide: "1",
+    showinfo: showInfo ? "1" : "0",
+    disablekb: allowKeyboard ? "0" : "1",
+    widget_referrer: typeof window !== 'undefined' ? window.location.origin : '',
   }).toString()}`;
 
   return (
@@ -109,8 +124,8 @@ export default function YouTubeEmbed({
             borderRadius: "0.75rem",
             boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
           }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+          allowFullScreen={allowFullscreen}
           loading="lazy"
         />
       )}
