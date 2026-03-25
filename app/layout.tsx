@@ -106,17 +106,12 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${spaceGrotesk.variable} ${roboto.variable} antialiased`}
         suppressHydrationWarning
       >
-        <a href="#main-content" className="skip-link">
-          Saltar al contenido principal
-        </a>
         <LanguageProvider>
           <ThemeProvider>
             <ClientLayout>
               <AnalyticsScripts />
               <JsonLdClient />
-              <div id="main-content">
-                {children}
-              </div>
+              {children}
             </ClientLayout>
           </ThemeProvider>
         </LanguageProvider>
