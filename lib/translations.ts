@@ -283,7 +283,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'para',
       title3: 'organizaciones que escalan',
       subtitle: 'Transformo equipos y culturas empresariales a través de coaching personalizado, metodologías ágiles y un enfoque human-centric.',
-      cta: 'Agenda tu sesión gratuita',
+      cta: 'Comenzar tu transformación',
       viewServices: 'Ver servicios',
     },
     
@@ -584,7 +584,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'for',
       title3: 'scaling organizations',
       subtitle: 'I transform teams and business cultures through personalized coaching, agile methodologies, and a human-centric approach.',
-      cta: 'Book your free session',
+      cta: 'Start your transformation',
       viewServices: 'View services',
     },
     
