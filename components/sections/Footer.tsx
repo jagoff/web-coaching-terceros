@@ -14,7 +14,7 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
   };
 
   return (
-    <a href={href} onClick={handleClick} className={className}>
+    <a href={href} onClick={handleClick} className={className} suppressHydrationWarning>
       {children}
     </a>
   );
@@ -168,7 +168,7 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            © 2024 ELEVA {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}. {t.footer.rights}
+            © 2026 ELEVA {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}. {t.footer.rights}
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>
