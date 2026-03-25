@@ -20,12 +20,12 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
 
   // Create fixed number of transforms for each depth level (outside of map)
-  const transformX1 = useTransform(springX, (value) => value * 1 * 15);
-  const transformY1 = useTransform(springY, (value) => value * 1 * 15);
-  const transformX2 = useTransform(springX, (value) => value * 2 * 15);
-  const transformY2 = useTransform(springY, (value) => value * 2 * 15);
-  const transformX3 = useTransform(springX, (value) => value * 3 * 15);
-  const transformY3 = useTransform(springY, (value) => value * 3 * 15);
+  const transformX1 = useTransform(springX, (value) => value * 1 * 8);
+  const transformY1 = useTransform(springY, (value) => value * 1 * 8);
+  const transformX2 = useTransform(springX, (value) => value * 2 * 8);
+  const transformY2 = useTransform(springY, (value) => value * 2 * 8);
+  const transformX3 = useTransform(springX, (value) => value * 3 * 8);
+  const transformY3 = useTransform(springY, (value) => value * 3 * 8);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -79,35 +79,24 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
           const { x: moveX, y: moveY } = getTransformForDepth(depth);
           
           return (
-          <motion.div
-            key={`${src}-${index}`}
-            className="relative rounded-lg overflow-hidden group cursor-pointer"
-            style={{
-              aspectRatio: "1/1",
-              border: "1px solid rgba(167,139,250,0.12)",
-              backgroundColor: "rgba(19,18,27,0.6)",
-            }}
-            whileHover={{ 
-              scale: 1.05,
-              borderColor: "rgba(167,139,250,0.3)",
-              backgroundColor: "rgba(19,18,27,0.8)",
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 300,
-              damping: 30,
-            }}
-          >
-            {/* Individual parallax layer for each image */}
             <motion.div
-              className="absolute inset-0"
+              key={`${src}-${index}`}
+              className="relative rounded-lg overflow-hidden group cursor-pointer"
               style={{
+                aspectRatio: "1/1",
+                border: "1px solid rgba(167,139,250,0.12)",
+                backgroundColor: "rgba(19,18,27,0.6)",
                 x: moveX,
                 y: moveY,
               }}
+              whileHover={{ 
+                scale: 1.05,
+                borderColor: "rgba(167,139,250,0.3)",
+                backgroundColor: "rgba(19,18,27,0.8)",
+              }}
               transition={{
                 type: "spring",
-                stiffness: 100,
+                stiffness: 300,
                 damping: 30,
               }}
             >
@@ -122,19 +111,18 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
                   transition: "filter 0.3s ease",
                 }}
               />
+              
+              {/* Hover overlay */}
+              <motion.div 
+                className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              >
+                <div className="text-white text-center">
+                  <div className="text-xs font-semibold">Image {index + 1}</div>
+                </div>
+              </motion.div>
             </motion.div>
-            
-            {/* Hover overlay */}
-            <motion.div 
-              className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-            >
-              <div className="text-white text-center">
-                <div className="text-xs font-semibold">Image {index + 1}</div>
-              </div>
-            </motion.div>
-          </motion.div>
           );
         })}
       </div>
