@@ -77,16 +77,20 @@ export default function YouTubeEmbed({
     autoplay: autoplay ? "1" : "0",
     mute: muted ? "1" : "0",
     controls: "0",
-    rel: showRelated ? "1" : "0",
-    modestbranding: modestBranding ? "1" : "0",
+    rel: "0",
+    modestbranding: "1",
     playsinline: "1",
-    fs: allowFullscreen ? "1" : "0",
-    cc_load_policy: enableCC ? "1" : "0",
-    iv_load_policy: enableAnnotations ? "1" : "3",
+    fs: "0",
+    cc_load_policy: "0",
+    iv_load_policy: "3",
     autohide: "1",
-    showinfo: showInfo ? "1" : "0",
-    disablekb: allowKeyboard ? "0" : "1",
+    showinfo: "0",
+    disablekb: "1",
     widget_referrer: typeof window !== 'undefined' ? window.location.origin : '',
+    start: "0",
+    end: "",
+    loop: "0",
+    playlist: cleanVideoId,
   }).toString()}`;
 
   return (
@@ -112,22 +116,51 @@ export default function YouTubeEmbed({
 
       {/* YouTube iframe */}
       {isLoaded && (
-        <motion.iframe
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          src={embedUrl}
-          title={title}
-          className="w-full h-full rounded-lg shadow-2xl"
-          style={{
-            border: "none",
-            borderRadius: "0.75rem",
-            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-          }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-          allowFullScreen={allowFullscreen}
-          loading="lazy"
-        />
+        <motion.div className="relative w-full h-full rounded-lg overflow-hidden">
+          <motion.iframe
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            src={embedUrl}
+            title={title}
+            className="w-full h-full rounded-lg shadow-2xl"
+            style={{
+              border: "none",
+              borderRadius: "0.75rem",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+            }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+            allowFullScreen={false}
+            loading="lazy"
+          />
+          
+          {/* Overlay to hide bottom controls */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 pointer-events-none"
+            style={{
+              height: "60px",
+              background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+            }}
+          />
+          
+          {/* Overlay to hide top controls */}
+          <div 
+            className="absolute top-0 left-0 right-0 pointer-events-none"
+            style={{
+              height: "40px",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)",
+            }}
+          />
+          
+          {/* Side overlays to hide side buttons */}
+          <div 
+            className="absolute top-0 right-0 bottom-0 pointer-events-none"
+            style={{
+              width: "50px",
+              background: "linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 100%)",
+            }}
+          />
+        </motion.div>
       )}
 
       {/* Decorative frame */}
