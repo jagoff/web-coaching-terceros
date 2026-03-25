@@ -252,7 +252,7 @@ export default function Contact() {
               border: "1px solid rgba(124,107,196,0.2)",
             }}>
               <p className="text-center font-bold" style={{ 
-                  fontSize: "1.125rem",
+                  fontSize: "1.25rem", /* Aumentado de 1.125rem a 1.25rem (+2 puntos aprox) */
                   background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 50%, #7C6BC4 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -266,7 +266,7 @@ export default function Contact() {
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text"
                   }}
-                >3 cupos disponibles</span> este mes para acompañamiento personalizado
+                >2 cupos disponibles</span> este mes para acompañamiento personalizado
               </p>
             </div>
 
