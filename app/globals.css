@@ -365,6 +365,8 @@ nav .btn-primary {
   color: white !important;
   border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow: 0 0 16px var(--cta-glow) !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.8rem !important;
 }
 
 /* Prevent inline style overrides */
