@@ -200,7 +200,7 @@ export default function Testimonials() {
                 aria-label="Previous testimonial"
                 suppressHydrationWarning
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={24} suppressHydrationWarning />
               </button>
 
               {/* Dots Indicator */}
@@ -226,7 +226,7 @@ export default function Testimonials() {
                 aria-label="Next testimonial"
                 suppressHydrationWarning
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={24} suppressHydrationWarning />
               </button>
             </div>
           </div>
