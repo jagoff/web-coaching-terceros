@@ -116,48 +116,53 @@ export default function YouTubeEmbed({
 
       {/* YouTube iframe */}
       {isLoaded && (
-        <motion.div className="relative w-full h-full rounded-lg overflow-hidden">
-          <motion.iframe
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            src={embedUrl}
-            title={title}
-            className="w-full h-full rounded-lg shadow-2xl"
+        <motion.div 
+          className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            borderRadius: "0.75rem",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <motion.div
+            className="absolute inset-0 overflow-hidden"
             style={{
-              border: "none",
               borderRadius: "0.75rem",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+              clipPath: "inset(0 0 60px 0)",
             }}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-            allowFullScreen={false}
-            loading="lazy"
-          />
+          >
+            <motion.iframe
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              src={embedUrl}
+              title={title}
+              className="w-full h-full"
+              style={{
+                border: "none",
+                transform: "scale(1.1)",
+                marginTop: "-20px",
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+              allowFullScreen={false}
+              loading="lazy"
+            />
+          </motion.div>
           
-          {/* Overlay to hide bottom controls */}
+          {/* Dark overlay to hide any remaining controls */}
           <div 
             className="absolute bottom-0 left-0 right-0 pointer-events-none"
             style={{
-              height: "60px",
-              background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+              height: "80px",
+              background: "linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%)",
             }}
           />
           
-          {/* Overlay to hide top controls */}
+          {/* Top overlay */}
           <div 
             className="absolute top-0 left-0 right-0 pointer-events-none"
             style={{
-              height: "40px",
-              background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)",
-            }}
-          />
-          
-          {/* Side overlays to hide side buttons */}
-          <div 
-            className="absolute top-0 right-0 bottom-0 pointer-events-none"
-            style={{
-              width: "50px",
-              background: "linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 100%)",
+              height: "50px",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%)",
             }}
           />
         </motion.div>
