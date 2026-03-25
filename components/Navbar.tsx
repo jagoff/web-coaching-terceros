@@ -134,7 +134,7 @@ export default function Navbar() {
             <a
               href="#"
               className="flex items-center gap-2 group"
-              aria-label={`ELEVA COACHING — inicio`}
+              aria-label={`ELEVA CONSULTORIA — inicio`}
               onClick={(e) => {
                 e.preventDefault();
                 scrollToTop();

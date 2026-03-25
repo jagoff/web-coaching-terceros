@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import MadurezEmpresarialClient from "./MadurezEmpresarialClient";
 
 export const metadata: Metadata = {
-  title: "Test de Madurez Empresarial | ELEVA CONSULTING",
+  title: "Test de Madurez Empresarial | ELEVA CONSULTORIA",
   description:
     "Evalúa el nivel de madurez organizacional de tu empresa. Descubre áreas de mejora y obtén recomendaciones personalizadas para escalar tus operaciones y liderazgo.",
   keywords:

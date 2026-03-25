@@ -249,8 +249,8 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            <NoSSR fallback="2026 ELEVA COACHING. Todos los derechos reservados.">
-              2026 ELEVA {language === 'es' ? 'COACHING' : 'CONSULTING'}. {t.footer.rights}
+            <NoSSR fallback="2026 ELEVA CONSULTORIA. Todos los derechos reservados.">
+              2026 ELEVA {language === 'es' ? 'CONSULTORIA' : 'CONSULTORIA'}. {t.footer.rights}
             </NoSSR>
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>

@@ -35,7 +35,7 @@ export default function JsonLdClient() {
         {
           '@type': 'Organization',
           '@id': 'https://eleva-consultoria.com#organization',
-          name: 'ELEVA COACHING',
+          name: 'ELEVA CONSULTORIA',
           description: language === 'es'
             ? 'Transformando líderes y organizaciones a través del coaching estratégico y liderazgo ágil'
             : 'Transforming leaders and organizations through strategic coaching and agile leadership',
@@ -61,7 +61,7 @@ export default function JsonLdClient() {
         {
           '@type': 'WebSite',
           '@id': 'https://eleva-consultoria.com#website',
-          name: 'ELEVA COACHING',
+          name: 'ELEVA CONSULTORIA',
           description: language === 'es'
             ? 'Coaching de liderazgo y transformación organizacional para líderes tech y startups'
             : 'Leadership coaching and organizational transformation for tech leaders and startups',

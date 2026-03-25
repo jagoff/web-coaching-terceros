@@ -148,7 +148,7 @@ export default function GesturesCarousel() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'ELEVA CONSULTING',
+          title: 'ELEVA CONSULTORIA',
           text: 'Mira esta imagen',
           url: window.location.href
         });

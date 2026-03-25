@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import CaseStudies from "@/components/sections/CaseStudies";
 
 export const metadata: Metadata = {
-  title: "Casos de Estudio | ELEVA CONSULTING",
+  title: "Casos de Estudio | ELEVA CONSULTORIA",
   description:
     "Transformaciones reales de equipos y organizaciones. Descubrí cómo líderes tech y startups aplicaron nuestra metodología para escalar sus equipos y procesos.",
   keywords:

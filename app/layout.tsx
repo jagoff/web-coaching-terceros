@@ -27,7 +27,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eleva-consultoria.com"),
-  title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
+  title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
   description:
     "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
   keywords:
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Fernando Ferrari" }],
   creator: "Fernando Ferrari",
   openGraph: {
-    title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
+    title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
     description:
       "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
     url: "https://eleva-consultoria.com",
-    siteName: "ELEVA CONSULTING",
+    siteName: "ELEVA CONSULTORIA",
     locale: "es_AR",
     type: "website",
     images: [
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: "https://eleva-consultoria.com/img/fav.png",
         width: 512,
         height: 512,
-        alt: "ELEVA CONSULTING - Coaching & Consultoría Organizacional",
+        alt: "ELEVA CONSULTORIA - Coaching & Consultoría Organizacional",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
+    title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
     description:
       "Coaching y consultoría organizacional para líderes tech y startups.",
   },
