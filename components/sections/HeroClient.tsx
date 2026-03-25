@@ -390,7 +390,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               color: "#F8F7FF"
             }}
           >
-            {language === 'es' 
+            {renderLanguage === 'es' 
               ? 'Te acompaño a construir equipos que funcionen sin vos encima, procesos que escalen, y una cultura donde la gente quiera quedarse.'
               : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'
             }
@@ -424,7 +424,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             className="flex items-center justify-center mt-12 sm:mt-20 pb-16"
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
-              {language === 'es' 
+              {renderLanguage === 'es' 
                 ? 'Más de 20 años en tecnología · 11+ años de coaching'
                 : 'Over 20 years in technology · 11+ years of agile consulting'
               }
