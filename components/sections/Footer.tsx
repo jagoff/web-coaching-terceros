@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,6 +28,25 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
 
 export default function Footer() {
   const { t, language } = useLanguage();
+
+  useEffect(() => {
+    // Force remove any inline whiteSpace style added by browser extensions
+    const cleanupStyles = () => {
+      const links = document.querySelectorAll('.footer-link');
+      links.forEach(link => {
+        const element = link as HTMLElement;
+        if (element.style.whiteSpace) {
+          element.style.removeProperty('whiteSpace');
+        }
+      });
+    };
+
+    cleanupStyles();
+    // Also cleanup after a delay to catch late injections
+    const timeoutId = setTimeout(cleanupStyles, 100);
+    
+    return () => clearTimeout(timeoutId);
+  }, [language]);
 
   const navLinks = [
     { label: t.footer.navLinks.sobreMi, href: "#sobre-mi" },
