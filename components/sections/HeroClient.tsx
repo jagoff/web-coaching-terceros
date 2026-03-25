@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Language } from "@/lib/translations";
 import dynamic from "next/dynamic";
 
 // Dynamic imports for non-critical components
@@ -139,7 +140,7 @@ const ctaReveal: Variants = {
   },
 };
 
-export default function Hero() {
+export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Language }) {
   const { language } = useLanguage();
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
@@ -367,7 +368,7 @@ export default function Hero() {
                       fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
                     }}
                     dangerouslySetInnerHTML={{ 
-                      __html: `&ldquo;${rotatingPhrases[phraseIndex] || 'Cargando...'}&rdquo;` 
+                      __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (ssrLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisions</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
                     }}
                   />
                 </AnimatePresence>

@@ -1,5 +1,5 @@
+import HeroServer from "@/components/sections/HeroServer";
 import {
-  Hero,
   About,
   Services,
   Process,
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <Hero />
+      <HeroServer pathname="/" />
       <About />
       <Services />
       <Process />

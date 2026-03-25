@@ -1,5 +1,19 @@
+import HeroServer from "@/components/sections/HeroServer";
+import {
+  About,
+  Services,
+  Process,
+  Results,
+  Pricing,
+  FAQ,
+  Contact,
+  CalBooking,
+  Footer,
+  CaseStudies,
+} from "@/components/PageSections";
+import Testimonials from "@/components/sections/TestimonialsSimple";
+import WhatsAppBooking from "@/components/WhatsAppBooking";
 import { Metadata } from "next";
-import page from "../page";
 
 export const metadata: Metadata = {
   title: "ELEVA Coaching | Agile Leadership and Organizational Transformation",
@@ -16,4 +30,21 @@ export const viewport = {
   colorScheme: 'dark',
 }
 
-export default page;
+export default function EnglishPage() {
+  return (
+    <main>
+      <HeroServer pathname="/en" />
+      <About />
+      <Services />
+      <Process />
+      <Testimonials />
+      <Results />
+      <CaseStudies />
+      <Pricing />
+      <FAQ />
+      <Contact />
+      <Footer />
+      <WhatsAppBooking />
+    </main>
+  );
+}

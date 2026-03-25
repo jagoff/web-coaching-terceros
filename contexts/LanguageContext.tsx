@@ -13,10 +13,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
-    // Determine initial language during SSR
+    // Determine initial language during SSR/check
     if (typeof window === 'undefined') {
-      // Server-side: default to Spanish
-      return 'es';
+      // Server-side: check if we're in /en route (this will be properly set by Next.js)
+      return 'es'; // Default, will be updated by useEffect if needed
     }
     // Client-side: check URL
     const path = window.location.pathname;
