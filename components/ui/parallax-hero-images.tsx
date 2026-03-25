@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 
@@ -11,21 +11,19 @@ interface ParallaxHeroImagesProps {
 
 export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImagesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
   const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
   const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
 
-  // Create fixed number of transforms for each depth level (outside of map)
-  const transformX1 = useTransform(springX, (value) => value * 1 * 8);
-  const transformY1 = useTransform(springY, (value) => value * 1 * 8);
-  const transformX2 = useTransform(springX, (value) => value * 2 * 8);
-  const transformY2 = useTransform(springY, (value) => value * 2 * 8);
-  const transformX3 = useTransform(springX, (value) => value * 3 * 8);
-  const transformY3 = useTransform(springY, (value) => value * 3 * 8);
+  // Create transforms for each depth level
+  const transformX1 = useTransform(springX, (value) => value * 3);
+  const transformY1 = useTransform(springY, (value) => value * 3);
+  const transformX2 = useTransform(springX, (value) => value * 6);
+  const transformY2 = useTransform(springY, (value) => value * 6);
+  const transformX3 = useTransform(springX, (value) => value * 9);
+  const transformY3 = useTransform(springY, (value) => value * 9);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -44,11 +42,6 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   const handleMouseLeave = () => {
     mouseX.set(0);
     mouseY.set(0);
-    setIsHovered(false);
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
   };
 
   const getTransformForDepth = (depth: number) => {
@@ -69,59 +62,34 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
       ref={containerRef}
       className={`relative w-full h-full ${className}`}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Grid of images with individual parallax */}
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-2 w-full h-full">
+      {/* Simple grid layout - no nested positioning */}
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-1 w-full h-full p-1">
         {images.map((src, index) => {
           const depth = (index % 3) + 1;
           const { x: moveX, y: moveY } = getTransformForDepth(depth);
           
           return (
             <motion.div
-              key={`${src}-${index}`}
-              className="relative rounded-lg overflow-hidden group cursor-pointer"
+              key={index}
+              className="relative overflow-hidden bg-gray-800 rounded"
               style={{
-                aspectRatio: "1/1",
-                border: "1px solid rgba(167,139,250,0.12)",
-                backgroundColor: "rgba(19,18,27,0.6)",
                 x: moveX,
                 y: moveY,
               }}
-              whileHover={{ 
-                scale: 1.05,
-                borderColor: "rgba(167,139,250,0.3)",
-                backgroundColor: "rgba(19,18,27,0.8)",
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 30,
-              }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
-              <Image
-                src={src}
-                alt={`Gallery image ${index + 1}`}
-                fill
-                className="object-cover"
-                draggable={false}
-                style={{
-                  filter: isHovered ? "brightness(1.1)" : "brightness(1)",
-                  transition: "filter 0.3s ease",
-                }}
-              />
-              
-              {/* Hover overlay */}
-              <motion.div 
-                className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-              >
-                <div className="text-white text-center">
-                  <div className="text-xs font-semibold">Image {index + 1}</div>
-                </div>
-              </motion.div>
+              <div className="relative w-full h-full" style={{ paddingBottom: "100%" }}>
+                <Image
+                  src={src}
+                  alt={`Gallery image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  draggable={false}
+                />
+              </div>
             </motion.div>
           );
         })}
