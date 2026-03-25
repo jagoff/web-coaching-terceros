@@ -159,7 +159,7 @@ export default function Navbar() {
                   paddingBottom: "0.2rem"
                 }}
               >
-                {language === 'es' ? 'COACHING' : 'COACHING'}
+                {language === 'es' ? 'CONSULTING' : 'CONSULTING'}
               </span>
             </a>
 
@@ -273,7 +273,7 @@ export default function Navbar() {
                     paddingBottom: "0.2rem"
                   }}
                 >
-                  {language === 'es' ? 'COACHING' : 'COACHING'}
+                  {language === 'es' ? 'CONSULTING' : 'CONSULTING'}
                 </span>
               </div>
               <button
