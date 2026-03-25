@@ -32,12 +32,13 @@ export default function YouTubeThumbnail({
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Get highest quality thumbnail
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-  const fallbackUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  const mobileFallbackUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+  // Get highest quality thumbnail - try mobile-first
+  const mobileUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+  const hqUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const maxresUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   
-  const currentUrl = imageError ? mobileFallbackUrl : thumbnailUrl;
+  // Use mobile-first approach
+  const currentUrl = imageError ? hqUrl : mobileUrl;
 
   const handleClick = () => {
     setIsModalOpen(true);
@@ -48,11 +49,10 @@ export default function YouTubeThumbnail({
   };
 
   const handleImageError = () => {
-    if (!imageError && thumbnailUrl === currentUrl) {
+    if (!imageError && currentUrl === mobileUrl) {
       setImageError(true);
-    } else {
-      // Fallback to a solid color if all YouTube images fail
-      setImageError(true);
+    } else if (imageError && currentUrl === hqUrl) {
+      setImageError(true); // Keep error state to show fallback
     }
   };
 

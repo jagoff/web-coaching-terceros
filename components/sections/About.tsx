@@ -113,7 +113,7 @@ export default function About() {
         {/* TV Image - Mobile version with simple hover effect */}
         <div className="lg:hidden mb-6 flex justify-center">
           <div 
-            className="relative w-80 h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3"
+            className="relative w-64 h-64 sm:w-80 sm:h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3"
             style={{
               transformStyle: 'preserve-3d',
               perspective: '1000px'
@@ -125,6 +125,8 @@ export default function About() {
               width={320}
               height={320}
               className="w-full h-full object-contain"
+              priority={true}
+              sizes="(max-width: 640px) 256px, 320px"
             />
           </div>
         </div>

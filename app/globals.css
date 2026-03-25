@@ -19,19 +19,18 @@ html, body {
   touch-action: pan-y pan-x;
 }
 
-/* Prevent pull-to-refresh gestures */
-body {
+/* Remove position fixed that breaks mobile layout */
+/* body {
   position: fixed;
   width: 100%;
   height: 100%;
   overflow: auto;
-}
+} */
 
-/* iOS Safari specific */
+/* iOS Safari specific - simplified */
 @supports (-webkit-touch-callout: none) {
-  body {
-    position: -webkit-sticky;
-    position: sticky;
+  html {
+    -webkit-text-size-adjust: 100%;
   }
 }
 
