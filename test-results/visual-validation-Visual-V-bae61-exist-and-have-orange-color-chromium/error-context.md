@@ -1,0 +1,90 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e3]:
+    - generic [ref=e5]: Cargando...
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e10]: Testimonios
+        - heading "Resultados que" [level=2] [ref=e11]
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - blockquote [ref=e16]:
+            - paragraph [ref=e17]: "\"Lo que más me impactó fue que Fernando no llegó con soluciones pre-armadas. Primero escuchó, observó nuestras reuniones, y recién entonces dijo: 'Veo que el problema no es técnico, es de comunicación'. En dos semanas nuestras daily meetings pasaron de 45 minutos a 15. Los devs empezaron a hablar entre ellos. Fue un cambio evidente.\""
+          - generic [ref=e18]:
+            - generic [ref=e19]: VR
+            - generic [ref=e20]:
+              - heading "Valentin Rios" [level=4] [ref=e21]
+              - paragraph [ref=e22]: Software Engineer
+              - paragraph [ref=e23]: Recomendación LinkedIn
+          - generic [ref=e24]:
+            - img [ref=e25]
+            - img [ref=e27]
+            - img [ref=e29]
+            - img [ref=e31]
+            - img [ref=e33]
+        - generic [ref=e35]:
+          - button "Previous testimonial" [ref=e36]:
+            - img [ref=e37]
+          - generic [ref=e39]:
+            - button "Go to testimonial 1" [ref=e40]
+            - button "Go to testimonial 2" [ref=e41]
+            - button "Go to testimonial 3" [ref=e42]
+          - button "Next testimonial" [ref=e43]:
+            - img [ref=e44]
+    - contentinfo [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - heading "ELEVA" [level=3] [ref=e51]
+              - generic [ref=e52]: CONSULTORA
+            - paragraph [ref=e53]: Transformando líderes y organizaciones a través del coaching ágil y la consultoría estratégica.
+            - generic [ref=e54]:
+              - link [ref=e55] [cursor=pointer]:
+                - /url: https://linkedin.com/in/fernandorferrari
+                - img [ref=e56]
+              - link [ref=e60] [cursor=pointer]:
+                - /url: https://instagram.com/jago_ff
+                - img [ref=e61]
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - heading "Navegación" [level=3] [ref=e66]
+              - list [ref=e67]:
+                - listitem [ref=e68]:
+                  - link "Sobre mí" [ref=e69] [cursor=pointer]:
+                    - /url: "#sobre-mi"
+                - listitem [ref=e70]:
+                  - link "Servicios" [ref=e71] [cursor=pointer]:
+                    - /url: "#servicios"
+                - listitem [ref=e72]:
+                  - link "Testimonios" [ref=e73] [cursor=pointer]:
+                    - /url: "#testimonios"
+                - listitem [ref=e74]:
+                  - link "Precios" [ref=e75] [cursor=pointer]:
+                    - /url: "#precios"
+                - listitem [ref=e76]:
+                  - link "Preguntas Frecuentes" [ref=e77] [cursor=pointer]:
+                    - /url: "#faq"
+            - generic [ref=e78]:
+              - heading "Servicios" [level=3] [ref=e79]
+              - list [ref=e80]:
+                - listitem [ref=e81]:
+                  - link "Coaching de Liderazgo" [ref=e82] [cursor=pointer]:
+                    - /url: "#servicios"
+                - listitem [ref=e83]:
+                  - link "Consultoría Organizacional" [ref=e84] [cursor=pointer]:
+                    - /url: "#servicios"
+                - listitem [ref=e85]:
+                  - link "Sesión Gratuita" [ref=e86] [cursor=pointer]:
+                    - /url: "#contacto"
+                - listitem [ref=e87]:
+                  - link "Consultoría Continua" [ref=e88] [cursor=pointer]:
+                    - /url: "#precios"
+        - paragraph [ref=e90]: © 2026 ELEVA CONSULTORA. Todos los derechos reservados.
+    - link [ref=e91] [cursor=pointer]:
+      - /url: https://wa.me/5493425153999?text=Hola!%20Quiero%20agendar%20una%20sesi%C3%B3n%20gratuita%20de%20consultor%C3%ADa.%20%C2%BFQu%C3%A9%20fechas%20y%20horarios%20tienes%20disponibles%3F
+      - img [ref=e92]
+  - alert [ref=e94]
+```

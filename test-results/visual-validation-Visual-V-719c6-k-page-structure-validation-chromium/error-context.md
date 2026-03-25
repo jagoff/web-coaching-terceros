@@ -1,0 +1,127 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e3]:
+    - region "Sección principal" [ref=e4]:
+      - generic:
+        - generic: SINERGIA
+        - generic: EQUILIBRIO
+        - generic: CONEXIÓN
+        - generic: RESILIENCIA
+        - generic: RESILIENCIA
+        - generic: LEGADO
+        - generic: CLARIDAD
+        - generic: CONFIANZA
+        - generic: EQUILIBRIO
+        - generic: EVOLUCIÓN
+        - generic: FOCO
+        - generic: IMPACTO
+        - generic: VISIÓN
+        - generic: FOCO
+        - generic: CONCIENCIA
+        - generic: PROPÓSITO
+        - generic: VISIÓN
+        - generic: ESCALABILIDAD
+        - generic: FOCO
+        - generic: FLUJO
+      - generic [ref=e6]:
+        - heading "Transformá tu equipo. Liderá con propósito. Escalá sin límites." [level=1] [ref=e7]:
+          - generic [ref=e8]: Transformá tu equipo.
+          - generic [ref=e9]: Liderá con propósito.
+          - generic [ref=e10]: Escalá sin límites.
+        - generic [ref=e11]:
+          - paragraph [ref=e13]: ¿Te suena esto?
+          - paragraph [ref=e14]: “Mi equipo no toma decisiones sin mí”
+        - paragraph [ref=e15]: Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.
+        - generic [ref=e16]:
+          - button "Agendá tu sesión gratuita →" [ref=e17] [cursor=pointer]
+          - button "Conocé nuestro método ↓" [ref=e18] [cursor=pointer]
+        - paragraph [ref=e20]: Más de 20 años en tecnología · 11+ años de consultoría
+      - button "Desplazarse hacia abajo" [ref=e21] [cursor=pointer]
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e28]: Testimonios
+        - heading "Resultados que" [level=2] [ref=e29]
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - blockquote [ref=e34]:
+            - paragraph [ref=e35]: "\"Lo que más me impactó fue que Fernando no llegó con soluciones pre-armadas. Primero escuchó, observó nuestras reuniones, y recién entonces dijo: 'Veo que el problema no es técnico, es de comunicación'. En dos semanas nuestras daily meetings pasaron de 45 minutos a 15. Los devs empezaron a hablar entre ellos. Fue un cambio evidente.\""
+          - generic [ref=e36]:
+            - generic [ref=e37]: VR
+            - generic [ref=e38]:
+              - heading "Valentin Rios" [level=4] [ref=e39]
+              - paragraph [ref=e40]: Software Engineer
+              - paragraph [ref=e41]: Recomendación LinkedIn
+          - generic [ref=e42]:
+            - img [ref=e43]
+            - img [ref=e45]
+            - img [ref=e47]
+            - img [ref=e49]
+            - img [ref=e51]
+        - generic [ref=e53]:
+          - button "Previous testimonial" [ref=e54]:
+            - img [ref=e55]
+          - generic [ref=e57]:
+            - button "Go to testimonial 1" [ref=e58]
+            - button "Go to testimonial 2" [ref=e59]
+            - button "Go to testimonial 3" [ref=e60]
+          - button "Next testimonial" [ref=e61]:
+            - img [ref=e62]
+    - contentinfo [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - heading "ELEVA" [level=3] [ref=e69]
+              - generic [ref=e70]: CONSULTORA
+            - paragraph [ref=e71]: Transformando líderes y organizaciones a través del coaching ágil y la consultoría estratégica.
+            - generic [ref=e72]:
+              - link [ref=e73] [cursor=pointer]:
+                - /url: https://linkedin.com/in/fernandorferrari
+                - img [ref=e74]
+              - link [ref=e78] [cursor=pointer]:
+                - /url: https://instagram.com/jago_ff
+                - img [ref=e79]
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - heading "Navegación" [level=3] [ref=e84]
+              - list [ref=e85]:
+                - listitem [ref=e86]:
+                  - link "Sobre mí" [ref=e87] [cursor=pointer]:
+                    - /url: "#sobre-mi"
+                - listitem [ref=e88]:
+                  - link "Servicios" [ref=e89] [cursor=pointer]:
+                    - /url: "#servicios"
+                - listitem [ref=e90]:
+                  - link "Testimonios" [ref=e91] [cursor=pointer]:
+                    - /url: "#testimonios"
+                - listitem [ref=e92]:
+                  - link "Precios" [ref=e93] [cursor=pointer]:
+                    - /url: "#precios"
+                - listitem [ref=e94]:
+                  - link "Preguntas Frecuentes" [ref=e95] [cursor=pointer]:
+                    - /url: "#faq"
+            - generic [ref=e96]:
+              - heading "Servicios" [level=3] [ref=e97]
+              - list [ref=e98]:
+                - listitem [ref=e99]:
+                  - link "Coaching de Liderazgo" [ref=e100] [cursor=pointer]:
+                    - /url: "#servicios"
+                - listitem [ref=e101]:
+                  - link "Consultoría Organizacional" [ref=e102] [cursor=pointer]:
+                    - /url: "#servicios"
+                - listitem [ref=e103]:
+                  - link "Sesión Gratuita" [ref=e104] [cursor=pointer]:
+                    - /url: "#contacto"
+                - listitem [ref=e105]:
+                  - link "Consultoría Continua" [ref=e106] [cursor=pointer]:
+                    - /url: "#precios"
+        - paragraph [ref=e108]: © 2026 ELEVA CONSULTORA. Todos los derechos reservados.
+    - link [ref=e109] [cursor=pointer]:
+      - /url: https://wa.me/5493425153999?text=Hola!%20Quiero%20agendar%20una%20sesi%C3%B3n%20gratuita%20de%20consultor%C3%ADa.%20%C2%BFQu%C3%A9%20fechas%20y%20horarios%20tienes%20disponibles%3F
+      - img [ref=e110]
+  - button "Open Next.js Dev Tools" [ref=e117] [cursor=pointer]:
+    - img [ref=e118]
+  - alert [ref=e121]
+```

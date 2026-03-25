@@ -5,7 +5,16 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 
-const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
+const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11, 12, 13, 14, 10, 3, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33];
+
+const getImageExtension = (num: number): string => {
+  // JPEG images are 15-21
+  return num >= 15 && num <= 21 ? '.jpeg' : '.png';
+};
+
+const getImagePath = (num: number): string => {
+  return `/insta-${num}${getImageExtension(num)}`;
+};
 
 const shuffleArray = (array: number[]) => {
   const newArray = [...array];
@@ -147,7 +156,7 @@ export default function InstagramGesturesCarousel() {
                 style={{ touchAction: 'none' }}
               >
                 <Image
-                  src={`/insta-${currentImage}.png`}
+                  src={getImagePath(currentImage)}
                   alt={`Post de Instagram @ferf.coach - ${currentImage}`}
                   fill
                   className="object-cover select-none"
@@ -274,12 +283,13 @@ export default function InstagramGesturesCarousel() {
               onClick={() => setSelectedImage(postNum)}
             >
               <Image
-                src={`/insta-${postNum}.png`}
+                src={getImagePath(postNum)}
                 alt={`Post de Instagram @ferf.coach - ${postNum}`}
                 fill
                 className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
                 style={{ 
-                  filter: postNum === 5 ? "none" : "grayscale(100%)"
+                  filter: postNum === 5 ? "none" : "grayscale(100%)",
+                  objectFit: "cover"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.filter = "none";
@@ -349,7 +359,7 @@ export default function InstagramGesturesCarousel() {
               </button>
               
               <Image
-                src={`/insta-${selectedImage}.png`}
+                src={getImagePath(selectedImage)}
                 alt={`Post de Instagram @ferf.coach - ${selectedImage}`}
                 fill
                 className="object-contain"
