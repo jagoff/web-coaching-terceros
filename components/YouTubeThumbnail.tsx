@@ -32,9 +32,12 @@ export default function YouTubeThumbnail({
   
   // Simple reliable thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1`;
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('YouTube thumbnail clicked');
     setIsPlaying(true);
   };
 
@@ -52,20 +55,32 @@ export default function YouTubeThumbnail({
         aspectRatio: "16/9",
         minHeight: "200px"
       }}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsPlaying(true);
+        }
+      }}
     >
       {isPlaying ? (
         // Video iframe when playing
-        <iframe
-          src={embedUrl}
-          title={title}
-          className="w-full h-full rounded-lg shadow-2xl"
-          style={{
-            border: "none",
-            borderRadius: "0.75rem",
-          }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
+        <div className="w-full h-full rounded-lg overflow-hidden" style={{ borderRadius: "0.75rem" }}>
+          <iframe
+            src={embedUrl}
+            title={title}
+            className="w-full h-full"
+            style={{
+              border: "none",
+              borderRadius: "0.75rem",
+            }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            onLoad={() => console.log('YouTube iframe loaded')}
+          />
+        </div>
       ) : (
         // Thumbnail when not playing
         <>
