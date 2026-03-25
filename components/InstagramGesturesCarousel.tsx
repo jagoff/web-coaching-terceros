@@ -6,7 +6,12 @@ import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 
 // Use only confirmed unique images from img folder
-const baseInstagramImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
+const baseInstagramImages = [
+  // 12 images from /img/
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+  // 3 images from /public/ (using different numbering to avoid conflicts)
+  101, 102, 103
+];
 
 const getImageExtension = (num: number): string => {
   // JPEG images are 15-21
@@ -14,6 +19,11 @@ const getImageExtension = (num: number): string => {
 };
 
 const getImagePath = (num: number): string => {
+  if (num >= 101 && num <= 103) {
+    // Images from /public/ folder
+    return `/insta-${num - 100}.png`;
+  }
+  // Images from /img/ folder
   return `/img/insta-${num}${getImageExtension(num)}`;
 };
 
