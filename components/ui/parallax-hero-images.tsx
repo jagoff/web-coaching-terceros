@@ -60,11 +60,11 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full ${className}`}
+      className={`w-full h-full min-h-96 ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-2 w-full">
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-2 w-full h-full">
         {images.map((src, index) => {
           const depth = (index % 3) + 1;
           const { x: moveX, y: moveY } = getTransformForDepth(depth);
