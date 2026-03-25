@@ -195,10 +195,10 @@ export default function Navbar() {
                 className="btn-primary"
                 style={{ 
                   padding: "0.875rem 1.75rem", 
-                  fontSize: "0.75rem", /* Reduced from 0.875rem (-2 points) */
-                  background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%) !important",
-                  boxShadow: "none !important",
-                  border: "1px solid rgba(255, 255, 255, 0.2) !important"
+                  fontSize: "0.875rem",
+                  background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%)",
+                  boxShadow: "0 4px 14px 0 rgba(124, 107, 196, 0.39)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.setProperty('background', 'linear-gradient(135deg, #E67E22 0%, #FF6B35 30%, #7C6BC4 70%, #8E44AD 100%)', 'important');
@@ -208,7 +208,7 @@ export default function Navbar() {
                   e.currentTarget.style.setProperty('background', 'linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%)', 'important');
                   e.currentTarget.style.transform = "scale(1)";
                 }}
-                onClick={() => handleLinkClick("#contacto")}
+                onClick={() => handleLinkClick("/#contacto")}
               >
                 {t.nav.sesionGratuita}
               </button>
