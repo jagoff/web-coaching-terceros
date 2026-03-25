@@ -274,7 +274,7 @@ export const translations: Record<Language, Translations> = {
       metodo: '¡Tenes que vivirlo!',
       testimonios: 'Testimonios',
       precios: 'Precios',
-      sesionGratuita: 'Sesión gratuita',
+      sesionGratuita: 'Comenzar ahora',
       preguntasFrecuentes: 'Preguntas Frecuentes',
     },
     
@@ -575,7 +575,7 @@ export const translations: Record<Language, Translations> = {
       metodo: 'You have to experience it!',
       testimonios: 'Testimonials',
       precios: 'Pricing',
-      sesionGratuita: 'Free session',
+      sesionGratuita: 'Get Started Now',
       preguntasFrecuentes: 'FAQ',
     },
     
