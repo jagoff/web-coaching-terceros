@@ -113,30 +113,49 @@ export default function About() {
         {/* TV Image - Mobile version with simple hover effect */}
         <div className="lg:hidden mb-6 flex justify-center">
           <div 
-            className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3"
+            className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3 bg-gray-800 flex items-center justify-center"
             style={{
               transformStyle: 'preserve-3d',
               perspective: '1000px'
             }}
           >
-            <img 
-              src="/img/tv.png?v=2" 
-              alt="TV Icon" 
-              className="w-full h-full object-contain"
-              style={{ 
-                display: 'block !important',
-                width: '100% !important',
-                height: '100% !important',
-                objectFit: 'contain',
-                minHeight: '200px'
-              }}
-              onLoad={() => console.log('TV Image loaded successfully')}
-              onError={(e) => {
-                console.error('TV Image failed to load', e);
-                // Try fallback
-                e.currentTarget.src = "/img/tv.png";
-              }}
-            />
+            {/* Fallback background */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white text-sm">TV Loading...</span>
+            </div>
+            
+            {/* Try multiple approaches */}
+            <picture>
+              <source srcSet="/img/tv.png" type="image/png" />
+              <source srcSet="/img/tv.png?v=3" type="image/png" />
+              <img 
+                src="/img/tv.png?v=3" 
+                alt="TV Icon" 
+                className="w-full h-full object-contain relative z-10"
+                style={{ 
+                  display: 'block !important',
+                  width: '100% !important',
+                  height: '100% !important',
+                  objectFit: 'contain',
+                  minHeight: '200px'
+                }}
+                onLoad={(e) => {
+                  console.log('TV Image loaded successfully', e.currentTarget.src);
+                  // Hide loading text
+                  const parent = e.currentTarget.parentElement?.parentElement;
+                  if (parent) {
+                    const loadingText = parent.querySelector('span');
+                    if (loadingText) loadingText.style.display = 'none';
+                  }
+                }}
+                onError={(e) => {
+                  console.error('TV Image failed to load', e.currentTarget.src);
+                  // Try absolute URL as last resort
+                  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coaching-landing-cyan.vercel.app';
+                  e.currentTarget.src = `${baseUrl}/img/tv.png`;
+                }}
+              />
+            </picture>
           </div>
         </div>
 
