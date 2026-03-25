@@ -121,8 +121,13 @@ export default function CalBookingSimple() {
               }}
             >
               <motion.p 
-                className="text-sm text-center"
-                style={{ color: "var(--gold-primary)" }}
+                className="text-lg text-center font-bold"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 50%, #7C6BC4 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ 

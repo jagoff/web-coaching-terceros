@@ -12,7 +12,7 @@ export default function InteractiveServiceCards() {
       id: 1,
       icon: Users,
       title: "Leadership Coaching",
-      description: "Potencia tu impacto como líder",
+      description: "<span style='background: linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;'>Potencia tu impacto como líder</span>",
       details: "Sesiones 1:1 personalizadas para desarrollar habilidades de liderazgo situacional, comunicación efectiva e inteligencia emocional.",
       color: "from-purple-500 to-purple-700"
     },
@@ -82,7 +82,7 @@ export default function InteractiveServiceCards() {
                       <service.icon size={32} className="text-white" />
                     </motion.div>
                     <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                    <p className="text-white/80">{service.description}</p>
+                    <p className="text-white/80" dangerouslySetInnerHTML={{ __html: service.description }} />
                   </div>
                   
                   <motion.div

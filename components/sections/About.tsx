@@ -40,6 +40,7 @@ const credentials = [
   "Management 3.0 Metrics & OKR's",
   "unFIX Foundation Workshop",
   "Energizing People",
+  "Fundamentals Online Workshop",
 ];
 
 
@@ -101,7 +102,10 @@ export default function About() {
       id="sobre-mi"
       className="section section-surface section-gold-border-top"
       ref={ref}
-      style={{ paddingBottom: "clamp(2rem, 4vw, 3rem)" }}
+      style={{ 
+        paddingTop: "clamp(1rem, 2vw, 2rem)",
+        paddingBottom: "clamp(2rem, 4vw, 3rem)"
+      }}
     >
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
@@ -140,9 +144,10 @@ export default function About() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <p className="lead-text mb-6 sm:mb-8">
-              {t.about.intro}
-            </p>
+            <div 
+              className="lead-text mb-6 sm:mb-8"
+              dangerouslySetInnerHTML={{ __html: t.about.intro }}
+            />
 
             <p className="lead-text mb-12">
               {t.about.approach}

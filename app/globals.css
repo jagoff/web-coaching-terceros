@@ -42,7 +42,7 @@
   /* --- Texto --- */
   --text-primary:    #EDE8F0;
   --text-secondary:  #CEC8D6;
-  --text-muted:      #8A8494;
+  --text-muted:      #A8A8B3; /* Increased from #8A8494 for better contrast */
   --text-disabled:   #4C4858;
 
   /* --- Gradientes --- */
@@ -65,6 +65,8 @@
   /* --- Tipografía --- */
   --font-heading:    var(--font-playfair), Georgia, serif;
   --font-body:       var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-modern:     var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+  --font-roboto:     var(--font-roboto), system-ui, -apple-system, sans-serif;
 
   /* --- Transiciones --- */
   --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,9 +239,9 @@ p {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.25rem;
+  padding: 0.875rem 1.75rem;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.625rem;
+  font-size: 1rem; /* Increased from 0.8125rem to meet 16px WCAG minimum */
   font-weight: 900;
   border-radius: var(--radius-pill);
   transition: all var(--transition-base);
@@ -252,16 +254,16 @@ p {
 @media (min-width: 640px) {
   .btn-primary,
   .btn-secondary {
-    padding: 1.125rem 1.75rem;
+    padding: 1.125rem 2rem;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 0.625rem;
+    font-size: 1rem; /* Increased from 0.8125rem to meet 16px WCAG minimum */
     font-weight: 900;
   }
 }
 
 .btn-primary {
   background: var(--cta-primary) !important;
-  color: #0C0A12 !important;
+  color: white !important;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -271,6 +273,31 @@ p {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+}
+
+/* Enhanced focus states for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--gold-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(255, 107, 53, 0.3);
+}
+
+/* Ensure white text on mobile for btn-primary */
+@media (max-width: 639px) {
+  .btn-primary {
+    color: white !important;
+  }
+  .btn-primary * {
+    color: white !important;
+  }
 }
 
 .btn-primary:hover {
@@ -311,7 +338,7 @@ p {
   background: transparent;
   color: var(--text-primary);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.625rem;
+  font-size: 0.8125rem; /* Increased from 0.625rem */
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -349,7 +376,7 @@ p {
   border-radius: var(--radius-pill);
   color: var(--gold-primary);
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 1rem; /* Increased from 0.9375rem to meet 16px WCAG minimum */
   font-weight: 700;
   letter-spacing: 0.10em;
   text-transform: uppercase;
@@ -489,7 +516,7 @@ p {
 
 .stat-label {
   font-family: var(--font-body);
-  font-size: 0.8125rem;
+  font-size: 1rem; /* Increased from 0.8125rem */
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: 0.08em;
@@ -508,7 +535,7 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius-md);
   color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: 1.0625rem; /* Increased from 0.875rem */
   font-weight: 500;
   transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
 }
@@ -536,7 +563,7 @@ p {
 }
 
 .form-label {
-  font-size: 0.875rem;
+  font-size: 1.0625rem; /* Increased from 0.875rem */
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.02em;
@@ -563,6 +590,8 @@ p {
 }
 
 .form-input:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
   border-color: var(--gold-primary);
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 0 0 3px rgba(124, 107, 196, 0.12);
@@ -786,8 +815,7 @@ html.lenis, html.lenis body {
   right: 0;
   z-index: 100;
   padding: 1.5rem 0;
-  transition: background var(--transition-base), backdrop-filter var(--transition-base), padding var(--transition-base), border-color var(--transition-base);
-  border-bottom: 1px solid transparent;
+  transition: background var(--transition-base), backdrop-filter var(--transition-base), padding var(--transition-base);
 }
 
 .navbar.scrolled {
@@ -795,13 +823,12 @@ html.lenis, html.lenis body {
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   padding: 1rem 0;
-  border-bottom-color: var(--dark-border);
 }
 
 .nav-link {
   position: relative;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.875rem; /* Reduced from 1rem (-2 points) */
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: color var(--transition-base);
@@ -955,7 +982,7 @@ html.lenis, html.lenis body {
 }
 
 .price-period {
-  font-size: 0.9375rem;
+  font-size: 1.125rem; /* Increased from 0.9375rem */
   color: var(--text-muted);
   font-weight: 400;
   margin-left: 0.25rem;
@@ -965,7 +992,7 @@ html.lenis, html.lenis body {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  font-size: 0.9375rem;
+  font-size: 1.125rem; /* Increased from 0.9375rem */
   color: var(--text-secondary);
   padding-block: 0.75rem;
   border-bottom: none;
@@ -1004,7 +1031,7 @@ html.lenis, html.lenis body {
 
 .scroll-dot-label {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: 0.875rem; /* Increased from 0.6875rem */
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1179,6 +1206,18 @@ html.lenis, html.lenis body {
   font-weight: 700;
   font-size: clamp(2.25rem, 5vw, 4rem);
   line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Mobile-specific heading fixes */
+@media (max-width: 639px) {
+  .heading-xl {
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
 }
 
 .heading-lg {
@@ -1206,15 +1245,64 @@ html.lenis, html.lenis body {
 .label-text {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 1rem; /* Increased from 0.9375rem to meet 16px WCAG minimum */
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 /* ============================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================================ */
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--gold-primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  transition: top 0.3s;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Enhanced focus for navigation and links */
+.nav-link:focus,
+.footer-link:focus,
+.contact-link:focus,
+.social-icon:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-muted: #D1D5DB;
+    --text-secondary: #E5E7EB;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
    LAYOUT UTILITIES — Generadas manualmente para garantizar
-   compatibilidad con Tailwind v4 + Turbopack
    ============================================================ */
 
 /* Display */
@@ -1385,6 +1473,41 @@ html.lenis, html.lenis body {
   .xl\:gap-12 { gap: 3rem; }
   .xl\:gap-24 { gap: 6rem; }
   .xl\:gap-28 { gap: 7rem; }
+}
+
+/* ---- Global Typography Scale Increase ---- */
+:root {
+  --scale-factor: 1.15;
+}
+
+/* Increase all text sizes by approximately 2px */
+html {
+  font-size: calc(1rem * var(--scale-factor));
+}
+
+/* Specific adjustments for different text elements */
+.text-xs { font-size: calc(0.75rem * var(--scale-factor)) !important; }
+.text-sm { font-size: calc(0.875rem * var(--scale-factor)) !important; }
+.text-base { font-size: calc(1rem * var(--scale-factor)) !important; }
+.text-lg { font-size: calc(1.125rem * var(--scale-factor)) !important; }
+.text-xl { font-size: calc(1.25rem * var(--scale-factor)) !important; }
+.text-2xl { font-size: calc(1.5rem * var(--scale-factor)) !important; }
+.text-3xl { font-size: calc(1.875rem * var(--scale-factor)) !important; }
+.text-4xl { font-size: calc(2.25rem * var(--scale-factor)) !important; }
+.text-5xl { font-size: calc(3rem * var(--scale-factor)) !important; }
+
+/* Badge font size */
+.badge {
+  font-size: calc(0.75rem * var(--scale-factor)) !important;
+}
+
+/* Button font sizes */
+.btn-primary {
+  font-size: calc(0.875rem * var(--scale-factor)) !important;
+}
+
+.btn-secondary {
+  font-size: calc(0.75rem * var(--scale-factor)) !important;
 }
 
 /* ---- Typography utilities ---- */

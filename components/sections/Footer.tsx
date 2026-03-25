@@ -2,7 +2,6 @@
 
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
-import { FooterSuspense } from "@/components/ui/SuspenseWrapper";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => {
@@ -15,7 +14,39 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
   };
 
   return (
-    <a href={href} onClick={handleClick} className={className}>
+    <a 
+      href={href} 
+      onClick={handleClick} 
+      className={`${className} whitespace-nowrap`}
+      suppressHydrationWarning
+    >
+      {children}
+    </a>
+  );
+};
+
+const ServiceLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <a 
+      href={href} 
+      onClick={handleClick} 
+      className={`${className} whitespace-nowrap`}
+      style={{
+        background: "linear-gradient(135deg, #FFB366 0%, #FF8C42 50%, #FFA652 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      }}
+      suppressHydrationWarning
+    >
       {children}
     </a>
   );
@@ -40,8 +71,7 @@ export default function Footer() {
   ];
 
   return (
-    <FooterSuspense>
-      <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
+    <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
       <div className="container">
         <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
           {/* Brand */}
@@ -64,7 +94,7 @@ export default function Footer() {
                 {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
               </span>
             </div>
-            <p className="text-sm mb-6" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
+            <p className="text-sm mb-6" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }} suppressHydrationWarning>
               {t.footer.description}
             </p>
             <div className="flex gap-4">
@@ -78,6 +108,7 @@ export default function Footer() {
                   color: "var(--gold-primary)",
                   border: "1px solid var(--gold-border)"
                 }}
+                suppressHydrationWarning
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "rgba(124,107,196,0.2)";
                   e.currentTarget.style.transform = "scale(1.1)";
@@ -87,7 +118,7 @@ export default function Footer() {
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               >
-                <Linkedin size={18} />
+                <Linkedin size={18} suppressHydrationWarning />
               </a>
               <a
                 href="https://instagram.com/jago_ff"
@@ -99,6 +130,7 @@ export default function Footer() {
                   color: "var(--gold-primary)",
                   border: "1px solid var(--gold-border)"
                 }}
+                suppressHydrationWarning
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "rgba(124,107,196,0.2)";
                   e.currentTarget.style.transform = "scale(1.1)";
@@ -108,7 +140,7 @@ export default function Footer() {
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               >
-                <Instagram size={18} />
+                <Instagram size={18} suppressHydrationWarning />
               </a>
             </div>
           </div>
@@ -120,6 +152,7 @@ export default function Footer() {
               <h3
                 className="text-xs font-bold uppercase tracking-widest mb-5"
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+                suppressHydrationWarning
               >
                 {language === 'es' ? 'Navegación' : 'Navigation'}
               </h3>
@@ -142,18 +175,19 @@ export default function Footer() {
               <h3
                 className="text-xs font-bold uppercase tracking-widest mb-5"
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+                suppressHydrationWarning
               >
                 {language === 'es' ? 'Servicios' : 'Services'}
               </h3>
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
                   <li key={link.label}>
-                    <FooterLink
+                    <ServiceLink
                       href={link.href}
                       className="text-sm transition-colors duration-200 footer-link"
                     >
                       {link.label}
-                    </FooterLink>
+                    </ServiceLink>
                   </li>
                 ))}
               </ul>
@@ -165,15 +199,14 @@ export default function Footer() {
         <div
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-            © 2024 ELEVA {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}. {t.footer.rights}
+          <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
+            © 2026 ELEVA {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}. {t.footer.rights}
           </p>
-          <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }}>
+          <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>
           </div>
         </div>
       </div>
     </footer>
-    </FooterSuspense>
   );
 }

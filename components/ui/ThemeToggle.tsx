@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 
-export function ThemeToggle() {
+export default function ThemeToggle() {
   const { theme, resolvedTheme, toggleTheme, setTheme } = useTheme();
 
   const getIcon = () => {
@@ -27,7 +27,7 @@ export function ThemeToggle() {
 
   return (
     <motion.div
-      className="flex items-center gap-2 p-2 rounded-lg bg-gray-800/20 dark:bg-gray-200/20 backdrop-blur-sm border border-gray-700/30 dark:border-gray-300/30"
+      className="fixed top-4 right-4 flex items-center gap-2 p-2 rounded-lg bg-gray-800/20 dark:bg-gray-200/20 backdrop-blur-sm border border-gray-700/30 dark:border-gray-300/30"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >

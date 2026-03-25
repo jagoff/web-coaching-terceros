@@ -157,7 +157,16 @@ export default function Process() {
                     {step.title}
                   </h3>
 
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)", lineHeight: "1.8" }}>
+                  <p 
+                    className="leading-relaxed" 
+                    style={{ 
+                      fontFamily: "var(--font-roboto)",
+                      fontWeight: 400,
+                      color: "var(--text-muted)", 
+                      lineHeight: "2.0",
+                      fontSize: "24px"
+                    }}
+                  >
                     {step.description}
                   </p>
 

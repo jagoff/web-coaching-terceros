@@ -251,8 +251,22 @@ export default function Contact() {
               background: "rgba(124,107,196,0.1)",
               border: "1px solid rgba(124,107,196,0.2)",
             }}>
-              <p className="text-sm text-center" style={{ color: "var(--gold-primary)" }}>
-                🎯 Solo <span className="font-bold">3 cupos disponibles</span> este mes para acompañamiento personalizado
+              <p className="text-center font-bold" style={{ 
+                  fontSize: "1.25rem", /* Aumentado de 1.125rem a 1.25rem (+2 puntos aprox) */
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 50%, #7C6BC4 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>
+                🎯 Solo <span 
+                  className="font-bold"
+                  style={{
+                    background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}
+                >2 cupos disponibles</span> este mes para acompañamiento personalizado
               </p>
             </div>
 

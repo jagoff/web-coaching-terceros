@@ -50,7 +50,7 @@ export default function Pricing() {
       name: t.pricing.plans.liderazgo.name,
       description: t.pricing.plans.liderazgo.description,
       features: t.pricing.plans.liderazgo.features,
-      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
+      cta: language === 'es' ? 'Consultar plan →' : 'Consult plan →',
       featured: false,
       badge: null,
     },
@@ -59,7 +59,7 @@ export default function Pricing() {
       name: t.pricing.plans.organizacional.name,
       description: t.pricing.plans.organizacional.description,
       features: t.pricing.plans.organizacional.features,
-      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
+      cta: language === 'es' ? 'Consultar plan →' : 'Consult plan →',
       featured: true,
       badge: language === 'es' ? 'Más Popular' : 'Most Popular',
     },
@@ -68,7 +68,7 @@ export default function Pricing() {
       name: t.pricing.plans.personalizado.name,
       description: t.pricing.plans.personalizado.description,
       features: t.pricing.plans.personalizado.features,
-      cta: language === 'es' ? 'Consultar por este plan' : 'Inquire about this plan',
+      cta: language === 'es' ? 'Consultar plan →' : 'Consult plan →',
       featured: false,
       badge: null,
     },
@@ -134,7 +134,14 @@ export default function Pricing() {
               {/* Plan name */}
               <p
                 className="text-xs font-bold uppercase tracking-widest mb-5"
-                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+                style={{ 
+                  letterSpacing: "0.15em",
+                  fontSize: "0.875rem",
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
               >
                 {plan.name}
               </p>
@@ -169,9 +176,16 @@ export default function Pricing() {
               {/* CTA */}
               <button
                 className={`btn-primary w-full ${plan.featured ? 'btn-gold' : ''}`}
+                style={{ 
+                  fontSize: "0.625rem",
+                  whiteSpace: "nowrap",
+                  padding: "0.875rem 1.5rem",
+                  minHeight: "auto",
+                  height: "auto"
+                }}
                 onClick={() => handleScroll("#contacto")}
               >
-                <span>{plan.cta}</span> <ArrowRight size={14} className="flex-shrink-0 ml-1" />
+                <span>{plan.cta}</span>
               </button>
             </motion.div>
           ))}

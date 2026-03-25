@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Space_Grotesk, Roboto } from "next/font/google";
 import "./globals.css";
 import "../styles/scrollbar.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import ClientLayout from "@/components/ClientLayout";
 import JsonLdClient from "@/components/JsonLdClient";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
@@ -10,16 +11,34 @@ import AnalyticsScripts from "@/components/AnalyticsScripts";
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["400", "700"],
   style: ["normal", "italic"],
   display: "swap",
+  preload: true,
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
+  preload: true,
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  preload: true,
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -33,14 +52,24 @@ export const metadata: Metadata = {
     "coaching de liderazgo, consultoría organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina",
   authors: [{ name: "Fernando Ferrari" }],
   creator: "Fernando Ferrari",
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#0f0f0f",
   openGraph: {
     title: "ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional",
     description:
-      "Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología. 6+ años de consultoría ágil.",
-    url: "https://coaching-landing-cyan.vercel.app",
+      "Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
+    url: "https://eleva-consultoria.com",
     siteName: "ELEVA CONSULTORA",
-    locale: "es_ES",
+    locale: "es_AR",
     type: "website",
+    images: [
+      {
+        url: "https://eleva-consultoria.com/img/fav.png",
+        width: 512,
+        height: 512,
+        alt: "ELEVA CONSULTORA - Liderazgo Ágil y Transformación Organizacional",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -51,6 +80,15 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/img/fav.png',
+    shortcut: '/img/fav.png',
+    apple: '/img/fav.png',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/img/fav.png',
+    },
   },
 };
 
@@ -65,15 +103,17 @@ export default function RootLayout({
         {/* Analytics and JSON-LD moved to client components to prevent hydration issues */}
       </head>
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased`}
+        className={`${playfair.variable} ${inter.variable} ${spaceGrotesk.variable} ${roboto.variable} antialiased`}
         suppressHydrationWarning
       >
         <LanguageProvider>
-          <ClientLayout>
-            <AnalyticsScripts />
-            <JsonLdClient />
-            {children}
-          </ClientLayout>
+          <ThemeProvider>
+            <ClientLayout>
+              <AnalyticsScripts />
+              <JsonLdClient />
+              {children}
+            </ClientLayout>
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

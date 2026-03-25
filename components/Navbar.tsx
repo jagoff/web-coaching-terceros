@@ -77,11 +77,28 @@ export default function Navbar() {
 
   const handleLinkClick = (href: string) => {
     setMobileOpen(false);
-    scrollToElement(href);
+    // For mobile, use native scroll to avoid Lenis issues
+    if (window.innerWidth < 1024) {
+      const el = document.querySelector(href);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    } else {
+      scrollToElement(href);
+    }
   };
 
   return (
     <>
+      {/* Navbar placeholder to prevent content jump */}
+      <motion.div 
+        style={{ 
+          height: visible ? '0px' : '88px', // Calculado: padding 1.5rem*2 + contenido ~44px
+          transition: 'height 0.3s easeInOut'
+        }} 
+      />
+      
       <AnimatePresence>
         {visible && (
           <motion.nav
@@ -148,12 +165,26 @@ export default function Navbar() {
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
-                <span className="text-sm">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
+                <span style={{ fontSize: "0.75rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span style={{ fontSize: "0.75rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               <button
                 className="btn-primary"
-                style={{ padding: "0.875rem 1.75rem", fontSize: "0.875rem" }}
+                style={{ 
+                  padding: "0.875rem 1.75rem", 
+                  fontSize: "0.75rem", /* Reduced from 0.875rem (-2 points) */
+                  background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%) !important",
+                  boxShadow: "none !important",
+                  border: "1px solid rgba(255, 255, 255, 0.2) !important"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.setProperty('background', 'linear-gradient(135deg, #E67E22 0%, #FF6B35 30%, #7C6BC4 70%, #8E44AD 100%)', 'important');
+                  e.currentTarget.style.transform = "scale(1.02)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.setProperty('background', 'linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%)', 'important');
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}

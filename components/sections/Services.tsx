@@ -49,7 +49,7 @@ export default function Services() {
       title: t.services.items.liderazgo.title,
       description: t.services.items.liderazgo.description,
       benefits: t.services.items.liderazgo.benefits,
-      cta: t.services.items.liderazgo.benefits[0],
+      cta: "¿Queres saber más?",
       featured: false,
     },
     {
@@ -58,7 +58,7 @@ export default function Services() {
       title: t.services.items.organizacional.title,
       description: t.services.items.organizacional.description,
       benefits: t.services.items.organizacional.benefits,
-      cta: t.services.items.organizacional.benefits[0],
+      cta: "Empezá por acá",
       featured: true,
       badge: language === 'es' ? 'MÁS SOLICITADO' : 'MOST POPULAR',
     },
@@ -149,7 +149,14 @@ export default function Services() {
 
                 <h3
                   className="heading-md mb-6"
-                  style={{ fontFamily: "var(--font-heading)" }}
+                  style={{ 
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)",
+                    background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}
                 >
                   {service.title}
                 </h3>
@@ -182,12 +189,22 @@ export default function Services() {
                 {/* CTA */}
                 <button
                   className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
-                  style={{ color: "var(--gold-primary)", letterSpacing: "0.1em" }}
+                  style={{ 
+                    background: "linear-gradient(135deg, #C87B5A 0%, #7C6BC4 50%, #FF6B35 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    letterSpacing: "0.1em"
+                  }}
                   onClick={() => scrollToElement("#contacto")}
                   onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; e.currentTarget.style.gap = "12px"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.gap = "8px"; }}
                 >
-                  {service.cta} <ArrowRight size={16} />
+                  {service.cta} 
+                  <ArrowRight 
+                    size={16} 
+                    style={{ color: "#FF6B35" }}
+                  />
                 </button>
               </motion.div>
             );

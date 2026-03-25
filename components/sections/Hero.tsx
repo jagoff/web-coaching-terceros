@@ -272,13 +272,30 @@ export default function Hero() {
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
             <motion.span variants={revealUp} className="block">
-              {language === 'es' ? 'Transformá tu equipo.' : 'Transform your team.'}
+              {language === 'es' ? (
+                <>
+                  <span className="text-gradient">Transformá</span> tu equipo.
+                </>
+              ) : (
+                <>
+                  <span className="text-gradient">Transform</span> your team.
+                </>
+              )}
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
               {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
-              {language === 'es' ? 'Escalá sin límites.' : 'Scale without limits.'}
+              {language === 'es' ? (
+                <> <span style={{
+                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>Escalá</span> sin límites.</>
+              ) : (
+                <>Scale <span className="text-gradient">without limits</span>.</>
+              )}
             </motion.span>
           </motion.h1>
 
@@ -312,7 +329,7 @@ export default function Hero() {
               }}
               aria-hidden="true"
             />
-            <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+            <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
               ¿Te suena esto?
             </p>
             <AnimatePresence mode="wait">
@@ -329,7 +346,7 @@ export default function Hero() {
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                   fontFamily: "var(--font-heading)", 
-                  fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)" 
+                  fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
                 }}
               >
                 &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
@@ -340,7 +357,14 @@ export default function Hero() {
           {/* Subheadline */}
           <motion.p
             variants={revealUp}
-            className="lead-text max-w-2xl mb-8 sm:mb-12"
+            className="max-w-2xl mb-8 sm:mb-12"
+            style={{ 
+              fontFamily: "var(--font-modern)",
+              fontWeight: 400,
+              fontSize: "clamp(1.25rem, 2.2vw, 1.4rem)",
+              lineHeight: 1.85,
+              color: "var(--text-secondary)"
+            }}
           >
             {language === 'es' 
               ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
@@ -354,11 +378,28 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
           >
             <motion.button
-              className="btn-primary animate-glow"
+              className="btn-primary"
+              style={{
+                background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%) !important",
+                boxShadow: "0 4px 16px rgba(255, 107, 53, 0.2) !important",
+                border: "1.5px solid rgba(255, 255, 255, 0.3) !important"
+              }}
+              animate={{
+                boxShadow: [
+                  "0 4px 16px rgba(255, 107, 53, 0.2)",
+                  "0 6px 20px rgba(255, 107, 53, 0.3)",
+                  "0 4px 16px rgba(255, 107, 53, 0.2)"
+                ],
+                scale: [1, 1.01, 1]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
               onClick={() => handleScroll("#contacto")}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
             </motion.button>
