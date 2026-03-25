@@ -4,7 +4,7 @@ import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => {
+const FooterLink = ({ href, children, className, isService = false }: { href: string; children: React.ReactNode; className?: string; isService?: boolean }) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const target = document.querySelector(href);
@@ -18,6 +18,12 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
       href={href} 
       onClick={handleClick} 
       className={`${className} whitespace-nowrap`}
+      style={isService ? {
+        background: "linear-gradient(135deg, #FFB366 0%, #FF8C42 50%, #FFA652 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      } : {}}
       suppressHydrationWarning
     >
       {children}
@@ -158,6 +164,7 @@ export default function Footer() {
                     <FooterLink
                       href={link.href}
                       className="text-sm transition-colors duration-200 footer-link"
+                      isService={true}
                     >
                       {link.label}
                     </FooterLink>
