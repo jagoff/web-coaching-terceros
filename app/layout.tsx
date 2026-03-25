@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "coaching de liderazgo, transformación organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina",
   authors: [{ name: "Fernando Ferrari" }],
   creator: "Fernando Ferrari",
-  viewport: "width=device-width, initial-scale=1",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
   themeColor: "#0f0f0f",
   openGraph: {
     title: "ELEVA COACHING | Liderazgo Ágil y Transformación Organizacional",
@@ -84,6 +84,16 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        {/* Prevent pull-to-refresh and touch behaviors */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="color-scheme" content="dark" />
+        
         {/* Analytics and JSON-LD moved to client components to prevent hydration issues */}
       </head>
       <body

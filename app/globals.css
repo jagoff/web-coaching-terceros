@@ -9,6 +9,33 @@
 @tailwind base;
 
 /* ============================================================
+   PREVENT PULL-TO-REFRESH ON MOBILE
+   ============================================================ */
+
+html, body {
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pan-x;
+}
+
+/* Prevent pull-to-refresh gestures */
+body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* iOS Safari specific */
+@supports (-webkit-touch-callout: none) {
+  body {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+/* ============================================================
    CSS CUSTOM PROPERTIES
    ============================================================ */
 
