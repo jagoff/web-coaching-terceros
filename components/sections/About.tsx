@@ -120,7 +120,7 @@ export default function About() {
             }}
           >
             <img 
-              src="/img/tv.png" 
+              src="/img/tv.png?v=2" 
               alt="TV Icon" 
               className="w-full h-full object-contain"
               style={{ 
@@ -129,6 +129,12 @@ export default function About() {
                 height: '100% !important',
                 objectFit: 'contain',
                 minHeight: '200px'
+              }}
+              onLoad={() => console.log('TV Image loaded successfully')}
+              onError={(e) => {
+                console.error('TV Image failed to load', e);
+                // Try fallback
+                e.currentTarget.src = "/img/tv.png";
               }}
             />
           </div>

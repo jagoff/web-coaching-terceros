@@ -30,20 +30,24 @@ export default function YouTubeThumbnail({
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(false);
+  const [autoplayAttempt, setAutoplayAttempt] = useState(0);
   
   // Simple reliable thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${soundEnabled ? '0' : '1'}&controls=1&rel=0&modestbranding=1&playsinline=1`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${soundEnabled ? '0' : '1'}&controls=1&rel=0&modestbranding=1&playsinline=1&fs=0&cc_load_policy=0&iv_load_policy=3&showinfo=0&disablekb=1`;
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('YouTube thumbnail clicked');
+    console.log('YouTube thumbnail clicked', { soundEnabled, autoplayAttempt });
     setIsPlaying(true);
+    setAutoplayAttempt(prev => prev + 1);
   };
 
   const toggleSound = () => {
+    console.log('Toggling sound from', soundEnabled, 'to', !soundEnabled);
     setSoundEnabled(!soundEnabled);
+    setAutoplayAttempt(prev => prev + 1);
   };
 
   const handleImageError = () => {
