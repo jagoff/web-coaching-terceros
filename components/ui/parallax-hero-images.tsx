@@ -54,8 +54,6 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
       {images.map((src, index) => {
         // Different depth levels for parallax effect
         const depth = (index % 3) + 1;
-        const moveX = useTransform(springX, (value) => value * depth * 20);
-        const moveY = useTransform(springY, (value) => value * depth * 20);
         
         // Random initial positions for more dynamic effect
         const initialX = (index % 2 === 0 ? -1 : 1) * (index * 5);
@@ -77,15 +75,15 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               scale: isHovered ? 1.1 : 1,
               opacity: isHovered ? 0.8 : 0.6,
             }}
+            style={{
+              x: useTransform(springX, (value) => value * depth * 20),
+              y: useTransform(springY, (value) => value * depth * 20),
+              zIndex: images.length - index,
+            }}
             transition={{
               type: "spring",
               stiffness: 100,
               damping: 30,
-            }}
-            style={{
-              x: moveX,
-              y: moveY,
-              zIndex: images.length - index,
             }}
           >
             <Image

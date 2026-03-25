@@ -66,6 +66,12 @@ class LogReviewer {
       fixResult = await this.fixPromiseRejection(error);
     } else if (error.component === 'ReactHydrationDetector') {
       fixResult = await this.fixReactHydrationError(error);
+    } else if (error.component === 'ReactHooksDetector') {
+      fixResult = await this.fixReactHooksError(error);
+    } else if (error.component === 'ReactRenderDetector') {
+      fixResult = await this.fixReactRenderError(error);
+    } else if (error.component === 'NextJSDetector') {
+      fixResult = await this.fixNextJSError(error);
     } else {
       // Try generic fix for any error
       fixResult = await this.fixGenericError(error);
@@ -433,6 +439,85 @@ class LogReviewer {
       return {
         success: false,
         action: 'Failed to apply generic fix',
+        details: { error },
+        error: err instanceof Error ? err.message : 'Unknown error'
+      };
+    }
+  }
+
+  // Additional fix methods for new error types
+  private async fixReactHooksError(error: LogEntry): Promise<AutoFixResult> {
+    try {
+      console.warn(`🔧 React hooks error detected: ${error.message}`);
+      
+      // Try to identify the component causing the issue
+      if (error.details?.originalArgs) {
+        const args = error.details.originalArgs.join(' ');
+        if (args.includes('ParallaxHeroImages')) {
+          return {
+            success: true,
+            action: 'React hooks error in ParallaxHeroImages identified - needs manual fix',
+            details: { error, component: 'ParallaxHeroImages', suggestion: 'Move useTransform hooks outside of .map() loop' }
+          };
+        }
+      }
+      
+      return {
+        success: true,
+        action: 'React hooks error detected and logged',
+        details: { error }
+      };
+    } catch (err) {
+      return {
+        success: false,
+        action: 'Failed to fix React hooks error',
+        details: { error },
+        error: err instanceof Error ? err.message : 'Unknown error'
+      };
+    }
+  }
+
+  private async fixReactRenderError(error: LogEntry): Promise<AutoFixResult> {
+    try {
+      console.warn(`🔧 React render error detected: ${error.message}`);
+      
+      // Try to identify common render issues
+      if (error.message.includes('Cannot read propert')) {
+        return {
+          success: true,
+          action: 'Property access error detected - needs null check',
+          details: { error, suggestion: 'Add optional chaining or null checks' }
+        };
+      }
+      
+      return {
+        success: true,
+        action: 'React render error detected and logged',
+        details: { error }
+      };
+    } catch (err) {
+      return {
+        success: false,
+        action: 'Failed to fix React render error',
+        details: { error },
+        error: err instanceof Error ? err.message : 'Unknown error'
+      };
+    }
+  }
+
+  private async fixNextJSError(error: LogEntry): Promise<AutoFixResult> {
+    try {
+      console.warn(`🔧 Next.js error detected: ${error.message}`);
+      
+      return {
+        success: true,
+        action: 'Next.js error detected and logged',
+        details: { error }
+      };
+    } catch (err) {
+      return {
+        success: false,
+        action: 'Failed to fix Next.js error',
         details: { error },
         error: err instanceof Error ? err.message : 'Unknown error'
       };

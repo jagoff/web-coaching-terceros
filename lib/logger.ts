@@ -78,6 +78,48 @@ class Logger {
             'HYDRATION_MISMATCH'
           );
         }
+
+        // Catch React hooks errors
+        if (message.includes('Hooks') || 
+            message.includes('hooks') ||
+            message.includes('order of Hooks') ||
+            message.includes('Rendered more hooks')) {
+          this.error(
+            message,
+            'ReactHooksDetector',
+            { originalArgs: args },
+            'REACT_HOOKS_ERROR'
+          );
+        }
+
+        // Catch React render errors
+        if (message.includes('Render') ||
+            message.includes('render') ||
+            message.includes('Cannot read propert')) {
+          this.error(
+            message,
+            'ReactRenderDetector',
+            { originalArgs: args },
+            'REACT_RENDER_ERROR'
+          );
+        }
+      };
+
+      // Catch Next.js specific errors
+      const originalConsoleWarn = console.warn;
+      console.warn = (...args: any[]) => {
+        originalConsoleWarn.apply(console, args);
+        
+        const message = args.join(' ');
+        if (message.includes('Next.js') ||
+            message.includes('Turbopack') ||
+            message.includes('build error')) {
+          this.warn(
+            message,
+            'NextJSDetector',
+            { originalArgs: args }
+          );
+        }
       };
     }
   }

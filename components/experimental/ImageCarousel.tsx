@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
+const baseImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
 
 // Function to shuffle array
 const shuffleArray = (array: number[]) => {
@@ -40,20 +40,20 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.min(Math.max(offset * velocity, 0), swipeConfidenceThreshold);
 };
 
-export default function InstagramCarousel() {
+export default function ImageCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
   const [isDragging, setIsDragging] = useState(false);
-  const [instagramImages, setInstagramImages] = useState<number[]>([]);
+  const [images, setImages] = useState<number[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Shuffle images on component mount
   useEffect(() => {
-    const shuffled = shuffleArray(baseInstagramImages);
-    setInstagramImages(shuffled);
+    const shuffled = shuffleArray(baseImages);
+    setImages(shuffled);
   }, []);
 
-  const imageIndex = Math.abs(page) % instagramImages.length;
-  const currentImage = instagramImages[imageIndex];
+  const imageIndex = Math.abs(page) % images.length;
+  const currentImage = images[imageIndex];
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -123,7 +123,7 @@ export default function InstagramCarousel() {
             >
               <Image
                 src={`/insta-${currentImage}.png`}
-                alt={`Post de Instagram @ferf.coach - ${currentImage}`}
+                alt={`Galería de imágenes - ${currentImage}`}
                 fill
                 className="object-cover select-none"
                 draggable={false}
@@ -138,7 +138,7 @@ export default function InstagramCarousel() {
 
         {/* Navigation dots */}
         <div className="flex justify-center mt-4 gap-2">
-          {instagramImages.map((_, index) => (
+          {images.map((_, index) => (
             <button
               key={index}
               onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
@@ -168,7 +168,7 @@ export default function InstagramCarousel() {
           <ChevronRight size={16} />
         </button>
 
-        {/* Instagram info - con links */}
+        {/* Social profile link */}
         <div className="flex items-center justify-end mt-4">
           <a
             href="https://www.instagram.com/ferf.coach/"
@@ -197,12 +197,12 @@ export default function InstagramCarousel() {
       <div className="hidden sm:block">
         <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <ParallaxHeroImages 
-            images={instagramImages.map(postNum => `/insta-${postNum}.png`)} 
+            images={images.map(postNum => `/insta-${postNum}.png`)} 
             className="w-full h-full"
           />
         </div>
         
-        {/* Instagram info para desktop - eliminado */}
+        {/* Social profile link para desktop - eliminado */}
         <div className="flex items-center justify-center mt-6">
           {/* Espacio vacío - icono y texto eliminados */}
         </div>

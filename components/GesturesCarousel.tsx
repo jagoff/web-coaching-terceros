@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
 // Use only confirmed unique images from img folder
-const baseInstagramImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const baseImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const getImagePath = (num: number): string => {
   if (num >= 101 && num <= 103) {
@@ -27,9 +27,9 @@ const shuffleArray = (array: number[]) => {
   return newArray;
 };
 
-export default function InstagramGesturesCarousel() {
+export default function GesturesCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
-  const [instagramImages, setInstagramImages] = useState<number[]>([]);
+  const [images, setImages] = useState<number[]>([]);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [touchStart, setTouchStart] = useState<{ x: number; y: number; time: number } | null>(null);
@@ -39,12 +39,12 @@ export default function InstagramGesturesCarousel() {
   const controls = useAnimation();
 
   useEffect(() => {
-    const shuffled = shuffleArray(baseInstagramImages);
-    setInstagramImages(shuffled);
+    const shuffled = shuffleArray(baseImages);
+    setImages(shuffled);
     
     // Debug: Detailed logging
     const uniqueImages = [...new Set(shuffled)];
-    console.log(`📸 Instagram carousel: ${uniqueImages.length}/${shuffled.length} unique images`);
+    console.log(`📸 Image carousel: ${uniqueImages.length}/${shuffled.length} unique images`);
     console.log(`🎲 Complete order:`, shuffled);
     console.log(`🖼️ Image paths:`, shuffled.map(n => getImagePath(n)));
     
@@ -61,8 +61,8 @@ export default function InstagramGesturesCarousel() {
     }
   }, []);
 
-  const imageIndex = Math.abs(page) % instagramImages.length;
-  const currentImage = instagramImages[imageIndex];
+  const imageIndex = Math.abs(page) % images.length;
+  const currentImage = images[imageIndex];
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -177,7 +177,7 @@ export default function InstagramGesturesCarousel() {
               >
                 <Image
                   src={getImagePath(currentImage)}
-                  alt={`Post de Instagram @ferf.coach - ${currentImage}`}
+                  alt={`Galería de imágenes - ${currentImage}`}
                   fill
                   className="object-cover select-none"
                   draggable={false}
@@ -232,7 +232,7 @@ export default function InstagramGesturesCarousel() {
 
         {/* Navigation dots */}
         <div className="flex justify-center mt-4 gap-2">
-          {instagramImages.map((_, index) => (
+          {images.map((_, index) => (
             <button
               key={index}
               onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
@@ -264,6 +264,28 @@ export default function InstagramGesturesCarousel() {
               <Share2 size={14} />
             </button>
           </div>
+          
+          {/* Social profile link */}
+          <a
+            href="https://www.instagram.com/ferf.coach/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 group"
+          >
+            <div>
+              <p className="text-xs font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
+            </div>
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
+              style={{
+                background: "rgba(167,139,250,0.08)",
+                border: "1px solid rgba(167,139,250,0.25)",
+              }}
+            >
+              <Instagram size={14} style={{ color: "var(--gold-primary)" }} />
+            </div>
+          </a>
         </div>
       </div>
 
@@ -271,7 +293,7 @@ export default function InstagramGesturesCarousel() {
       <div className="hidden sm:block">
         <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <ParallaxHeroImages 
-            images={instagramImages.map(postNum => getImagePath(postNum))} 
+            images={images.map(postNum => getImagePath(postNum))} 
             className="w-full h-full"
           />
         </div>
@@ -308,7 +330,7 @@ export default function InstagramGesturesCarousel() {
               
               <Image
                 src={getImagePath(selectedImage)}
-                alt={`Post de Instagram @ferf.coach - ${selectedImage}`}
+                alt={`Galería de imágenes - ${selectedImage}`}
                 fill
                 className="object-contain"
                 draggable={false}
