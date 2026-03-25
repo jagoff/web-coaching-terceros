@@ -110,11 +110,6 @@ export default function About() {
       }}
     >
       <div className="container">
-        {/* DEBUG: Test simple div */}
-        <div className="lg:hidden mb-4 p-4 bg-red-500 text-white text-center">
-          DEBUG: Mobile About Section Visible
-        </div>
-        
         {/* TV Image - Mobile version with simple hover effect */}
         <div className="lg:hidden mb-6 flex justify-center">
           <div 
@@ -135,8 +130,6 @@ export default function About() {
                 objectFit: 'contain',
                 minHeight: '200px'
               }}
-              onLoad={() => console.log('TV Image loaded')}
-              onError={() => console.log('TV Image error')}
             />
           </div>
         </div>
@@ -282,11 +275,6 @@ export default function About() {
                     : 'Want to stop by YouTube? I\'ll be there!'
                   }
                 </p>
-              </div>
-              
-              {/* DEBUG: Test video section */}
-              <div className="lg:hidden mb-4 p-4 bg-green-500 text-white text-center">
-                DEBUG: Video Section Visible
               </div>
               
               <YouTubeThumbnail
