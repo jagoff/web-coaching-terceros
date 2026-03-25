@@ -30,9 +30,12 @@ class Logger {
 
   // Global error handler setup
   setupGlobalErrorHandlers(): void {
+    console.log('🔧 Setting up global error handlers...');
+    
     // Catch all unhandled errors
     if (typeof window !== 'undefined') {
       window.addEventListener('error', (event) => {
+        console.log('🚨 Global error detected:', event.message);
         this.error(
           event.message || 'Unknown error',
           'GlobalErrorHandler',
@@ -49,6 +52,7 @@ class Logger {
 
       // Catch all unhandled promise rejections
       window.addEventListener('unhandledrejection', (event) => {
+        console.log('🚨 Promise rejection detected:', event.reason);
         this.error(
           event.reason?.message || 'Unhandled promise rejection',
           'GlobalErrorHandler',
@@ -67,10 +71,13 @@ class Logger {
         originalConsoleError.apply(console, args);
         
         const message = args.join(' ');
+        console.log('🔍 Console error intercepted:', message);
+        
         if (message.includes('hydrated') || 
             message.includes('hydration') || 
             message.includes('Hydration') ||
             message.includes('server rendered HTML')) {
+          console.log('💧 Hydration error detected');
           this.error(
             message,
             'ReactHydrationDetector',
@@ -84,6 +91,7 @@ class Logger {
             message.includes('hooks') ||
             message.includes('order of Hooks') ||
             message.includes('Rendered more hooks')) {
+          console.log('🪝 React hooks error detected');
           this.error(
             message,
             'ReactHooksDetector',
@@ -96,6 +104,7 @@ class Logger {
         if (message.includes('Render') ||
             message.includes('render') ||
             message.includes('Cannot read propert')) {
+          console.log('🎨 React render error detected');
           this.error(
             message,
             'ReactRenderDetector',
@@ -111,6 +120,8 @@ class Logger {
         originalConsoleWarn.apply(console, args);
         
         const message = args.join(' ');
+        console.log('⚠️ Console warning intercepted:', message);
+        
         if (message.includes('Next.js') ||
             message.includes('Turbopack') ||
             message.includes('build error')) {
@@ -121,6 +132,8 @@ class Logger {
           );
         }
       };
+      
+      console.log('✅ Global error handlers setup complete');
     }
   }
 
@@ -143,30 +156,43 @@ class Logger {
     };
   }
 
-  private addLog(entry: LogEntry): void {
-    this.logs.push(entry);
+  addLog(level: LogLevel, message: string, component?: string, details?: any, errorType?: string, stackTrace?: string): void {
+    const entry = this.createEntry(level, message, component, details, errorType, stackTrace);
     
-    // Track unresolved errors
-    if (entry.level === 'ERROR') {
-      const key = `${entry.component}:${entry.message}`;
-      if (!this.unresolvedErrors.has(key)) {
-        this.unresolvedErrors.set(key, []);
-      }
-      this.unresolvedErrors.get(key)!.push(entry);
-
-      // Trigger instant fix for new errors
-      if (this.instantFixCallback) {
-        setTimeout(() => {
-          this.instantFixCallback!(entry);
-        }, 100); // Fix immediately after 100ms
-      }
-    }
+    // Add to logs array
+    this.logs.push(entry);
     
     // Keep only the last maxLogs entries
     if (this.logs.length > this.maxLogs) {
       this.logs = this.logs.slice(-this.maxLogs);
     }
+    
+    // Track unresolved errors
+    if (level === 'ERROR') {
+      const key = `${component || 'Unknown'}-${message}`;
+      if (!this.unresolvedErrors.has(key)) {
+        this.unresolvedErrors.set(key, []);
+      }
+      this.unresolvedErrors.get(key)!.push(entry);
+      
+      console.log(`📝 Error logged: ${key}`, entry);
+      
+      // Trigger instant fix callback if set
+      if (this.instantFixCallback) {
+        console.log('⚡ Triggering instant fix callback...');
+        setTimeout(() => {
+          this.instantFixCallback!(entry);
+        }, 100);
+      } else {
+        console.warn('⚠️ No instant fix callback set');
+      }
+    }
+    
+    // Console output
+    this.logToConsole(entry);
+  }
 
+  private logToConsole(entry: LogEntry): void {
     // Also log to console in development
     if (process.env.NODE_ENV === 'development') {
       const consoleMethod = entry.level === 'ERROR' ? 'error' : 
@@ -178,23 +204,19 @@ class Logger {
   }
 
   error(message: string, component?: string, details?: any, errorType?: string, stackTrace?: string): void {
-    const entry = this.createEntry('ERROR', message, component, details, errorType, stackTrace);
-    this.addLog(entry);
+    this.addLog('ERROR', message, component, details, errorType, stackTrace);
   }
 
   warn(message: string, component?: string, details?: any): void {
-    const entry = this.createEntry('WARN', message, component, details);
-    this.addLog(entry);
+    this.addLog('WARN', message, component, details);
   }
 
   info(message: string, component?: string, details?: any): void {
-    const entry = this.createEntry('INFO', message, component, details);
-    this.addLog(entry);
+    this.addLog('INFO', message, component, details);
   }
 
   debug(message: string, component?: string, details?: any): void {
-    const entry = this.createEntry('DEBUG', message, component, details);
-    this.addLog(entry);
+    this.addLog('DEBUG', message, component, details);
   }
 
   // Get logs for debugging

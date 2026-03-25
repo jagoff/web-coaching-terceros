@@ -6,24 +6,24 @@ import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-// Use the actual images that exist in the img folder
+// Use the renamed img_XX.png files
 const baseImages = [
-  'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.15.48 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.16.12 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.16.36 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.18.51 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.20.39 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.20.58 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.21.55 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.23.52 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.25.10 p. m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.27.21 p. m..png'
+  'img_01.png',
+  'img_02.png',
+  'img_03.png',
+  'img_04.png',
+  'img_05.png',
+  'img_06.png',
+  'img_07.png',
+  'img_08.png',
+  'img_09.png',
+  'img_10.png',
+  'img_11.png',
+  'img_12.png'
 ];
 
 const getImagePath = (imageName: string): string => {
-  return `/img/${imageName}`;
+  return `/img/renamed/${imageName}`;
 };
 
 const shuffleArray = (array: string[]) => {
@@ -71,6 +71,10 @@ export default function GesturesCarousel() {
 
   const imageIndex = Math.abs(page) % images.length;
   const currentImage = images[imageIndex];
+
+  if (!currentImage || images.length === 0) {
+    return <div className="w-full h-full flex items-center justify-center">Cargando imágenes...</div>;
+  }
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -185,7 +189,7 @@ export default function GesturesCarousel() {
               >
                 <Image
                   src={getImagePath(currentImage)}
-                  alt={`Galería de imágenes - ${currentImage.substring(0, 20)}...`}
+                  alt={`Galería de imágenes - ${currentImage ? currentImage.substring(0, 20) : 'Cargando...'}...`}
                   fill
                   className="object-cover select-none"
                   draggable={false}
@@ -338,7 +342,7 @@ export default function GesturesCarousel() {
               
               <Image
                 src={getImagePath(selectedImage)}
-                alt={`Galería de imágenes - ${selectedImage.substring(0, 20)}...`}
+                alt={`Galería de imágenes - ${selectedImage ? selectedImage.substring(0, 20) : 'Cargando...'}...`}
                 fill
                 className="object-contain"
                 draggable={false}

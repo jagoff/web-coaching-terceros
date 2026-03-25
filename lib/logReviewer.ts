@@ -604,7 +604,9 @@ export const logReviewer = new LogReviewer();
 if (process.env.NODE_ENV === 'development') {
   // Start immediately with instant fix mode
   setTimeout(() => {
+    console.log('🚀 Starting auto-fix system...');
     logReviewer.startReview(1000); // Review every 1 second for instant fixes
     logReviewer.enableInstantFix(); // Enable real-time error fixing
+    console.log('✅ Auto-fix system started - monitoring for errors...');
   }, 2000); // Start after 2 seconds
 }
