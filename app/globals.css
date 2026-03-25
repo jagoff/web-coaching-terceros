@@ -48,6 +48,7 @@
   /* --- Gradientes --- */
   --gradient-gold:    linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #7C6BC4 100%);
   --gradient-gold-h:  linear-gradient(90deg,  #7C6BC4 0%, #C87B5A 100%);
+  --gradient-web:     linear-gradient(90deg, #FF6B35 0%, #7C6BC4 50%, #00D4FF 100%);
   --gradient-hero:
     radial-gradient(ellipse at 20% 50%, rgba(124,107,196,0.14) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(200,123,90,0.09) 0%, transparent 50%),
@@ -203,6 +204,58 @@ p {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+}
+
+/* Subrayado degradado color web con movimiento */
+.web-underline {
+  position: relative;
+  display: inline;
+  text-decoration: none;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #EDE8F0 !important;
+  background-clip: unset !important;
+  color: #EDE8F0 !important;
+}
+
+.web-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B35, #7C6BC4, #00D4FF);
+  border-radius: 10px;
+  animation: wave-underline 1.5s ease-in-out infinite;
+}
+
+.web-underline:hover::after {
+  height: 5px;
+  animation-duration: 1s;
+}
+
+@keyframes wave-underline {
+  0% {
+    transform: translateY(0) scaleY(1);
+    border-radius: 10px 10px 10px 10px;
+  }
+  25% {
+    transform: translateY(-4px) scaleY(1.5);
+    border-radius: 15px 15px 5px 5px;
+  }
+  50% {
+    transform: translateY(2px) scaleY(0.7);
+    border-radius: 5px 5px 15px 15px;
+  }
+  75% {
+    transform: translateY(-2px) scaleY(1.2);
+    border-radius: 12px 12px 8px 8px;
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    border-radius: 10px 10px 10px 10px;
+  }
 }
 
 /* ---- Glass Card ---- */

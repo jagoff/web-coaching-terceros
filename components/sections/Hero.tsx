@@ -13,71 +13,71 @@ const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWords
 });
 
 const rotatingPhrasesES = [
-  "Mi equipo no toma <span class='text-gradient'>decisiones</span> sin mí",
-  "Las reuniones no llevan a <span class='text-gradient'>nada concreto</span>",
-  "Estamos creciendo pero <span class='text-gradient'>todo se rompe</span>",
-  "No logro <span class='text-gradient'>delegar</span> sin perder el control",
-  "El equipo tiene <span class='text-gradient'>talento</span> pero no rinde",
-  "Siempre apagamos incendios 🔥, nunca <span class='text-gradient'>prevenimos</span>",
-  "Tengo <span class='text-gradient'>demasiadas prioridades</span> y no avanzo en ninguna",
-  "No sé si mi equipo está <span class='text-gradient'>alineado</span> con los objetivos",
-  "Contrato bien pero la <span class='text-gradient'>gente se va</span> rápido",
-  "Trabajamos mucho pero los <span class='text-gradient'>resultados no se ven</span>",
-  "No hay tiempo para <span class='text-gradient'>pensar</span>, solo para reaccionar",
-  "Cada área va por <span class='text-gradient'>su cuenta</span> y nadie coordina",
-  "El feedback que doy no genera <span class='text-gradient'>cambios reales</span>",
-  "Mi jornada <span class='text-gradient'>no termina nunca</span> y sigo atrasado",
-  "Sé lo que hay que hacer pero no <span class='text-gradient'>cómo arrancarlo</span>",
-  "Los procesos que funcionaban antes ya no <span class='text-gradient'>escalan</span>",
-  "Hay <span class='text-gradient'>conflictos</span> en el equipo que nadie nombra",
-  "Tomo decisiones con <span class='text-gradient'>datos incompletos</span> siempre",
-  "Perdemos <span class='text-gradient'>clientes</span> por problemas que podríamos evitar",
-  "El equipo espera que yo tenga <span class='text-gradient'>todas las respuestas</span>",
-  "Nuestras daily meetings duran <span class='text-gradient'>45 minutos</span> y no resuelven nada",
-  "Los devs dicen '<span class='text-gradient'>terminado</span>' pero siempre hay bugs en producción",
-  "Cambio <span class='text-gradient'>prioridades</span> cada dos días y nadie sabe qué hacer",
-  "El frontend y el backend no se <span class='text-gradient'>hablan</span>, siempre es culpa del otro",
-  "Hacemos <span class='text-gradient'>overtime</span> pero seguimos entregando tarde",
-  "Mi mejor dev está por <span class='text-gradient'>renunciar</span> y no sé por qué",
-  "Implementamos <span class='text-gradient'>Scrum</span> pero solo son reuniones de más",
-  "Los stakeholders cambian el <span class='text-gradient'>alcance</span> sin aviso",
-  "No sé qué hace <span class='text-gradient'>cada uno</span> en el equipo",
-  "Las retrospectivas son <span class='text-gradient'>silencio incómodo</span> y nada cambia",
-  "El cliente <span class='text-gradient'>nunca está contento</span> con lo que entregamos",
+  "Mi equipo no toma <span class='web-underline'>decisiones</span> sin mí",
+  "Las reuniones no llevan a <span class='web-underline'>nada concreto</span>",
+  "Estamos creciendo pero <span class='web-underline'>todo se rompe</span>",
+  "No logro <span class='web-underline'>delegar</span> sin perder el control",
+  "El equipo tiene <span class='web-underline'>talento</span> pero no rinde",
+  "Siempre apagamos incendios, nunca <span class='web-underline'>prevenimos</span>",
+  "Tengo <span class='web-underline'>demasiadas prioridades</span> y no avanzo en ninguna",
+  "No sé si mi equipo está <span class='web-underline'>alineado</span> con los objetivos",
+  "Contrato bien pero la <span class='web-underline'>gente se va</span> rápido",
+  "Trabajamos mucho pero los <span class='web-underline'>resultados no se ven</span>",
+  "No hay tiempo para <span class='web-underline'>pensar</span>, solo para reaccionar",
+  "Cada área va por <span class='web-underline'>su cuenta</span> y nadie coordina",
+  "El feedback que doy no genera <span class='web-underline'>cambios reales</span>",
+  "Mi jornada <span class='web-underline'>no termina nunca</span> y sigo atrasado",
+  "Sé lo que hay que hacer pero no <span class='web-underline'>cómo arrancarlo</span>",
+  "Los procesos que funcionaban antes ya no <span class='web-underline'>escalan</span>",
+  "Hay <span class='web-underline'>conflictos</span> en el equipo que nadie nombra",
+  "Tomo decisiones con <span class='web-underline'>datos incompletos</span> siempre",
+  "Perdemos <span class='web-underline'>clientes</span> por problemas que podríamos evitar",
+  "El equipo espera que yo tenga <span class='web-underline'>todas las respuestas</span>",
+  "Nuestras daily meetings duran <span class='web-underline'>45 minutos</span> y no resuelven nada",
+  "Los devs dicen '<span class='web-underline'>terminado</span>' pero siempre hay bugs en producción",
+  "Cambio <span class='web-underline'>prioridades</span> cada dos días y nadie sabe qué hacer",
+  "El frontend y el backend no se <span class='web-underline'>hablan</span>, siempre es culpa del otro",
+  "Hacemos <span class='web-underline'>overtime</span> pero seguimos entregando tarde",
+  "Mi mejor dev está por <span class='web-underline'>renunciar</span> y no sé por qué",
+  "Implementamos <span class='web-underline'>Scrum</span> pero solo son reuniones de más",
+  "Los stakeholders cambian el <span class='web-underline'>alcance</span> sin aviso",
+  "No sé qué hace <span class='web-underline'>cada uno</span> en el equipo",
+  "Las retrospectivas son <span class='web-underline'>silencio incómodo</span> y nada cambia",
+  "El cliente <span class='web-underline'>nunca está contento</span> con lo que entregamos",
 ];
 
 const rotatingPhrasesEN = [
-  "My team doesn't make <span class='text-gradient'>decisions</span> without me",
-  "Meetings don't lead to <span class='text-gradient'>anything concrete</span>",
-  "We're growing but <span class='text-gradient'>everything breaks</span>",
-  "I can't <span class='text-gradient'>delegate</span> without losing control",
-  "The team has <span class='text-gradient'>talent</span> but doesn't perform",
-  "We're always putting out fires, never <span class='text-gradient'>preventing</span>",
-  "I have <span class='text-gradient'>too many priorities</span> and don't advance in any",
-  "I don't know if my team is <span class='text-gradient'>aligned</span> with objectives",
-  "I hire well but <span class='text-gradient'>people leave</span> quickly",
-  "We work a lot but <span class='text-gradient'>results aren't visible</span>",
-  "There's no time to <span class='text-gradient'>think</span>, only to react",
-  "Each area goes <span class='text-gradient'>its own way</span> and nobody coordinates",
-  "The feedback I give doesn't generate <span class='text-gradient'>real changes</span>",
-  "My workday <span class='text-gradient'>never ends</span> and I'm still behind",
-  "I know what needs to be done but not <span class='text-gradient'>how to start</span>",
-  "The processes that worked before no longer <span class='text-gradient'>scale</span>",
-  "There are <span class='text-gradient'>conflicts</span> in the team that nobody mentions",
-  "I always make decisions with <span class='text-gradient'>incomplete data</span>",
-  "We lose <span class='text-gradient'>clients</span> due to problems we could avoid",
-  "The team expects me to have <span class='text-gradient'>all the answers</span>",
-  "Our daily meetings last <span class='text-gradient'>45 minutes</span> and solve nothing",
-  "Devs say '<span class='text-gradient'>done</span>' but there are always bugs in production",
-  "I change <span class='text-gradient'>priorities</span> every two days and nobody knows what to do",
-  "Frontend and backend don't <span class='text-gradient'>talk</span>, it's always the other's fault",
-  "We work <span class='text-gradient'>overtime</span> but still deliver late",
-  "My best dev is about to <span class='text-gradient'>quit</span> and I don't know why",
-  "We implemented <span class='text-gradient'>Scrum</span> but it's just more meetings",
-  "Stakeholders change <span class='text-gradient'>scope</span> without notice",
-  "I don't know what <span class='text-gradient'>each person</span> on the team does",
-  "Retrospectives are <span class='text-gradient'>awkward silence</span> and nothing changes",
-  "The client is <span class='text-gradient'>never happy</span> with what we deliver",
+  "My team doesn't make <span class='web-underline'>decisions</span> without me",
+  "Meetings don't lead to <span class='web-underline'>anything concrete</span>",
+  "We're growing but <span class='web-underline'>everything breaks</span>",
+  "I can't <span class='web-underline'>delegate</span> without losing control",
+  "The team has <span class='web-underline'>talent</span> but doesn't perform",
+  "We're always putting out fires, never <span class='web-underline'>preventing</span>",
+  "I have <span class='web-underline'>too many priorities</span> and don't advance in any",
+  "I don't know if my team is <span class='web-underline'>aligned</span> with objectives",
+  "I hire well but <span class='web-underline'>people leave</span> quickly",
+  "We work a lot but <span class='web-underline'>results aren't visible</span>",
+  "There's no time to <span class='web-underline'>think</span>, only to react",
+  "Each area goes <span class='web-underline'>its own way</span> and nobody coordinates",
+  "The feedback I give doesn't generate <span class='web-underline'>real changes</span>",
+  "My workday <span class='web-underline'>never ends</span> and I'm still behind",
+  "I know what needs to be done but not <span class='web-underline'>how to start</span>",
+  "The processes that worked before no longer <span class='web-underline'>scale</span>",
+  "There are <span class='web-underline'>conflicts</span> in the team that nobody mentions",
+  "I always make decisions with <span class='web-underline'>incomplete data</span>",
+  "We lose <span class='web-underline'>clients</span> due to problems we could avoid",
+  "The team expects me to have <span class='web-underline'>all the answers</span>",
+  "Our daily meetings last <span class='web-underline'>45 minutes</span> and solve nothing",
+  "Devs say '<span class='web-underline'>done</span>' but there are always bugs in production",
+  "I change <span class='web-underline'>priorities</span> every two days and nobody knows what to do",
+  "Frontend and backend don't <span class='web-underline'>talk</span>, it's always the other's fault",
+  "We work <span class='web-underline'>overtime</span> but still deliver late",
+  "My best dev is about to <span class='web-underline'>quit</span> and I don't know why",
+  "We implemented <span class='web-underline'>Scrum</span> but it's just more meetings",
+  "Stakeholders change <span class='web-underline'>scope</span> without notice",
+  "I don't know what <span class='web-underline'>each person</span> on the team does",
+  "Retrospectives are <span class='web-underline'>awkward silence</span> and nothing changes",
+  "The client is <span class='web-underline'>never happy</span> with what we deliver",
 ];
 
 type Particle = {
@@ -171,10 +171,13 @@ export default function Hero() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
+      setPhraseIndex((prev) => {
+        const nextIndex = (prev + 1) % (rotatingPhrases?.length || 1);
+        return nextIndex;
+      });
     }, 3500);
     return () => clearInterval(interval);
-  }, []);
+  }, [rotatingPhrases?.length]);
 
   const handleScroll = (href: string) => scrollToElement(href);
 
@@ -364,7 +367,7 @@ export default function Hero() {
                       fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
                     }}
                     dangerouslySetInnerHTML={{ 
-                      __html: `&ldquo;${rotatingPhrases[phraseIndex]}&rdquo;` 
+                      __html: `&ldquo;${rotatingPhrases[phraseIndex] || 'Cargando...'}&rdquo;` 
                     }}
                   />
                 </AnimatePresence>

@@ -110,71 +110,39 @@ export default function About() {
       }}
     >
       <div className="container">
-        {/* TV Image - Mobile version with simple hover effect */}
+        {/* TV Image - Mobile version with 3D effect */}
         <div className="lg:hidden mb-6 flex justify-center">
-          <div 
-            className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3 bg-gray-800 flex items-center justify-center"
-            style={{
-              transformStyle: 'preserve-3d',
-              perspective: '1000px'
-            }}
-          >
-            {/* Fallback background */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white text-sm">TV Loading...</span>
-            </div>
-            
-            {/* Try multiple approaches */}
-            <picture>
-              <source srcSet="/img/tv.png" type="image/png" />
-              <source srcSet="/img/tv.png?v=3" type="image/png" />
-              <img 
-                src="/img/tv.png?v=3" 
-                alt="TV Icon" 
-                className="w-full h-full object-contain relative z-10"
-                style={{ 
-                  display: 'block !important',
-                  width: '100% !important',
-                  height: '100% !important',
-                  objectFit: 'contain',
-                  minHeight: '200px'
-                }}
-                onLoad={(e) => {
-                  console.log('TV Image loaded successfully', e.currentTarget.src);
-                  // Hide loading text
-                  const parent = e.currentTarget.parentElement?.parentElement;
-                  if (parent) {
-                    const loadingText = parent.querySelector('span');
-                    if (loadingText) loadingText.style.display = 'none';
-                  }
-                }}
-                onError={(e) => {
-                  console.error('TV Image failed to load', e.currentTarget.src);
-                  // Try absolute URL as last resort
-                  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://coaching-landing-cyan.vercel.app';
-                  e.currentTarget.src = `${baseUrl}/img/tv.png`;
-                }}
-              />
-            </picture>
-          </div>
+          <CardContainer className="inter-var">
+            <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80">
+              <CardItem translateZ="50" className="w-full h-full">
+                <img
+                  src="/img/tv.png"
+                  alt="TV Icon"
+                  className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
+                />
+              </CardItem>
+            </CardBody>
+          </CardContainer>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative">
           {/* TV Image - At grid level, outside any column */}
           <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '43px' }}>
-            <Image
-              src="/img/tv.png" 
-              alt="TV Icon" 
-              width={512}
-              height={512}
-              className="w-[32rem] h-[32rem] object-contain opacity-100 rounded-sm"
-              style={{ 
-                display: 'block !important',
-                filter: 'brightness(1.1) contrast(1.1)',
-                opacity: 1
-              }}
-              unoptimized={true}
-            />
+            <CardContainer className="inter-var">
+              <CardBody className="relative group/card w-[32rem] h-[32rem]">
+                <CardItem translateZ="50" className="w-full h-full">
+                  <img
+                    src="/img/tv.png"
+                    alt="TV Icon"
+                    className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
+                    style={{ 
+                      filter: 'brightness(1.1) contrast(1.1)',
+                      opacity: 1
+                    }}
+                  />
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           </div>
 
           {/* Image column */}
