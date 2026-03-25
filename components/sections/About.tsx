@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
 import GesturesCarousel from "../GesturesCarousel";
-import YouTubeEmbed from "../YouTubeEmbed";
+import YouTubeThumbnail from "../YouTubeThumbnail";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
@@ -269,24 +269,16 @@ export default function About() {
                 </p>
               </div>
               
-              <YouTubeEmbed
+              <YouTubeThumbnail
                 videoId="mgr1mkSRl3o"
                 title={language === 'es' 
                   ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
                   : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
                 }
                 className="max-w-4xl mx-auto"
-                autoplay={false}
-                muted={true}
-                controls={false}
-                rel={false}
-                modestBranding={true}
-                showInfo={false}
-                allowFullscreen={false}
-                allowKeyboard={false}
-                showRelated={false}
-                enableCC={false}
-                enableAnnotations={false}
+                onClick={() => {
+                  window.open('https://www.youtube.com/watch?v=mgr1mkSRl3o', '_blank');
+                }}
               />
             </motion.div>
           </motion.div>
