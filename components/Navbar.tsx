@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
@@ -12,6 +12,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentWord, setCurrentWord] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   // Rotating words for branding
   const rotatingWordsES = ['ELEVA', 'ELEVATE', 'ELEVARSE', 'ELEVARNOS', 'ELEVAREMOS'];
@@ -34,7 +36,29 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const contactSection = document.querySelector('#contacto');
+      
+      // Check if near contact section (200px before)
+      let shouldHide = false;
+      if (contactSection) {
+        const contactRect = contactSection.getBoundingClientRect();
+        const contactTop = contactRect.top + window.scrollY;
+        shouldHide = currentScrollY > (contactTop - 200);
+      }
+      
+      // Hide when scrolling down near contact, show when scrolling up
+      if (shouldHide) {
+        setVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        setVisible(true);
+      }
+      
+      setScrolled(currentScrollY > 40);
+      lastScrollY.current = currentScrollY;
+    };
+    
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -67,7 +91,17 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar${scrolled ? " scrolled" : ""}`} role="navigation" aria-label="Navegación principal">
+      <AnimatePresence>
+        {visible && (
+          <motion.nav
+            className={`navbar${scrolled ? " scrolled" : ""}`}
+            role="navigation"
+            aria-label="Navegación principal"
+            initial={{ y: 0 }}
+            animate={{ y: 0 }}
+            exit={{ y: -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
         <div className="container">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -183,7 +217,9 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </nav>
+          </motion.nav>
+        )}
+      </AnimatePresence>
 
       {/* Mobile menu overlay */}
       <AnimatePresence>
