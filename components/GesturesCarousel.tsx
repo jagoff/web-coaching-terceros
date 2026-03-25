@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
+import { Instagram, X } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
@@ -225,21 +225,6 @@ export default function GesturesCarousel() {
                     <span className="text-white text-xs">Zoom 2x</span>
                   </motion.div>
                 )}
-                
-                {/* Gesture hints */}
-                {!isDragging && !isZoomed && (
-                  <motion.div
-                    className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm rounded-lg p-3"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 }}
-                  >
-                    <div className="flex justify-between text-white text-xs">
-                      <span>👆 Desliza para navegar</span>
-                      <span>👆👆 Doble toque para zoom</span>
-                    </div>
-                  </motion.div>
-                )}
               </motion.div>
             </motion.div>
           </AnimatePresence>
@@ -250,9 +235,9 @@ export default function GesturesCarousel() {
           {images.map((_, index) => (
             <button
               key={index}
-              onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === imageIndex
+              onClick={() => paginate(index - page)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === page
                   ? "bg-[var(--gold-primary)] w-6"
                   : "bg-gray-600 hover:bg-gray-500"
               }`}
@@ -263,23 +248,7 @@ export default function GesturesCarousel() {
 
         {/* Action buttons */}
         <div className="flex items-center justify-between mt-4">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setSelectedImage(currentImage)}
-              className="p-2 rounded-full bg-black/50 text-white"
-              aria-label="Ver imagen completa"
-            >
-              <ZoomIn size={14} />
-            </button>
-            <button
-              onClick={shareImage}
-              className="p-2 rounded-full bg-black/50 text-white"
-              aria-label="Compartir"
-            >
-              <Share2 size={14} />
-            </button>
-          </div>
-          
+          <div></div>
           {/* Social profile link */}
           <a
             href="https://www.instagram.com/ferf.coach/"

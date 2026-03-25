@@ -263,7 +263,7 @@ const testimonialsEN = [
   {
     id: 3,
     quote:
-      "Excellent team player and super willing to learn and help others. Fernando let me learn a lot about Scrum and Agile methodologies when i was at Moka, and as scrum master, he always tried hard to deliver a great work flow and ambient. A pleasure to work with you Fer!",
+      "Excellent team player and super willing to learn and help others. Fernando let me learn a lot about Scrum and Agile methodologies when i was at Mascabo, and as scrum master, he always tried hard to deliver a great work flow and ambient. A pleasure to work with you Fer!",
     name: "Gabriel Yesuron",
     role: "Software Developer",
     company: "LinkedIn Recommendation",

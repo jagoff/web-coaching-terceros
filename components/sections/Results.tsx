@@ -60,7 +60,7 @@ export default function Results() {
       suffix: "",
       display: "6",
       label: "Empresas co-fundadas",
-      description: "Moka, Nodok.AI, AyP",
+      description: "Mascabo, Nodok.AI, AyP",
     },
   ] : [
     {
@@ -93,7 +93,7 @@ export default function Results() {
       suffix: "",
       display: "6",
       label: "Companies co-founded",
-      description: "Moka, Nodok.AI, AyP",
+      description: "Mascabo, Nodok.AI, AyP",
     },
   ];
 

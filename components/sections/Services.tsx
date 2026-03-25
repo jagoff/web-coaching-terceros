@@ -175,7 +175,7 @@ export default function Services() {
                         className="flex-shrink-0 mt-0.5"
                         style={{ color: "var(--gold-primary)" }}
                       />
-                      <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                      <span className="text-lg" style={{ color: "var(--text-secondary)" }}>
                         {benefit}
                       </span>
                     </motion.li>

@@ -145,13 +145,12 @@ export default function ContactEmailJS() {
                 {status === "success" ? (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     className="flex flex-col items-center justify-center text-center py-8 gap-6"
                   >
-                    <div className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
-                      style={{ background: "rgba(34, 197, 94, 0.15)", border: "1px solid rgba(34, 197, 94, 0.3)" }}>
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center animate-glow">
                       <CheckCircle2 size={28} style={{ color: "#22c55e" }} />
                     </div>
                     <h3 className="heading-md" style={{ fontFamily: "var(--font-heading)" }}>

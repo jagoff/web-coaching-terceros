@@ -389,7 +389,7 @@ export default function Hero() {
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
-              {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
+              Agendá tu sesión gratuita →
             </motion.button>
             <motion.button
               className="btn-secondary"
@@ -398,7 +398,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              {language === 'es' ? 'Conocé mi método ↓' : 'Learn my method ↓'}
+              Conocé mi método ↓
             </motion.button>
           </motion.div>
 

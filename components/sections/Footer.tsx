@@ -47,80 +47,28 @@ const MemoizedFooterLink = React.memo(FooterLink);
 MemoizedFooterLink.displayName = 'FooterLink';
 
 export default function Footer() {
-  const { t, language } = useLanguage();
-
-  // Log hydration issues
-  useEffect(() => {
-    const checkHydration = () => {
-      const serviceLinks = document.querySelectorAll('a[href="#servicios"]');
-      const hasGradientStyles = Array.from(serviceLinks).some(link => {
-        const style = window.getComputedStyle(link);
-        return style.backgroundImage && style.backgroundImage !== 'none';
-      });
-      
-      if (hasGradientStyles) {
-        logInfo('Footer service links have gradient styles (client-side)', 'Footer', {
-          linkCount: serviceLinks.length,
-          hasGradient: hasGradientStyles
-        });
-      }
-
-      // Check for hydration mismatch specifically
-      const mismatchedLinks = Array.from(serviceLinks).filter(link => {
-        const style = window.getComputedStyle(link);
-        const hasGradient = style.backgroundImage && style.backgroundImage !== 'none';
-        const hasNowrap = style.whiteSpace === 'nowrap';
-        
-        // Service links should have gradient, nav links should not
-        return hasGradient && !hasNowrap; // This indicates a mismatch
-      });
-
-      if (mismatchedLinks.length > 0) {
-        logError(
-          'Hydration mismatch detected in Footer service links', 
-          'Footer', 
-          {
-            mismatchedCount: mismatchedLinks.length,
-            linkCount: serviceLinks.length,
-            details: mismatchedLinks.map(link => ({
-              href: link.getAttribute('href'),
-              text: link.textContent,
-              hasGradient: window.getComputedStyle(link).backgroundImage !== 'none',
-              hasNowrap: window.getComputedStyle(link).whiteSpace === 'nowrap'
-            }))
-          },
-          'HYDRATION_MISMATCH'
-        );
-      }
-    };
-
-    // Check after mount
-    const timer = setTimeout(checkHydration, 100);
-    return () => clearTimeout(timer);
-  }, [language]);
-
   const navLinks = [
-    { label: t.footer.navLinks.sobreMi, href: "#sobre-mi" },
-    { label: t.footer.navLinks.servicios, href: "#servicios" },
-    { label: t.footer.navLinks.testimonios, href: "#testimonios" },
-    { label: t.footer.navLinks.precios, href: "#precios" },
-    { label: t.footer.navLinks.preguntasFrecuentes, href: "#faq" },
+    { label: "Sobre Mí", href: "#sobre-mi" },
+    { label: "Servicios", href: "#servicios" },
+    { label: "Testimonios", href: "#testimonios" },
+    { label: "Precios", href: "#precios" },
+    { label: "Preguntas Frecuentes", href: "#faq" },
   ];
 
   const serviceLinks = [
-    { label: language === 'es' ? "Coaching de Liderazgo" : "Leadership Coaching", href: "#servicios" },
-                {label: language === 'es' ? "Coaching Organizacional" : "Organizational Coaching", href: "#servicios" },
-    { label: language === 'es' ? "Sesión Gratuita" : "Free Session", href: "#contacto" },
-    { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "#precios" },
+    { label: "Coaching de Liderazgo", href: "#servicios" },
+    { label: "Coaching Organizacional", href: "#servicios" },
+    { label: "Sesión Gratuita", href: "#contacto" },
+    { label: "Coaching Continuo", href: "#precios" },
   ];
 
   return (
-    <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
-      <div className="container">
-        <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
+    <footer key="footer-static" className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo" suppressHydrationWarning>
+      <div className="container" suppressHydrationWarning>
+        <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16" suppressHydrationWarning>
           {/* Brand */}
-          <div className="lg:col-span-2 flex flex-col justify-start">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="lg:col-span-2 flex flex-col justify-start" suppressHydrationWarning>
+            <div className="flex items-center gap-2 mb-4" suppressHydrationWarning>
               <h3
                 className="text-gradient font-heading font-black text-2xl tracking-tight"
                 style={{ fontFamily: "var(--font-heading)" }}
@@ -134,12 +82,13 @@ export default function Footer() {
                   alignSelf: "flex-end",
                   paddingBottom: "0.2rem"
                 }}
+                suppressHydrationWarning
               >
-                {language === 'es' ? 'COACHING' : 'COACHING'}
+                COACHING
               </span>
             </div>
             <p className="text-sm mb-6" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }} suppressHydrationWarning>
-              {t.footer.description}
+              Transformación profesional y organizacional a través de coaching de excelencia.
             </p>
             <div className="flex gap-4">
               <a
@@ -198,7 +147,7 @@ export default function Footer() {
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 suppressHydrationWarning
               >
-                {language === 'es' ? 'Navegación' : 'Navigation'}
+                Navegación
               </h3>
               <ul className="space-y-3">
                 {navLinks.map((link) => (
@@ -221,7 +170,7 @@ export default function Footer() {
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 suppressHydrationWarning
               >
-                {language === 'es' ? 'Servicios' : 'Services'}
+                Servicios
               </h3>
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
@@ -245,7 +194,7 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            © 2026 ELEVA {language === 'es' ? 'COACHING' : 'COACHING'}. {t.footer.rights}
+            © 2026 ELEVA COACHING. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>

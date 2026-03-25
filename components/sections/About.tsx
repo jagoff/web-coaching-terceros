@@ -4,8 +4,10 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
 import GesturesCarousel from "../GesturesCarousel";
+import YouTubeEmbed from "../YouTubeEmbed";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const slideReveal: Variants = {
   hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
@@ -64,7 +66,7 @@ const instaCard: Variants = {
 };
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [shuffledCredentials, setCredentials] = useState(credentials);
@@ -108,6 +110,23 @@ export default function About() {
       }}
     >
       <div className="container">
+        {/* TV Image - Mobile version with simple hover effect */}
+        <div className="lg:hidden mb-6 flex justify-center">
+          <div 
+            className="relative w-80 h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3"
+            style={{
+              transformStyle: 'preserve-3d',
+              perspective: '1000px'
+            }}
+          >
+            <img 
+              src="/img/tv.png" 
+              alt="TV Icon" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative">
           {/* TV Image - At grid level, outside any column */}
           <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '43px' }}>
@@ -117,22 +136,6 @@ export default function About() {
               width={512}
               height={512}
               className="w-[32rem] h-[32rem] object-contain opacity-100 rounded-sm"
-              style={{ 
-                display: 'block !important',
-                filter: 'brightness(1.1) contrast(1.1)',
-                opacity: 1
-              }}
-            />
-          </div>
-
-          {/* TV Image - Mobile version above title */}
-          <div className="block lg:hidden mb-6">
-            <Image
-              src="/img/tv.png" 
-              alt="TV Icon" 
-              width={512}
-              height={512}
-              className="w-48 h-48 mx-auto object-contain opacity-100 rounded-sm"
               style={{ 
                 display: 'block !important',
                 filter: 'brightness(1.1) contrast(1.1)',
@@ -243,6 +246,42 @@ export default function About() {
                   );
                 }
               })}
+            </motion.div>
+
+            {/* YouTube Video Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-16"
+            >
+              <div className="mb-8">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+                  <span className="text-gradient">
+                    {language === 'es' ? 'Conocé mi enfoque' : 'See My Approach'}
+                  </span>
+                </h3>
+                <p className="text-base" style={{ color: "var(--text-secondary)" }}>
+                  {language === 'es' 
+                    ? 'En este video te explico cómo ayudo a líderes y equipos a alcanzar su máximo potencial.'
+                    : 'In this video I explain how I help leaders and teams reach their maximum potential.'
+                  }
+                </p>
+              </div>
+              
+              <YouTubeEmbed
+                videoId="mgr1mkSRl3o"
+                title={language === 'es' 
+                  ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
+                  : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
+                }
+                className="max-w-4xl mx-auto"
+                autoplay={false}
+                muted={true}
+                controls={true}
+                rel={false}
+                modestBranding={true}
+              />
             </motion.div>
           </motion.div>
         </div>

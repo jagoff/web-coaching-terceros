@@ -57,7 +57,7 @@ const stats = [
     suffix: "",
     display: "6",
     label: "Empresas co-fundadas",
-    description: "Moka, Nodok.AI, AyP",
+    description: "Mascabo, Nodok.AI, AyP",
   },
 ];
 
