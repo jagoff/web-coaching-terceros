@@ -362,8 +362,7 @@ export default function Testimonials() {
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            {t.testimonials.title}{" "}
-            <span className="text-gradient">{t.testimonials.title2}</span>
+            <span className="text-gradient">{t.testimonials.title}</span>
           </motion.h2>
           <motion.div
             variants={dividerGrow}

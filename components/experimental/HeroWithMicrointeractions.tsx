@@ -227,7 +227,7 @@ export default function HeroWithMicrointeractions() {
               />
               <div className="hidden sm:block w-px h-4 bg-gray-600"></div>
               <AnimatedSocialProof
-                text={language === 'es' ? '11+ años de consultoría' : '11+ years of consulting'}
+                text={language === 'es' ? '11+ años de coaching' : '11+ years of coaching'}
                 icon={<Sparkles size={16} />}
                 delay={0.4}
               />

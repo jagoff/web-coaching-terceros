@@ -13,7 +13,7 @@ export default function WhatsAppBooking() {
   const phoneNumber = "5493425153999";
   
   const message = encodeURIComponent(
-    "Hola! Quiero agendar una sesión gratuita de consultoría. ¿Qué fechas y horarios tienes disponibles?"
+    "Hola! Quiero agendar una sesión gratuita de coaching. ¿Qué fechas y horarios tienes disponibles?"
   );
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;

@@ -134,7 +134,7 @@ export default function Navbar() {
             <a
               href="#"
               className="flex items-center gap-2 group"
-              aria-label={`ELEVA ${language === 'es' ? 'CONSULTORA' : 'CONSULTING'} — inicio`}
+              aria-label={`ELEVA COACHING — inicio`}
               onClick={(e) => {
                 e.preventDefault();
                 scrollToTop();
@@ -154,7 +154,7 @@ export default function Navbar() {
                   paddingBottom: "0.2rem"
                 }}
               >
-                {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
+                {language === 'es' ? 'COACHING' : 'COACHING'}
               </span>
             </a>
 
@@ -282,7 +282,7 @@ export default function Navbar() {
                     paddingBottom: "0.2rem"
                   }}
                 >
-                  {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
+                  {language === 'es' ? 'COACHING' : 'COACHING'}
                 </span>
               </div>
               <button

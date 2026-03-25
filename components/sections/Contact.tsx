@@ -270,7 +270,8 @@ export default function Contact() {
               </p>
             </div>
 
-            <motion.ul
+            {/* Placeholder for future features - commented out for now */}
+            {/* <motion.ul
               variants={promiseStagger}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
@@ -289,7 +290,7 @@ export default function Contact() {
                   <span style={{ color: "var(--text-secondary)", fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>{item}</span>
                 </motion.li>
               ))}
-            </motion.ul>
+            </motion.ul> */}
 
                       </motion.div>
 

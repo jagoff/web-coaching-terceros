@@ -398,7 +398,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              {language === 'es' ? 'Conocé nuestro método ↓' : 'Learn our method ↓'}
+              {language === 'es' ? 'Conocé mi método ↓' : 'Learn my method ↓'}
             </motion.button>
           </motion.div>
 
@@ -409,7 +409,7 @@ export default function Hero() {
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
               {language === 'es' 
-                ? 'Más de 20 años en tecnología · 11+ años de consultoría'
+                ? 'Más de 20 años en tecnología · 11+ años de coaching'
                 : 'Over 20 years in technology · 11+ years of agile consulting'
               }
             </p>

@@ -6,24 +6,27 @@ import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-// Use the img_XX.jpeg files from /public/images/
+// Use the insta-XX.png files from /public/img/ for 15 images
 const baseImages = [
+  'insta-1.png',
+  'insta-2.png',
+  'insta-3.png',
+  'insta-4.png',
+  'insta-5.png',
+  'insta-6.png',
+  'insta-7.png',
+  'insta-8.png',
+  'insta-9.png',
+  'insta-10.png',
+  'insta-11.png',
+  'insta-12.png',
   'img_01.jpeg',
   'img_02.jpeg',
-  'img_03.jpeg',
-  'img_04.jpeg',
-  'img_05.jpeg',
-  'img_06.jpeg',
-  'img_07.jpeg',
-  'img_08.jpeg',
-  'img_09.jpeg',
-  'img_10.jpeg',
-  'img_11.jpeg',
-  'img_12.jpeg'
+  'img_03.jpeg'
 ];
 
 const getImagePath = (imageName: string): string => {
-  return `/images/${imageName}`;
+  return `/img/${imageName}`;
 };
 
 const shuffleArray = (array: string[]) => {
@@ -163,7 +166,7 @@ export default function GesturesCarousel() {
       <div className="block sm:hidden">
         <div 
           className="relative overflow-hidden rounded-lg bg-black"
-          style={{ aspectRatio: "1/1" }}
+          style={{ aspectRatio: "4/5" }}
         >
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -303,7 +306,7 @@ export default function GesturesCarousel() {
 
       {/* Desktop Parallax Grid */}
       <div className="hidden sm:block">
-        <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
+        <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "3/4" }}>
           <ParallaxHeroImages 
             images={images.map(imageName => getImagePath(imageName))} 
             className="w-full h-full"
@@ -311,7 +314,26 @@ export default function GesturesCarousel() {
         </div>
         
         <div className="flex items-center justify-center mt-6">
-          {/* Instagram link removed */}
+          <a
+            href="https://www.instagram.com/ferf.coach/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 group"
+          >
+            <div>
+              <p className="text-sm font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>Instagram</p>
+            </div>
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
+              style={{
+                background: "rgba(167,139,250,0.08)",
+                border: "1px solid rgba(167,139,250,0.25)",
+              }}
+            >
+              <Instagram size={18} style={{ color: "var(--gold-primary)" }} />
+            </div>
+          </a>
         </div>
       </div>
 

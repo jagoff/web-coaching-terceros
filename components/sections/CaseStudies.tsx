@@ -195,7 +195,7 @@ export default function CaseStudies() {
                   className="heading-md mb-2 font-bold"
                   style={{ 
                     fontFamily: "var(--font-heading)",
-                    color: "var(--gold-primary)",
+                    color: "white",
                     fontSize: "1.2rem"
                   }}
                 >
@@ -306,10 +306,10 @@ export default function CaseStudies() {
               </div>
 
               {/* CTA */}
-              <div className="mt-6 pt-4 border-t" style={{ borderColor: "rgba(124,107,196,0.1)" }}>
+              <div className="mt-6 pt-4 border-t flex justify-end" style={{ borderColor: "rgba(124,107,196,0.1)" }}>
                 <button
-                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group"
-                  style={{ color: "var(--gold-primary)" }}
+                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group text-gradient"
+                  style={{ transform: "translateY(13px)" }}
                   onClick={() => handleScroll("#contacto")}
                 >
                   Ver transformación completa

@@ -240,20 +240,16 @@ export default function Results() {
               : 'Every number represents real experience building teams and organizations.'
             }{" "}
             <strong style={{ color: "var(--text-primary)" }}>
-              {language === 'es' ? '¿Hablamos de tu próximo paso?' : 'Shall we talk about your next step?'}
+              <a
+                href="https://wa.me/5493425153999?text=Hola%20Fernando%2C%20vi%20tu%20web%20y%20quiero%20agendar%20una%20sesi%C3%B3n%20gratuita."
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "inherit", textDecoration: "underline" }}
+              >
+                {language === 'es' ? '¿Hablamos de tu próximo paso?' : 'Shall we talk about your next step?'}
+              </a>
             </strong>
           </p>
-          <button
-            className="btn-primary"
-            onClick={() => {
-              const target = document.querySelector("#contacto");
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            {language === 'es' ? 'Empezá tu transformación' : 'Start your transformation'} <ArrowRight size={16} className="inline ml-1" />
-          </button>
         </motion.div>
       </div>
     </section>

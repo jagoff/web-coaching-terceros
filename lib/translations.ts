@@ -94,7 +94,6 @@ export interface Translations {
   testimonials: {
     badge: string;
     title: string;
-    title2: string;
     subtitle: string;
   };
   
@@ -247,7 +246,7 @@ export const translations: Record<Language, Translations> = {
     services: {
       badge: 'Servicios',
       title: 'Deja de apagar incendios',
-      subtitle: 'Cada organización es única. Mis servicios se adaptan a tus necesidades específicas, combinando frameworks probados con enfoque personalizado.',
+      subtitle: 'Cada organización es única. Yo adapto mis servicios a tus necesidades específicas, combinando frameworks probados con enfoque personalizado.',
       items: {
         liderazgo: {
           title: 'Coaching de Liderazgo',
@@ -262,7 +261,7 @@ export const translations: Record<Language, Translations> = {
         },
         organizacional: {
           title: 'Consultoría Organizacional',
-          description: 'Para startups y empresas que necesitan profesionalizar operaciones, adoptar agilidad real y construir una cultura que escale junto con el negocio.',
+          description: 'Para startups y empresas que necesitan profesionalizar operaciones, adoptar agilidad real y construir una cultura que escale junto con el negocio. Yo te acompaño en este proceso.',
           benefits: [
             'Transformación ágil a medida',
             'Diseño de procesos escalables',
@@ -273,7 +272,7 @@ export const translations: Record<Language, Translations> = {
         },
         ambos: {
           title: 'Ambos servicios',
-          description: 'Un enfoque integral que combina coaching de liderazgo con consultoría organizacional para transformación completa y sostenible.',
+          description: 'Un enfoque integral que combina coaching de liderazgo con consultoría organizacional para tu transformación completa y sostenible. Yo te guío en todo el camino.',
           benefits: [
             'Todos los beneficios de coaching',
             'Todos los beneficios de consultoría',
@@ -295,27 +294,26 @@ export const translations: Record<Language, Translations> = {
       steps: {
         diagnostico: {
           title: 'Diagnóstico',
-          description: 'Analizamos tu organización, equipo o liderazgo actual. Identificamos fricciones, oportunidades y el punto de partida real.',
+          description: 'Analizo tu organización, equipo o liderazgo actual. Identifico fricciones, oportunidades y el punto de partida real.',
         },
         diseno: {
           title: 'Diseño',
-          description: 'Co-creamos una hoja de ruta a medida: objetivos claros, métricas de avance y estrategia ágil adaptada a tu contexto.',
+          description: 'Co-creo una hoja de ruta a medida: objetivos claros, métricas de avance y estrategia ágil adaptada a tu contexto.',
         },
         ejecucion: {
           title: 'Ejecución',
-          description: 'Sesiones de coaching y acompañamiento en el día a día. Iteramos, removemos impedimentos y mantenemos el foco.',
+          description: 'Sesiones de coaching y acompañamiento en el día a día. Itero, remuevo impedimentos y mantenemos el foco.',
         },
         autonomia: {
           title: 'Autonomía',
-          description: 'Consolidamos prácticas, transferimos herramientas y construís la capacidad interna para seguir evolucionando sin depender de mí.',
+          description: 'Consolido prácticas, transfiero herramientas y construís la capacidad interna para seguir evolucionando sin depender de mí.',
         },
       },
     },
     
     testimonials: {
       badge: 'Testimonios',
-      title: 'Resultados que',
-      title2: 'hablan solos',
+      title: 'Resultados que hablan solos',
       subtitle: 'La mejor medida del éxito es el impacto real en las personas y organizaciones que acompañé.',
     },
     
@@ -323,7 +321,7 @@ export const translations: Record<Language, Translations> = {
       badge: 'Planes',
       title: 'Encuentra tu',
       title2: 'plan ideal',
-      subtitle: 'Cada plan está diseñado para diferentes necesidades. Consultemos cuál se adapta mejor a vos.',
+      subtitle: 'Cada plan está diseñado para diferentes necesidades. Yo te ayudo a encontrar cuál se adapta mejor a vos.',
       plans: {
         liderazgo: {
           name: 'Coaching de Liderazgo',
@@ -331,7 +329,7 @@ export const translations: Record<Language, Translations> = {
           period: '/ sesión',
           description: 'Sesiones individuales de 60 minutos para desarrollo de liderazgo.',
           features: [
-            'Sesión 1:1 de 60 minutos',
+            'Sesión 1:1 de 1 hora',
             'Evaluación 360° inicial',
             'Plan de desarrollo personalizado',
             'Material y recursos exclusivos',
@@ -357,7 +355,7 @@ export const translations: Record<Language, Translations> = {
           name: 'Plan Personalizado',
           price: 'A convenir',
           period: '',
-          description: 'Soluciones integrales a medida para tu organización.',
+          description: 'Soluciones integrales a medida para tu organización. Yo diseño el plan perfecto para vos.',
           features: [
             'Diagnóstico sin cargo',
             'Propuesta personalizada',
@@ -443,7 +441,7 @@ export const translations: Record<Language, Translations> = {
     },
     
     footer: {
-      description: 'Transformando líderes y organizaciones a través del coaching ágil y la consultoría estratégica.',
+      description: 'Transformando líderes y organizaciones a través del coaching ágil y la transformación estratégica.',
       navLinks: {
         sobreMi: 'Sobre mí',
         servicios: 'Servicios',
@@ -494,7 +492,7 @@ export const translations: Record<Language, Translations> = {
     services: {
       badge: 'Services',
       title: 'Stop putting out fires',
-      subtitle: 'Every organization is unique. My services adapt to your specific needs, combining proven frameworks with personalized approach.',
+      subtitle: 'Every organization is unique. I adapt my services to your specific needs, combining proven frameworks with personalized approach.',
       items: {
         liderazgo: {
           title: 'Leadership Coaching',
@@ -509,7 +507,7 @@ export const translations: Record<Language, Translations> = {
         },
         organizacional: {
           title: 'Organizational Consulting',
-          description: 'For startups and companies that need to professionalize operations, adopt real agility, and build a culture that scales with the business.',
+          description: 'For startups and companies that need to professionalize operations, adopt real agility, and build a culture that scales with the business. I accompany you in this process.',
           benefits: [
             'Custom agile transformation',
             'Scalable process design',
@@ -520,7 +518,7 @@ export const translations: Record<Language, Translations> = {
         },
         ambos: {
           title: 'Both services',
-          description: 'A comprehensive approach that combines leadership coaching with organizational consulting for complete and sustainable transformation.',
+          description: 'A comprehensive approach that combines leadership coaching with organizational consulting for your complete and sustainable transformation. I guide you through the entire journey.',
           benefits: [
             'All coaching benefits',
             'All consulting benefits',
@@ -542,27 +540,26 @@ export const translations: Record<Language, Translations> = {
       steps: {
         diagnostico: {
           title: 'Diagnosis',
-          description: 'We analyze your current organization, team, or leadership. We identify friction points, opportunities, and the real starting point.',
+          description: 'I analyze your current organization, team, or leadership. I identify friction points, opportunities, and the real starting point.',
         },
         diseno: {
           title: 'Design',
-          description: 'We co-create a tailored roadmap: clear objectives, progress metrics, and an agile strategy adapted to your context.',
+          description: 'I co-create a tailored roadmap: clear objectives, progress metrics, and an agile strategy adapted to your context.',
         },
         ejecucion: {
           title: 'Execution',
-          description: 'Coaching sessions and day-to-day support. We iterate, remove impediments, and maintain focus.',
+          description: 'Coaching sessions and day-to-day support. I iterate, remove impediments, and maintain focus.',
         },
         autonomia: {
           title: 'Autonomy',
-          description: 'We consolidate practices, transfer tools, and build internal capacity to continue evolving without depending on me.',
+          description: 'I consolidate practices, transfer tools, and build internal capacity to continue evolving without depending on me.',
         },
       },
     },
     
     testimonials: {
       badge: 'Testimonials',
-      title: 'Results that',
-      title2: 'speak for themselves',
+      title: 'Results that speak for themselves',
       subtitle: 'The best measure of success is the real impact on the people and organizations I\'ve accompanied.',
     },
     
@@ -570,7 +567,7 @@ export const translations: Record<Language, Translations> = {
       badge: 'Plans',
       title: 'Find your',
       title2: 'ideal plan',
-      subtitle: 'Each plan is designed for different needs. Let us help you find the best fit for you.',
+      subtitle: 'Each plan is designed for different needs. I help you find the best fit for you.',
       plans: {
         liderazgo: {
           name: 'Leadership Coaching',
@@ -578,7 +575,7 @@ export const translations: Record<Language, Translations> = {
           period: '/ session',
           description: 'Individual 60-minute sessions for leadership development.',
           features: [
-            '60-minute 1:1 session',
+            '1-hour 1:1 session',
             'Initial 360° assessment',
             'Personalized development plan',
             'Exclusive materials and resources',
@@ -604,7 +601,7 @@ export const translations: Record<Language, Translations> = {
           name: 'Custom Plan',
           price: 'To be agreed',
           period: '',
-          description: 'Comprehensive solutions tailored to your organization.',
+          description: 'Comprehensive solutions tailored to your organization. I design the perfect plan for you.',
           features: [
             'No-charge diagnosis',
             'Personalized proposal',
@@ -690,7 +687,7 @@ export const translations: Record<Language, Translations> = {
     },
     
     footer: {
-      description: 'Transforming leaders and organizations through agile coaching and strategic consulting.',
+      description: 'Transforming leaders and organizations through agile coaching and strategic transformation.',
       navLinks: {
         sobreMi: 'About me',
         servicios: 'Services',

@@ -381,6 +381,7 @@ p {
   letter-spacing: 0.10em;
   text-transform: uppercase;
   box-shadow: 0 2px 8px rgba(124, 107, 196, 0.20);
+  white-space: nowrap;
 }
 
 /* Mobile-specific badge improvements */
@@ -392,6 +393,7 @@ p {
     font-weight: 800;
     box-shadow: 0 4px 12px rgba(124, 107, 196, 0.30);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
   }
 }
 

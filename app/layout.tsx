@@ -29,21 +29,21 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://coaching-landing-cyan.vercel.app"
   ),
-  title: "ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional",
+  title: "ELEVA COACHING | Liderazgo Ágil y Transformación Organizacional",
   description:
-    "Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
+    "Coaching de liderazgo y transformación organizacional para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
   keywords:
-    "coaching de liderazgo, consultoría organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina",
+    "coaching de liderazgo, transformación organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina",
   authors: [{ name: "Fernando Ferrari" }],
   creator: "Fernando Ferrari",
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#0f0f0f",
   openGraph: {
-    title: "ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional",
+    title: "ELEVA COACHING | Liderazgo Ágil y Transformación Organizacional",
     description:
-      "Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
+      "Coaching de liderazgo y transformación organizacional para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
     url: "https://eleva-consultoria.com",
-    siteName: "ELEVA CONSULTORA",
+    siteName: "ELEVA COACHING",
     locale: "es_AR",
     type: "website",
     images: [
@@ -51,15 +51,15 @@ export const metadata: Metadata = {
         url: "https://eleva-consultoria.com/img/fav.png",
         width: 512,
         height: 512,
-        alt: "ELEVA CONSULTORA - Liderazgo Ágil y Transformación Organizacional",
+        alt: "ELEVA COACHING - Liderazgo Ágil y Transformación Organizacional",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional",
+    title: "ELEVA COACHING | Liderazgo Ágil y Transformación Organizacional",
     description:
-      "Consultoría organizacional y coaching de liderazgo para líderes tech y startups.",
+      "Coaching de liderazgo y transformación organizacional para líderes tech y startups.",
   },
   robots: {
     index: true,

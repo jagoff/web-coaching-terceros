@@ -142,11 +142,15 @@ export default function Process() {
 
                   {/* Icon circle */}
                   <motion.div
-                    className="step-icon"
+                    className="step-icon group"
                     whileHover={{ scale: 1.15, rotate: -5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 12 }}
                   >
-                    <Icon size={22} strokeWidth={1.5} />
+                    <Icon 
+                      size={22} 
+                      strokeWidth={1.5} 
+                      className="transition-all duration-300 group-hover:text-[var(--gold-primary)] group-hover:drop-shadow-[0_0_12px_rgba(255,107,53,0.8)] group-hover:drop-shadow-[0_0_20px_rgba(255,123,90,0.4)]"
+                    />
                   </motion.div>
 
                   

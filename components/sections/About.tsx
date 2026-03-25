@@ -108,7 +108,39 @@ export default function About() {
       }}
     >
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative">
+          {/* TV Image - At grid level, outside any column */}
+          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '43px' }}>
+            <Image
+              src="/img/tv.png" 
+              alt="TV Icon" 
+              width={512}
+              height={512}
+              className="w-[32rem] h-[32rem] object-contain opacity-100 rounded-sm"
+              style={{ 
+                display: 'block !important',
+                filter: 'brightness(1.1) contrast(1.1)',
+                opacity: 0.8
+              }}
+            />
+          </div>
+
+          {/* TV Image - Mobile version above title */}
+          <div className="block lg:hidden mb-6">
+            <Image
+              src="/img/tv.png" 
+              alt="TV Icon" 
+              width={512}
+              height={512}
+              className="w-48 h-48 mx-auto object-contain opacity-100 rounded-sm"
+              style={{ 
+                display: 'block !important',
+                filter: 'brightness(1.1) contrast(1.1)',
+                opacity: 0.8
+              }}
+            />
+          </div>
+
           {/* Image column */}
           <motion.div
             custom={-60}

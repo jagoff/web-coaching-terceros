@@ -12,7 +12,7 @@ export default function JsonLdClient() {
           '@id': 'https://coaching-landing-cyan.vercel.app#person',
           name: 'Fernando Ferrari',
           jobTitle: 'Agile Coach & Leadership Consultant',
-          description: 'Coach de liderazgo y consultoría organizacional con más de 20 años en tecnología',
+          description: 'Coach de liderazgo y transformación organizacional con más de 20 años en tecnología',
           url: 'https://coaching-landing-cyan.vercel.app',
           sameAs: [
             'https://www.instagram.com/jago_ff',
@@ -30,8 +30,8 @@ export default function JsonLdClient() {
         {
           '@type': 'Organization',
           '@id': 'https://coaching-landing-cyan.vercel.app#organization',
-          name: 'ELEVA CONSULTORA',
-          description: 'Transformando líderes y organizaciones a través de la consultoría estratégica y coaching ágil',
+          name: 'ELEVA COACHING',
+          description: 'Transformando líderes y organizaciones a través del coaching estratégico y liderazgo ágil',
           url: 'https://coaching-landing-cyan.vercel.app',
           founder: {
             '@type': 'Person',
@@ -43,15 +43,15 @@ export default function JsonLdClient() {
           },
           serviceType: [
             'Coaching de Liderazgo',
-            'Consultoría Organizacional',
+            'Coaching Organizacional',
             'Transformación Ágil',
           ],
         },
         {
           '@type': 'WebSite',
           '@id': 'https://coaching-landing-cyan.vercel.app#website',
-          name: 'ELEVA CONSULTORA',
-          description: 'Consultoría organizacional y coaching de liderazgo para líderes tech y startups',
+          name: 'ELEVA COACHING',
+          description: 'Coaching de liderazgo y transformación organizacional para líderes tech y startups',
           url: 'https://coaching-landing-cyan.vercel.app',
           inLanguage: 'es',
           isAccessibleForFree: true,
@@ -81,7 +81,7 @@ export default function JsonLdClient() {
         {
           '@type': 'Service',
           '@id': 'https://coaching-landing-cyan.vercel.app#organizational-consulting',
-          name: 'Consultoría Organizacional',
+          name: 'Coaching Organizacional',
           description: 'Para startups y empresas que necesitan profesionalizar operaciones y adoptar agilidad real',
           provider: {
             '@type': 'Organization',

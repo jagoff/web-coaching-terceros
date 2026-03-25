@@ -132,7 +132,7 @@ export default function MobileNavigation() {
                 <div>
                   <h2 className="text-2xl font-bold text-white">ELEVA</h2>
                   <p className="text-sm text-gray-400">
-                    {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
+                    {language === 'es' ? 'COACHING' : 'COACHING'}
                   </p>
                 </div>
                 <button

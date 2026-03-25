@@ -123,9 +123,9 @@ export default function Pricing() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {/* Badge row — fixed height keeps all cards aligned */}
-              <div className="flex justify-end mb-4" style={{ minHeight: "1.75rem" }}>
+              <div className="flex justify-center mb-4" style={{ minHeight: "1.75rem", transform: "translateY(-15px)" }}>
                 {plan.badge && (
-                  <span className="badge text-xs px-3 py-1" aria-label="Plan más popular">
+                  <span className="badge text-xs px-3 py-1" style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.3)" }} aria-label="Plan más popular">
                     {plan.badge}
                   </span>
                 )}
@@ -136,14 +136,10 @@ export default function Pricing() {
                 className="text-xs font-bold uppercase tracking-widest mb-5"
                 style={{ 
                   letterSpacing: "0.15em",
-                  fontSize: "0.875rem",
-                  background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
+                  fontSize: "0.875rem"
                 }}
               >
-                {plan.name}
+                <span className="text-gradient">{plan.name}</span>
               </p>
 
               {/* Description */}
@@ -198,12 +194,13 @@ export default function Pricing() {
           transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mt-12 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <MessageCircle size={18} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-          <p className="text-base" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
-            {language === 'es' 
-              ? '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?' 
-              : 'Not sure which plan best fits your needs?'
-            }{" "}
+          <div className="text-center">
+            <p className="text-base mb-2" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
+              {language === 'es' 
+                ? '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?' 
+                : 'Not sure which plan best fits your needs?'
+              }
+            </p>
             <button
               className="underline transition-colors bg-transparent border-0 cursor-pointer p-0 text-base"
               style={{ color: "var(--gold-primary)" }}
@@ -219,7 +216,7 @@ export default function Pricing() {
                 : 'Write to me and we\'ll discuss it with no commitment.'
               }
             </button>
-          </p>
+          </div>
         </motion.div>
       </div>
     </section>

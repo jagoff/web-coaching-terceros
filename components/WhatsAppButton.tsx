@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PHONE = "5493425153999";
-const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coaching/consultoría. Vi tu web y quiero agendar la sesión gratuita.";
+const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coaching. Vi tu web y quiero agendar la sesión gratuita.";
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);

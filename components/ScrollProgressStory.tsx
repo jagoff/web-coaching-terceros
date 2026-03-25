@@ -44,7 +44,7 @@ export default function ScrollProgressStory() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          De la tecnología a la consultoría estratégica
+          De la tecnología al coaching estratégico
         </motion.p>
 
         {/* Animated Numbers */}

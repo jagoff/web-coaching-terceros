@@ -109,9 +109,9 @@ export default function Footer() {
 
   const serviceLinks = [
     { label: language === 'es' ? "Coaching de Liderazgo" : "Leadership Coaching", href: "#servicios" },
-    { label: language === 'es' ? "Consultoría Organizacional" : "Organizational Consulting", href: "#servicios" },
+                {label: language === 'es' ? "Coaching Organizacional" : "Organizational Coaching", href: "#servicios" },
     { label: language === 'es' ? "Sesión Gratuita" : "Free Session", href: "#contacto" },
-    { label: language === 'es' ? "Consultoría Continua" : "Ongoing Consulting", href: "#precios" },
+    { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "#precios" },
   ];
 
   return (
@@ -135,7 +135,7 @@ export default function Footer() {
                   paddingBottom: "0.2rem"
                 }}
               >
-                {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}
+                {language === 'es' ? 'COACHING' : 'COACHING'}
               </span>
             </div>
             <p className="text-sm mb-6" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }} suppressHydrationWarning>
@@ -245,7 +245,7 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            © 2026 ELEVA {language === 'es' ? 'CONSULTORA' : 'CONSULTING'}. {t.footer.rights}
+            © 2026 ELEVA {language === 'es' ? 'COACHING' : 'COACHING'}. {t.footer.rights}
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>

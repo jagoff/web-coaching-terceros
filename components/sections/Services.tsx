@@ -141,7 +141,7 @@ export default function Services() {
                     <Icon size={26} strokeWidth={1.5} />
                   </motion.div>
                   {service.badge && (
-                    <span className="badge text-xs">
+                    <span className="badge text-xs" style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.3)" }}>
                       {service.badge}
                     </span>
                   )}
@@ -151,14 +151,10 @@ export default function Services() {
                   className="heading-md mb-6"
                   style={{ 
                     fontFamily: "var(--font-heading)",
-                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)",
-                    background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
+                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)"
                   }}
                 >
-                  {service.title}
+                  <span className="text-gradient">{service.title}</span>
                 </h3>
 
                 <p className="mb-6 sm:mb-10" style={{ color: "var(--text-secondary)", lineHeight: "1.75" }}>
@@ -186,26 +182,28 @@ export default function Services() {
                   ))}
                 </motion.ul>
 
-                {/* CTA */}
-                <button
-                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
-                  style={{ 
-                    background: "linear-gradient(135deg, #C87B5A 0%, #7C6BC4 50%, #FF6B35 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    letterSpacing: "0.1em"
-                  }}
-                  onClick={() => scrollToElement("#contacto")}
-                  onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; e.currentTarget.style.gap = "12px"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.gap = "8px"; }}
-                >
-                  {service.cta} 
-                  <ArrowRight 
-                    size={16} 
-                    style={{ color: "#FF6B35" }}
-                  />
-                </button>
+                {/* CTA centered */}
+                <div className="flex justify-center">
+                  <button
+                    className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
+                    style={{ 
+                      background: "linear-gradient(135deg, #C87B5A 0%, #7C6BC4 50%, #FF6B35 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      letterSpacing: "0.1em"
+                    }}
+                    onClick={() => scrollToElement("#contacto")}
+                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; e.currentTarget.style.gap = "12px"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.gap = "8px"; }}
+                  >
+                    {service.cta} 
+                    <ArrowRight 
+                      size={16} 
+                      style={{ color: "#FF6B35" }}
+                    />
+                  </button>
+                </div>
               </motion.div>
             );
           })}
