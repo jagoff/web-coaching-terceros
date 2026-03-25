@@ -193,6 +193,7 @@ export default function Navbar() {
               </button>
               {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
+                id="navbar-cta-primary"
                 className="btn-primary animate-glow force-cta-style"
                 onClick={() => handleLinkClick("/#contacto")}
               >
@@ -308,6 +309,7 @@ export default function Navbar() {
             {/* Mobile CTA Button - DO NOT ADD INLINE STYLES - protected by CSS rules */}
             <div className="px-8 pb-6">
               <button
+                id="navbar-cta-mobile"
                 className="btn-primary animate-glow force-cta-style w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >

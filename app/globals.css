@@ -403,6 +403,40 @@ button.force-cta-style,
   text-transform: uppercase !important;
 }
 
+/* ID-based rules - MAXIMUM SPECIFICITY */
+#navbar-cta-primary,
+#navbar-cta-mobile,
+#navbar-cta-primary.force-cta-style,
+#navbar-cta-mobile.force-cta-style {
+  background: var(--cta-primary) !important;
+  color: white !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 16px var(--cta-glow) !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+/* Anti-Tailwind utility override - FORCE STYLES */
+#navbar-cta-primary[class],
+#navbar-cta-mobile[class],
+#navbar-cta-primary[class*="btn"],
+#navbar-cta-mobile[class*="btn"] {
+  background: var(--cta-primary) !important;
+  color: white !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 16px var(--cta-glow) !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
 /* Prevent inline style overrides */
 .btn-primary[style],
 .navbar .btn-primary[style],
@@ -449,7 +483,9 @@ nav .btn-primary[style] {
 nav .btn-primary:hover,
 button.force-cta-style:hover,
 .force-cta-style.btn-primary:hover,
-.force-cta-style.btn-primary.animate-glow:hover {
+.force-cta-style.btn-primary.animate-glow:hover,
+#navbar-cta-primary:hover,
+#navbar-cta-mobile:hover {
   background: var(--cta-hover) !important;
   transform: scale(1.025) translateY(-1px) !important;
   border-color: rgba(255, 255, 255, 0.7) !important;
