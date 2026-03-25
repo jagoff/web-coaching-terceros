@@ -76,7 +76,7 @@ export default function YouTubeEmbed({
   const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}?${new URLSearchParams({
     autoplay: autoplay ? "1" : "0",
     mute: muted ? "1" : "0",
-    controls: controls ? "1" : "0",
+    controls: "0",
     rel: showRelated ? "1" : "0",
     modestbranding: modestBranding ? "1" : "0",
     playsinline: "1",
