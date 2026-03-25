@@ -14,7 +14,12 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
   };
 
   return (
-    <a href={href} onClick={handleClick} className={className} suppressHydrationWarning>
+    <a 
+      href={href} 
+      onClick={handleClick} 
+      className={`${className} whitespace-nowrap`}
+      suppressHydrationWarning
+    >
       {children}
     </a>
   );
