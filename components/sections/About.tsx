@@ -263,8 +263,8 @@ export default function About() {
                 </h3>
                 <p className="text-base" style={{ color: "var(--text-secondary)" }}>
                   {language === 'es' 
-                    ? 'En este video te explico cómo ayudo a líderes y equipos a alcanzar su máximo potencial.'
-                    : 'In this video I explain how I help leaders and teams reach their maximum potential.'
+                    ? '¿Queres pasar por YouTube? Te espero!'
+                    : 'Want to stop by YouTube? I\'ll be there!'
                   }
                 </p>
               </div>
