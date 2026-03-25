@@ -141,7 +141,7 @@ const ctaReveal: Variants = {
 };
 
 export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Language }) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -405,7 +405,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               onClick={() => handleScroll("#contacto")}
               className="btn-hero-primary"
             >
-              Agendá tu sesión gratuita →
+              {t.contact.submitButton} →
             </button>
             <motion.button
               className="btn-secondary"

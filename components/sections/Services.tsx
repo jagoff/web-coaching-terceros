@@ -49,7 +49,7 @@ export default function Services() {
       title: t.services.items.liderazgo.title,
       description: t.services.items.liderazgo.description,
       benefits: t.services.items.liderazgo.benefits,
-      cta: "¿Queres saber más?",
+      cta: t.services.knowMore,
       featured: false,
     },
     {
@@ -58,7 +58,7 @@ export default function Services() {
       title: t.services.items.organizacional.title,
       description: t.services.items.organizacional.description,
       benefits: t.services.items.organizacional.benefits,
-      cta: "Empezá por acá",
+      cta: t.services.startHere,
       featured: true,
       badge: language === 'es' ? 'MÁS SOLICITADO' : 'MOST POPULAR',
     },

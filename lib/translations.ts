@@ -46,6 +46,8 @@ export interface Translations {
     subtitle: string;
     personalizedServices: string;
     viewMore: string;
+    knowMore: string;
+    startHere: string;
     items: {
       liderazgo: {
         title: string;
@@ -311,6 +313,8 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Cada organización es única. Yo adapto mis servicios a tus necesidades específicas, combinando frameworks probados con enfoque personalizado.',
       personalizedServices: 'Servicios Personalizados',
       viewMore: 'Ver más',
+      knowMore: '¿Queres saber más?',
+      startHere: 'Empezá por acá',
       items: {
         liderazgo: {
           title: 'Coaching de Liderazgo',
@@ -614,6 +618,8 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Every organization is unique. I adapt my services to your specific needs, combining proven frameworks with personalized approach.',
       personalizedServices: 'Personalized Services',
       viewMore: 'View more',
+      knowMore: 'Want to know more?',
+      startHere: 'Start here',
       items: {
         liderazgo: {
           title: 'Leadership Coaching',

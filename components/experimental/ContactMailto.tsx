@@ -16,7 +16,7 @@ const slideRight = {
 };
 
 export default function ContactMailto() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -254,7 +254,7 @@ export default function ContactMailto() {
                   disabled={Object.keys(errors).length > 0}
                 >
                   <>
-                    Agendá tu sesión gratuita <ArrowRight size={16} className="inline ml-1" />
+                    {t.contact.submitButton} <ArrowRight size={16} className="inline ml-1" />
                   </>
                 </button>
 
