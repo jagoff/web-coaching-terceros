@@ -10,6 +10,8 @@ interface ParallaxHeroImagesProps {
 }
 
 export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImagesProps) {
+  console.log("🖼️ ParallaxHeroImages render:", images.length, "images");
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -60,10 +62,13 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full ${className}`}
+      className={`w-full h-full bg-green-100 ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      <div className="p-2 text-xs font-bold">
+        DEBUG: {images.length} images loaded
+      </div>
       <div className="grid grid-cols-3 md:grid-cols-4 gap-2 w-full">
         {images.map((src, index) => {
           const depth = (index % 3) + 1;
@@ -72,7 +77,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
           return (
             <motion.div
               key={index}
-              className="relative w-full aspect-square bg-gray-200 rounded-lg overflow-hidden"
+              className="relative w-full aspect-square bg-gray-200 rounded-lg overflow-hidden border-2 border-blue-500"
               style={{
                 x: moveX,
                 y: moveY,
@@ -80,12 +85,17 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <span className="text-xs bg-white px-1 rounded">{index + 1}</span>
+              </div>
               <Image
                 src={src}
                 alt={`Image ${index + 1}`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 33vw, 25vw"
+                onError={(e) => console.error("❌ Failed:", src)}
+                onLoad={() => console.log("✅ Loaded:", src)}
               />
             </motion.div>
           );

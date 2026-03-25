@@ -302,7 +302,7 @@ export default function GesturesCarousel() {
       </div>
 
       {/* Desktop Parallax Grid */}
-      <div className="hidden sm:block">
+      <div className="block sm:block">
         <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <ParallaxHeroImages 
             images={images.map(imageName => getImagePath(imageName))} 

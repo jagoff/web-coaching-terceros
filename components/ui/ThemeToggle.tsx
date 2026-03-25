@@ -55,15 +55,12 @@ export default function ThemeToggle() {
 
       {/* Current theme indicator */}
       <motion.div
-        className="flex items-center gap-2 px-3 py-1 rounded-md bg-violet-500/10 dark:bg-violet-400/10 border border-violet-500/20 dark:border-violet-400/20"
+        className="flex items-center gap-2 p-2 rounded-md bg-violet-500/10 dark:bg-violet-400/10 border border-violet-500/20 dark:border-violet-400/20"
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         key={theme}
       >
         {getIcon()}
-        <span className="text-xs font-medium text-violet-400 dark:text-violet-300">
-          {getLabel()}
-        </span>
       </motion.div>
 
       {/* Quick toggle button */}
