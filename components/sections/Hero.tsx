@@ -384,12 +384,12 @@ export default function Hero() {
               fontWeight: 400,
               fontSize: "clamp(1.25rem, 2.2vw, 1.4rem)",
               lineHeight: 1.85,
-              color: "var(--text-secondary)"
+              color: "#F8F7FF"
             }}
           >
             {language === 'es' 
-              ? 'Coaching y consultoría organizacional para líderes tech y startups que quieren crecer de forma ágil, humana y sostenible.'
-              : 'Leadership coaching and organizational consulting for tech leaders and startups that want to grow in an agile, human, and sustainable way.'
+              ? 'Te acompaño a construir equipos que funcionen sin vos encima, procesos que escalen, y una cultura donde la gente quiera quedarse.'
+              : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'
             }
           </motion.p>
 

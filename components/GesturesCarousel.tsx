@@ -230,6 +230,18 @@ export default function GesturesCarousel() {
           </AnimatePresence>
         </div>
 
+        {/* Progress bar - Mobile only */}
+        <div className="relative w-full h-1 bg-gray-700 rounded-full overflow-hidden mt-3 mb-2">
+          <motion.div
+            className="h-full bg-gradient-to-r from-[var(--gold-primary)] to-[var(--amber-primary)] rounded-full"
+            initial={{ width: "0%" }}
+            animate={{ 
+              width: `${((page + 1) / images.length) * 100}%` 
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          />
+        </div>
+
         {/* Navigation dots */}
         <div className="flex justify-center mt-4 gap-2">
           {images.map((_, index) => (

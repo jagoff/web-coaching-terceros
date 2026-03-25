@@ -206,55 +206,46 @@ p {
   color: transparent;
 }
 
-/* Subrayado degradado color web con movimiento */
+/* Subrayado degradado color web con movimiento - versión simple */
 .web-underline {
   position: relative;
   display: inline;
-  text-decoration: none;
+  text-decoration: none !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: #EDE8F0 !important;
   background-clip: unset !important;
   color: #EDE8F0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
 }
 
-.web-underline::after {
+.web-underline::before {
   content: '';
   position: absolute;
-  bottom: -3px;
+  bottom: -4px;
   left: 0;
   right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF6B35, #FF8C42, #FFA500, #FFB347, #FF6B35);
+  border-radius: 2px;
+  animation: simple-wave 2s ease-in-out infinite;
+  z-index: 100;
+}
+
+.web-underline:hover::before {
   height: 4px;
-  background: linear-gradient(90deg, #FF6B35, #7C6BC4, #00D4FF);
-  border-radius: 10px;
-  animation: wave-underline 1.5s ease-in-out infinite;
+  animation-duration: 1.5s;
 }
 
-.web-underline:hover::after {
-  height: 5px;
-  animation-duration: 1s;
-}
-
-@keyframes wave-underline {
-  0% {
+@keyframes simple-wave {
+  0%, 100% {
     transform: translateY(0) scaleY(1);
-    border-radius: 10px 10px 10px 10px;
-  }
-  25% {
-    transform: translateY(-4px) scaleY(1.5);
-    border-radius: 15px 15px 5px 5px;
   }
   50% {
-    transform: translateY(2px) scaleY(0.7);
-    border-radius: 5px 5px 15px 15px;
-  }
-  75% {
-    transform: translateY(-2px) scaleY(1.2);
-    border-radius: 12px 12px 8px 8px;
-  }
-  100% {
-    transform: translateY(0) scaleY(1);
-    border-radius: 10px 10px 10px 10px;
+    transform: translateY(-3px) scaleY(1.3);
   }
 }
 

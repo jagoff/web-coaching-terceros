@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Hero,
   About,
@@ -15,6 +13,33 @@ import {
 } from "@/components/PageSections";
 import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
+  description: "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
+  keywords: ["coaching", "consultoría", "liderazgo", "tech", "startups", "organizacional", "equipos", "procesos", "cultura"],
+  authors: [{ name: "Fernando Ferrari" }],
+  openGraph: {
+    title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
+    description: "Coaching y consultoría organizacional para líderes tech y startups",
+    type: "website",
+    locale: "es_ES",
+    url: "https://eleva-consultoria.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
+    description: "Coaching y consultoría organizacional para líderes tech y startups",
+  },
+  alternates: {
+    canonical: "https://eleva-consultoria.com",
+    languages: {
+      'es': 'https://eleva-consultoria.com',
+      'en': 'https://eleva-consultoria.com/en',
+    },
+  },
+};
 
 export default function Home() {
   return (
