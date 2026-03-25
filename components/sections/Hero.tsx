@@ -13,71 +13,71 @@ const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWords
 });
 
 const rotatingPhrasesES = [
-  "Mi equipo no toma decisiones sin mí",
-  "Las reuniones no llevan a nada concreto",
-  "Estamos creciendo pero todo se rompe",
-  "No logro delegar sin perder el control",
-  "El equipo tiene talento pero no rinde",
-  "Siempre apagamos incendios 🔥, nunca prevenimos",
-  "Tengo demasiadas prioridades y no avanzo en ninguna",
-  "No sé si mi equipo está alineado con los objetivos",
-  "Contrato bien pero la gente se va rápido",
-  "Trabajamos mucho pero los resultados no se ven",
-  "No hay tiempo para pensar, solo para reaccionar",
-  "Cada área va por su cuenta y nadie coordina",
-  "El feedback que doy no genera cambios reales",
-  "Mi jornada no termina nunca y sigo atrasado",
-  "Sé lo que hay que hacer pero no cómo arrancarlo",
-  "Los procesos que funcionaban antes ya no escalan",
-  "Hay conflictos en el equipo que nadie nombra",
-  "Tomo decisiones con datos incompletos siempre",
-  "Perdemos clientes por problemas que podríamos evitar",
-  "El equipo espera que yo tenga todas las respuestas",
-  "Nuestras daily meetings duran 45 minutos y no resuelven nada",
-  "Los devs dicen 'terminado' pero siempre hay bugs en producción",
-  "Cambio prioridades cada dos días y nadie sabe qué hacer",
-  "El frontend y el backend no se hablan, siempre es culpa del otro",
-  "Hacemos overtime pero seguimos entregando tarde",
-  "Mi mejor dev está por renunciar y no sé por qué",
-  "Implementamos Scrum pero solo son reuniones de más",
-  "Los stakeholders cambian el alcance sin aviso",
-  "No sé qué hace cada uno en el equipo",
-  "Las retrospectivas son silencio incómodo y nada cambia",
-  "El cliente nunca está contento con lo que entregamos",
+  "Mi equipo no toma <span class='text-gradient'>decisiones</span> sin mí",
+  "Las reuniones no llevan a <span class='text-gradient'>nada concreto</span>",
+  "Estamos creciendo pero <span class='text-gradient'>todo se rompe</span>",
+  "No logro <span class='text-gradient'>delegar</span> sin perder el control",
+  "El equipo tiene <span class='text-gradient'>talento</span> pero no rinde",
+  "Siempre apagamos incendios 🔥, nunca <span class='text-gradient'>prevenimos</span>",
+  "Tengo <span class='text-gradient'>demasiadas prioridades</span> y no avanzo en ninguna",
+  "No sé si mi equipo está <span class='text-gradient'>alineado</span> con los objetivos",
+  "Contrato bien pero la <span class='text-gradient'>gente se va</span> rápido",
+  "Trabajamos mucho pero los <span class='text-gradient'>resultados no se ven</span>",
+  "No hay tiempo para <span class='text-gradient'>pensar</span>, solo para reaccionar",
+  "Cada área va por <span class='text-gradient'>su cuenta</span> y nadie coordina",
+  "El feedback que doy no genera <span class='text-gradient'>cambios reales</span>",
+  "Mi jornada <span class='text-gradient'>no termina nunca</span> y sigo atrasado",
+  "Sé lo que hay que hacer pero no <span class='text-gradient'>cómo arrancarlo</span>",
+  "Los procesos que funcionaban antes ya no <span class='text-gradient'>escalan</span>",
+  "Hay <span class='text-gradient'>conflictos</span> en el equipo que nadie nombra",
+  "Tomo decisiones con <span class='text-gradient'>datos incompletos</span> siempre",
+  "Perdemos <span class='text-gradient'>clientes</span> por problemas que podríamos evitar",
+  "El equipo espera que yo tenga <span class='text-gradient'>todas las respuestas</span>",
+  "Nuestras daily meetings duran <span class='text-gradient'>45 minutos</span> y no resuelven nada",
+  "Los devs dicen '<span class='text-gradient'>terminado</span>' pero siempre hay bugs en producción",
+  "Cambio <span class='text-gradient'>prioridades</span> cada dos días y nadie sabe qué hacer",
+  "El frontend y el backend no se <span class='text-gradient'>hablan</span>, siempre es culpa del otro",
+  "Hacemos <span class='text-gradient'>overtime</span> pero seguimos entregando tarde",
+  "Mi mejor dev está por <span class='text-gradient'>renunciar</span> y no sé por qué",
+  "Implementamos <span class='text-gradient'>Scrum</span> pero solo son reuniones de más",
+  "Los stakeholders cambian el <span class='text-gradient'>alcance</span> sin aviso",
+  "No sé qué hace <span class='text-gradient'>cada uno</span> en el equipo",
+  "Las retrospectivas son <span class='text-gradient'>silencio incómodo</span> y nada cambia",
+  "El cliente <span class='text-gradient'>nunca está contento</span> con lo que entregamos",
 ];
 
 const rotatingPhrasesEN = [
-  "My team doesn't make decisions without me",
-  "Meetings don't lead to anything concrete",
-  "We're growing but everything breaks",
-  "I can't delegate without losing control",
-  "The team has talent but doesn't perform",
-  "We're always putting out fires, never preventing",
-  "I have too many priorities and don't advance in any",
-  "I don't know if my team is aligned with objectives",
-  "I hire well but people leave quickly",
-  "We work a lot but results aren't visible",
-  "There's no time to think, only to react",
-  "Each area goes its own way and nobody coordinates",
-  "The feedback I give doesn't generate real changes",
-  "My workday never ends and I'm still behind",
-  "I know what needs to be done but not how to start",
-  "The processes that worked before no longer scale",
-  "There are conflicts in the team that nobody mentions",
-  "I always make decisions with incomplete data",
-  "We lose clients due to problems we could avoid",
-  "The team expects me to have all the answers",
-  "Our daily meetings last 45 minutes and solve nothing",
-  "Devs say 'done' but there are always bugs in production",
-  "I change priorities every two days and nobody knows what to do",
-  "Frontend and backend don't talk, it's always the other's fault",
-  "We work overtime but still deliver late",
-  "My best dev is about to quit and I don't know why",
-  "We implemented Scrum but it's just more meetings",
-  "Stakeholders change scope without notice",
-  "I don't know what each person on the team does",
-  "Retrospectives are awkward silence and nothing changes",
-  "The client is never happy with what we deliver",
+  "My team doesn't make <span class='text-gradient'>decisions</span> without me",
+  "Meetings don't lead to <span class='text-gradient'>anything concrete</span>",
+  "We're growing but <span class='text-gradient'>everything breaks</span>",
+  "I can't <span class='text-gradient'>delegate</span> without losing control",
+  "The team has <span class='text-gradient'>talent</span> but doesn't perform",
+  "We're always putting out fires, never <span class='text-gradient'>preventing</span>",
+  "I have <span class='text-gradient'>too many priorities</span> and don't advance in any",
+  "I don't know if my team is <span class='text-gradient'>aligned</span> with objectives",
+  "I hire well but <span class='text-gradient'>people leave</span> quickly",
+  "We work a lot but <span class='text-gradient'>results aren't visible</span>",
+  "There's no time to <span class='text-gradient'>think</span>, only to react",
+  "Each area goes <span class='text-gradient'>its own way</span> and nobody coordinates",
+  "The feedback I give doesn't generate <span class='text-gradient'>real changes</span>",
+  "My workday <span class='text-gradient'>never ends</span> and I'm still behind",
+  "I know what needs to be done but not <span class='text-gradient'>how to start</span>",
+  "The processes that worked before no longer <span class='text-gradient'>scale</span>",
+  "There are <span class='text-gradient'>conflicts</span> in the team that nobody mentions",
+  "I always make decisions with <span class='text-gradient'>incomplete data</span>",
+  "We lose <span class='text-gradient'>clients</span> due to problems we could avoid",
+  "The team expects me to have <span class='text-gradient'>all the answers</span>",
+  "Our daily meetings last <span class='text-gradient'>45 minutes</span> and solve nothing",
+  "Devs say '<span class='text-gradient'>done</span>' but there are always bugs in production",
+  "I change <span class='text-gradient'>priorities</span> every two days and nobody knows what to do",
+  "Frontend and backend don't <span class='text-gradient'>talk</span>, it's always the other's fault",
+  "We work <span class='text-gradient'>overtime</span> but still deliver late",
+  "My best dev is about to <span class='text-gradient'>quit</span> and I don't know why",
+  "We implemented <span class='text-gradient'>Scrum</span> but it's just more meetings",
+  "Stakeholders change <span class='text-gradient'>scope</span> without notice",
+  "I don't know what <span class='text-gradient'>each person</span> on the team does",
+  "Retrospectives are <span class='text-gradient'>awkward silence</span> and nothing changes",
+  "The client is <span class='text-gradient'>never happy</span> with what we deliver",
 ];
 
 type Particle = {
@@ -289,7 +289,7 @@ export default function Hero() {
               )}
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
-              {language === 'es' ? 'Liderá con propósito.' : 'Lead with purpose.'}
+              {language === 'es' ? 'Liderá tu empresa.' : 'Lead with purpose.'}
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
               {language === 'es' ? (
@@ -335,29 +335,41 @@ export default function Hero() {
               }}
               aria-hidden="true"
             />
-            <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
-              ¿Te suena esto?
-            </p>
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={phraseIndex}
-                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="lead-text italic"
-                style={{ 
-                  background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  fontFamily: "var(--font-heading)", 
-                  fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
-                }}
-              >
-                &ldquo;{rotatingPhrases[phraseIndex]}&rdquo;
-              </motion.p>
-            </AnimatePresence>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex-shrink-0">
+                <img 
+                  src="/img/this_is_fine.png" 
+                  alt="This is fine meme"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-80"
+                />
+              </div>
+              <div className="flex-1">
+                <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+                  ¿Te suena esto?
+                </p>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={phraseIndex}
+                    initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="lead-text italic"
+                    style={{ 
+                      background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      fontFamily: "var(--font-heading)", 
+                      fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
+                    }}
+                    dangerouslySetInnerHTML={{ 
+                      __html: `&ldquo;${rotatingPhrases[phraseIndex]}&rdquo;` 
+                    }}
+                  />
+                </AnimatePresence>
+              </div>
+            </div>
           </motion.div>
 
           {/* Subheadline */}
