@@ -1,11 +1,41 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useState, useEffect } from 'react';
 
 export default function ThemeToggle() {
   const { theme, resolvedTheme, toggleTheme, setTheme } = useTheme();
+  const [visible, setVisible] = useState(true);
+
+  // Hide/show theme toggle based on scroll position (same logic as navbar)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const contactSection = document.querySelector('#contacto');
+      
+      // Check if near contact section (200px before)
+      let shouldHide = false;
+      if (contactSection) {
+        const contactRect = contactSection.getBoundingClientRect();
+        const contactTop = contactRect.top + window.scrollY;
+        shouldHide = currentScrollY > (contactTop - 200);
+      }
+      
+      // Hide when scrolling down near contact, show when scrolling up
+      if (shouldHide) {
+        setVisible(false);
+      } else if (currentScrollY < (window as any).lastScrollY) {
+        setVisible(true);
+      }
+      
+      (window as any).lastScrollY = currentScrollY;
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const getIcon = () => {
     if (theme === 'light') return <Sun size={16} />;
@@ -26,11 +56,17 @@ export default function ThemeToggle() {
   };
 
   return (
-    <motion.div
-      className="fixed top-4 right-4 flex items-center gap-2 p-2 rounded-lg bg-gray-800/20 dark:bg-gray-200/20 backdrop-blur-sm border border-gray-700/30 dark:border-gray-300/30"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className="fixed top-4 right-4 flex items-center gap-2 p-2 rounded-lg bg-gray-800/20 dark:bg-gray-200/20 backdrop-blur-sm border border-gray-700/30 dark:border-gray-300/30"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
       {/* Theme options */}
       <div className="flex items-center gap-1">
         {(['light', 'dark', 'system'] as const).map((themeOption) => (
@@ -74,6 +110,8 @@ export default function ThemeToggle() {
         <Sun size={16} className="hidden dark:block" />
         <Moon size={16} className="block dark:hidden" />
       </motion.button>
-    </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
