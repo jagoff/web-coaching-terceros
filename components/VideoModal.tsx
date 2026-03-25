@@ -67,14 +67,6 @@ export default function VideoModal({ videoId, title = "Video", isOpen, onClose }
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
-
-          {/* YouTube badge */}
-          <div className="absolute -bottom-12 sm:-bottom-12 left-0">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm">
-              <Youtube size={16} className="text-red-500" />
-              <span className="text-xs text-white font-medium">YouTube</span>
-            </div>
-          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
