@@ -145,8 +145,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
+  const [renderLanguage, setRenderLanguage] = useState(ssrLanguage);
   
-  const rotatingPhrases = language === 'es' ? rotatingPhrasesES : rotatingPhrasesEN;
+  const rotatingPhrases = renderLanguage === 'es' ? rotatingPhrasesES : rotatingPhrasesEN;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -155,6 +156,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
 
   useEffect(() => {
     setMounted(true);
+    setRenderLanguage(language); // Sync with context language after mount
     const count = window.innerWidth < 768 ? 12 : 35;
     setParticles(
       Array.from({ length: count }, (_, i) => ({
@@ -282,7 +284,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
           >
             <motion.span variants={revealUp} className="block">
-              {language === 'es' ? (
+              {renderLanguage === 'es' ? (
                 <>
                   <span className="text-gradient">Transformá</span> tu equipo.
                 </>
@@ -293,10 +295,10 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               )}
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
-              {language === 'es' ? 'Liderá tu empresa.' : 'Lead with purpose.'}
+              {renderLanguage === 'es' ? 'Liderá tu empresa.' : 'Lead with purpose.'}
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
-              {language === 'es' ? (
+              {renderLanguage === 'es' ? (
                 <> <span style={{
                   background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
                   WebkitBackgroundClip: "text",
@@ -368,7 +370,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                       fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
                     }}
                     dangerouslySetInnerHTML={{ 
-                      __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (ssrLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisions</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
+                      __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (renderLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisions</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
                     }}
                   />
                 </AnimatePresence>
