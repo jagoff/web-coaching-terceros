@@ -119,14 +119,11 @@ export default function About() {
               perspective: '1000px'
             }}
           >
-            <Image
+            <img 
               src="/img/tv.png" 
               alt="TV Icon" 
-              width={320}
-              height={320}
               className="w-full h-full object-contain"
-              priority={true}
-              sizes="(max-width: 640px) 256px, 320px"
+              style={{ display: 'block !important' }}
             />
           </div>
         </div>
@@ -145,6 +142,7 @@ export default function About() {
                 filter: 'brightness(1.1) contrast(1.1)',
                 opacity: 1
               }}
+              unoptimized={true}
             />
           </div>
 
