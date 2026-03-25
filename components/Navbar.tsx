@@ -91,6 +91,9 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Navbar placeholder to prevent content jump */}
+      <div style={{ height: visible ? '0px' : '80px' }} />
+      
       <AnimatePresence>
         {visible && (
           <motion.nav
