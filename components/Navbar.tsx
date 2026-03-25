@@ -92,7 +92,12 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar placeholder to prevent content jump */}
-      <div style={{ height: visible ? '0px' : '80px' }} />
+      <motion.div 
+        style={{ 
+          height: visible ? '0px' : '88px', // Calculado: padding 1.5rem*2 + contenido ~44px
+          transition: 'height 0.3s easeInOut'
+        }} 
+      />
       
       <AnimatePresence>
         {visible && (
