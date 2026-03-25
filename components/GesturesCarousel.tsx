@@ -6,19 +6,27 @@ import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-// Use only confirmed unique images from img folder
-const baseImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+// Use the actual images that exist in the img folder
+const baseImages = [
+  'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.15.48 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.16.12 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.16.36 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.18.51 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.20.39 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.20.58 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.21.55 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.23.52 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.25.10 p. m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.27.21 p. m..png'
+];
 
-const getImagePath = (num: number): string => {
-  if (num >= 101 && num <= 103) {
-    // Images from /public/ folder
-    return `/insta-${num - 100}.png`;
-  }
-  // Images from /img/ folder - all are PNG
-  return `/img/insta-${num}.png`;
+const getImagePath = (imageName: string): string => {
+  return `/img/${imageName}`;
 };
 
-const shuffleArray = (array: number[]) => {
+const shuffleArray = (array: string[]) => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -29,8 +37,8 @@ const shuffleArray = (array: number[]) => {
 
 export default function GesturesCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
-  const [images, setImages] = useState<number[]>([]);
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [images, setImages] = useState<string[]>([]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [touchStart, setTouchStart] = useState<{ x: number; y: number; time: number } | null>(null);
   const [touchEnd, setTouchEnd] = useState<{ x: number; y: number; time: number } | null>(null);
@@ -177,7 +185,7 @@ export default function GesturesCarousel() {
               >
                 <Image
                   src={getImagePath(currentImage)}
-                  alt={`Galería de imágenes - ${currentImage}`}
+                  alt={`Galería de imágenes - ${currentImage.substring(0, 20)}...`}
                   fill
                   className="object-cover select-none"
                   draggable={false}
@@ -293,7 +301,7 @@ export default function GesturesCarousel() {
       <div className="hidden sm:block">
         <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
           <ParallaxHeroImages 
-            images={images.map(postNum => getImagePath(postNum))} 
+            images={images.map(imageName => getImagePath(imageName))} 
             className="w-full h-full"
           />
         </div>
@@ -330,7 +338,7 @@ export default function GesturesCarousel() {
               
               <Image
                 src={getImagePath(selectedImage)}
-                alt={`Galería de imágenes - ${selectedImage}`}
+                alt={`Galería de imágenes - ${selectedImage.substring(0, 20)}...`}
                 fill
                 className="object-contain"
                 draggable={false}
