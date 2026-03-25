@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { Play, Youtube } from "lucide-react";
 import Image from "next/image";
-import VideoModal from "./VideoModal";
 
 const thumbnailContainer: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(6px)" },
@@ -28,18 +27,15 @@ export default function YouTubeThumbnail({
   title = "YouTube video",
   className = "",
 }: YouTubeThumbnailProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
   
   // Simple reliable thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
 
   const handleClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsPlaying(true);
   };
 
   const handleImageError = () => {
@@ -47,103 +43,110 @@ export default function YouTubeThumbnail({
   };
 
   return (
-    <>
-      <motion.div
-        variants={thumbnailContainer}
-        initial="hidden"
-        animate="visible"
-        className={`relative w-full cursor-pointer group ${className}`}
-        style={{ 
-          aspectRatio: "16/9",
-          minHeight: "200px"
-        }}
-        onClick={handleClick}
-      >
-        {/* Thumbnail image */}
-        <Image
-          src={thumbnailUrl}
-          alt={title}
-          fill
-          className="object-cover rounded-lg"
-          style={{ borderRadius: "0.75rem" }}
-          onError={handleImageError}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-          priority={false}
-          unoptimized={true}
-        />
-        
-        {/* Error fallback */}
-        {imageError && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-gray-800 to-gray-900" style={{ borderRadius: "0.75rem" }}>
-            <div className="text-center">
-              <Youtube size={48} className="text-red-500 mb-2" />
-              <p className="text-white text-sm">Video Preview</p>
-            </div>
-          </div>
-        )}
-        
-        {/* Dark overlay on hover */}
-        <div 
-          className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    <motion.div
+      variants={thumbnailContainer}
+      initial="hidden"
+      animate="visible"
+      className={`relative w-full cursor-pointer group ${className}`}
+      style={{ 
+        aspectRatio: "16/9",
+        minHeight: "200px"
+      }}
+    >
+      {isPlaying ? (
+        // Video iframe when playing
+        <iframe
+          src={embedUrl}
+          title={title}
+          className="w-full h-full rounded-lg shadow-2xl"
           style={{
-            background: "linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)",
+            border: "none",
             borderRadius: "0.75rem",
           }}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
         />
-        
-        {/* Play button overlay */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative"
-          >
-            {/* Play button circle */}
-            <div
-              className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
-              style={{
-                background: "rgba(255, 0, 0, 0.9)",
-                backdropFilter: "blur(10px)",
-              }}
-            >
-              <Play size={32} className="text-white ml-1" fill="white" />
+      ) : (
+        // Thumbnail when not playing
+        <>
+          {/* Thumbnail image */}
+          <Image
+            src={thumbnailUrl}
+            alt={title}
+            fill
+            className="object-cover rounded-lg"
+            style={{ borderRadius: "0.75rem" }}
+            onError={handleImageError}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+            priority={false}
+            unoptimized={true}
+          />
+          
+          {/* Error fallback */}
+          {imageError && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-gray-800 to-gray-900" style={{ borderRadius: "0.75rem" }}>
+              <div className="text-center">
+                <Youtube size={48} className="text-red-500 mb-2" />
+                <p className="text-white text-sm">Video Preview</p>
+              </div>
             </div>
-            
-            {/* Pulse animation */}
+          )}
+          
+          {/* Dark overlay on hover */}
+          <div 
+            className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: "linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)",
+              borderRadius: "0.75rem",
+            }}
+          />
+          
+          {/* Play button overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-red-500"
-              animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </motion.div>
-        </div>
-        
-        {/* YouTube badge */}
-        <div className="absolute top-4 right-4">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm">
-            <Youtube size={16} className="text-red-500" />
-            <span className="text-xs text-white font-medium">YouTube</span>
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative"
+            >
+              {/* Play button circle */}
+              <div
+                className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
+                style={{
+                  background: "rgba(255, 0, 0, 0.9)",
+                  backdropFilter: "blur(10px)",
+                }}
+              >
+                <Play size={32} className="text-white ml-1" fill="white" />
+              </div>
+              
+              {/* Pulse animation */}
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-red-500"
+                animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            </motion.div>
           </div>
-        </div>
-        
-        {/* Shadow */}
-        <div 
-          className="absolute inset-0 pointer-events-none rounded-lg"
-          style={{
-            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-            borderRadius: "0.75rem",
-          }}
-        />
-      </motion.div>
-
-      {/* Video Modal */}
-      <VideoModal
-        videoId={videoId}
-        title={title}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
-    </>
+          
+          {/* YouTube badge */}
+          <div className="absolute top-4 right-4">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm">
+              <Youtube size={16} className="text-red-500" />
+              <span className="text-xs text-white font-medium">YouTube</span>
+            </div>
+          </div>
+          
+          {/* Shadow */}
+          <div 
+            className="absolute inset-0 pointer-events-none rounded-lg"
+            style={{
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+              borderRadius: "0.75rem",
+            }}
+          />
+        </>
+      )}
+    </motion.div>
   );
 }
 
