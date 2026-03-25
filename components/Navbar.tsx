@@ -189,7 +189,7 @@ export default function Navbar() {
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
                 <span style={{ fontSize: "0.7rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span style={{ fontSize: "0.7rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                <span style={{ fontSize: "0.65rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
