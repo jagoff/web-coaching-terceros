@@ -5,7 +5,8 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 
-const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11, 12, 13, 14, 10, 3, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33];
+// Use only confirmed unique images from img folder
+const baseInstagramImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
 
 const getImageExtension = (num: number): string => {
   // JPEG images are 15-21
@@ -13,7 +14,7 @@ const getImageExtension = (num: number): string => {
 };
 
 const getImagePath = (num: number): string => {
-  return `/insta-${num}${getImageExtension(num)}`;
+  return `/img/insta-${num}${getImageExtension(num)}`;
 };
 
 const shuffleArray = (array: number[]) => {
@@ -39,6 +40,18 @@ export default function InstagramGesturesCarousel() {
   useEffect(() => {
     const shuffled = shuffleArray(baseInstagramImages);
     setInstagramImages(shuffled);
+    
+    // Debug: Detailed logging
+    const uniqueImages = [...new Set(shuffled)];
+    console.log(`📸 Instagram carousel: ${uniqueImages.length}/${shuffled.length} unique images`);
+    console.log(`🎲 Complete order:`, shuffled);
+    console.log(`🖼️ Image paths:`, shuffled.map(n => getImagePath(n)));
+    
+    if (uniqueImages.length !== shuffled.length) {
+      console.error('🚨 DUPLICATES DETECTED!');
+      const duplicates = shuffled.filter((item, index) => shuffled.indexOf(item) !== index);
+      console.error('Duplicates:', duplicates);
+    }
   }, []);
 
   const imageIndex = Math.abs(page) % instagramImages.length;
@@ -126,7 +139,7 @@ export default function InstagramGesturesCarousel() {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-2xl mx-auto">
       {/* Mobile Touch Carousel */}
       <div className="block sm:hidden">
         <div 
@@ -250,9 +263,15 @@ export default function InstagramGesturesCarousel() {
       {/* Desktop Grid */}
       <div className="hidden sm:block">
         <div className="grid grid-cols-3 gap-2">
-          {instagramImages.map((postNum, i) => (
+          {instagramImages.map((postNum, i) => {
+            // Debug logging for each rendered image
+            if (i < 5) {
+              console.log(`🖼️ Rendering image ${i}: ${postNum} -> ${getImagePath(postNum)}`);
+            }
+            
+            return (
             <div
-              key={postNum}
+              key={`${postNum}-${i}`}
               className="relative rounded-lg overflow-hidden group cursor-pointer"
               style={{
                 aspectRatio: "1/1",
@@ -265,17 +284,15 @@ export default function InstagramGesturesCarousel() {
                 src={getImagePath(postNum)}
                 alt={`Post de Instagram @ferf.coach - ${postNum}`}
                 fill
-                className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
+                className={`object-cover transition-all duration-500`}
                 style={{ 
-                  filter: postNum === 5 ? "none" : "grayscale(100%)",
+                  filter: "none",
                   objectFit: "cover"
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.filter = "none";
                   e.currentTarget.style.transform = "scale(1.05)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = postNum === 5 ? "none" : "grayscale(100%)";
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               />
@@ -285,7 +302,8 @@ export default function InstagramGesturesCarousel() {
                 <ZoomIn size={24} className="text-white" />
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
         
         <div className="flex items-center justify-center mt-6">

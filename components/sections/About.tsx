@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
-import InstagramCarousel from "../experimental/InstagramCarousel";
+import InstagramGesturesCarousel from "../InstagramGesturesCarousel";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -123,7 +123,7 @@ export default function About() {
             </div>
 
             {/* Instagram Carousel - Mobile First */}
-            <InstagramCarousel />
+            <InstagramGesturesCarousel />
           </motion.div>
 
           {/* Text column */}

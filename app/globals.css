@@ -437,6 +437,8 @@ p {
     background: linear-gradient(90deg, var(--gold-primary), var(--amber-primary)) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent;
   }
 
   /* Mobile-specific iframe optimizations */
@@ -1504,6 +1506,19 @@ html {
 /* Button font sizes */
 .btn-primary {
   font-size: calc(0.875rem * var(--scale-factor)) !important;
+}
+
+/* Footer link styles to prevent hydration issues */
+.footer-link {
+  white-space: nowrap;
+}
+
+.footer-link.footer-service-link {
+  background: linear-gradient(135deg, #FFB366 0%, #FF8C42 50%, #FFA652 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
 }
 
 .btn-secondary {

@@ -1,15 +1,29 @@
 "use client";
 
+import React from 'react';
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { logError, logWarn, logInfo } from "@/lib/logger";
+import { useEffect } from "react";
 
-const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => {
+const FooterLink = ({ href, children, className, isService = false }: { 
+  href: string; 
+  children: React.ReactNode; 
+  className?: string;
+  isService?: boolean;
+}) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
+      // Log after successful scroll
+      setTimeout(() => {
+        logInfo(`Footer link clicked: ${href}`, 'FooterLink', { href, found: true });
+      }, 100);
+    } else {
+      logError(`Footer link target not found: ${href}`, 'FooterLink', { href, found: false });
     }
   };
 
@@ -17,33 +31,9 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
     <a 
       href={href} 
       onClick={handleClick} 
-      className={`${className} whitespace-nowrap`}
-      suppressHydrationWarning
-    >
-      {children}
-    </a>
-  );
-};
-
-const ServiceLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => {
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <a 
-      href={href} 
-      onClick={handleClick} 
-      className={`${className} whitespace-nowrap`}
+      className={`${className} footer-link`}
       style={{
-        background: "linear-gradient(135deg, #FFB366 0%, #FF8C42 50%, #FFA652 100%)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text"
+        whiteSpace: "nowrap"
       }}
       suppressHydrationWarning
     >
@@ -52,8 +42,62 @@ const ServiceLink = ({ href, children, className }: { href: string; children: Re
   );
 };
 
+// Memoized version to prevent hydration issues
+const MemoizedFooterLink = React.memo(FooterLink);
+MemoizedFooterLink.displayName = 'FooterLink';
+
 export default function Footer() {
   const { t, language } = useLanguage();
+
+  // Log hydration issues
+  useEffect(() => {
+    const checkHydration = () => {
+      const serviceLinks = document.querySelectorAll('a[href="#servicios"]');
+      const hasGradientStyles = Array.from(serviceLinks).some(link => {
+        const style = window.getComputedStyle(link);
+        return style.backgroundImage && style.backgroundImage !== 'none';
+      });
+      
+      if (hasGradientStyles) {
+        logInfo('Footer service links have gradient styles (client-side)', 'Footer', {
+          linkCount: serviceLinks.length,
+          hasGradient: hasGradientStyles
+        });
+      }
+
+      // Check for hydration mismatch specifically
+      const mismatchedLinks = Array.from(serviceLinks).filter(link => {
+        const style = window.getComputedStyle(link);
+        const hasGradient = style.backgroundImage && style.backgroundImage !== 'none';
+        const hasNowrap = style.whiteSpace === 'nowrap';
+        
+        // Service links should have gradient, nav links should not
+        return hasGradient && !hasNowrap; // This indicates a mismatch
+      });
+
+      if (mismatchedLinks.length > 0) {
+        logError(
+          'Hydration mismatch detected in Footer service links', 
+          'Footer', 
+          {
+            mismatchedCount: mismatchedLinks.length,
+            linkCount: serviceLinks.length,
+            details: mismatchedLinks.map(link => ({
+              href: link.getAttribute('href'),
+              text: link.textContent,
+              hasGradient: window.getComputedStyle(link).backgroundImage !== 'none',
+              hasNowrap: window.getComputedStyle(link).whiteSpace === 'nowrap'
+            }))
+          },
+          'HYDRATION_MISMATCH'
+        );
+      }
+    };
+
+    // Check after mount
+    const timer = setTimeout(checkHydration, 100);
+    return () => clearTimeout(timer);
+  }, [language]);
 
   const navLinks = [
     { label: t.footer.navLinks.sobreMi, href: "#sobre-mi" },
@@ -182,12 +226,13 @@ export default function Footer() {
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
                   <li key={link.label}>
-                    <ServiceLink
+                    <FooterLink
                       href={link.href}
                       className="text-sm transition-colors duration-200 footer-link"
+                      isService={true}
                     >
                       {link.label}
-                    </ServiceLink>
+                    </FooterLink>
                   </li>
                 ))}
               </ul>

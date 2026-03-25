@@ -4,7 +4,13 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
-import CoachingWordsBackground from "@/components/CoachingWordsBackground";
+import dynamic from "next/dynamic";
+
+// Dynamic imports for non-critical components
+const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWordsBackground"), {
+  ssr: false,
+  loading: () => null
+});
 
 const rotatingPhrasesES = [
   "Mi equipo no toma decisiones sin mí",
@@ -180,7 +186,7 @@ export default function Hero() {
       style={{ paddingTop: "clamp(2.25rem, 6vh, 4.25rem)" }}
       aria-label="Sección principal"
     >
-      {/* Coaching Words Background Animation */}
+      {/* Coaching Words Background Animation - Delayed Load */}
       <CoachingWordsBackground />
 
       {/* Decorative orbs with scroll parallax */}
@@ -379,24 +385,6 @@ export default function Hero() {
           >
             <motion.button
               className="btn-primary"
-              style={{
-                background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%) !important",
-                boxShadow: "0 4px 16px rgba(255, 107, 53, 0.2) !important",
-                border: "1.5px solid rgba(255, 255, 255, 0.3) !important"
-              }}
-              animate={{
-                boxShadow: [
-                  "0 4px 16px rgba(255, 107, 53, 0.2)",
-                  "0 6px 20px rgba(255, 107, 53, 0.3)",
-                  "0 4px 16px rgba(255, 107, 53, 0.2)"
-                ],
-                scale: [1, 1.01, 1]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
               onClick={() => handleScroll("#contacto")}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}

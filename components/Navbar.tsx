@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { logError, logWarn, logInfo } from "@/lib/logger";
 
 
 export default function Navbar() {
@@ -46,12 +47,29 @@ export default function Navbar() {
         const contactRect = contactSection.getBoundingClientRect();
         const contactTop = contactRect.top + window.scrollY;
         shouldHide = currentScrollY > (contactTop - 200);
+        
+        // Log when approaching contact section
+        if (shouldHide && currentScrollY > (contactTop - 250) && currentScrollY < (contactTop - 240)) {
+          logInfo('Approaching contact section - navbar will hide', 'Navbar', {
+            scrollY: currentScrollY,
+            contactTop,
+            distance: contactTop - currentScrollY
+          });
+        }
+      } else {
+        logWarn('Contact section not found for auto-hide', 'Navbar');
       }
       
       // Hide when scrolling down near contact, show when scrolling up
       if (shouldHide) {
+        if (visible) {
+          logInfo('Navbar hiding - near contact section', 'Navbar', { scrollY: currentScrollY });
+        }
         setVisible(false);
       } else if (currentScrollY < lastScrollY.current) {
+        if (!visible) {
+          logInfo('Navbar showing - scrolling up', 'Navbar', { scrollY: currentScrollY });
+        }
         setVisible(true);
       }
       
@@ -61,7 +79,7 @@ export default function Navbar() {
     
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [visible]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {

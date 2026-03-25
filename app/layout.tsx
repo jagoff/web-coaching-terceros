@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Space_Grotesk, Roboto } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import DebugLogViewer from "@/components/debug/DebugLogViewer";
 import "../styles/scrollbar.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -8,19 +9,10 @@ import ClientLayout from "@/components/ClientLayout";
 import JsonLdClient from "@/components/JsonLdClient";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-  preload: true,
-});
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   display: "swap",
   preload: true,
 });
@@ -29,14 +21,6 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  display: "swap",
-  preload: true,
-});
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
   display: "swap",
   preload: true,
 });
@@ -103,7 +87,7 @@ export default function RootLayout({
         {/* Analytics and JSON-LD moved to client components to prevent hydration issues */}
       </head>
       <body
-        className={`${playfair.variable} ${inter.variable} ${spaceGrotesk.variable} ${roboto.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
         suppressHydrationWarning
       >
         <LanguageProvider>
@@ -115,6 +99,9 @@ export default function RootLayout({
             </ClientLayout>
           </ThemeProvider>
         </LanguageProvider>
+        
+        {/* Debug Log Viewer - Only in development */}
+        {process.env.NODE_ENV === 'development' && <DebugLogViewer />}
       </body>
     </html>
   );
