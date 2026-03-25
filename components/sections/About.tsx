@@ -118,18 +118,23 @@ export default function About() {
         {/* TV Image - Mobile version with simple hover effect */}
         <div className="lg:hidden mb-6 flex justify-center">
           <div 
-            className="relative w-64 h-64 sm:w-80 sm:h-80 bg-blue-500 flex items-center justify-center text-white"
+            className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3"
             style={{
               transformStyle: 'preserve-3d',
               perspective: '1000px'
             }}
           >
-            <div>TV Image Container</div>
             <img 
               src="/img/tv.png" 
               alt="TV Icon" 
-              className="absolute inset-0 w-full h-full object-contain"
-              style={{ display: 'block !important', zIndex: 10 }}
+              className="w-full h-full object-contain"
+              style={{ 
+                display: 'block !important',
+                width: '100% !important',
+                height: '100% !important',
+                objectFit: 'contain',
+                minHeight: '200px'
+              }}
               onLoad={() => console.log('TV Image loaded')}
               onError={() => console.log('TV Image error')}
             />
