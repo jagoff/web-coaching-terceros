@@ -378,11 +378,28 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
           >
             <motion.button
-              className="btn-primary animate-glow"
+              className="btn-primary"
+              style={{
+                background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%) !important",
+                boxShadow: "0 4px 16px rgba(255, 107, 53, 0.2) !important",
+                border: "1.5px solid rgba(255, 255, 255, 0.3) !important"
+              }}
+              animate={{
+                boxShadow: [
+                  "0 4px 16px rgba(255, 107, 53, 0.2)",
+                  "0 6px 20px rgba(255, 107, 53, 0.3)",
+                  "0 4px 16px rgba(255, 107, 53, 0.2)"
+                ],
+                scale: [1, 1.01, 1]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
               onClick={() => handleScroll("#contacto")}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {language === 'es' ? 'Agendá tu sesión gratuita →' : 'Book your free session →'}
             </motion.button>
