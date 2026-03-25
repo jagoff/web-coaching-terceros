@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function JsonLdClient() {
+  const { language } = useLanguage()
+  
   useEffect(() => {
     const jsonLdData = {
       '@context': 'https://schema.org',
@@ -12,7 +15,9 @@ export default function JsonLdClient() {
           '@id': 'https://coaching-landing-cyan.vercel.app#person',
           name: 'Fernando Ferrari',
           jobTitle: 'Agile Coach & Leadership Consultant',
-          description: 'Coach de liderazgo y transformación organizacional con más de 20 años en tecnología',
+          description: language === 'es' 
+            ? 'Coach de liderazgo y transformación organizacional con más de 20 años en tecnología'
+            : 'Leadership and organizational transformation coach with over 20 years in technology',
           url: 'https://coaching-landing-cyan.vercel.app',
           sameAs: [
             'https://www.instagram.com/jago_ff',
@@ -31,7 +36,9 @@ export default function JsonLdClient() {
           '@type': 'Organization',
           '@id': 'https://coaching-landing-cyan.vercel.app#organization',
           name: 'ELEVA COACHING',
-          description: 'Transformando líderes y organizaciones a través del coaching estratégico y liderazgo ágil',
+          description: language === 'es'
+            ? 'Transformando líderes y organizaciones a través del coaching estratégico y liderazgo ágil'
+            : 'Transforming leaders and organizations through strategic coaching and agile leadership',
           url: 'https://coaching-landing-cyan.vercel.app',
           founder: {
             '@type': 'Person',
@@ -39,21 +46,27 @@ export default function JsonLdClient() {
           },
           areaServed: {
             '@type': 'Country',
-            name: 'Argentina',
+            name: language === 'es' ? 'Argentina' : 'United States',
           },
-          serviceType: [
-            'Coaching de Liderazgo',
-            'Coaching Organizacional',
-            'Transformación Ágil',
-          ],
+          serviceType: language === 'es' ? [
+              'Coaching de Liderazgo',
+              'Coaching Organizacional',
+              'Transformación Ágil',
+            ] : [
+              'Leadership Coaching',
+              'Organizational Consulting',
+              'Agile Transformation',
+            ],
         },
         {
           '@type': 'WebSite',
           '@id': 'https://coaching-landing-cyan.vercel.app#website',
           name: 'ELEVA COACHING',
-          description: 'Coaching de liderazgo y transformación organizacional para líderes tech y startups',
+          description: language === 'es'
+            ? 'Coaching de liderazgo y transformación organizacional para líderes tech y startups'
+            : 'Leadership coaching and organizational transformation for tech leaders and startups',
           url: 'https://coaching-landing-cyan.vercel.app',
-          inLanguage: 'es',
+          inLanguage: language,
           isAccessibleForFree: true,
           potentialAction: {
             '@type': 'ReadAction',
@@ -63,8 +76,10 @@ export default function JsonLdClient() {
         {
           '@type': 'Service',
           '@id': 'https://coaching-landing-cyan.vercel.app#leadership-coaching',
-          name: 'Coaching de Liderazgo',
-          description: 'Para líderes y managers que quieren potenciar su impacto y desarrollar equipos de alto rendimiento',
+          name: language === 'es' ? 'Coaching de Liderazgo' : 'Leadership Coaching',
+          description: language === 'es'
+            ? 'Para líderes y managers que quieren potenciar su impacto y desarrollar equipos de alto rendimiento'
+            : 'For leaders and managers who want to enhance their impact and develop high-performance teams',
           provider: {
             '@type': 'Organization',
             '@id': 'https://coaching-landing-cyan.vercel.app#organization',
@@ -81,8 +96,10 @@ export default function JsonLdClient() {
         {
           '@type': 'Service',
           '@id': 'https://coaching-landing-cyan.vercel.app#organizational-consulting',
-          name: 'Coaching Organizacional',
-          description: 'Para startups y empresas que necesitan profesionalizar operaciones y adoptar agilidad real',
+          name: language === 'es' ? 'Coaching Organizacional' : 'Organizational Consulting',
+          description: language === 'es'
+            ? 'Para startups y empresas que necesitan profesionalizar operaciones y adoptar agilidad real'
+            : 'For startups and companies that need to professionalize operations and adopt real agility',
           provider: {
             '@type': 'Organization',
             '@id': 'https://coaching-landing-cyan.vercel.app#organization',

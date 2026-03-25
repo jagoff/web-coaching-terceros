@@ -50,7 +50,7 @@ export default function Pricing() {
       name: t.pricing.plans.liderazgo.name,
       description: t.pricing.plans.liderazgo.description,
       features: t.pricing.plans.liderazgo.features,
-      cta: language === 'es' ? 'Consultar plan →' : 'Consult plan →',
+      cta: t.pricing.consultPlan,
       featured: false,
       badge: null,
     },
@@ -59,16 +59,16 @@ export default function Pricing() {
       name: t.pricing.plans.organizacional.name,
       description: t.pricing.plans.organizacional.description,
       features: t.pricing.plans.organizacional.features,
-      cta: language === 'es' ? 'Consultar plan →' : 'Consult plan →',
+      cta: t.pricing.consultPlan,
       featured: true,
-      badge: language === 'es' ? 'Más Popular' : 'Most Popular',
+      badge: t.pricing.mostPopular,
     },
     {
       id: "elite",
       name: t.pricing.plans.personalizado.name,
       description: t.pricing.plans.personalizado.description,
       features: t.pricing.plans.personalizado.features,
-      cta: language === 'es' ? 'Consultar plan →' : 'Consult plan →',
+      cta: t.pricing.consultPlan,
       featured: false,
       badge: null,
     },
@@ -196,10 +196,7 @@ export default function Pricing() {
         >
           <div className="text-center">
             <p className="text-base mb-2" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
-              {language === 'es' 
-                ? '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?' 
-                : 'Not sure which plan best fits your needs?'
-              }
+              {t.pricing.doubt}
             </p>
             <button
               className="underline transition-colors bg-transparent border-0 cursor-pointer p-0 text-base"
@@ -211,10 +208,7 @@ export default function Pricing() {
                 }
               }}
             >
-              {language === 'es' 
-                ? 'Escribime y lo hablamos sin compromiso.' 
-                : 'Write to me and we\'ll discuss it with no commitment.'
-              }
+              {t.pricing.contactText}
             </button>
           </div>
         </motion.div>

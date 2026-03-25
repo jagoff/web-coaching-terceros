@@ -19,6 +19,7 @@ export interface Translations {
     title3: string;
     subtitle: string;
     cta: string;
+    viewServices: string;
   };
   
   // About
@@ -43,6 +44,8 @@ export interface Translations {
     badge: string;
     title: string;
     subtitle: string;
+    personalizedServices: string;
+    viewMore: string;
     items: {
       liderazgo: {
         title: string;
@@ -103,6 +106,8 @@ export interface Translations {
     title: string;
     title2: string;
     subtitle: string;
+    consultPlan: string;
+    mostPopular: string;
     plans: {
       liderazgo: {
         name: string;
@@ -129,6 +134,8 @@ export interface Translations {
         cta: string;
       };
     };
+    doubt: string;
+    contactText: string;
   };
   
   // Contact
@@ -179,6 +186,10 @@ export interface Translations {
       title: string;
       message: string;
     };
+    messageSent: string;
+    willRespond: string;
+    sending: string;
+    retry: string;
   };
   
   // FAQ
@@ -205,6 +216,54 @@ export interface Translations {
     };
     rights: string;
   };
+  
+  // Test Card
+  testCard: {
+    title: string;
+    subtitle: string;
+    dimensions: string;
+    instantResults: string;
+    personalizedRecommendations: string;
+    duration: string;
+    estimatedTime: string;
+    startTest: string;
+  };
+  
+  // Scroll Progress
+  scrollProgress: {
+    inicio: string;
+    sobreMi: string;
+    servicios: string;
+    proceso: string;
+    testimonios: string;
+    resultados: string;
+    precios: string;
+    faq: string;
+    contacto: string;
+    navigation: string;
+    goToSection: string;
+  };
+  
+  // Case Studies
+  caseStudies: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    before: string;
+    whileWorking: string;
+    results: string;
+    seeFullTransformation: string;
+    analyzeYourCase: string;
+    viewMoreCases: string;
+    yourSpecificCase: string;
+  };
+  
+  // WhatsApp
+  whatsapp: {
+    message: string;
+    buttonText: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -225,6 +284,7 @@ export const translations: Record<Language, Translations> = {
       title3: 'organizaciones que escalan',
       subtitle: 'Transformo equipos y culturas empresariales a través de coaching personalizado, metodologías ágiles y un enfoque human-centric.',
       cta: 'Agenda tu sesión gratuita',
+      viewServices: 'Ver servicios',
     },
     
     about: {
@@ -247,6 +307,8 @@ export const translations: Record<Language, Translations> = {
       badge: 'Servicios',
       title: 'Deja de apagar incendios',
       subtitle: 'Cada organización es única. Yo adapto mis servicios a tus necesidades específicas, combinando frameworks probados con enfoque personalizado.',
+      personalizedServices: 'Servicios Personalizados',
+      viewMore: 'Ver más',
       items: {
         liderazgo: {
           title: 'Coaching de Liderazgo',
@@ -322,6 +384,8 @@ export const translations: Record<Language, Translations> = {
       title: 'Encuentra tu',
       title2: 'plan ideal',
       subtitle: 'Cada plan está diseñado para diferentes necesidades. Yo te ayudo a encontrar cuál se adapta mejor a vos.',
+      consultPlan: 'Consultar plan →',
+      mostPopular: 'Más Popular',
       plans: {
         liderazgo: {
           name: 'Coaching de Liderazgo',
@@ -365,6 +429,8 @@ export const translations: Record<Language, Translations> = {
           cta: 'Solicitar propuesta',
         },
       },
+      doubt: '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?',
+      contactText: 'Escribime y lo hablamos sin compromiso.'
     },
     
     contact: {
@@ -414,6 +480,10 @@ export const translations: Record<Language, Translations> = {
         title: '¡Mensaje enviado!',
         message: 'Gracias por contactarme. Te responderé dentro de las 24 horas hábiles. Aprovecha para agendar el día y la hora.',
       },
+      messageSent: '¡Mensaje enviado!',
+      willRespond: 'Te responderemos en menos de 24 horas.',
+      sending: 'Enviando...',
+      retry: 'Reintentar',
     },
     
     faq: {
@@ -452,6 +522,50 @@ export const translations: Record<Language, Translations> = {
       },
       rights: 'Todos los derechos reservados.',
     },
+    
+    testCard: {
+      title: 'Test de',
+      subtitle: 'Evalúa el nivel de madurez de tu organización en 5 áreas clave y obtén un plan de acción personalizado.',
+      dimensions: '5 dimensiones críticas',
+      instantResults: 'Resultados instantáneos',
+      personalizedRecommendations: 'Recomendaciones personalizadas',
+      duration: 'Solo 5 minutos',
+      estimatedTime: 'Duración estimada: 5 minutos',
+      startTest: 'Comenzar Test',
+    },
+    
+    scrollProgress: {
+      inicio: 'Inicio',
+      sobreMi: 'Sobre mí',
+      servicios: 'Servicios',
+      proceso: 'Método',
+      testimonios: 'Testimonios',
+      resultados: 'Resultados',
+      precios: 'Precios',
+      faq: 'FAQ',
+      contacto: 'Contacto',
+      navigation: 'Navegación por secciones',
+      goToSection: 'Ir a {section}',
+    },
+    
+    caseStudies: {
+      badge: 'CASOS DE ESTUDIO',
+      title: 'Transformaciones',
+      titleHighlight: 'Reales',
+      subtitle: 'No solo mejoramos procesos, transformamos culturas y generamos resultados medibles. Estos son ejemplos concretos de equipos que pasaron del caos a la autonomía.',
+      before: 'ANTES',
+      whileWorking: 'MIENTRAS',
+      results: 'RESULTADOS',
+      seeFullTransformation: 'Ver transformación completa',
+      analyzeYourCase: 'Analizar tu caso',
+      viewMoreCases: 'Ver más casos de estudio',
+      yourSpecificCase: '¿Cuál es tu caso específico?',
+    },
+    
+    whatsapp: {
+      message: 'Hola! Quiero agendar una sesión gratuita de coaching. ¿Qué fechas y horarios tienes disponibles?',
+      buttonText: 'Agendar por WhatsApp',
+    },
   },
   
   en: {
@@ -471,6 +585,7 @@ export const translations: Record<Language, Translations> = {
       title3: 'scaling organizations',
       subtitle: 'I transform teams and business cultures through personalized coaching, agile methodologies, and a human-centric approach.',
       cta: 'Book your free session',
+      viewServices: 'View services',
     },
     
     about: {
@@ -493,6 +608,8 @@ export const translations: Record<Language, Translations> = {
       badge: 'Services',
       title: 'Stop putting out fires',
       subtitle: 'Every organization is unique. I adapt my services to your specific needs, combining proven frameworks with personalized approach.',
+      personalizedServices: 'Personalized Services',
+      viewMore: 'View more',
       items: {
         liderazgo: {
           title: 'Leadership Coaching',
@@ -568,6 +685,8 @@ export const translations: Record<Language, Translations> = {
       title: 'Find your',
       title2: 'ideal plan',
       subtitle: 'Each plan is designed for different needs. I help you find the best fit for you.',
+      consultPlan: 'Consult plan →',
+      mostPopular: 'Most Popular',
       plans: {
         liderazgo: {
           name: 'Leadership Coaching',
@@ -611,6 +730,8 @@ export const translations: Record<Language, Translations> = {
           cta: 'Request proposal',
         },
       },
+      doubt: 'Not sure which plan best fits your needs?',
+      contactText: 'Write to me and we\'ll discuss it with no commitment.'
     },
     
     contact: {
@@ -660,6 +781,10 @@ export const translations: Record<Language, Translations> = {
         title: 'Message sent!',
         message: 'Thank you for contacting me. I will respond within 24 business hours. Take advantage to schedule your day and time.',
       },
+      messageSent: 'Message sent!',
+      willRespond: 'We\'ll respond within 24 hours.',
+      sending: 'Sending...',
+      retry: 'Retry',
     },
     
     faq: {
@@ -697,6 +822,50 @@ export const translations: Record<Language, Translations> = {
         preguntasFrecuentes: 'FAQ',
       },
       rights: 'All rights reserved.',
+    },
+    
+    testCard: {
+      title: 'Maturity Test',
+      subtitle: 'Evaluate your organization\'s maturity level in 5 key areas and get a personalized action plan.',
+      dimensions: '5 critical dimensions',
+      instantResults: 'Instant results',
+      personalizedRecommendations: 'Personalized recommendations',
+      duration: 'Only 5 minutes',
+      estimatedTime: 'Estimated time: 5 minutes',
+      startTest: 'Start Test',
+    },
+    
+    scrollProgress: {
+      inicio: 'Home',
+      sobreMi: 'About Me',
+      servicios: 'Services',
+      proceso: 'Method',
+      testimonios: 'Testimonials',
+      resultados: 'Results',
+      precios: 'Pricing',
+      faq: 'FAQ',
+      contacto: 'Contact',
+      navigation: 'Section navigation',
+      goToSection: 'Go to {section}',
+    },
+    
+    caseStudies: {
+      badge: 'CASE STUDIES',
+      title: 'Real',
+      titleHighlight: 'Transformations',
+      subtitle: 'We don\'t just improve processes, we transform cultures and generate measurable results. These are concrete examples of teams that went from chaos to autonomy.',
+      before: 'BEFORE',
+      whileWorking: 'WHILE',
+      results: 'RESULTS',
+      seeFullTransformation: 'See full transformation',
+      analyzeYourCase: 'Analyze your case',
+      viewMoreCases: 'View more case studies',
+      yourSpecificCase: 'What is your specific case?',
+    },
+    
+    whatsapp: {
+      message: 'Hi! I want to schedule a free coaching session. What dates and times do you have available?',
+      buttonText: 'Book via WhatsApp',
     },
   },
 };

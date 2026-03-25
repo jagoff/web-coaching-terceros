@@ -3,23 +3,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
-
-const sections = [
-  { id: "inicio", label: "Inicio" },
-  { id: "sobre-mi", label: "Sobre mí" },
-  { id: "servicios", label: "Servicios" },
-  { id: "proceso", label: "Método" },
-  { id: "testimonios", label: "Testimonios" },
-  { id: "resultados", label: "Resultados" },
-  { id: "precios", label: "Precios" },
-  { id: "faq", label: "FAQ" },
-  { id: "contacto", label: "Contacto" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ScrollProgress() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
+
+  const sections = [
+    { id: "inicio", label: t.scrollProgress.inicio },
+    { id: "sobre-mi", label: t.scrollProgress.sobreMi },
+    { id: "servicios", label: t.scrollProgress.servicios },
+    { id: "proceso", label: t.scrollProgress.proceso },
+    { id: "testimonios", label: t.scrollProgress.testimonios },
+    { id: "resultados", label: t.scrollProgress.resultados },
+    { id: "precios", label: t.scrollProgress.precios },
+    { id: "faq", label: t.scrollProgress.faq },
+    { id: "contacto", label: t.scrollProgress.contacto },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +57,7 @@ export default function ScrollProgress() {
           exit={{ opacity: 0, x: 20 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="scroll-dots-nav"
-          aria-label="Navegación por secciones"
+          aria-label={t.scrollProgress.navigation}
         >
           {sections.map((section, i) => {
             const isActive = i === activeIndex;
@@ -83,7 +85,7 @@ export default function ScrollProgress() {
                 <button
                   className={`scroll-dot${isActive ? " active" : ""}`}
                   onClick={() => scrollToElement(`#${section.id}`)}
-                  aria-label={`Ir a ${section.label}`}
+                  aria-label={t.scrollProgress.goToSection.replace('{section}', section.label)}
                   aria-current={isActive ? "true" : undefined}
                 >
                   <motion.div

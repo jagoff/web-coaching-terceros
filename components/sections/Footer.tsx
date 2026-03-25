@@ -6,6 +6,7 @@ import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { logError, logWarn, logInfo } from "@/lib/logger";
 import { useEffect } from "react";
 import { useSSRLanguage } from "@/hooks/useSSRLanguage";
+import { useLanguage } from "@/contexts/LanguageContext";
 import NoSSR from "@/components/NoSSR";
 
 const FooterLink = ({ href, children, className, isService = false }: { 
@@ -48,20 +49,20 @@ const MemoizedFooterLink = React.memo(FooterLink);
 MemoizedFooterLink.displayName = 'FooterLink';
 
 export default function Footer() {
-  const language = useSSRLanguage();
+  const { t, language } = useLanguage();
   
   const navLinks = [
-    { label: language === 'es' ? "Sobre Mí" : "About Me", href: "#sobre-mi" },
-    { label: language === 'es' ? "Servicios" : "Services", href: "#servicios" },
-    { label: language === 'es' ? "Testimonios" : "Testimonials", href: "#testimonios" },
-    { label: language === 'es' ? "Precios" : "Pricing", href: "#precios" },
-    { label: language === 'es' ? "Preguntas Frecuentes" : "FAQ", href: "#faq" },
+    { label: t.footer.navLinks.sobreMi, href: "#sobre-mi" },
+    { label: t.footer.navLinks.servicios, href: "#servicios" },
+    { label: t.footer.navLinks.testimonios, href: "#testimonios" },
+    { label: t.footer.navLinks.precios, href: "#precios" },
+    { label: t.footer.navLinks.preguntasFrecuentes, href: "#faq" },
   ];
 
   const serviceLinks = [
-    { label: language === 'es' ? "Coaching de Liderazgo" : "Leadership Coaching", href: "#servicios" },
-    { label: language === 'es' ? "Coaching Organizacional" : "Organizational Coaching", href: "#servicios" },
-    { label: language === 'es' ? "Sesión Gratuita" : "Free Session", href: "#contacto" },
+    { label: t.services.items.liderazgo.title, href: "#servicios" },
+    { label: t.services.items.organizacional.title, href: "#servicios" },
+    { label: t.nav.sesionGratuita, href: "#contacto" },
     { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "#precios" },
   ];
 
@@ -175,7 +176,7 @@ export default function Footer() {
                 suppressHydrationWarning
               >
                 <NoSSR fallback="Navegación">
-                  {language === 'es' ? 'Navegación' : 'Navigation'}
+                  {t.scrollProgress.navigation}
                 </NoSSR>
               </h3>
               <ul className="space-y-3">
@@ -211,7 +212,7 @@ export default function Footer() {
                 suppressHydrationWarning
               >
                 <NoSSR fallback="Servicios">
-                  {language === 'es' ? 'Servicios' : 'Services'}
+                  {t.services.badge}
                 </NoSSR>
               </h3>
               <ul className="space-y-3">
@@ -248,12 +249,12 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            <NoSSR fallback="© 2026 ELEVA COACHING. Todos los derechos reservados.">
-              © 2026 ELEVA {language === 'es' ? 'COACHING' : 'CONSULTING'}. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
+            <NoSSR fallback="2026 ELEVA COACHING. Todos los derechos reservados.">
+              2026 ELEVA {language === 'es' ? 'COACHING' : 'CONSULTING'}. {t.footer.rights}
             </NoSSR>
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            <span className="hidden sm:inline">Argentina 🇦🇷</span>
+            <span className="hidden sm:inline">Argentina </span>
           </div>
         </div>
       </div>

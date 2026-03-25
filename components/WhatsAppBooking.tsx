@@ -2,8 +2,10 @@
 
 import { MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function WhatsAppBooking() {
+  const { t } = useLanguage();
   const [isClient, setIsClient] = useState(false);
   
   useEffect(() => {
@@ -12,9 +14,7 @@ export default function WhatsAppBooking() {
 
   const phoneNumber = "5493425153999";
   
-  const message = encodeURIComponent(
-    "Hola! Quiero agendar una sesión gratuita de coaching. ¿Qué fechas y horarios tienes disponibles?"
-  );
+  const message = encodeURIComponent(t.whatsapp.message);
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
@@ -36,7 +36,7 @@ export default function WhatsAppBooking() {
       }}
     >
       <MessageCircle size={24} />
-      <span className="hidden sm:inline">Agendar por WhatsApp</span>
+      <span className="hidden sm:inline">{t.whatsapp.buttonText}</span>
     </a>
   );
 }

@@ -181,7 +181,7 @@ export default function HeroWithSuspense() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {language === 'es' ? 'Agendá tu sesión gratuita' : 'Book your free session'}
+                {t.hero.cta}
                 <motion.span
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
@@ -200,7 +200,7 @@ export default function HeroWithSuspense() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {language === 'es' ? 'Ver servicios' : 'View services'}
+                {t.hero.viewServices}
               </motion.a>
             </motion.div>
           </motion.div>

@@ -16,7 +16,7 @@ const slideRight = {
 };
 
 export default function ContactFormspree() {
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -162,13 +162,10 @@ export default function ContactFormspree() {
                       <CheckCircle2 size={28} style={{ color: "#22c55e" }} />
                     </div>
                     <h3 className="heading-md" style={{ fontFamily: "var(--font-heading)" }}>
-                      {language === 'es' ? '¡Mensaje enviado!' : 'Message sent!'}
+                      {t.contact.messageSent}
                     </h3>
                     <p style={{ color: "var(--text-secondary)" }}>
-                      {language === 'es' 
-                        ? 'Te responderemos en menos de 24 horas.'
-                        : 'We\'ll respond within 24 hours.'
-                      }
+                      {t.contact.willRespond}
                     </p>
                   </motion.div>
                 ) : (
@@ -306,15 +303,15 @@ export default function ContactFormspree() {
                       {status === "loading" ? (
                         <>
                           <Loader2 size={16} className="inline animate-spin mr-2" />
-                          Enviando...
+                          {t.contact.sending}
                         </>
                       ) : status === "error" ? (
                         <>
-                          Reintentar <ArrowRight size={16} className="inline ml-1" />
+                          {t.contact.retry} <ArrowRight size={16} className="inline ml-1" />
                         </>
                       ) : (
                         <>
-                          Agendá tu sesión gratuita <ArrowRight size={16} className="inline ml-1" />
+                          {t.contact.form.submit} <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
                     </button>

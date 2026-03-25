@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Users, Target, Zap } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function InteractiveServiceCards() {
+  const { t } = useLanguage();
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const services = [
@@ -44,7 +46,7 @@ export default function InteractiveServiceCards() {
           transition={{ duration: 0.8 }}
         >
           <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-            Servicios Personalizados
+            {t.services.personalizedServices}
           </span>
         </motion.h2>
 
@@ -90,7 +92,7 @@ export default function InteractiveServiceCards() {
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="mr-2">Ver más</span>
+                    <span className="mr-2">{t.services.viewMore}</span>
                     <ChevronRight size={20} />
                   </motion.div>
                 </motion.div>

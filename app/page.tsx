@@ -15,6 +15,8 @@ import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import { Metadata } from "next";
 
+export const revalidate = 3600; // Revalidate every hour
+
 export const metadata: Metadata = {
   title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
   description: "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",

@@ -19,14 +19,10 @@ const nextConfig: NextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days
-    unoptimized: true, // Required for SSG export
   },
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  output: 'export', // SSG mode
-  trailingSlash: true,
-  distDir: 'out',
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'framer-motion'],

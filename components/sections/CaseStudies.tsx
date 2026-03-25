@@ -152,22 +152,21 @@ export default function CaseStudies() {
           className="text-center mb-12 md:mb-20"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">CASOS DE ESTUDIO</span>
+            <span className="badge">{t.caseStudies.badge}</span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Transformaciones{" "}
-            <span className="text-gradient">Reales</span>
+            {t.caseStudies.title}{" "}
+            <span className="text-gradient">{t.caseStudies.titleHighlight}</span>
           </motion.h2>
           <motion.p
             variants={blurUp}
             className="lead-text max-w-2xl mx-auto"
           >
-            No solo mejoramos procesos, transformamos culturas y generamos resultados medibles.
-            Estos son ejemplos concretos de equipos que pasaron del caos a la autonomía.
+            {t.caseStudies.subtitle}
           </motion.p>
           <motion.div
             variants={dividerGrow}
@@ -227,7 +226,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "#ef4444" }}
                     >
-                      ANTES
+                      {t.caseStudies.before}
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -257,7 +256,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "var(--gold-primary)" }}
                     >
-                      MIENTRAS
+                      {t.caseStudies.whileWorking}
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -287,7 +286,7 @@ export default function CaseStudies() {
                       className="text-sm font-semibold"
                       style={{ color: "#22c55e" }}
                     >
-                      RESULTADOS
+                      {t.caseStudies.results}
                     </h5>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -312,7 +311,7 @@ export default function CaseStudies() {
                   style={{ transform: "translateY(13px)" }}
                   onClick={() => handleScroll("#contacto")}
                 >
-                  Ver transformación completa
+                  {t.caseStudies.seeFullTransformation}
                   <ArrowRight 
                     size={14} 
                     className="transition-transform group-hover:translate-x-1" 
@@ -335,7 +334,7 @@ export default function CaseStudies() {
               className="btn-secondary"
               onClick={() => setShowAll(true)}
             >
-              Ver más casos de estudio
+              {t.caseStudies.viewMoreCases}
               <ArrowRight size={16} className="inline ml-2" />
             </button>
           </motion.div>
@@ -349,9 +348,9 @@ export default function CaseStudies() {
           className="text-center"
         >
           <p className="lead-text max-w-2xl mx-auto mb-8" style={{ color: "var(--text-secondary)" }}>
-            Cada transformación requiere un enfoque único. 
+            {language === 'es' ? 'Cada transformación requiere un enfoque único.' : 'Each transformation requires a unique approach.'} 
             <strong style={{ color: "var(--text-primary)" }}>
-              ¿Cuál es tu caso específico?
+              {t.caseStudies.yourSpecificCase}
             </strong>
           </p>
           
@@ -359,7 +358,7 @@ export default function CaseStudies() {
             className="btn-primary"
             onClick={() => handleScroll("#contacto")}
           >
-            Analizar tu caso <ArrowRight size={16} className="inline ml-1" />
+            {t.caseStudies.analyzeYourCase} <ArrowRight size={16} className="inline ml-1" />
           </button>
         </motion.div>
       </div>
