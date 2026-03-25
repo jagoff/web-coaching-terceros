@@ -266,7 +266,7 @@ export default function Contact() {
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text"
                   }}
-                >2 cupos disponibles</span> este mes para acompañamiento personalizado
+                >{t.contact.limitedSpots}</span> este mes para acompañamiento personalizado
               </p>
             </div>
 
@@ -569,7 +569,7 @@ export default function Contact() {
                         </>
                       ) : (
                         <>
-                          Enviar y Agendar Sesión{" "}
+                          {t.contact.submitButton}{" "}
                           <ArrowRight size={16} className="inline ml-1" />
                         </>
                       )}
