@@ -30,15 +30,9 @@ export default function YouTubeThumbnail({
 }: YouTubeThumbnailProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   
-  // Get highest quality thumbnail - try mobile-first
-  const mobileUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
-  const hqUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  const maxresUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-  
-  // Use mobile-first approach
-  const currentUrl = imageError ? hqUrl : mobileUrl;
+  // Simple reliable thumbnail URL
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   const handleClick = () => {
     setIsModalOpen(true);
@@ -49,15 +43,7 @@ export default function YouTubeThumbnail({
   };
 
   const handleImageError = () => {
-    if (!imageError && currentUrl === mobileUrl) {
-      setImageError(true);
-    } else if (imageError && currentUrl === hqUrl) {
-      setImageError(true); // Keep error state to show fallback
-    }
-  };
-
-  const handleImageLoad = () => {
-    setIsLoading(false);
+    setImageError(true);
   };
 
   return (
@@ -72,26 +58,18 @@ export default function YouTubeThumbnail({
       >
         {/* Thumbnail image */}
         <Image
-          src={currentUrl}
+          src={thumbnailUrl}
           alt={title}
           fill
           className="object-cover rounded-lg"
           style={{ borderRadius: "0.75rem" }}
           onError={handleImageError}
-          onLoad={handleImageLoad}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
           priority={false}
         />
         
-        {/* Loading placeholder */}
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-lg" style={{ backgroundColor: "#1a1a1a", borderRadius: "0.75rem" }}>
-            <Youtube size={48} className="text-red-500" />
-          </div>
-        )}
-        
         {/* Error fallback */}
-        {imageError && !isLoading && (
+        {imageError && (
           <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-gray-800 to-gray-900" style={{ borderRadius: "0.75rem" }}>
             <div className="text-center">
               <Youtube size={48} className="text-red-500 mb-2" />

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "coaching de liderazgo, transformación organizacional, agile coaching, transformación ágil, scrum, liderazgo tech, startups, Argentina",
   authors: [{ name: "Fernando Ferrari" }],
   creator: "Fernando Ferrari",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
+  viewport: "width=device-width, initial-scale=1",
   themeColor: "#0f0f0f",
   openGraph: {
     title: "ELEVA COACHING | Liderazgo Ágil y Transformación Organizacional",

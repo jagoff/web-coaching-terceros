@@ -9,32 +9,6 @@
 @tailwind base;
 
 /* ============================================================
-   PREVENT PULL-TO-REFRESH ON MOBILE
-   ============================================================ */
-
-html, body {
-  overscroll-behavior: none;
-  overscroll-behavior-y: none;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y pan-x;
-}
-
-/* Remove position fixed that breaks mobile layout */
-/* body {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-} */
-
-/* iOS Safari specific - simplified */
-@supports (-webkit-touch-callout: none) {
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
-}
-
-/* ============================================================
    CSS CUSTOM PROPERTIES
    ============================================================ */
 
