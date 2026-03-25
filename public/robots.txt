@@ -1,5 +1,5 @@
 # Robots.txt para ELEVA Coaching
-# https://coaching-landing-cyan.vercel.app
+# https://eleva-consultoria.com
 
 User-agent: *
 Allow: /
@@ -14,7 +14,7 @@ Allow: /#precios
 Allow: /#contacto
 
 # Sitemap location
-Sitemap: https://coaching-landing-cyan.vercel.app/sitemap.xml
+Sitemap: https://eleva-consultoria.com/sitemap.xml
 
 # Bloquear rutas de admin y APIs (si existieran)
 Disallow: /api/

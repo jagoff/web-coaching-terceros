@@ -31,11 +31,9 @@ export const metadata: Metadata = {
   description:
     "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
   keywords:
-    "coaching, consultoría, liderazgo, tech, startups, organizacional, equipos, procesos, cultura, Argentina",
+    "coaching, consultoría, liderazgo, tech, startups, organizacional, equipos, procesos, cultura, Argentina, consultoría agile, coaching líderes tech, escalar equipos, liderazgo remoto",
   authors: [{ name: "Fernando Ferrari" }],
   creator: "Fernando Ferrari",
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#0f0f0f",
   openGraph: {
     title: "ELEVA CONSULTING | Coaching & Consultoría Organizacional",
     description:
@@ -80,6 +78,13 @@ export const metadata: Metadata = {
     },
   },
 };
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0f0f0f',
+  colorScheme: 'dark',
+}
 
 export default function RootLayout({
   children,
