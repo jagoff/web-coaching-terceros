@@ -35,7 +35,7 @@ export default function VideoModal({ videoId, title = "Video", isOpen, onClose }
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.95)" }}
         onClick={onClose}
       >
@@ -50,7 +50,7 @@ export default function VideoModal({ videoId, title = "Video", isOpen, onClose }
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={onClose}
-            className="absolute -top-12 right-0 z-10 p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+            className="absolute -top-12 sm:-top-12 right-0 z-10 p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
           >
             <X size={24} className="text-white" />
           </motion.button>
@@ -69,7 +69,7 @@ export default function VideoModal({ videoId, title = "Video", isOpen, onClose }
           />
 
           {/* YouTube badge */}
-          <div className="absolute -bottom-12 left-0">
+          <div className="absolute -bottom-12 sm:-bottom-12 left-0">
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm">
               <Youtube size={16} className="text-red-500" />
               <span className="text-xs text-white font-medium">YouTube</span>

@@ -30,12 +30,14 @@ export default function YouTubeThumbnail({
 }: YouTubeThumbnailProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Get highest quality thumbnail
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   const fallbackUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const mobileFallbackUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
   
-  const currentUrl = imageError ? fallbackUrl : thumbnailUrl;
+  const currentUrl = imageError ? mobileFallbackUrl : thumbnailUrl;
 
   const handleClick = () => {
     setIsModalOpen(true);
@@ -43,6 +45,19 @@ export default function YouTubeThumbnail({
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleImageError = () => {
+    if (!imageError && thumbnailUrl === currentUrl) {
+      setImageError(true);
+    } else {
+      // Fallback to a solid color if all YouTube images fail
+      setImageError(true);
+    }
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
   };
 
   return (
@@ -62,9 +77,28 @@ export default function YouTubeThumbnail({
           fill
           className="object-cover rounded-lg"
           style={{ borderRadius: "0.75rem" }}
-          onError={() => setImageError(true)}
+          onError={handleImageError}
+          onLoad={handleImageLoad}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+          priority={false}
         />
+        
+        {/* Loading placeholder */}
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-lg" style={{ backgroundColor: "#1a1a1a", borderRadius: "0.75rem" }}>
+            <Youtube size={48} className="text-red-500" />
+          </div>
+        )}
+        
+        {/* Error fallback */}
+        {imageError && !isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-gray-800 to-gray-900" style={{ borderRadius: "0.75rem" }}>
+            <div className="text-center">
+              <Youtube size={48} className="text-red-500 mb-2" />
+              <p className="text-white text-sm">Video Preview</p>
+            </div>
+          </div>
+        )}
         
         {/* Dark overlay on hover */}
         <div 

@@ -119,9 +119,11 @@ export default function About() {
               perspective: '1000px'
             }}
           >
-            <img 
+            <Image
               src="/img/tv.png" 
               alt="TV Icon" 
+              width={320}
+              height={320}
               className="w-full h-full object-contain"
             />
           </div>
