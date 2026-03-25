@@ -387,13 +387,20 @@ nav .btn-primary.animate-glow,
 .navbar div div button.btn-primary.animate-glow,
 .navbar > div > div > button.btn-primary.animate-glow,
 nav button.btn-primary.animate-glow,
-button.btn-primary.animate-glow {
+button.btn-primary.animate-glow,
+button.force-cta-style,
+.force-cta-style.btn-primary,
+.force-cta-style.btn-primary.animate-glow {
   background: var(--cta-primary) !important;
   color: white !important;
   border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow: 0 0 16px var(--cta-glow) !important;
   padding: 0.75rem 1.5rem !important;
   font-size: 0.8rem !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
 }
 
 /* Prevent inline style overrides */
@@ -439,7 +446,10 @@ nav .btn-primary[style] {
 /* Force navbar CTA hover states */
 .navbar .btn-primary:hover,
 .navbar.scrolled .btn-primary:hover,
-nav .btn-primary:hover {
+nav .btn-primary:hover,
+button.force-cta-style:hover,
+.force-cta-style.btn-primary:hover,
+.force-cta-style.btn-primary.animate-glow:hover {
   background: var(--cta-hover) !important;
   transform: scale(1.025) translateY(-1px) !important;
   border-color: rgba(255, 255, 255, 0.7) !important;

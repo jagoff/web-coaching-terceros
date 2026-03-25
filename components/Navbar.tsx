@@ -193,7 +193,7 @@ export default function Navbar() {
               </button>
               {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
-                className="btn-primary animate-glow"
+                className="btn-primary animate-glow force-cta-style"
                 onClick={() => handleLinkClick("/#contacto")}
               >
                 {t.nav.sesionGratuita}
@@ -308,7 +308,7 @@ export default function Navbar() {
             {/* Mobile CTA Button - DO NOT ADD INLINE STYLES - protected by CSS rules */}
             <div className="px-8 pb-6">
               <button
-                className="btn-primary animate-glow w-full"
+                className="btn-primary animate-glow force-cta-style w-full"
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
