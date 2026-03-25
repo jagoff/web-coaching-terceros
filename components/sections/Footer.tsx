@@ -31,7 +31,7 @@ const FooterLink = ({ href, children, className, isService = false }: {
     <a 
       href={href} 
       onClick={handleClick} 
-      className={`${className} footer-link`.replace(/\s+/g, ' ').trim()}
+      className={`${className || ''}`.replace(/\s+/g, ' ').trim()}
       style={{
         whiteSpace: "nowrap"
       }}
