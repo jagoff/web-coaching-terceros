@@ -126,6 +126,13 @@ export default function About() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative">
+          {/* Badge - Positioned above TV image */}
+          <div className="absolute left-0 top-0 lg:left-8 xl:left-12 z-20 lg:block hidden" style={{ top: '-10px' }}>
+            <div className="mb-3 flex justify-start">
+              <span className="badge">{t.about.badge}</span>
+            </div>
+          </div>
+
           {/* TV Image - At grid level, outside any column */}
           <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '43px' }}>
             <CardContainer className="inter-var">
@@ -153,11 +160,6 @@ export default function About() {
             animate={isInView ? "visible" : "hidden"}
             className="relative order-2 lg:order-1 mt-4 lg:mt-0"
           >
-            {/* Badge */}
-            <div className="mb-3 flex justify-start">
-              <span className="badge">{t.about.badge}</span>
-            </div>
-
             {/* Image Carousel - Mobile First */}
             <GesturesCarousel />
           </motion.div>

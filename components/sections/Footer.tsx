@@ -47,19 +47,21 @@ const MemoizedFooterLink = React.memo(FooterLink);
 MemoizedFooterLink.displayName = 'FooterLink';
 
 export default function Footer() {
+  const { language } = useLanguage();
+  
   const navLinks = [
-    { label: "Sobre Mí", href: "#sobre-mi" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Testimonios", href: "#testimonios" },
-    { label: "Precios", href: "#precios" },
-    { label: "Preguntas Frecuentes", href: "#faq" },
+    { label: language === 'es' ? "Sobre Mí" : "About Me", href: "#sobre-mi" },
+    { label: language === 'es' ? "Servicios" : "Services", href: "#servicios" },
+    { label: language === 'es' ? "Testimonios" : "Testimonials", href: "#testimonios" },
+    { label: language === 'es' ? "Precios" : "Pricing", href: "#precios" },
+    { label: language === 'es' ? "Preguntas Frecuentes" : "FAQ", href: "#faq" },
   ];
 
   const serviceLinks = [
-    { label: "Coaching de Liderazgo", href: "#servicios" },
-    { label: "Coaching Organizacional", href: "#servicios" },
-    { label: "Sesión Gratuita", href: "#contacto" },
-    { label: "Coaching Continuo", href: "#precios" },
+    { label: language === 'es' ? "Coaching de Liderazgo" : "Leadership Coaching", href: "#servicios" },
+    { label: language === 'es' ? "Coaching Organizacional" : "Organizational Coaching", href: "#servicios" },
+    { label: language === 'es' ? "Sesión Gratuita" : "Free Session", href: "#contacto" },
+    { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "#precios" },
   ];
 
   return (
@@ -84,11 +86,14 @@ export default function Footer() {
                 }}
                 suppressHydrationWarning
               >
-                COACHING
+                {language === 'es' ? 'COACHING' : 'CONSULTING'}
               </span>
             </div>
             <p className="text-sm mb-6" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }} suppressHydrationWarning>
-              Transformación profesional y organizacional a través de coaching de excelencia.
+              {language === 'es' 
+                ? 'Transformación profesional y organizacional a través de coaching de excelencia.'
+                : 'Professional and organizational transformation through excellence coaching.'
+              }
             </p>
             <div className="flex gap-4">
               <a
@@ -147,7 +152,7 @@ export default function Footer() {
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 suppressHydrationWarning
               >
-                Navegación
+                {language === 'es' ? 'Navegación' : 'Navigation'}
               </h3>
               <ul className="space-y-3">
                 {navLinks.map((link) => (
@@ -170,7 +175,7 @@ export default function Footer() {
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 suppressHydrationWarning
               >
-                Servicios
+                {language === 'es' ? 'Servicios' : 'Services'}
               </h3>
               <ul className="space-y-3">
                 {serviceLinks.map((link) => (
@@ -194,7 +199,7 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            © 2026 ELEVA COACHING. Todos los derechos reservados.
+            © 2026 ELEVA {language === 'es' ? 'COACHING' : 'CONSULTING'}. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>
