@@ -191,6 +191,7 @@ export default function Navbar() {
                 <span style={{ fontSize: "0.75rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
                 <span style={{ fontSize: "0.75rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
+              {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
                 className="btn-primary animate-glow"
                 onClick={() => handleLinkClick("/#contacto")}
@@ -304,7 +305,7 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Mobile CTA Button */}
+            {/* Mobile CTA Button - DO NOT ADD INLINE STYLES - protected by CSS rules */}
             <div className="px-8 pb-6">
               <button
                 className="btn-primary animate-glow w-full"

@@ -357,6 +357,24 @@ p {
   white-space: nowrap;
 }
 
+/* Force navbar CTA styling - prevent overrides */
+.navbar .btn-primary,
+.navbar.scrolled .btn-primary,
+nav .btn-primary {
+  background: var(--cta-primary) !important;
+  color: white !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 16px var(--cta-glow) !important;
+}
+
+/* Prevent inline style overrides */
+.btn-primary[style],
+.navbar .btn-primary[style],
+nav .btn-primary[style] {
+  background: var(--cta-primary) !important;
+  color: white !important;
+}
+
 /* Enhanced focus states for accessibility */
 .btn-primary:focus,
 .btn-secondary:focus {
@@ -387,6 +405,16 @@ p {
   transform: scale(1.025) translateY(-1px);
   border-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 0 20px var(--cta-glow-hover);
+}
+
+/* Force navbar CTA hover states */
+.navbar .btn-primary:hover,
+.navbar.scrolled .btn-primary:hover,
+nav .btn-primary:hover {
+  background: var(--cta-hover) !important;
+  transform: scale(1.025) translateY(-1px) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 0 20px var(--cta-glow-hover) !important;
 }
 
 .btn-primary:active {
