@@ -110,20 +110,28 @@ export default function About() {
       }}
     >
       <div className="container">
+        {/* DEBUG: Test simple div */}
+        <div className="lg:hidden mb-4 p-4 bg-red-500 text-white text-center">
+          DEBUG: Mobile About Section Visible
+        </div>
+        
         {/* TV Image - Mobile version with simple hover effect */}
         <div className="lg:hidden mb-6 flex justify-center">
           <div 
-            className="relative w-64 h-64 sm:w-80 sm:h-80 transition-all duration-300 ease-out hover:scale-105 hover:rotate-3"
+            className="relative w-64 h-64 sm:w-80 sm:h-80 bg-blue-500 flex items-center justify-center text-white"
             style={{
               transformStyle: 'preserve-3d',
               perspective: '1000px'
             }}
           >
+            <div>TV Image Container</div>
             <img 
               src="/img/tv.png" 
               alt="TV Icon" 
-              className="w-full h-full object-contain"
-              style={{ display: 'block !important' }}
+              className="absolute inset-0 w-full h-full object-contain"
+              style={{ display: 'block !important', zIndex: 10 }}
+              onLoad={() => console.log('TV Image loaded')}
+              onError={() => console.log('TV Image error')}
             />
           </div>
         </div>
@@ -269,6 +277,11 @@ export default function About() {
                     : 'Want to stop by YouTube? I\'ll be there!'
                   }
                 </p>
+              </div>
+              
+              {/* DEBUG: Test video section */}
+              <div className="lg:hidden mb-4 p-4 bg-green-500 text-white text-center">
+                DEBUG: Video Section Visible
               </div>
               
               <YouTubeThumbnail
