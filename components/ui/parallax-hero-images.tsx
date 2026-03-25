@@ -19,14 +19,13 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
   const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
 
-  // Create transforms for each image position (outside of map to follow hooks rules)
-  const transforms = images.map((_, index) => {
-    const depth = (index % 3) + 1;
-    return {
-      x: useTransform(springX, (value) => value * depth * 15),
-      y: useTransform(springY, (value) => value * depth * 15),
-    };
-  });
+  // Create fixed number of transforms for each depth level (outside of map)
+  const transformX1 = useTransform(springX, (value) => value * 1 * 15);
+  const transformY1 = useTransform(springY, (value) => value * 1 * 15);
+  const transformX2 = useTransform(springX, (value) => value * 2 * 15);
+  const transformY2 = useTransform(springY, (value) => value * 2 * 15);
+  const transformX3 = useTransform(springX, (value) => value * 3 * 15);
+  const transformY3 = useTransform(springY, (value) => value * 3 * 15);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -52,6 +51,19 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
     setIsHovered(true);
   };
 
+  const getTransformForDepth = (depth: number) => {
+    switch (depth) {
+      case 1:
+        return { x: transformX1, y: transformY1 };
+      case 2:
+        return { x: transformX2, y: transformY2 };
+      case 3:
+        return { x: transformX3, y: transformY3 };
+      default:
+        return { x: transformX1, y: transformY1 };
+    }
+  };
+
   return (
     <div
       ref={containerRef}
@@ -62,7 +74,11 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
     >
       {/* Grid of images with individual parallax */}
       <div className="grid grid-cols-3 md:grid-cols-4 gap-2 w-full h-full">
-        {images.map((src, index) => (
+        {images.map((src, index) => {
+          const depth = (index % 3) + 1;
+          const { x: moveX, y: moveY } = getTransformForDepth(depth);
+          
+          return (
           <motion.div
             key={`${src}-${index}`}
             className="relative rounded-lg overflow-hidden group cursor-pointer"
@@ -86,8 +102,8 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
             <motion.div
               className="absolute inset-0"
               style={{
-                x: transforms[index]?.x || 0,
-                y: transforms[index]?.y || 0,
+                x: moveX,
+                y: moveY,
               }}
               transition={{
                 type: "spring",
@@ -119,7 +135,8 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               </div>
             </motion.div>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
