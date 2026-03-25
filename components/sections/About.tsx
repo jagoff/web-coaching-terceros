@@ -134,7 +134,7 @@ export default function About() {
           </div>
 
           {/* TV Image - At grid level, outside any column */}
-          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '43px' }}>
+          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '63px' }}>
             <CardContainer className="inter-var">
               <CardBody className="relative group/card w-[32rem] h-[32rem]">
                 <CardItem translateZ="50" className="w-full h-full">

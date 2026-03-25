@@ -403,6 +403,13 @@ export default function Hero() {
               onClick={() => handleScroll("#contacto")}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
+              style={{
+                minHeight: '48px',
+                fontWeight: 600,
+                boxShadow: '0 0 16px var(--cta-glow)',
+                background: 'var(--cta-primary)',
+                border: '2px solid transparent'
+              }}
             >
               Agendá tu sesión gratuita →
             </motion.button>

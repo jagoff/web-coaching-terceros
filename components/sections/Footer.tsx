@@ -3,9 +3,10 @@
 import React from 'react';
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { logError, logWarn, logInfo } from "@/lib/logger";
 import { useEffect } from "react";
+import { useSSRLanguage } from "@/hooks/useSSRLanguage";
+import NoSSR from "@/components/NoSSR";
 
 const FooterLink = ({ href, children, className, isService = false }: { 
   href: string; 
@@ -47,7 +48,7 @@ const MemoizedFooterLink = React.memo(FooterLink);
 MemoizedFooterLink.displayName = 'FooterLink';
 
 export default function Footer() {
-  const { language } = useLanguage();
+  const language = useSSRLanguage();
   
   const navLinks = [
     { label: language === 'es' ? "Sobre Mí" : "About Me", href: "#sobre-mi" },
@@ -64,6 +65,22 @@ export default function Footer() {
     { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "#precios" },
   ];
 
+  // Fallback links for SSR
+  const fallbackNavLinks = [
+    { label: "Sobre Mí", href: "#sobre-mi" },
+    { label: "Servicios", href: "#servicios" },
+    { label: "Testimonios", href: "#testimonios" },
+    { label: "Precios", href: "#precios" },
+    { label: "Preguntas Frecuentes", href: "#faq" },
+  ];
+
+  const fallbackServiceLinks = [
+    { label: "Coaching de Liderazgo", href: "#servicios" },
+    { label: "Coaching Organizacional", href: "#servicios" },
+    { label: "Sesión Gratuita", href: "#contacto" },
+    { label: "Coaching Continuo", href: "#precios" },
+  ];
+
   return (
     <footer key="footer-static" className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo" suppressHydrationWarning>
       <div className="container" suppressHydrationWarning>
@@ -74,6 +91,7 @@ export default function Footer() {
               <h3
                 className="text-gradient font-heading font-black text-2xl tracking-tight"
                 style={{ fontFamily: "var(--font-heading)" }}
+                suppressHydrationWarning
               >
                 ELEVA
               </h3>
@@ -86,14 +104,18 @@ export default function Footer() {
                 }}
                 suppressHydrationWarning
               >
-                {language === 'es' ? 'COACHING' : 'CONSULTING'}
+                <NoSSR fallback="COACHING">
+                  {language === 'es' ? 'COACHING' : 'CONSULTING'}
+                </NoSSR>
               </span>
             </div>
             <p className="text-sm mb-6" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }} suppressHydrationWarning>
-              {language === 'es' 
-                ? 'Transformación profesional y organizacional a través de coaching de excelencia.'
-                : 'Professional and organizational transformation through excellence coaching.'
-              }
+              <NoSSR fallback="Transformación profesional y organizacional a través de coaching de excelencia.">
+                {language === 'es' 
+                  ? 'Transformación profesional y organizacional a través de coaching de excelencia.'
+                  : 'Professional and organizational transformation through excellence coaching.'
+                }
+              </NoSSR>
             </p>
             <div className="flex gap-4">
               <a
@@ -152,10 +174,12 @@ export default function Footer() {
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 suppressHydrationWarning
               >
-                {language === 'es' ? 'Navegación' : 'Navigation'}
+                <NoSSR fallback="Navegación">
+                  {language === 'es' ? 'Navegación' : 'Navigation'}
+                </NoSSR>
               </h3>
               <ul className="space-y-3">
-                {navLinks.map((link) => (
+                <NoSSR fallback={fallbackNavLinks.map((link) => (
                   <li key={link.href}>
                     <FooterLink
                       href={link.href}
@@ -164,7 +188,18 @@ export default function Footer() {
                       {link.label}
                     </FooterLink>
                   </li>
-                ))}
+                ))}>
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <FooterLink
+                        href={link.href}
+                        className="text-sm transition-colors duration-200 footer-link"
+                      >
+                        {link.label}
+                      </FooterLink>
+                    </li>
+                  ))}
+                </NoSSR>
               </ul>
             </div>
 
@@ -175,10 +210,12 @@ export default function Footer() {
                 style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
                 suppressHydrationWarning
               >
-                {language === 'es' ? 'Servicios' : 'Services'}
+                <NoSSR fallback="Servicios">
+                  {language === 'es' ? 'Servicios' : 'Services'}
+                </NoSSR>
               </h3>
               <ul className="space-y-3">
-                {serviceLinks.map((link) => (
+                <NoSSR fallback={fallbackServiceLinks.map((link) => (
                   <li key={link.label}>
                     <FooterLink
                       href={link.href}
@@ -188,7 +225,19 @@ export default function Footer() {
                       {link.label}
                     </FooterLink>
                   </li>
-                ))}
+                ))}>
+                  {serviceLinks.map((link) => (
+                    <li key={link.label}>
+                      <FooterLink
+                        href={link.href}
+                        className="text-sm transition-colors duration-200 footer-link"
+                        isService={true}
+                      >
+                        {link.label}
+                      </FooterLink>
+                    </li>
+                  ))}
+                </NoSSR>
               </ul>
             </div>
           </div>
@@ -199,7 +248,9 @@ export default function Footer() {
           className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            © 2026 ELEVA {language === 'es' ? 'COACHING' : 'CONSULTING'}. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
+            <NoSSR fallback="© 2026 ELEVA COACHING. Todos los derechos reservados.">
+              © 2026 ELEVA {language === 'es' ? 'COACHING' : 'CONSULTING'}. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
+            </NoSSR>
           </p>
           <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
             <span className="hidden sm:inline">Argentina 🇦🇷</span>

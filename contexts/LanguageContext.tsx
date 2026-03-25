@@ -12,9 +12,18 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('es');
+  const [language, setLanguage] = useState<Language>(() => {
+    // Determine initial language during SSR
+    if (typeof window === 'undefined') {
+      // Server-side: default to Spanish
+      return 'es';
+    }
+    // Client-side: check URL
+    const path = window.location.pathname;
+    return path.startsWith('/en') ? 'en' : 'es';
+  });
 
-  // Detect language from URL on mount
+  // Detect language from URL on mount (only runs on client)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname;
