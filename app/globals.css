@@ -277,22 +277,50 @@ p {
 
 /* ---- Botones ---- */
 
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-height: 48px;
+  min-width: 120px;
+  background: linear-gradient(135deg, #7c6bc4 0%, #c87b5a 50%, #7c6bc4 100%) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.btn-hero-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(124, 107, 196, 0.3);
+}
+
+.btn-hero-primary:active {
+  transform: scale(0.95);
+}
+
 .btn-primary,
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem; /* Increased from 0.8125rem to meet 16px WCAG minimum */
-  font-weight: 900;
+  padding: 12px 24px;
   border-radius: var(--radius-pill);
-  transition: all var(--transition-base);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
   cursor: pointer;
-  border: none;
-  white-space: nowrap;
-  line-height: 1.5;
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+  min-height: 44px;
 }
 
 @media (min-width: 640px) {

@@ -398,21 +398,12 @@ export default function Hero() {
             variants={ctaReveal}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
           >
-            <motion.button
-              className="btn-primary"
+            <button
               onClick={() => handleScroll("#contacto")}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                minHeight: '48px',
-                fontWeight: 600,
-                boxShadow: '0 0 16px var(--cta-glow)',
-                background: 'var(--cta-primary)',
-                border: '2px solid transparent'
-              }}
+              className="btn-hero-primary"
             >
               Agendá tu sesión gratuita →
-            </motion.button>
+            </button>
             <motion.button
               className="btn-secondary"
               onClick={() => handleScroll("#proceso")}
