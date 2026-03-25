@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { Play, Youtube } from "lucide-react";
 import Image from "next/image";
+import VideoModal from "./VideoModal";
 
 const thumbnailContainer: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(6px)" },
@@ -20,15 +21,14 @@ interface YouTubeThumbnailProps {
   videoId: string;
   title?: string;
   className?: string;
-  onClick?: () => void;
 }
 
 export default function YouTubeThumbnail({
   videoId,
   title = "YouTube video",
   className = "",
-  onClick,
 }: YouTubeThumbnailProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   
   // Get highest quality thumbnail
@@ -38,87 +38,96 @@ export default function YouTubeThumbnail({
   const currentUrl = imageError ? fallbackUrl : thumbnailUrl;
 
   const handleClick = () => {
-    if (onClick) {
-      onClick();
-    } else {
-      // Open in YouTube by default
-      window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
-    <motion.div
-      variants={thumbnailContainer}
-      initial="hidden"
-      animate="visible"
-      className={`relative w-full cursor-pointer group ${className}`}
-      style={{ aspectRatio: "16/9" }}
-      onClick={handleClick}
-    >
-      {/* Thumbnail image */}
-      <Image
-        src={currentUrl}
-        alt={title}
-        fill
-        className="object-cover rounded-lg"
-        style={{ borderRadius: "0.75rem" }}
-        onError={() => setImageError(true)}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-      />
-      
-      {/* Dark overlay on hover */}
-      <div 
-        className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: "linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)",
-          borderRadius: "0.75rem",
-        }}
-      />
-      
-      {/* Play button overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative"
-        >
-          {/* Play button circle */}
-          <div
-            className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
-            style={{
-              background: "rgba(255, 0, 0, 0.9)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <Play size={32} className="text-white ml-1" fill="white" />
-          </div>
-          
-          {/* Pulse animation */}
+    <>
+      <motion.div
+        variants={thumbnailContainer}
+        initial="hidden"
+        animate="visible"
+        className={`relative w-full cursor-pointer group ${className}`}
+        style={{ aspectRatio: "16/9" }}
+        onClick={handleClick}
+      >
+        {/* Thumbnail image */}
+        <Image
+          src={currentUrl}
+          alt={title}
+          fill
+          className="object-cover rounded-lg"
+          style={{ borderRadius: "0.75rem" }}
+          onError={() => setImageError(true)}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+        />
+        
+        {/* Dark overlay on hover */}
+        <div 
+          className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: "linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)",
+            borderRadius: "0.75rem",
+          }}
+        />
+        
+        {/* Play button overlay */}
+        <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            className="absolute inset-0 rounded-full border-2 border-red-500"
-            animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.div>
-      </div>
-      
-      {/* YouTube badge */}
-      <div className="absolute top-4 right-4">
-        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm">
-          <Youtube size={16} className="text-red-500" />
-          <span className="text-xs text-white font-medium">YouTube</span>
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
+          >
+            {/* Play button circle */}
+            <div
+              className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
+              style={{
+                background: "rgba(255, 0, 0, 0.9)",
+                backdropFilter: "blur(10px)",
+              }}
+            >
+              <Play size={32} className="text-white ml-1" fill="white" />
+            </div>
+            
+            {/* Pulse animation */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-red-500"
+              animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
         </div>
-      </div>
-      
-      {/* Shadow */}
-      <div 
-        className="absolute inset-0 pointer-events-none rounded-lg"
-        style={{
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-          borderRadius: "0.75rem",
-        }}
+        
+        {/* YouTube badge */}
+        <div className="absolute top-4 right-4">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm">
+            <Youtube size={16} className="text-red-500" />
+            <span className="text-xs text-white font-medium">YouTube</span>
+          </div>
+        </div>
+        
+        {/* Shadow */}
+        <div 
+          className="absolute inset-0 pointer-events-none rounded-lg"
+          style={{
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+            borderRadius: "0.75rem",
+          }}
+        />
+      </motion.div>
+
+      {/* Video Modal */}
+      <VideoModal
+        videoId={videoId}
+        title={title}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
       />
-    </motion.div>
+    </>
   );
 }
 

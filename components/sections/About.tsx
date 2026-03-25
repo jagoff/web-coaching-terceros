@@ -276,9 +276,6 @@ export default function About() {
                   : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
                 }
                 className="max-w-4xl mx-auto"
-                onClick={() => {
-                  window.open('https://www.youtube.com/watch?v=mgr1mkSRl3o', '_blank');
-                }}
               />
             </motion.div>
           </motion.div>
