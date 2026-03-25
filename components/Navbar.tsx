@@ -180,7 +180,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <button
-                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
+                className="flex items-center gap-2 px-2.5 py-2 rounded-lg border transition-colors"
                 style={{
                   background: "rgba(124,107,196,0.08)",
                   borderColor: "rgba(124,107,196,0.2)",
@@ -188,8 +188,8 @@ export default function Navbar() {
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
-                <span style={{ fontSize: "0.75rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span style={{ fontSize: "0.75rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
+                <span style={{ fontSize: "0.7rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span style={{ fontSize: "0.7rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
