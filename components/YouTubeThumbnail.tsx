@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { Play, Youtube } from "lucide-react";
+import { Play, Youtube, Volume2, VolumeX } from "lucide-react";
 import Image from "next/image";
 
 const thumbnailContainer: Variants = {
@@ -29,16 +29,21 @@ export default function YouTubeThumbnail({
 }: YouTubeThumbnailProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(false);
   
   // Simple reliable thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${soundEnabled ? '0' : '1'}&controls=1&rel=0&modestbranding=1&playsinline=1`;
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     console.log('YouTube thumbnail clicked');
     setIsPlaying(true);
+  };
+
+  const toggleSound = () => {
+    setSoundEnabled(!soundEnabled);
   };
 
   const handleImageError = () => {
@@ -80,6 +85,25 @@ export default function YouTubeThumbnail({
             allowFullScreen
             onLoad={() => console.log('YouTube iframe loaded')}
           />
+          
+          {/* Sound toggle button */}
+          <button
+            onClick={toggleSound}
+            className="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-colors flex items-center gap-2"
+            style={{ zIndex: 10 }}
+          >
+            {soundEnabled ? (
+              <>
+                <Volume2 size={16} className="text-white" />
+                <span className="text-xs text-white font-medium">Sonido</span>
+              </>
+            ) : (
+              <>
+                <VolumeX size={16} className="text-white" />
+                <span className="text-xs text-white font-medium">Silencio</span>
+              </>
+            )}
+          </button>
         </div>
       ) : (
         // Thumbnail when not playing
