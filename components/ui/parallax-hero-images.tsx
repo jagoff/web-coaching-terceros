@@ -19,6 +19,14 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
   const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
 
+  // Create transforms for each depth level (outside of map)
+  const transformX1 = useTransform(springX, (value) => value * 1 * 20);
+  const transformY1 = useTransform(springY, (value) => value * 1 * 20);
+  const transformX2 = useTransform(springX, (value) => value * 2 * 20);
+  const transformY2 = useTransform(springY, (value) => value * 2 * 20);
+  const transformX3 = useTransform(springX, (value) => value * 3 * 20);
+  const transformY3 = useTransform(springY, (value) => value * 3 * 20);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     
@@ -43,6 +51,19 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
     setIsHovered(true);
   };
 
+  const getTransformForDepth = (depth: number) => {
+    switch (depth) {
+      case 1:
+        return { x: transformX1, y: transformY1 };
+      case 2:
+        return { x: transformX2, y: transformY2 };
+      case 3:
+        return { x: transformX3, y: transformY3 };
+      default:
+        return { x: transformX1, y: transformY1 };
+    }
+  };
+
   return (
     <div
       ref={containerRef}
@@ -54,6 +75,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
       {images.map((src, index) => {
         // Different depth levels for parallax effect
         const depth = (index % 3) + 1;
+        const { x: moveX, y: moveY } = getTransformForDepth(depth);
         
         // Random initial positions for more dynamic effect
         const initialX = (index % 2 === 0 ? -1 : 1) * (index * 5);
@@ -76,8 +98,8 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               opacity: isHovered ? 0.8 : 0.6,
             }}
             style={{
-              x: useTransform(springX, (value) => value * depth * 20),
-              y: useTransform(springY, (value) => value * depth * 20),
+              x: moveX,
+              y: moveY,
               zIndex: images.length - index,
             }}
             transition={{
