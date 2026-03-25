@@ -6,7 +6,7 @@ import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-// Use the simple img_XX.jpeg files
+// Use the img_XX.jpeg files from /public/images/
 const baseImages = [
   'img_01.jpeg',
   'img_02.jpeg',
@@ -15,11 +15,15 @@ const baseImages = [
   'img_05.jpeg',
   'img_06.jpeg',
   'img_07.jpeg',
-  'img_08.jpeg'
+  'img_08.jpeg',
+  'img_09.jpeg',
+  'img_10.jpeg',
+  'img_11.jpeg',
+  'img_12.jpeg'
 ];
 
 const getImagePath = (imageName: string): string => {
-  return `/img/${imageName}`;
+  return `/images/${imageName}`;
 };
 
 const shuffleArray = (array: string[]) => {
