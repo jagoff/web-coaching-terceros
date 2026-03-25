@@ -5,6 +5,7 @@ import Testimonials from "@/components/sections/TestimonialsSimple";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -36,13 +37,31 @@ export const metadata: Metadata = {
 
 export default function SobreMiPage() {
   return (
-    <main>
-      <HeroServer pathname="/sobre-mi" />
-      <About />
-      <Testimonials />
-      <Contact />
-      <Footer />
-      <WhatsAppBooking />
-    </main>
+    <>
+      <JsonLdStructuredData 
+        type="Person" 
+        data={{ 
+          title: "Sobre Mí | Fernando Ferrari | ELEVA CONSULTORIA",
+          description: "Conoce a Fernando Ferrari, coach profesional especializado en liderazgo tech y consultoría organizacional.",
+          breadcrumb: "Sobre Mí"
+        }} 
+      />
+      <JsonLdStructuredData 
+        type="WebPage" 
+        data={{ 
+          title: "Sobre Mí | Fernando Ferrari | ELEVA CONSULTORIA",
+          description: "Conoce a Fernando Ferrari, coach profesional especializado en liderazgo tech y consultoría organizacional.",
+          breadcrumb: "Sobre Mí"
+        }} 
+      />
+      <main>
+        <HeroServer pathname="/sobre-mi" />
+        <About />
+        <Testimonials />
+        <Contact />
+        <Footer />
+        <WhatsAppBooking />
+      </main>
+    </>
   );
 }

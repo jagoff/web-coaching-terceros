@@ -17,15 +17,21 @@ const FooterLink = ({ href, children, className, isService = false }: {
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      // Log after successful scroll
-      setTimeout(() => {
-        logInfo(`Footer link clicked: ${href}`, 'FooterLink', { href, found: true });
-      }, 100);
+    // Check if it's an internal route (starts with /)
+    if (href.startsWith('/')) {
+      window.location.href = href;
     } else {
-      logError(`Footer link target not found: ${href}`, 'FooterLink', { href, found: false });
+      // For hash links, use scroll behavior
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        // Log after successful scroll
+        setTimeout(() => {
+          logInfo(`Footer link clicked: ${href}`, 'FooterLink', { href, found: true });
+        }, 100);
+      } else {
+        logError(`Footer link target not found: ${href}`, 'FooterLink', { href, found: false });
+      }
     }
   };
 
@@ -52,34 +58,34 @@ export default function Footer() {
   const { t, language } = useLanguage();
   
   const navLinks = [
-    { label: t.footer.navLinks.sobreMi, href: "#sobre-mi" },
-    { label: t.footer.navLinks.servicios, href: "#servicios" },
-    { label: t.footer.navLinks.testimonios, href: "#testimonios" },
-    { label: t.footer.navLinks.precios, href: "#precios" },
-    { label: t.footer.navLinks.preguntasFrecuentes, href: "#faq" },
+    { label: t.footer.navLinks.sobreMi, href: "/sobre-mi" },
+    { label: t.footer.navLinks.servicios, href: "/servicios" },
+    { label: t.footer.navLinks.testimonios, href: "/testimonios" },
+    { label: t.footer.navLinks.precios, href: "/precios" },
+    { label: t.footer.navLinks.preguntasFrecuentes, href: "/faq" },
   ];
 
   const serviceLinks = [
-    { label: t.services.items.liderazgo.title, href: "#servicios" },
-    { label: t.services.items.organizacional.title, href: "#servicios" },
-    { label: t.nav.sesionGratuita, href: "#contacto" },
-    { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "#precios" },
+    { label: t.services.items.liderazgo.title, href: "/servicios" },
+    { label: t.services.items.organizacional.title, href: "/servicios" },
+    { label: t.nav.sesionGratuita, href: "/#contacto" },
+    { label: language === 'es' ? "Coaching Continuo" : "Ongoing Coaching", href: "/precios" },
   ];
 
   // Fallback links for SSR
   const fallbackNavLinks = [
-    { label: "Sobre Mí", href: "#sobre-mi" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Testimonios", href: "#testimonios" },
-    { label: "Precios", href: "#precios" },
-    { label: "Preguntas Frecuentes", href: "#faq" },
+    { label: "Sobre Mí", href: "/sobre-mi" },
+    { label: "Servicios", href: "/servicios" },
+    { label: "Testimonios", href: "/testimonios" },
+    { label: "Precios", href: "/precios" },
+    { label: "Preguntas Frecuentes", href: "/faq" },
   ];
 
   const fallbackServiceLinks = [
-    { label: "Coaching de Liderazgo", href: "#servicios" },
-    { label: "Coaching Organizacional", href: "#servicios" },
-    { label: "Sesión Gratuita", href: "#contacto" },
-    { label: "Coaching Continuo", href: "#precios" },
+    { label: "Coaching de Liderazgo", href: "/servicios" },
+    { label: "Coaching Organizacional", href: "/servicios" },
+    { label: "Sesión Gratuita", href: "/#contacto" },
+    { label: "Coaching Continuo", href: "/precios" },
   ];
 
   return (

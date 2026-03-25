@@ -8,6 +8,7 @@ import Pricing from "@/components/sections/Pricing";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -39,16 +40,35 @@ export const metadata: Metadata = {
 
 export default function ServiciosPage() {
   return (
-    <main>
-      <HeroServer pathname="/servicios" />
-      <Services />
-      <Process />
-      <Results />
-      <CaseStudies />
-      <Pricing />
-      <Contact />
-      <Footer />
-      <WhatsAppBooking />
-    </main>
+    <>
+      <JsonLdStructuredData 
+        type="Service" 
+        data={{ 
+          name: "Servicios de Coaching y Consultoría",
+          description: "Servicios profesionales de coaching y consultoría para líderes tech y startups. Acompañamos a construir equipos que funcionen y culturas donde la gente quiera quedarse.",
+          price: "A consultar",
+          breadcrumb: "Servicios"
+        }} 
+      />
+      <JsonLdStructuredData 
+        type="WebPage" 
+        data={{ 
+          title: "Servicios de Coaching | Liderazgo Tech | ELEVA CONSULTORIA",
+          description: "Servicios profesionales de coaching y consultoría para líderes tech y startups.",
+          breadcrumb: "Servicios"
+        }} 
+      />
+      <main>
+        <HeroServer pathname="/servicios" />
+        <Services />
+        <Process />
+        <Results />
+        <CaseStudies />
+        <Pricing />
+        <Contact />
+        <Footer />
+        <WhatsAppBooking />
+      </main>
+    </>
   );
 }

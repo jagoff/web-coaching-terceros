@@ -30,10 +30,10 @@ export default function Navbar() {
   // }, [rotatingWords.length]);
 
   const navLinks = [
-    { label: t.nav.sobreMi, href: "#sobre-mi" },
-    { label: t.nav.servicios, href: "#servicios" },
-    { label: t.nav.testimonios, href: "#testimonios" },
-    { label: t.nav.preguntasFrecuentes, href: "#faq" },
+    { label: t.nav.sobreMi, href: "/sobre-mi" },
+    { label: t.nav.servicios, href: "/servicios" },
+    { label: t.nav.testimonios, href: "/testimonios" },
+    { label: t.nav.preguntasFrecuentes, href: "/faq" },
   ];
 
   useEffect(() => {
@@ -95,15 +95,20 @@ export default function Navbar() {
 
   const handleLinkClick = (href: string) => {
     setMobileOpen(false);
-    // For mobile, use native scroll to avoid Lenis issues
-    if (window.innerWidth < 1024) {
-      const el = document.querySelector(href);
-      if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+    // Check if it's an internal route (starts with /)
+    if (href.startsWith('/')) {
+      window.location.href = href;
     } else {
-      scrollToElement(href);
+      // For hash links, use scroll behavior
+      if (window.innerWidth < 1024) {
+        const el = document.querySelector(href);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      } else {
+        scrollToElement(href);
+      }
     }
   };
 

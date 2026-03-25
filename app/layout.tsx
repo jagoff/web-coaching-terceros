@@ -6,7 +6,7 @@ import "../styles/scrollbar.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import ClientLayout from "@/components/ClientLayout";
-import JsonLdClient from "@/components/JsonLdClient";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 
 const inter = Inter({
@@ -114,7 +114,7 @@ export default function RootLayout({
           <ThemeProvider>
             <ClientLayout>
               <AnalyticsScripts />
-              <JsonLdClient />
+              <JsonLdStructuredData type="Organization" data={{}} />
               {children}
             </ClientLayout>
           </ThemeProvider>
