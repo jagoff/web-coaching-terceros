@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -19,7 +18,6 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
       href={href} 
       onClick={handleClick} 
       className={`${className} whitespace-nowrap`}
-      style={{ whiteSpace: 'nowrap !important' }}
       suppressHydrationWarning
     >
       {children}
@@ -29,42 +27,6 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
 
 export default function Footer() {
   const { t, language } = useLanguage();
-
-  useEffect(() => {
-    // Force remove any inline whiteSpace style added by browser extensions
-    // and ensure whitespace-nowrap class is present
-    const cleanupStyles = () => {
-      const links = document.querySelectorAll('.footer-link');
-      links.forEach(link => {
-        const element = link as HTMLElement;
-        
-        // Remove any inline whiteSpace style
-        if (element.style.whiteSpace) {
-          element.style.removeProperty('whiteSpace');
-        }
-        
-        // Ensure whitespace-nowrap class is present
-        if (!element.classList.contains('whitespace-nowrap')) {
-          element.classList.add('whitespace-nowrap');
-        }
-        
-        // Force the style with !important
-        element.style.setProperty('whiteSpace', 'nowrap', 'important');
-      });
-    };
-
-    cleanupStyles();
-    // Also cleanup after a delay to catch late injections
-    const timeoutId = setTimeout(cleanupStyles, 100);
-    
-    // Set up interval to continuously enforce styles
-    const intervalId = setInterval(cleanupStyles, 1000);
-    
-    return () => {
-      clearTimeout(timeoutId);
-      clearInterval(intervalId);
-    };
-  }, [language]);
 
   const navLinks = [
     { label: t.footer.navLinks.sobreMi, href: "#sobre-mi" },
