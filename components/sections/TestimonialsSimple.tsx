@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
@@ -75,6 +75,11 @@ const testimonialsEN = [
 export default function Testimonials() {
   const { language, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   
   const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
   const currentTestimonial = testimonials[currentIndex];
@@ -126,10 +131,11 @@ export default function Testimonials() {
               className="glass-card p-8 md:p-12 text-center"
             >
               {/* Quote */}
-              <blockquote className="mb-8">
+              <blockquote className="mb-8" suppressHydrationWarning>
                 <p
                   className="text-lg md:text-xl leading-relaxed mb-6"
                   style={{ color: "var(--text-secondary)" }}
+                  suppressHydrationWarning
                 >
                   "{currentTestimonial.quote}"
                 </p>
@@ -140,6 +146,7 @@ export default function Testimonials() {
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl"
                   style={{ background: currentTestimonial.avatarBg }}
+                  suppressHydrationWarning
                 >
                   {currentTestimonial.initials}
                 </div>
@@ -147,18 +154,21 @@ export default function Testimonials() {
                   <h4
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-primary)" }}
+                    suppressHydrationWarning
                   >
                     {currentTestimonial.name}
                   </h4>
                   <p
                     className="text-sm"
                     style={{ color: "var(--text-muted)" }}
+                    suppressHydrationWarning
                   >
                     {currentTestimonial.role}
                   </p>
                   <p
                     className="text-xs"
                     style={{ color: "var(--text-muted)" }}
+                    suppressHydrationWarning
                   >
                     {currentTestimonial.company}
                   </p>
@@ -175,6 +185,7 @@ export default function Testimonials() {
                     style={{
                       color: i < 4 ? "var(--gold-primary)" : "var(--text-muted)",
                     }}
+                    suppressHydrationWarning
                   />
                 ))}
               </div>
@@ -187,6 +198,7 @@ export default function Testimonials() {
                 className="p-3 rounded-full glass-border transition-all hover:scale-110"
                 style={{ color: "var(--gold-primary)" }}
                 aria-label="Previous testimonial"
+                suppressHydrationWarning
               >
                 <ChevronLeft size={24} />
               </button>
@@ -212,6 +224,7 @@ export default function Testimonials() {
                 className="p-3 rounded-full glass-border transition-all hover:scale-110"
                 style={{ color: "var(--gold-primary)" }}
                 aria-label="Next testimonial"
+                suppressHydrationWarning
               >
                 <ChevronRight size={24} />
               </button>

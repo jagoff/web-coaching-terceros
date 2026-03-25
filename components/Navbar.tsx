@@ -123,14 +123,14 @@ export default function Navbar() {
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
-                <span className="text-sm">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
+                <span style={{ fontSize: "0.75rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
+                <span style={{ fontSize: "0.75rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
               </button>
               <button
                 className="btn-primary"
                 style={{ 
                   padding: "0.875rem 1.75rem", 
-                  fontSize: "0.875rem",
+                  fontSize: "0.75rem", /* Reduced from 0.875rem (-2 points) */
                   background: "linear-gradient(135deg, #FF6B35 0%, #E67E22 30%, #8E44AD 70%, #7C6BC4 100%) !important",
                   boxShadow: "none !important",
                   border: "1px solid rgba(255, 255, 255, 0.2) !important"

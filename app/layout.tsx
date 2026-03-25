@@ -56,11 +56,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ELEVA CONSULTORA | Liderazgo Ágil y Transformación Organizacional",
     description:
-      "Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología. 6+ años de consultoría ágil.",
-    url: "https://coaching-landing-cyan.vercel.app",
+      "Consultoría organizacional y coaching de liderazgo para líderes tech y startups. +20 años en tecnología, metodología ágil probada. Agendá tu sesión gratuita.",
+    url: "https://eleva-consultoria.com",
     siteName: "ELEVA CONSULTORA",
-    locale: "es_ES",
+    locale: "es_AR",
     type: "website",
+    images: [
+      {
+        url: "https://eleva-consultoria.com/img/fav.png",
+        width: 512,
+        height: 512,
+        alt: "ELEVA CONSULTORA - Liderazgo Ágil y Transformación Organizacional",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -73,8 +81,13 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/img/fav.png',
+    shortcut: '/img/fav.png',
+    apple: '/img/fav.png',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/img/fav.png',
+    },
   },
 };
 
@@ -92,11 +105,16 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${spaceGrotesk.variable} ${roboto.variable} antialiased`}
         suppressHydrationWarning
       >
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido principal
+        </a>
         <LanguageProvider>
           <ClientLayout>
             <AnalyticsScripts />
             <JsonLdClient />
-            {children}
+            <div id="main-content">
+              {children}
+            </div>
           </ClientLayout>
         </LanguageProvider>
       </body>

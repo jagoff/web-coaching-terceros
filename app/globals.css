@@ -42,7 +42,7 @@
   /* --- Texto --- */
   --text-primary:    #EDE8F0;
   --text-secondary:  #CEC8D6;
-  --text-muted:      #8A8494;
+  --text-muted:      #A8A8B3; /* Increased from #8A8494 for better contrast */
   --text-disabled:   #4C4858;
 
   /* --- Gradientes --- */
@@ -241,7 +241,7 @@ p {
   gap: 0.5rem;
   padding: 0.875rem 1.75rem;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.8125rem; /* Increased from 0.625rem */
+  font-size: 1rem; /* Increased from 0.8125rem to meet 16px WCAG minimum */
   font-weight: 900;
   border-radius: var(--radius-pill);
   transition: all var(--transition-base);
@@ -256,7 +256,7 @@ p {
   .btn-secondary {
     padding: 1.125rem 2rem;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 0.8125rem; /* Increased from 0.625rem */
+    font-size: 1rem; /* Increased from 0.8125rem to meet 16px WCAG minimum */
     font-weight: 900;
   }
 }
@@ -273,6 +273,21 @@ p {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+}
+
+/* Enhanced focus states for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--gold-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(255, 107, 53, 0.3);
 }
 
 /* Ensure white text on mobile for btn-primary */
@@ -361,7 +376,7 @@ p {
   border-radius: var(--radius-pill);
   color: var(--gold-primary);
   font-family: var(--font-body);
-  font-size: 0.9375rem; /* Increased from 0.75rem */
+  font-size: 1rem; /* Increased from 0.9375rem to meet 16px WCAG minimum */
   font-weight: 700;
   letter-spacing: 0.10em;
   text-transform: uppercase;
@@ -575,6 +590,8 @@ p {
 }
 
 .form-input:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
   border-color: var(--gold-primary);
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 0 0 3px rgba(124, 107, 196, 0.12);
@@ -798,8 +815,7 @@ html.lenis, html.lenis body {
   right: 0;
   z-index: 100;
   padding: 1.5rem 0;
-  transition: background var(--transition-base), backdrop-filter var(--transition-base), padding var(--transition-base), border-color var(--transition-base);
-  border-bottom: 1px solid transparent;
+  transition: background var(--transition-base), backdrop-filter var(--transition-base), padding var(--transition-base);
 }
 
 .navbar.scrolled {
@@ -807,13 +823,12 @@ html.lenis, html.lenis body {
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   padding: 1rem 0;
-  border-bottom-color: var(--dark-border);
 }
 
 .nav-link {
   position: relative;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.875rem; /* Reduced from 1rem (-2 points) */
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: color var(--transition-base);
@@ -1230,15 +1245,64 @@ html.lenis, html.lenis body {
 .label-text {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.9375rem; /* Increased from 0.75rem */
+  font-size: 1rem; /* Increased from 0.9375rem to meet 16px WCAG minimum */
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 /* ============================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================================ */
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--gold-primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  transition: top 0.3s;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Enhanced focus for navigation and links */
+.nav-link:focus,
+.footer-link:focus,
+.contact-link:focus,
+.social-icon:focus {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-muted: #D1D5DB;
+    --text-secondary: #E5E7EB;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
    LAYOUT UTILITIES — Generadas manualmente para garantizar
-   compatibilidad con Tailwind v4 + Turbopack
    ============================================================ */
 
 /* Display */

@@ -22,5 +22,5 @@ export const CalBooking    = dynamic(() => import("@/components/sections/CalBook
   </div>
 });
 export const FAQ           = dynamic(() => import("@/components/sections/FAQ"), { ssr: false });
-export const Footer        = dynamic(() => import("@/components/sections/Footer"), { ssr: false });
+export const Footer        = dynamic(() => import("@/components/sections/Footer"), { ssr: true });
 export const CaseStudies    = dynamic(() => import("@/components/sections/CaseStudies"), { ssr: false });
