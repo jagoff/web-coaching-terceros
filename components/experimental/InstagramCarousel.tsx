@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
 import Image from "next/image";
+import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
 const baseInstagramImages = [5, 1, 2, 8, 4, 6, 9, 7, 11];
 
@@ -192,38 +193,13 @@ export default function InstagramCarousel() {
         </div>
       </div>
 
-      {/* Desktop Grid - Visible solo en desktop y tablet */}
+      {/* Desktop Parallax Grid - Visible solo en desktop y tablet */}
       <div className="hidden sm:block">
-        <div className="grid grid-cols-3 gap-2">
-          {instagramImages.map((postNum, i) => (
-            <div
-              key={postNum}
-              className="relative rounded-lg overflow-hidden group"
-              style={{
-                aspectRatio: "1/1",
-                border: "1px solid rgba(167,139,250,0.12)",
-                backgroundColor: "rgba(19,18,27,0.6)",
-              }}
-            >
-              <Image
-                src={`/insta-${postNum}.png`}
-                alt={`Post de Instagram @ferf.coach - ${postNum}`}
-                fill
-                className={`object-cover transition-all duration-500 ${postNum === 5 ? 'force-color' : ''}`}
-                style={{ 
-                  filter: postNum === 5 ? "none" : "grayscale(100%)"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.filter = "none";
-                  e.currentTarget.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = postNum === 5 ? "none" : "grayscale(100%)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
-              />
-            </div>
-          ))}
+        <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          <ParallaxHeroImages 
+            images={instagramImages.map(postNum => `/insta-${postNum}.png`)} 
+            className="w-full h-full"
+          />
         </div>
         
         {/* Instagram info para desktop - eliminado */}

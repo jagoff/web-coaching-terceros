@@ -4,17 +4,18 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Instagram, X, ZoomIn, Share2 } from "lucide-react";
 import Image from "next/image";
+import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
 // Use only confirmed unique images from img folder
 const baseInstagramImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-const getImageExtension = (num: number): string => {
-  // JPEG images are 15-21
-  return num >= 15 && num <= 21 ? '.jpeg' : '.png';
-};
-
 const getImagePath = (num: number): string => {
-  return `/img/insta-${num}${getImageExtension(num)}`;
+  if (num >= 101 && num <= 103) {
+    // Images from /public/ folder
+    return `/insta-${num - 100}.png`;
+  }
+  // Images from /img/ folder - all are PNG
+  return `/img/insta-${num}.png`;
 };
 
 const shuffleArray = (array: number[]) => {
@@ -46,6 +47,12 @@ export default function InstagramGesturesCarousel() {
     console.log(`📸 Instagram carousel: ${uniqueImages.length}/${shuffled.length} unique images`);
     console.log(`🎲 Complete order:`, shuffled);
     console.log(`🖼️ Image paths:`, shuffled.map(n => getImagePath(n)));
+    
+    // Verify all images exist
+    const imagePaths = shuffled.map(n => getImagePath(n));
+    imagePaths.forEach((path, index) => {
+      console.log(`🔍 Checking image ${index}: ${path}`);
+    });
     
     if (uniqueImages.length !== shuffled.length) {
       console.error('🚨 DUPLICATES DETECTED!');
@@ -260,50 +267,13 @@ export default function InstagramGesturesCarousel() {
         </div>
       </div>
 
-      {/* Desktop Grid */}
+      {/* Desktop Parallax Grid */}
       <div className="hidden sm:block">
-        <div className="grid grid-cols-3 gap-2">
-          {instagramImages.map((postNum, i) => {
-            // Debug logging for each rendered image
-            if (i < 5) {
-              console.log(`🖼️ Rendering image ${i}: ${postNum} -> ${getImagePath(postNum)}`);
-            }
-            
-            return (
-            <div
-              key={`${postNum}-${i}`}
-              className="relative rounded-lg overflow-hidden group cursor-pointer"
-              style={{
-                aspectRatio: "1/1",
-                border: "1px solid rgba(167,139,250,0.12)",
-                backgroundColor: "rgba(19,18,27,0.6)",
-              }}
-              onClick={() => setSelectedImage(postNum)}
-            >
-              <Image
-                src={getImagePath(postNum)}
-                alt={`Post de Instagram @ferf.coach - ${postNum}`}
-                fill
-                className={`object-cover transition-all duration-500`}
-                style={{ 
-                  filter: "none",
-                  objectFit: "cover"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
-              />
-              
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <ZoomIn size={24} className="text-white" />
-              </div>
-            </div>
-            );
-          })}
+        <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          <ParallaxHeroImages 
+            images={instagramImages.map(postNum => getImagePath(postNum))} 
+            className="w-full h-full"
+          />
         </div>
         
         <div className="flex items-center justify-center mt-6">
