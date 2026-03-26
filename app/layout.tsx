@@ -26,8 +26,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const isStaging = process.env.VERCEL_ENV === 'preview' || 
-                  process.env.NODE_ENV === 'development' ||
-                  process.env.VERCEL_URL?.includes('vercel.app');
+                  process.env.NODE_ENV === 'development';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eleva-consultoria.com"),
