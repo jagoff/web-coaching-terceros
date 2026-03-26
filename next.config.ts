@@ -29,8 +29,8 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
     webpackBuildWorker: true,
-    serverComponentsExternalPackages: ['sharp'],
   },
+  serverExternalPackages: ['sharp'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
