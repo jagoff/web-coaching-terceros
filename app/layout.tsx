@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://eleva-consultoria.com/opengraph-image.png",
+        url: "/images/opengraph.png",
         width: 1200,
         height: 630,
         alt: "ELEVA CONSULTORIA - Coaching & Consultoría Organizacional",
