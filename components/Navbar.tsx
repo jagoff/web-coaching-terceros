@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { logError, logWarn, logInfo } from "@/lib/logger";
@@ -288,7 +288,7 @@ export default function Navbar() {
             </div>
 
             {/* Links */}
-            <nav className="flex flex-col flex-1 justify-center px-8 gap-2">
+            <nav className="flex flex-col px-8 gap-2 pt-8">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
@@ -307,6 +307,40 @@ export default function Navbar() {
               ))}
             </nav>
 
+            {/* Redes Sociales */}
+            <div className="flex items-center justify-center gap-4 px-8 py-6">
+              <motion.a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full flex items-center justify-center bg-black/50 text-white hover:bg-black/70 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <X size={18} />
+              </motion.a>
+              <motion.a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full flex items-center justify-center bg-black/50 text-white hover:bg-black/70 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Instagram size={18} />
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full flex items-center justify-center bg-black/50 text-white hover:bg-black/70 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Linkedin size={18} />
+              </motion.a>
+            </div>
+
             {/* Mobile CTA Button - DO NOT ADD INLINE STYLES - protected by CSS rules */}
             <div className="px-8 pb-6">
               <button
@@ -316,30 +350,6 @@ export default function Navbar() {
               >
                 {t.nav.sesionGratuita}
               </button>
-            </div>
-
-            {/* Language Toggle */}
-            <div className="px-8 pb-8">
-              <div className="flex justify-center">
-                <button
-                  className="flex items-center gap-2 px-7 py-3 rounded-xl border-2"
-                  style={{
-                    background: "rgba(124,107,196,0.25)",
-                    borderColor: "rgba(124,107,196,0.6)",
-                    color: "#7C6BC4",
-                    fontSize: "16px",
-                    fontWeight: "700",
-                    boxShadow: "0 4px 16px rgba(124,107,196,0.4)",
-                    textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-                    minWidth: "150px",
-                    height: "56px"
-                  }}
-                  onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-                >
-                  <span style={{ fontSize: "20px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                  <span style={{ fontSize: "14px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
-                </button>
-              </div>
             </div>
           </motion.div>
         )}

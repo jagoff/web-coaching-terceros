@@ -166,7 +166,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             width: "clamp(300px, 50vw, 700px)",
             height: "clamp(300px, 50vw, 700px)",
             top: "10%",
-            left: "-15%",
+            left: "-5%",
             opacity: 0.6,
           }}
         />
@@ -178,7 +178,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             width: "clamp(200px, 35vw, 500px)",
             height: "clamp(200px, 35vw, 500px)",
             top: "-5%",
-            right: "-10%",
+            right: "-5%",
             opacity: 0.4,
             animationDelay: "2s",
           }}
@@ -284,9 +284,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           {/* Rotating pain-point phrases */}
           <motion.div
             variants={revealUp}
-            className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl"
+            className="relative w-full max-w-lg mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl mx-auto"
             style={{
-              minHeight: "5.5rem",
+              height: "9.5rem", // Extended height to cover 3 lines properly
               background: "rgba(8, 6, 14, 0.6)",
               backdropFilter: "blur(15px)",
               border: "1px solid rgba(124,107,196,0.12)",
@@ -304,7 +304,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               }}
               aria-hidden="true"
             />
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-4 h-full">
               <div className="flex-shrink-0">
                 <img 
                   src="/img/this_is_fine.png" 
@@ -316,27 +316,30 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
                   ¿Te suena esto?
                 </p>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={phraseIndex}
-                    initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="lead-text italic"
-                    style={{ 
-                      background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      fontFamily: "var(--font-heading)", 
-                      fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)" 
-                    }}
-                    dangerouslySetInnerHTML={{ 
-                      __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (renderLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisions</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
-                    }}
-                  />
-                </AnimatePresence>
+                <div className="flex items-center justify-center" style={{ minHeight: "2.5rem" }}>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={phraseIndex}
+                      initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      className="lead-text italic"
+                      style={{ 
+                        background: "linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        fontFamily: "var(--font-heading)", 
+                        fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)",
+                        textAlign: "center"
+                      }}
+                      dangerouslySetInnerHTML={{ 
+                        __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (renderLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisiones</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
+                      }}
+                    />
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </motion.div>

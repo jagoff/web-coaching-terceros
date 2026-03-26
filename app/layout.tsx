@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://eleva-consultoria.com/images/opengraph.png",
+        url: "https://eleva-consultoria.com/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "ELEVA CONSULTORIA - Coaching & Consultoría Organizacional",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    "og:image": "https://eleva-consultoria.com/images/opengraph.png",
+    "og:image": "https://eleva-consultoria.com/opengraph-image.png",
     "og:image:width": "1200",
     "og:image:height": "630",
     "og:image:alt": "ELEVA CONSULTORIA - Coaching & Consultoría Organizacional",
@@ -64,7 +64,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
     description:
-      "Coaching y consultoría organizacional para líderes tech y startups.",
+      "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
+    images: ["https://eleva-consultoria.com/opengraph-image.png"],
+    site: "@eleva_consultoria",
+    creator: "@eleva_consultoria",
   },
   robots: {
     index: !isStaging,

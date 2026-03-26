@@ -104,6 +104,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -115,6 +116,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Selección de texto */
@@ -326,7 +328,7 @@ p {
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: var(--radius-pill);
   font-weight: 600;
   font-size: 14px;
   line-height: 1;
@@ -1038,11 +1040,25 @@ html.lenis, html.lenis body {
   right: 0;
   z-index: 100;
   padding: 1.5rem 0;
+  background: rgba(12, 10, 18, 0.95);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
   transition: background var(--transition-base), backdrop-filter var(--transition-base), padding var(--transition-base);
 }
 
+/* Mobile navbar - reduced height */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.625rem 0;
+  }
+}
+
 .navbar.scrolled {
-  background: rgba(12, 10, 18, 0.85);
+  background: rgba(12, 10, 18, 0.98);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   padding: 1rem 0;
@@ -2170,9 +2186,9 @@ html {
   white-space: nowrap;
   padding: 0.5rem 0.875rem;
   border-radius: var(--radius-md);
-  background: var(--dark-card);
-  border: 1px solid var(--dark-border);
-  color: var(--text-primary);
+  background: #000000;
+  border: 1px solid #333333;
+  color: #FFFFFF;
   font-size: 0.8125rem;
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
