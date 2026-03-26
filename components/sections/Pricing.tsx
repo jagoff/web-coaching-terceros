@@ -133,13 +133,17 @@ export default function Pricing() {
 
               {/* Plan name */}
               <p
-                className="text-xs font-bold uppercase tracking-widest mb-5"
+                className="font-bold uppercase tracking-widest mb-5"
                 style={{ 
-                  letterSpacing: "0.15em",
-                  fontSize: "0.875rem"
+                  letterSpacing: "0.15em"
                 }}
               >
-                <span className="text-gradient">{plan.name}</span>
+                <span 
+                  className="text-gradient"
+                  style={{
+                    fontSize: "1.375rem"
+                  }}
+                >{plan.name}</span>
               </p>
 
               {/* Description */}
@@ -170,19 +174,23 @@ export default function Pricing() {
               </motion.ul>
 
               {/* CTA */}
-              <button
-                className={`btn-primary w-full ${plan.featured ? 'btn-gold' : ''}`}
-                style={{ 
-                  fontSize: "0.625rem",
-                  whiteSpace: "nowrap",
-                  padding: "0.875rem 1.5rem",
-                  minHeight: "auto",
-                  height: "auto"
-                }}
-                onClick={() => handleScroll("#contacto")}
-              >
-                <span>{plan.cta}</span>
-              </button>
+              <div className="flex justify-center">
+                <button
+                  className="inline-flex items-center bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
+                  style={{ 
+                    background: "linear-gradient(135deg, #FF8C42 0%, #FF6B35 50%, #FFA500 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    letterSpacing: "0.1em"
+                  }}
+                  onClick={() => handleScroll("#contacto")}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                >
+                  {plan.cta}
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>

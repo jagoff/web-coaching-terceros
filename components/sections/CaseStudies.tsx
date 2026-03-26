@@ -307,14 +307,23 @@ export default function CaseStudies() {
               {/* CTA */}
               <div className="mt-6 pt-4 border-t flex justify-end" style={{ borderColor: "rgba(124,107,196,0.1)" }}>
                 <button
-                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold transition-all group text-gradient"
-                  style={{ transform: "translateY(13px)" }}
+                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold tracking-widest transition-all"
+                  style={{ 
+                    background: "linear-gradient(135deg, #C87B5A 0%, #7C6BC4 50%, #FF6B35 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    letterSpacing: "0.1em",
+                    transform: "translateY(13px)"
+                  }}
                   onClick={() => handleScroll("#contacto")}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; e.currentTarget.style.gap = "12px"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.gap = "8px"; }}
                 >
                   {t.caseStudies.seeFullTransformation}
                   <ArrowRight 
-                    size={14} 
-                    className="transition-transform group-hover:translate-x-1" 
+                    size={16} 
+                    style={{ color: "#FF6B35" }}
                   />
                 </button>
               </div>

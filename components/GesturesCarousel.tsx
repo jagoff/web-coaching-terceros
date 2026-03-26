@@ -266,7 +266,7 @@ export default function GesturesCarousel() {
             href="https://www.instagram.com/ferf.coach/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2 group justify-end"
           >
             <div>
               <p className="text-xs font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
@@ -299,7 +299,7 @@ export default function GesturesCarousel() {
             href="https://www.instagram.com/ferf.coach/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3 group justify-end"
           >
             <div>
               <p className="text-sm font-semibold group-hover:text-purple-400 transition-colors" style={{ color: "var(--text-primary)" }}>@ferf.coach</p>
