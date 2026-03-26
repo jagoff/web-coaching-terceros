@@ -178,7 +178,13 @@ export default function Footer() {
             <div>
               <h3
                 className="text-xs font-bold uppercase tracking-widest mb-5"
-                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+                style={{ 
+                  color: "var(--gold-primary)", 
+                  letterSpacing: "0.15em",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis"
+                }}
                 suppressHydrationWarning
               >
                 <NoSSR fallback="Navegación">
@@ -214,7 +220,13 @@ export default function Footer() {
             <div>
               <h3
                 className="text-xs font-bold uppercase tracking-widest mb-5"
-                style={{ color: "var(--gold-primary)", letterSpacing: "0.15em" }}
+                style={{ 
+                  color: "var(--gold-primary)", 
+                  letterSpacing: "0.15em",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis"
+                }}
                 suppressHydrationWarning
               >
                 <NoSSR fallback="Servicios">
