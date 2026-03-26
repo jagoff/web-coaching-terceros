@@ -281,7 +281,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           {/* Headline — each line reveals separately */}
           <motion.h1
             className="display-text max-w-5xl mb-3 sm:mb-4"
-            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.25rem, 4.8vw, 3.75rem)" }}
+            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.125rem, 4.8vw, 3.625rem)" }}
           >
             <motion.span variants={revealUp} className="block">
               {renderLanguage === 'es' ? (

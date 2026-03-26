@@ -128,14 +128,14 @@ export default function About() {
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative">
           {/* Badge - Positioned above TV image */}
-          <div className="absolute left-0 top-0 lg:left-8 xl:left-12 z-20 lg:block hidden" style={{ top: '-10px' }}>
+          <div className="absolute left-0 top-0 lg:left-8 xl:left-12 z-0 lg:block hidden lg:z-20" style={{ top: '-10px' }}>
             <div className="mb-3 flex justify-start">
               <span className="badge">{t.about.badge}</span>
             </div>
           </div>
 
           {/* TV Image - At grid level, outside any column */}
-          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '113px', left: '42px' }}>
+          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-0 lg:block hidden lg:z-10" style={{ top: '113px', left: '42px' }}>
             <CardContainer className="inter-var">
               <CardBody className="relative group/card w-[32rem] h-[32rem]">
                 <CardItem translateZ="50" className="w-full h-full">
@@ -160,8 +160,7 @@ export default function About() {
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative order-2 lg:order-1 mt-4 lg:mt-0"
-            style={{ marginTop: "-470px" }}
+            className="relative order-2 lg:order-1 mt-4 lg:mt-0 lg:-mt-[470px]"
           >
             {/* Image Carousel - Mobile First */}
             <GesturesCarousel />
