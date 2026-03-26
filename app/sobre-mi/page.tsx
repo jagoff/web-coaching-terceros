@@ -46,6 +46,7 @@ export default function SobreMiPage() {
           description: "Conoce a Fernando Ferrari, coach profesional especializado en liderazgo tech y consultoría organizacional.",
           breadcrumb: "Sobre Mí"
         }} 
+        pathname="/sobre-mi"
       />
       <JsonLdStructuredData 
         type="WebPage" 
@@ -54,6 +55,7 @@ export default function SobreMiPage() {
           description: "Conoce a Fernando Ferrari, coach profesional especializado en liderazgo tech y consultoría organizacional.",
           breadcrumb: "Sobre Mí"
         }} 
+        pathname="/sobre-mi" 
       />
       <main>
         <HeroServer pathname="/sobre-mi" />

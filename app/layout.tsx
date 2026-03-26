@@ -147,11 +147,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`
         }} />
         {/* End Google Tag Manager (noscript) */}
         
+        <JsonLdStructuredData type="Organization" data={{}} pathname="/" />
+        
         <LanguageProvider>
           <ThemeProvider>
             <ClientLayout>
               <AnalyticsScripts />
-              <JsonLdStructuredData type="Organization" data={{}} />
               {children}
             </ClientLayout>
           </ThemeProvider>

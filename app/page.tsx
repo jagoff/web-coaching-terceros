@@ -13,6 +13,7 @@ import {
 } from "@/components/PageSections";
 import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
+import SEOHelmet from "@/components/SEOHelmet";
 import { Metadata } from "next";
 
 export const dynamic = 'force-static'
@@ -47,6 +48,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
+      <SEOHelmet pathname="/" />
       <HeroServer pathname="/" />
       <About />
       <Services />

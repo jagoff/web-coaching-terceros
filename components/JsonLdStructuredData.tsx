@@ -1,14 +1,10 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-
 interface JsonLdStructuredDataProps {
   type: 'Organization' | 'Service' | 'Person' | 'WebPage';
-  data: Record<string, any>;
+  data?: any;
+  pathname?: string;
 }
 
-export default function JsonLdStructuredData({ type, data }: JsonLdStructuredDataProps) {
-  const pathname = usePathname();
+export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }: JsonLdStructuredDataProps) {
 
   const getStructuredData = () => {
     const baseUrl = "https://eleva-consultoria.com";

@@ -4,6 +4,7 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
+import SEOHelmet from "@/components/SEOHelmet";
 
 export const dynamic = 'force-static'
 export const revalidate = 3600 // Revalidate every hour
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return (
     <main>
+      <SEOHelmet pathname="/faq" />
       <HeroServer pathname="/faq" />
       <FAQ />
       <Contact />

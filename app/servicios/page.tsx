@@ -50,6 +50,7 @@ export default function ServiciosPage() {
           price: "A consultar",
           breadcrumb: "Servicios"
         }} 
+        pathname="/servicios"
       />
       <JsonLdStructuredData 
         type="WebPage" 
@@ -58,6 +59,7 @@ export default function ServiciosPage() {
           description: "Servicios profesionales de coaching y consultoría para líderes tech y startups.",
           breadcrumb: "Servicios"
         }} 
+        pathname="/servicios" 
       />
       <main>
         <HeroServer pathname="/servicios" />
