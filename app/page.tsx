@@ -14,6 +14,7 @@ import {
 import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import SEOHelmet from "@/components/SEOHelmet";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { Metadata } from "next";
 
 export const dynamic = 'force-static'
@@ -47,20 +48,35 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
-      <SEOHelmet pathname="/" />
-      <HeroServer pathname="/" />
-      <About />
-      <Services />
-      <Process />
-      <Testimonials />
-      <Results />
-      <CaseStudies />
-      <Pricing />
-      <FAQ />
-      <Contact />
-      <Footer />
-      <WhatsAppBooking />
-    </main>
+    <>
+      <JsonLdStructuredData 
+        type="LocalBusiness" 
+        pathname="/"
+      />
+      <JsonLdStructuredData 
+        type="WebPage" 
+        data={{ 
+          title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
+          description: "Coaching y consultoría organizacional para líderes tech y startups.",
+          breadcrumb: "Inicio"
+        }} 
+        pathname="/" 
+      />
+      <main>
+        <SEOHelmet pathname="/" />
+        <HeroServer pathname="/" />
+        <About />
+        <Services />
+        <Process />
+        <Testimonials />
+        <Results />
+        <CaseStudies />
+        <Pricing />
+        <FAQ />
+        <Contact />
+        <Footer />
+        <WhatsAppBooking />
+      </main>
+    </>
   );
 }

@@ -5,6 +5,8 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import SEOHelmet from "@/components/SEOHelmet";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
+import { translations } from "@/lib/translations";
 
 export const dynamic = 'force-static'
 export const revalidate = 3600 // Revalidate every hour
@@ -14,18 +16,6 @@ export const metadata: Metadata = {
   description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría. Todo lo que necesitas saber sobre nuestro proceso, metodología y resultados.",
   keywords: ["FAQ coaching", "preguntas frecuentes", "dudas coaching", "metodología coaching", "proceso consultoría", "coaching Argentina"],
   authors: [{ name: "Fernando Ferrari" }],
-  openGraph: {
-    title: "Preguntas Frecuentes | FAQ Coaching | ELEVA CONSULTORIA",
-    description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría organizacional.",
-    type: "website",
-    locale: "es_ES",
-    url: "https://eleva-consultoria.com/faq",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Preguntas Frecuentes | FAQ Coaching | ELEVA CONSULTORIA",
-    description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría.",
-  },
   alternates: {
     canonical: "https://eleva-consultoria.com/faq",
     languages: {
@@ -37,13 +27,31 @@ export const metadata: Metadata = {
 
 export default function FAQPage() {
   return (
-    <main>
-      <SEOHelmet pathname="/faq" />
-      <HeroServer pathname="/faq" />
-      <FAQ />
-      <Contact />
-      <Footer />
-      <WhatsAppBooking />
-    </main>
+    <>
+      <JsonLdStructuredData 
+        type="FAQPage" 
+        data={{ 
+          questions: translations.es.faq.items
+        }} 
+        pathname="/faq"
+      />
+      <JsonLdStructuredData 
+        type="WebPage" 
+        data={{ 
+          title: "Preguntas Frecuentes | FAQ Coaching | ELEVA CONSULTORIA",
+          description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría.",
+          breadcrumb: "FAQ"
+        }} 
+        pathname="/faq" 
+      />
+      <main>
+        <SEOHelmet pathname="/faq" />
+        <HeroServer pathname="/faq" />
+        <FAQ />
+        <Contact />
+        <Footer />
+        <WhatsAppBooking />
+      </main>
+    </>
   );
 }

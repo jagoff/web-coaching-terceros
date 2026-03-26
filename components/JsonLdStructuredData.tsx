@@ -1,5 +1,5 @@
 interface JsonLdStructuredDataProps {
-  type: 'Organization' | 'Service' | 'Person' | 'WebPage';
+  type: 'Organization' | 'Service' | 'Person' | 'WebPage' | 'LocalBusiness' | 'FAQPage' | 'Review';
   data?: any;
   pathname?: string;
 }
@@ -141,6 +141,101 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
                 "item": fullUrl
               }] : [])
             ]
+          }
+        };
+
+      case 'LocalBusiness':
+        return {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "ELEVA CONSULTORIA",
+          "url": baseUrl,
+          "logo": `${baseUrl}/img/fav.png`,
+          "description": "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
+          "founder": {
+            "@type": "Person",
+            "name": "Fernando Ferrari",
+            "jobTitle": "Coach Profesional",
+            "url": `${baseUrl}/sobre-mi`
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+54-9-11-1234-5678",
+            "contactType": "consulting",
+            "availableLanguage": ["Spanish", "English"]
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "Argentina",
+            "addressRegion": "Buenos Aires"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "addressCountry": "Argentina",
+            "addressRegion": "Buenos Aires"
+          },
+          "openingHours": [
+            "Mo-Fr 09:00-18:00",
+            "Sa-Su Closed"
+          ],
+          "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+          "priceRange": "$$",
+          "sameAs": [
+            "https://linkedin.com/in/fernandorferrari",
+            "https://instagram.com/jago_ff"
+          ],
+          "services": [
+            "Coaching de Liderazgo",
+            "Consultoría Organizacional",
+            "Coaching para Startups",
+            "Desarrollo de Equipos",
+            "Cultura Organizacional"
+          ]
+        };
+
+      case 'FAQPage':
+        return {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": data.questions?.map((faq: any, index: number) => ({
+            "@type": "Question",
+            "position": index + 1,
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          })) || []
+        };
+
+      case 'Review':
+        return {
+          "@context": "https://schema.org",
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "Service",
+            "name": "Coaching y Consultoría Organizacional",
+            "provider": {
+              "@type": "Organization",
+              "name": "ELEVA CONSULTORIA",
+              "url": baseUrl
+            }
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": data.rating || "5",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "author": {
+            "@type": "Person",
+            "name": data.author
+          },
+          "reviewBody": data.review,
+          "datePublished": data.date || new Date().toISOString(),
+          "publisher": {
+            "@type": "Organization",
+            "name": "ELEVA CONSULTORIA"
           }
         };
 

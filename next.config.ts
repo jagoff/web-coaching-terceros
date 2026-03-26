@@ -10,11 +10,15 @@ const nextConfig: NextConfig = {
     root: process.cwd(),
   },
   images: {
-    domains: ['localhost'],
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
       },
     ],
     formats: ['image/webp', 'image/avif'],
@@ -39,7 +43,12 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   generateEtags: false,
   // Static generation optimizations
-  output: 'standalone',
+  output: 'export',
+  // Cache optimization for ISR
+  onDemandEntries: {
+    maxInactiveAge: 60 * 60 * 1000, // 1 hour
+    pagesBufferLength: 2,
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);

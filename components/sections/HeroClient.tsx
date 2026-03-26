@@ -309,7 +309,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               <div className="flex-shrink-0">
                 <Image 
                   src="/img/this_is_fine.png" 
-                  alt="This is fine meme"
+                  alt="Equipo abrumado sin procesos ágiles"
                   width={56}
                   height={56}
                   className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-100"

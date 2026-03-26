@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/'],
     },
-    sitemap: 'https://jagoff.co/sitemap.xml',
+    sitemap: 'https://eleva-consultoria.com/sitemap.xml',
   }
 }

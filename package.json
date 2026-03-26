@@ -20,6 +20,7 @@
     "test:visual": "playwright test tests/visual.spec.ts",
     "test:visual:update": "playwright test tests/visual.spec.ts --update-snapshots",
     "build:static": "next build",
+    "build:export": "node scripts/static-export.js",
     "verify:ssr": "node scripts/verify-ssr.js"
   },
   "dependencies": {

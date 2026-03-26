@@ -9,27 +9,16 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
+import SEOHelmet from "@/components/SEOHelmet";
 
 export const dynamic = 'force-static'
 export const revalidate = 3600 // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Servicios de Coaching | Liderazgo Tech | ELEVA CONSULTORIA",
-  description: "Servicios profesionales de coaching y consultoría para líderes tech y startups. Coaching de liderazgo, consultoría organizacional, escalamiento de equipos y cultura organizacional.",
-  keywords: ["servicios coaching", "coaching liderazgo", "consultoría tech", "coaching startups", "escalar equipos", "cultura organizacional", "coaching Argentina"],
+  title: "Servicios de Coaching y Consultoría | ELEVA CONSULTORIA",
+  description: "Servicios especializados en coaching de liderazgo, consultoría agile y transformación organizacional para equipos tech y startups.",
+  keywords: ["servicios coaching", "consultoría agile", "coaching liderazgo", "transformación organizacional", "servicios consultoría", "coaching equipos"],
   authors: [{ name: "Fernando Ferrari" }],
-  openGraph: {
-    title: "Servicios de Coaching | Liderazgo Tech | ELEVA CONSULTORIA",
-    description: "Servicios profesionales de coaching y consultoría para líderes tech y startups. Acompañamos a construir equipos que funcionen y culturas donde la gente quiera quedarse.",
-    type: "website",
-    locale: "es_ES",
-    url: "https://eleva-consultoria.com/servicios",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Servicios de Coaching | Liderazgo Tech | ELEVA CONSULTORIA",
-    description: "Servicios profesionales de coaching y consultoría para líderes tech y startups.",
-  },
   alternates: {
     canonical: "https://eleva-consultoria.com/servicios",
     languages: {
@@ -46,7 +35,7 @@ export default function ServiciosPage() {
         type="Service" 
         data={{ 
           name: "Servicios de Coaching y Consultoría",
-          description: "Servicios profesionales de coaching y consultoría para líderes tech y startups. Acompañamos a construir equipos que funcionen y culturas donde la gente quiera quedarse.",
+          description: "Servicios especializados en coaching de liderazgo, consultoría agile y transformación organizacional para equipos tech y startups.",
           price: "A consultar",
           breadcrumb: "Servicios"
         }} 
@@ -55,13 +44,14 @@ export default function ServiciosPage() {
       <JsonLdStructuredData 
         type="WebPage" 
         data={{ 
-          title: "Servicios de Coaching | Liderazgo Tech | ELEVA CONSULTORIA",
-          description: "Servicios profesionales de coaching y consultoría para líderes tech y startups.",
+          title: "Servicios de Coaching y Consultoría | ELEVA CONSULTORIA",
+          description: "Servicios especializados en coaching de liderazgo, consultoría agile y transformación organizacional.",
           breadcrumb: "Servicios"
         }} 
         pathname="/servicios" 
       />
       <main>
+        <SEOHelmet pathname="/servicios" />
         <HeroServer pathname="/servicios" />
         <Services />
         <Process />
