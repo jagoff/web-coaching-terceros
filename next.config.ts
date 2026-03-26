@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     root: process.cwd(),
   },
   images: {
-    domains: [],
+    domains: ['localhost'],
     remotePatterns: [
       {
         protocol: 'https',
