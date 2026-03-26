@@ -119,6 +119,7 @@ export default function About() {
                   src="/img/tv.png"
                   alt="TV Icon"
                   className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
+                  style={{ transform: 'scale(1.2)' }}
                 />
               </CardItem>
             </CardBody>
@@ -134,7 +135,7 @@ export default function About() {
           </div>
 
           {/* TV Image - At grid level, outside any column */}
-          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '63px' }}>
+          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-10 lg:block hidden" style={{ top: '113px', left: '42px' }}>
             <CardContainer className="inter-var">
               <CardBody className="relative group/card w-[32rem] h-[32rem]">
                 <CardItem translateZ="50" className="w-full h-full">
@@ -144,7 +145,8 @@ export default function About() {
                     className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
                     style={{ 
                       filter: 'brightness(1.1) contrast(1.1)',
-                      opacity: 1
+                      opacity: 1,
+                      transform: 'scale(1.2)'
                     }}
                   />
                 </CardItem>
@@ -159,6 +161,7 @@ export default function About() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             className="relative order-2 lg:order-1 mt-4 lg:mt-0"
+            style={{ marginTop: "-470px" }}
           >
             {/* Image Carousel - Mobile First */}
             <GesturesCarousel />
@@ -266,8 +269,22 @@ export default function About() {
                 </h3>
                 <p className="text-base" style={{ color: "var(--text-secondary)" }}>
                   {language === 'es' 
-                    ? '¿Queres pasar por YouTube? Te espero!'
-                    : 'Want to stop by YouTube? I\'ll be there!'
+                    ? <span>¿Queres pasar por YouTube? <a 
+                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                      >
+                        ¡Te espero!
+                      </a></span>
+                    : <span>Want to stop by YouTube? <a 
+                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                      >
+                        I'll be there!
+                      </a></span>
                   }
                 </p>
               </div>

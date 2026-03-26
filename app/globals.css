@@ -259,6 +259,40 @@ p {
   }
 }
 
+/* Subrayado anaranjado específico para frases rotativas */
+.web-underline-orange {
+  position: relative;
+  display: inline;
+  text-decoration: none !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #EDE8F0 !important;
+  background-clip: unset !important;
+  color: #EDE8F0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+
+.web-underline-orange::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF6B35, #FF8C42, #FFB347, #FF8C42, #FF6B35);
+  border-radius: 2px;
+  animation: simple-wave 2s ease-in-out infinite;
+  z-index: 100;
+}
+
+.web-underline-orange:hover::before {
+  height: 4px;
+  animation-duration: 1.5s;
+}
+
 /* ---- Glass Card ---- */
 
 .glass-card {

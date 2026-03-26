@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://eleva-consultoria.com/img/fav.png",
-        width: 512,
-        height: 512,
+        url: "https://eleva-consultoria.com/opengraph-image.png",
+        width: 1200,
+        height: 630,
         alt: "ELEVA CONSULTORIA - Coaching & Consultoría Organizacional",
       },
     ],
@@ -73,12 +73,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/img/fav.png',
-    shortcut: '/img/fav.png',
-    apple: '/img/fav.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
     other: {
       rel: 'apple-touch-icon-precomposed',
-      url: '/img/fav.png',
+      url: '/apple-touch-icon.png',
     },
   },
 };
