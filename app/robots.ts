@@ -7,8 +7,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/', '/_next/', '/static/'],
+      disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/'],
     },
-    sitemap: 'https://eleva-consultoria.com/sitemap.xml',
+    sitemap: 'https://jagoff.co/sitemap.xml',
   }
 }
