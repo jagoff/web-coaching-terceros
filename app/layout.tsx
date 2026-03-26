@@ -54,6 +54,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    "og:image": "https://eleva-consultoria.com/images/opengraph.png",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:alt": "ELEVA CONSULTORIA - Coaching & Consultoría Organizacional",
+  },
   twitter: {
     card: "summary_large_image",
     title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
