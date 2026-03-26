@@ -20,31 +20,12 @@ const rotatingPhrasesES = [
   "No logro <span class='web-underline-orange'>delegar</span> sin perder el control",
   "El equipo tiene <span class='web-underline-orange'>talento</span> pero no rinde",
   "Siempre apagamos incendios, nunca <span class='web-underline-orange'>prevenimos</span>",
-  "Tengo <span class='web-underline-orange'>demasiadas prioridades</span> y no avanzo en ninguna",
+  "Tengo <span class='web-underline-orange'>demasiadas prioridades</span> y no avanzo",
   "No sé si mi equipo está <span class='web-underline-orange'>alineado</span> con los objetivos",
   "Contrato bien pero la <span class='web-underline-orange'>gente se va</span> rápido",
   "Trabajamos mucho pero los <span class='web-underline-orange'>resultados no se ven</span>",
   "No hay tiempo para <span class='web-underline-orange'>pensar</span>, solo para reaccionar",
-  "Cada área va por <span class='web-underline-orange'>su cuenta</span> y nadie coordina",
-  "El feedback que doy no genera <span class='web-underline-orange'>cambios reales</span>",
-  "Mi jornada <span class='web-underline-orange'>no termina nunca</span> y sigo atrasado",
-  "Sé lo que hay que hacer pero no <span class='web-underline-orange'>cómo arrancarlo</span>",
-  "Los procesos que funcionaban antes ya no <span class='web-underline-orange'>escalan</span>",
-  "Hay <span class='web-underline-orange'>conflictos</span> en el equipo que nadie nombra",
-  "Tomo decisiones con <span class='web-underline-orange'>datos incompletos</span> siempre",
-  "Perdemos <span class='web-underline-orange'>clientes</span> por problemas que podríamos evitar",
-  "El equipo espera que yo tenga <span class='web-underline-orange'>todas las respuestas</span>",
-  "Nuestras daily meetings duran <span class='web-underline-orange'>45 minutos</span> y no resuelven nada",
-  "Los devs dicen '<span class='web-underline-orange'>terminado</span>' pero siempre hay bugs en producción",
-  "Cambio <span class='web-underline-orange'>prioridades</span> cada dos días y nadie sabe qué hacer",
-  "El frontend y el backend no se <span class='web-underline-orange'>hablan</span>, siempre es culpa del otro",
-  "Hacemos <span class='web-underline-orange'>overtime</span> pero seguimos entregando tarde",
-  "Mi mejor dev está por <span class='web-underline-orange'>renunciar</span> y no sé por qué",
-  "Implementamos <span class='web-underline-orange'>Scrum</span> pero solo son reuniones de más",
-  "Los stakeholders cambian el <span class='web-underline-orange'>alcance</span> sin aviso",
-  "No sé qué hace <span class='web-underline-orange'>cada uno</span> en el equipo",
-  "Las retrospectivas son <span class='web-underline-orange'>silencio incómodo</span> y nada cambia",
-  "El cliente <span class='web-underline-orange'>nunca está contento</span> con lo que entregamos"
+  "Cada área va por <span class='web-underline-orange'>su cuenta</span> y nadie coordina"
 ];
 
 const rotatingPhrasesEN = [
@@ -54,31 +35,12 @@ const rotatingPhrasesEN = [
   "I can't <span class='web-underline-orange'>delegate</span> without losing control",
   "The team has <span class='web-underline-orange'>talent</span> but doesn't perform",
   "We're always putting out fires, never <span class='web-underline-orange'>preventing</span>",
-  "I have <span class='web-underline-orange'>too many priorities</span> and don't advance in any",
+  "I have <span class='web-underline-orange'>too many priorities</span> and don't advance",
   "I don't know if my team is <span class='web-underline-orange'>aligned</span> with objectives",
   "I hire well but <span class='web-underline-orange'>people leave</span> quickly",
   "We work a lot but <span class='web-underline-orange'>results aren't visible</span>",
   "There's no time to <span class='web-underline-orange'>think</span>, only to react",
-  "Each area goes <span class='web-underline-orange'>its own way</span> and nobody coordinates",
-  "The feedback I give doesn't generate <span class='web-underline-orange'>real changes</span>",
-  "My workday <span class='web-underline-orange'>never ends</span> and I'm still behind",
-  "I know what needs to be done but not <span class='web-underline-orange'>how to start</span>",
-  "The processes that worked before no longer <span class='web-underline-orange'>scale</span>",
-  "There are <span class='web-underline-orange'>conflicts</span> in the team that nobody mentions",
-  "I always make decisions with <span class='web-underline-orange'>incomplete data</span>",
-  "We lose <span class='web-underline-orange'>clients</span> due to problems we could avoid",
-  "The team expects me to have <span class='web-underline-orange'>all the answers</span>",
-  "Our daily meetings last <span class='web-underline-orange'>45 minutes</span> and solve nothing",
-  "Devs say '<span class='web-underline-orange'>done</span>' but there are always bugs in production",
-  "I change <span class='web-underline-orange'>priorities</span> every two days and nobody knows what to do",
-  "Frontend and backend don't <span class='web-underline-orange'>talk</span>, it's always the other's fault",
-  "We work <span class='web-underline-orange'>overtime</span> but still deliver late",
-  "My best dev is about to <span class='web-underline-orange'>quit</span> and I don't know why",
-  "We implemented <span class='web-underline-orange'>Scrum</span> but it's just more meetings",
-  "Stakeholders change <span class='web-underline-orange'>scope</span> without notice",
-  "I don't know what <span class='web-underline-orange'>each person</span> on the team does",
-  "Retrospectives are <span class='web-underline-orange'>awkward silence</span> and nothing changes",
-  "The client is <span class='web-underline-orange'>never happy</span> with what we deliver"
+  "Each area goes <span class='web-underline-orange'>its own way</span> and nobody coordinates"
 ];
 
 type Particle = {
@@ -157,17 +119,18 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   useEffect(() => {
     setMounted(true);
     setRenderLanguage(language); // Sync with context language after mount
-    const count = window.innerWidth < 768 ? 12 : 35;
+    // Reduced particle count for better performance
+    const count = window.innerWidth < 768 ? 6 : 15; // Reduced from 12/35
     setParticles(
       Array.from({ length: count }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
+        size: Math.random() * 2 + 1, // Smaller particles
         delay: Math.random() * 4,
-        duration: Math.random() * 4 + 6,
-        opacity: 0.2 + Math.random() * 0.5,
-        drift: (Math.random() - 0.5) * 30,
+        duration: Math.random() * 3 + 4, // Shorter duration
+        opacity: 0.1 + Math.random() * 0.3, // Lower opacity
+        drift: (Math.random() - 0.5) * 20, // Less drift
       }))
     );
   }, []);
@@ -346,7 +309,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 <img 
                   src="/img/this_is_fine.png" 
                   alt="This is fine meme"
-                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-80"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-100"
                 />
               </div>
               <div className="flex-1">
