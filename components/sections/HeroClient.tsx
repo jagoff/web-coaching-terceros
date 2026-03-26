@@ -6,6 +6,7 @@ import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Language } from "@/lib/translations";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 // Dynamic imports for non-critical components
 const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWordsBackground"), {
@@ -306,10 +307,13 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             />
             <div className="flex items-center justify-between gap-4 h-full">
               <div className="flex-shrink-0">
-                <img 
+                <Image 
                   src="/img/this_is_fine.png" 
                   alt="This is fine meme"
+                  width={56}
+                  height={56}
                   className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-100"
+                  priority={true}
                 />
               </div>
               <div className="flex-1">
