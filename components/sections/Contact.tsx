@@ -309,19 +309,11 @@ export default function Contact() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-center justify-center text-center py-8 gap-6"
+                    className="flex flex-col items-center justify-center text-center py-8 gap-6 -mt-12"
                   >
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center animate-glow"
-                      style={{
-                        background: "rgba(34, 197, 94, 0.15)",
-                        border: "1px solid rgba(34, 197, 94, 0.3)",
-                      }}
-                    >
-                      <div className="flex items-center gap-1">
-                        <CheckCircle2 size={24} style={{ color: "#22c55e" }} />
-                        <CheckCircle2 size={24} style={{ color: "#22c55e" }} />
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 size={28} style={{ color: "#22c55e" }} />
+                      <CheckCircle2 size={28} style={{ color: "#22c55e" }} />
                     </div>
                     <h3
                       className="heading-md"
