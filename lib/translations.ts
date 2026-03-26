@@ -296,7 +296,31 @@ export const translations: Record<Language, Translations> = {
       title1: 'De la tecnología',
       title2: 'a transformar',
       title3: 'organizaciones.',
-      intro: '<span style="font-family: var(--font-modern); font-weight: 600;">Hola! Soy <span class="web-underline" style="background: linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; display: inline;">Fernando Ferrari</span> llevo más de 20 años en tecnología — desde infraestructura y operaciones hasta liderazgo estratégico y transformación cultural. Fui técnico, sysadmin, CTO, Advanced Scrum Master, Product Owner, PM, Director de Operaciones. Lideré equipos en empresas de más de 2500 personas como tambien en empresas de 4 personas, acompañé startups a escalar sin perder su identidad. Hoy gestiono infraestructura AWS Cloud en Avature, co-fundé Nodok.AI para proyectos de inteligencia artificial, y llevo 11 años como consultor ágil independiente. — <span style="font-family: var(--font-heading); font-style: italic; color: var(--text-primary);">Te acompaño a construir equipos autónomos, procesos que escalen, y una cultura que retenga y desafie al talento.</span>',
+      intro: `<div style="line-height: 1.7; font-size: 1.05rem;">
+  <p style="margin-bottom: 1.5rem;">
+    <span style="font-family: var(--font-modern); font-weight: 600; font-size: 1.2rem; color: var(--text-primary);">¡Hola! Soy <span class="web-underline" style="background: linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; display: inline;">Fernando Ferrari</span></span>
+  </p>
+  
+  <p style="margin-bottom: 1.2rem;">
+    <span style="font-family: var(--font-serif); font-weight: 500;">Llevo más de</span> <span style="font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem;">20 años</span> <span style="font-family: var(--font-serif); font-weight: 500;">en tecnología — desde</span> <span style="font-family: var(--font-modern); font-weight: 600;">infraestructura y operaciones</span> <span style="font-family: var(--font-serif); font-weight: 500;">hasta</span> <span style="font-family: var(--font-modern); font-weight: 600;">liderazgo estratégico y transformación cultural</span>.
+  </p>
+  
+  <p style="margin-bottom: 1.2rem;">
+    <span style="font-family: var(--font-serif); font-weight: 500;">Fui</span> <span style="font-family: var(--font-heading); font-weight: 600;">técnico</span>, <span style="font-family: var(--font-heading); font-weight: 600;">sysadmin</span>, <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">CTO</span>, <span style="font-family: var(--font-modern); font-weight: 700; color: #C87B5A;">Advanced Scrum Master</span>, <span style="font-family: var(--font-modern); font-weight: 700; color: #FF6B35;">Product Owner</span>, <span style="font-family: var(--font-heading); font-weight: 600;">PM</span>, <span style="font-family: var(--font-heading); font-weight: 600;">Director de Operaciones</span>.
+  </p>
+  
+  <p style="margin-bottom: 1.2rem;">
+    <span style="font-family: var(--font-serif); font-weight: 500;">Lideré equipos en empresas de</span> <span style="font-family: var(--font-modern); font-weight: 700; font-size: 1.1rem; color: #7C6BC4;">más de 2500 personas</span> <span style="font-family: var(--font-serif); font-weight: 500;">como también en empresas de</span> <span style="font-family: var(--font-heading); font-weight: 600;">4 personas</span>, <span style="font-family: var(--font-serif); font-weight: 500;">acompañé</span> <span style="font-family: var(--font-modern); font-style: italic; color: #FF6B35;">startups a escalar sin perder su identidad</span>.
+  </p>
+  
+  <p style="margin-bottom: 1.2rem;">
+    <span style="font-family: var(--font-serif); font-weight: 500;">Hoy gestiono</span> <span style="font-family: var(--font-heading); font-weight: 600;">infraestructura AWS Cloud en Avature</span>, <span style="font-family: var(--font-serif); font-weight: 500;">co-fundé</span> <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">Nodok.AI</span> <span style="font-family: var(--font-serif); font-weight: 500;">para proyectos de inteligencia artificial, y llevo</span> <span style="font-family: var(--font-heading); font-weight: 600;">11 años como consultor ágil independiente</span>.
+  </p>
+  
+  <p style="margin-top: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--gold-primary);">
+    <span style="font-family: var(--font-heading); font-style: italic; font-weight: 500; color: var(--text-primary);">Te acompaño a construir <span style="font-weight: 700;">equipos autónomos</span>, <span style="font-weight: 700;">procesos que escalen</span>, y una <span style="font-weight: 700;">cultura que retenga y desafíe al talento</span>.</span>
+  </p>
+</div>`,
       approach: '',
       certificaciones: 'Certificaciones internacionales comprobables',
       stats: {
@@ -515,6 +539,38 @@ export const translations: Record<Language, Translations> = {
           question: '¿La sesión de diagnóstico tiene algún costo?',
           answer: 'No. La primera sesión de 30 minutos es completamente gratuita y sin compromiso. Sirve para entender tu situación, definir objetivos y ver si tiene sentido trabajar juntos.',
         },
+        {
+          question: '¿Cuál es el proceso exacto para construir equipos autónomos?',
+          answer: 'Phase 1: Assessment (2 semanas) - Evaluación del nivel actual de autonomía con Team Autonomy Scorecard. Phase 2: Framework Implementation (4 semanas) - Implementación de OKRs, ceremonias ágiles y matriz de decisiones. Phase 3: Scaling (6 semanas) - Escalamiento de prácticas y medición de ROI con dashboard de métricas.',
+        },
+        {
+          question: '¿Qué métricas específicas se usan para medir la autonomía del equipo?',
+          answer: 'Team Autonomy Score (0-100), Decision Latency Time, Meeting Efficiency Ratio, Dependency Reduction Rate, Innovation Velocity Index. Se mide baseline mensual y se tracking semanal durante el proceso.',
+        },
+        {
+          question: '¿Cuál es el ROI esperado de un programa de 12 semanas?',
+          answer: 'Promedio histórico: 3x inversión en 6 meses. Reducción de meetings 60%, velocidad de deployment +200%, employee turnover -45%, team satisfaction +40%. Métricas validadas con 50+ equipos.',
+        },
+        {
+          question: '¿Qué herramientas y frameworks se implementan?',
+          answer: 'OKRs (Objectives and Key Results), Agile Ceremonies (daily, retrospective, planning), Decision Matrix (RACI, DACI), Team Topologies, Sociocracy 3.0, Metrics Dashboard (custom KPIs), Process Automation tools.',
+        },
+        {
+          question: '¿Cómo funciona el modelo de pricing para consultoría organizacional?',
+          answer: 'Modelo basado en valor: USD 200/hora para diagnóstico, USD 150/hora para implementación, opción de retainer mensual USD 2,500 para equipos 5-10 personas. Precios ajustables según tamaño y complejidad.',
+        },
+        {
+          question: '¿Qué certificaciones y experiencia tiene el coach?',
+          answer: '20+ años en tecnología leadership, Advanced Certified ScrumMaster, Advanced Certified Scrum Product Owner, Management 3.0, unFIX Foundation. Experiencia en empresas de 4 a 2500+ personas, co-fundador de Nodok.AI, 11 años como consultor ágil independiente.',
+        },
+        {
+          question: '¿Qué resultados específicos se pueden esperar en 3 meses?',
+          answer: 'Week 1-4: Assessment completo y framework design. Week 5-8: First implementation cycle con metrics baseline. Week 9-12: Scaling patterns y ROI validation. Resultados típicos: 30% reduction en decision latency, 50% increase en team initiatives.',
+        },
+        {
+          question: '¿Cómo se adapta el proceso para equipos remotos vs híbridos?',
+          answer: 'Remote-first approach con herramientas asíncronas (Notion, Slack, Loom), async decision frameworks, timezone optimization, virtual ceremonies adaptadas. Hybrid teams: bridge protocols para sync/async workflows.',
+        }
       ],
     },
     

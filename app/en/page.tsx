@@ -19,7 +19,7 @@ import { Metadata } from "next";
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: "ELEVA Coaching | Agile Leadership and Organizational Transformation",
+  title: "ELEVA CONSULTORIA | Agile Leadership and Organizational Transformation",
   description:
     "Leadership coaching and organizational consulting for tech leaders and startups. +20 years in technology, proven agile methodology. Book your free session.",
   keywords:

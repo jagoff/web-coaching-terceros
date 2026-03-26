@@ -58,7 +58,7 @@ export default function Footer() {
   const { t, language } = useLanguage();
   
   const navLinks = [
-    { label: t.footer.navLinks.sobreMi, href: "/sobre-mi" },
+    { label: t.footer.navLinks.sobreMi, href: "/sobre-mi#titulo-about" },
     { label: t.footer.navLinks.servicios, href: "/servicios" },
     { label: t.footer.navLinks.testimonios, href: "/testimonios" },
     { label: t.footer.navLinks.precios, href: "/precios" },
@@ -74,7 +74,7 @@ export default function Footer() {
 
   // Fallback links for SSR
   const fallbackNavLinks = [
-    { label: "Sobre Mí", href: "/sobre-mi" },
+    { label: "Sobre Mí", href: "/sobre-mi#titulo-about" },
     { label: "Servicios", href: "/servicios" },
     { label: "Testimonios", href: "/testimonios" },
     { label: "Precios", href: "/precios" },
@@ -111,8 +111,8 @@ export default function Footer() {
                 }}
                 suppressHydrationWarning
               >
-                <NoSSR fallback="COACHING">
-                  {language === 'es' ? 'COACHING' : 'CONSULTING'}
+                <NoSSR fallback="CONSULTORIA">
+                  {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
                 </NoSSR>
               </span>
             </div>
@@ -264,16 +264,13 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="py-6 border-t text-center"
+          style={{ borderColor: "var(--dark-border)" }}
         >
           <p className="text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            <NoSSR fallback="2026 ELEVA CONSULTORIA. Todos los derechos reservados.">
-              2026 ELEVA {language === 'es' ? 'CONSULTORIA' : 'CONSULTORIA'}. {t.footer.rights}
-            </NoSSR>
+            2026 ELEVA {language === 'es' ? 'CONSULTORIA' : 'CONSULTORIA'}. Todos los derechos reservados.
+            <span className="hidden sm:inline"> • Argentina</span>
           </p>
-          <div className="flex items-center gap-6 text-sm" style={{ color: "var(--text-muted)" }} suppressHydrationWarning>
-            <span className="hidden sm:inline">Argentina </span>
-          </div>
         </div>
       </div>
     </footer>

@@ -30,7 +30,7 @@ export default function Navbar() {
   // }, [rotatingWords.length]);
 
   const navLinks = [
-    { label: t.nav.sobreMi, href: "/sobre-mi" },
+    { label: t.nav.sobreMi, href: "/sobre-mi#titulo-about" },
     { label: t.nav.servicios, href: "/servicios" },
     { label: t.nav.testimonios, href: "/testimonios" },
     { label: t.nav.preguntasFrecuentes, href: "/faq" },
@@ -95,6 +95,28 @@ export default function Navbar() {
 
   const handleLinkClick = (href: string) => {
     setMobileOpen(false);
+    
+    // If clicking on "Sobre mí", hide navbar immediately
+    if (href.includes('/sobre-mi')) {
+      setVisible(false);
+      
+      // Add mouse move listener to show navbar again
+      const handleMouseMove = () => {
+        setVisible(true);
+        document.removeEventListener('mousemove', handleMouseMove);
+      };
+      
+      // Show navbar on mouse move after a short delay
+      setTimeout(() => {
+        document.addEventListener('mousemove', handleMouseMove);
+      }, 1000); // Wait 1 second before enabling mouse move detection
+      
+      // Auto-remove listener after 10 seconds as fallback
+      setTimeout(() => {
+        document.removeEventListener('mousemove', handleMouseMove);
+      }, 10000);
+    }
+    
     // Check if it's an internal route (starts with /)
     if (href.startsWith('/')) {
       window.location.href = href;
@@ -159,7 +181,7 @@ export default function Navbar() {
                   paddingBottom: "0.2rem"
                 }}
               >
-                {language === 'es' ? 'CONSULTING' : 'CONSULTING'}
+                {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
               </span>
             </a>
 
@@ -275,7 +297,7 @@ export default function Navbar() {
                     paddingBottom: "0.2rem"
                   }}
                 >
-                  {language === 'es' ? 'CONSULTING' : 'CONSULTING'}
+                  {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
                 </span>
               </div>
               <button

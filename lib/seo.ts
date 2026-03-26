@@ -35,9 +35,9 @@ export const seoDataByRoute: Record<string, SEOData> = {
     type: "website",
   },
   "/en": {
-    title: "ELEVA Coaching | Agile Leadership and Organizational Transformation",
+    title: "ELEVA CONSULTORIA | Agile Leadership and Organizational Transformation",
     description: "Leadership coaching and organizational consulting for tech leaders and startups. +20 years in technology, proven agile methodology. Book your free session.",
-    ogTitle: "ELEVA Coaching | Agile Leadership and Organizational Transformation",
+    ogTitle: "ELEVA CONSULTORIA | Agile Leadership and Organizational Transformation",
     ogDescription: "Leadership coaching and organizational consulting for tech leaders and startups. +20 years in technology, proven agile methodology. Book your free session.",
     ogImage: "https://eleva-consultoria.com/opengraph-image.png",
     canonical: "https://eleva-consultoria.com/en",

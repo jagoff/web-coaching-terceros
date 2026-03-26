@@ -174,7 +174,11 @@ export default function About() {
             animate={isInView ? "visible" : "hidden"}
             className="order-1 lg:order-2"
           >
-            <h2 className="heading-xl mb-6 sm:mb-10" style={{ fontFamily: "var(--font-heading)" }}>
+            <h2 
+              id="titulo-about"
+              className="heading-xl mb-6 sm:mb-10" 
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
               {t.about.title1}{" "}
               <br />
               <span className="text-gradient">{t.about.title2}</span>

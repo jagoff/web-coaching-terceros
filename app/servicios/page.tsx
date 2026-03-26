@@ -42,6 +42,45 @@ export default function ServiciosPage() {
         pathname="/servicios"
       />
       <JsonLdStructuredData 
+        type="ProfessionalService" 
+        data={{ 
+          name: "Agile Leadership Coaching Services",
+          description: "Coaching especializado para construir equipos autónomos y procesos escalables en empresas tecnológicas"
+        }} 
+        pathname="/servicios"
+      />
+      <JsonLdStructuredData 
+        type="HowTo" 
+        data={{ 
+          name: "Cómo implementar equipos autónomos",
+          description: "Proceso completo de 12 semanas para desarrollar equipos tecnológicos autosuficientes",
+          steps: [
+            {
+              "@type": "HowToStep",
+              "name": "Assessment Phase",
+              "text": "Evaluate current team autonomy and identify improvement areas",
+              "timeNeeded": "P2W",
+              "tool": ["Team Assessment Matrix", "Autonomy Scorecard"]
+            },
+            {
+              "@type": "HowToStep", 
+              "name": "Framework Implementation",
+              "text": "Implement agile frameworks and autonomy protocols",
+              "timeNeeded": "P4W",
+              "tool": ["OKR Templates", "Agile Ceremonies", "Decision Matrix"]
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Scaling Phase", 
+              "text": "Scale autonomy practices and measure ROI",
+              "timeNeeded": "P6W",
+              "tool": ["Metrics Dashboard", "ROI Calculator", "Process Automation"]
+            }
+          ]
+        }} 
+        pathname="/servicios"
+      />
+      <JsonLdStructuredData 
         type="WebPage" 
         data={{ 
           title: "Servicios de Coaching y Consultoría | ELEVA CONSULTORIA",

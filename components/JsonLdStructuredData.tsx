@@ -1,5 +1,5 @@
 interface JsonLdStructuredDataProps {
-  type: 'Organization' | 'Service' | 'Person' | 'WebPage' | 'LocalBusiness' | 'FAQPage' | 'Review';
+  type: 'Organization' | 'Service' | 'Person' | 'WebPage' | 'LocalBusiness' | 'FAQPage' | 'Review' | 'ProfessionalService' | 'HowTo' | 'QuantitativeValue';
   data?: any;
   pathname?: string;
 }
@@ -237,6 +237,159 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "@type": "Organization",
             "name": "ELEVA CONSULTORIA"
           }
+        };
+
+      case 'ProfessionalService':
+        return {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "Agile Leadership Coaching",
+          "description": "Coaching especializado para construir equipos autónomos y procesos escalables en empresas tecnológicas",
+          "provider": {
+            "@type": "Person",
+            "name": "Fernando Ferrari",
+            "jobTitle": "Agile Coach & Leadership Consultant",
+            "experience": "20+ years in technology leadership",
+            "alumniOf": ["Advanced Certified ScrumMaster", "Advanced Certified Scrum Product Owner", "Management 3.0"],
+            "knowsAbout": [
+              "Agile Methodologies",
+              "Team Autonomy",
+              "OKR Implementation", 
+              "Remote Team Management",
+              "Cultural Transformation",
+              "Process Scaling"
+            ]
+          },
+          "serviceType": "Leadership Development",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Coaching Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Team Autonomy Coaching",
+                  "description": "Process to build self-managing tech teams in 12 weeks",
+                  "serviceOutput": {
+                    "@type": "QuantitativeValue",
+                    "name": "Team Autonomy Score",
+                    "minValue": 0,
+                    "maxValue": 100,
+                    "unitText": "points"
+                  }
+                }
+              },
+              {
+                "@type": "Offer", 
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Process Scaling Consulting",
+                  "description": "Scale agile processes from 4 to 2500+ team members",
+                  "serviceOutput": {
+                    "@type": "QuantitativeValue",
+                    "name": "Process Efficiency",
+                    "minValue": 0,
+                    "maxValue": 100,
+                    "unitText": "percentage"
+                  }
+                }
+              }
+            ]
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Argentina"
+          },
+          "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": `${baseUrl}/#contacto`,
+            "availableLanguage": ["Spanish", "English"]
+          }
+        };
+
+      case 'HowTo':
+        return {
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": data.name || "Cómo construir equipos autónomos",
+          "description": data.description || "Proceso step-by-step para desarrollar equipos tecnológicos autónomos y autosuficientes",
+          "image": `${baseUrl}/img/team-autonomy-process.png`,
+          "totalTime": "P12W",
+          "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "ARS",
+            "value": "A consultar"
+          },
+          "supply": [
+            {
+              "@type": "HowToSupply",
+              "name": "Assessment Tools"
+            },
+            {
+              "@type": "HowToSupply", 
+              "name": "Agile Frameworks"
+            },
+            {
+              "@type": "HowToSupply",
+              "name": "OKR Templates"
+            }
+          ],
+          "tool": [
+            {
+              "@type": "HowToTool",
+              "name": "Jira"
+            },
+            {
+              "@type": "HowToTool",
+              "name": "Slack"
+            },
+            {
+              "@type": "HowToTool",
+              "name": "Notion"
+            }
+          ],
+          "step": data.steps || [
+            {
+              "@type": "HowToStep",
+              "name": "Phase 1: Team Assessment",
+              "text": "Evaluate current team autonomy level and identify bottlenecks",
+              "url": `${baseUrl}/servicios#assessment`,
+              "timeNeeded": "P2W"
+            },
+            {
+              "@type": "HowToStep", 
+              "name": "Phase 2: Framework Implementation",
+              "text": "Implement agile frameworks and autonomy protocols",
+              "url": `${baseUrl}/servicios#implementation`,
+              "timeNeeded": "P4W"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Phase 3: Autonomy Scaling",
+              "text": "Scale autonomy practices and measure results",
+              "url": `${baseUrl}/servicios#scaling`,
+              "timeNeeded": "P6W"
+            }
+          ]
+        };
+
+      case 'QuantitativeValue':
+        return {
+          "@context": "https://schema.org",
+          "@type": "QuantitativeValue",
+          "name": data.name,
+          "value": data.value,
+          "minValue": data.minValue,
+          "maxValue": data.maxValue,
+          "unitText": data.unitText,
+          "unitCode": data.unitCode,
+          "valueReference": data.valueReference ? {
+            "@type": "QuantitativeValue",
+            "name": data.valueReference.name,
+            "value": data.valueReference.value,
+            "unitText": data.valueReference.unitText
+          } : undefined
         };
 
       default:
