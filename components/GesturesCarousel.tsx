@@ -6,7 +6,7 @@ import { Instagram, X } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-// Use the insta-XX.png files from /public/img/ for 15 images
+// Use the insta-XX.png and img_XX.jpeg files from /public/img/ for 15 images
 const baseImages = [
   'insta-1.png',
   'insta-2.png',
@@ -19,10 +19,11 @@ const baseImages = [
   'insta-9.png',
   'insta-10.png',
   'insta-11.png',
-  'insta-12.png',
   'img_01.jpeg',
   'img_02.jpeg',
-  'img_03.jpeg'
+  'img_03.jpeg',
+  'img_04.jpeg',
+  'img_05.jpeg'
 ];
 
 const getImagePath = (imageName: string): string => {
