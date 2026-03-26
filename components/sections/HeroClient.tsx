@@ -324,10 +324,10 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             className="relative w-[600px] max-w-full mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl"
             style={{
               minHeight: "5.5rem",
-              background: "transparent",
+              background: "rgba(8, 6, 14, 0.6)",
               backdropFilter: "blur(15px)",
-              border: "1px solid rgba(124,107,196,0.03)",
-              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.2)",
+              border: "1px solid rgba(124,107,196,0.12)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.4)",
               position: "relative"
             }}
           >
