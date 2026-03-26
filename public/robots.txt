@@ -4,6 +4,11 @@
 User-agent: *
 Allow: /
 
+# Bloquear staging de Vercel para evitar contenido duplicado
+Disallow: /*.vercel.app
+Disallow: https://coaching-landing-cyan.vercel.app
+Disallow: https://coaching-landing-*.vercel.app
+
 # Priorizar páginas importantes
 Allow: /
 Allow: /#sobre-mi
@@ -34,6 +39,7 @@ Allow: /img/
 # User-agent específicos para bots conocidos
 User-agent: Googlebot
 Allow: /
+Disallow: /*.vercel.app
 Crawl-delay: 1
 
 User-agent: facebookexternalhit

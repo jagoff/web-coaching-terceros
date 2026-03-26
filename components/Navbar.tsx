@@ -180,11 +180,12 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <button
-                className="flex items-center gap-2 px-2.5 py-2 rounded-lg border transition-colors"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
                 style={{
                   background: "rgba(124,107,196,0.08)",
                   borderColor: "rgba(124,107,196,0.2)",
                   color: "var(--gold-primary)",
+                  minWidth: "65px"
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               >
@@ -212,7 +213,7 @@ export default function Navbar() {
                   color: "#7C6BC4",
                   fontSize: "13px",
                   fontWeight: "700",
-                  minWidth: "80px",
+                  minWidth: "85px",
                   height: "44px",
                   boxShadow: "0 2px 8px rgba(124,107,196,0.3)",
                   textShadow: "0 1px 2px rgba(0,0,0,0.3)"
@@ -321,7 +322,7 @@ export default function Navbar() {
             <div className="px-8 pb-8">
               <div className="flex justify-center">
                 <button
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl border-2"
+                  className="flex items-center gap-2 px-7 py-3 rounded-xl border-2"
                   style={{
                     background: "rgba(124,107,196,0.25)",
                     borderColor: "rgba(124,107,196,0.6)",
@@ -330,7 +331,7 @@ export default function Navbar() {
                     fontWeight: "700",
                     boxShadow: "0 4px 16px rgba(124,107,196,0.4)",
                     textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-                    minWidth: "140px",
+                    minWidth: "150px",
                     height: "56px"
                   }}
                   onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}

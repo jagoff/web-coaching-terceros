@@ -391,7 +391,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             }}
           >
             {renderLanguage === 'es' 
-              ? 'Te acompaño a construir equipos que funcionen sin vos encima, procesos que escalen, y una cultura donde la gente quiera quedarse.'
+              ? 'Te acompaño a construir equipos autónomos, procesos que escalen, y una cultura que retenga y desafie al talento.'
               : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'
             }
           </motion.p>

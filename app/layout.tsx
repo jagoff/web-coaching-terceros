@@ -25,6 +25,10 @@ const spaceGrotesk = Space_Grotesk({
   preload: true,
 });
 
+const isStaging = process.env.VERCEL_ENV === 'preview' || 
+                  process.env.NODE_ENV === 'development' ||
+                  process.env.VERCEL_URL?.includes('vercel.app');
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://eleva-consultoria.com"),
   title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",
@@ -58,11 +62,11 @@ export const metadata: Metadata = {
       "Coaching y consultoría organizacional para líderes tech y startups.",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !isStaging,
+    follow: !isStaging,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !isStaging,
+      follow: !isStaging,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
