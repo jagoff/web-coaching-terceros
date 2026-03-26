@@ -7,7 +7,8 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
 
 export const metadata: Metadata = {
   title: "Testimonios | Casos de Éxito | ELEVA CONSULTORIA",

@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import MadurezEmpresarialClient from "./MadurezEmpresarialClient";
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = {
   title: "Test de Madurez Empresarial | ELEVA CONSULTORIA",
   description:

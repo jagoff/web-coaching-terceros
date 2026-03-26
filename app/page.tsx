@@ -15,7 +15,8 @@ import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import { Metadata } from "next";
 
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
 
 export const metadata: Metadata = {
   title: "ELEVA CONSULTORIA | Coaching & Consultoría Organizacional",

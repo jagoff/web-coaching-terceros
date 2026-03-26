@@ -18,7 +18,9 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "test:visual": "playwright test tests/visual.spec.ts",
-    "test:visual:update": "playwright test tests/visual.spec.ts --update-snapshots"
+    "test:visual:update": "playwright test tests/visual.spec.ts --update-snapshots",
+    "build:static": "next build",
+    "verify:ssr": "node scripts/verify-ssr.js"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

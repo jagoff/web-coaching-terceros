@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import CaseStudies from "@/components/sections/CaseStudies";
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = {
   title: "Casos de Estudio | ELEVA CONSULTORIA",
   description:

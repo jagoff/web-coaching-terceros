@@ -29,6 +29,8 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
     webpackBuildWorker: true,
+    // SSG/ISR optimizations
+    serverMinification: true,
   },
   serverExternalPackages: ['sharp'],
   compiler: {
@@ -36,6 +38,8 @@ const nextConfig: NextConfig = {
   },
   // Performance optimizations
   generateEtags: false,
+  // Static generation optimizations
+  output: 'standalone',
 };
 
 export default withBundleAnalyzer(nextConfig);

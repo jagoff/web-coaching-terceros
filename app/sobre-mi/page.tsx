@@ -7,7 +7,8 @@ import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
 
 export const metadata: Metadata = {
   title: "Sobre Mí | Fernando Ferrari | ELEVA CONSULTORIA",

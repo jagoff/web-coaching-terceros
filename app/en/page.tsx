@@ -15,6 +15,8 @@ import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import { Metadata } from "next";
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = {
   title: "ELEVA Coaching | Agile Leadership and Organizational Transformation",
   description:
