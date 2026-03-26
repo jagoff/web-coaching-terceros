@@ -197,12 +197,12 @@ export default function MobileNavigation() {
                 ))}
 
                 {/* CTA Button */}
-                <div className="pt-6 border-t border-white/10" style={{ marginTop: '200px' }}>
+                <div className="pt-6 border-t border-white/10" style={{ marginTop: '400px' }}>
                   <button
                     onClick={() => handleNavClick('#contact')}
                     className="w-full py-4 px-6 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
                   >
-                    {language === 'es' ? 'Agendar Consulta' : 'Schedule Consultation'}
+                    {language === 'es' ? 'COMENZAR AHORA' : 'GET STARTED NOW'}
                   </button>
                 </div>
 
