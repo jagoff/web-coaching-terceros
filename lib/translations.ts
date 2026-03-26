@@ -445,7 +445,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'la conversación',
       subtitle: 'La primera sesión es completamente gratuita. Sin compromiso, solo para conocernos y ver cómo puedo ayudarte.',
       limitedSpots: '2 cupos disponibles',
-      submitButton: 'Enviar y Agendar Sesión',
+      submitButton: 'ENVIAR Y AGENDAR SESIÓN',
       booking: {
         title: 'Agenda tu sesión gratuita',
         subtitle: 'Selecciona el horario que mejor te convenga y confirma en 2 minutos.',
@@ -750,7 +750,7 @@ export const translations: Record<Language, Translations> = {
       title2: 'the conversation',
       subtitle: 'The first session is completely free. No commitment, just to get to know each other and see how I can help you.',
       limitedSpots: '2 spots available',
-      submitButton: 'Send and Book Session',
+      submitButton: 'SEND AND BOOK SESSION',
       booking: {
         title: 'Book your free session',
         subtitle: 'Select the time that works best for you and confirm in 2 minutes.',
