@@ -5,7 +5,7 @@ import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Simple array of working images - using simple names
+// Array of 15 unique images without repetition
 const baseImages = [
   'img-01.png',
   'img-02.png', 
@@ -19,9 +19,9 @@ const baseImages = [
   'img-10.png',
   'img-11.png',
   'img-12.png',
-  'img-01.png',     // Repeat first image for variety
-  'img-02.png',     // Repeat second image
-  'img-03.png'      // Repeat third image
+  'img-00.png',
+  'img_01.png',
+  'img_02.png'
 ];
 
 const getImagePath = (imageName: string): string => {
