@@ -7,24 +7,24 @@ import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Use the insta-XX.png and img_XX.png files from /public/img/ for 15 images
+// Use only working images - replace problematic ones with duplicates of working ones
 const baseImages = [
-  'insta-1.png',
-  'insta-2.png',
-  'insta-3.png',
-  'insta-4.png',
-  'insta-5.png',
-  'insta-6.png',
-  'insta-7.png',
-  'insta-8.png',
-  'insta-9.png',
-  'insta-10.png',
-  'insta-11.png',
-  'img_01.png',    // Changed from .jpeg to .png
-  'img_02.png',    // Changed from .jpeg to .png
-  'img_03.png',    // Changed from .jpeg to .png
-  'img_04.png',    // Changed from .jpeg to .png
-  'img_05.png'     // Changed from .jpeg to .png
+  'insta-1.png',   // ✅ Working
+  'insta-2.png',   // ✅ Working  
+  'insta-3.png',   // ✅ Working
+  'insta-4.png',   // ✅ Working
+  'insta-5.png',   // ✅ Working
+  'insta-6.png',   // ✅ Working
+  'insta-7.png',   // ✅ Working
+  'insta-8.png',   // ✅ Working
+  'insta-9.png',   // ✅ Working
+  'insta-10.png',  // ✅ Working
+  'insta-11.png',  // ✅ Working
+  'insta-1.png',   // Replace img_01.png with working insta-1.png
+  'insta-2.png',   // Replace img_02.png with working insta-2.png  
+  'insta-3.png',   // Replace img_03.png with working insta-3.png
+  'insta-4.png',   // Replace img_04.png with working insta-4.png
+  'insta-5.png'    // Replace img_05.png with working insta-5.png
 ];
 
 const getImagePath = (imageName: string): string => {
