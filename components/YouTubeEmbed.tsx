@@ -80,8 +80,8 @@ export default function YouTubeEmbed({
   
   const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}?${new URLSearchParams({
     autoplay: autoplay ? "1" : "0",
-    mute: muted ? "1" : "0",
-    controls: "0",
+    mute: "0", // Always start unmuted to allow user control
+    controls: "1", // Enable controls so user can unmute if needed
     rel: "0",
     modestbranding: "1",
     playsinline: "1",
