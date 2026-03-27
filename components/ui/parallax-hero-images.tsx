@@ -59,7 +59,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full min-h-96 ${className}`}
+      className={`w-full h-full ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

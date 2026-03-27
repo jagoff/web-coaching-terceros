@@ -110,7 +110,7 @@ export default function GesturesCarousel() {
 
       {/* Desktop */}
       <div className="hidden sm:block">
-        <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: "3/4" }}>
+        <div className="relative rounded-lg overflow-hidden w-full h-96 md:h-[500px] lg:h-[600px]">
           <ParallaxHeroImages 
             images={images.map(imageName => getImagePath(imageName))} 
             className="w-full h-full"
