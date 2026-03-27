@@ -55,6 +55,7 @@ export default function GesturesCarousel() {
         >
           {/* Native img with explicit dimensions for mobile static export */}
           <img
+            key={currentImage}  // Force re-render when image changes
             src={getImagePath(currentImage)}
             alt={`Image ${currentIndex + 1}`}
             width={400}
