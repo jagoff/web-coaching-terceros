@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import Image from "next/image";
 
 interface ParallaxHeroImagesProps {
   images: string[];
@@ -80,14 +79,11 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <Image
+              <img
                 src={src}
                 alt={`Image ${index + 1}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 28vw, 28vw"
-                priority={index < 12}
-                quality={85}
+                className="w-full h-full object-cover"
+                loading={index < 12 ? "eager" : "lazy"}
                 onError={(e) => {
                   console.warn(`Image failed to load: ${src}`);
                   const target = e.target as HTMLImageElement;

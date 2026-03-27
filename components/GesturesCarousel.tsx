@@ -5,7 +5,7 @@ import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Simple array of working images - using available screenshots
+// Simple array of working images - using simple approach
 const baseImages = [
   'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p.m..png',
   'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p.m..png', 
@@ -25,9 +25,8 @@ const baseImages = [
 ];
 
 const getImagePath = (imageName: string): string => {
-  // URL encode the filename to handle spaces and special characters
-  const encodedName = encodeURIComponent(imageName);
-  return `/img/${encodedName}`;
+  // Use direct path without encoding for Next.js Image component
+  return `/img/${imageName}`;
 };
 
 export default function GesturesCarousel() {
