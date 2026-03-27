@@ -108,7 +108,7 @@ export default function VideoSection({
               title={title || defaultTitle}
               className="max-w-5xl mx-auto"
               autoplay={false}
-              muted={true}
+              muted={false}
               controls={false}
               rel={false}
               modestBranding={true}

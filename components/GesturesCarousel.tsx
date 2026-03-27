@@ -53,7 +53,9 @@ export default function GesturesCarousel() {
   const controls = useAnimation();
 
   useEffect(() => {
-    const shuffled = shuffleArray(baseImages);
+    // Temporarily disable shuffling for debugging
+    // const shuffled = shuffleArray(baseImages);
+    const shuffled = baseImages; // Use original order for debugging
     setImages(shuffled);
     
     // Debug: Detailed logging
@@ -202,6 +204,22 @@ export default function GesturesCarousel() {
                   style={{ 
                     filter: isDragging ? "brightness(0.8)" : "brightness(1)",
                     cursor: isZoomed ? "zoom-out" : "zoom-in"
+                  }}
+                  onLoad={() => console.log(`✅ Image loaded: ${currentImage}`)}
+                  onError={(e) => {
+                    console.error(`❌ Image failed to load: ${currentImage}`);
+                    console.error(`Path attempted: ${getImagePath(currentImage)}`);
+                    // Try to show a fallback or next image
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    // Show error indicator
+                    const parent = target.parentElement;
+                    if (parent) {
+                      const errorDiv = document.createElement('div');
+                      errorDiv.className = 'absolute inset-0 flex items-center justify-center bg-gray-800 text-white';
+                      errorDiv.innerHTML = `<div class="text-center"><p class="text-sm">Error al cargar imagen</p><p class="text-xs opacity-75">${currentImage}</p></div>`;
+                      parent.appendChild(errorDiv);
+                    }
                   }}
                 />
                 
@@ -352,6 +370,21 @@ export default function GesturesCarousel() {
                 alt={`Galería de imágenes - ${selectedImage ? selectedImage.substring(0, 20) : 'Cargando...'}...`}
                 className="w-full h-full object-contain"
                 draggable={false}
+                onLoad={() => console.log(`✅ Modal image loaded: ${selectedImage}`)}
+                onError={(e) => {
+                  console.error(`❌ Modal image failed to load: ${selectedImage}`);
+                  console.error(`Path attempted: ${getImagePath(selectedImage)}`);
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  // Show error indicator in modal
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'flex items-center justify-center w-full h-full bg-gray-800 text-white';
+                    errorDiv.innerHTML = `<div class="text-center"><p class="text-lg">Error al cargar imagen</p><p class="text-sm opacity-75">${selectedImage}</p></div>`;
+                    parent.appendChild(errorDiv);
+                  }
+                }}
               />
             </motion.div>
           </motion.div>
