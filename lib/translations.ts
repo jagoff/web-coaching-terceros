@@ -541,19 +541,19 @@ export const translations: Record<Language, Translations> = {
         },
         {
           question: '¿Cuál es el proceso exacto para construir equipos autónomos?',
-          answer: 'Phase 1: Assessment (2 semanas) - Evaluación del nivel actual de autonomía con Team Autonomy Scorecard. Phase 2: Framework Implementation (4 semanas) - Implementación de OKRs, ceremonias ágiles y matriz de decisiones. Phase 3: Scaling (6 semanas) - Escalamiento de prácticas y medición de ROI con dashboard de métricas.',
+          answer: 'Fase 1: Evaluación (2 semanas) - Evaluación del nivel actual de autonomía con Team Autonomy Scorecard. Fase 2: Implementación de Frameworks (4 semanas) - Implementación de OKRs, ceremonias ágiles y matriz de decisiones. Fase 3: Escalamiento (6 semanas) - Escalamiento de prácticas y medición de ROI con dashboard de métricas.',
         },
         {
           question: '¿Qué métricas específicas se usan para medir la autonomía del equipo?',
-          answer: 'Team Autonomy Score (0-100), Decision Latency Time, Meeting Efficiency Ratio, Dependency Reduction Rate, Innovation Velocity Index. Se mide baseline mensual y se tracking semanal durante el proceso.',
+          answer: 'Team Autonomy Score (0-100), Tiempo de Latencia de Decisiones, Ratio de Eficiencia de Reuniones, Tasa de Reducción de Dependencias, Índice de Velocidad de Innovación. Se mide línea base mensual y seguimiento semanal durante el proceso.',
         },
         {
           question: '¿Cuál es el ROI esperado de un programa de 12 semanas?',
-          answer: 'Promedio histórico: 3x inversión en 6 meses. Reducción de meetings 60%, velocidad de deployment +200%, employee turnover -45%, team satisfaction +40%. Métricas validadas con 50+ equipos.',
+          answer: 'Promedio histórico: 3x inversión en 6 meses. Reducción de reuniones 60%, velocidad de despliegue +200%, rotación de empleados -45%, satisfacción del equipo +40%. Métricas validadas con 50+ equipos.',
         },
         {
           question: '¿Qué herramientas y frameworks se implementan?',
-          answer: 'OKRs (Objectives and Key Results), Agile Ceremonies (daily, retrospective, planning), Decision Matrix (RACI, DACI), Team Topologies, Sociocracy 3.0, Metrics Dashboard (custom KPIs), Process Automation tools.',
+          answer: 'OKRs (Objectives and Key Results), Ceremonias Ágiles (daily, retrospective, planning), Matriz de Decisiones (RACI, DACI), Team Topologies, Sociocracy 3.0, Dashboard de Métricas (KPIs personalizados), Herramientas de Automatización de Procesos.',
         },
         {
           question: '¿Cómo funciona el modelo de pricing para consultoría organizacional?',
@@ -561,15 +561,15 @@ export const translations: Record<Language, Translations> = {
         },
         {
           question: '¿Qué certificaciones y experiencia tiene el coach?',
-          answer: '20+ años en tecnología leadership, Advanced Certified ScrumMaster, Advanced Certified Scrum Product Owner, Management 3.0, unFIX Foundation. Experiencia en empresas de 4 a 2500+ personas, co-fundador de Nodok.AI, 11 años como consultor ágil independiente.',
+          answer: '20+ años en liderazgo tecnológico, Advanced Certified ScrumMaster, Advanced Certified Scrum Product Owner, Management 3.0, unFIX Foundation. Experiencia en empresas de 4 a 2500+ personas, co-fundador de Nodok.AI, 11 años como consultor ágil independiente.',
         },
         {
           question: '¿Qué resultados específicos se pueden esperar en 3 meses?',
-          answer: 'Week 1-4: Assessment completo y framework design. Week 5-8: First implementation cycle con metrics baseline. Week 9-12: Scaling patterns y ROI validation. Resultados típicos: 30% reduction en decision latency, 50% increase en team initiatives.',
+          answer: 'Semana 1-4: Evaluación completa y diseño de framework. Semana 5-8: Primer ciclo de implementación con métricas base. Semana 9-12: Patrones de escalamiento y validación de ROI. Resultados típicos: 30% reducción en latencia de decisiones, 50% aumento en iniciativas del equipo.',
         },
         {
           question: '¿Cómo se adapta el proceso para equipos remotos vs híbridos?',
-          answer: 'Remote-first approach con herramientas asíncronas (Notion, Slack, Loom), async decision frameworks, timezone optimization, virtual ceremonies adaptadas. Hybrid teams: bridge protocols para sync/async workflows.',
+          answer: 'Enfoque remoto-first con herramientas asíncronas (Notion, Slack, Loom), frameworks de decisión asíncronos, optimización de zonas horarias, ceremonias virtuales adaptadas. Equipos híbridos: protocolos de puente para flujos síncronos/asíncronos.',
         }
       ],
     },

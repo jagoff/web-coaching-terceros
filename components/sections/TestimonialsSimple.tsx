@@ -14,6 +14,7 @@ const testimonialsES = [
     name: "Valentin Rios",
     role: "Software Engineer",
     company: "Recomendación LinkedIn",
+    date: "Marzo 2024",
     initials: "VR",
     avatarBg: "linear-gradient(135deg, #0f766e, #14b8a6)",
   },
@@ -24,6 +25,7 @@ const testimonialsES = [
     name: "George Nicolaou",
     role: "Project Manager",
     company: "Recomendación LinkedIn",
+    date: "Febrero 2024",
     initials: "GN",
     avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
   },
@@ -34,6 +36,7 @@ const testimonialsES = [
     name: "Gabriel Yesuron",
     role: "Software Developer",
     company: "Recomendación LinkedIn",
+    date: "Enero 2024",
     initials: "GY",
     avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
   },
@@ -47,6 +50,7 @@ const testimonialsEN = [
     name: "Valentin Rios",
     role: "Software Engineer",
     company: "LinkedIn Recommendation",
+    date: "March 2024",
     initials: "VR",
     avatarBg: "linear-gradient(135deg, #0f766e, #14b8a6)",
   },
@@ -57,6 +61,7 @@ const testimonialsEN = [
     name: "George Nicolaou",
     role: "Project Manager",
     company: "LinkedIn Recommendation",
+    date: "February 2024",
     initials: "GN",
     avatarBg: "linear-gradient(135deg, #7c2d12, #ea580c)",
   },
@@ -67,21 +72,38 @@ const testimonialsEN = [
     name: "Gabriel Yesuron",
     role: "Software Developer",
     company: "LinkedIn Recommendation",
+    date: "January 2024",
     initials: "GY",
     avatarBg: "linear-gradient(135deg, #134e4a, #14b8a6)",
   },
 ];
 
-export default function Testimonials() {
+export default function TestimonialsSimple() {
   const { language, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
-  
+  const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
+
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
-  const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
+
+  // Handle hash scrolling for "titulo-testimonios"
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'titulo-testimonios') {
+        const element = document.getElementById('titulo-testimonios');
+        if (element) {
+          // Small delay to ensure page is loaded
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+  }, []);
+
   const currentTestimonial = testimonials[currentIndex];
 
   const goToPrevious = () => {
@@ -106,6 +128,7 @@ export default function Testimonials() {
             <span className="badge">{t.testimonials.badge}</span>
           </motion.div>
           <motion.h2
+            id="titulo-testimonios"
             variants={blurUp}
             className="heading-xl mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
@@ -173,6 +196,26 @@ export default function Testimonials() {
                     {currentTestimonial.company}
                   </p>
                 </div>
+                {/* Date with gradient circle */}
+                <div className="relative ml-2">
+                  <div
+                    className="w-16 h-16 rounded-full flex items-center justify-center"
+                    style={{
+                      background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)",
+                      boxShadow: "0 6px 16px rgba(124, 107, 196, 0.4)",
+                      border: "2px solid rgba(255, 255, 255, 0.1)"
+                    }}
+                  >
+                    <span
+                      className="text-sm font-bold text-white"
+                      style={{
+                        textShadow: "0 2px 4px rgba(0,0,0,0.4)"
+                      }}
+                    >
+                      {currentTestimonial.date.split(' ')[0].substring(0, 3)}
+                    </span>
+                  </div>
+                </div>
               </div>
 
               {/* Rating */}
@@ -195,12 +238,23 @@ export default function Testimonials() {
             <div className="flex justify-between items-center mt-8">
               <button
                 onClick={goToPrevious}
-                className="p-3 rounded-full glass-border transition-all hover:scale-110"
-                style={{ color: "var(--gold-primary)" }}
+                className="p-3 rounded-full transition-all hover:scale-110"
+                style={{
+                  background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)",
+                  boxShadow: "0 4px 12px rgba(124, 107, 196, 0.3)",
+                  border: "2px solid rgba(255, 255, 255, 0.1)"
+                }}
                 aria-label="Previous testimonial"
                 suppressHydrationWarning
               >
-                <ChevronLeft size={24} suppressHydrationWarning />
+                <ChevronLeft 
+                  size={24} 
+                  className="text-white"
+                  style={{
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))"
+                  }}
+                  suppressHydrationWarning 
+                />
               </button>
 
               {/* Dots Indicator */}
@@ -221,12 +275,23 @@ export default function Testimonials() {
 
               <button
                 onClick={goToNext}
-                className="p-3 rounded-full glass-border transition-all hover:scale-110"
-                style={{ color: "var(--gold-primary)" }}
+                className="p-3 rounded-full transition-all hover:scale-110"
+                style={{
+                  background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)",
+                  boxShadow: "0 4px 12px rgba(124, 107, 196, 0.3)",
+                  border: "2px solid rgba(255, 255, 255, 0.1)"
+                }}
                 aria-label="Next testimonial"
                 suppressHydrationWarning
               >
-                <ChevronRight size={24} suppressHydrationWarning />
+                <ChevronRight 
+                  size={24} 
+                  className="text-white"
+                  style={{
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))"
+                  }}
+                  suppressHydrationWarning 
+                />
               </button>
             </div>
           </div>

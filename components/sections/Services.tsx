@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
@@ -42,6 +42,22 @@ export default function Services() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Handle hash scrolling for "titulo-servicios"
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'titulo-servicios') {
+        const element = document.getElementById('titulo-servicios');
+        if (element) {
+          // Small delay to ensure page is loaded
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+  }, []);
+
   const services = [
     {
       id: "liderazgo",
@@ -78,6 +94,7 @@ export default function Services() {
             <span className="badge">{t.services.badge}</span>
           </motion.div>
           <motion.h2
+            id="titulo-servicios"
             variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}

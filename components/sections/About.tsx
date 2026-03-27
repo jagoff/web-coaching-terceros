@@ -73,6 +73,22 @@ export default function About() {
   const [buttonPosition, setButtonPosition] = useState(0);
   const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});
 
+  // Handle hash scrolling for "titulo-about"
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'titulo-about') {
+        const element = document.getElementById('titulo-about');
+        if (element) {
+          // Small delay to ensure page is loaded
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // Shuffle credentials array

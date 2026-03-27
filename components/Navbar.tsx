@@ -31,9 +31,9 @@ export default function Navbar() {
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "/sobre-mi#titulo-about" },
-    { label: t.nav.servicios, href: "/servicios" },
-    { label: t.nav.testimonios, href: "/testimonios" },
-    { label: t.nav.preguntasFrecuentes, href: "/faq" },
+    { label: t.nav.servicios, href: "/servicios#titulo-servicios" },
+    { label: t.nav.testimonios, href: "/testimonios#titulo-testimonios" },
+    { label: t.nav.preguntasFrecuentes, href: "/faq#titulo-faq" },
   ];
 
   useEffect(() => {
@@ -96,25 +96,44 @@ export default function Navbar() {
   const handleLinkClick = (href: string) => {
     setMobileOpen(false);
     
-    // If clicking on "Sobre mí", hide navbar immediately
-    if (href.includes('/sobre-mi')) {
+    // If clicking on "Sobre mí", "Servicios", "Testimonios", or "FAQ", hide navbar immediately and navigate smoothly
+    if (href.includes('/sobre-mi') || href.includes('/servicios') || href.includes('/testimonios') || href.includes('/faq')) {
       setVisible(false);
       
-      // Add mouse move listener to show navbar again
-      const handleMouseMove = () => {
+      // Add scroll listener to show navbar again
+      const handleScroll = () => {
+        // Show navbar with smooth animation
         setVisible(true);
-        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('scroll', handleScroll);
       };
       
-      // Show navbar on mouse move after a short delay
+      // Show navbar on scroll after a short delay
       setTimeout(() => {
-        document.addEventListener('mousemove', handleMouseMove);
-      }, 1000); // Wait 1 second before enabling mouse move detection
+        document.addEventListener('scroll', handleScroll);
+      }, 1000); // Wait 1 second before enabling scroll detection
       
       // Auto-remove listener after 10 seconds as fallback
       setTimeout(() => {
-        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('scroll', handleScroll);
       }, 10000);
+      
+      // Navigate smoothly without page reload
+      if (href.includes('#')) {
+        // If it has a hash, navigate to the page then scroll
+        const [pagePath, hash] = href.split('#');
+        if (window.location.pathname !== pagePath) {
+          window.location.href = href;
+        } else {
+          // Already on the page, just scroll to the hash
+          const element = document.querySelector(`#${hash}`);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      } else {
+        window.location.href = href;
+      }
+      return;
     }
     
     // Check if it's an internal route (starts with /)
@@ -140,7 +159,7 @@ export default function Navbar() {
       <motion.div 
         style={{ 
           height: visible ? '0px' : '88px', // Calculado: padding 1.5rem*2 + contenido ~44px
-          transition: 'height 0.3s easeInOut'
+          transition: 'height 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
         }} 
       />
       
@@ -150,10 +169,10 @@ export default function Navbar() {
             className={`navbar${scrolled ? " scrolled" : ""}`}
             role="navigation"
             aria-label="Navegación principal"
-            initial={{ y: 0 }}
-            animate={{ y: 0 }}
-            exit={{ y: -100 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
         <div className="container">
           <div className="flex items-center justify-between">

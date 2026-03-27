@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
@@ -27,6 +27,22 @@ export default function FAQ() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // Handle hash scrolling for "titulo-faq"
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'titulo-faq') {
+        const element = document.getElementById('titulo-faq');
+        if (element) {
+          // Small delay to ensure page is loaded
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+  }, []);
+
   const toggle = (i: number) => {
     setOpenIndex(openIndex === i ? null : i);
   };
@@ -45,6 +61,7 @@ export default function FAQ() {
             <span className="badge">{t.faq.badge}</span>
           </motion.div>
           <motion.h2
+            id="titulo-faq"
             variants={blurUp}
             className="heading-xl"
             style={{ fontFamily: "var(--font-heading)" }}

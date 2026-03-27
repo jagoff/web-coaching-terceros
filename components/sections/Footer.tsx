@@ -59,10 +59,10 @@ export default function Footer() {
   
   const navLinks = [
     { label: t.footer.navLinks.sobreMi, href: "/sobre-mi#titulo-about" },
-    { label: t.footer.navLinks.servicios, href: "/servicios" },
-    { label: t.footer.navLinks.testimonios, href: "/testimonios" },
+    { label: t.footer.navLinks.servicios, href: "/servicios#titulo-servicios" },
+    { label: t.footer.navLinks.testimonios, href: "/testimonios#titulo-testimonios" },
     { label: t.footer.navLinks.precios, href: "/precios" },
-    { label: t.footer.navLinks.preguntasFrecuentes, href: "/faq" },
+    { label: t.footer.navLinks.preguntasFrecuentes, href: "/faq#titulo-faq" },
   ];
 
   const serviceLinks = [
@@ -75,10 +75,10 @@ export default function Footer() {
   // Fallback links for SSR
   const fallbackNavLinks = [
     { label: "Sobre Mí", href: "/sobre-mi#titulo-about" },
-    { label: "Servicios", href: "/servicios" },
-    { label: "Testimonios", href: "/testimonios" },
+    { label: "Servicios", href: "/servicios#titulo-servicios" },
+    { label: "Testimonios", href: "/testimonios#titulo-testimonios" },
     { label: "Precios", href: "/precios" },
-    { label: "Preguntas Frecuentes", href: "/faq" },
+    { label: "Preguntas Frecuentes", href: "/faq#titulo-faq" },
   ];
 
   const fallbackServiceLinks = [
@@ -180,10 +180,7 @@ export default function Footer() {
                 className="text-xs font-bold uppercase tracking-widest mb-5"
                 style={{ 
                   color: "var(--gold-primary)", 
-                  letterSpacing: "0.15em",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis"
+                  letterSpacing: "0.15em"
                 }}
                 suppressHydrationWarning
               >
@@ -222,10 +219,7 @@ export default function Footer() {
                 className="text-xs font-bold uppercase tracking-widest mb-5"
                 style={{ 
                   color: "var(--gold-primary)", 
-                  letterSpacing: "0.15em",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis"
+                  letterSpacing: "0.15em"
                 }}
                 suppressHydrationWarning
               >
