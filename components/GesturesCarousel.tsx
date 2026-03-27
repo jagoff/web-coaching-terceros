@@ -25,7 +25,9 @@ const baseImages = [
 ];
 
 const getImagePath = (imageName: string): string => {
-  return `/img/${imageName}`;
+  // URL encode the filename to handle spaces and special characters
+  const encodedName = encodeURIComponent(imageName);
+  return `/img/${encodedName}`;
 };
 
 export default function GesturesCarousel() {
