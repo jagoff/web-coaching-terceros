@@ -5,24 +5,23 @@ import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Simple array of working images - replace problematic img_XX.png with unique working images
+// Simple array of working images - using available screenshots
 const baseImages = [
-  'insta-1.png',
-  'insta-2.png', 
-  'insta-3.png',
-  'insta-4.png',
-  'insta-5.png',
-  'insta-6.png',
-  'insta-7.png',
-  'insta-8.png',
-  'insta-9.png',
-  'insta-10.png',
-  'insta-11.png',
-  'insta-12.png',     // ✅ Replaces this_is_fine.png
-  'tv.png',           // ✅ Replaces img_02.png (problematic)
-  'insta-1.png',      // ✅ Replaces img_03.png (problematic)
-  'insta-2.png',      // ✅ Replaces img_04.png (problematic)
-  'insta-3.png'       // ✅ Replaces img_05.png (problematic)
+  'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p.m..png', 
+  'Captura de pantalla 2026-03-08 a la(s) 11.15.48 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.16.12 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.16.36 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.18.51 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.20.39 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.20.58 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.21.55 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.23.52 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.25.10 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.27.21 p.m..png',
+  'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p.m..png',     // Repeat first image for variety
+  'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p.m..png',     // Repeat second image
+  'Captura de pantalla 2026-03-08 a la(s) 11.15.48 p.m..png'      // Repeat third image
 ];
 
 const getImagePath = (imageName: string): string => {
