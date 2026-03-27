@@ -1,9 +1,0 @@
-<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="300" height="300" fill="#2a2a3e"/>
-  <rect x="50" y="50" width="200" height="200" fill="none" stroke="#7c6bc4" stroke-width="2" rx="20"/>
-  <polygon points="150,70 190,130 110,130 150,70" fill="#7c6bc4"/>
-  <rect x="120" y="150" width="60" height="20" fill="#7c6bc4" rx="3"/>
-  <rect x="120" y="180" width="60" height="20" fill="#7c6bc4" rx="3"/>
-  <rect x="120" y="210" width="60" height="20" fill="#7c6bc4" rx="3"/>
-  <text x="150" y="250" text-anchor="middle" fill="#7c6bc4" font-family="Arial" font-size="14">Instagram 6</text>
-</svg>

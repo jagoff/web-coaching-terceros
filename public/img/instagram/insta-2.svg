@@ -1,9 +1,0 @@
-<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="300" height="300" fill="#2a2a3e"/>
-  <rect x="50" y="50" width="200" height="200" fill="none" stroke="#7c6bc4" stroke-width="2" rx="20"/>
-  <path d="M100 120 L200 120 M100 150 L200 150 M100 180 L180 180" stroke="#7c6bc4" stroke-width="2"/>
-  <circle cx="80" cy="120" r="8" fill="#7c6bc4"/>
-  <circle cx="80" cy="150" r="8" fill="#7c6bc4"/>
-  <circle cx="80" cy="180" r="8" fill="#7c6bc4"/>
-  <text x="150" y="250" text-anchor="middle" fill="#7c6bc4" font-family="Arial" font-size="14">Instagram 2</text>
-</svg>

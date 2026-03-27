@@ -1,8 +1,0 @@
-<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="300" height="300" fill="#2a2a3e"/>
-  <rect x="50" y="50" width="200" height="200" fill="none" stroke="#7c6bc4" stroke-width="2" rx="20"/>
-  <circle cx="150" cy="100" r="30" fill="none" stroke="#7c6bc4" stroke-width="2"/>
-  <circle cx="150" cy="100" r="10" fill="#7c6bc4"/>
-  <rect x="130" y="140" width="40" height="80" fill="#7c6bc4" rx="5"/>
-  <text x="150" y="250" text-anchor="middle" fill="#7c6bc4" font-family="Arial" font-size="14">Instagram 1</text>
-</svg>
