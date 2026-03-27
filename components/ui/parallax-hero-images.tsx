@@ -62,6 +62,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
       className={`w-full h-full ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      style={{ minHeight: '600px' }} // Ensure consistent height
     >
       <div className="grid grid-cols-3 gap-2 md:gap-3 w-full h-full">
         {images.slice(0, 15).map((src, index) => {
@@ -71,10 +72,11 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
           return (
             <motion.div
               key={index}
-              className="relative w-full aspect-[3/4] bg-gray-800 rounded-lg overflow-hidden"
+              className="relative w-full bg-gray-800 rounded-lg overflow-hidden"
               style={{
                 x: moveX,
                 y: moveY,
+                aspectRatio: '4/5' // Consistent portrait ratio
               }}
               whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -83,6 +85,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
                 src={src}
                 alt={`Image ${index + 1}`}
                 className="w-full h-full object-cover"
+                style={{ objectPosition: 'center' }}
                 loading={index < 12 ? "eager" : "lazy"}
                 onError={(e) => {
                   if (process.env.NODE_ENV === 'development') {
@@ -91,9 +94,9 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
                   const target = e.target as HTMLImageElement;
                   // Show a colored placeholder instead of hiding
                   target.src = `data:image/svg+xml;base64,${btoa(`
-                    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="100" height="100" fill="#374151"/>
-                      <text x="50" y="50" font-family="Arial" font-size="12" fill="#fff" text-anchor="middle" dy=".3em">
+                    <svg width="100" height="125" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="100" height="125" fill="#374151"/>
+                      <text x="50" y="62.5" font-family="Arial" font-size="12" fill="#fff" text-anchor="middle" dy=".3em">
                         ${index + 1}
                       </text>
                     </svg>
