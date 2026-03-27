@@ -18,7 +18,7 @@ const baseImages = [
   'insta-9.png',
   'insta-10.png',
   'insta-11.png',
-  'this_is_fine.png',  // ✅ Replaces img_01.png (problematic)
+  'insta-12.png',     // ✅ Replaces this_is_fine.png
   'tv.png',           // ✅ Replaces img_02.png (problematic)
   'insta-1.png',      // ✅ Replaces img_03.png (problematic)
   'insta-2.png',      // ✅ Replaces img_04.png (problematic)
