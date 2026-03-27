@@ -193,11 +193,11 @@ export default function GesturesCarousel() {
                 onClick={handleDoubleTap}
                 style={{ touchAction: 'none' }}
               >
-                <Image
+                {/* Use native img tag for mobile to avoid Next.js Image issues with unoptimized */}
+                <img
                   src={getImagePath(currentImage)}
                   alt={`Galería de imágenes - ${currentImage ? currentImage.substring(0, 20) : 'Cargando...'}...`}
-                  fill
-                  className="object-cover select-none"
+                  className="absolute inset-0 w-full h-full object-cover select-none"
                   draggable={false}
                   style={{ 
                     filter: isDragging ? "brightness(0.8)" : "brightness(1)",
@@ -346,11 +346,11 @@ export default function GesturesCarousel() {
                 <X size={24} />
               </button>
               
-              <Image
+              {/* Use native img tag for modal to avoid Next.js Image issues */}
+              <img
                 src={getImagePath(selectedImage)}
                 alt={`Galería de imágenes - ${selectedImage ? selectedImage.substring(0, 20) : 'Cargando...'}...`}
-                fill
-                className="object-contain"
+                className="w-full h-full object-contain"
                 draggable={false}
               />
             </motion.div>

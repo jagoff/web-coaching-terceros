@@ -37,7 +37,7 @@ export default function YouTubeEmbed({
   title = "YouTube video player",
   className = "",
   autoplay = false,
-  muted = true,
+  muted = false,
   controls = true,
   rel = false,
   modestBranding = true,
@@ -160,7 +160,7 @@ export function QuickYouTubeEmbed({
       className={className}
       title="Video presentation"
       autoplay={false}
-      muted={true}
+      muted={false}
       controls={true}
       rel={false}
       modestBranding={true}
