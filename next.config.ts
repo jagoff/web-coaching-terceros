@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     root: process.cwd(),
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,  // Enable optimization for mobile compatibility
     remotePatterns: [
       {
         protocol: 'https',
