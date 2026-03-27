@@ -48,6 +48,7 @@ export default function GesturesCarousel() {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [networkStatus, setNetworkStatus] = useState<string>('checking');
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   
   // Simplified image array - no shuffling for debugging
   const images = baseImages;
@@ -80,6 +81,21 @@ export default function GesturesCarousel() {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const handleImageError = (imageName: string) => {
+    setFailedImages(prev => new Set(prev).add(imageName));
+    console.error(`❌ Image failed: ${imageName}`);
+    console.error(`Failed images so far:`, Array.from(failedImages).concat(imageName));
+    
+    // Auto-advance to next image after 1 second
+    setTimeout(() => {
+      nextImage();
+    }, 1000);
+  };
+
+  const handleImageLoad = (imageName: string) => {
+    console.log(`✅ Image loaded: ${imageName}`);
+  };
+
   if (!currentImage || images.length === 0) {
     return <div className="w-full h-full flex items-center justify-center">Cargando imágenes...</div>;
   }
@@ -88,7 +104,7 @@ export default function GesturesCarousel() {
     <div className="relative w-full max-w-2xl mx-auto">
       {/* Network status indicator */}
       <div className="mb-4 p-2 bg-gray-800 text-white text-xs rounded">
-        Network: {networkStatus} | Current: {currentImage} | Index: {currentIndex}
+        Network: {networkStatus} | Current: {currentImage} | Index: {currentIndex} | Failed: {failedImages.size}
       </div>
       
       {/* Simplified Mobile Carousel - No animations, no gestures */}
@@ -102,14 +118,9 @@ export default function GesturesCarousel() {
             src={getImagePath(currentImage)}
             alt={`Image ${currentIndex + 1}`}
             className="w-full h-full object-cover"
-            onLoad={() => console.log(`✅ LOADED: ${currentImage}`)}
+            onLoad={() => handleImageLoad(currentImage)}
             onError={(e) => {
-              console.error(`❌ FAILED: ${currentImage}`);
-              console.error(`Path: ${getImagePath(currentImage)}`);
-              console.error(`Index: ${currentIndex}`);
-              console.error(`Available images:`, images);
-              console.error(`Network status:`, networkStatus);
-              console.error(`Image element:`, e.target);
+              handleImageError(currentImage);
               const imgElement = e.target as HTMLImageElement;
               console.error(`Natural size:`, `${imgElement.naturalWidth}x${imgElement.naturalHeight}`);
             }}
@@ -132,16 +143,33 @@ export default function GesturesCarousel() {
 
         {/* Simple dots */}
         <div className="flex justify-center mt-4 gap-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full ${
-                index === currentIndex ? "bg-blue-500" : "bg-gray-500"
-              }`}
-            />
-          ))}
+          {images.map((_, index) => {
+            const imageName = images[index];
+            const isFailed = failedImages.has(imageName);
+            return (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full ${
+                  index === currentIndex 
+                    ? "bg-blue-500" 
+                    : isFailed 
+                      ? "bg-red-500" 
+                      : "bg-gray-500"
+                }`}
+                title={isFailed ? `Failed: ${imageName}` : imageName}
+              />
+            );
+          })}
         </div>
+
+        {/* Failed images summary */}
+        {failedImages.size > 0 && (
+          <div className="mt-4 p-2 bg-red-900/50 text-white text-xs rounded">
+            <p>❌ Failed images: {Array.from(failedImages).join(', ')}</p>
+            <p className="mt-1">💡 Auto-advancing past failed images...</p>
+          </div>
+        )}
       </div>
 
       {/* Desktop - Keep original for now */}
