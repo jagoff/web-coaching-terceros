@@ -9,7 +9,6 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
-import SEOHelmet from "@/components/SEOHelmet";
 
 export const dynamic = 'force-static'
 export const revalidate = 3600 // Revalidate every hour
@@ -19,6 +18,29 @@ export const metadata: Metadata = {
   description: "Servicios especializados en coaching de liderazgo, consultoría agile y transformación organizacional para equipos tech y startups.",
   keywords: ["servicios coaching", "consultoría agile", "coaching liderazgo", "transformación organizacional", "servicios consultoría", "coaching equipos"],
   authors: [{ name: "Fernando Ferrari" }],
+  openGraph: {
+    title: "Servicios de Coaching y Consultoría | ELEVA CONSULTORIA",
+    description: "Descubrí nuestros servicios de coaching de liderazgo y consultoría agile para transformar tu equipo tech.",
+    type: "website",
+    locale: "es_AR",
+    url: "https://eleva-consultoria.com/servicios",
+    images: [
+      {
+        url: "https://eleva-consultoria.com/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Servicios de Coaching y Consultoría | ELEVA CONSULTORIA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Servicios de Coaching y Consultoría | ELEVA CONSULTORIA",
+    description: "Descubrí nuestros servicios de coaching de liderazgo y consultoría agile para transformar tu equipo tech.",
+    images: ["https://eleva-consultoria.com/opengraph-image.png"],
+    site: "@eleva_consultoria",
+    creator: "@eleva_consultoria",
+  },
   alternates: {
     canonical: "https://eleva-consultoria.com/servicios",
     languages: {
@@ -90,7 +112,6 @@ export default function ServiciosPage() {
         pathname="/servicios" 
       />
       <main>
-        <SEOHelmet pathname="/servicios" />
         <HeroServer pathname="/servicios" />
         <Services />
         <Process />

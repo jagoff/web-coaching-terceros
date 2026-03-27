@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Instagram, X } from "lucide-react";
 import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Use the insta-XX.png and img_XX.jpeg files from /public/img/ for 15 images
 const baseImages = [
@@ -40,6 +41,7 @@ const shuffleArray = (array: string[]) => {
 };
 
 export default function GesturesCarousel() {
+  const { t } = useLanguage();
   const [[page, direction], setPage] = useState([0, 0]);
   const [images, setImages] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -211,7 +213,7 @@ export default function GesturesCarousel() {
                     animate={{ opacity: 1 }}
                   >
                     <div className="absolute top-4 left-4 bg-black/50 px-3 py-1 rounded-full">
-                      <span className="text-white text-xs">Deslizando...</span>
+                      <span className="text-white text-xs">{t.ui.swiping}</span>
                     </div>
                   </motion.div>
                 )}
@@ -223,7 +225,7 @@ export default function GesturesCarousel() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                   >
-                    <span className="text-white text-xs">Zoom 2x</span>
+                    <span className="text-white text-xs">{t.ui.zoom2x}</span>
                   </motion.div>
                 )}
               </motion.div>
@@ -339,7 +341,7 @@ export default function GesturesCarousel() {
               <button
                 onClick={() => setSelectedImage(null)}
                 className="absolute top-4 right-4 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 z-10"
-                aria-label="Cerrar"
+                aria-label={t.ui.close}
               >
                 <X size={24} />
               </button>

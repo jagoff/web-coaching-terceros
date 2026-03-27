@@ -213,7 +213,7 @@ export default function About() {
               {t.about.approach}
             </p>
 
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
               <span className="text-gradient">{t.about.certificaciones}</span>
             </h3>
 
@@ -234,9 +234,10 @@ export default function About() {
                       variants={credentialPop}
                       whileHover={{ scale: 1.05, y: -2 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      className="linkedin-button-container"
                     >
                       <motion.a
-                        href="https://www.linkedin.com/in/fernandorferrari/details/certifications/"
+                        href="https://www.linkedin.com/in/fernandolferrari/details/certifications/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"

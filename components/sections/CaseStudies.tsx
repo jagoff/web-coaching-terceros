@@ -22,114 +22,6 @@ const caseCard: Variants = {
   }),
 };
 
-const caseStudies = [
-  {
-    id: "nexolab",
-    company: "NexoLab",
-    role: "CTO & Co-founder",
-    teamSize: "15 devs",
-    duration: "3 meses",
-    category: "Transformación Ágil",
-    before: {
-      title: "Caos Organizacional",
-      points: [
-        "Sin estructura de trabajo definida",
-        "Entregas inconsistentes y fuera de tiempo",
-        "Alta rotación de talento",
-        "Comunicación fragmentada entre equipos"
-      ]
-    },
-    intervention: {
-      title: "Mientras",
-      points: [
-        "Implementación de Scrum real (no de manual)",
-        "Definition of Done clara y medible",
-        "Retrospectivas quincenales con acción concreta",
-        "Daily meetings de 45→15 minutos"
-      ]
-    },
-    results: {
-      title: "Resultados",
-      points: [
-        "Velocidad de entrega duplicada",
-        "Deploy automation: 4hs→5 minutos",
-        "Retención de talento +35%",
-        "Equipos colaborativos vs silos"
-      ]
-    }
-  },
-  {
-    id: "dataflow",
-    company: "DataFlow",
-    role: "Engineering Manager",
-    teamSize: "8 personas",
-    duration: "2 meses",
-    category: "Comunicación y Procesos",
-    before: {
-      title: "Equipos en Silos",
-      points: [
-        "Frontend y backend no se comunicaban",
-        "Bugs de integración constantes",
-        "Cultura de culpa ('culpa del backend')",
-        "Progreso invisible para stakeholders"
-      ]
-    },
-    intervention: {
-      title: "Mientras",
-      points: [
-        "Pair programming semanal cross-equipo",
-        "Contrato de API compartido",
-        "Board Kanban visible para todos",
-        "Demo Fridays con stakeholders"
-      ]
-    },
-    results: {
-      title: "Resultados",
-      points: [
-        "Bugs de integración reducidos drásticamente",
-        "Tiempo de ciclo -40%",
-        "Colaboración natural vs forzada",
-        "Visibilidad clara del progreso"
-      ]
-    }
-  },
-  {
-    id: "scaleup-co",
-    company: "ScaleUp Co",
-    role: "VP of Strategy",
-    teamSize: "50+ empleados",
-    duration: "4 meses",
-    category: "Escalabilidad",
-    before: {
-      title: "Crecimiento Caótico",
-      points: [
-        "Procesos que no escalaban con el negocio",
-        "Decisiones centralizadas en CEO",
-        "Prioridades cambiantes sin aviso",
-        "Equipos sin autonomía real"
-      ]
-    },
-    intervention: {
-      title: "Mientras",
-      points: [
-        "Implementación de OKRs company-wide",
-        "Delegación efectiva con autonomía",
-        "Planning Mondays estructurados",
-        "Sistema de comunicación clara"
-      ]
-    },
-    results: {
-      title: "Resultados",
-      points: [
-        "Alineación completa de la compañía",
-        "Toma de decisiones distribuida",
-        "Procesos escalables y predecibles",
-        "Cultura de alta autonomía"
-      ]
-    }
-  }
-];
-
 export default function CaseStudies() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
@@ -137,6 +29,100 @@ export default function CaseStudies() {
   const [showAll, setShowAll] = useState(false);
 
   const handleScroll = (href: string) => scrollToElement(href);
+
+  // Datos de casos de estudio usando traducciones
+  const caseStudies = [
+    {
+      id: "nexolab",
+      company: t.caseStudies.nexolab.company,
+      role: t.caseStudies.nexolab.role,
+      teamSize: t.caseStudies.nexolab.teamSize,
+      duration: t.caseStudies.nexolab.duration,
+      category: t.caseStudies.nexolab.category,
+      before: {
+        title: t.caseStudies.nexolab.before.title,
+        points: t.caseStudies.nexolab.before.points
+      },
+      intervention: {
+        title: t.caseStudies.nexolab.intervention.title,
+        points: t.caseStudies.nexolab.intervention.points
+      },
+      results: {
+        title: t.caseStudies.nexolab.results.title,
+        points: t.caseStudies.nexolab.results.points
+      }
+    },
+    {
+      id: "dataflow",
+      company: "DataFlow",
+      role: "Engineering Manager",
+      teamSize: "8 personas",
+      duration: "2 meses",
+      category: "Comunicación y Procesos",
+      before: {
+        title: "Equipos en Silos",
+        points: [
+          "Frontend y backend no se comunicaban",
+          "Bugs de integración constantes",
+          "Cultura de culpa ('culpa del backend')",
+          "Progreso invisible para stakeholders"
+        ]
+      },
+      intervention: {
+        title: "Mientras",
+        points: [
+          "Pair programming semanal cross-equipo",
+          "Contrato de API compartido",
+          "Board Kanban visible para todos",
+          "Demo Fridays con stakeholders"
+        ]
+      },
+      results: {
+        title: "Resultados",
+        points: [
+          "Bugs de integración reducidos drásticamente",
+          "Tiempo de ciclo -40%",
+          "Colaboración natural vs forzada",
+          "Visibilidad clara del progreso"
+        ]
+      }
+    },
+    {
+      id: "scaleup-co",
+      company: "ScaleUp Co",
+      role: "VP of Strategy",
+      teamSize: "50+ empleados",
+      duration: "4 meses",
+      category: "Escalabilidad",
+      before: {
+        title: "Crecimiento Caótico",
+        points: [
+          "Procesos que no escalaban con el negocio",
+          "Decisiones centralizadas en CEO",
+          "Prioridades cambiantes sin aviso",
+          "Equipos sin autonomía real"
+        ]
+      },
+      intervention: {
+        title: "Mientras",
+        points: [
+          "Implementación de OKRs company-wide",
+          "Delegación efectiva con autonomía",
+          "Planning Mondays estructurados",
+          "Sistema de comunicación clara"
+        ]
+      },
+      results: {
+        title: "Resultados",
+        points: [
+          "Alineación completa de la compañía",
+          "Toma de decisiones distribuida",
+          "Procesos escalables y predecibles",
+          "Cultura de alta autonomía"
+        ]
+      }
+    }
+  ];
 
   // Show only first case study initially
   const displayedCases = showAll ? caseStudies : [caseStudies[0]];

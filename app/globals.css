@@ -5,6 +5,8 @@
    ============================================================ */
 
 @import "./globals-theme.css";
+@import "../styles/mobile-optimization.css";
+@import "../styles/particles.css";
 
 @tailwind base;
 
@@ -768,6 +770,14 @@ button.force-cta-style:hover,
 .credential-chip:hover {
   border-color: var(--gold-border);
   color: var(--text-primary);
+}
+
+/* Mobile: Allow natural wrapping without forcing full width */
+@media (max-width: 768px) {
+  .credential-chip {
+    flex-shrink: 1;
+    min-width: 0;
+  }
 }
 
 /* ---- Línea conectora (proceso) ---- */

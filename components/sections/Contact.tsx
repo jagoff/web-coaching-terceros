@@ -266,7 +266,7 @@ export default function Contact() {
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text"
                   }}
-                >{t.contact.limitedSpots}</span> este mes para acompañamiento personalizado
+                >{t.contact.limitedSpots}</span> {t.contact.limitedSpotsText}
               </p>
             </div>
 

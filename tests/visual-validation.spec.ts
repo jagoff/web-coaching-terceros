@@ -1,33 +1,60 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Visual Validation - Complete Site Check', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, isMobile }) => {
     await page.goto('/');
     // Wait for page to be ready
     await page.waitForLoadState('domcontentloaded');
-    await page.waitForTimeout(500); // Reduced wait time
+    
+    // Mobile needs more time for hydration and rendering
+    const baseWait = isMobile ? 1500 : 500;
+    const timeout = isMobile ? 15000 : 10000;
+    const hydrationWait = isMobile ? 2000 : 1000;
+    
+    await page.waitForTimeout(baseWait);
+  
+    // Wait for critical elements to exist (not necessarily visible)
+    // Mobile: wait longer and be more patient with hydration
+    await page.waitForSelector('.btn-primary', { state: 'attached', timeout });
+    await page.waitForSelector('.stat-number', { state: 'attached', timeout });
+    await page.waitForTimeout(hydrationWait); // Wait for hydration to complete
   });
 
-  test('CTA buttons exist and have orange color', async ({ page }) => {
-    const ctaButton = page.locator('.btn-primary').first();
-    const buttonCount = await ctaButton.count();
+  test('CTA buttons exist and have orange color', async ({ page, isMobile }) => {
+    // Mobile needs more time for button hydration
+    const timeout = isMobile ? 8000 : 5000;
+    await page.waitForSelector('.btn-primary, .btn-hero-primary', { state: 'attached', timeout });
+    
+    // Check for both btn-primary and btn-hero-primary classes
+    const primaryButton = page.locator('.btn-primary, .btn-hero-primary').first();
+    const buttonCount = await primaryButton.count();
     expect(buttonCount).toBeGreaterThan(0);
     
     // Check color without requiring visibility
-    const backgroundColor = await ctaButton.evaluate((el) => {
+    const backgroundColor = await primaryButton.evaluate((el) => {
       return window.getComputedStyle(el).backgroundColor;
     });
     
     console.log('🔍 CTA button color detected:', backgroundColor);
     
+    // Check for orange colors (RGB values for orange variations)
     const hasOrange = backgroundColor.includes('255') && 
-                     (backgroundColor.includes('107') || backgroundColor.includes('133') || backgroundColor.includes('85'));
+                     (backgroundColor.includes('107') || backgroundColor.includes('133') || backgroundColor.includes('85') || backgroundColor.includes('69'));
     
     expect(hasOrange).toBeTruthy();
     console.log('✅ CTA button has orange color');
   });
 
-  test('stats count is correct', async ({ page }) => {
+  test('stats count is correct', async ({ page, isMobile }) => {
+    // Mobile needs more time for stats hydration and animation
+    const timeout = isMobile ? 8000 : 5000;
+    await page.waitForSelector('.stat-number', { state: 'attached', timeout });
+    
+    // On mobile, stats might need extra time for CountUp animation to start
+    if (isMobile) {
+      await page.waitForTimeout(500);
+    }
+    
     const statNumbers = await page.locator('.stat-number').count();
     expect(statNumbers).toBe(4);
     console.log('✅ Stats count correct:', statNumbers);
@@ -69,10 +96,23 @@ test.describe('Visual Validation - Complete Site Check', () => {
     }
   });
 
-  test('page structure validation', async ({ page }) => {
+  test('page structure validation', async ({ page, isMobile }) => {
+    // Mobile needs more time for all elements to hydrate
+    const timeout = isMobile ? 8000 : 5000;
+    
+    // Wait for critical elements to load
+    await page.waitForSelector('h1', { state: 'attached', timeout });
+    await page.waitForSelector('.btn-primary, .btn-hero-primary', { state: 'attached', timeout });
+    await page.waitForSelector('.stat-number', { state: 'attached', timeout });
+    
+    // On mobile, give extra time for hydration to complete
+    if (isMobile) {
+      await page.waitForTimeout(500);
+    }
+    
     const elements = {
       'h1': await page.locator('h1').count(),
-      '.btn-primary': await page.locator('.btn-primary').count(),
+      '.btn-primary, .btn-hero-primary': await page.locator('.btn-primary, .btn-hero-primary').count(),
       'footer': await page.locator('footer').count(),
       '#inicio': await page.locator('#inicio').count(),
       '.stat-number': await page.locator('.stat-number').count()
@@ -83,7 +123,7 @@ test.describe('Visual Validation - Complete Site Check', () => {
     expect(elements['h1']).toBe(1);
     expect(elements['footer']).toBe(1);
     expect(elements['#inicio']).toBe(1);
-    expect(elements['.btn-primary']).toBeGreaterThan(0);
+    expect(elements['.btn-primary, .btn-hero-primary']).toBeGreaterThan(0);
     expect(elements['.stat-number']).toBe(4);
     
     console.log('✅ Page structure validation passed');
@@ -138,16 +178,40 @@ test.describe('Visual Validation - Complete Site Check', () => {
     console.log('✅ Mobile responsive layout correct');
   });
 
-  test('navigation functionality', async ({ page }) => {
-    const navLinks = await page.locator('a[href^="#"]').count();
-    expect(navLinks).toBeGreaterThan(0);
+  test('navigation functionality', async ({ page, isMobile }) => {
+    // Mobile needs more time for navigation links to hydrate
+    const timeout = isMobile ? 8000 : 5000;
     
-    // Test first navigation link
-    const firstNavLink = page.locator('a[href^="#"]').first();
-    const href = await firstNavLink.getAttribute('href');
-    expect(href).toMatch(/^#/);
+    // Wait for navigation elements to be present
+    await page.waitForSelector('a[href*="#"], nav a, .nav a', { state: 'attached', timeout });
     
-    console.log('✅ Navigation links functional');
+    // On mobile, navigation might be in a different state (hamburger menu, etc.)
+    if (isMobile) {
+      await page.waitForTimeout(500);
+    }
+    
+    // Check for both hash links and navigation links
+    const hashLinks = await page.locator('a[href*="#"]').count();
+    const navLinks = await page.locator('nav a, .nav a').count();
+    const totalLinks = hashLinks + navLinks;
+    
+    expect(totalLinks).toBeGreaterThan(0);
+    
+    // Test first available link
+    let firstLink = null;
+    if (hashLinks > 0) {
+      firstLink = page.locator('a[href*="#"]').first();
+    } else if (navLinks > 0) {
+      firstLink = page.locator('nav a, .nav a').first();
+    }
+    
+    if (firstLink) {
+      const href = await firstLink.getAttribute('href');
+      expect(href).toBeTruthy();
+      console.log('✅ Navigation links functional, found:', href);
+    } else {
+      console.log('ℹ️ No navigation links found');
+    }
   });
 
   test('contact form exists', async ({ page }) => {

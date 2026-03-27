@@ -146,7 +146,7 @@ export default function CalBookingSimple() {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                >3 cupos disponibles</motion.span> este mes para acompañamiento personalizado
+                >{t.contact.limitedSpots}</motion.span> {t.contact.limitedSpotsText}
               </motion.p>
             </motion.div>
 

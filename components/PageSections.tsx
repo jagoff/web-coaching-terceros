@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Client-side dynamic imports for page sections
 export const Hero          = dynamic(() => import("@/components/sections/HeroServer"), { 
@@ -12,11 +13,20 @@ export const Process       = dynamic(() => import("@/components/sections/Process
 export const Results       = dynamic(() => import("@/components/sections/Results"), { ssr: false });
 export const Pricing       = dynamic(() => import("@/components/sections/Pricing"), { ssr: false });
 export const Contact       = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
+
+// Loading component with translations
+const CalendarLoadingFallback = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="section flex items-center justify-center">
+      <div className="text-white text-xl">{t.loading.calendar}</div>
+    </div>
+  );
+};
+
 export const CalBooking    = dynamic(() => import("@/components/sections/CalBookingSimple"), { 
   ssr: false,
-  loading: () => <div className="section flex items-center justify-center">
-    <div className="text-white text-xl">Cargando calendario...</div>
-  </div>
+  loading: () => <CalendarLoadingFallback />,
 });
 export const FAQ           = dynamic(() => import("@/components/sections/FAQ"), { ssr: false });
 export const Footer        = dynamic(() => import("@/components/sections/Footer"), { ssr: true });

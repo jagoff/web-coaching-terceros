@@ -14,36 +14,6 @@ const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWords
   loading: () => null
 });
 
-const rotatingPhrasesES = [
-  "Mi equipo no toma <span class='web-underline-orange'>decisiones</span> sin mí",
-  "Las reuniones no llevan a <span class='web-underline-orange'>nada concreto</span>",
-  "Estamos creciendo pero <span class='web-underline-orange'>todo se rompe</span>",
-  "No logro <span class='web-underline-orange'>delegar</span> sin perder el control",
-  "El equipo tiene <span class='web-underline-orange'>talento</span> pero no rinde",
-  "Siempre apagamos incendios, nunca <span class='web-underline-orange'>prevenimos</span>",
-  "Tengo <span class='web-underline-orange'>demasiadas prioridades</span> y no avanzo",
-  "No sé si mi equipo está <span class='web-underline-orange'>alineado</span> con los objetivos",
-  "Contrato bien pero la <span class='web-underline-orange'>gente se va</span> rápido",
-  "Trabajamos mucho pero los <span class='web-underline-orange'>resultados no se ven</span>",
-  "No hay tiempo para <span class='web-underline-orange'>pensar</span>, solo para reaccionar",
-  "Cada área va por <span class='web-underline-orange'>su cuenta</span> y nadie coordina"
-];
-
-const rotatingPhrasesEN = [
-  "My team doesn't make <span class='web-underline-orange'>decisions</span> without me",
-  "Meetings don't lead to <span class='web-underline-orange'>anything concrete</span>",
-  "We're growing but <span class='web-underline-orange'>everything breaks</span>",
-  "I can't <span class='web-underline-orange'>delegate</span> without losing control",
-  "The team has <span class='web-underline-orange'>talent</span> but doesn't perform",
-  "We're always putting out fires, never <span class='web-underline-orange'>preventing</span>",
-  "I have <span class='web-underline-orange'>too many priorities</span> and don't advance",
-  "I don't know if my team is <span class='web-underline-orange'>aligned</span> with objectives",
-  "I hire well but <span class='web-underline-orange'>people leave</span> quickly",
-  "We work a lot but <span class='web-underline-orange'>results aren't visible</span>",
-  "There's no time to <span class='web-underline-orange'>think</span>, only to react",
-  "Each area goes <span class='web-underline-orange'>its own way</span> and nobody coordinates"
-];
-
 type Particle = {
   id: number;
   x: number;
@@ -110,7 +80,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [renderLanguage, setRenderLanguage] = useState(ssrLanguage);
   
-  const rotatingPhrases = renderLanguage === 'es' ? rotatingPhrasesES : rotatingPhrasesEN;
+  const rotatingPhrases = renderLanguage === 'es' ? t.hero.rotatingPhrases : t.hero.rotatingPhrases;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
@@ -309,7 +279,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               <div className="flex-shrink-0">
                 <Image 
                   src="/img/this_is_fine.png" 
-                  alt="Equipo abrumado sin procesos ágiles"
+                  alt="Meme de un perro sentado en una oficina en llamas con el lema 'This is fine', representando equipos tech abrumados por problemas de procesos y comunicación"
                   width={56}
                   height={56}
                   className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-100"
@@ -318,7 +288,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               </div>
               <div className="flex-1">
                 <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
-                  ¿Te suena esto?
+                  {renderLanguage === 'es' ? '¿Te suena esto?' : 'Does this sound familiar?'}
                 </p>
                 <div className="flex items-center justify-center" style={{ minHeight: "2.5rem" }}>
                   <AnimatePresence mode="wait">
@@ -374,8 +344,12 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             <button
               onClick={() => handleScroll("#contacto")}
               className="btn-hero-primary"
+              aria-label={renderLanguage === 'es' 
+                ? 'Agendar sesión gratuita de coaching - Ir al formulario de contacto' 
+                : 'Book free coaching session - Go to contact form'
+              }
             >
-              {t.contact.submitButton} →
+              {renderLanguage === 'es' ? 'AGENDA GRATIS TU SESIÓN' : 'BOOK YOUR FREE SESSION'} →
             </button>
             <motion.button
               className="btn-secondary"
@@ -383,8 +357,12 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              aria-label={renderLanguage === 'es' 
+                ? 'Conocer el método de coaching - Ir a sección de proceso' 
+                : 'Learn about coaching method - Go to process section'
+              }
             >
-              Conocé mi método ↓
+              {renderLanguage === 'es' ? 'Conocé mi método ↓' : 'Know my method ↓'}
             </motion.button>
           </motion.div>
 

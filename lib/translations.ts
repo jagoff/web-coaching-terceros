@@ -20,6 +20,8 @@ export interface Translations {
     subtitle: string;
     cta: string;
     viewServices: string;
+    // Frases rotativas
+    rotatingPhrases: string[];
   };
   
   // About
@@ -147,10 +149,12 @@ export interface Translations {
     title2: string;
     subtitle: string;
     limitedSpots: string;
+    limitedSpotsText: string;
     submitButton: string;
     booking: {
       title: string;
       subtitle: string;
+      calendly: string;
       instantBooking: string;
       instantBookingDesc: string;
       autoReminder: string;
@@ -261,12 +265,44 @@ export interface Translations {
     analyzeYourCase: string;
     viewMoreCases: string;
     yourSpecificCase: string;
+    // Datos de casos
+    nexolab: {
+      company: string;
+      role: string;
+      teamSize: string;
+      duration: string;
+      category: string;
+      before: {
+        title: string;
+        points: string[];
+      };
+      intervention: {
+        title: string;
+        points: string[];
+      };
+      results: {
+        title: string;
+        points: string[];
+      };
+    };
   };
   
   // WhatsApp
   whatsapp: {
     message: string;
     buttonText: string;
+  };
+  
+  // Loading and UI
+  loading: {
+    calendar: string;
+  };
+  
+  // Gestures and UI
+  ui: {
+    swiping: string;
+    zoom2x: string;
+    close: string;
   };
 }
 
@@ -289,6 +325,21 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Transformo equipos y culturas empresariales a través de coaching personalizado, metodologías ágiles y un enfoque human-centric.',
       cta: 'Comenzar tu transformación',
       viewServices: 'Ver servicios',
+      // Frases rotativas
+      rotatingPhrases: [
+        "Mi equipo no toma <span class='web-underline-orange'>decisiones</span> sin mí",
+        "Las reuniones no llevan a <span class='web-underline-orange'>nada concreto</span>",
+        "Estamos creciendo pero <span class='web-underline-orange'>todo se rompe</span>",
+        "No logro <span class='web-underline-orange'>delegar</span> sin perder el control",
+        "El equipo tiene <span class='web-underline-orange'>talento</span> pero no rinde",
+        "Siempre apagamos incendios, nunca <span class='web-underline-orange'>prevenimos</span>",
+        "Tengo <span class='web-underline-orange'>demasiadas prioridades</span> y no avanzo",
+        "No sé si mi equipo está <span class='web-underline-orange'>alineado</span> con los objetivos",
+        "Contrato bien pero la <span class='web-underline-orange'>gente se va</span> rápido",
+        "Trabajamos mucho pero los <span class='web-underline-orange'>resultados no se ven</span>",
+        "No hay tiempo para <span class='web-underline-orange'>pensar</span>, solo para reaccionar",
+        "Cada área va por <span class='web-underline-orange'>su cuenta</span> y nadie coordina"
+      ],
     },
     
     about: {
@@ -469,10 +520,12 @@ export const translations: Record<Language, Translations> = {
       title2: 'la conversación',
       subtitle: 'La primera sesión es completamente gratuita. Sin compromiso, solo para conocernos y ver cómo puedo ayudarte.',
       limitedSpots: '2 cupos disponibles',
+      limitedSpotsText: 'este mes para acompañamiento personalizado',
       submitButton: 'AGENDA GRATIS TU SESIÓN',
       booking: {
         title: 'Agenda tu sesión gratuita',
         subtitle: 'Selecciona el horario que mejor te convenga y confirma en 2 minutos.',
+        calendly: 'Agendar con Calendly',
         instantBooking: 'Agenda instantánea',
         instantBookingDesc: 'Sin esperas, confirmación inmediata',
         autoReminder: 'Recordatorio automático',
@@ -623,12 +676,58 @@ export const translations: Record<Language, Translations> = {
       seeFullTransformation: 'Ver transformación completa',
       analyzeYourCase: 'Analizar tu caso',
       viewMoreCases: 'Ver más casos de estudio',
-      yourSpecificCase: '¿Cuál es tu caso específico?',
+      yourSpecificCase: 'Hablemos de tu caso específico.',
+      nexolab: {
+        company: 'NexoLab',
+        role: 'CTO & Co-founder',
+        teamSize: '15 devs',
+        duration: '3 meses',
+        category: 'Transformación Ágil',
+        before: {
+          title: 'Caos Organizacional',
+          points: [
+            'Sin estructura de trabajo definida',
+            'Entregas inconsistentes y fuera de tiempo',
+            'Alta rotación de talento',
+            'Comunicación fragmentada entre equipos'
+          ]
+        },
+        intervention: {
+          title: 'Mientras',
+          points: [
+            'Implementación de Scrum real (no de manual)',
+            'Definition of Done clara y medible',
+            'Retrospectivas quincenales con acción concreta',
+            'Daily meetings de 45→15 minutos'
+          ]
+        },
+        results: {
+          title: 'Resultados',
+          points: [
+            'Velocidad de entrega duplicada',
+            'Deploy automation: 4hs→5 minutos',
+            'Retención de talento +35%',
+            'Equipos colaborativos vs silos'
+          ]
+        }
+      },
     },
     
     whatsapp: {
       message: 'Hola! Quiero agendar una sesión gratuita de coaching. ¿Qué fechas y horarios tienes disponibles?',
       buttonText: 'Agendar por WhatsApp',
+    },
+    
+    // Loading and UI
+    loading: {
+      calendar: 'Cargando calendario...',
+    },
+    
+    // Gestures and UI
+    ui: {
+      swiping: 'Deslizando...',
+      zoom2x: 'Zoom 2x',
+      close: 'Cerrar',
     },
   },
   
@@ -650,6 +749,21 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'I transform teams and business cultures through personalized coaching, agile methodologies, and a human-centric approach.',
       cta: 'Start your transformation',
       viewServices: 'View services',
+      // Frases rotativas
+      rotatingPhrases: [
+        "My team doesn't make <span class='web-underline-orange'>decisions</span> without me",
+        "Meetings don't lead to <span class='web-underline-orange'>anything concrete</span>",
+        "We're growing but <span class='web-underline-orange'>everything breaks</span>",
+        "I can't <span class='web-underline-orange'>delegate</span> without losing control",
+        "The team has <span class='web-underline-orange'>talent</span> but doesn't perform",
+        "We're always putting out fires, never <span class='web-underline-orange'>preventing</span>",
+        "I have <span class='web-underline-orange'>too many priorities</span> and don't advance",
+        "I don't know if my team is <span class='web-underline-orange'>aligned</span> with objectives",
+        "I hire well but <span class='web-underline-orange'>people leave</span> quickly",
+        "We work a lot but <span class='web-underline-orange'>results aren't visible</span>",
+        "There's no time to <span class='web-underline-orange'>think</span>, only to react",
+        "Each area goes <span class='web-underline-orange'>its own way</span> and nobody coordinates"
+      ],
     },
     
     about: {
@@ -806,10 +920,12 @@ export const translations: Record<Language, Translations> = {
       title2: 'the conversation',
       subtitle: 'The first session is completely free. No commitment, just to get to know each other and see how I can help you.',
       limitedSpots: '2 spots available',
+      limitedSpotsText: 'this month for personalized coaching',
       submitButton: 'BOOK YOUR FREE SESSION →',
       booking: {
         title: 'Book your free session',
         subtitle: 'Select the time that works best for you and confirm in 2 minutes.',
+        calendly: 'Book with Calendly',
         instantBooking: 'Instant booking',
         instantBookingDesc: 'No waiting, instant confirmation',
         autoReminder: 'Auto reminder',
@@ -927,13 +1043,60 @@ export const translations: Record<Language, Translations> = {
       results: 'RESULTS',
       seeFullTransformation: 'See full transformation',
       analyzeYourCase: 'Analyze your case',
-      viewMoreCases: 'View more case studies',
-      yourSpecificCase: 'What is your specific case?',
+      viewMoreCases: 'View more cases',
+      yourSpecificCase: 'Let\'s talk about your specific case.',
+      // Datos de casos
+      nexolab: {
+        company: 'NexoLab',
+        role: 'CTO & Co-founder',
+        teamSize: '15 devs',
+        duration: '3 months',
+        category: 'Agile Transformation',
+        before: {
+          title: 'Organizational Chaos',
+          points: [
+            'No defined work structure',
+            'Inconsistent and late deliveries',
+            'High talent turnover',
+            'Fragmented communication between teams'
+          ]
+        },
+        intervention: {
+          title: 'While',
+          points: [
+            'Real Scrum implementation (not textbook)',
+            'Clear and measurable Definition of Done',
+            'Biweekly retrospectives with concrete action',
+            'Daily meetings 45→15 minutes'
+          ]
+        },
+        results: {
+          title: 'Results',
+          points: [
+            'Delivery speed doubled',
+            'Deploy automation: 4hrs→5 minutes',
+            'Talent retention +35%',
+            'Collaborative teams vs silos'
+          ]
+        }
+      },
     },
     
     whatsapp: {
       message: 'Hi! I want to schedule a free coaching session. What dates and times do you have available?',
-      buttonText: 'Book via WhatsApp',
+      buttonText: 'Schedule on WhatsApp',
+    },
+    
+    // Loading and UI
+    loading: {
+      calendar: 'Loading calendar...',
+    },
+    
+    // Gestures and UI
+    ui: {
+      swiping: 'Swiping...',
+      zoom2x: 'Zoom 2x',
+      close: 'Close',
     },
   },
 };

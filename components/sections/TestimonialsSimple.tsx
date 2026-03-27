@@ -125,7 +125,7 @@ export default function TestimonialsSimple() {
           className="text-center mb-14 md:mb-24 max-w-3xl mx-auto"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">{t.testimonials.badge}</span>
+            <span className="badge">{language === 'es' ? 'Testimonios' : 'Testimonials'}</span>
           </motion.div>
           <motion.h2
             id="titulo-testimonios"

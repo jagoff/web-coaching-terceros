@@ -4,7 +4,6 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
-import SEOHelmet from "@/components/SEOHelmet";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { translations } from "@/lib/translations";
 
@@ -16,6 +15,29 @@ export const metadata: Metadata = {
   description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría. Todo lo que necesitas saber sobre nuestro proceso, metodología y resultados.",
   keywords: ["FAQ coaching", "preguntas frecuentes", "dudas coaching", "metodología coaching", "proceso consultoría", "coaching Argentina"],
   authors: [{ name: "Fernando Ferrari" }],
+  openGraph: {
+    title: "Preguntas Frecuentes | FAQ Coaching | ELEVA CONSULTORIA",
+    description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría organizacional.",
+    type: "website",
+    locale: "es_AR",
+    url: "https://eleva-consultoria.com/faq",
+    images: [
+      {
+        url: "https://eleva-consultoria.com/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Preguntas Frecuentes | FAQ Coaching | ELEVA CONSULTORIA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Preguntas Frecuentes | FAQ Coaching | ELEVA CONSULTORIA",
+    description: "Respuestas a las preguntas más frecuentes sobre nuestros servicios de coaching y consultoría organizacional.",
+    images: ["https://eleva-consultoria.com/opengraph-image.png"],
+    site: "@eleva_consultoria",
+    creator: "@eleva_consultoria",
+  },
   alternates: {
     canonical: "https://eleva-consultoria.com/faq",
     languages: {
@@ -45,7 +67,6 @@ export default function FAQPage() {
         pathname="/faq" 
       />
       <main>
-        <SEOHelmet pathname="/faq" />
         <HeroServer pathname="/faq" />
         <FAQ />
         <Contact />

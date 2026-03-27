@@ -9,7 +9,7 @@ const DynamicNavbar = dynamic(() => import("@/components/Navbar"), {
   loading: () => <div className="h-16 bg-dark-base/50 animate-pulse" />
 });
 
-const AmbientParticles = dynamic(() => import("@/components/AmbientParticles"), { 
+const AmbientParticles = dynamic(() => import("@/components/OptimizedParticles"), { 
   ssr: false,
   loading: () => null
 });

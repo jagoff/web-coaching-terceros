@@ -13,7 +13,6 @@ import {
 } from "@/components/PageSections";
 import Testimonials from "@/components/sections/TestimonialsSimple";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
-import SEOHelmet from "@/components/SEOHelmet";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { Metadata } from "next";
 
@@ -63,7 +62,6 @@ export default function Home() {
         pathname="/" 
       />
       <main>
-        <SEOHelmet pathname="/" />
         <HeroServer pathname="/" />
         <About />
         <Services />
