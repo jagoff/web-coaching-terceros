@@ -53,6 +53,8 @@ export default function YouTubeEmbed({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [player, setPlayer] = useState<any>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   
   const defaultTitle = t.video.defaultTitle;
   const finalTitle = title || defaultTitle;
@@ -62,6 +64,37 @@ export default function YouTubeEmbed({
       setIsLoaded(true);
     }
   }, [isInView, isLoaded]);
+
+  // Handle YouTube player ready event
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://www.youtube.com') return;
+      
+      try {
+        const data = JSON.parse(event.data);
+        
+        // When player is ready, unmute if needed
+        if (data.event === 'onReady' && player) {
+          setTimeout(() => {
+            // Try to unmute using YouTube API
+            const iframe = iframeRef.current;
+            if (iframe && iframe.contentWindow) {
+              iframe.contentWindow.postMessage(JSON.stringify({
+                event: 'command',
+                func: 'unMute',
+                args: []
+              }), 'https://www.youtube.com');
+            }
+          }, 1000);
+        }
+      } catch (e) {
+        // Ignore parsing errors
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [player]);
 
   // Extract video ID from full YouTube URL if needed
   const getVideoId = (urlOrId: string) => {
@@ -80,8 +113,8 @@ export default function YouTubeEmbed({
   
   const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}?${new URLSearchParams({
     autoplay: autoplay ? "1" : "0",
-    mute: "0", // Always start unmuted to allow user control
-    controls: "1", // Enable controls so user can unmute if needed
+    mute: "0", // Always start unmuted
+    controls: "1", // Enable controls
     rel: "0",
     modestbranding: "1",
     playsinline: "1",
@@ -96,6 +129,8 @@ export default function YouTubeEmbed({
     end: "",
     loop: "0",
     playlist: cleanVideoId,
+    enablejsapi: "1", // Enable JavaScript API
+    origin: typeof window !== 'undefined' ? window.location.origin : '',
   }).toString()}`;
 
   return (
@@ -122,6 +157,7 @@ export default function YouTubeEmbed({
       {/* YouTube iframe */}
       {isLoaded && (
         <motion.iframe
+          ref={iframeRef}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -133,9 +169,13 @@ export default function YouTubeEmbed({
             borderRadius: "0.75rem",
             boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
           }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen; picture-in-picture; web-share; microphone"
           allowFullScreen={false}
           loading="lazy"
+          onLoad={() => {
+            // Set player reference when iframe loads
+            setPlayer(iframeRef.current);
+          }}
         />
       )}
 
