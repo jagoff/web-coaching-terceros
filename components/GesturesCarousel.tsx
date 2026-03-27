@@ -5,23 +5,23 @@ import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Simple array of working images - using simple approach
+// Simple array of working images - using simple names
 const baseImages = [
-  'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p.m..png', 
-  'Captura de pantalla 2026-03-08 a la(s) 11.15.48 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.16.12 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.16.36 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.18.51 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.20.39 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.20.58 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.21.55 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.23.52 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.25.10 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.27.21 p.m..png',
-  'Captura de pantalla 2026-03-08 a la(s) 11.14.05 p.m..png',     // Repeat first image for variety
-  'Captura de pantalla 2026-03-08 a la(s) 11.15.26 p.m..png',     // Repeat second image
-  'Captura de pantalla 2026-03-08 a la(s) 11.15.48 p.m..png'      // Repeat third image
+  'img-01.png',
+  'img-02.png', 
+  'img-03.png',
+  'img-04.png',
+  'img-05.png',
+  'img-06.png',
+  'img-07.png',
+  'img-08.png',
+  'img-09.png',
+  'img-10.png',
+  'img-11.png',
+  'img-12.png',
+  'img-01.png',     // Repeat first image for variety
+  'img-02.png',     // Repeat second image
+  'img-03.png'      // Repeat third image
 ];
 
 const getImagePath = (imageName: string): string => {
