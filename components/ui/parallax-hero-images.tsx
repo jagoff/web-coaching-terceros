@@ -71,7 +71,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
           return (
             <motion.div
               key={index}
-              className="relative w-full aspect-[3/4] bg-gray-200 rounded-lg overflow-hidden"
+              className="relative w-full aspect-[3/4] bg-gray-800 rounded-lg overflow-hidden"
               style={{
                 x: moveX,
                 y: moveY,
@@ -85,9 +85,19 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
                 className="w-full h-full object-cover"
                 loading={index < 12 ? "eager" : "lazy"}
                 onError={(e) => {
-                  console.warn(`Image failed to load: ${src}`);
+                  if (process.env.NODE_ENV === 'development') {
+                    console.error(`Image failed to load: ${src}`);
+                  }
                   const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
+                  // Show a colored placeholder instead of hiding
+                  target.src = `data:image/svg+xml;base64,${btoa(`
+                    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="100" height="100" fill="#374151"/>
+                      <text x="50" y="50" font-family="Arial" font-size="12" fill="#fff" text-anchor="middle" dy=".3em">
+                        ${index + 1}
+                      </text>
+                    </svg>
+                  `)}`;
                 }}
               />
             </motion.div>
