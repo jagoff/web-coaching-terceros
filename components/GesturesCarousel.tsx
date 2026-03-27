@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Use the insta-XX.png and img_XX.jpeg files from /public/img/ for 15 images
+// Use the insta-XX.png and img_XX.png files from /public/img/ for 15 images
 const baseImages = [
   'insta-1.png',
   'insta-2.png',
@@ -20,11 +20,11 @@ const baseImages = [
   'insta-9.png',
   'insta-10.png',
   'insta-11.png',
-  'img_01.jpeg',
-  'img_02.jpeg',
-  'img_03.jpeg',
-  'img_04.jpeg',
-  'img_05.jpeg'
+  'img_01.png',    // Changed from .jpeg to .png
+  'img_02.png',    // Changed from .jpeg to .png
+  'img_03.png',    // Changed from .jpeg to .png
+  'img_04.png',    // Changed from .jpeg to .png
+  'img_05.png'     // Changed from .jpeg to .png
 ];
 
 const getImagePath = (imageName: string): string => {
