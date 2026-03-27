@@ -196,26 +196,6 @@ export default function TestimonialsSimple() {
                     {currentTestimonial.company}
                   </p>
                 </div>
-                {/* Date with gradient circle */}
-                <div className="relative ml-2">
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center"
-                    style={{
-                      background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)",
-                      boxShadow: "0 6px 16px rgba(124, 107, 196, 0.4)",
-                      border: "2px solid rgba(255, 255, 255, 0.1)"
-                    }}
-                  >
-                    <span
-                      className="text-sm font-bold text-white"
-                      style={{
-                        textShadow: "0 2px 4px rgba(0,0,0,0.4)"
-                      }}
-                    >
-                      {currentTestimonial.date.split(' ')[0].substring(0, 3)}
-                    </span>
-                  </div>
-                </div>
               </div>
 
               {/* Rating */}

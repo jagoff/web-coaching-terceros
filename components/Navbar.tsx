@@ -225,7 +225,7 @@ export default function Navbar() {
                 style={{
                   background: "rgba(124,107,196,0.08)",
                   borderColor: "rgba(124,107,196,0.2)",
-                  color: "var(--gold-primary)",
+                  color: "var(--text-secondary)",
                   minWidth: "65px"
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
@@ -251,7 +251,7 @@ export default function Navbar() {
                 style={{
                   background: "rgba(124,107,196,0.2)",
                   borderColor: "rgba(124,107,196,0.5)",
-                  color: "#7C6BC4",
+                  color: "var(--text-secondary)",
                   fontSize: "13px",
                   fontWeight: "700",
                   minWidth: "85px",

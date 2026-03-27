@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Simple array of working images - replace problematic img_XX.png with unique working images
 const baseImages = [
@@ -29,6 +30,7 @@ const getImagePath = (imageName: string): string => {
 };
 
 export default function GesturesCarousel() {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = baseImages;
   const currentImage = images[currentIndex];
@@ -42,7 +44,7 @@ export default function GesturesCarousel() {
   };
 
   if (!currentImage || images.length === 0) {
-    return <div className="w-full h-full flex items-center justify-center">Cargando...</div>;
+    return <div className="w-full h-full flex items-center justify-center">{t.loadingStates.loading}</div>;
   }
 
   return (

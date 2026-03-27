@@ -469,7 +469,7 @@ export default function Testimonials() {
                 onClick={prev}
                 className="rounded-full flex items-center justify-center testimonial-nav-btn"
                 style={{ width: 44, height: 44 }}
-                aria-label="Testimonio anterior"
+                aria-label={t.testimonialsNav.ariaPrevious}
               >
                 <ChevronLeft size={18} />
               </button>
@@ -477,20 +477,20 @@ export default function Testimonials() {
                 onClick={next}
                 className="rounded-full flex items-center justify-center testimonial-nav-btn"
                 style={{ width: 44, height: 44 }}
-                aria-label="Siguiente testimonio"
+                aria-label={t.testimonialsNav.ariaNext}
               >
                 <ChevronRight size={18} />
               </button>
             </div>
 
             {/* Dots */}
-            <div className="flex gap-2" role="tablist" aria-label="Indicadores de testimonio">
+            <div className="flex gap-2" role="tablist" aria-label={t.testimonialsNav.ariaPrevious + ' / ' + t.testimonialsNav.ariaNext}>
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   role="tab"
                   aria-selected={i === current}
-                  aria-label={`Testimonio ${i + 1}`}
+                  aria-label={`${t.testimonialsNav.previous} ${i + 1}`}
                   onClick={() => goTo(i, i > current ? 1 : -1)}
                   className="transition-all duration-300 rounded-full"
                   style={{

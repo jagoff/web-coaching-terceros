@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LazySectionProps {
   children: React.ReactNode;
@@ -10,18 +11,22 @@ interface LazySectionProps {
   className?: string;
 }
 
-const LoadingFallback = () => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    className="flex items-center justify-center min-h-[200px]"
-  >
-    <div className="animate-pulse text-center">
-      <div className="w-8 h-8 mx-auto mb-4 border-2 border-gold-primary border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-muted">Cargando...</p>
-    </div>
-  </motion.div>
-);
+const LoadingFallback = () => {
+  const { t } = useLanguage();
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="flex items-center justify-center min-h-[200px]"
+    >
+      <div className="animate-pulse text-center">
+        <div className="w-8 h-8 mx-auto mb-4 border-2 border-gold-primary border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-muted">{t.loadingStates.loading}</p>
+      </div>
+    </motion.div>
+  );
+};
 
 export default function LazySection({ children, fallback = <LoadingFallback />, className = "" }: LazySectionProps) {
   return (

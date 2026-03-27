@@ -46,14 +46,12 @@ export default function VideoSection({
   sectionId = "video",
   className = "",
 }: VideoSectionProps) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const defaultTitle = language === 'es' ? 'Conocé mi enfoque' : 'See My Approach';
-  const defaultDescription = language === 'es' 
-    ? 'En este video te explico cómo ayudo a líderes y equipos a alcanzar su máximo potencial a través del coaching ágil y la transformación organizacional.'
-    : 'In this video I explain how I help leaders and teams reach their maximum potential through agile coaching and organizational transformation.';
+  const defaultTitle = t.video.defaultTitle;
+  const defaultDescription = t.video.defaultDescription;
 
   return (
     <section
@@ -70,7 +68,7 @@ export default function VideoSection({
         >
           <motion.div variants={itemVariants} className="flex justify-center mb-6">
             <span className="badge">
-              {language === 'es' ? 'Video Presentación' : 'Video Presentation'}
+              {t.video.badge}
             </span>
           </motion.div>
           

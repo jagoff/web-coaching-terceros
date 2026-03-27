@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Play, Youtube } from "lucide-react";
 import Image from "next/image";
 
@@ -24,11 +25,15 @@ interface YouTubeThumbnailProps {
 
 export default function YouTubeThumbnail({
   videoId,
-  title = "YouTube video",
+  title,
   className = "",
 }: YouTubeThumbnailProps) {
+  const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
+  
+  const defaultTitle = t.video.defaultTitle;
+  const finalTitle = title || defaultTitle;
   
   // Simple reliable thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
@@ -70,7 +75,7 @@ export default function YouTubeThumbnail({
         <div className="w-full h-full rounded-lg overflow-hidden" style={{ borderRadius: "0.75rem" }}>
           <iframe
             src={embedUrl}
-            title={title}
+            title={finalTitle}
             className="w-full h-full"
             style={{
               border: "none",
@@ -87,7 +92,7 @@ export default function YouTubeThumbnail({
           {/* Thumbnail image */}
           <Image
             src={thumbnailUrl}
-            alt={title}
+            alt={finalTitle}
             fill
             className="object-cover rounded-lg"
             style={{ borderRadius: "0.75rem" }}

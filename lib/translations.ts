@@ -304,6 +304,27 @@ export interface Translations {
     zoom2x: string;
     close: string;
   };
+  
+  // Video Section
+  video: {
+    badge: string;
+    defaultTitle: string;
+    defaultDescription: string;
+  };
+  
+  // Loading states
+  loadingStates: {
+    loading: string;
+    cargando: string;
+  };
+  
+  // Testimonials navigation
+  testimonialsNav: {
+    previous: string;
+    next: string;
+    ariaPrevious: string;
+    ariaNext: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -729,6 +750,27 @@ export const translations: Record<Language, Translations> = {
       zoom2x: 'Zoom 2x',
       close: 'Cerrar',
     },
+    
+    // Video Section
+    video: {
+      badge: 'Video Presentación',
+      defaultTitle: 'Conocé mi enfoque',
+      defaultDescription: 'En este video te explico cómo ayudo a líderes y equipos a alcanzar su máximo potencial a través del coaching ágil y la transformación organizacional.',
+    },
+    
+    // Loading states
+    loadingStates: {
+      loading: 'Cargando...',
+      cargando: 'Cargando...',
+    },
+    
+    // Testimonials navigation
+    testimonialsNav: {
+      previous: 'Anterior',
+      next: 'Siguiente',
+      ariaPrevious: 'Testimonio anterior',
+      ariaNext: 'Siguiente testimonio',
+    },
   },
   
   en: {
@@ -1097,6 +1139,27 @@ export const translations: Record<Language, Translations> = {
       swiping: 'Swiping...',
       zoom2x: 'Zoom 2x',
       close: 'Close',
+    },
+    
+    // Video Section
+    video: {
+      badge: 'Video Presentation',
+      defaultTitle: 'See My Approach',
+      defaultDescription: 'In this video I explain how I help leaders and teams reach their maximum potential through agile coaching and organizational transformation.',
+    },
+    
+    // Loading states
+    loadingStates: {
+      loading: 'Loading...',
+      cargando: 'Loading...',
+    },
+    
+    // Testimonials navigation
+    testimonialsNav: {
+      previous: 'Previous',
+      next: 'Next',
+      ariaPrevious: 'Previous testimonial',
+      ariaNext: 'Next testimonial',
     },
   },
 };

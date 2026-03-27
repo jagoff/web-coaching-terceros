@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Play, Youtube } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const videoContainer: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(6px)" },
@@ -34,7 +35,7 @@ interface YouTubeEmbedProps {
 
 export default function YouTubeEmbed({
   videoId,
-  title = "YouTube video player",
+  title,
   className = "",
   autoplay = false,
   muted = false,
@@ -48,9 +49,13 @@ export default function YouTubeEmbed({
   enableCC = false,
   enableAnnotations = false,
 }: YouTubeEmbedProps) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  const defaultTitle = t.video.defaultTitle;
+  const finalTitle = title || defaultTitle;
 
   useEffect(() => {
     if (isInView && !isLoaded) {
@@ -121,7 +126,7 @@ export default function YouTubeEmbed({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           src={embedUrl}
-          title={title}
+          title={finalTitle}
           className="w-full h-full rounded-lg shadow-2xl"
           style={{
             border: "none",
@@ -154,11 +159,14 @@ export function QuickYouTubeEmbed({
   videoUrl: string; 
   className?: string;
 }) {
+  const { t } = useLanguage();
+  const defaultTitle = t.video.defaultTitle;
+  
   return (
     <YouTubeEmbed
       videoId={videoUrl}
       className={className}
-      title="Video presentation"
+      title={defaultTitle}
       autoplay={false}
       muted={false}
       controls={true}
