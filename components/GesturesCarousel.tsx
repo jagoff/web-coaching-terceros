@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Instagram } from "lucide-react";
+import Image from "next/image";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
 // Simple array of working images - replace problematic img_XX.png with unique working images
@@ -53,11 +54,15 @@ export default function GesturesCarousel() {
           className="relative overflow-hidden rounded-lg bg-black"
           style={{ aspectRatio: "4/5" }}
         >
-          {/* Simple img - no complexity */}
-          <img
+          {/* Next.js Image - same as desktop that works */}
+          <Image
             src={getImagePath(currentImage)}
             alt={`Image ${currentIndex + 1}`}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 100vw"
+            priority={currentIndex < 3}
+            quality={85}
           />
           
           {/* Navigation buttons */}
