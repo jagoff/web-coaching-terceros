@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 
-// Simple array of working images - replace problematic ones with unique images
+// Simple array of working images - replace problematic img_XX.png with unique working images
 const baseImages = [
   'insta-1.png',
   'insta-2.png', 
@@ -17,10 +17,11 @@ const baseImages = [
   'insta-9.png',
   'insta-10.png',
   'insta-11.png',
-  'this_is_fine.png',  // ✅ Unique image - replaces img_01.png
-  'tv.png',           // ✅ Unique image - replaces img_02.png  
-  'insta-1.png',      // ✅ Working - replaces img_03.png
-  'insta-2.png'       // ✅ Working - replaces img_04.png
+  'this_is_fine.png',  // ✅ Replaces img_01.png (problematic)
+  'tv.png',           // ✅ Replaces img_02.png (problematic)
+  'insta-1.png',      // ✅ Replaces img_03.png (problematic)
+  'insta-2.png',      // ✅ Replaces img_04.png (problematic)
+  'insta-3.png'       // ✅ Replaces img_05.png (problematic)
 ];
 
 const getImagePath = (imageName: string): string => {
