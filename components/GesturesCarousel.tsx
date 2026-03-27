@@ -28,6 +28,10 @@ const baseImages = [
 ];
 
 const getImagePath = (imageName: string): string => {
+  // Try absolute URL to bypass any Next.js routing issues
+  if (typeof window !== 'undefined') {
+    return `${window.location.origin}/img/${imageName}`;
+  }
   return `/img/${imageName}`;
 };
 
@@ -43,10 +47,30 @@ const shuffleArray = (array: string[]) => {
 export default function GesturesCarousel() {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [networkStatus, setNetworkStatus] = useState<string>('checking');
   
   // Simplified image array - no shuffling for debugging
   const images = baseImages;
   const currentImage = images[currentIndex];
+
+  // Network test on mount
+  useEffect(() => {
+    const testImage = images[0]; // Test first image
+    const testUrl = getImagePath(testImage);
+    
+    console.log(`🔍 Testing network access to: ${testUrl}`);
+    
+    fetch(testUrl, { method: 'HEAD' })
+      .then(response => {
+        console.log(`✅ Network test success: ${response.status} ${response.statusText}`);
+        console.log(`📊 Headers:`, Object.fromEntries(response.headers.entries()));
+        setNetworkStatus('ok');
+      })
+      .catch(error => {
+        console.error(`❌ Network test failed:`, error);
+        setNetworkStatus('failed');
+      });
+  }, []);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -62,6 +86,11 @@ export default function GesturesCarousel() {
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
+      {/* Network status indicator */}
+      <div className="mb-4 p-2 bg-gray-800 text-white text-xs rounded">
+        Network: {networkStatus} | Current: {currentImage} | Index: {currentIndex}
+      </div>
+      
       {/* Simplified Mobile Carousel - No animations, no gestures */}
       <div className="block sm:hidden">
         <div 
@@ -79,6 +108,10 @@ export default function GesturesCarousel() {
               console.error(`Path: ${getImagePath(currentImage)}`);
               console.error(`Index: ${currentIndex}`);
               console.error(`Available images:`, images);
+              console.error(`Network status:`, networkStatus);
+              console.error(`Image element:`, e.target);
+              const imgElement = e.target as HTMLImageElement;
+              console.error(`Natural size:`, `${imgElement.naturalWidth}x${imgElement.naturalHeight}`);
             }}
           />
           
