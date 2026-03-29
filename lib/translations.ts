@@ -640,10 +640,6 @@ export const translations: Record<Language, Translations> = {
         {
           question: '¿Qué resultados específicos se pueden esperar en 3 meses?',
           answer: 'Semana 1-4: Evaluación completa y diseño de framework. Semana 5-8: Primer ciclo de implementación con métricas base. Semana 9-12: Patrones de escalamiento y validación de ROI. Resultados típicos: 30% reducción en latencia de decisiones, 50% aumento en iniciativas del equipo.',
-        },
-        {
-          question: '¿Cómo se adapta el proceso para equipos remotos vs híbridos?',
-          answer: 'Enfoque remoto-first con herramientas asíncronas (Notion, Slack, Loom), frameworks de decisión asíncronos, optimización de zonas horarias, ceremonias virtuales adaptadas. Equipos híbridos: protocolos de puente para flujos síncronos/asíncronos.',
         }
       ],
     },

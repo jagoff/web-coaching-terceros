@@ -111,54 +111,68 @@ export default function ContactForm() {
                 {fieldName === 'mensaje' && (language === 'es' ? 'Mensaje' : 'Message')}
               </label>
               
-              <div className="relative">
-                {fieldName === 'mensaje' ? (
-                  <textarea
-                    value={value}
-                    onChange={(e) => updateFieldWithTouch(fieldName as keyof ContactForm, e.target.value)}
-                    onBlur={() => updateFieldWithTouch(fieldName as keyof ContactForm, value)}
-                    className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
-                      errors[fieldName]
-                        ? 'border-red-500/50 bg-red-500/5'
-                        : touched[fieldName] && !errors[fieldName]
-                        ? 'border-green-500/50 bg-green-500/5'
-                        : 'border-gray-700/50 bg-gray-800/50'
-                    } focus:border-violet-500/50 focus:bg-violet-500/5 focus:outline-none`}
-                    rows={4}
-                    placeholder={language === 'es' 
-                      ? 'Cuéntame sobre tu desafío actual...' 
-                      : 'Tell me about your current challenge...'
-                    }
-                  />
-                ) : (
-                  <input
-                    type={fieldName === 'email' ? 'email' : 'text'}
-                    value={value}
-                    onChange={(e) => updateFieldWithTouch(fieldName as keyof ContactForm, e.target.value)}
-                    onBlur={() => updateFieldWithTouch(fieldName as keyof ContactForm, value)}
-                    className={`w-full px-4 py-3 rounded-lg border transition-all duration-200 ${
-                      errors[fieldName]
-                        ? 'border-red-500/50 bg-red-500/5'
-                        : touched[fieldName] && !errors[fieldName]
-                        ? 'border-green-500/50 bg-green-500/5'
-                        : 'border-gray-700/50 bg-gray-800/50'
-                    } focus:border-violet-500/50 focus:bg-violet-500/5 focus:outline-none`}
-                    placeholder={fieldName === 'nombre' 
-                      ? (language === 'es' ? 'Tu nombre' : 'Your name')
-                      : 'email@ejemplo.com'
-                    }
-                  />
-                )}
-                
-                {touched[fieldName] && !errors[fieldName] && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="absolute right-3 top-3 text-green-400"
-                  >
-                    <CheckCircle2 size={20} />
-                  </motion.div>
-                )}
+              <div className="relative group">
+                {/* Glassmorphism container */}
+                <div className="glass-field-container">
+                  {/* Animated background layer */}
+                  <div className="glass-field-bg" />
+                  
+                  {/* Rainbow hover effect */}
+                  <div className="glass-field-rainbow" />
+                  
+                  <div className="relative">
+                    {fieldName === 'mensaje' ? (
+                      <textarea
+                        value={value}
+                        onChange={(e) => updateFieldWithTouch(fieldName as keyof ContactForm, e.target.value)}
+                        onBlur={() => updateFieldWithTouch(fieldName as keyof ContactForm, value)}
+                        className={`glass-field-input ${
+                          errors[fieldName]
+                            ? 'glass-field-error'
+                            : touched[fieldName] && !errors[fieldName]
+                            ? 'glass-field-success'
+                            : 'glass-field-default'
+                        }`}
+                        rows={4}
+                        placeholder={language === 'es' 
+                          ? 'Cuéntame sobre tu desafío actual...' 
+                          : 'Tell me about your current challenge...'
+                        }
+                      />
+                    ) : (
+                      <input
+                        type={fieldName === 'email' ? 'email' : 'text'}
+                        value={value}
+                        onChange={(e) => updateFieldWithTouch(fieldName as keyof ContactForm, e.target.value)}
+                        onBlur={() => updateFieldWithTouch(fieldName as keyof ContactForm, value)}
+                        className={`glass-field-input ${
+                          errors[fieldName]
+                            ? 'glass-field-error'
+                            : touched[fieldName] && !errors[fieldName]
+                            ? 'glass-field-success'
+                            : 'glass-field-default'
+                        }`}
+                        placeholder={fieldName === 'nombre' 
+                          ? (language === 'es' ? 'Tu nombre' : 'Your name')
+                          : 'email@ejemplo.com'
+                        }
+                      />
+                    )}
+                    
+                    {/* Glow effect on focus */}
+                    <div className="glass-field-glow" />
+                    
+                    {touched[fieldName] && !errors[fieldName] && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="glass-field-check"
+                      >
+                        <CheckCircle2 size={20} />
+                      </motion.div>
+                    )}
+                  </div>
+                </div>
               </div>
               
               {errors[fieldName] && (

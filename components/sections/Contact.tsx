@@ -101,18 +101,25 @@ export default function Contact() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center"
         >
-          <p
-            className="lead-text max-w-2xl mx-auto mb-10"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {language === 'es' 
-              ? 'Tu próximo nivel de liderazgo está a una conversación de distancia.' 
-              : 'Your next leadership level is one conversation away.'
-            }{" "}
-            <strong style={{ color: "var(--text-primary)" }}>
-              {language === 'es' ? '¿Cuándo empezamos?' : 'When do we start?'}
-            </strong>
-          </p>
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p
+              className="lead-text"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              {language === 'es' 
+                ? 'Tu próximo nivel de liderazgo está a una conversación de distancia.' 
+                : 'Your next leadership level is one conversation away.'
+              }
+            </p>
+            <p
+              className="lead-text"
+              style={{ color: "var(--text-primary)" }}
+            >
+              <strong>
+                {language === 'es' ? '¿Cuándo empezamos?' : 'When do we start?'}
+              </strong>
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
