@@ -128,7 +128,7 @@ export default function CaseStudies() {
   const displayedCases = showAll ? caseStudies : [caseStudies[0]];
 
   return (
-    <section id="casos-de-estudio" className="section section-surface section-gold-border-top" ref={ref}>
+    <section id="casos-de-estudio" className="section section-surface section-gold-border-top hidden md:block" ref={ref}>
       <div className="container">
         {/* Header */}
         <motion.div
