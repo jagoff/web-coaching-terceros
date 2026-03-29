@@ -62,7 +62,7 @@ export default function Process() {
           variants={headerStagger}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-14 md:mb-24 max-w-3xl mx-auto"
+          className="text-center mb-10 md:mb-16 max-w-3xl mx-auto"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">{t.process.badge}</span>

@@ -80,8 +80,8 @@
   --transition-slow:  0.50s var(--ease-smooth);
 
   /* --- Espaciado --- */
-  --section-padding-y: clamp(6rem, 12vw, 10rem);
-  --section-padding-y-compact: clamp(2rem, 4vw, 3rem);
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+  --section-padding-y-compact: clamp(1.5rem, 3vw, 2.5rem);
   --container-px:      clamp(1.25rem, 4vw, 3rem);
   --max-width:         1280px;
   --radius-sm:         8px;
