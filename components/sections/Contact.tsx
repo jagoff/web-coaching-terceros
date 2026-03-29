@@ -101,7 +101,7 @@ export default function Contact() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center"
         >
-          <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="text-center max-w-2xl mx-auto mb-6">
             <p
               className="lead-text"
               style={{ color: "var(--text-secondary)" }}
