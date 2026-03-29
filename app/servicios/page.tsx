@@ -5,6 +5,7 @@ import Process from "@/components/sections/Process";
 import Results from "@/components/sections/Results";
 import CaseStudies from "@/components/sections/CaseStudies";
 import Pricing from "@/components/sections/Pricing";
+import Clients from "@/components/sections/Clients";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
@@ -118,6 +119,7 @@ export default function ServiciosPage() {
         <Results />
         <CaseStudies />
         <Pricing />
+        <Clients />
         <Contact />
         <Footer />
         <WhatsAppBooking />

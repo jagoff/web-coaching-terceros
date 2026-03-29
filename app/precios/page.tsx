@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import HeroServer from "@/components/sections/HeroServer";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
+import Clients from "@/components/sections/Clients";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
@@ -52,6 +53,7 @@ export default function PreciosPage() {
       <HeroServer pathname="/precios" />
       <Pricing />
       <FAQ />
+      <Clients />
       <Contact />
       <Footer />
       <WhatsAppBooking />

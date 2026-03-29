@@ -12,6 +12,7 @@ import {
   CaseStudies,
 } from "@/components/PageSections";
 import Testimonials from "@/components/sections/TestimonialsSimple";
+import Clients from "@/components/sections/Clients";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import { Metadata } from "next";
 
@@ -51,6 +52,7 @@ export default function EnglishPage() {
       <CaseStudies />
       <Pricing />
       <FAQ />
+      <Clients />
       <Contact />
       <Footer />
       <WhatsAppBooking />

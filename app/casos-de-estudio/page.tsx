@@ -1,5 +1,9 @@
 import { Metadata } from "next";
 import CaseStudies from "@/components/sections/CaseStudies";
+import Clients from "@/components/sections/Clients";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
+import WhatsAppBooking from "@/components/WhatsAppBooking";
 
 export const dynamic = 'force-static'
 
@@ -52,6 +56,10 @@ export default function CaseStudiesPage() {
   return (
     <main>
       <CaseStudies />
+      <Clients />
+      <Contact />
+      <Footer />
+      <WhatsAppBooking />
     </main>
   );
 }

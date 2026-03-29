@@ -3,6 +3,7 @@ import HeroServer from "@/components/sections/HeroServer";
 import Testimonials from "@/components/sections/TestimonialsSimple";
 import Results from "@/components/sections/Results";
 import CaseStudies from "@/components/sections/CaseStudies";
+import Clients from "@/components/sections/Clients";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
@@ -86,6 +87,7 @@ export default function TestimoniosPage() {
         <Testimonials />
         <Results />
         <CaseStudies />
+        <Clients />
         <Contact />
         <Footer />
         <WhatsAppBooking />

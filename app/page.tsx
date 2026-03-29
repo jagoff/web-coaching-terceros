@@ -12,6 +12,7 @@ import {
   CaseStudies,
 } from "@/components/PageSections";
 import Testimonials from "@/components/sections/TestimonialsSimple";
+import Clients from "@/components/sections/Clients";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { Metadata } from "next";
@@ -71,6 +72,7 @@ export default function Home() {
         <CaseStudies />
         <Pricing />
         <FAQ />
+        <Clients />
         <Contact />
         <Footer />
         <WhatsAppBooking />

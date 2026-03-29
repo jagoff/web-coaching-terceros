@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import HeroServer from "@/components/sections/HeroServer";
 import About from "@/components/sections/About";
 import Testimonials from "@/components/sections/TestimonialsSimple";
+import Clients from "@/components/sections/Clients";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
@@ -61,6 +62,7 @@ export default function SobreMiPage() {
         <HeroServer pathname="/sobre-mi" />
         <About />
         <Testimonials />
+        <Clients />
         <Contact />
         <Footer />
         <WhatsAppBooking />

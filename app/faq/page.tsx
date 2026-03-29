@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import HeroServer from "@/components/sections/HeroServer";
 import FAQ from "@/components/sections/FAQ";
+import Clients from "@/components/sections/Clients";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
@@ -69,6 +70,7 @@ export default function FAQPage() {
       <main>
         <HeroServer pathname="/faq" />
         <FAQ />
+        <Clients />
         <Contact />
         <Footer />
         <WhatsAppBooking />
