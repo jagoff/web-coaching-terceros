@@ -142,8 +142,15 @@ export default function CaseStudies() {
           </motion.div>
           <motion.h2
             variants={blurUp}
-            className="heading-xl mb-4"
-            style={{ fontFamily: "var(--font-heading)" }}
+            className="heading-xl mb-4 text-center px-4"
+            style={{ 
+              fontFamily: "var(--font-heading)",
+              fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+              lineHeight: 1.2,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis"
+            }}
           >
             {t.caseStudies.title}{" "}
             <span className="text-gradient">{t.caseStudies.titleHighlight}</span>

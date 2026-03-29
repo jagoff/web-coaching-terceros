@@ -50,7 +50,7 @@ export default function Results() {
       prefix: "",
       value: 9,
       suffix: "+",
-      display: "9+",
+      display: "+9",
       label: "Certificaciones activas",
       description: "Scrum, UX, Management 3.0, Security",
     },
@@ -83,7 +83,7 @@ export default function Results() {
       prefix: "",
       value: 9,
       suffix: "+",
-      display: "9+",
+      display: "+9",
       label: "Active certifications",
       description: "Scrum, UX, Management 3.0, Security",
     },
@@ -178,8 +178,15 @@ export default function Results() {
           </motion.div>
           <motion.h2
             variants={blurUp}
-            className="heading-xl"
-            style={{ fontFamily: "var(--font-heading)" }}
+            className="heading-xl text-center px-4"
+            style={{ 
+              fontFamily: "var(--font-heading)",
+              fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+              lineHeight: 1.2,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis"
+            }}
           >
             {language === 'es' ? 'Transformación en' : 'Transformation in'}{" "}
             <span className="text-gradient">{language === 'es' ? 'Números' : 'Numbers'}</span>
@@ -212,7 +219,17 @@ export default function Results() {
               />
 
               {/* Label */}
-              <h3 className="heading-sm mt-3 mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+              <h3 
+                className="heading-sm mt-3 mb-2 px-2" 
+                style={{ 
+                  fontFamily: "var(--font-heading)",
+                  fontSize: "clamp(0.8rem, 3.5vw, 1rem)",
+                  lineHeight: 1.2,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis"
+                }}
+              >
                 {stat.label}
               </h3>
 

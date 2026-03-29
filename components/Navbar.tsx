@@ -12,22 +12,8 @@ export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [currentWord, setCurrentWord] = useState(0);
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
-
-  // Rotating words for branding
-  const rotatingWordsES = ['ELEVA', 'ELEVATE', 'ELEVARSE', 'ELEVARNOS', 'ELEVAREMOS'];
-  const rotatingWordsEN = ['ELEVA', 'ELEVATE', 'ELEVATE', 'ELEVATE US', 'WE WILL ELEVATE'];
-  const rotatingWords = language === 'es' ? rotatingWordsES : rotatingWordsEN;
-
-  // Rotate words every 2 seconds
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
-  //   }, 2000);
-  //   return () => clearInterval(interval);
-  // }, [rotatingWords.length]);
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "/sobre-mi#titulo-about" },
@@ -236,7 +222,21 @@ export default function Navbar() {
               {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
                 id="navbar-cta-primary"
-                className="btn-primary animate-glow force-cta-style"
+                style={{
+                  background: '#FF6B35 !important',
+                  color: '#FFFFFF !important',
+                  border: '1.5px solid rgba(255, 255, 255, 0.5) !important',
+                  boxShadow: '0 0 16px rgba(255, 107, 53, 0.15) !important',
+                  borderRadius: '0.5rem !important',
+                  padding: '0.75rem 1.5rem !important',
+                  fontWeight: '600 !important',
+                  fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif !important',
+                  fontSize: '0.8rem !important',
+                  letterSpacing: '0.04em !important',
+                  textTransform: 'uppercase !important',
+                  cursor: 'pointer !important',
+                  transition: 'all 0.3s ease !important'
+                }}
                 onClick={() => handleLinkClick("/#contacto")}
               >
                 {t.nav.sesionGratuita}
@@ -386,7 +386,22 @@ export default function Navbar() {
             <div className="px-8 pb-6">
               <button
                 id="navbar-cta-mobile"
-                className="btn-primary animate-glow force-cta-style w-full"
+                className="w-full"
+                style={{
+                  background: '#FF6B35 !important',
+                  color: '#FFFFFF !important',
+                  border: '1.5px solid rgba(255, 255, 255, 0.5) !important',
+                  boxShadow: '0 0 16px rgba(255, 107, 53, 0.15) !important',
+                  borderRadius: '0.5rem !important',
+                  padding: '0.75rem 1.5rem !important',
+                  fontWeight: '600 !important',
+                  fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif !important',
+                  fontSize: '0.8rem !important',
+                  letterSpacing: '0.04em !important',
+                  textTransform: 'uppercase !important',
+                  cursor: 'pointer !important',
+                  transition: 'all 0.3s ease !important'
+                }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}

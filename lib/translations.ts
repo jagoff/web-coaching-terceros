@@ -343,7 +343,7 @@ export const translations: Record<Language, Translations> = {
       title1: 'Liderazgo ágil',
       title2: 'para',
       title3: 'organizaciones que escalan',
-      subtitle: 'Transformo equipos y culturas empresariales a través de coaching personalizado, metodologías ágiles y un enfoque human-centric.',
+      subtitle: 'De la tecnología a transformar organizaciones.',
       cta: 'Comenzar tu transformación',
       viewServices: 'Ver servicios',
       // Frases rotativas

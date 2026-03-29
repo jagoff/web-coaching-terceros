@@ -132,7 +132,7 @@ export default function About() {
             <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80">
               <CardItem translateZ="50" className="w-full h-full">
                 <img
-                  src="/img/tv.png"
+                  src="/images/ui/tv-icon.png"
                   alt="TV Icon"
                   className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
                   style={{ transform: 'scale(1.2)' }}
@@ -156,7 +156,7 @@ export default function About() {
               <CardBody className="relative group/card w-[32rem] h-[32rem]">
                 <CardItem translateZ="50" className="w-full h-full">
                   <img
-                    src="/img/tv.png"
+                    src="/images/ui/tv-icon.png"
                     alt="TV Icon"
                     className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
                     style={{ 

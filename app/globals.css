@@ -446,13 +446,13 @@ button.force-cta-style,
 #navbar-cta-mobile,
 #navbar-cta-primary.force-cta-style,
 #navbar-cta-mobile.force-cta-style {
-  background: var(--cta-primary) !important;
-  color: white !important;
+  background: #FF6B35 !important;
+  color: #FFFFFF !important;
   border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 0 16px var(--cta-glow) !important;
+  box-shadow: 0 0 16px rgba(255, 107, 53, 0.15) !important;
   padding: 0.75rem 1.5rem !important;
   font-size: 0.8rem !important;
-  border-radius: 9999px !important;
+  border-radius: 0.5rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
@@ -463,13 +463,13 @@ button.force-cta-style,
 #navbar-cta-mobile[class],
 #navbar-cta-primary[class*="btn"],
 #navbar-cta-mobile[class*="btn"] {
-  background: var(--cta-primary) !important;
-  color: white !important;
+  background: #FF6B35 !important;
+  color: #FFFFFF !important;
   border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 0 16px var(--cta-glow) !important;
+  box-shadow: 0 0 16px rgba(255, 107, 53, 0.15) !important;
   padding: 0.75rem 1.5rem !important;
   font-size: 0.8rem !important;
-  border-radius: 9999px !important;
+  border-radius: 0.5rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
@@ -479,8 +479,8 @@ button.force-cta-style,
 .btn-primary[style],
 .navbar .btn-primary[style],
 nav .btn-primary[style] {
-  background: var(--cta-primary) !important;
-  color: white !important;
+  background: #FF6B35 !important;
+  color: #FFFFFF !important;
 }
 
 /* Enhanced focus states for accessibility */
@@ -509,10 +509,10 @@ nav .btn-primary[style] {
 }
 
 .btn-primary:hover {
-  background: var(--cta-hover) !important;
+  background: #FF8555 !important;
   transform: scale(1.025) translateY(-1px);
   border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 20px var(--cta-glow-hover);
+  box-shadow: 0 0 20px #FFC499;
 }
 
 /* Force navbar CTA hover states */
@@ -524,10 +524,10 @@ button.force-cta-style:hover,
 .force-cta-style.btn-primary.animate-glow:hover,
 #navbar-cta-primary:hover,
 #navbar-cta-mobile:hover {
-  background: var(--cta-hover) !important;
+  background: #FF8555 !important;
   transform: scale(1.025) translateY(-1px) !important;
   border-color: rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 0 20px var(--cta-glow-hover) !important;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.25) !important;
 }
 
 .btn-primary:active {

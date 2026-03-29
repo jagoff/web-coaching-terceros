@@ -126,28 +126,6 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://linkedin.com/in/fernandorferrari"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
-                style={{
-                  background: "rgba(124,107,196,0.1)",
-                  color: "var(--gold-primary)",
-                  border: "1px solid var(--gold-border)"
-                }}
-                suppressHydrationWarning
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(124,107,196,0.2)";
-                  e.currentTarget.style.transform = "scale(1.1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(124,107,196,0.1)";
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
-              >
-                <Linkedin size={18} suppressHydrationWarning />
-              </a>
-              <a
                 href="https://instagram.com/jago_ff"
                 target="_blank"
                 rel="noopener noreferrer"

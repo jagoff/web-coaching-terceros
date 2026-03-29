@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:optimized": "npm run optimize:images && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -21,7 +22,8 @@
     "test:visual:update": "playwright test tests/visual.spec.ts --update-snapshots",
     "build:static": "next build",
     "build:export": "node scripts/static-export.js",
-    "verify:ssr": "node scripts/verify-ssr.js"
+    "verify:ssr": "node scripts/verify-ssr.js",
+    "optimize:images": "node scripts/optimize-images-sharp.js"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

@@ -17,7 +17,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           "@type": "Organization",
           "name": "ELEVA CONSULTORIA",
           "url": baseUrl,
-          "logo": `${baseUrl}/img/fav.png`,
+          "logo": `${baseUrl}/images/ui/logo.png`,
           "description": "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
           "founder": {
             "@type": "Person",
@@ -37,7 +37,6 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "addressRegion": "Buenos Aires"
           },
           "sameAs": [
-            "https://linkedin.com/in/fernandorferrari",
             "https://instagram.com/jago_ff"
           ],
           "services": [
@@ -86,9 +85,8 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           "jobTitle": "Coach Profesional",
           "description": "Coach profesional especializado en liderazgo tech y consultoría organizacional con más de 10 años de experiencia ayudando a líderes y startups a alcanzar su máximo potencial.",
           "url": `${baseUrl}/sobre-mi`,
-          "image": `${baseUrl}/img/fav.png`,
+          "image": `${baseUrl}/images/ui/profile.png`,
           "sameAs": [
-            "https://linkedin.com/in/fernandorferrari",
             "https://instagram.com/jago_ff"
           ],
           "worksFor": {
@@ -150,7 +148,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           "@type": "LocalBusiness",
           "name": "ELEVA CONSULTORIA",
           "url": baseUrl,
-          "logo": `${baseUrl}/img/fav.png`,
+          "logo": `${baseUrl}/images/ui/logo.png`,
           "description": "Coaching y consultoría organizacional para líderes tech y startups. Acompañamos a construir equipos que funcionen, procesos que escalen y culturas donde la gente quiera quedarse.",
           "founder": {
             "@type": "Person",
@@ -181,7 +179,6 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
           "priceRange": "$$",
           "sameAs": [
-            "https://linkedin.com/in/fernandorferrari",
             "https://instagram.com/jago_ff"
           ],
           "services": [
@@ -314,7 +311,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           "@type": "HowTo",
           "name": data.name || "Cómo construir equipos autónomos",
           "description": data.description || "Proceso step-by-step para desarrollar equipos tecnológicos autónomos y autosuficientes",
-          "image": `${baseUrl}/img/team-autonomy-process.png`,
+          "image": `${baseUrl}/images/about/team-autonomy-process.png`,
           "totalTime": "P12W",
           "estimatedCost": {
             "@type": "MonetaryAmount",

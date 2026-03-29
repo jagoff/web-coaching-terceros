@@ -7,6 +7,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Language } from "@/lib/translations";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
+import { getOptimizedImagePath } from "@/lib/image-optimization";
 
 // Dynamic imports for non-critical components
 const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWordsBackground"), {
@@ -123,7 +125,10 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
       id="inicio"
       ref={sectionRef}
       className="hero-bg relative flex min-h-screen flex-col items-center overflow-hidden"
-      style={{ paddingTop: "clamp(2.25rem, 6vh, 4.25rem)" }}
+      style={{ 
+        paddingTop: "clamp(2.25rem, 6vh, 4.25rem)",
+        position: "relative"
+      }}
       aria-label="Sección principal"
     >
       {/* Coaching Words Background Animation - Delayed Load */}
@@ -277,13 +282,16 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             />
             <div className="flex items-center justify-between gap-4 h-full">
               <div className="flex-shrink-0">
-                <Image 
-                  src="/img/this_is_fine.png" 
+                <OptimizedImage 
+                  src={getOptimizedImagePath("/images/ui/this-is-fine-meme.png").src}
+                  webpSrc={getOptimizedImagePath("/images/ui/this-is-fine-meme.png").webpSrc}
+                  fallbackSrc={getOptimizedImagePath("/images/ui/this-is-fine-meme.png").fallbackSrc}
                   alt="Meme de un perro sentado en una oficina en llamas con el lema 'This is fine', representando equipos tech abrumados por problemas de procesos y comunicación"
                   width={56}
                   height={56}
                   className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-100"
                   priority={true}
+                  lazy={false}
                 />
               </div>
               <div className="flex-1">
@@ -333,6 +341,27 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             {renderLanguage === 'es' 
               ? 'Te acompaño a construir equipos autónomos, procesos que escalen, y una cultura que retenga y desafie al talento.'
               : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'
+            }
+          </motion.p>
+
+          {/* Subtitle - Single line on mobile */}
+          <motion.p
+            variants={revealUp}
+            className="mb-8 sm:mb-12 text-center px-4"
+            style={{ 
+              fontFamily: "var(--font-heading)",
+              fontWeight: 600,
+              fontSize: "clamp(0.9rem, 4vw, 1.3rem)",
+              lineHeight: 1.2,
+              color: "var(--gold-primary)",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis"
+            }}
+          >
+            {renderLanguage === 'es' 
+              ? 'De la tecnología a transformar organizaciones.'
+              : 'From technology to transforming organizations.'
             }
           </motion.p>
 

@@ -4,29 +4,29 @@ import { useState } from "react";
 import { Instagram } from "lucide-react";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
+import OptimizedImage from "@/components/ui/OptimizedImage";
+import { getOptimizedImagePath } from "@/lib/image-optimization";
 
-// Array of 15 unique images without repetition
+// Array of 12 unique carousel images
 const baseImages = [
-  'img-01.png',
-  'img-02.png', 
-  'img-03.png',
-  'img-04.png',
-  'img-05.png',
-  'img-06.png',
-  'img-07.png',
-  'img-08.png',
-  'img-09.png',
-  'img-10.png',
-  'img-11.png',
-  'img-12.png',
-  'img-00.png',
-  'img_01.png',
-  'img_02.png'
+  'slide-01.png',
+  'slide-02.png', 
+  'slide-03.png',
+  'slide-04.png',
+  'slide-05.png',
+  'slide-06.png',
+  'slide-07.png',
+  'slide-08.png',
+  'slide-09.png',
+  'slide-10.png',
+  'slide-11.png',
+  'slide-12.png'
 ];
 
-const getImagePath = (imageName: string): string => {
-  // Use direct path without encoding for Next.js Image component
-  return `/img/${imageName}`;
+const getImagePaths = (imageName: string) => {
+  // Usar imágenes optimizadas con soporte WebP
+  const originalPath = `/images/carousel/${imageName}`;
+  return getOptimizedImagePath(originalPath, true);
 };
 
 export default function GesturesCarousel() {
@@ -34,6 +34,10 @@ export default function GesturesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = baseImages;
   const currentImage = images[currentIndex];
+  const currentImagePaths = getImagePaths(currentImage);
+  
+  // Pre-calcular todas las rutas optimizadas para desktop
+  const optimizedImagePaths = images.map(imageName => getImagePaths(imageName).src);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -56,14 +60,18 @@ export default function GesturesCarousel() {
           style={{ aspectRatio: "4/5" }}
         >
           {/* Native img with explicit dimensions for mobile static export */}
-          <img
+          <OptimizedImage
             key={currentImage}  // Force re-render when image changes
-            src={getImagePath(currentImage)}
+            src={currentImagePaths.src}
+            webpSrc={currentImagePaths.webpSrc}
+            fallbackSrc={currentImagePaths.fallbackSrc}
             alt={`Image ${currentIndex + 1}`}
             width={400}
             height={500}
             className="w-full h-full object-cover"
             style={{ aspectRatio: '4/5' }}
+            lazy={false} // No lazy loading para carousel visible
+            priority={currentIndex === 0} // Priorizar primera imagen
           />
           
           {/* Navigation buttons */}
@@ -112,7 +120,7 @@ export default function GesturesCarousel() {
       <div className="hidden sm:block">
         <div className="relative rounded-lg overflow-hidden w-full h-96 md:h-[500px] lg:h-[600px]">
           <ParallaxHeroImages 
-            images={images.map(imageName => getImagePath(imageName))} 
+            images={optimizedImagePaths} 
             className="w-full h-full"
           />
         </div>

@@ -47,7 +47,7 @@ const stats = [
     prefix: "",
     value: 9,
     suffix: "+",
-    display: "9+",
+    display: "+9",
     label: "Certificaciones activas",
     description: "Scrum, UX, Management 3.0, Security",
   },
@@ -111,8 +111,15 @@ export default function ResultsWithSuspense() {
 
             <motion.h2
               variants={fadeInUp}
-              className="heading-xl mb-6"
-              style={{ fontFamily: "var(--font-heading)" }}
+              className="heading-xl mb-6 text-center px-4"
+              style={{ 
+                fontFamily: "var(--font-heading)",
+                fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+                lineHeight: 1.2,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              }}
             >
               {language === 'es' ? (
                 <>
@@ -173,7 +180,19 @@ export default function ResultsWithSuspense() {
                 </p>
 
                 {/* Label */}
-                <p className="stat-label mb-2">{stat.label}</p>
+                <p 
+                  className="stat-label mb-2 px-2"
+                  style={{ 
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "clamp(0.8rem, 3.5vw, 1rem)",
+                    lineHeight: 1.2,
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis"
+                  }}
+                >
+                  {stat.label}
+                </p>
 
                 {/* Description */}
                 <p

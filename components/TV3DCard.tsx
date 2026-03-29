@@ -11,7 +11,7 @@ export default function TV3DCard() {
         <CardBody className="relative group/card w-full max-w-md sm:w-[30rem] h-auto p-4">
           <CardItem translateZ="50" className="w-full">
             <Image
-              src="/img/tv.png"
+              src="/images/ui/tv-icon.png"
               alt="TV"
               width={1000}
               height={1000}

@@ -1,0 +1,10 @@
+{
+  "name": "optimize-images",
+  "version": "1.0.0",
+  "description": "Optimize images to modern formats",
+  "scripts": {
+    "optimize": "node scripts/optimize-images-sharp.js",
+    "build": "npm run optimize && npm run build:next",
+    "build:next": "next build"
+  }
+}

@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 
 // Import dynamic components with loading states and priority
 const DynamicNavbar = dynamic(() => import("@/components/Navbar"), { 
-  ssr: false,
   loading: () => <div className="h-16 bg-dark-base/50 animate-pulse" />
 });
 
@@ -47,7 +46,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {isLoaded && <CursorGlow />}
       
       <DynamicNavbar />
-      {isLoaded && <ThemeToggle />}
+      {/* {isLoaded && <ThemeToggle />} */}
       {isLoaded && <WhatsAppButton />}
       {children}
     </>

@@ -50,7 +50,7 @@ export default function CinematicTestimonials() {
       {/* Background with parallax effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-blue-900/30">
         <motion.div
-          className="absolute inset-0 bg-[url('/img/pattern.svg')] opacity-10"
+          className="absolute inset-0 bg-[url('/images/ui/pattern.svg')] opacity-10"
           animate={{ x: [0, 100, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
