@@ -121,8 +121,8 @@ export default function About() {
       className="section section-surface section-gold-border-top"
       ref={ref}
       style={{ 
-        paddingTop: "clamp(0.5rem, 1.5vw, 1.5rem)",
-        paddingBottom: "clamp(1.5rem, 3vw, 2rem)"
+        paddingTop: "clamp(0.25rem, 1vw, 1rem)",
+        paddingBottom: "clamp(1rem, 2.5vw, 1.5rem)"
       }}
     >
       <div className="container">

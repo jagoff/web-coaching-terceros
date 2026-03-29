@@ -122,7 +122,7 @@ export default function TestimonialsSimple() {
           variants={headerStagger}
           initial="hidden"
           animate="visible"
-          className="text-center mb-10 md:mb-16 max-w-3xl mx-auto"
+          className="text-center mb-8 md:mb-12 max-w-3xl mx-auto"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">{language === 'es' ? 'Testimonios' : 'Testimonials'}</span>
