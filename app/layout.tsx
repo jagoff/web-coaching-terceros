@@ -114,18 +114,6 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning={true}>
       <head>
-        {/* Google Tag Manager - Client Side Only */}
-        <script dangerouslySetInnerHTML={{
-          __html: ``
-        }} />
-        {/* End Google Tag Manager */}
-        
-        {/* Microsoft Clarity - Client Side Only */}
-        <script dangerouslySetInnerHTML={{
-          __html: ``
-        }} />
-        {/* End Microsoft Clarity */}
-        
         {/* Prevent pull-to-refresh and touch behaviors */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -142,15 +130,6 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
         suppressHydrationWarning
       >
-        {/* Google Tag Manager (noscript) */}
-        <noscript dangerouslySetInnerHTML={{
-          __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMR8L48T"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`
-        }} />
-        {/* End Google Tag Manager (noscript) */}
-        
-        <JsonLdStructuredData type="Organization" data={{}} pathname="/" />
-        
         <LanguageProvider>
           <ThemeProvider>
             <ClientLayout>
