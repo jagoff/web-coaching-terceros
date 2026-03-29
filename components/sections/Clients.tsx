@@ -98,14 +98,14 @@ export default function Clients() {
   const duplicatedLogos = [...clientLogos, ...clientLogos];
 
   return (
-    <section className="section py-12 md:py-16 bg-gradient-to-b from-transparent to-[rgba(124,107,196,0.03)]">
+    <section className="section py-8 md:py-12 bg-gradient-to-b from-transparent to-[rgba(124,107,196,0.03)]">
       <div className="container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-6 md:mb-8"
         >
           <h2 className="heading-lg mb-4" style={{ fontFamily: "var(--font-heading)" }}>
             {language === 'es' ? 'Mis Clientes' : 'My Clients'}
