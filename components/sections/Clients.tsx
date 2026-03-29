@@ -6,16 +6,76 @@ import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const clientLogos = [
-  { id: 1, name: "Google" },
-  { id: 2, name: "Microsoft" },
-  { id: 3, name: "Amazon" },
-  { id: 4, name: "Meta" },
-  { id: 5, name: "Apple" },
-  { id: 6, name: "Netflix" },
-  { id: 7, name: "Spotify" },
-  { id: 8, name: "LinkedIn" },
-  { id: 9, name: "Tesla" },
-  { id: 10, name: "Salesforce" }
+  {
+    id: 1,
+    name: "Google",
+    logo: "/logos/google.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 2,
+    name: "Microsoft",
+    logo: "/logos/microsoft.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 3,
+    name: "Amazon",
+    logo: "/logos/amazon.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 4,
+    name: "Meta",
+    logo: "/logos/meta.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 5,
+    name: "Apple",
+    logo: "/logos/apple.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 6,
+    name: "Netflix",
+    logo: "/logos/netflix.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 7,
+    name: "Spotify",
+    logo: "/logos/spotify.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 8,
+    name: "LinkedIn",
+    logo: "/logos/linkedin.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 9,
+    name: "Tesla",
+    logo: "/logos/tesla.svg",
+    width: 120,
+    height: 40
+  },
+  {
+    id: 10,
+    name: "Salesforce",
+    logo: "/logos/salesforce.svg",
+    width: 120,
+    height: 40
+  }
 ];
 
 export default function Clients() {
@@ -87,12 +147,18 @@ export default function Clients() {
               <motion.div
                 key={`${client.id}-${index}`}
                 className="flex-shrink-0 flex items-center justify-center px-6"
+                style={{
+                  width: `${client.width}px`,
+                  height: `${client.height}px`
+                }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <span className="text-2xl font-bold text-text-secondary opacity-60 hover:opacity-100 transition-all duration-300">
-                  {client.name}
-                </span>
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                />
               </motion.div>
             ))}
           </motion.div>
