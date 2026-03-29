@@ -94,16 +94,23 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
     setRenderLanguage(language); // Sync with context language after mount
     // Reduced particle count for better performance
     const count = window.innerWidth < 768 ? 6 : 15; // Reduced from 12/35
+    
+    // Deterministic random function to avoid hydration mismatches
+    const deterministicRandom = (seed: number) => {
+      const x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    };
+    
     setParticles(
       Array.from({ length: count }, (_, i) => ({
         id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 2 + 1, // Smaller particles
-        delay: Math.random() * 4,
-        duration: Math.random() * 3 + 4, // Shorter duration
-        opacity: 0.1 + Math.random() * 0.3, // Lower opacity
-        drift: (Math.random() - 0.5) * 20, // Less drift
+        x: deterministicRandom(i) * 100,
+        y: deterministicRandom(i + 1000) * 100,
+        size: deterministicRandom(i + 2000) * 2 + 1, // Smaller particles
+        delay: deterministicRandom(i + 3000) * 4,
+        duration: deterministicRandom(i + 4000) * 3 + 4, // Shorter duration
+        opacity: 0.1 + deterministicRandom(i + 5000) * 0.3, // Lower opacity
+        drift: (deterministicRandom(i + 6000) - 0.5) * 20, // Less drift
       }))
     );
   }, []);
@@ -190,7 +197,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 boxShadow: p.size > 2.5 ? `0 0 ${p.size * 3}px rgba(124,107,196,0.3)` : "none",
               }}
               animate={{
-                y: [0, -30 - Math.random() * 20, 0],
+                y: [0, -30 - (p.id % 5) * 4, 0], // Deterministic variation based on particle ID
                 x: [0, p.drift, 0],
                 opacity: [p.opacity * 0.4, p.opacity, p.opacity * 0.4],
                 scale: [1, 1.2, 1],

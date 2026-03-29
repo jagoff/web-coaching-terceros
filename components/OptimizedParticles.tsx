@@ -29,17 +29,23 @@ export default function OptimizedParticles({
     // Detect mobile
     setIsMobile(window.innerWidth < 768);
     
-    // Generate particles
+    // Generate particles with deterministic random
     const count = isMobile ? 5 : particleCount;
     const animations = ['particle-float-up', 'particle-float-diagonal', 'particle-pulse'];
     
+    // Deterministic random function to avoid hydration mismatches
+    const deterministicRandom = (seed: number) => {
+      const x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    };
+    
     const newParticles: Particle[] = Array.from({ length: count }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      animation: animations[Math.floor(Math.random() * animations.length)],
-      delay: Math.random() * 5,
-      duration: 15 + Math.random() * 10,
+      x: deterministicRandom(i) * 100,
+      y: deterministicRandom(i + 100) * 100,
+      animation: animations[Math.floor(deterministicRandom(i + 200) * animations.length)],
+      delay: deterministicRandom(i + 300) * 5,
+      duration: 15 + deterministicRandom(i + 400) * 10,
     }));
 
     setParticles(newParticles);

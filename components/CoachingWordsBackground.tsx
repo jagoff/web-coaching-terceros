@@ -29,21 +29,27 @@ export default function CoachingWordsBackground() {
   useEffect(() => {
     setMounted(true);
     
-    // Generar palabras flotantes con posiciones aleatorias
+    // Generar palabras flotantes con posiciones aleatorias deterministas
     const generateWords = () => {
       const newWords: FloatingWord[] = [];
       const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 20;
       
+      // Deterministic random function to avoid hydration mismatches
+      const deterministicRandom = (seed: number) => {
+        const x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+      };
+      
       for (let i = 0; i < wordCount; i++) {
         newWords.push({
           id: i,
-          text: coachingWords[Math.floor(Math.random() * coachingWords.length)],
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          fontSize: Math.random() * 1.5 + 0.8, // 0.8rem a 2.3rem
-          opacity: Math.random() * 0.15 + 0.05, // 0.05 a 0.20
-          duration: Math.random() * 20 + 15, // 15s a 35s
-          delay: Math.random() * 10, // 0s a 10s
+          text: coachingWords[Math.floor(deterministicRandom(i) * coachingWords.length)],
+          x: deterministicRandom(i + 100) * 100,
+          y: deterministicRandom(i + 200) * 100,
+          fontSize: deterministicRandom(i + 300) * 1.5 + 0.8, // 0.8rem a 2.3rem
+          opacity: deterministicRandom(i + 400) * 0.15 + 0.05, // 0.05 a 0.20
+          duration: deterministicRandom(i + 500) * 20 + 15, // 15s a 35s
+          delay: deterministicRandom(i + 600) * 10, // 0s a 10s
         });
       }
       return newWords;
