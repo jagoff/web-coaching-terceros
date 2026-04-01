@@ -24,76 +24,76 @@ export function getOptimizedImagePath(originalPath: string, preferWebP = true): 
   // Mapeo manual de imágenes optimizadas (basado en el manifiesto generado)
   const optimizedMap: Record<string, { webp: string; original: string }> = {
     "/images/carousel/slide-01.png": {
-      webp: "/images-optimized/carousel/slide-01.webp",
-      original: "/images-optimized/carousel/slide-01.png"
+      webp: "/images/carousel/slide-01.webp",
+      original: "/images/carousel/slide-01.png"
     },
     "/images/carousel/slide-02.png": {
-      webp: "/images-optimized/carousel/slide-02.webp", 
-      original: "/images-optimized/carousel/slide-02.png"
+      webp: "/images/carousel/slide-02.webp", 
+      original: "/images/carousel/slide-02.png"
     },
     "/images/carousel/slide-03.png": {
-      webp: "/images-optimized/carousel/slide-03.webp",
-      original: "/images-optimized/carousel/slide-03.png"
+      webp: "/images/carousel/slide-03.webp",
+      original: "/images/carousel/slide-03.png"
     },
     "/images/carousel/slide-04.png": {
-      webp: "/images-optimized/carousel/slide-04.webp",
-      original: "/images-optimized/carousel/slide-04.png"
+      webp: "/images/carousel/slide-04.webp",
+      original: "/images/carousel/slide-04.png"
     },
     "/images/carousel/slide-05.png": {
-      webp: "/images-optimized/carousel/slide-05.webp",
-      original: "/images-optimized/carousel/slide-05.png"
+      webp: "/images/carousel/slide-05.webp",
+      original: "/images/carousel/slide-05.png"
     },
     "/images/carousel/slide-06.png": {
-      webp: "/images-optimized/carousel/slide-06.webp",
-      original: "/images-optimized/carousel/slide-06.png"
+      webp: "/images/carousel/slide-06.webp",
+      original: "/images/carousel/slide-06.png"
     },
     "/images/carousel/slide-07.png": {
-      webp: "/images-optimized/carousel/slide-07.webp",
-      original: "/images-optimized/carousel/slide-07.png"
+      webp: "/images/carousel/slide-07.webp",
+      original: "/images/carousel/slide-07.png"
     },
     "/images/carousel/slide-08.png": {
-      webp: "/images-optimized/carousel/slide-08.webp",
-      original: "/images-optimized/carousel/slide-08.png"
+      webp: "/images/carousel/slide-08.webp",
+      original: "/images/carousel/slide-08.png"
     },
     "/images/carousel/slide-09.png": {
-      webp: "/images-optimized/carousel/slide-09.webp",
-      original: "/images-optimized/carousel/slide-09.png"
+      webp: "/images/carousel/slide-09.webp",
+      original: "/images/carousel/slide-09.png"
     },
     "/images/carousel/slide-10.png": {
-      webp: "/images-optimized/carousel/slide-10.webp",
-      original: "/images-optimized/carousel/slide-10.png"
+      webp: "/images/carousel/slide-10.webp",
+      original: "/images/carousel/slide-10.png"
     },
     "/images/carousel/slide-11.png": {
-      webp: "/images-optimized/carousel/slide-11.webp",
-      original: "/images-optimized/carousel/slide-11.png"
+      webp: "/images/carousel/slide-11.webp",
+      original: "/images/carousel/slide-11.png"
     },
     "/images/carousel/slide-12.png": {
-      webp: "/images-optimized/carousel/slide-12.webp",
-      original: "/images-optimized/carousel/slide-12.png"
+      webp: "/images/carousel/slide-12.webp",
+      original: "/images/carousel/slide-12.png"
     },
     "/images/ui/tv-icon.png": {
-      webp: "/images-optimized/ui/tv-icon.webp",
-      original: "/images-optimized/ui/tv-icon.png"
+      webp: "/images/ui/tv-icon.webp",
+      original: "/images/ui/tv-icon.png"
     },
     "/images/ui/this-is-fine-meme.png": {
-      webp: "/images-optimized/ui/this-is-fine-meme.webp",
-      original: "/images-optimized/ui/this-is-fine-meme.png"
+      webp: "/images/ui/this-is-fine-meme.webp",
+      original: "/images/ui/this-is-fine-meme.png"
     },
     "/images/ui/logo.png": {
-      webp: "/images-optimized/ui/logo.webp",
-      original: "/images-optimized/ui/logo.png"
+      webp: "/images/ui/logo.webp",
+      original: "/images/ui/logo.png"
     },
     "/images/ui/profile.png": {
-      webp: "/images-optimized/ui/profile.webp",
-      original: "/images-optimized/ui/profile.png"
+      webp: "/images/ui/profile.webp",
+      original: "/images/ui/profile.png"
     },
     "/images/about/team-autonomy-process.png": {
-      webp: "/images-optimized/about/team-autonomy-process.webp",
-      original: "/images-optimized/about/team-autonomy-process.png"
+      webp: "/images/about/team-autonomy-process.webp",
+      original: "/images/about/team-autonomy-process.png"
     },
     "/images/opengraph.png": {
-      webp: "/images-optimized/opengraph.webp",
-      original: "/images-optimized/opengraph.png"
+      webp: "/images/opengraph.webp",
+      original: "/images/opengraph.png"
     }
   };
 
