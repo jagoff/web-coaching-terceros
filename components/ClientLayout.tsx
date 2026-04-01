@@ -28,6 +28,11 @@ const ThemeToggle = dynamic(() => import("@/components/ui/ThemeToggle"), {
   loading: () => null
 });
 
+const ScrollProgressIndicator = dynamic(() => import("@/components/ScrollProgressIndicator"), { 
+  ssr: false,
+  loading: () => null
+});
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,6 +53,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <DynamicNavbar />
       {/* {isLoaded && <ThemeToggle />} */}
       {isLoaded && <WhatsAppButton />}
+      {isLoaded && <ScrollProgressIndicator />}
       {children}
     </>
   );
