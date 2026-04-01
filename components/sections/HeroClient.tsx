@@ -93,7 +93,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
     setMounted(true);
     setRenderLanguage(language); // Sync with context language after mount
     // Reduced particle count for better performance
-    const count = window.innerWidth < 768 ? 3 : 10; // Optimized for mobile performance
+    const count = window.innerWidth < 768 ? 2 : 6; // Further optimized: 10→6, 3→2
     
     // Deterministic random function to avoid hydration mismatches
     const deterministicRandom = (seed: number) => {

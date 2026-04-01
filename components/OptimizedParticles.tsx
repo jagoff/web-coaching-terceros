@@ -18,7 +18,7 @@ interface OptimizedParticlesProps {
 }
 
 export default function OptimizedParticles({ 
-  particleCount = 15, 
+  particleCount = 8, // Reduced from 15 to 8
   className = "" 
 }: OptimizedParticlesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ export default function OptimizedParticles({
     setIsMobile(window.innerWidth < 768);
     
     // Generate particles with deterministic random
-    const count = isMobile ? 5 : particleCount;
+    const count = isMobile ? 3 : particleCount; // Reduced from 5 to 3
     const animations = ['particle-float-up', 'particle-float-diagonal', 'particle-pulse'];
     
     // Deterministic random function to avoid hydration mismatches

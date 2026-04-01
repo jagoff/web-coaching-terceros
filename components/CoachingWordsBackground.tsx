@@ -32,7 +32,7 @@ export default function CoachingWordsBackground() {
     // Generar palabras flotantes con posiciones aleatorias deterministas
     const generateWords = () => {
       const newWords: FloatingWord[] = [];
-      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 20;
+      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 4 : 8; // Reduced from 12/20 to 4/8
       
       // Deterministic random function to avoid hydration mismatches
       const deterministicRandom = (seed: number) => {
@@ -95,18 +95,9 @@ export default function CoachingWordsBackground() {
               y: 20
             }}
             animate={{
-              opacity: [0, word.opacity, word.opacity * 0.3, word.opacity, word.opacity * 0.5, 0],
-              scale: [0.8, 1, 1.1, 1, 0.9, 0.8],
-              filter: [
-                "blur(8px)", 
-                `blur(${0.5 + word.opacity * 2}px)`, 
-                "blur(1px)",
-                `blur(${0.5 + word.opacity * 2}px)`,
-                "blur(2px)",
-                "blur(8px)"
-              ],
-              y: [20, 0, -10, 5, -5, 20],
-              x: [0, Math.sin(word.id) * 10, Math.cos(word.id) * 15, Math.sin(word.id) * 8, 0],
+              opacity: [0, word.opacity, 0],
+              scale: [0.9, 1, 0.9],
+              y: [10, 0, 10],
             }}
             exit={{ 
               opacity: 0, 
@@ -118,9 +109,7 @@ export default function CoachingWordsBackground() {
               duration: word.duration,
               delay: word.delay,
               repeat: Infinity,
-              repeatType: "loop",
-              ease: [0.22, 1, 0.36, 1],
-              times: [0, 0.1, 0.3, 0.5, 0.7, 1],
+              ease: "easeInOut",
             }}
           >
             {word.text}
