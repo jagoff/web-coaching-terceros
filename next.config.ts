@@ -56,6 +56,49 @@ const nextConfig: NextConfig = {
     maxInactiveAge: 60 * 60 * 1000,
     pagesBufferLength: 2,
   },
+  // Webpack optimization for smaller chunks
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // Split framer-motion into separate chunk
+            framerMotion: {
+              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+              name: 'framer-motion',
+              priority: 40,
+              reuseExistingChunk: true,
+            },
+            // Split lucide-react into separate chunk
+            lucide: {
+              test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+              name: 'lucide-icons',
+              priority: 35,
+              reuseExistingChunk: true,
+            },
+            // Split react/react-dom
+            react: {
+              test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
+              name: 'react-vendor',
+              priority: 30,
+              reuseExistingChunk: true,
+            },
+            // Common chunks
+            commons: {
+              minChunks: 2,
+              priority: 20,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);

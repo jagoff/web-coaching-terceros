@@ -1,11 +1,22 @@
 import dynamicImport from 'next/dynamic';
 import HeroServer from "@/components/sections/HeroServer";
-import {
-  About,
-  Services,
-  Process,
-  Footer,
-} from "@/components/PageSections";
+
+// Split into individual imports for better code splitting
+const About = dynamicImport(() => import("@/components/sections/About"), {
+  loading: () => <LoadingSkeleton />,
+  ssr: false,
+});
+const Services = dynamicImport(() => import("@/components/sections/Services"), {
+  loading: () => <LoadingSkeleton />,
+  ssr: false,
+});
+const Process = dynamicImport(() => import("@/components/sections/Process"), {
+  loading: () => <LoadingSkeleton />,
+  ssr: false,
+});
+const Footer = dynamicImport(() => import("@/components/sections/Footer"), {
+  ssr: true,
+});
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { Metadata } from "next";
 
