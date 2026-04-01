@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Play, Youtube } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
+import YouTubeThumbnail from "@/components/YouTubeThumbnail";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
@@ -101,21 +101,9 @@ export default function VideoSection({
           animate={isInView ? "visible" : "hidden"}
         >
           <motion.div variants={itemVariants}>
-            <YouTubeEmbed
+            <YouTubeThumbnail
               videoId={videoId}
               title={title || defaultTitle}
-              className="max-w-5xl mx-auto"
-              autoplay={false}
-              muted={false}
-              controls={true}
-              rel={false}
-              modestBranding={true}
-              showInfo={false}
-              allowFullscreen={false}
-              allowKeyboard={false}
-              showRelated={false}
-              enableCC={false}
-              enableAnnotations={false}
             />
           </motion.div>
         </motion.div>

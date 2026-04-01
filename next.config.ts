@@ -34,13 +34,6 @@ const nextConfig: NextConfig = {
     webpackBuildWorker: true,
     serverMinification: true,
   },
-  // Modularize imports for tree-shaking
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-      skipDefaultConversion: true,
-    },
-  },
   serverExternalPackages: ['sharp'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
