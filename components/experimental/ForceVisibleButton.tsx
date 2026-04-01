@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 export default function ForceVisibleButton() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    console.log('ForceVisibleButton mounted');
+    debugLog('ForceVisibleButton', 'ForceVisibleButton mounted');
   }, []);
 
   if (!mounted) return null;
@@ -38,7 +39,7 @@ export default function ForceVisibleButton() {
         WebkitMask: 'none !important' as any
       }}
       onClick={() => {
-        console.log('FORCE VISIBLE BUTTON CLICKED!');
+        debugLog('ForceVisibleButton', 'FORCE VISIBLE BUTTON CLICKED!');
         alert('FORCE VISIBLE BUTTON WORKS!');
       }}
     >

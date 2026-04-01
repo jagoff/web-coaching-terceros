@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ArrowRight, Loader2, AlertCircle, User, Mail, MessageSquare } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 const slideLeft = {
   hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
@@ -122,7 +123,7 @@ export default function ContactFormspree() {
     } catch (error) {
       setStatus("error");
       setApiError("Error al enviar el mensaje. Por favor intenta más tarde.");
-      console.error("Error:", error);
+      errorLog('ContactFormspree', 'Error:', error);
     }
   };
 

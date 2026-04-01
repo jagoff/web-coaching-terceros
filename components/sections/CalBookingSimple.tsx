@@ -5,6 +5,7 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useScroll, useTransform } from "framer-motion";
 import { Calendar, CheckCircle2 } from "lucide-react";
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 const slideLeft: Variants = {
   hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
@@ -51,7 +52,7 @@ export default function CalBookingSimple() {
   const eventTypeId = process.env.NEXT_PUBLIC_CALCOM_EVENT_TYPE_ID || "30min";
   const calComUrl = `https://cal.com/${CalComUsername}/${eventTypeId}`;
 
-  console.log('Cal.com URL:', calComUrl);
+  debugLog('CalBookingSimple', 'Cal.com URL:', calComUrl);
 
   return (
     <section

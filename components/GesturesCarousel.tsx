@@ -129,9 +129,9 @@ export default function GesturesCarousel() {
 
         {/* Dots - Mejorados para táctil */}
         <div className="flex justify-center mt-4 gap-2 flex-wrap px-4">
-          {images.map((_, index) => (
+          {images.map((image, index) => (
             <button
-              key={index}
+              key={`carousel-dot-${image}-${index}`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Ir a imagen ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-all ${

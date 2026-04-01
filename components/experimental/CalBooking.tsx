@@ -6,6 +6,15 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import CalcomWidget from "@calcom/embed-react";
 import { useScroll, useTransform } from "framer-motion";
+import { debugLog, errorLog } from "@/lib/debug-logger";
+import {
+  CheckCircle2,
+  Calendar,
+  ArrowRight,
+  Clock,
+  Users,
+  Star,
+} from "lucide-react";
 
 // Componente de fallback con iframe directo
 const CalcomIframe = ({ username, eventType }: { username: string; eventType: string }) => {
@@ -61,15 +70,6 @@ const promiseItem: Variants = {
   },
 };
 
-import {
-  CheckCircle2,
-  Calendar,
-  ArrowRight,
-  Clock,
-  Users,
-  Star,
-} from "lucide-react";
-
 export default function CalBooking() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
@@ -81,11 +81,11 @@ export default function CalBooking() {
   const eventTypeId = process.env.NEXT_PUBLIC_CALCOM_EVENT_TYPE_ID || "1";
 
   // Debug: Verificar que las variables se están leyendo correctamente
-  console.log('Cal.com config:', { CalComUsername, eventTypeId });
+  debugLog('CalBooking', 'Cal.com config:', { CalComUsername, eventTypeId });
 
   // URL completa para debugging
   const calComUrl = `https://cal.com/${CalComUsername}/${eventTypeId}`;
-  console.log('Cal.com URL:', calComUrl);
+  debugLog('CalBooking', 'Cal.com URL:', calComUrl);
 
   return (
     <section

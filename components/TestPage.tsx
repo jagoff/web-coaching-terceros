@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 export default function TestPage() {
   const [info, setInfo] = useState({
@@ -19,7 +20,7 @@ export default function TestPage() {
         isMobile: width <= 1024,
         time: new Date().toLocaleTimeString()
       });
-      console.log('TestPage - Updated:', { width, isMobile: width <= 1024 });
+      debugLog('TestPage', 'TestPage - Updated:', { width, isMobile: width <= 1024 });
     };
 
     update();

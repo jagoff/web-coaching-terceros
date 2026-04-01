@@ -3,6 +3,7 @@
 import React, { Component, type ErrorInfo, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 interface Props {
   children: ReactNode;
@@ -31,7 +32,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    errorLog('ErrorBoundary', 'ErrorBoundary caught an error', { error: error.message, errorInfo });
     
     // Call custom error handler if provided
     if (this.props.onError) {
@@ -157,7 +158,7 @@ export class ErrorBoundary extends Component<Props, State> {
 // Hook for functional components
 export function useErrorHandler() {
   return (error: Error, errorInfo?: ErrorInfo) => {
-    console.error('Error caught by error handler:', error, errorInfo);
+    errorLog('ErrorBoundary', 'Error caught by error handler', { error: error.message, errorInfo });
     
     // In production, send to error reporting service
     if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {

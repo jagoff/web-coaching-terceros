@@ -246,9 +246,9 @@ export default function TestimonialsSimple() {
 
               {/* Dots Indicator */}
               <div className="flex gap-2">
-                {testimonials.map((_, index) => (
+                {testimonials.map((testimonial, index) => (
                   <button
-                    key={index}
+                    key={`testimonial-dot-${testimonial.name}-${index}`}
                     onClick={() => setCurrentIndex(index)}
                     className={`w-2 h-2 rounded-full transition-all ${
                       index === currentIndex

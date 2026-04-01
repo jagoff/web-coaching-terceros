@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ArrowRight, Loader2, AlertCircle, User, Mail, MessageSquare } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 const slideLeft = {
   hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
@@ -101,7 +102,7 @@ export default function ContactEmailJS() {
       // Simulación del envío (reemplazar con EmailJS real)
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      console.log("Email enviado:", form);
+      debugLog('ContactEmailJS', 'Email enviado:', form);
       setStatus("success");
       setForm({ nombre: "", email: "", mensaje: "" });
       setTouched({});
@@ -110,7 +111,7 @@ export default function ContactEmailJS() {
     } catch (error) {
       setStatus("error");
       setApiError("Error al enviar el mensaje. Por favor intenta más tarde.");
-      console.error("Error:", error);
+      errorLog('ContactEmailJS', 'Error:', error);
     }
   };
 

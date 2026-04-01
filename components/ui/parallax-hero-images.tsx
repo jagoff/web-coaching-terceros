@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { debugLog, errorLog } from "@/lib/debug-logger";
 
 interface ParallaxHeroImagesProps {
   images: string[];
@@ -89,7 +90,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
                 loading={index < 12 ? "eager" : "lazy"}
                 onError={(e) => {
                   if (process.env.NODE_ENV === 'development') {
-                    console.error(`Image failed to load: ${src}`);
+                    errorLog('parallax-hero-images', 'Image failed to load: ${src}');
                   }
                   const target = e.target as HTMLImageElement;
                   // Show a colored placeholder instead of hiding
