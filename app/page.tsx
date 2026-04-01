@@ -20,30 +20,37 @@ const LoadingSkeleton = ({ height = "400px" }: { height?: string }) => (
   </div>
 );
 
-// Lazy load componentes below-the-fold para mejor performance
+// Aggressive code splitting - defer ALL below-fold components
 const Testimonials = dynamicImport(() => import("@/components/sections/TestimonialsSimple"), {
   loading: () => <LoadingSkeleton />,
+  ssr: false, // Client-only for better splitting
 });
 const Results = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Results })), {
   loading: () => <LoadingSkeleton />,
+  ssr: false,
 });
 const CaseStudies = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.CaseStudies })), {
   loading: () => <LoadingSkeleton />,
+  ssr: false,
 });
 const Pricing = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Pricing })), {
   loading: () => <LoadingSkeleton />,
+  ssr: false,
 });
 const FAQ = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.FAQ })), {
   loading: () => <LoadingSkeleton />,
+  ssr: false,
 });
 const Clients = dynamicImport(() => import("@/components/sections/Clients"), {
   loading: () => <LoadingSkeleton height="300px" />,
+  ssr: false,
 });
 const Contact = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Contact })), {
   loading: () => <LoadingSkeleton height="500px" />,
+  ssr: false,
 });
 const WhatsAppBooking = dynamicImport(() => import("@/components/WhatsAppBooking"), {
-  ssr: true,
+  ssr: false,
 });
 
 export const dynamic = 'force-static'
