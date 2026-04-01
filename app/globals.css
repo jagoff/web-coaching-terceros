@@ -4,6 +4,7 @@
    Fuentes: Playfair Display (headings) + Inter (body)
    ============================================================ */
 
+@import "../styles/fluid-typography.css";
 @import "./globals-theme.css";
 @import "../styles/mobile-optimization.css";
 @import "../styles/particles.css";
