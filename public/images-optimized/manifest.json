@@ -1,0 +1,115 @@
+{
+  "generated": "2026-03-28T04:43:30.976Z",
+  "format": "webp",
+  "quality": 80,
+  "images": [
+    {
+      "original": "about/team-autonomy-process",
+      "webp": "about/team-autonomy-process.webp",
+      "size": 16174,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-01",
+      "webp": "carousel/slide-01.webp",
+      "size": 16174,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-02",
+      "webp": "carousel/slide-02.webp",
+      "size": 26976,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-03",
+      "webp": "carousel/slide-03.webp",
+      "size": 15874,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-04",
+      "webp": "carousel/slide-04.webp",
+      "size": 24406,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-05",
+      "webp": "carousel/slide-05.webp",
+      "size": 59068,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-06",
+      "webp": "carousel/slide-06.webp",
+      "size": 32800,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-07",
+      "webp": "carousel/slide-07.webp",
+      "size": 24256,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-08",
+      "webp": "carousel/slide-08.webp",
+      "size": 22618,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-09",
+      "webp": "carousel/slide-09.webp",
+      "size": 24820,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-10",
+      "webp": "carousel/slide-10.webp",
+      "size": 20626,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-11",
+      "webp": "carousel/slide-11.webp",
+      "size": 42458,
+      "optimized": true
+    },
+    {
+      "original": "carousel/slide-12",
+      "webp": "carousel/slide-12.webp",
+      "size": 11448,
+      "optimized": true
+    },
+    {
+      "original": "opengraph",
+      "webp": "opengraph.webp",
+      "size": 2020,
+      "optimized": true
+    },
+    {
+      "original": "ui/logo",
+      "webp": "ui/logo.webp",
+      "size": 16174,
+      "optimized": true
+    },
+    {
+      "original": "ui/profile",
+      "webp": "ui/profile.webp",
+      "size": 16174,
+      "optimized": true
+    },
+    {
+      "original": "ui/this-is-fine-meme",
+      "webp": "ui/this-is-fine-meme.webp",
+      "size": 22596,
+      "optimized": true
+    },
+    {
+      "original": "ui/tv-icon",
+      "webp": "ui/tv-icon.webp",
+      "size": 8534,
+      "optimized": true
+    }
+  ]
+}
