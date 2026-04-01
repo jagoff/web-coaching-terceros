@@ -97,7 +97,12 @@ export default function Services() {
             id="titulo-servicios"
             variants={blurUp}
             className="heading-xl"
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{ 
+              fontFamily: "var(--font-heading)",
+              fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
+              lineHeight: "1.2",
+              whiteSpace: "nowrap"
+            }}
           >
             <span className="text-gradient">{t.services.title}</span>
           </motion.h2>
