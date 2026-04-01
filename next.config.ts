@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
     root: process.cwd(),
   },
   images: {
-    unoptimized: true,  // Required for static export compatibility
     remotePatterns: [
       {
         protocol: 'https',
@@ -45,15 +44,11 @@ const nextConfig: NextConfig = {
   },
   // Performance optimizations
   generateEtags: false,
-  // Static generation optimizations
-  output: 'export',
   // Cache optimization for ISR
   onDemandEntries: {
     maxInactiveAge: 60 * 60 * 1000, // 1 hour
     pagesBufferLength: 2,
   },
-  // Note: Security headers must be configured in Vercel/CDN settings
-  // headers() is not compatible with output: 'export'
 };
 
 export default withBundleAnalyzer(nextConfig);
