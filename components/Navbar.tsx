@@ -161,7 +161,7 @@ export default function Navbar() {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
         <div className="container">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-8">
             {/* Logo */}
             <a
               href="#"
@@ -190,16 +190,11 @@ export default function Navbar() {
             </a>
 
             {/* Desktop nav links */}
-            <ul className="hidden lg:flex items-center gap-12 xl:gap-16 list-none">
-              {navLinks.map((link, index) => (
+            <ul className="hidden lg:flex items-center gap-8 list-none">
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
                     className="nav-link bg-transparent border-0 cursor-pointer p-0 whitespace-nowrap"
-                    style={
-                      index === 0 ? { marginLeft: '30px' } : 
-                      index === navLinks.length - 1 ? { marginLeft: '-50px' } : 
-                      undefined
-                    }
                     onClick={() => handleLinkClick(link.href)}
                   >
                     {link.label}
