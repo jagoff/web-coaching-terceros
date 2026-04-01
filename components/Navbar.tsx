@@ -165,7 +165,7 @@ export default function Navbar() {
             {/* Logo */}
             <a
               href="#"
-              className="flex flex-col items-center group"
+              className="relative flex flex-col items-center group"
               aria-label={`ELEVA CONSULTORIA — inicio`}
               onClick={(e) => {
                 e.preventDefault();
@@ -173,15 +173,16 @@ export default function Navbar() {
               }}
             >
               <span
-                className="text-gradient font-heading font-black text-2xl tracking-tight leading-none mt-[6.25rem]"
-                style={{ fontFamily: "var(--font-heading)" }}
+                className="text-gradient font-heading font-black text-2xl tracking-tight mt-[6.25rem]"
+                style={{ fontFamily: "var(--font-heading)", lineHeight: "0.8" }}
               >
                 ELEVA
               </span>
               <span
-                className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted leading-none -mt-[9rem]"
+                className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted -mt-[9.5rem]"
                 style={{
-                  opacity: 0.85
+                  opacity: 0.85,
+                  lineHeight: "0.8"
                 }}
               >
                 {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
