@@ -197,7 +197,7 @@ export default function Navbar() {
                     className="nav-link bg-transparent border-0 cursor-pointer p-0 whitespace-nowrap"
                     style={
                       index === 0 ? { marginLeft: '30px' } : 
-                      index === navLinks.length - 1 ? { marginLeft: '-25px' } : 
+                      index === navLinks.length - 1 ? { marginLeft: '-50px' } : 
                       undefined
                     }
                     onClick={() => handleLinkClick(link.href)}
