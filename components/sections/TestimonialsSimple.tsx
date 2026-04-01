@@ -205,13 +205,13 @@ export default function TestimonialsSimple() {
                   {currentTestimonial.initials}
                 </div>
                 <div className="text-center">
-                  <h4
+                  <h3
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-primary)" }}
                     suppressHydrationWarning
                   >
                     {currentTestimonial.name}
-                  </h4>
+                  </h3>
                   <p
                     className="text-sm"
                     style={{ color: "var(--text-muted)" }}

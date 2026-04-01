@@ -291,6 +291,7 @@ export interface Translations {
   whatsapp: {
     message: string;
     buttonText: string;
+    ariaLabel: string;
   };
   
   // Loading and UI
@@ -733,6 +734,7 @@ export const translations: Record<Language, Translations> = {
     whatsapp: {
       message: 'Hola! Quiero agendar una sesión gratuita de coaching. ¿Qué fechas y horarios tienes disponibles?',
       buttonText: 'Agendar por WhatsApp',
+      ariaLabel: 'Agendar sesión por WhatsApp',
     },
     
     // Loading and UI
@@ -1123,6 +1125,7 @@ export const translations: Record<Language, Translations> = {
     whatsapp: {
       message: 'Hi! I want to schedule a free coaching session. What dates and times do you have available?',
       buttonText: 'Schedule on WhatsApp',
+      ariaLabel: 'Schedule session via WhatsApp',
     },
     
     // Loading and UI
