@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useContactForm, type ContactForm } from "./useContactForm";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { sendContactForm, createMailtoLink } from "@/lib/contact-service";
 
 export default function ContactForm() {
   const { 
@@ -37,22 +38,30 @@ export default function ContactForm() {
     setApiError("");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      // Usar el nuevo servicio de contacto
+      const result = await sendContactForm(form);
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `Error ${response.status}`);
+      if (result.success) {
+        setStatus("success");
+        setTimeout(() => resetForm(), 3000);
+      } else {
+        // Si falla, ofrecer mailto como fallback
+        setStatus("error");
+        const mailtoLink = createMailtoLink(form);
+        setApiError(
+          language === 'es' 
+            ? `${result.message} Puedes contactarnos directamente haciendo clic aquí: ${mailtoLink}`
+            : `${result.message} You can contact us directly by clicking here: ${mailtoLink}`
+        );
       }
-
-      setStatus("success");
-      setTimeout(() => resetForm(), 3000);
     } catch (err) {
       setStatus("error");
-      setApiError(err instanceof Error ? err.message : "Error al enviar mensaje");
+      const mailtoLink = createMailtoLink(form);
+      setApiError(
+        language === 'es'
+          ? `Error al enviar mensaje. Contáctanos directamente: ${mailtoLink}`
+          : `Error sending message. Contact us directly: ${mailtoLink}`
+      );
     }
   };
 

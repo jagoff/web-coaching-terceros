@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Globe } from "lucide-react";
+import { debugLog } from "@/lib/debug-logger";
 
 export default function MobileLanguageButton() {
   const { language, setLanguage } = useLanguage();
@@ -15,7 +17,7 @@ export default function MobileLanguageButton() {
       setInfo({ width, isMobile });
       setVisible(isMobile);
       
-      console.log('MobileLanguageButton - Width:', width, 'Mobile:', isMobile, 'Visible:', visible);
+      debugLog('MobileLanguageButton', 'Viewport update', { width, isMobile, visible });
     };
 
     updateInfo();
@@ -60,7 +62,7 @@ export default function MobileLanguageButton() {
           height: '60px'
         }}
         onClick={() => {
-          console.log('SEPARATE BUTTON CLICKED!');
+          debugLog('MobileLanguageButton', 'Language toggle clicked', { from: language, to: language === 'es' ? 'en' : 'es' });
           setLanguage(language === 'es' ? 'en' : 'es');
         }}
       >

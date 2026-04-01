@@ -5,6 +5,7 @@ import { motion, useInView, AnimatePresence, type Variants } from "framer-motion
 import { ChevronDown } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { generateContentBasedId } from "@/lib/id-utils";
 
 const faqStagger: Variants = {
   hidden: {},
@@ -81,28 +82,33 @@ export default function FAQ() {
           animate={isInView ? "visible" : "hidden"}
           className="max-w-3xl mx-auto flex flex-col"
         >
-          {t.faq.items.map((faq, i) => (
-            <motion.div
-              key={i}
-              variants={faqItem}
-              className="faq-item"
-            >
-              <button
-                className="faq-question"
-                onClick={() => toggle(i)}
-                aria-expanded={openIndex === i}
+          {t.faq.items.map((faq, i) => {
+            const faqId = generateContentBasedId(faq.question);
+            return (
+              <motion.div
+                key={faqId}
+                variants={faqItem}
+                className="faq-item"
               >
-                <span>{faq.question}</span>
-                <motion.div
-                  animate={{ rotate: openIndex === i ? 180 : 0 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex-shrink-0"
+                <button
+                  className="faq-question"
+                  onClick={() => toggle(i)}
+                  aria-expanded={openIndex === i}
+                  aria-controls={`faq-answer-${faqId}`}
+                  id={`faq-question-${faqId}`}
                 >
-                  <ChevronDown size={20} style={{ color: "var(--gold-primary)" }} />
-                </motion.div>
-              </button>
-              <AnimatePresence initial={false}>
-                {openIndex === i && (
+                  <span>{faq.question}</span>
+                  <motion.div
+                    animate={{ rotate: openIndex === i ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    <ChevronDown size={20} style={{ color: "var(--gold-primary)" }} />
+                  </motion.div>
+                </button>
+                <AnimatePresence initial={false}>
+                  {openIndex === i && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
@@ -115,7 +121,8 @@ export default function FAQ() {
                 )}
               </AnimatePresence>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </section>
