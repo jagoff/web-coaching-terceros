@@ -1,14 +1,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  CheckCircle2, 
-  Loader2, 
-  CheckCheck, 
-  AlertCircle, 
-  User, 
-  MessageSquare 
-} from "lucide-react";
+import CheckCircle2 from "lucide-react/dist/esm/icons/check-circle-2";
+import Loader2 from "lucide-react/dist/esm/icons/loader-2";
+import CheckCheck from "lucide-react/dist/esm/icons/check-check";
+import AlertCircle from "lucide-react/dist/esm/icons/alert-circle";
+import User from "lucide-react/dist/esm/icons/user";
+import MessageSquare from "lucide-react/dist/esm/icons/message-square";
 import { useContactForm, type ContactForm } from "./useContactForm";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { sendContactForm, createMailtoLink } from "@/lib/contact-service";
