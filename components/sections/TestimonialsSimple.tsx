@@ -196,7 +196,7 @@ export default function TestimonialsSimple() {
               </blockquote>
 
               {/* Author */}
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex flex-col items-center justify-center gap-4">
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl"
                   style={{ background: currentTestimonial.avatarBg }}
@@ -204,7 +204,7 @@ export default function TestimonialsSimple() {
                 >
                   {currentTestimonial.initials}
                 </div>
-                <div className="text-left">
+                <div className="text-center">
                   <h4
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-primary)" }}
