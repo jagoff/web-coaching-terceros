@@ -191,10 +191,11 @@ export default function Navbar() {
 
             {/* Desktop nav links */}
             <ul className="hidden lg:flex items-center gap-12 xl:gap-16 list-none">
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
                 <li key={link.href}>
                   <button
                     className="nav-link bg-transparent border-0 cursor-pointer p-0 whitespace-nowrap"
+                    style={index === 0 ? { marginLeft: '5px' } : undefined}
                     onClick={() => handleLinkClick(link.href)}
                   >
                     {link.label}
