@@ -1083,6 +1083,7 @@ html.lenis, html.lenis body {
   letter-spacing: 0.02em;
   transition: color var(--transition-base);
   padding-bottom: 2px;
+  white-space: nowrap;
 }
 
 .nav-link::after {
