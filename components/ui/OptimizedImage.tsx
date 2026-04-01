@@ -3,6 +3,7 @@
 import Image, { ImageProps } from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import devLog from '@/lib/dev-logger';
 
 interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'onLoad' | 'onError'> {
   src: string;
@@ -77,7 +78,7 @@ export default function OptimizedImage({
 
   const handleError = () => {
     setHasError(true);
-    console.warn(`Failed to load image: ${src}`);
+    devLog.warn(`Failed to load image: ${src}`);
   };
 
   // Determinar qué fuente usar

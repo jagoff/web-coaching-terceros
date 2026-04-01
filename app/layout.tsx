@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import ClientLayout from "@/components/ClientLayout";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
+import Hreflang from "@/components/Hreflang";
+import LangAttribute from "@/components/LangAttribute";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -121,6 +123,12 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning={true}>
       <head>
+        {/* Hreflang tags for multilingual SEO */}
+        <Hreflang />
+        
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
         {/* Prevent pull-to-refresh and touch behaviors */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -137,6 +145,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
         suppressHydrationWarning
       >
+        <LangAttribute />
         <LanguageProvider>
           <ThemeProvider>
             <ClientLayout>

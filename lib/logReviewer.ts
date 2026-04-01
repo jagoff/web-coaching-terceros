@@ -3,6 +3,7 @@
  */
 
 import { logger, LogEntry, LogLevel } from './logger';
+import devLog from './dev-logger';
 
 interface AutoFixResult {
   success: boolean;
@@ -32,9 +33,7 @@ class LogReviewer {
         await this.attemptSingleFix(error);
       }
     });
-    if (process.env.NODE_ENV === 'development') {
-      console.log('⚡ Instant fix mode enabled - errors will be fixed in real-time');
-    }
+    devLog.log('⚡ Instant fix mode enabled - errors will be fixed in real-time');
   }
 
   // Attempt to fix a single error instantly
@@ -51,9 +50,7 @@ class LogReviewer {
     // Dispatch start event
     this.dispatchInstantFixEvent('start', fixMessage);
     
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`⚡ Attempting instant fix for: ${error.message}`);
-    }
+    devLog.log(`⚡ Attempting instant fix for: ${error.message}`);
     
     let fixResult: AutoFixResult | null = null;
 
@@ -86,9 +83,7 @@ class LogReviewer {
       
       if (fixResult.success) {
         logger.info(`⚡ Instant fix successful: ${fixResult.action}`, 'InstantFixer', fixResult.details);
-        if (process.env.NODE_ENV === 'development') {
-          console.log(`✅ Instantly fixed: ${fixResult.action}`);
-        }
+        devLog.log(`✅ Instantly fixed: ${fixResult.action}`);
         
         // Mark error as resolved
         logger.resolveError(error.component || 'Unknown', error.message);
@@ -96,9 +91,7 @@ class LogReviewer {
         // Dispatch success event
         this.dispatchInstantFixEvent('complete', fixMessage, true);
       } else {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`❌ Instant fix failed: ${fixResult.action}`);
-        }
+        devLog.warn(`❌ Instant fix failed: ${fixResult.action}`);
         
         // Dispatch failure event
         this.dispatchInstantFixEvent('complete', fixMessage, false);
@@ -120,9 +113,7 @@ class LogReviewer {
     if (this.isRunning) return;
 
     this.isRunning = true;
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔍 Auto-review system started - checking logs every 30s');
-    }
+    devLog.log('🔍 Auto-review system started - checking logs every 30s');
 
     this.reviewInterval = setInterval(() => {
       this.performReview();
@@ -138,19 +129,15 @@ class LogReviewer {
       this.reviewInterval = null;
     }
     this.isRunning = false;
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔍 Auto-review system stopped');
-    }
+    devLog.log('🔍 Auto-review system stopped');
   }
 
   private async performReview(): Promise<void> {
     const review = this.reviewLogs();
     
     if (review.status !== 'CLEAN') {
-      if (process.env.NODE_ENV === 'development') {
-        console.warn(`🚨 Log Review Alert - Status: ${review.status}`);
-        console.warn('Issues found:', review.issues.length);
-      }
+      devLog.warn(`🚨 Log Review Alert - Status: ${review.status}`);
+      devLog.warn('Issues found:', review.issues.length);
       
       // Log the review itself
       logger.warn(`Automatic log review completed - Status: ${review.status}`, 'LogReviewer', {
@@ -173,9 +160,7 @@ class LogReviewer {
     );
 
     if (hydrationErrors.length > 0) {
-      if (process.env.NODE_ENV === 'development') {
-        console.error(`🚨 CRITICAL: ${hydrationErrors.length} hydration errors detected!`);
-      }
+      devLog.error(`🚨 CRITICAL: ${hydrationErrors.length} hydration errors detected!`);
       
       // Try to fix hydration errors first
       if (this.autoFixEnabled) {
@@ -185,18 +170,14 @@ class LogReviewer {
   }
 
   private async attemptAutoFixes(issues: LogEntry[]): Promise<void> {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`🔧 Attempting auto-fixes for ${issues.length} issues...`);
-    }
+    devLog.log(`🔧 Attempting auto-fixes for ${issues.length} issues...`);
     
     for (const issue of issues) {
       const key = `${issue.component}:${issue.message}`;
       const attempts = this.fixAttempts.get(key) || 0;
       
       if (attempts >= this.maxFixAttempts) {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`⚠️ Max fix attempts reached for ${key}`);
-        }
+        devLog.warn(`⚠️ Max fix attempts reached for ${key}`);
         continue;
       }
 
@@ -216,9 +197,7 @@ class LogReviewer {
         
         if (fixResult.success) {
           logger.info(`Auto-fix successful: ${fixResult.action}`, 'AutoFixer', fixResult.details);
-          if (process.env.NODE_ENV === 'development') {
-            console.log(`✅ Auto-fixed: ${fixResult.action}`);
-          }
+          devLog.log(`✅ Auto-fixed: ${fixResult.action}`);
           
           // Mark error as resolved
           logger.resolveError(issue.component || 'Unknown', issue.message);
@@ -227,9 +206,7 @@ class LogReviewer {
             error: fixResult.error, 
             details: fixResult.details 
           });
-          if (process.env.NODE_ENV === 'development') {
-            console.warn(`❌ Auto-fix failed: ${fixResult.action} - ${fixResult.error}`);
-          }
+          devLog.warn(`❌ Auto-fix failed: ${fixResult.action} - ${fixResult.error}`);
         }
       }
     }
@@ -368,22 +345,16 @@ class LogReviewer {
   }
 
   private async fixHydrationErrors(errors: LogEntry[]): Promise<void> {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`🔧 Attempting to fix ${errors.length} hydration errors...`);
-    }
+    devLog.log(`🔧 Attempting to fix ${errors.length} hydration errors...`);
     
     for (const error of errors) {
       const result = await this.fixHydrationError(error);
       
       if (result.success) {
         logger.resolveError(error.component || 'Unknown', error.message);
-        if (process.env.NODE_ENV === 'development') {
-          console.log(`✅ Fixed hydration error: ${result.action}`);
-        }
+        devLog.log(`✅ Fixed hydration error: ${result.action}`);
       } else {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`❌ Could not fix hydration error: ${result.action}`);
-        }
+        devLog.warn(`❌ Could not fix hydration error: ${result.action}`);
       }
     }
   }
@@ -418,9 +389,7 @@ class LogReviewer {
   private async fixPromiseRejection(error: LogEntry): Promise<AutoFixResult> {
     try {
       // Try to handle promise rejections
-      if (process.env.NODE_ENV === 'development') {
-        console.warn(`🔄 Handling promise rejection: ${error.message}`);
-      }
+      devLog.warn(`🔄 Handling promise rejection: ${error.message}`);
       
       return {
         success: true,
@@ -460,9 +429,7 @@ class LogReviewer {
   private async fixGenericError(error: LogEntry): Promise<AutoFixResult> {
     try {
       // Generic error handling
-      if (process.env.NODE_ENV === 'development') {
-        console.warn(`🔧 Attempting generic fix for: ${error.message}`);
-      }
+      devLog.warn(`🔧 Attempting generic fix for: ${error.message}`);
       
       return {
         success: true,
@@ -482,7 +449,7 @@ class LogReviewer {
   // Additional fix methods for new error types
   private async fixReactHooksError(error: LogEntry): Promise<AutoFixResult> {
     try {
-      console.warn(`🔧 React hooks error detected: ${error.message}`);
+      devLog.warn(`🔧 React hooks error detected: ${error.message}`);
       
       // Try to identify the component causing the issue
       if (error.details?.originalArgs) {
@@ -513,7 +480,7 @@ class LogReviewer {
 
   private async fixReactRenderError(error: LogEntry): Promise<AutoFixResult> {
     try {
-      console.warn(`🔧 React render error detected: ${error.message}`);
+      devLog.warn(`🔧 React render error detected: ${error.message}`);
       
       // Try to identify common render issues
       if (error.message.includes('Cannot read propert')) {
@@ -541,7 +508,7 @@ class LogReviewer {
 
   private async fixNextJSError(error: LogEntry): Promise<AutoFixResult> {
     try {
-      console.warn(`🔧 Next.js error detected: ${error.message}`);
+      devLog.warn(`🔧 Next.js error detected: ${error.message}`);
       
       return {
         success: true,
@@ -621,7 +588,7 @@ class LogReviewer {
 
   // Force immediate review
   forceReview(): void {
-    console.log('🔍 Forcing immediate log review...');
+    devLog.log('🔍 Forcing immediate log review...');
     this.performReview();
   }
 
@@ -638,9 +605,9 @@ export const logReviewer = new LogReviewer();
 if (process.env.NODE_ENV === 'development') {
   // Start immediately with instant fix mode
   setTimeout(() => {
-    console.log('🚀 Starting auto-fix system...');
+    devLog.log('🚀 Starting auto-fix system...');
     logReviewer.startReview(1000); // Review every 1 second for instant fixes
     logReviewer.enableInstantFix(); // Enable real-time error fixing
-    console.log('✅ Auto-fix system started - monitoring for errors...');
+    devLog.log('✅ Auto-fix system started - monitoring for errors...');
   }, 2000); // Start after 2 seconds
 }

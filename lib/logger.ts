@@ -2,6 +2,8 @@
  * Simple logging system for tracking errors and events
  */
 
+import devLog from './dev-logger';
+
 export type LogLevel = 'ERROR' | 'WARN' | 'INFO' | 'DEBUG';
 
 export interface LogEntry {
@@ -30,16 +32,12 @@ class Logger {
 
   // Global error handler setup
   setupGlobalErrorHandlers(): void {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔧 Setting up global error handlers...');
-    }
+    devLog.log('🔧 Setting up global error handlers...');
     
     // Catch all unhandled errors
     if (typeof window !== 'undefined') {
       window.addEventListener('error', (event) => {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('🚨 Global error detected:', event.message);
-        }
+        devLog.log('🚨 Global error detected:', event.message);
         this.error(
           event.message || 'Unknown error',
           'GlobalErrorHandler',
@@ -56,9 +54,7 @@ class Logger {
 
       // Catch all unhandled promise rejections
       window.addEventListener('unhandledrejection', (event) => {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('🚨 Promise rejection detected:', event.reason);
-        }
+        devLog.log('🚨 Promise rejection detected:', event.reason);
         this.error(
           event.reason?.message || 'Unhandled promise rejection',
           'GlobalErrorHandler',
@@ -77,17 +73,13 @@ class Logger {
         originalConsoleError.apply(console, args);
         
         const message = args.join(' ');
-        if (process.env.NODE_ENV === 'development') {
-          console.log('🔍 Console error intercepted:', message);
-        }
+        devLog.log('🔍 Console error intercepted:', message);
         
         if (message.includes('hydrated') || 
             message.includes('hydration') || 
             message.includes('Hydration') ||
             message.includes('server rendered HTML')) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('💧 Hydration error detected');
-          }
+          devLog.log('💧 Hydration error detected');
           this.error(
             message,
             'ReactHydrationDetector',
@@ -101,9 +93,7 @@ class Logger {
             message.includes('hooks') ||
             message.includes('order of Hooks') ||
             message.includes('Rendered more hooks')) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('🪝 React hooks error detected');
-          }
+          devLog.log('🪝 React hooks error detected');
           this.error(
             message,
             'ReactHooksDetector',
@@ -116,9 +106,7 @@ class Logger {
         if (message.includes('Render') ||
             message.includes('render') ||
             message.includes('Cannot read propert')) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('🎨 React render error detected');
-          }
+          devLog.log('🎨 React render error detected');
           this.error(
             message,
             'ReactRenderDetector',
@@ -134,9 +122,7 @@ class Logger {
         originalConsoleWarn.apply(console, args);
         
         const message = args.join(' ');
-        if (process.env.NODE_ENV === 'development') {
-          console.log('⚠️ Console warning intercepted:', message);
-        }
+        devLog.log('⚠️ Console warning intercepted:', message);
         
         if (message.includes('Next.js') ||
             message.includes('Turbopack') ||

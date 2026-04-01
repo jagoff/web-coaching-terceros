@@ -3,6 +3,8 @@
  * Usa Web3Forms como servicio principal con fallback a mailto
  */
 
+import devLog from './dev-logger';
+
 export interface ContactFormData {
   nombre: string;
   email: string;
@@ -23,14 +25,12 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
   const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE';
   
   // Debug log en desarrollo
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[ContactService] Enviando formulario:', {
-      nombre: data.nombre,
-      email: data.email,
-      mensajeLength: data.mensaje.length,
-      accessKey: WEB3FORMS_ACCESS_KEY.substring(0, 10) + '...'
-    });
-  }
+  devLog.log('[ContactService] Enviando formulario:', {
+    nombre: data.nombre,
+    email: data.email,
+    mensajeLength: data.mensaje.length,
+    accessKey: WEB3FORMS_ACCESS_KEY.substring(0, 10) + '...'
+  });
 
   try {
     // Validación básica
@@ -62,9 +62,7 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
 
     const result = await response.json();
 
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[ContactService] Respuesta de Web3Forms:', result);
-    }
+    devLog.log('[ContactService] Respuesta de Web3Forms:', result);
 
     if (!response.ok || !result.success) {
       throw new Error(result.message || 'Error al enviar el formulario');
@@ -76,7 +74,7 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
     };
 
   } catch (error) {
-    console.error('[ContactService] Error:', error);
+    devLog.error('[ContactService] Error:', error);
 
     // Fallback: crear mailto link
     const mailtoLink = createMailtoLink(data);

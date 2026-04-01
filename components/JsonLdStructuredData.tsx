@@ -37,7 +37,10 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "addressRegion": "Buenos Aires"
           },
           "sameAs": [
-            "https://instagram.com/jago_ff"
+            "https://www.instagram.com/eleva_consultoria",
+            "https://www.linkedin.com/in/fernandoferrari",
+            "https://www.linkedin.com/company/eleva-consultoria",
+            "https://twitter.com/eleva_consultoria"
           ],
           "services": [
             "Coaching de Liderazgo",
@@ -87,7 +90,9 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           "url": `${baseUrl}/sobre-mi`,
           "image": `${baseUrl}/images/ui/profile.png`,
           "sameAs": [
-            "https://instagram.com/jago_ff"
+            "https://www.instagram.com/eleva_consultoria",
+            "https://www.linkedin.com/in/fernandoferrari",
+            "https://twitter.com/eleva_consultoria"
           ],
           "worksFor": {
             "@type": "Organization",

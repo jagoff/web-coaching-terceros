@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ReactNode } from 'react';
+import devLog from '@/lib/dev-logger';
 import { motion, AnimatePresence } from "framer-motion";
 import { RefreshCw } from "lucide-react";
 
@@ -55,7 +56,7 @@ export default function PullToRefresh({ children, onRefresh }: PullToRefreshProp
             window.location.reload();
           }
         } catch (error) {
-          console.error('Refresh error:', error);
+          devLog.error('Refresh error:', error);
         } finally {
           setTimeout(() => {
             setIsRefreshing(false);
