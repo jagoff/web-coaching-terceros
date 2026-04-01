@@ -18,22 +18,7 @@ const CursorGlow = dynamic(() => import("@/components/CursorGlow"), {
   loading: () => null
 });
 
-const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"), { 
-  ssr: false,
-  loading: () => null
-});
-
 const ThemeToggle = dynamic(() => import("@/components/ui/ThemeToggle"), { 
-  ssr: false,
-  loading: () => null
-});
-
-const ScrollProgressIndicator = dynamic(() => import("@/components/ScrollProgressIndicator"), { 
-  ssr: false,
-  loading: () => null
-});
-
-const PullToRefresh = dynamic(() => import("@/components/PullToRefresh"), { 
   ssr: false,
   loading: () => null
 });
@@ -57,13 +42,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       
       <DynamicNavbar />
       {/* {isLoaded && <ThemeToggle />} */}
-      {isLoaded && <WhatsAppButton />}
-      {isLoaded && <ScrollProgressIndicator />}
-      {isLoaded && isClient ? (
-        <PullToRefresh>{children}</PullToRefresh>
-      ) : (
-        children
-      )}
+      {children}
     </>
   );
 }
