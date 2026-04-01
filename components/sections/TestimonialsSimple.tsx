@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { haptics } from "@/lib/haptics";
 
 const testimonialsES = [
   {
@@ -114,12 +115,24 @@ export default function TestimonialsSimple() {
   );
 
   const goToPrevious = useCallback(() => {
+    haptics.light();
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   }, [testimonials.length]);
 
   const goToNext = useCallback(() => {
+    haptics.light();
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   }, [testimonials.length]);
+
+  const handleDragEnd = useCallback((event: any, info: PanInfo) => {
+    const swipeThreshold = 50;
+    
+    if (info.offset.x > swipeThreshold) {
+      goToPrevious();
+    } else if (info.offset.x < -swipeThreshold) {
+      goToNext();
+    }
+  }, [goToPrevious, goToNext]);
 
   return (
     <section id="testimonios" className="section section-dark">
@@ -165,7 +178,11 @@ export default function TestimonialsSimple() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
-              className="glass-card p-8 md:p-12 text-center"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
+              className="glass-card p-8 md:p-12 text-center cursor-grab active:cursor-grabbing"
             >
               {/* Quote */}
               <blockquote className="mb-8" suppressHydrationWarning>

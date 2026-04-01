@@ -1376,9 +1376,20 @@ html.lenis, html.lenis body {
   }
 }
 
-/* ---- Footer link ---- */
+/* ---- Scroll Snap ---- */
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  
+  .section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
 
-.footer-link {
+/* ---- Voice Contact Form ---- */
+.voice-contact-container {
   color: var(--text-muted);
   transition: color var(--transition-base);
 }

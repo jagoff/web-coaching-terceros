@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { haptics } from "@/lib/haptics";
 
 const PHONE = "5493425153999";
 const MESSAGE = "Hola Fernando, me interesa saber más sobre tu servicio de coaching. Vi tu web y quiero agendar la sesión gratuita.";
@@ -29,6 +30,7 @@ export default function WhatsAppButton() {
   }, [visible]);
 
   const handleClick = () => {
+    haptics.medium();
     setShowBadge(false);
   };
 

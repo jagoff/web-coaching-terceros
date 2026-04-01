@@ -33,6 +33,11 @@ const ScrollProgressIndicator = dynamic(() => import("@/components/ScrollProgres
   loading: () => null
 });
 
+const PullToRefresh = dynamic(() => import("@/components/PullToRefresh"), { 
+  ssr: false,
+  loading: () => null
+});
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -54,7 +59,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {/* {isLoaded && <ThemeToggle />} */}
       {isLoaded && <WhatsAppButton />}
       {isLoaded && <ScrollProgressIndicator />}
-      {children}
+      {isLoaded && isClient ? (
+        <PullToRefresh>{children}</PullToRefresh>
+      ) : (
+        children
+      )}
     </>
   );
 }
