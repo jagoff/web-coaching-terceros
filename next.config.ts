@@ -6,9 +6,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: process.cwd(),
-  },
+  // Empty turbopack config to allow webpack config (Next.js 16 requirement)
+  turbopack: {},
   images: {
     remotePatterns: [
       {
