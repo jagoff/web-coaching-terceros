@@ -173,13 +173,13 @@ export default function Navbar() {
               }}
             >
               <span
-                className="text-gradient font-heading font-black text-2xl tracking-tight mt-[4.38rem]"
+                className="text-gradient font-heading font-black text-2xl tracking-tight mt-[3.44rem]"
                 style={{ fontFamily: "var(--font-heading)", lineHeight: "0.8" }}
               >
                 ELEVA
               </span>
               <span
-                className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted -mt-[12rem]"
+                className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted -mt-[13rem]"
                 style={{
                   opacity: 0.85,
                   lineHeight: "0.8"
