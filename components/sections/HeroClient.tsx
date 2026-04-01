@@ -351,27 +351,6 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             }
           </motion.p>
 
-          {/* Subtitle - Single line on mobile */}
-          <motion.p
-            variants={revealUp}
-            className="mb-8 sm:mb-12 text-center px-4"
-            style={{ 
-              fontFamily: "var(--font-heading)",
-              fontWeight: 600,
-              fontSize: "clamp(0.9rem, 4vw, 1.3rem)",
-              lineHeight: 1.2,
-              color: "var(--gold-primary)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis"
-            }}
-          >
-            {renderLanguage === 'es' 
-              ? 'De la tecnología a transformar organizaciones.'
-              : 'From technology to transforming organizations.'
-            }
-          </motion.p>
-
           {/* CTAs */}
           <motion.div
             variants={ctaReveal}
