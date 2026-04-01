@@ -142,7 +142,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
       <CoachingWordsBackground />
 
       {/* Decorative orbs with scroll parallax */}
-      <motion.div style={{ y: orbY1 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <motion.div style={{ y: orbY1, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-gold animate-float-slow"
           style={{
@@ -154,7 +154,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           }}
         />
       </motion.div>
-      <motion.div style={{ y: orbY2 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <motion.div style={{ y: orbY2, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-amber animate-float"
           style={{
@@ -167,7 +167,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           }}
         />
       </motion.div>
-      <motion.div style={{ y: orbY3 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <motion.div style={{ y: orbY3, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-gold"
           style={{

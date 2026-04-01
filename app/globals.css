@@ -2211,6 +2211,7 @@ html {
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
+  contain: layout style paint;
 }
 
 .cursor-glow::before {
@@ -2225,11 +2226,11 @@ html {
     rgba(124,107,196,0.03) 30%,
     transparent 70%
   );
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   left: var(--glow-x, -200px);
   top: var(--glow-y, -200px);
-  will-change: left, top;
-  transition: opacity 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Hide on touch devices */

@@ -31,22 +31,29 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@emotion/react', '@emotion/styled'],
     webpackBuildWorker: true,
-    // SSG/ISR optimizations
     serverMinification: true,
+  },
+  // Modularize imports for tree-shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+      skipDefaultConversion: true,
+    },
   },
   serverExternalPackages: ['sharp'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
       exclude: ['error'],
     } : false,
+    emotion: true,
   },
-  // Performance optimizations
+  // Aggressive production optimizations
+  productionBrowserSourceMaps: false,
   generateEtags: false,
-  // Cache optimization for ISR
   onDemandEntries: {
-    maxInactiveAge: 60 * 60 * 1000, // 1 hour
+    maxInactiveAge: 60 * 60 * 1000,
     pagesBufferLength: 2,
   },
 };
