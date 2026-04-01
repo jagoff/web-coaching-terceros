@@ -195,7 +195,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <button
                     className="nav-link bg-transparent border-0 cursor-pointer p-0 whitespace-nowrap"
-                    style={index === 0 ? { marginLeft: '20px' } : undefined}
+                    style={index === 0 ? { marginLeft: '30px' } : undefined}
                     onClick={() => handleLinkClick(link.href)}
                   >
                     {link.label}
