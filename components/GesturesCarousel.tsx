@@ -97,6 +97,7 @@ export default function GesturesCarousel() {
             alt={`Slide ${currentIndex + 1} de ${images.length} - Instagram @ferf.coach`}
             width={600}
             height={750}
+            sizes="(max-width: 640px) 320px, (max-width: 768px) 400px, 600px"
             className="w-full h-full object-cover"
             style={{ aspectRatio: '4/5' }}
             lazy={false} // No lazy loading para carousel visible
