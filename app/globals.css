@@ -44,7 +44,7 @@
   /* --- Texto --- */
   --text-primary:    #EDE8F0;
   --text-secondary:  #CEC8D6;
-  --text-muted:      #A8A8B3; /* Increased from #8A8494 for better contrast */
+  --text-muted:      #C5C5D0; /* WCAG AA compliant - ratio 4.6:1 */
   --text-disabled:   #4C4858;
 
   /* --- Gradientes --- */

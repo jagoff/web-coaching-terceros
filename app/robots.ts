@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/'],
+      disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/', '/experimental/'],
     },
     sitemap: 'https://eleva-consultoria.com/sitemap.xml',
   }

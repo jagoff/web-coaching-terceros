@@ -8,6 +8,7 @@ import YouTubeThumbnail from "../YouTubeThumbnail";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import DOMPurify from "isomorphic-dompurify";
 
 const slideReveal: Variants = {
   hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
@@ -206,7 +207,7 @@ export default function About() {
 
             <div 
               className="lead-text mb-6 sm:mb-8"
-              dangerouslySetInnerHTML={{ __html: t.about.intro }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t.about.intro) }}
             />
 
             <p className="lead-text mb-12">

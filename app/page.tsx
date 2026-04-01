@@ -9,27 +9,38 @@ import {
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { Metadata } from "next";
 
+// Loading skeleton component
+const LoadingSkeleton = ({ height = "400px" }: { height?: string }) => (
+  <div className="flex items-center justify-center" style={{ minHeight: height }}>
+    <div className="animate-pulse text-center">
+      <div className="inline-block h-8 w-8 rounded-full border-2 border-gold-primary border-t-transparent animate-spin mb-4" 
+           style={{ borderColor: 'var(--gold-primary)', borderTopColor: 'transparent' }} />
+      <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Cargando...</p>
+    </div>
+  </div>
+);
+
 // Lazy load componentes below-the-fold para mejor performance
 const Testimonials = dynamicImport(() => import("@/components/sections/TestimonialsSimple"), {
-  loading: () => <div className="min-h-[400px]" />,
+  loading: () => <LoadingSkeleton />,
 });
 const Results = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Results })), {
-  loading: () => <div className="min-h-[400px]" />,
+  loading: () => <LoadingSkeleton />,
 });
 const CaseStudies = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.CaseStudies })), {
-  loading: () => <div className="min-h-[400px]" />,
+  loading: () => <LoadingSkeleton />,
 });
 const Pricing = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Pricing })), {
-  loading: () => <div className="min-h-[400px]" />,
+  loading: () => <LoadingSkeleton />,
 });
 const FAQ = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.FAQ })), {
-  loading: () => <div className="min-h-[400px]" />,
+  loading: () => <LoadingSkeleton />,
 });
 const Clients = dynamicImport(() => import("@/components/sections/Clients"), {
-  loading: () => <div className="min-h-[300px]" />,
+  loading: () => <LoadingSkeleton height="300px" />,
 });
 const Contact = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Contact })), {
-  loading: () => <div className="min-h-[500px]" />,
+  loading: () => <LoadingSkeleton height="500px" />,
 });
 const WhatsAppBooking = dynamicImport(() => import("@/components/WhatsAppBooking"), {
   ssr: true,

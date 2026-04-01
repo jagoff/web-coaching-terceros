@@ -136,6 +136,7 @@ export default function Footer() {
                   border: "1px solid var(--gold-border)"
                 }}
                 suppressHydrationWarning
+                aria-label="Visitar perfil de Instagram de ELEVA Consultoria"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "rgba(124,107,196,0.2)";
                   e.currentTarget.style.transform = "scale(1.1)";
@@ -145,7 +146,7 @@ export default function Footer() {
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               >
-                <Instagram size={18} suppressHydrationWarning />
+                <Instagram size={18} aria-hidden="true" suppressHydrationWarning />
               </a>
             </div>
           </div>

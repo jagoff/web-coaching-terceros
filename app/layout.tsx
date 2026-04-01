@@ -97,6 +97,13 @@ export const metadata: Metadata = {
       url: '/apple-touch-icon.png',
     },
   },
+  alternates: {
+    canonical: 'https://eleva-consultoria.com',
+    languages: {
+      'es-AR': 'https://eleva-consultoria.com',
+      'en-US': 'https://eleva-consultoria.com/en',
+    },
+  },
 };
 
 export const viewport = {

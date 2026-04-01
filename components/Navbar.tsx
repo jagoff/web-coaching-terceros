@@ -215,6 +215,7 @@ export default function Navbar() {
                   minWidth: "65px"
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+                aria-label={language === 'es' ? 'Cambiar idioma a inglés' : 'Change language to Spanish'}
               >
                 <span style={{ fontSize: "0.7rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
                 <span style={{ fontSize: "0.65rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
@@ -238,6 +239,7 @@ export default function Navbar() {
                   transition: 'all 0.3s ease !important'
                 }}
                 onClick={() => handleLinkClick("/#contacto")}
+                aria-label="Agendar sesión gratuita de coaching"
               >
                 {t.nav.sesionGratuita}
               </button>
@@ -260,6 +262,7 @@ export default function Navbar() {
                   textShadow: "0 1px 2px rgba(0,0,0,0.3)"
                 }}
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+                aria-label={language === 'es' ? 'Cambiar idioma a inglés' : 'Change language to Spanish'}
               >
                 <span style={{ fontSize: "16px" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
                 <span style={{ fontSize: "12px", fontWeight: "800" }}>{language === 'es' ? 'EN' : 'ES'}</span>
