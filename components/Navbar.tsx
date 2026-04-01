@@ -179,7 +179,7 @@ export default function Navbar() {
                 ELEVA
               </span>
               <span
-                className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted leading-none -mt-[8rem]"
+                className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted leading-none -mt-[9rem]"
                 style={{
                   opacity: 0.85
                 }}
