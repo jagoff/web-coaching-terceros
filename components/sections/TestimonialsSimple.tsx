@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
@@ -82,7 +82,11 @@ export default function TestimonialsSimple() {
   const { language, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
-  const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
+  
+  const testimonials = useMemo(() => 
+    language === 'es' ? testimonialsES : testimonialsEN,
+    [language]
+  );
 
   useEffect(() => {
     setIsClient(true);
@@ -104,15 +108,18 @@ export default function TestimonialsSimple() {
     }
   }, []);
 
-  const currentTestimonial = testimonials[currentIndex];
+  const currentTestimonial = useMemo(() => 
+    testimonials[currentIndex],
+    [testimonials, currentIndex]
+  );
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
+  }, [testimonials.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
+  }, [testimonials.length]);
 
   return (
     <section id="testimonios" className="section section-dark">

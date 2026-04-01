@@ -30,12 +30,16 @@ class Logger {
 
   // Global error handler setup
   setupGlobalErrorHandlers(): void {
-    console.log('🔧 Setting up global error handlers...');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔧 Setting up global error handlers...');
+    }
     
     // Catch all unhandled errors
     if (typeof window !== 'undefined') {
       window.addEventListener('error', (event) => {
-        console.log('🚨 Global error detected:', event.message);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🚨 Global error detected:', event.message);
+        }
         this.error(
           event.message || 'Unknown error',
           'GlobalErrorHandler',
@@ -52,7 +56,9 @@ class Logger {
 
       // Catch all unhandled promise rejections
       window.addEventListener('unhandledrejection', (event) => {
-        console.log('🚨 Promise rejection detected:', event.reason);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🚨 Promise rejection detected:', event.reason);
+        }
         this.error(
           event.reason?.message || 'Unhandled promise rejection',
           'GlobalErrorHandler',
@@ -71,13 +77,17 @@ class Logger {
         originalConsoleError.apply(console, args);
         
         const message = args.join(' ');
-        console.log('🔍 Console error intercepted:', message);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🔍 Console error intercepted:', message);
+        }
         
         if (message.includes('hydrated') || 
             message.includes('hydration') || 
             message.includes('Hydration') ||
             message.includes('server rendered HTML')) {
-          console.log('💧 Hydration error detected');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('💧 Hydration error detected');
+          }
           this.error(
             message,
             'ReactHydrationDetector',
@@ -91,7 +101,9 @@ class Logger {
             message.includes('hooks') ||
             message.includes('order of Hooks') ||
             message.includes('Rendered more hooks')) {
-          console.log('🪝 React hooks error detected');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('🪝 React hooks error detected');
+          }
           this.error(
             message,
             'ReactHooksDetector',
@@ -104,7 +116,9 @@ class Logger {
         if (message.includes('Render') ||
             message.includes('render') ||
             message.includes('Cannot read propert')) {
-          console.log('🎨 React render error detected');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('🎨 React render error detected');
+          }
           this.error(
             message,
             'ReactRenderDetector',
@@ -120,7 +134,9 @@ class Logger {
         originalConsoleWarn.apply(console, args);
         
         const message = args.join(' ');
-        console.log('⚠️ Console warning intercepted:', message);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚠️ Console warning intercepted:', message);
+        }
         
         if (message.includes('Next.js') ||
             message.includes('Turbopack') ||
@@ -133,7 +149,9 @@ class Logger {
         }
       };
       
-      console.log('✅ Global error handlers setup complete');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('✅ Global error handlers setup complete');
+      }
     }
   }
 
@@ -175,16 +193,22 @@ class Logger {
       }
       this.unresolvedErrors.get(key)!.push(entry);
       
-      console.log(`📝 Error logged: ${key}`, entry);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`📝 Error logged: ${key}`, entry);
+      }
       
       // Trigger instant fix callback if set
       if (this.instantFixCallback) {
-        console.log('⚡ Triggering instant fix callback...');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚡ Triggering instant fix callback...');
+        }
         setTimeout(() => {
           this.instantFixCallback!(entry);
         }, 100);
       } else {
-        console.warn('⚠️ No instant fix callback set');
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('⚠️ No instant fix callback set');
+        }
       }
     }
     

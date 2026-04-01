@@ -32,7 +32,9 @@ class LogReviewer {
         await this.attemptSingleFix(error);
       }
     });
-    console.log('⚡ Instant fix mode enabled - errors will be fixed in real-time');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('⚡ Instant fix mode enabled - errors will be fixed in real-time');
+    }
   }
 
   // Attempt to fix a single error instantly
@@ -49,7 +51,9 @@ class LogReviewer {
     // Dispatch start event
     this.dispatchInstantFixEvent('start', fixMessage);
     
-    console.log(`⚡ Attempting instant fix for: ${error.message}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`⚡ Attempting instant fix for: ${error.message}`);
+    }
     
     let fixResult: AutoFixResult | null = null;
 
@@ -82,7 +86,9 @@ class LogReviewer {
       
       if (fixResult.success) {
         logger.info(`⚡ Instant fix successful: ${fixResult.action}`, 'InstantFixer', fixResult.details);
-        console.log(`✅ Instantly fixed: ${fixResult.action}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`✅ Instantly fixed: ${fixResult.action}`);
+        }
         
         // Mark error as resolved
         logger.resolveError(error.component || 'Unknown', error.message);
@@ -90,7 +96,9 @@ class LogReviewer {
         // Dispatch success event
         this.dispatchInstantFixEvent('complete', fixMessage, true);
       } else {
-        console.warn(`❌ Instant fix failed: ${fixResult.action}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`❌ Instant fix failed: ${fixResult.action}`);
+        }
         
         // Dispatch failure event
         this.dispatchInstantFixEvent('complete', fixMessage, false);
@@ -112,7 +120,9 @@ class LogReviewer {
     if (this.isRunning) return;
 
     this.isRunning = true;
-    console.log('🔍 Auto-review system started - checking logs every 30s');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔍 Auto-review system started - checking logs every 30s');
+    }
 
     this.reviewInterval = setInterval(() => {
       this.performReview();
@@ -128,15 +138,19 @@ class LogReviewer {
       this.reviewInterval = null;
     }
     this.isRunning = false;
-    console.log('🔍 Auto-review system stopped');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔍 Auto-review system stopped');
+    }
   }
 
   private async performReview(): Promise<void> {
     const review = this.reviewLogs();
     
     if (review.status !== 'CLEAN') {
-      console.warn(`🚨 Log Review Alert - Status: ${review.status}`);
-      console.warn('Issues found:', review.issues.length);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`🚨 Log Review Alert - Status: ${review.status}`);
+        console.warn('Issues found:', review.issues.length);
+      }
       
       // Log the review itself
       logger.warn(`Automatic log review completed - Status: ${review.status}`, 'LogReviewer', {
@@ -159,7 +173,9 @@ class LogReviewer {
     );
 
     if (hydrationErrors.length > 0) {
-      console.error(`🚨 CRITICAL: ${hydrationErrors.length} hydration errors detected!`);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`🚨 CRITICAL: ${hydrationErrors.length} hydration errors detected!`);
+      }
       
       // Try to fix hydration errors first
       if (this.autoFixEnabled) {
@@ -169,14 +185,18 @@ class LogReviewer {
   }
 
   private async attemptAutoFixes(issues: LogEntry[]): Promise<void> {
-    console.log(`🔧 Attempting auto-fixes for ${issues.length} issues...`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🔧 Attempting auto-fixes for ${issues.length} issues...`);
+    }
     
     for (const issue of issues) {
       const key = `${issue.component}:${issue.message}`;
       const attempts = this.fixAttempts.get(key) || 0;
       
       if (attempts >= this.maxFixAttempts) {
-        console.warn(`⚠️ Max fix attempts reached for ${key}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`⚠️ Max fix attempts reached for ${key}`);
+        }
         continue;
       }
 
@@ -196,7 +216,9 @@ class LogReviewer {
         
         if (fixResult.success) {
           logger.info(`Auto-fix successful: ${fixResult.action}`, 'AutoFixer', fixResult.details);
-          console.log(`✅ Auto-fixed: ${fixResult.action}`);
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`✅ Auto-fixed: ${fixResult.action}`);
+          }
           
           // Mark error as resolved
           logger.resolveError(issue.component || 'Unknown', issue.message);
@@ -205,7 +227,9 @@ class LogReviewer {
             error: fixResult.error, 
             details: fixResult.details 
           });
-          console.warn(`❌ Auto-fix failed: ${fixResult.action} - ${fixResult.error}`);
+          if (process.env.NODE_ENV === 'development') {
+            console.warn(`❌ Auto-fix failed: ${fixResult.action} - ${fixResult.error}`);
+          }
         }
       }
     }
@@ -344,16 +368,22 @@ class LogReviewer {
   }
 
   private async fixHydrationErrors(errors: LogEntry[]): Promise<void> {
-    console.log(`🔧 Attempting to fix ${errors.length} hydration errors...`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🔧 Attempting to fix ${errors.length} hydration errors...`);
+    }
     
     for (const error of errors) {
       const result = await this.fixHydrationError(error);
       
       if (result.success) {
         logger.resolveError(error.component || 'Unknown', error.message);
-        console.log(`✅ Fixed hydration error: ${result.action}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`✅ Fixed hydration error: ${result.action}`);
+        }
       } else {
-        console.warn(`❌ Could not fix hydration error: ${result.action}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`❌ Could not fix hydration error: ${result.action}`);
+        }
       }
     }
   }
@@ -388,7 +418,9 @@ class LogReviewer {
   private async fixPromiseRejection(error: LogEntry): Promise<AutoFixResult> {
     try {
       // Try to handle promise rejections
-      console.warn(`🔄 Handling promise rejection: ${error.message}`);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`🔄 Handling promise rejection: ${error.message}`);
+      }
       
       return {
         success: true,
@@ -428,7 +460,9 @@ class LogReviewer {
   private async fixGenericError(error: LogEntry): Promise<AutoFixResult> {
     try {
       // Generic error handling
-      console.warn(`🔧 Attempting generic fix for: ${error.message}`);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`🔧 Attempting generic fix for: ${error.message}`);
+      }
       
       return {
         success: true,

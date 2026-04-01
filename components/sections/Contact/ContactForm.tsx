@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   CheckCircle2, 
   Loader2, 
@@ -201,20 +201,52 @@ export default function ContactForm() {
             type="submit"
             disabled={status === "loading"}
             className="btn-primary w-full relative overflow-hidden group"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
+            whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
           >
-            {status === "loading" ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                {language === 'es' ? 'Enviando...' : 'Sending...'}
-              </>
-            ) : (
-              <>
-                {language === 'es' ? 'Enviar Mensaje' : 'Send Message'}
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-purple-600/20 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-              </>
-            )}
+            <AnimatePresence mode="wait">
+              {status === "loading" ? (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="flex items-center justify-center gap-2"
+                >
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>{language === 'es' ? 'Enviando...' : 'Sending...'}</span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-violet-600/20 via-purple-600/20 to-violet-600/20"
+                    animate={{
+                      x: ['-100%', '100%'],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="idle"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="flex items-center justify-center gap-2"
+                >
+                  <span>{language === 'es' ? 'Enviar Mensaje' : 'Send Message'}</span>
+                  <motion.span
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 4 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    →
+                  </motion.span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-purple-600/20 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
         </>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -95,7 +95,10 @@ export default function Clients() {
   }, [isPaused]);
 
   // Duplicate logos for infinite scroll effect
-  const duplicatedLogos = [...clientLogos, ...clientLogos];
+  const duplicatedLogos = useMemo(() => 
+    [...clientLogos, ...clientLogos],
+    []
+  );
 
   return (
     <section className="section py-8 md:py-12 bg-gradient-to-b from-transparent to-[rgba(124,107,196,0.03)]">
