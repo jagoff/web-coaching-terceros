@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import DebugLogViewer from "@/components/debug/DebugLogViewer";
 import "../styles/scrollbar.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -154,9 +153,6 @@ export default function RootLayout({
             </ClientLayout>
           </ThemeProvider>
         </LanguageProvider>
-        
-        {/* Debug Log Viewer - Only in development */}
-        {process.env.NODE_ENV === 'development' && <DebugLogViewer />}
       </body>
     </html>
   );
