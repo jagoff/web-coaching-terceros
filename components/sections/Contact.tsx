@@ -72,26 +72,24 @@ export default function Contact() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="max-w-[1080px] mx-auto mb-14 md:mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-12">
-            {/* Left Column - Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <ConversationalContactForm />
-            </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-14 md:mb-24">
+          {/* Left Column - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <ConversationalContactForm />
+          </motion.div>
 
-            {/* Right Column - Sidebar */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <ContactSidebar />
-            </motion.div>
-          </div>
+          {/* Right Column - Sidebar */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <ContactSidebar />
+          </motion.div>
         </div>
       </div>
     </section>
