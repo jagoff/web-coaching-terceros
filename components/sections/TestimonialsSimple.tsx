@@ -185,7 +185,7 @@ export default function TestimonialsSimple() {
               className="glass-card p-5 md:p-8 text-center cursor-grab active:cursor-grabbing relative"
             >
               {/* Rating - Top Left */}
-              <div className="flex gap-1 mb-4 justify-start">
+              <div className="flex gap-1 mb-4 mt-2 justify-start">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
