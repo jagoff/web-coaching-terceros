@@ -530,11 +530,7 @@ export default function ConversationalContactForm() {
               {step > 1 && (
                 <motion.button
                   onClick={handleBack}
-                  className="flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-white transition-all duration-300"
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '2px solid rgba(255, 255, 255, 0.1)',
-                  }}
+                  className="flex items-center gap-2 px-5 py-3 btn-secondary"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -545,12 +541,8 @@ export default function ConversationalContactForm() {
 
               <motion.button
                 onClick={step === 3 ? handleSubmit : handleNext}
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, #FF6B35 0%, #FF8555 100%)',
-                  boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)',
-                }}
-                whileHover={{ scale: 1.02, boxShadow: '0 6px 20px rgba(255, 107, 53, 0.4)' }}
+                className="flex-1 flex items-center justify-center gap-2 btn-primary"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {step === 3 ? (
