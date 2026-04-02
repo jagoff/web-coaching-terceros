@@ -1050,7 +1050,7 @@ html.lenis, html.lenis body {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   background: rgba(12, 10, 18, 0.95);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
@@ -1072,7 +1072,7 @@ html.lenis, html.lenis body {
   background: rgba(12, 10, 18, 0.98);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  padding: 1rem 0;
+  padding: 0.75rem 0;
 }
 
 .nav-link {
