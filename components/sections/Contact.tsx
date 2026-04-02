@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
-import ContactInfo from "./Contact/ContactInfo";
 import ConversationalContactForm from "./Contact/ConversationalContactForm";
 
 export default function Contact() {
@@ -72,21 +71,11 @@ export default function Contact() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-14 md:mb-24">
-          {/* Left Column - Contact Info */}
+        <div className="max-w-3xl mx-auto mb-14 md:mb-24">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <ContactInfo />
-          </motion.div>
-
-          {/* Right Column - Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <ConversationalContactForm />
           </motion.div>
