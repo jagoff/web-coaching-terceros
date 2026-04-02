@@ -182,10 +182,10 @@ export default function TestimonialsSimple() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="glass-card p-6 md:p-10 text-center cursor-grab active:cursor-grabbing relative"
+              className="glass-card p-5 md:p-8 text-center cursor-grab active:cursor-grabbing relative"
             >
               {/* Rating - Top Left */}
-              <div className="flex gap-1 mb-6 justify-start">
+              <div className="flex gap-1 mb-4 justify-start">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -197,7 +197,7 @@ export default function TestimonialsSimple() {
               </div>
 
               {/* Quote */}
-              <blockquote className="mb-6" suppressHydrationWarning>
+              <blockquote className="mb-5" suppressHydrationWarning>
                 <p
                   className="text-base md:text-lg leading-relaxed mb-4"
                   style={{ color: "var(--text-secondary)" }}
