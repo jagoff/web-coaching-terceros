@@ -757,15 +757,16 @@ button.force-cta-style:hover,
 .credential-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.125rem;
+  gap: 0.4rem;
+  padding: 0.5rem 0.875rem;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius-md);
   color: var(--text-secondary);
-  font-size: 1.0625rem; /* Increased from 0.875rem */
+  font-size: 0.9375rem;
   font-weight: 500;
   transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+  white-space: nowrap;
 }
 
 .credential-chip:hover {
@@ -1729,6 +1730,11 @@ html.lenis, html.lenis body {
   .lg\:gap-16  { gap: 4rem; }
   .lg\:gap-20  { gap: 5rem; }
   .lg\:mb-24   { margin-bottom: 6rem; }
+  
+  /* Carousel container spacing from TV image - only affects left column */
+  .lg\:order-1.carousel-container {
+    padding-top: 450px !important;
+  }
 }
 
 /* ---- Responsive: xl (1280px) ---- */

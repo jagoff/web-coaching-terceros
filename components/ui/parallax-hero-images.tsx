@@ -64,7 +64,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="grid grid-cols-3 gap-3 md:gap-4 w-full">
+      <div className="grid grid-cols-3 gap-3 md:gap-4 w-full p-2">
         {images.slice(0, 15).map((src, index) => {
           const depth = (index % 3) + 1;
           const { x: moveX, y: moveY } = getTransformForDepth(depth);
@@ -72,10 +72,11 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
           return (
             <motion.div
               key={index}
-              className="relative w-full bg-gray-800 rounded-lg overflow-hidden"
+              className="relative w-full rounded-lg overflow-hidden"
               style={{
                 x: moveX,
                 paddingBottom: '125%',
+                boxShadow: '0 0 0 4px rgba(0,0,0,0.3)',
               }}
               whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}

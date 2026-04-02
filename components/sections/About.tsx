@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
 import GesturesCarousel from "../GesturesCarousel";
@@ -177,7 +177,10 @@ export default function About() {
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative order-2 lg:order-1 mt-4 lg:pt-[650px] z-0"
+            className="relative order-2 lg:order-1 mt-4 z-0 carousel-container"
+            style={{ 
+              paddingTop: 'clamp(1rem, 10vw, 1rem)',
+            }}
           >
             {/* Image Carousel - Mobile First */}
             <GesturesCarousel />
@@ -269,53 +272,81 @@ export default function About() {
               animate={isInView ? "visible" : "hidden"}
               className="flex flex-wrap gap-3 sm:gap-4"
             >
-              {Array.from({ length: shuffledCredentials.length + 1 }, (_, index) => {
-                const isLinkedInButton = index === buttonPosition;
+              {shuffledCredentials.map((credential, index) => {
+                const shouldShowLinkedInBefore = index === buttonPosition;
                 
-                if (isLinkedInButton) {
-                  return (
-                    <motion.div
-                      key="linkedin-button"
-                      variants={credentialPop}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      className="linkedin-button-container"
-                    >
-                      <motion.a
-                        href="https://www.linkedin.com/in/fernandolferrari/details/certifications/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
-                        style={{
-                          background: "var(--gradient-gold)",
-                          color: "white",
-                          textDecoration: "none",
-                          fontWeight: "600",
-                          transition: "var(--transition-base)"
-                        }}
-                        whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={handleLinkedInClick}
+                return (
+                  <React.Fragment key={`credential-${index}`}>
+                    {shouldShowLinkedInBefore && (
+                      <motion.div
+                        key="linkedin-button"
+                        variants={credentialPop}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        className="linkedin-button-container"
                       >
-                        <Linkedin size={16} />
-                        {t.process.linkedinButton}
-                        <ExternalLink size={14} />
-                      </motion.a>
-                    </motion.div>
-                  );
-                } else {
-                  const credIndex = index > buttonPosition ? index - 1 : index;
-                  return (
+                        <motion.a
+                          href="https://www.linkedin.com/in/fernandolferrari/details/certifications/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
+                          style={{
+                            background: "var(--gradient-gold)",
+                            color: "white",
+                            textDecoration: "none",
+                            fontWeight: "600",
+                            transition: "var(--transition-base)"
+                          }}
+                          whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={handleLinkedInClick}
+                        >
+                          <Linkedin size={16} />
+                          {t.process.linkedinButton}
+                          <ExternalLink size={14} />
+                        </motion.a>
+                      </motion.div>
+                    )}
                     <motion.div
-                      key={shuffledCredentials[credIndex]}
+                      key={credential}
                       variants={credentialPop}
                       className="credential-chip"
                     >
                       <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-                      <span>{shuffledCredentials[credIndex]}</span>
+                      <span>{credential}</span>
                     </motion.div>
-                  );
-                }
+                    {index === shuffledCredentials.length - 1 && buttonPosition > index && (
+                      <motion.div
+                        key="linkedin-button-end"
+                        variants={credentialPop}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        className="linkedin-button-container"
+                      >
+                        <motion.a
+                          href="https://www.linkedin.com/in/fernandolferrari/details/certifications/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
+                          style={{
+                            background: "var(--gradient-gold)",
+                            color: "white",
+                            textDecoration: "none",
+                            fontWeight: "600",
+                            transition: "var(--transition-base)"
+                          }}
+                          whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={handleLinkedInClick}
+                        >
+                          <Linkedin size={16} />
+                          {t.process.linkedinButton}
+                          <ExternalLink size={14} />
+                        </motion.a>
+                      </motion.div>
+                    )}
+                  </React.Fragment>
+                );
               })}
             </motion.div>
           </motion.div>
