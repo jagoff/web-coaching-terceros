@@ -87,6 +87,26 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/', '/experimental/'],
       },
+      {
+        userAgent: 'Grok', // xAI Grok
+        allow: '/',
+        disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/', '/experimental/'],
+      },
+      {
+        userAgent: 'YouBot', // You.com AI
+        allow: '/',
+        disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/', '/experimental/'],
+      },
+      {
+        userAgent: 'GeminiBot', // Google Gemini
+        allow: '/',
+        disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/', '/experimental/'],
+      },
+      {
+        userAgent: 'Meta-ExternalAgent', // Meta AI
+        allow: '/',
+        disallow: ['/test', '/api/', '/admin/', '/_next/', '/static/', '/experimental/'],
+      },
       // Default rule for all other bots
       {
         userAgent: '*',

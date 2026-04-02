@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { EMAIL_REGEX } from "@/lib/validations";
 
 export interface ContactForm {
   nombre: string;
@@ -49,16 +50,14 @@ export const useContactForm = () => {
 
       case "email":
         if (!value.trim()) return es ? "El email es obligatorio" : "Email is required";
-        // eslint-disable-next-line no-case-declarations
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) return es ? "Introduce un email válido" : "Enter a valid email";
+        if (!EMAIL_REGEX.test(value)) return es ? "Introduce un email válido" : "Enter a valid email";
         if (value.length > 100) return es ? "Email demasiado largo" : "Email is too long";
         return "";
 
       case "mensaje":
         if (!value.trim()) return es ? "El mensaje es obligatorio" : "Message is required";
         if (value.trim().length < 10) return es ? "Cuéntanos más (mínimo 10 caracteres)" : "Tell us more (min. 10 characters)";
-        if (value.trim().length > 500) return es ? "El mensaje no puede exceder 500 caracteres" : "Message cannot exceed 500 characters";
+        if (value.trim().length > 1000) return es ? "El mensaje no puede exceder 1000 caracteres" : "Message cannot exceed 1000 characters";
         return "";
 
       default:

@@ -94,6 +94,17 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   useEffect(() => {
     setMounted(true);
     setRenderLanguage(language); // Sync with context language after mount
+    
+    // Force scroll to top on mount - prevent any automatic scrolling
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Also prevent any hash-based scrolling
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+    
     // Drastically reduced particle count for performance
     const count = window.innerWidth < 768 ? 0 : 3; // 6→3, 2→0 (no particles on mobile)
     

@@ -2,12 +2,11 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
-import GesturesCarousel from "../GesturesCarousel";
+import { CheckCircle2, ExternalLink, Linkedin } from "lucide-react";
 import YouTubeThumbnail from "../YouTubeThumbnail";
-import Image from "next/image";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DOMPurify from "isomorphic-dompurify";
 
 const slideReveal: Variants = {
@@ -46,24 +45,26 @@ const credentials = [
   "Fundamentals Online Workshop",
 ];
 
+// Array of 12 unique carousel images for the grid
+const baseImages = [
+  'slide-01.png',
+  'slide-02.png', 
+  'slide-03.png',
+  'slide-04.png',
+  'slide-05.png',
+  'slide-06.png',
+  'slide-07.png',
+  'slide-08.png',
+  'slide-09.png',
+  'slide-10.png',
+  'slide-11.png',
+  'slide-12.png'
+];
 
-const INSTAGRAM_URL = "https://www.instagram.com/jago_ff";
-
-const instagramPosts = [5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12];
-
-const instaStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
-};
-
-const instaCard: Variants = {
-  hidden: { opacity: 0, scale: 0.92, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
+const getImagePaths = (imageName: string) => {
+  // Usar imágenes optimizadas con soporte WebP
+  const originalPath = `/images/carousel/${imageName}`;
+  return originalPath; // Simplificado para desktop grid
 };
 
 export default function About() {
@@ -73,6 +74,9 @@ export default function About() {
   const [shuffledCredentials, setCredentials] = useState(credentials);
   const [buttonPosition, setButtonPosition] = useState(0);
   const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});
+  
+  // Pre-calcular todas las rutas para desktop grid
+  const optimizedImagePaths = baseImages.map(imageName => getImagePaths(imageName));
 
   // Handle hash scrolling for "titulo-about"
   useEffect(() => {
@@ -100,9 +104,13 @@ export default function About() {
       setButtonPosition(randomPos);
       
       // Load click count from localStorage
-      const saved = localStorage.getItem('linkedinButtonMetrics');
-      if (saved) {
-        setClickCount(JSON.parse(saved));
+      try {
+        const saved = localStorage.getItem('linkedinButtonMetrics');
+        if (saved) {
+          setClickCount(JSON.parse(saved));
+        }
+      } catch {
+        // localStorage unavailable or JSON parse failed — proceed with defaults
       }
     }
   }, []);
@@ -111,7 +119,11 @@ export default function About() {
     // Track click position
     setClickCount(prev => {
       const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 };
-      localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
+      try {
+        localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
+      } catch {
+        // localStorage unavailable — skip persisting metrics
+      }
       return newCount;
     });
   };
@@ -127,70 +139,59 @@ export default function About() {
       }}
     >
       <div className="container">
-        {/* TV Image - Mobile version with 3D effect */}
-        <div className="lg:hidden mb-6 flex justify-center">
-          <CardContainer className="inter-var">
-            <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80">
-              <CardItem translateZ="50" className="w-full h-full">
-                <img
-                  src="/images/ui/tv-icon.png"
-                  alt="TV Icon"
-                  className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
-                  style={{ transform: 'scale(1.2)' }}
-                />
-              </CardItem>
-            </CardBody>
-          </CardContainer>
-        </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative mt-24 lg:mt-40">
-          {/* Badge - Positioned above TV image */}
-          <div className="absolute left-0 top-0 lg:left-8 xl:left-12 z-0 lg:block hidden lg:z-20" style={{ top: '10px' }}>
-            <div className="mb-3 flex justify-start">
-              <span className="badge">{t.about.badge}</span>
-            </div>
-          </div>
-
-          {/* TV Image - At grid level, outside any column */}
-          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-0 lg:block hidden" style={{ top: '113px', left: '42px', zIndex: 5 }}>
-            <CardContainer className="inter-var">
-              <CardBody className="relative group/card w-[32rem] h-[32rem]">
-                <CardItem translateZ="50" className="w-full h-full">
-                  <img
-                    src="/images/ui/tv-icon.png"
-                    alt="TV Icon"
-                    className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
-                    style={{ 
-                      filter: 'brightness(1.1) contrast(1.1)',
-                      opacity: 1,
-                      transform: 'scale(1.2)'
-                    }}
-                  />
-                </CardItem>
-              </CardBody>
-            </CardContainer>
-          </div>
-
           {/* Image column */}
           <motion.div
             custom={-60}
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative order-2 lg:order-1 mt-4 z-0 carousel-container"
+            className="relative order-2 lg:order-1 mt-4 z-0"
             style={{ 
               paddingTop: 'clamp(1rem, 10vw, 1rem)',
             }}
           >
-            {/* Image Carousel - Mobile First */}
-            <GesturesCarousel />
+            {/* TV Image - Responsive */}
+            <div className="mb-8 flex justify-center">
+              <CardContainer className="inter-var">
+                <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem]">
+                  <CardItem translateZ="50" className="w-full h-full">
+                    <img
+                      src="/images/ui/tv-icon.png"
+                      alt="TV Icon"
+                      className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
+                      style={{ 
+                        filter: 'brightness(1.1) contrast(1.1)',
+                        opacity: 1,
+                        transform: 'scale(1.2)'
+                      }}
+                    />
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+            </div>
 
-            {/* YouTube Video Section - Below carousel */}
+            {/* Image Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-8"
+            >
+              <div className="relative rounded-lg w-full">
+                <ParallaxHeroImages 
+                  images={optimizedImagePaths} 
+                  className="w-full"
+                />
+              </div>
+            </motion.div>
+
+            {/* YouTube Video Section */}
             <motion.div
               initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
               animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8"
             >
               <div className="mb-6">
                 <h3 className="text-2xl md:text-3xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)" }}>

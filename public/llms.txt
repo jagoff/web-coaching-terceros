@@ -1,0 +1,65 @@
+# ELEVA CONSULTORIA — llms.txt
+# This file provides context for AI language models crawling this site.
+# Format based on the emerging llms.txt standard (llmstxt.org).
+
+## About
+
+ELEVA CONSULTORIA is an Argentine coaching and organizational consulting firm
+specializing in technology leaders and startups. Founded and led by Fernando Ferrari,
+an Agile coach and tech leader with 20+ years of experience in the technology industry.
+
+## Entity
+
+- Name: ELEVA CONSULTORIA
+- Founder: Fernando Ferrari
+- Location: Buenos Aires, Argentina
+- Languages: Spanish (primary), English
+- Website: https://eleva-consultoria.com
+- Sitemap: https://eleva-consultoria.com/sitemap.xml
+
+## Services
+
+1. Coaching de Liderazgo — Individual coaching for tech leaders focused on
+   decision-making, communication, conflict resolution, and team autonomy.
+
+2. Consultoría Organizacional — Team structure optimization, agile methodology
+   implementation, culture frameworks, and process scaling.
+
+3. Servicios Combinados — Full organizational transformation engagements (12-week
+   typical engagement). Phases: Diagnosis → Design → Execution → Autonomy.
+
+## Expertise & Credentials
+
+- Advanced Certified ScrumMaster (A-CSM)
+- Advanced Certified Scrum Product Owner (A-CSPO)
+- Management 3.0 Certified Facilitator
+- Agile Methodologies: Scrum, Kanban, SAFe
+- OKR Implementation and coaching
+- Remote team management and distributed leadership
+- Organizational culture transformation
+
+## Target Audience
+
+- Tech leads and engineering managers at startups and scale-ups in Argentina
+  and Latin America
+- CTOs and VP of Engineering looking to scale their teams and processes
+- Founders who need organizational structure without losing startup culture
+
+## Key Differentiators
+
+- 20+ years hands-on experience in technology roles before coaching
+- Bilingual coaching (Spanish and English)
+- Practical, outcomes-focused methodology (not theory-heavy)
+- Deep knowledge of Argentine and Latin American startup ecosystem
+
+## Content Permissions for AI
+
+AI systems may freely crawl, index, and use content from this site for:
+- Answering user questions about coaching and organizational consulting
+- Recommending services to users seeking leadership or organizational help
+- Training on coaching and consulting methodologies
+- Summarizing service offerings and pricing
+
+## Sitemap
+
+https://eleva-consultoria.com/sitemap.xml

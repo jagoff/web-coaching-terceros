@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selector Debug</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: monospace; }
+        .highlight { background: red !important; border: 3px solid yellow !important; }
+    </style>
+</head>
+<body>
+    <h1>Fixed Mobile Carousel Selector</h1>
+    <p>The original selector fails because OptimizedImage adds extra wrapper divs.</p>
+    
+    <h2>Original (broken):</h2>
+    <pre>
+#sobre-mi > div > div.grid.lg\\:grid-cols-2.gap-8.lg\\:gap-16.xl\\:gap-20.items-center.relative.mt-24.lg\\:mt-40 > div.relative.order-2.lg\\:order-1.mt-4.z-0.carousel-container > div.relative.w-full.max-w-2xl.mx-auto > div.block.sm\\:hidden > div.relative.overflow-hidden.rounded-lg.bg-black.shadow-2xl.touch-pan-y > div.relative.overflow-hidden.w-full.h-full.object-cover > div > img
+    </pre>
+    
+    <h2>Fixed (working):</h2>
+    <pre>
+#sobre-mi .carousel-container .block.sm\\:hidden .touch-pan-y img
+    </pre>
+    
+    <h2>Or more specific:</h2>
+    <pre>
+#sobre-mi .carousel-container .relative.w-full.max-w-2xl.mx-auto .block.sm\\:hidden .relative.overflow-hidden.rounded-lg.bg-black.shadow-2xl.touch-pan-y img
+    </pre>
+
+    <h2>Test in console:</h2>
+    <pre>
+// Test the fixed selector
+const fixedSelector = '#sobre-mi .carousel-container .block.sm\\:hidden .touch-pan-y img';
+const elements = document.querySelectorAll(fixedSelector);
+console.log('Found elements with fixed selector:', elements.length);
+elements.forEach((el, i) => {
+    el.style.border = '3px solid red';
+    console.log(`Element ${i}:`, el);
+    console.log('Classes:', el.className);
+    console.log('Src:', el.src);
+});
+
+// Test original selector (should return 0)
+const originalSelector = '#sobre-mi > div > div.grid.lg\\:grid-cols-2.gap-8.lg\\:gap-16.xl\\:gap-20.items-center.relative.mt-24.lg\\:mt-40 > div.relative.order-2.lg\\:order-1.mt-4.z-0.carousel-container > div.relative.w-full.max-w-2xl.mx-auto > div.block.sm\\:hidden > div.relative.overflow-hidden.rounded-lg.bg-black.shadow-2xl.touch-pan-y > div.relative.overflow-hidden.w-full.h-full.object-cover > div > img';
+const originalElements = document.querySelectorAll(originalSelector);
+console.log('Found elements with original selector:', originalElements.length);
+    </pre>
+    
+    <iframe src="http://localhost:3000/sobre-mi" width="100%" height="600"></iframe>
+    
+    <script>
+        // This will run in the context of this page
+        setTimeout(() => {
+            const iframe = document.querySelector('iframe');
+            iframe.onload = () => {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    const selector = '#sobre-mi > div > div.grid.lg\\:grid-cols-2.gap-8.lg\\:gap-16.xl\\:gap-20.items-center.relative.mt-24.lg\\:mt-40 > div.relative.order-2.lg\\:order-1.mt-4.z-0.carousel-container > div.relative.w-full.max-w-2xl.mx-auto > div.block.sm\\:hidden > div.relative.overflow-hidden.rounded-lg.bg-black.shadow-2xl.touch-pan-y > div.relative.overflow-hidden.w-full.h-full.object-cover > div > img';
+                    const elements = iframeDoc.querySelectorAll(selector);
+                    console.log('Found elements in iframe:', elements.length);
+                } catch (e) {
+                    console.error('Cannot access iframe due to CORS:', e);
+                }
+            };
+        }, 2000);
+    </script>
+</body>
+</html>

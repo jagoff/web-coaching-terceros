@@ -82,7 +82,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   const handleSetTheme = (newTheme: Theme) => {
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch {
+      // localStorage unavailable (private mode, quota exceeded) — skip persisting
+    }
   };
 
   const toggleTheme = () => {

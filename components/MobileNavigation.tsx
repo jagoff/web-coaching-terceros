@@ -200,7 +200,7 @@ export default function MobileNavigation() {
                 <div className="pt-6 border-t border-white/10" style={{ marginTop: '400px' }}>
                   <button
                     onClick={() => handleNavClick('#contact')}
-                    className="w-full py-4 px-6 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
+                    className="w-full py-2 px-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg font-semibold text-xs whitespace-nowrap"
                   >
                     {language === 'es' ? 'COMENZAR AHORA' : 'GET STARTED NOW'}
                   </button>

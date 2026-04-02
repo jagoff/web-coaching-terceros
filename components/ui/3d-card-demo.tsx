@@ -40,7 +40,7 @@ export default function ThreeDCardDemo() {
           <CardItem
             translateZ={20}
             as="button"
-            className="px-3 sm:px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="px-3 sm:px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors whitespace-nowrap"
           >
             Comenzar ahora
           </CardItem>

@@ -244,7 +244,7 @@ export default function TestimonialsSimple() {
             <div className="flex justify-between items-center mt-8">
               <button
                 onClick={goToPrevious}
-                className="p-3 rounded-full transition-all hover:scale-110"
+                className="p-3 rounded-full"
                 style={{
                   background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)",
                   boxShadow: "0 4px 12px rgba(124, 107, 196, 0.3)",
@@ -281,7 +281,7 @@ export default function TestimonialsSimple() {
 
               <button
                 onClick={goToNext}
-                className="p-3 rounded-full transition-all hover:scale-110"
+                className="p-3 rounded-full"
                 style={{
                   background: "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)",
                   boxShadow: "0 4px 12px rgba(124, 107, 196, 0.3)",

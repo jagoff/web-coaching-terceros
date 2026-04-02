@@ -26,7 +26,7 @@ interface JsonLdData {
 }
 
 interface JsonLdStructuredDataProps {
-  type: 'Organization' | 'Service' | 'Person' | 'WebPage' | 'LocalBusiness' | 'FAQPage' | 'Review' | 'ProfessionalService' | 'HowTo' | 'QuantitativeValue';
+  type: 'Organization' | 'Service' | 'Person' | 'WebPage' | 'LocalBusiness' | 'FAQPage' | 'Review' | 'AggregateRating' | 'ProfessionalService' | 'HowTo' | 'QuantitativeValue';
   data?: JsonLdData;
   pathname?: string;
 }
@@ -68,6 +68,26 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "https://www.linkedin.com/in/fernandoferrari",
             "https://www.linkedin.com/company/eleva-consultoria",
             "https://twitter.com/eleva_consultoria"
+          ],
+          "knowsAbout": [
+            "Agile Methodologies",
+            "Coaching de Liderazgo",
+            "Consultoría Organizacional",
+            "Desarrollo de Equipos",
+            "Cultura Organizacional",
+            "OKR Implementation",
+            "Scrum",
+            "Management 3.0",
+            "Remote Team Management",
+            "Startups",
+            "Tech Leadership",
+            "Transformación Digital"
+          ],
+          "category": [
+            "Business Consulting",
+            "Executive Coaching",
+            "Agile Transformation",
+            "Organizational Development"
           ],
           "services": [
             "Coaching de Liderazgo",
@@ -125,13 +145,27 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "@type": "Organization",
             "name": "ELEVA CONSULTORIA"
           },
+          "alumniOf": [
+            { "@type": "EducationalOccupationalCredential", "name": "Advanced Certified ScrumMaster (A-CSM)" },
+            { "@type": "EducationalOccupationalCredential", "name": "Advanced Certified Scrum Product Owner (A-CSPO)" },
+            { "@type": "EducationalOccupationalCredential", "name": "Management 3.0" }
+          ],
+          "hasCredential": [
+            { "@type": "EducationalOccupationalCredential", "name": "Advanced Certified ScrumMaster (A-CSM)" },
+            { "@type": "EducationalOccupationalCredential", "name": "Advanced Certified Scrum Product Owner (A-CSPO)" },
+            { "@type": "EducationalOccupationalCredential", "name": "Management 3.0" }
+          ],
           "knowsAbout": [
             "Coaching de Liderazgo",
             "Consultoría Organizacional",
             "Desarrollo de Equipos",
             "Cultura Organizacional",
+            "Agile Methodologies",
+            "OKR Implementation",
+            "Scrum",
             "Startups",
-            "Tecnología"
+            "Tech Leadership",
+            "Transformación Digital"
           ],
           "offers": {
             "@type": "Offer",
@@ -266,6 +300,23 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "@type": "Organization",
             "name": "ELEVA CONSULTORIA"
           }
+        };
+
+      case 'AggregateRating':
+        return {
+          "@context": "https://schema.org",
+          "@type": "AggregateRating",
+          "itemReviewed": {
+            "@type": "ProfessionalService",
+            "name": "ELEVA CONSULTORIA",
+            "url": baseUrl,
+            "description": "Coaching y consultoría organizacional para líderes tech y startups"
+          },
+          "ratingValue": data.rating || "5",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": data.value || "15",
+          "reviewCount": data.value || "15"
         };
 
       case 'ProfessionalService':

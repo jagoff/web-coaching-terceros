@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+// Shared email regex — single source of truth across validation layers
+export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // Schema de validación para el formulario de contacto (simplificado a 3 campos)
 export const contactFormSchema = z.object({
   nombre: z
@@ -18,7 +21,7 @@ export const contactFormSchema = z.object({
   mensaje: z
     .string()
     .min(10, "El mensaje debe tener al menos 10 caracteres")
-    .max(2000, "El mensaje no puede exceder 2000 caracteres")
+    .max(1000, "El mensaje no puede exceder 1000 caracteres")
     .trim(),
 });
 

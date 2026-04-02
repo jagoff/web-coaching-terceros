@@ -29,9 +29,53 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     setIsClient(true);
+    
+    // AGGRESSIVE: Prevent any scroll for first 2 seconds
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      return false;
+    };
+    
+    // Force scroll to top immediately
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Clear any hash that might cause auto-scroll
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+    
+    // Block ALL scroll events temporarily
+    const scrollEvents = ['scroll', 'wheel', 'touchmove'];
+    scrollEvents.forEach(event => {
+      window.addEventListener(event, preventScroll, { passive: false });
+      document.addEventListener(event, preventScroll, { passive: false });
+    });
+    
+    // Remove scroll blocking after 2 seconds
+    const timeout = setTimeout(() => {
+      scrollEvents.forEach(event => {
+        window.removeEventListener(event, preventScroll);
+        document.removeEventListener(event, preventScroll);
+      });
+    }, 2000);
+    
     // Delay non-critical components for FCP optimization
-    const timer = setTimeout(() => setIsLoaded(true), 500); // Increased from 100ms to 500ms
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => setIsLoaded(true), 500);
+    
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(timer);
+      scrollEvents.forEach(event => {
+        window.removeEventListener(event, preventScroll);
+        document.removeEventListener(event, preventScroll);
+      });
+    };
   }, []);
 
   return (

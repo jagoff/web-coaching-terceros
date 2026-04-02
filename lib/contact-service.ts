@@ -4,6 +4,7 @@
  */
 
 import devLog from './dev-logger';
+import { EMAIL_REGEX } from './validations';
 
 export interface ContactFormData {
   nombre: string;
@@ -22,8 +23,17 @@ export interface ContactResponse {
  * Web3Forms es gratuito y no requiere backend
  */
 export async function sendContactForm(data: ContactFormData): Promise<ContactResponse> {
-  const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE';
-  
+  const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+  if (!WEB3FORMS_ACCESS_KEY) {
+    devLog.warn('[ContactService] NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is not set — form submission will fail');
+    return {
+      success: false,
+      message: 'El servicio de contacto no está configurado. Por favor, contáctanos directamente.',
+      error: 'Missing WEB3FORMS_ACCESS_KEY',
+    };
+  }
+
   // Debug log en desarrollo
   devLog.log('[ContactService] Enviando formulario:', {
     nombre: data.nombre,
@@ -39,8 +49,7 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
     }
 
     // Validación de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
+    if (!EMAIL_REGEX.test(data.email)) {
       throw new Error('Email inválido');
     }
 
@@ -113,10 +122,9 @@ export function validateContactForm(data: Partial<ContactFormData>): {
   }
 
   // Validar email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!data.email) {
     errors.email = 'El email es requerido';
-  } else if (!emailRegex.test(data.email)) {
+  } else if (!EMAIL_REGEX.test(data.email)) {
     errors.email = 'Email inválido';
   }
 

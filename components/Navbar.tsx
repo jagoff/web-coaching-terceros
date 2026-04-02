@@ -14,6 +14,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const lastScrollTime = useRef(0);
+  const cachedContactTop = useRef<number | null>(null);
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "/sobre-mi#titulo-about" },
@@ -25,15 +27,20 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const contactSection = document.querySelector('#contacto');
-      
-      // Check if near contact section (200px before)
+      const now = Date.now();
+
+      // Throttle getBoundingClientRect calls to at most once every 100ms
       let shouldHide = false;
+      const contactSection = document.querySelector('#contacto');
       if (contactSection) {
-        const contactRect = contactSection.getBoundingClientRect();
-        const contactTop = contactRect.top + window.scrollY;
+        if (now - lastScrollTime.current >= 100 || cachedContactTop.current === null) {
+          lastScrollTime.current = now;
+          const contactRect = contactSection.getBoundingClientRect();
+          cachedContactTop.current = contactRect.top + window.scrollY;
+        }
+        const contactTop = cachedContactTop.current;
         shouldHide = currentScrollY > (contactTop - 200);
-        
+
         // Log when approaching contact section
         if (shouldHide && currentScrollY > (contactTop - 250) && currentScrollY < (contactTop - 240)) {
           logger.info('Approaching contact section - navbar will hide', {
@@ -203,21 +210,7 @@ export default function Navbar() {
             </ul>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-4">
-              <button
-                className="flex items-center gap-2 px-3 py-2 rounded-lg border transition-colors"
-                style={{
-                  background: "rgba(124,107,196,0.08)",
-                  borderColor: "rgba(124,107,196,0.2)",
-                  color: "var(--text-secondary)",
-                  minWidth: "65px"
-                }}
-                onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-                aria-label={language === 'es' ? 'Cambiar idioma a inglés' : 'Change language to Spanish'}
-              >
-                <span style={{ fontSize: "0.7rem" }}>{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
-                <span style={{ fontSize: "0.65rem", fontWeight: "500" }}>{language === 'es' ? 'EN' : 'ES'}</span>
-              </button>
+            <div className="hidden lg:flex items-center">
               {/* Desktop CTA - DO NOT ADD INLINE STYLES - protected by CSS rules */}
               <button
                 id="navbar-cta-primary"
@@ -227,14 +220,15 @@ export default function Navbar() {
                   border: '1.5px solid rgba(255, 255, 255, 0.5) !important',
                   boxShadow: '0 0 16px rgba(255, 107, 53, 0.15) !important',
                   borderRadius: '0.5rem !important',
-                  padding: '0.75rem 1.5rem !important',
+                  padding: '0.5rem 1rem !important',
                   fontWeight: '600 !important',
                   fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif !important',
-                  fontSize: '0.8rem !important',
+                  fontSize: '0.7rem !important',
                   letterSpacing: '0.04em !important',
                   textTransform: 'uppercase !important',
                   cursor: 'pointer !important',
-                  transition: 'all 0.3s ease !important'
+                  transition: 'all 0.3s ease !important',
+                  whiteSpace: 'nowrap !important'
                 }}
                 onClick={() => handleLinkClick("/#contacto")}
                 aria-label="Agendar sesión gratuita de coaching"
@@ -244,7 +238,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile hamburger + language */}
-            <div className="lg:hidden flex items-center gap-3">
+            <div className="lg:hidden flex items-center gap-8">
               {/* Mobile language button - BACKUP */}
               <button
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg border-2"

@@ -1,5 +1,15 @@
 import type { ContactFormData } from "./validations";
 
+// Escape HTML special characters to prevent XSS in email templates
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // Template HTML del email de confirmación enviado al cliente
 function buildConfirmationEmailHtml(data: ContactFormData): string {
 
@@ -124,7 +134,7 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
       <p>Te responderemos en menos de 24 horas</p>
     </div>
     <div class="body">
-      <p class="greeting">Hola ${data.nombre},</p>
+      <p class="greeting">Hola ${escapeHtml(data.nombre)},</p>
       <p class="text">
         Gracias por ponerte en contacto. Hemos recibido tu mensaje correctamente y nos
         pondremos en comunicación contigo a la brevedad posible.
@@ -134,15 +144,15 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
         <h3>Resumen de tu solicitud</h3>
         <div class="summary-row">
           <span class="summary-label">Nombre</span>
-          <span class="summary-value">${data.nombre}</span>
+          <span class="summary-value">${escapeHtml(data.nombre)}</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Email</span>
-          <span class="summary-value">${data.email}</span>
+          <span class="summary-value">${escapeHtml(data.email)}</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Mensaje</span>
-          <span class="summary-value">${data.mensaje}</span>
+          <span class="summary-value">${escapeHtml(data.mensaje)}</span>
         </div>
       </div>
 
@@ -200,15 +210,15 @@ function buildNotificationEmailHtml(data: ContactFormData): string {
     <div class="body">
       <div class="field">
         <div class="label">Nombre</div>
-        <div class="value">${data.nombre}</div>
+        <div class="value">${escapeHtml(data.nombre)}</div>
       </div>
       <div class="field">
         <div class="label">Email</div>
-        <div class="value">${data.email}</div>
+        <div class="value">${escapeHtml(data.email)}</div>
       </div>
       <div class="field">
         <div class="label">Mensaje</div>
-        <div class="value mensaje-value">${data.mensaje}</div>
+        <div class="value mensaje-value">${escapeHtml(data.mensaje)}</div>
       </div>
     </div>
   </div>
@@ -263,17 +273,23 @@ export async function sendContactEmail(
       resend.emails.send({
         from: fromAddress,
         to: contactEmail,
-        subject: `Nuevo contacto: ${data.nombre} — Consulta web`,
+        subject: `Nuevo contacto: ${escapeHtml(data.nombre)} — Consulta web`,
         html: buildNotificationEmailHtml(data),
         replyTo: data.email,
       }),
     ]);
 
-    // Silently handle individual email failures - at least one succeeded
+    // Log individual failures so leads are never silently dropped
+    if (confirmResult.status === "rejected") {
+      console.error("[email] Confirmation email failed:", confirmResult.reason);
+    }
+    if (notifResult.status === "rejected") {
+      console.error("[email] Coach notification failed:", notifResult.reason);
+    }
 
-    // El envío se considera exitoso si al menos uno de los dos llegó
+    // El envío se considera exitoso si al menos el email al coach llegó
     const anySuccess =
-      confirmResult.status === "fulfilled" || notifResult.status === "fulfilled";
+      notifResult.status === "fulfilled" || confirmResult.status === "fulfilled";
 
     if (!anySuccess) {
       return { success: false, error: "No se pudo enviar ninguno de los emails" };

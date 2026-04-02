@@ -1,12 +1,13 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  CheckCircle2, 
-  Loader2, 
-  CheckCheck, 
-  AlertCircle, 
-  User, 
+import {
+  CheckCircle2,
+  Loader2,
+  CheckCheck,
+  AlertCircle,
+  User,
   MessageSquare,
   Mail,
   Send,
@@ -17,18 +18,28 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { sendContactForm, createMailtoLink } from "@/lib/contact-service";
 
 export default function ContactForm() {
-  const { 
-    form, 
-    errors, 
-    touched, 
-    status, 
-    apiError, 
-    setStatus, 
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mailtoRef = useRef<string>('');
+  const {
+    form,
+    errors,
+    touched,
+    status,
+    apiError,
+    setStatus,
     setApiError,
     validate,
     updateFieldWithTouch,
     resetForm
   } = useContactForm();
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current !== null) {
+        clearTimeout(resetTimerRef.current);
+      }
+    };
+  }, []);
   
   const { language } = useLanguage();
 
@@ -45,23 +56,26 @@ export default function ContactForm() {
 
       if (result.success) {
         setStatus("success");
-        setTimeout(() => resetForm(), 3000);
+        if (resetTimerRef.current !== null) {
+          clearTimeout(resetTimerRef.current);
+        }
+        resetTimerRef.current = setTimeout(() => resetForm(), 3000);
       } else {
         setStatus("error");
-        const mailtoLink = createMailtoLink(form);
+        mailtoRef.current = createMailtoLink(form);
         setApiError(
-          language === 'es' 
-            ? `${result.message} Puedes contactarnos directamente haciendo clic aquí: ${mailtoLink}`
-            : `${result.message} You can contact us directly by clicking here: ${mailtoLink}`
+          language === 'es'
+            ? (result.message || 'Error al enviar mensaje.')
+            : (result.message || 'Error sending message.')
         );
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
-      const mailtoLink = createMailtoLink(form);
+      mailtoRef.current = createMailtoLink(form);
       setApiError(
         language === 'es'
-          ? `Error al enviar mensaje. Contáctanos directamente: ${mailtoLink}`
-          : `Error sending message. Contact us directly: ${mailtoLink}`
+          ? 'Error al enviar mensaje.'
+          : 'Error sending message.'
       );
     }
   };
@@ -122,7 +136,17 @@ export default function ContactForm() {
               className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 mb-6"
             >
               <AlertCircle size={20} className="flex-shrink-0 mt-0.5" />
-              <span className="text-sm">{apiError}</span>
+              <span className="text-sm">
+                {apiError}{' '}
+                {mailtoRef.current && (
+                  <a
+                    href={mailtoRef.current}
+                    className="underline hover:text-red-300 transition-colors"
+                  >
+                    {language === 'es' ? 'Contactanos directamente' : 'Contact us directly'}
+                  </a>
+                )}
+              </span>
             </motion.div>
           )}
 
@@ -158,10 +182,10 @@ export default function ContactForm() {
                   </label>
                   
                   {/* Glassmorphism Container */}
-                  <div className="relative group rounded-3xl overflow-hidden">
+                  <div className="relative group rounded-2xl overflow-hidden">
                     {/* Background glass layer */}
                     <div 
-                      className="absolute inset-0 rounded-3xl"
+                      className="absolute inset-0 rounded-2xl"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
                         backdropFilter: 'blur(8px)',
@@ -173,7 +197,7 @@ export default function ContactForm() {
                     
                     {/* Gradient overlay for depth */}
                     <div 
-                      className="absolute inset-0 rounded-3xl opacity-40"
+                      className="absolute inset-0 rounded-2xl opacity-40"
                       style={{
                         background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%)',
                       }}
@@ -193,7 +217,7 @@ export default function ContactForm() {
                             outline: 'none',
                             border: 'none',
                             fontWeight: '400',
-                            borderRadius: '24px'
+                            borderRadius: '12px'
                           }}
                           rows={4}
                           placeholder={getPlaceholder(fieldKey)}
@@ -211,7 +235,7 @@ export default function ContactForm() {
                             outline: 'none',
                             border: 'none',
                             fontWeight: '400',
-                            borderRadius: '24px'
+                            borderRadius: '12px'
                           }}
                           placeholder={getPlaceholder(fieldKey)}
                         />
@@ -243,7 +267,7 @@ export default function ContactForm() {
                     
                     {/* Hover effect */}
                     <div 
-                      className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                       style={{
                         background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%)',
                         boxShadow: '0 0 20px rgba(255, 107, 53, 0.2)',
@@ -288,7 +312,7 @@ export default function ContactForm() {
             >
               {/* Glassmorphism button container */}
               <div 
-                className="absolute inset-0 rounded-3xl"
+                className="absolute inset-0 rounded-2xl"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 107, 53, 0.1) 100%)',
                   backdropFilter: 'blur(12px)',
@@ -300,7 +324,7 @@ export default function ContactForm() {
               
               {/* Gradient overlay */}
               <div 
-                className="absolute inset-0 rounded-3xl opacity-80"
+                className="absolute inset-0 rounded-2xl opacity-80"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(255, 133, 85, 0.2) 100%)',
                 }}
@@ -317,7 +341,7 @@ export default function ContactForm() {
                   fontSize: '0.95rem',
                   fontFamily: 'var(--font-heading)',
                   letterSpacing: '0.05em',
-                  borderRadius: '24px'
+                  borderRadius: '16px'
                 }}
               >
                 <AnimatePresence mode="wait">
@@ -350,7 +374,7 @@ export default function ContactForm() {
               
               {/* Hover glow effect */}
               <div 
-                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(255, 133, 85, 0.3) 100%)',
                   boxShadow: '0 0 40px rgba(255, 107, 53, 0.4)',

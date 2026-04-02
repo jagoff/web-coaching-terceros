@@ -11,36 +11,43 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const LANG_STORAGE_KEY = 'eleva-language';
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     // Determine initial language during SSR/check
     if (typeof window === 'undefined') {
-      // Server-side: check if we're in /en route (this will be properly set by Next.js)
-      return 'es'; // Default, will be updated by useEffect if needed
+      // Server-side: default to 'es'; will be corrected on client
+      return 'es';
     }
-    // Client-side: check URL
+    // Client-side: URL takes priority over stored preference
     const path = window.location.pathname;
-    return path.startsWith('/en') ? 'en' : 'es';
+    if (path.startsWith('/en')) return 'en';
+    // Fall back to localStorage preference if no language in URL
+    try {
+      const stored = localStorage.getItem(LANG_STORAGE_KEY) as Language | null;
+      if (stored === 'en' || stored === 'es') return stored;
+    } catch {
+      // localStorage unavailable — use default
+    }
+    return 'es';
   });
 
-  // Detect language from URL on mount (only runs on client)
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      if (path.startsWith('/en')) {
-        setLanguage('en');
-      }
-    }
-  }, []);
-
-  // Update URL when language changes
+  // Update URL and persist preference when language changes
   const changeLanguage = (lang: Language) => {
     setLanguage(lang);
-    
+
     if (typeof window !== 'undefined') {
+      // Persist preference
+      try {
+        localStorage.setItem(LANG_STORAGE_KEY, lang);
+      } catch {
+        // localStorage unavailable — skip persisting
+      }
+
       const currentPath = window.location.pathname;
       const currentSearch = window.location.search;
-      
+
       if (lang === 'en' && !currentPath.startsWith('/en')) {
         window.history.pushState(null, '', `/en${currentPath}${currentSearch}`);
       } else if (lang === 'es' && currentPath.startsWith('/en')) {

@@ -6,6 +6,7 @@ import Clients from "@/components/sections/Clients";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 
 export const dynamic = 'force-static'
 export const revalidate = 3600 // Revalidate every hour
@@ -49,7 +50,25 @@ export const metadata: Metadata = {
 
 export default function PreciosPage() {
   return (
-    <main>
+    <>
+      <JsonLdStructuredData
+        type="Service"
+        data={{
+          name: "Coaching y Consultoría Organizacional — Planes y Precios",
+          description: "Planes de coaching y consultoría para líderes tech y startups. Sesiones individuales, transformación de equipos y acompañamiento organizacional completo.",
+        }}
+        pathname="/precios"
+      />
+      <JsonLdStructuredData
+        type="WebPage"
+        data={{
+          title: "Precios y Planes | Coaching y Consultoría | ELEVA CONSULTORIA",
+          description: "Planes de coaching y consultoría adaptados a tu necesidad.",
+          breadcrumb: "Precios"
+        }}
+        pathname="/precios"
+      />
+      <main>
       <HeroServer pathname="/precios" />
       <Pricing />
       <FAQ />
@@ -58,5 +77,6 @@ export default function PreciosPage() {
       <Footer />
       <WhatsAppBooking />
     </main>
+    </>
   );
 }
