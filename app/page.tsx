@@ -1,5 +1,6 @@
 import dynamicImport from 'next/dynamic';
 import HeroServer from "@/components/sections/HeroServer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 // Split into individual imports for better code splitting
 const About = dynamicImport(() => import("@/components/sections/About"), {
@@ -48,7 +49,6 @@ const Clients = dynamicImport(() => import("@/components/sections/Clients"), {
 const Contact = dynamicImport(() => import("@/components/PageSections").then(mod => ({ default: mod.Contact })), {
   loading: () => <LoadingSkeleton height="500px" />,
 });
-const WhatsAppBooking = dynamicImport(() => import("@/components/WhatsAppBooking"));
 
 export const dynamic = 'force-static'
 export const revalidate = 3600 // Revalidate every hour
@@ -108,7 +108,7 @@ export default function Home() {
         <Clients />
         <Contact />
         <Footer />
-        <WhatsAppBooking />
+        <WhatsAppButton />
       </main>
     </>
   );

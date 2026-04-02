@@ -233,14 +233,6 @@ export async function sendContactEmail(
   const isDev = process.env.NODE_ENV !== "production";
 
   if (isDev) {
-    // Modo desarrollo: simular envío sin llamadas externas
-    console.log("\n========================================");
-    console.log("[EMAIL] Modo desarrollo — simulando envío");
-    console.log("----------------------------------------");
-    console.log("Para:", data.email);
-    console.log("Asunto: Hemos recibido tu mensaje");
-    console.log("Datos del formulario:", JSON.stringify(data, null, 2));
-    console.log("========================================\n");
     return { success: true };
   }
 
@@ -248,13 +240,7 @@ export async function sendContactEmail(
   const apiKey = process.env.RESEND_API_KEY;
   const contactEmail = process.env.CONTACT_EMAIL;
 
-  if (!apiKey) {
-    console.error("[EMAIL] Falta la variable de entorno RESEND_API_KEY");
-    return { success: false, error: "Configuración de email incompleta" };
-  }
-
-  if (!contactEmail) {
-    console.error("[EMAIL] Falta la variable de entorno CONTACT_EMAIL");
+  if (!apiKey || !contactEmail) {
     return { success: false, error: "Configuración de email incompleta" };
   }
 
@@ -283,13 +269,7 @@ export async function sendContactEmail(
       }),
     ]);
 
-    // Reportar errores individuales sin bloquear la respuesta principal
-    if (confirmResult.status === "rejected") {
-      console.error("[EMAIL] Error al enviar confirmación al cliente:", confirmResult.reason);
-    }
-    if (notifResult.status === "rejected") {
-      console.error("[EMAIL] Error al enviar notificación al coach:", notifResult.reason);
-    }
+    // Silently handle individual email failures - at least one succeeded
 
     // El envío se considera exitoso si al menos uno de los dos llegó
     const anySuccess =
@@ -307,7 +287,6 @@ export async function sendContactEmail(
     return { success: true, messageId };
   } catch (err) {
     const message = err instanceof Error ? err.message : "Error desconocido";
-    console.error("[EMAIL] Error inesperado:", message);
     return { success: false, error: message };
   }
 }

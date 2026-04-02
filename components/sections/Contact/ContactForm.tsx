@@ -7,7 +7,10 @@ import {
   CheckCheck, 
   AlertCircle, 
   User, 
-  MessageSquare 
+  MessageSquare,
+  Mail,
+  Send,
+  ArrowRight
 } from "lucide-react";
 import { useContactForm, type ContactForm } from "./useContactForm";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -38,14 +41,12 @@ export default function ContactForm() {
     setApiError("");
 
     try {
-      // Usar el nuevo servicio de contacto
       const result = await sendContactForm(form);
 
       if (result.success) {
         setStatus("success");
         setTimeout(() => resetForm(), 3000);
       } else {
-        // Si falla, ofrecer mailto como fallback
         setStatus("error");
         const mailtoLink = createMailtoLink(form);
         setApiError(
@@ -67,10 +68,22 @@ export default function ContactForm() {
 
   const getFieldIcon = (name: keyof ContactForm) => {
     switch (name) {
-      case "nombre": return <User size={16} />;
-      case "mensaje": return <MessageSquare size={16} />;
+      case "nombre": return <User size={18} />;
+      case "email": return <Mail size={18} />;
+      case "mensaje": return <MessageSquare size={18} />;
       default: return null;
     }
+  };
+
+  const getPlaceholder = (name: keyof ContactForm) => {
+    const placeholders = {
+      nombre: language === 'es' ? 'Tu nombre completo' : 'Your full name',
+      email: 'email@ejemplo.com',
+      mensaje: language === 'es' 
+        ? 'Cuéntame sobre tu desafío actual o lo que necesites...' 
+        : 'Tell me about your current challenge or what you need...'
+    };
+    return placeholders[name];
   };
 
   return (
@@ -85,16 +98,18 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="text-center py-8"
+          className="text-center py-12 px-6"
         >
-          <CheckCheck className="w-16 h-16 text-green-400 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">
+          <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <CheckCheck className="w-10 h-10 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold mb-3 text-white">
             {language === 'es' ? '¡Mensaje enviado!' : 'Message sent!'}
           </h3>
-          <p style={{ color: "var(--text-secondary)" }}>
+          <p className="text-lg" style={{ color: "var(--text-secondary)" }}>
             {language === 'es' 
-              ? 'Te responderé a la brevedad.'
-              : `I'll get back to you soon.`
+              ? 'Te responderé en menos de 24 horas.'
+              : `I'll get back to you within 24 hours.`
             }
           </p>
         </motion.div>
@@ -102,152 +117,272 @@ export default function ContactForm() {
         <>
           {apiError && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 flex items-center gap-3"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3 mb-6"
             >
-              <AlertCircle size={20} />
-              <span>{apiError}</span>
+              <AlertCircle size={20} className="flex-shrink-0 mt-0.5" />
+              <span className="text-sm">{apiError}</span>
             </motion.div>
           )}
 
-          {Object.entries(form).map(([fieldName, value]) => (
-            <div key={fieldName} className="space-y-2">
-              <label className="flex items-center gap-2 text-sm font-medium">
-                {getFieldIcon(fieldName as keyof ContactForm)}
-                {fieldName === 'nombre' && (language === 'es' ? 'Nombre' : 'Name')}
-                {fieldName === 'email' && 'Email'}
-                {fieldName === 'mensaje' && (language === 'es' ? 'Mensaje' : 'Message')}
-              </label>
+          <div className="space-y-6">
+            {Object.entries(form).map(([fieldName, value], index) => {
+              const fieldKey = fieldName as keyof ContactForm;
+              const hasError = errors[fieldKey];
+              const isValid = touched[fieldKey] && !hasError;
               
-              <div className="relative group">
-                {/* Glassmorphism container */}
-                <div className="glass-field-container">
-                  {/* Animated background layer */}
-                  <div className="glass-field-bg" />
+              return (
+                <motion.div
+                  key={fieldName}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="space-y-2"
+                >
+                  {/* Label outside glass container */}
+                  <label className="flex items-center gap-2 text-white font-normal" style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem" }}>
+                    <span 
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{
+                        background: hasError 
+                          ? '#ef4444'
+                          : isValid 
+                          ? '#10b981'
+                          : '#FF6B35'
+                      }}
+                    />
+                    {fieldName === 'nombre' && (language === 'es' ? 'Nombre' : 'Name')}
+                    {fieldName === 'email' && 'Email'}
+                    {fieldName === 'mensaje' && (language === 'es' ? 'Mensaje' : 'Message')}
+                  </label>
                   
-                  {/* Rainbow hover effect */}
-                  <div className="glass-field-rainbow" />
-                  
-                  <div className="relative">
-                    {fieldName === 'mensaje' ? (
-                      <textarea
-                        value={value}
-                        onChange={(e) => updateFieldWithTouch(fieldName as keyof ContactForm, e.target.value)}
-                        onBlur={() => updateFieldWithTouch(fieldName as keyof ContactForm, value)}
-                        className={`glass-field-input ${
-                          errors[fieldName]
-                            ? 'glass-field-error'
-                            : touched[fieldName] && !errors[fieldName]
-                            ? 'glass-field-success'
-                            : 'glass-field-default'
-                        }`}
-                        rows={4}
-                        placeholder={language === 'es' 
-                          ? 'Cuéntame sobre tu desafío actual...' 
-                          : 'Tell me about your current challenge...'
-                        }
-                      />
-                    ) : (
-                      <input
-                        type={fieldName === 'email' ? 'email' : 'text'}
-                        value={value}
-                        onChange={(e) => updateFieldWithTouch(fieldName as keyof ContactForm, e.target.value)}
-                        onBlur={() => updateFieldWithTouch(fieldName as keyof ContactForm, value)}
-                        className={`glass-field-input ${
-                          errors[fieldName]
-                            ? 'glass-field-error'
-                            : touched[fieldName] && !errors[fieldName]
-                            ? 'glass-field-success'
-                            : 'glass-field-default'
-                        }`}
-                        placeholder={fieldName === 'nombre' 
-                          ? (language === 'es' ? 'Tu nombre' : 'Your name')
-                          : 'email@ejemplo.com'
-                        }
-                      />
-                    )}
+                  {/* Glassmorphism Container */}
+                  <div className="relative group">
+                    {/* Background glass layer */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        backdropFilter: 'blur(8px)',
+                        WebkitBackdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      }}
+                    />
                     
-                    {/* Glow effect on focus */}
-                    <div className="glass-field-glow" />
+                    {/* Gradient overlay for depth */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl opacity-40"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%)',
+                      }}
+                    />
                     
-                    {touched[fieldName] && !errors[fieldName] && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="glass-field-check"
-                      >
-                        <CheckCircle2 size={20} />
-                      </motion.div>
-                    )}
+                    {/* Input field */}
+                    <div className="relative z-10">
+                      {fieldName === 'mensaje' ? (
+                        <textarea
+                          value={value}
+                          onChange={(e) => updateFieldWithTouch(fieldKey, e.target.value)}
+                          onBlur={() => updateFieldWithTouch(fieldKey, value)}
+                          className="w-full pt-3 pb-3 px-4 bg-transparent text-white placeholder-gray-500/70 resize-none transition-all duration-300"
+                          style={{
+                            fontSize: '0.9rem',
+                            fontFamily: "var(--font-body)",
+                            outline: 'none',
+                            border: 'none',
+                            fontWeight: '400',
+                            borderRadius: '24px !important'
+                          }}
+                          rows={4}
+                          placeholder={getPlaceholder(fieldKey)}
+                        />
+                      ) : (
+                        <input
+                          type={fieldName === 'email' ? 'email' : 'text'}
+                          value={value}
+                          onChange={(e) => updateFieldWithTouch(fieldKey, e.target.value)}
+                          onBlur={() => updateFieldWithTouch(fieldKey, value)}
+                          className="w-full pt-3 pb-3 px-4 bg-transparent text-white placeholder-gray-500/70 transition-all duration-300"
+                          style={{
+                            fontSize: '0.9rem',
+                            fontFamily: "var(--font-body)",
+                            outline: 'none',
+                            border: 'none',
+                            fontWeight: '400',
+                            borderRadius: '24px !important'
+                          }}
+                          placeholder={getPlaceholder(fieldKey)}
+                        />
+                      )}
+                      
+                      {/* Success indicator with glassmorphism */}
+                      {isValid && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="absolute right-3 top-3 z-30"
+                          style={{
+                            background: 'rgba(16, 185, 129, 0.2)',
+                            backdropFilter: 'blur(4px)',
+                            WebkitBackdropFilter: 'blur(4px)',
+                            border: '1px solid rgba(16, 185, 129, 0.3)',
+                            borderRadius: '50%',
+                            width: '28px',
+                            height: '28px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                        >
+                          <CheckCircle2 size={16} style={{ color: '#10b981' }} />
+                        </motion.div>
+                      )}
+                    </div>
+                    
+                    {/* Hover effect */}
+                    <div 
+                      className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%)',
+                        boxShadow: '0 0 20px rgba(255, 107, 53, 0.2)',
+                      }}
+                    />
                   </div>
-                </div>
-              </div>
-              
-              {errors[fieldName] && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-red-400 text-sm flex items-center gap-1"
-                >
-                  <AlertCircle size={12} />
-                  {errors[fieldName]}
-                </motion.p>
-              )}
-            </div>
-          ))}
+                  
+                  {/* Error message with glassmorphism */}
+                  {hasError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="px-3 py-1.5 inline-flex items-center gap-1.5"
+                      style={{
+                        background: 'rgba(16, 185, 129, 0.1)',
+                        backdropFilter: 'blur(4px)',
+                        WebkitBackdropFilter: 'blur(4px)',
+                        border: '1px solid rgba(16, 185, 129, 0.2)',
+                        borderRadius: '24px !important'
+                      }}
+                    >
+                      <AlertCircle size={10} style={{ color: '#10b981' }} />
+                      <span 
+                        className="text-xs font-normal"
+                        style={{ color: '#10b981', fontFamily: "var(--font-body)" }}
+                      >
+                        {hasError}
+                      </span>
+                    </motion.div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
 
-          <motion.button
-            type="submit"
-            disabled={status === "loading"}
-            className="btn-primary w-full relative overflow-hidden group"
-            whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
-            whileTap={{ scale: status === "loading" ? 1 : 0.98 }}
-          >
-            <AnimatePresence mode="wait">
-              {status === "loading" ? (
+          {/* Premium Glassmorphism CTA */}
+          <div className="pt-4">
+            <motion.div
+              className="relative group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Glassmorphism button container */}
+              <div 
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 107, 53, 0.1) 100%)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 107, 53, 0.3)',
+                  boxShadow: '0 8px 32px rgba(255, 107, 53, 0.2)',
+                }}
+              />
+              
+              {/* Gradient overlay */}
+              <div 
+                className="absolute inset-0 rounded-3xl opacity-80"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(255, 133, 85, 0.2) 100%)',
+                }}
+              />
+              
+              {/* Button content */}
+              <motion.button
+                type="submit"
+                disabled={status === "loading"}
+                className="relative w-full py-4 px-6 text-white font-medium transition-all duration-300"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  fontSize: '0.95rem',
+                  fontFamily: 'var(--font-heading)',
+                  letterSpacing: '0.05em',
+                  borderRadius: '24px !important'
+                }}
+              >
+                <AnimatePresence mode="wait">
+                  {status === "loading" ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center justify-center gap-3"
+                    >
+                      <Loader2 className="w-5 h-5 animate-spin" style={{ color: '#FF6B35' }} />
+                      <span>{language === 'es' ? 'Enviando...' : 'Sending...'}</span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="idle"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center justify-center gap-3"
+                    >
+                      <Send size={18} style={{ color: '#FF6B35' }} className="group-hover:scale-110 transition-transform" />
+                      <span>{language === 'es' ? 'Enviar' : 'Send'}</span>
+                      <ArrowRight size={18} style={{ color: '#FF6B35' }} className="group-hover:translate-x-1 transition-transform" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+              
+              {/* Hover glow effect */}
+              <div 
+                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(255, 133, 85, 0.3) 100%)',
+                  boxShadow: '0 0 40px rgba(255, 107, 53, 0.4)',
+                  filter: 'blur(2px)'
+                }}
+              />
+              
+              {/* Animated particles */}
+              {[...Array(3)].map((_, i) => (
                 <motion.div
-                  key="loading"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>{language === 'es' ? 'Enviando...' : 'Sending...'}</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-violet-600/20 via-purple-600/20 to-violet-600/20"
-                    animate={{
-                      x: ['-100%', '100%'],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="idle"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="flex items-center justify-center gap-2"
-                >
-                  <span>{language === 'es' ? 'Enviar Mensaje' : 'Send Message'}</span>
-                  <motion.span
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    →
-                  </motion.span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-purple-600/20 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+                  key={i}
+                  className="absolute w-1 h-1 rounded-full opacity-0 group-hover:opacity-100"
+                  style={{
+                    left: `${20 + i * 30}%`,
+                    top: '50%',
+                    background: '#FF6B35'
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0, 1, 0],
+                    scale: [1, 1.5, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.2,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </motion.div>
+          </div>
         </>
       )}
     </motion.form>

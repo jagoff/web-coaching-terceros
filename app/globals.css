@@ -2423,7 +2423,6 @@ html {
   border: 2px solid #25D366;
 }
 
-
 .whatsapp-tooltip {
   position: absolute;
   right: 68px;
@@ -2447,3 +2446,4 @@ html {
     transform: translateX(-50%);
   }
 }
+

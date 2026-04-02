@@ -6,7 +6,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import ContactInfo from "./Contact/ContactInfo";
 import ContactForm from "./Contact/ContactForm";
-import ContactPromises from "./Contact/ContactPromises";
 
 export default function Contact() {
   const { t, language } = useLanguage();
@@ -81,7 +80,6 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <ContactInfo />
-            <ContactPromises />
           </motion.div>
 
           {/* Right Column - Contact Form */}
@@ -94,34 +92,7 @@ export default function Contact() {
           </motion.div>
         </div>
 
-        {/* Footer CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center"
-        >
-          <div className="text-center max-w-2xl mx-auto mb-6">
-            <p
-              className="lead-text text-center mx-auto"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {language === 'es' 
-                ? 'Tu próximo nivel de liderazgo está a una conversación de distancia.' 
-                : 'Your next leadership level is one conversation away.'
-              }
-            </p>
-            <p
-              className="lead-text text-center mx-auto"
-              style={{ color: "var(--text-primary)" }}
-            >
-              <strong>
-                {language === 'es' ? '¿Cuándo empezamos?' : 'When do we start?'}
-              </strong>
-            </p>
-          </div>
-        </motion.div>
-      </div>
+              </div>
     </section>
   );
 }
