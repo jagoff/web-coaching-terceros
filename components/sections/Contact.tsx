@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import ConversationalContactForm from "./Contact/ConversationalContactForm";
+import ContactSidebar from "./Contact/ContactSidebar";
 
 export default function Contact() {
   const { t, language } = useLanguage();
@@ -71,11 +72,21 @@ export default function Contact() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="max-w-3xl mx-auto mb-14 md:mb-24">
+        <div className="grid lg:grid-cols-[400px_1fr] gap-8 lg:gap-12 mb-14 md:mb-24">
+          {/* Left Column - Sidebar */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <ContactSidebar />
+          </motion.div>
+
+          {/* Right Column - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <ConversationalContactForm />
           </motion.div>
