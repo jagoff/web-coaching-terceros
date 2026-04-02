@@ -2,16 +2,16 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { testimonialsES, testimonialsEN } from "@/lib/testimonials-data";
 
-const AUTOPLAY_INTERVAL = 5000;
+const AUTOPLAY_INTERVAL = 6000;
 
 export default function Testimonials() {
   const { t, language } = useLanguage();
-  const [current, setCurrent] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [direction, setDirection] = useState(1);
   const ref = useRef<HTMLDivElement>(null);
@@ -19,21 +19,39 @@ export default function Testimonials() {
 
   const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
 
+  // Calculate how many testimonials to show based on screen size
+  const getVisibleCount = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 3; // lg: 3 cards
+      if (window.innerWidth >= 768) return 2;  // md: 2 cards
+      return 1; // mobile: 1 card
+    }
+    return 1;
+  };
+
+  const [visibleCount, setVisibleCount] = useState(getVisibleCount());
+
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(getVisibleCount());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * testimonials.length);
-    setCurrent(randomIndex);
+    setCurrentIndex(randomIndex);
   }, [language, testimonials.length]);
 
   const goTo = useCallback(
     (index: number, dir: number) => {
       setDirection(dir);
-      setCurrent((index + testimonials.length) % testimonials.length);
+      setCurrentIndex((index + testimonials.length) % testimonials.length);
     },
     [testimonials.length]
   );
 
-  const prev = () => goTo(current - 1, -1);
-  const next = useCallback(() => goTo(current + 1, 1), [current, goTo]);
+  const prev = () => goTo(currentIndex - 1, -1);
+  const next = useCallback(() => goTo(currentIndex + 1, 1), [currentIndex, goTo]);
 
   useEffect(() => {
     if (paused) return;
@@ -41,36 +59,49 @@ export default function Testimonials() {
     return () => clearInterval(id);
   }, [paused, next]);
 
-  const variants = {
-    enter: (dir: number) => ({
-      x: dir > 0 ? 80 : -80,
-      opacity: 0,
-      scale: 0.95,
-      filter: "blur(4px)",
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-    },
-    exit: (dir: number) => ({
-      x: dir > 0 ? -80 : 80,
-      opacity: 0,
-      scale: 0.95,
-      filter: "blur(4px)",
-    }),
+  const getVisibleTestimonials = () => {
+    const visible = [];
+    for (let i = 0; i < visibleCount; i++) {
+      const index = (currentIndex + i) % testimonials.length;
+      visible.push(testimonials[index]);
+    }
+    return visible;
   };
 
-  const testimonial = testimonials[current] || testimonials[0];
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" as const }
+    },
+    hover: { 
+      y: -8,
+      scale: 1.02,
+      transition: { duration: 0.3 }
+    }
+  };
 
   return (
     <section
       id="testimonios"
-      className="section section-dark"
+      className="section section-dark relative overflow-hidden"
       ref={ref}
     >
-      <div className="container">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-30">
+        <div 
+          className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%)' }}
+        />
+        <div 
+          className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(124, 107, 196, 0.1) 0%, transparent 70%)' }}
+        />
+      </div>
+
+      <div className="container relative z-10">
         <motion.div
           variants={headerStagger}
           initial="hidden"
@@ -100,124 +131,146 @@ export default function Testimonials() {
           />
         </motion.div>
 
+        {/* Carousel Container */}
         <motion.div
-          initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.3 }}
+          className="relative"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div
-            className="testimonial-card relative overflow-hidden flex flex-col justify-between"
-            style={{ minHeight: '400px', height: '400px' }}
-          >
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={testimonial.id}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col h-full"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                dragMomentum={false}
-                onDragEnd={(e, info) => {
-                  const { offset } = info;
-                  const swipeThreshold = 50;
-                  
-                  if (offset.x < -swipeThreshold) {
-                    next();
-                  } else if (offset.x > swipeThreshold) {
-                    prev();
-                  }
-                }}
-                style={{ cursor: 'grab' }}
-              >
-                <div className="stars mb-4 mt-2" aria-label="5 estrellas">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" />
-                  ))}
-                </div>
-
-                <blockquote
-                  className="text-lg leading-relaxed flex-1 mb-10"
-                  style={{
-                    color: "var(--text-secondary)",
-                    fontStyle: "italic",
-                    lineHeight: 1.9,
-                  }}
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <AnimatePresence mode="wait">
+              {getVisibleTestimonials().map((testimonial, index) => (
+                <motion.div
+                  key={`${testimonial.id}-${currentIndex}`}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  exit="hidden"
+                  transition={{ delay: index * 0.1 }}
+                  className="relative"
                 >
-                  {testimonial.quote}
-                </blockquote>
-
-                <div className="flex items-center gap-4">
+                  {/* Card with glassmorphism */}
                   <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: testimonial.avatarBg }}
+                    className="testimonial-card relative overflow-hidden rounded-2xl p-6 md:p-8 h-full flex flex-col"
+                    style={{
+                      minHeight: '320px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                    }}
                   >
-                    <span
-                      className="text-sm font-bold"
-                      style={{ color: "var(--amber-light)" }}
+                    {/* Quote icon */}
+                    <div className="absolute top-4 right-4 opacity-20">
+                      <Quote 
+                        size={32} 
+                        style={{ color: 'var(--gold-primary)' }}
+                      />
+                    </div>
+
+                    {/* Stars */}
+                    <div className="stars mb-4 flex gap-1" aria-label="5 estrellas">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          size={16} 
+                          fill="currentColor"
+                          style={{ color: 'var(--gold-primary)' }}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Quote */}
+                    <blockquote
+                      className="text-base md:text-lg leading-relaxed flex-1 mb-6"
+                      style={{
+                        color: "var(--text-secondary)",
+                        fontStyle: "italic",
+                        lineHeight: 1.8,
+                      }}
                     >
-                      {testimonial.initials}
-                    </span>
+                      "{testimonial.quote}"
+                    </blockquote>
+
+                    {/* Author info */}
+                    <div className="flex items-center gap-4 mt-auto">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ background: testimonial.avatarBg }}
+                      >
+                        <span
+                          className="text-sm font-bold"
+                          style={{ color: "var(--amber-light)" }}
+                        >
+                          {testimonial.initials}
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <p
+                          className="font-semibold text-sm md:text-base"
+                          style={{ color: "var(--text-primary)" }}
+                        >
+                          {testimonial.name}
+                        </p>
+                        <p 
+                          className="text-xs md:text-sm" 
+                          style={{ color: "var(--text-muted)" }}
+                        >
+                          {testimonial.role}
+                          {testimonial.company && ` · ${testimonial.company}`}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Hover gradient overlay */}
+                    <div 
+                      className="absolute inset-0 opacity-0 hover:opacity-10 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(124, 107, 196, 0.05) 100%)',
+                      }}
+                    />
                   </div>
-                  <div>
-                    <p
-                      className="font-semibold"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-                      {testimonial.role}
-                      {testimonial.company && ` · ${testimonial.company}`}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              ))}
             </AnimatePresence>
           </div>
 
-          <div className="flex items-center justify-between mt-8 sm:mt-12">
-            <div className="flex gap-3">
-              <button
-                onClick={prev}
-                className="rounded-full flex items-center justify-center testimonial-nav-btn"
-                style={{ width: 44, height: 44 }}
-                aria-label={t.testimonialsNav.ariaPrevious}
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                onClick={next}
-                className="rounded-full flex items-center justify-center testimonial-nav-btn"
-                style={{ width: 44, height: 44 }}
-                aria-label={t.testimonialsNav.ariaNext}
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between mt-12">
+            {/* Previous Button */}
+            <button
+              onClick={prev}
+              className="rounded-full flex items-center justify-center testimonial-nav-btn group"
+              style={{ width: 48, height: 48 }}
+              aria-label={t.testimonialsNav.ariaPrevious}
+            >
+              <ChevronLeft 
+                size={20} 
+                className="transition-transform duration-300 group-hover:-translate-x-1"
+              />
+            </button>
 
-            <div className="flex gap-2" role="tablist" aria-label={t.testimonialsNav.ariaPrevious + ' / ' + t.testimonialsNav.ariaNext}>
+            {/* Dots Indicator */}
+            <div className="flex gap-2" role="tablist">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   role="tab"
-                  aria-selected={i === current}
+                  aria-selected={i === currentIndex}
                   aria-label={`${t.testimonialsNav.previous} ${i + 1}`}
-                  onClick={() => goTo(i, i > current ? 1 : -1)}
+                  onClick={() => goTo(i, i > currentIndex ? 1 : -1)}
                   className="transition-all duration-300 rounded-full"
                   style={{
-                    width: i === current ? 24 : 8,
+                    width: i === currentIndex ? 32 : 8,
                     height: 8,
                     background:
-                      i === current
+                      i === currentIndex
                         ? "var(--gold-primary)"
                         : "var(--dark-border)",
                   }}
@@ -225,8 +278,24 @@ export default function Testimonials() {
               ))}
             </div>
 
+            {/* Next Button */}
+            <button
+              onClick={next}
+              className="rounded-full flex items-center justify-center testimonial-nav-btn group"
+              style={{ width: 48, height: 48 }}
+              aria-label={t.testimonialsNav.ariaNext}
+            >
+              <ChevronRight 
+                size={20} 
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </button>
+          </div>
+
+          {/* Counter */}
+          <div className="text-center mt-6">
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              {current + 1} / {testimonials.length}
+              {currentIndex + 1} / {testimonials.length}
             </p>
           </div>
         </motion.div>
