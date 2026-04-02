@@ -182,8 +182,20 @@ export default function TestimonialsSimple() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="glass-card p-6 md:p-10 text-center cursor-grab active:cursor-grabbing"
+              className="glass-card p-6 md:p-10 text-center cursor-grab active:cursor-grabbing relative"
             >
+              {/* Rating - Top Left */}
+              <div className="flex gap-1 mb-6 justify-start">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={18}
+                    className={i < 4 ? "fill-current" : ""}
+                    style={{ color: "var(--gold-primary)" }}
+                  />
+                ))}
+              </div>
+
               {/* Quote */}
               <blockquote className="mb-6" suppressHydrationWarning>
                 <p
@@ -227,21 +239,6 @@ export default function TestimonialsSimple() {
                     {currentTestimonial.company}
                   </p>
                 </div>
-              </div>
-
-              {/* Rating */}
-              <div className="flex justify-center gap-1 mt-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={20}
-                    className={i < 4 ? "fill-current" : ""}
-                    style={{
-                      color: i < 4 ? "var(--gold-primary)" : "var(--text-muted)",
-                    }}
-                    suppressHydrationWarning
-                  />
-                ))}
               </div>
             </motion.div>
 
