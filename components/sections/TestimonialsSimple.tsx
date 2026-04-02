@@ -169,7 +169,7 @@ export default function TestimonialsSimple() {
         </motion.div>
 
         {/* Testimonial Carousel */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <div className="relative">
             {/* Testimonial Card */}
             <motion.div
@@ -182,7 +182,7 @@ export default function TestimonialsSimple() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="glass-card p-6 md:p-10 text-center cursor-grab active:cursor-grabbing"
+              className="glass-card p-5 md:p-8 text-center cursor-grab active:cursor-grabbing"
             >
               {/* Quote */}
               <blockquote className="mb-6" suppressHydrationWarning>
