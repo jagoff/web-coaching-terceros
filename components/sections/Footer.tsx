@@ -3,7 +3,7 @@
 import React from 'react';
 import { Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
-import { logError, logWarn, logInfo } from "@/lib/logger";
+import logger from "@/lib/logger";
 import { useEffect } from "react";
 import { useSSRLanguage } from "@/hooks/useSSRLanguage";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,10 +27,10 @@ const FooterLink = ({ href, children, className, isService = false }: {
         target.scrollIntoView({ behavior: 'smooth' });
         // Log after successful scroll
         setTimeout(() => {
-          logInfo(`Footer link clicked: ${href}`, 'FooterLink', { href, found: true });
+          logger.info(`Footer link clicked: ${href}`, { component: 'FooterLink', data: { href, found: true } });
         }, 100);
       } else {
-        logError(`Footer link target not found: ${href}`, 'FooterLink', { href, found: false });
+        logger.error(`Footer link target not found: ${href}`, { component: 'FooterLink', data: { href, found: false } });
       }
     }
   };

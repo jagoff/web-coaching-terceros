@@ -1,6 +1,33 @@
+interface FAQQuestion {
+  question: string;
+  answer: string;
+}
+
+interface JsonLdData {
+  name?: string;
+  description?: string;
+  price?: string;
+  questions?: FAQQuestion[];
+  rating?: string;
+  author?: string;
+  review?: string;
+  date?: string;
+  value?: string | number;
+  minValue?: string | number;
+  maxValue?: string | number;
+  unitText?: string;
+  unitCode?: string;
+  valueReference?: {
+    name?: string;
+    value?: string | number;
+    unitText?: string;
+  };
+  [key: string]: unknown;
+}
+
 interface JsonLdStructuredDataProps {
   type: 'Organization' | 'Service' | 'Person' | 'WebPage' | 'LocalBusiness' | 'FAQPage' | 'Review' | 'ProfessionalService' | 'HowTo' | 'QuantitativeValue';
-  data?: any;
+  data?: JsonLdData;
   pathname?: string;
 }
 
@@ -199,7 +226,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
         return {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          "mainEntity": data.questions?.map((faq: any, index: number) => ({
+          "mainEntity": data.questions?.map((faq, index) => ({
             "@type": "Question",
             "position": index + 1,
             "name": faq.question,

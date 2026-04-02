@@ -5,7 +5,7 @@ import { motion, type Variants } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Play, Youtube } from "lucide-react";
 import Image from "next/image";
-import { debugLog, errorLog } from "@/lib/debug-logger";
+import logger from "@/lib/logger";
 
 const thumbnailContainer: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(6px)" },
@@ -43,7 +43,7 @@ export default function YouTubeThumbnail({
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    debugLog('YouTubeThumbnail', 'YouTube thumbnail clicked');
+    logger.debug('YouTube thumbnail clicked', { component: 'YouTubeThumbnail' });
     setIsPlaying(true);
   };
 
@@ -84,7 +84,7 @@ export default function YouTubeThumbnail({
             }}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            onLoad={() => debugLog('YouTubeThumbnail', 'YouTube iframe loaded')}
+            onLoad={() => logger.debug('YouTube iframe loaded', { component: 'YouTubeThumbnail' })}
           />
         </div>
       ) : (

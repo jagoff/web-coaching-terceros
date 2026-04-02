@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { logError, logWarn, logInfo } from "@/lib/logger";
+import logger from "@/lib/logger";
 
 
 export default function Navbar() {
@@ -36,25 +36,24 @@ export default function Navbar() {
         
         // Log when approaching contact section
         if (shouldHide && currentScrollY > (contactTop - 250) && currentScrollY < (contactTop - 240)) {
-          logInfo('Approaching contact section - navbar will hide', 'Navbar', {
-            scrollY: currentScrollY,
-            contactTop,
-            distance: contactTop - currentScrollY
+          logger.info('Approaching contact section - navbar will hide', {
+            component: 'Navbar',
+            data: { scrollY: currentScrollY, contactTop, distance: contactTop - currentScrollY }
           });
         }
       } else {
-        logWarn('Contact section not found for auto-hide', 'Navbar');
+        logger.warn('Contact section not found for auto-hide', { component: 'Navbar' });
       }
       
       // Hide when scrolling down near contact, show when scrolling up
       if (shouldHide) {
         if (visible) {
-          logInfo('Navbar hiding - near contact section', 'Navbar', { scrollY: currentScrollY });
+          logger.info('Navbar hiding - near contact section', { component: 'Navbar', data: { scrollY: currentScrollY } });
         }
         setVisible(false);
       } else if (currentScrollY < lastScrollY.current) {
         if (!visible) {
-          logInfo('Navbar showing - scrolling up', 'Navbar', { scrollY: currentScrollY });
+          logger.info('Navbar showing - scrolling up', { component: 'Navbar', data: { scrollY: currentScrollY } });
         }
         setVisible(true);
       }
