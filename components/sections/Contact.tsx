@@ -5,7 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import ContactInfo from "./Contact/ContactInfo";
-import ContactForm from "./Contact/ContactForm";
+import ConversationalContactForm from "./Contact/ConversationalContactForm";
 
 export default function Contact() {
   const { t, language } = useLanguage();
@@ -88,7 +88,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <ContactForm />
+            <ConversationalContactForm />
           </motion.div>
         </div>
       </div>
