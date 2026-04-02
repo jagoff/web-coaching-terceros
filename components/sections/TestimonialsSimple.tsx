@@ -199,7 +199,7 @@ export default function TestimonialsSimple() {
               {/* Quote */}
               <blockquote className="mb-5" suppressHydrationWarning>
                 <p
-                  className="text-base md:text-lg leading-relaxed mb-4"
+                  className="text-base md:text-lg leading-relaxed mb-4 text-center"
                   style={{ color: "var(--text-secondary)" }}
                   suppressHydrationWarning
                 >
