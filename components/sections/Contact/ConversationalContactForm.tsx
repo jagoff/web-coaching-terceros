@@ -279,16 +279,13 @@ export default function ConversationalContactForm() {
               {step === 1 && (
                 <div className="space-y-6">
                   <div className="relative">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                      <User size={20} />
-                    </div>
                     <input
                       type="text"
                       value={formData.nombre}
                       onChange={(e) => setFormData(prev => ({ ...prev, nombre: e.target.value }))}
                       onKeyPress={(e) => e.key === 'Enter' && handleNext()}
                       placeholder={es ? "Tu nombre completo" : "Your full name"}
-                      className="w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
+                      className="w-full px-4 py-4 rounded-xl text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: errors.nombre ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
@@ -312,16 +309,13 @@ export default function ConversationalContactForm() {
               {step === 2 && (
                 <div className="space-y-6">
                   <div className="relative">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                      <Mail size={20} />
-                    </div>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       onKeyPress={(e) => e.key === 'Enter' && handleNext()}
                       placeholder="email@ejemplo.com"
-                      className="w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
+                      className="w-full px-4 py-4 rounded-xl text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: errors.email ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
