@@ -197,7 +197,7 @@ export default function TestimonialsSimple() {
               </div>
 
               {/* Quote */}
-              <blockquote className="mb-5" suppressHydrationWarning>
+              <blockquote className="mb-5 text-center" suppressHydrationWarning>
                 <p
                   className="text-base md:text-lg leading-relaxed mb-4 text-center"
                   style={{ color: "var(--text-secondary)" }}
