@@ -17,9 +17,6 @@
    ============================================================ */
 
 :root {
-  /* Fluid base font size: 16px @ 320px → 18px @ 1920px */
-  --fluid-base: clamp(1rem, 0.9375rem + 0.3125vw, 1.125rem);
-  
   /* Fluid type scale using Perfect Fourth ratio */
   --fluid-xs:   clamp(0.75rem, 0.7031rem + 0.2344vw, 0.875rem);      /* 12px → 14px */
   --fluid-sm:   clamp(0.875rem, 0.8281rem + 0.2344vw, 1rem);         /* 14px → 16px */

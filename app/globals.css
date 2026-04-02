@@ -1150,7 +1150,7 @@ html.lenis, html.lenis body {
 .stars {
   display: flex;
   gap: 2px;
-  color: var(--amber-primary);
+  color: #87CEEB; /* Celeste claro */
 }
 
 /* ============================================================

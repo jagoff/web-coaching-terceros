@@ -15,7 +15,7 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
-  preload: true,
+  preload: false, // Disable preload to reduce FCP blocking
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -23,7 +23,7 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
-  preload: true,
+  preload: false, // Disable preload to reduce FCP blocking
 });
 
 const isStaging = process.env.VERCEL_ENV === 'preview' || 
@@ -122,6 +122,31 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning={true}>
       <head>
+        {/* Critical CSS inline */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            * { box-sizing: border-box; }
+            html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
+            body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+            .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+            .heading-xl { font-size: 2.5rem; font-weight: 700; line-height: 1.2; }
+            .text-gradient { background: linear-gradient(135deg, #7C6BC4 0%, #C97B5A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+            .hero-bg { background: radial-gradient(ellipse at 50% 100%, rgba(124,107,196,0.08) 0%, transparent 60%), #0f0f0f; min-height: 100vh; }
+            .section { padding: 4rem 0; }
+            .text-center { text-align: center; }
+            .flex { display: flex; }
+            .flex-col { flex-direction: column; }
+            .items-center { align-items: center; }
+            .text-white { color: #fff; }
+            .mb-4 { margin-bottom: 1rem; }
+            .mt-3 { margin-top: 0.75rem; }
+            .block { display: block; }
+          `
+        }} />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href="/images/optimized/hero/transformacion.webp" as="image" type="image/webp" />
+        
         {/* Hreflang tags for multilingual SEO */}
         <Hreflang />
         

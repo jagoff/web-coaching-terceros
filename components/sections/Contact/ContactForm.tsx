@@ -158,7 +158,7 @@ export default function ContactForm() {
                   </label>
                   
                   {/* Glassmorphism Container */}
-                  <div className="relative group">
+                  <div className="relative group rounded-3xl overflow-hidden">
                     {/* Background glass layer */}
                     <div 
                       className="absolute inset-0 rounded-3xl"
@@ -193,7 +193,7 @@ export default function ContactForm() {
                             outline: 'none',
                             border: 'none',
                             fontWeight: '400',
-                            borderRadius: '24px !important'
+                            borderRadius: '24px'
                           }}
                           rows={4}
                           placeholder={getPlaceholder(fieldKey)}
@@ -211,7 +211,7 @@ export default function ContactForm() {
                             outline: 'none',
                             border: 'none',
                             fontWeight: '400',
-                            borderRadius: '24px !important'
+                            borderRadius: '24px'
                           }}
                           placeholder={getPlaceholder(fieldKey)}
                         />
@@ -258,17 +258,17 @@ export default function ContactForm() {
                       animate={{ opacity: 1, y: 0 }}
                       className="px-3 py-1.5 inline-flex items-center gap-1.5"
                       style={{
-                        background: 'rgba(16, 185, 129, 0.1)',
+                        background: 'rgba(239, 68, 68, 0.1)',
                         backdropFilter: 'blur(4px)',
                         WebkitBackdropFilter: 'blur(4px)',
-                        border: '1px solid rgba(16, 185, 129, 0.2)',
-                        borderRadius: '24px !important'
+                        border: '1px solid rgba(239, 68, 68, 0.2)',
+                        borderRadius: '24px'
                       }}
                     >
-                      <AlertCircle size={10} style={{ color: '#10b981' }} />
-                      <span 
+                      <AlertCircle size={10} style={{ color: '#ef4444' }} />
+                      <span
                         className="text-xs font-normal"
-                        style={{ color: '#10b981', fontFamily: "var(--font-body)" }}
+                        style={{ color: '#ef4444', fontFamily: "var(--font-body)" }}
                       >
                         {hasError}
                       </span>
@@ -317,7 +317,7 @@ export default function ContactForm() {
                   fontSize: '0.95rem',
                   fontFamily: 'var(--font-heading)',
                   letterSpacing: '0.05em',
-                  borderRadius: '24px !important'
+                  borderRadius: '24px'
                 }}
               >
                 <AnimatePresence mode="wait">

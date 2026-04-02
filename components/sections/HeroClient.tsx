@@ -10,11 +10,13 @@ import Image from "next/image";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { getOptimizedImagePath } from "@/lib/image-optimization";
 
-// Dynamic imports for non-critical components
+// Dynamic imports for non-critical components - lazy loaded after page load
 const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWordsBackground"), {
   ssr: false,
   loading: () => null
 });
+
+// No particles for performance optimization
 
 type Particle = {
   id: number;
@@ -92,8 +94,8 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   useEffect(() => {
     setMounted(true);
     setRenderLanguage(language); // Sync with context language after mount
-    // Reduced particle count for better performance
-    const count = window.innerWidth < 768 ? 2 : 6; // Further optimized: 10→6, 3→2
+    // Drastically reduced particle count for performance
+    const count = window.innerWidth < 768 ? 0 : 3; // 6→3, 2→0 (no particles on mobile)
     
     // Deterministic random function to avoid hydration mismatches
     const deterministicRandom = (seed: number) => {
@@ -138,10 +140,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
       }}
       aria-label="Sección principal"
     >
-      {/* Coaching Words Background Animation - Delayed Load */}
-      <CoachingWordsBackground />
+      {/* Remove CoachingWordsBackground for FCP optimization */}
 
-      {/* Decorative orbs with scroll parallax */}
+      {/* Simplified orbs - reduced from 3 to 1 for FCP */}
       <motion.div style={{ y: orbY1, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-gold animate-float-slow"
@@ -154,64 +155,8 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           }}
         />
       </motion.div>
-      <motion.div style={{ y: orbY2, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="orb orb-amber animate-float"
-          style={{
-            width: "clamp(200px, 35vw, 500px)",
-            height: "clamp(200px, 35vw, 500px)",
-            top: "-5%",
-            right: "-5%",
-            opacity: 0.4,
-            animationDelay: "2s",
-          }}
-        />
-      </motion.div>
-      <motion.div style={{ y: orbY3, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="orb orb-gold"
-          style={{
-            width: "clamp(150px, 25vw, 350px)",
-            height: "clamp(150px, 25vw, 350px)",
-            bottom: "15%",
-            right: "20%",
-            opacity: 0.3,
-            filter: "blur(100px)",
-          }}
-        />
-      </motion.div>
 
-      {/* Floating particles — varied drift + pulse */}
-      {mounted && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          {particles.map((p) => (
-            <motion.div
-              key={p.id}
-              className="absolute rounded-full"
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                width: p.size,
-                height: p.size,
-                background: `rgba(124, 107, 196, ${p.opacity})`,
-                boxShadow: p.size > 2.5 ? `0 0 ${p.size * 3}px rgba(124,107,196,0.3)` : "none",
-              }}
-              animate={{
-                y: [0, -30 - (p.id % 5) * 4, 0], // Deterministic variation based on particle ID
-                x: [0, p.drift, 0],
-                opacity: [p.opacity * 0.4, p.opacity, p.opacity * 0.4],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: p.duration,
-                delay: p.delay,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
-      )}
+      {/* No particles for performance optimization */}
 
       {/* Main content */}
       <div

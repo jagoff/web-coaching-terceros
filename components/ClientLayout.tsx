@@ -29,14 +29,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     setIsClient(true);
-    // Delay non-critical components
-    const timer = setTimeout(() => setIsLoaded(true), 100);
+    // Delay non-critical components for FCP optimization
+    const timer = setTimeout(() => setIsLoaded(true), 500); // Increased from 100ms to 500ms
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {isLoaded && <AmbientParticles />}
+      {/* Remove particles completely for FCP */}
       <div className="noise-overlay" aria-hidden="true" />
       {isLoaded && <CursorGlow />}
       

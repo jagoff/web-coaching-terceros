@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface ContactForm {
   nombre: string;
@@ -24,6 +25,7 @@ export interface ContactState {
 }
 
 export const useContactForm = () => {
+  const { language } = useLanguage();
   const [form, setForm] = useState<ContactForm>({
     nombre: "",
     email: "",
@@ -36,27 +38,29 @@ export const useContactForm = () => {
 
   // Real-time validation function
   const validateField = (name: keyof ContactForm, value: string): string => {
+    const es = language === 'es';
     switch (name) {
       case "nombre":
-        if (!value.trim()) return "El nombre es obligatorio";
-        if (value.trim().length < 2) return "El nombre debe tener al menos 2 caracteres";
-        if (value.trim().length > 50) return "El nombre no puede exceder 50 caracteres";
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) return "Solo letras y espacios permitidos";
+        if (!value.trim()) return es ? "El nombre es obligatorio" : "Name is required";
+        if (value.trim().length < 2) return es ? "El nombre debe tener al menos 2 caracteres" : "Name must be at least 2 characters";
+        if (value.trim().length > 50) return es ? "El nombre no puede exceder 50 caracteres" : "Name cannot exceed 50 characters";
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) return es ? "Solo letras y espacios permitidos" : "Letters and spaces only";
         return "";
-      
+
       case "email":
-        if (!value.trim()) return "El email es obligatorio";
+        if (!value.trim()) return es ? "El email es obligatorio" : "Email is required";
+        // eslint-disable-next-line no-case-declarations
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) return "Introduce un email válido";
-        if (value.length > 100) return "Email demasiado largo";
+        if (!emailRegex.test(value)) return es ? "Introduce un email válido" : "Enter a valid email";
+        if (value.length > 100) return es ? "Email demasiado largo" : "Email is too long";
         return "";
-      
+
       case "mensaje":
-        if (!value.trim()) return "El mensaje es obligatorio";
-        if (value.trim().length < 10) return "Cuéntanos más (mínimo 10 caracteres)";
-        if (value.trim().length > 500) return "El mensaje no puede exceder 500 caracteres";
+        if (!value.trim()) return es ? "El mensaje es obligatorio" : "Message is required";
+        if (value.trim().length < 10) return es ? "Cuéntanos más (mínimo 10 caracteres)" : "Tell us more (min. 10 characters)";
+        if (value.trim().length > 500) return es ? "El mensaje no puede exceder 500 caracteres" : "Message cannot exceed 500 characters";
         return "";
-      
+
       default:
         return "";
     }

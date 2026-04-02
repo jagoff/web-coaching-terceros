@@ -32,7 +32,7 @@ export default function CoachingWordsBackground() {
     // Generar palabras flotantes con posiciones aleatorias deterministas
     const generateWords = () => {
       const newWords: FloatingWord[] = [];
-      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 4 : 8; // Reduced from 12/20 to 4/8
+      const wordCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 4; // Drastically reduced: 4/8→0/4
       
       // Deterministic random function to avoid hydration mismatches
       const deterministicRandom = (seed: number) => {

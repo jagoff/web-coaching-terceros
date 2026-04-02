@@ -267,7 +267,8 @@ export default function Navbar() {
               </button>
               
               <button
-                className="flex items-center justify-center rounded-md transition-colors w-11 h-11 text-text-secondary bg-transparent border-0"
+                className="flex items-center justify-center rounded-md transition-colors w-11 h-11 bg-transparent border-0"
+                style={{ color: "var(--text-secondary)" }}
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
                 aria-expanded={mobileOpen}
@@ -321,7 +322,8 @@ export default function Navbar() {
                 </span>
               </div>
               <button
-                className="flex items-center justify-center rounded-md w-11 h-11 text-text-secondary"
+                className="flex items-center justify-center rounded-md w-11 h-11"
+                style={{ color: "var(--text-secondary)" }}
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >

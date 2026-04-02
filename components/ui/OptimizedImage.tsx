@@ -46,7 +46,7 @@ export default function OptimizedImage({
         }
       },
       {
-        rootMargin: "200px", // Cargar 200px antes de que sea visible
+        rootMargin: "50px", // Reduced from 200px to 50px for faster loading
         threshold: 0.01
       }
     );
