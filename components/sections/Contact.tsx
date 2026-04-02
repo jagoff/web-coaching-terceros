@@ -72,12 +72,13 @@ export default function Contact() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-[1fr_380px] gap-8 lg:gap-12 mb-14 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,650px)_380px] gap-8 lg:gap-12 mb-14 md:mb-24 lg:justify-center">
           {/* Left Column - Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full"
           >
             <ConversationalContactForm />
           </motion.div>
@@ -87,6 +88,7 @@ export default function Contact() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
+            className="w-full"
           >
             <ContactSidebar />
           </motion.div>
