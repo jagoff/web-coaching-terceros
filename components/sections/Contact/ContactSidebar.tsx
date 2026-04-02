@@ -9,7 +9,8 @@ import {
   Award,
   Users,
   TrendingUp,
-  Quote
+  Quote,
+  Target
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Image from "next/image";
@@ -58,19 +59,19 @@ export default function ContactSidebar() {
 
   const guarantees = [
     {
-      icon: Clock,
-      text: es ? "Respuesta en menos de 24hs" : "Response within 24h",
+      icon: Sparkles,
+      text: es ? "Sesión estratégica sin costo" : "Free strategic session",
+      color: "#f59e0b"
+    },
+    {
+      icon: Target,
+      text: es ? "Enfoque 100% personalizado" : "100% personalized approach",
       color: "#10b981"
     },
     {
       icon: Shield,
-      text: es ? "100% confidencial" : "100% confidential",
+      text: es ? "Conversación confidencial" : "Confidential conversation",
       color: "#3b82f6"
-    },
-    {
-      icon: Sparkles,
-      text: es ? "Primera sesión gratuita" : "First session free",
-      color: "#f59e0b"
     }
   ];
 
