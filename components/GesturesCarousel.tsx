@@ -162,10 +162,10 @@ export default function GesturesCarousel() {
 
       {/* Desktop */}
       <div className="hidden sm:block">
-        <div className="relative rounded-lg overflow-hidden w-full h-96 md:h-[500px] lg:h-[600px]">
+        <div className="relative rounded-lg w-full">
           <ParallaxHeroImages 
             images={optimizedImagePaths} 
-            className="w-full h-full"
+            className="w-full"
           />
         </div>
       </div>

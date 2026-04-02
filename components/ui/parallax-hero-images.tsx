@@ -60,12 +60,11 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
   return (
     <div
       ref={containerRef}
-      className={`w-full h-full ${className}`}
+      className={`w-full ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ minHeight: '600px' }} // Ensure consistent height
     >
-      <div className="grid grid-cols-3 gap-2 md:gap-3 w-full h-full">
+      <div className="grid grid-cols-3 gap-3 md:gap-4 w-full">
         {images.slice(0, 15).map((src, index) => {
           const depth = (index % 3) + 1;
           const { x: moveX, y: moveY } = getTransformForDepth(depth);
@@ -76,8 +75,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               className="relative w-full bg-gray-800 rounded-lg overflow-hidden"
               style={{
                 x: moveX,
-                y: moveY,
-                aspectRatio: '4/5' // Consistent portrait ratio
+                paddingBottom: '125%',
               }}
               whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -85,7 +83,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               <img
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 style={{ objectPosition: 'center' }}
                 loading={index < 12 ? "eager" : "lazy"}
                 onError={(e) => {

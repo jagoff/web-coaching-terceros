@@ -76,7 +76,7 @@ export default function Process() {
             <br />
             <span className="text-gradient">{t.process.title2}</span> {t.process.title3}
           </motion.h2>
-          <motion.p variants={blurUp} className="lead-text text-center">
+          <motion.p variants={blurUp} className="lead-text text-center px-4 mx-auto">
             {t.process.subtitle}
           </motion.p>
           <motion.div

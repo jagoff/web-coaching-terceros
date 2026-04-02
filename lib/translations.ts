@@ -487,7 +487,7 @@ export const translations: Record<Language, Translations> = {
       title: 'Encuentra tu',
       title2: 'plan ideal',
       subtitle: 'Cada plan está diseñado para diferentes necesidades. Yo te ayudo a encontrar cuál se adapta mejor a vos.',
-      consultPlan: 'Consultar plan →',
+      consultPlan: 'Consultar plan',
       mostPopular: 'Más Popular',
       plans: {
         liderazgo: {
@@ -905,7 +905,7 @@ export const translations: Record<Language, Translations> = {
       title: 'Find your',
       title2: 'ideal plan',
       subtitle: 'Each plan is designed for different needs. I help you find the best fit for you.',
-      consultPlan: 'Consult plan →',
+      consultPlan: 'Consult plan',
       mostPopular: 'Most Popular',
       plans: {
         liderazgo: {

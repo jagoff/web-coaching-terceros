@@ -2,23 +2,23 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { generateContentBasedId } from "@/lib/id-utils";
 
 const faqStagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
 };
 
 const faqItem: Variants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 15, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -88,39 +88,97 @@ export default function FAQ() {
               <motion.div
                 key={faqId}
                 variants={faqItem}
-                className="faq-item"
+                className="group"
+                style={{
+                  background: "rgba(0, 0, 0, 0.3)",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(124, 107, 196, 0.15)",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  marginBottom: "1rem",
+                  transition: "all 0.3s ease",
+                }}
+                whileHover={{
+                  borderColor: "rgba(124, 107, 196, 0.4)",
+                  boxShadow: "0 8px 32px rgba(124, 107, 196, 0.1)",
+                }}
               >
                 <button
-                  className="faq-question"
                   onClick={() => toggle(i)}
                   aria-expanded={openIndex === i}
                   aria-controls={`faq-answer-${faqId}`}
                   id={`faq-question-${faqId}`}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "1.5rem 1.75rem",
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    gap: "1.5rem",
+                    transition: "all 0.2s ease",
+                  }}
                 >
-                  <span>{faq.question}</span>
+                  <span
+                    style={{
+                      fontSize: "1.125rem",
+                      fontWeight: 600,
+                      color: "var(--text-primary)",
+                      fontFamily: "var(--font-heading)",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {faq.question}
+                  </span>
                   <motion.div
-                    animate={{ rotate: openIndex === i ? 180 : 0 }}
+                    animate={{ rotate: openIndex === i ? 90 : 0 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex-shrink-0"
+                    style={{
+                      flexShrink: 0,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "50%",
+                      background: openIndex === i ? "rgba(124, 107, 196, 0.2)" : "rgba(124, 107, 196, 0.1)",
+                      transition: "background 0.3s ease",
+                    }}
                     aria-hidden="true"
                   >
-                    <ChevronDown size={20} style={{ color: "var(--gold-primary)" }} />
+                    {openIndex === i ? (
+                      <Minus size={18} style={{ color: "var(--gold-primary)" }} />
+                    ) : (
+                      <Plus size={18} style={{ color: "var(--gold-primary)" }} />
+                    )}
                   </motion.div>
                 </button>
                 <AnimatePresence initial={false}>
                   {openIndex === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <p className="faq-answer">{faq.answer}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <div
+                        style={{
+                          padding: "1rem 1.75rem 1.5rem 1.75rem",
+                          fontSize: "1rem",
+                          lineHeight: 1.8,
+                          color: "var(--text-secondary)",
+                        }}
+                      >
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </motion.div>

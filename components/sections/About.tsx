@@ -143,16 +143,16 @@ export default function About() {
           </CardContainer>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative mt-24 lg:mt-40">
           {/* Badge - Positioned above TV image */}
-          <div className="absolute left-0 top-0 lg:left-8 xl:left-12 z-0 lg:block hidden lg:z-20" style={{ top: '-10px' }}>
+          <div className="absolute left-0 top-0 lg:left-8 xl:left-12 z-0 lg:block hidden lg:z-20" style={{ top: '10px' }}>
             <div className="mb-3 flex justify-start">
               <span className="badge">{t.about.badge}</span>
             </div>
           </div>
 
           {/* TV Image - At grid level, outside any column */}
-          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-0 lg:block hidden lg:z-10" style={{ top: '113px', left: '42px' }}>
+          <div className="absolute left-0 top-6 lg:left-8 xl:left-12 z-0 lg:block hidden" style={{ top: '113px', left: '42px', zIndex: 5 }}>
             <CardContainer className="inter-var">
               <CardBody className="relative group/card w-[32rem] h-[32rem]">
                 <CardItem translateZ="50" className="w-full h-full">
@@ -177,10 +177,54 @@ export default function About() {
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative order-2 lg:order-1 mt-4 lg:mt-0 lg:-mt-[470px]"
+            className="relative order-2 lg:order-1 mt-4 lg:pt-[650px] z-0"
           >
             {/* Image Carousel - Mobile First */}
             <GesturesCarousel />
+
+            {/* YouTube Video Section - Below carousel */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8"
+            >
+              <div className="mb-6">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                  <span className="text-gradient">
+                    {language === 'es' ? 'Conocé mi enfoque' : 'See My Approach'}
+                  </span>
+                </h3>
+                <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                  {language === 'es' 
+                    ? <span>¿Queres pasar por YouTube? <a 
+                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                      >
+                        ¡Te espero!
+                      </a></span>
+                    : <span>Want to stop by YouTube? <a 
+                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                      >
+                        I'll be there!
+                      </a></span>
+                  }
+                </p>
+              </div>
+              
+              <YouTubeThumbnail
+                videoId="mgr1mkSRl3o"
+                title={language === 'es' 
+                  ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
+                  : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
+                }
+              />
+            </motion.div>
           </motion.div>
 
           {/* Text column */}
@@ -273,51 +317,6 @@ export default function About() {
                   );
                 }
               })}
-            </motion.div>
-
-            {/* YouTube Video Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-16"
-            >
-              <div className="mb-8">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-                  <span className="text-gradient">
-                    {language === 'es' ? 'Conocé mi enfoque' : 'See My Approach'}
-                  </span>
-                </h3>
-                <p className="text-base" style={{ color: "var(--text-secondary)" }}>
-                  {language === 'es' 
-                    ? <span>¿Queres pasar por YouTube? <a 
-                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
-                      >
-                        ¡Te espero!
-                      </a></span>
-                    : <span>Want to stop by YouTube? <a 
-                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
-                      >
-                        I'll be there!
-                      </a></span>
-                  }
-                </p>
-              </div>
-              
-              <YouTubeThumbnail
-                videoId="mgr1mkSRl3o"
-                title={language === 'es' 
-                  ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
-                  : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
-                }
-                className="max-w-4xl mx-auto"
-              />
             </motion.div>
           </motion.div>
         </div>

@@ -157,7 +157,7 @@ export default function CaseStudies() {
           </motion.h2>
           <motion.p
             variants={blurUp}
-            className="lead-text max-w-2xl mx-auto"
+            className="lead-text max-w-2xl mx-auto text-center"
           >
             {t.caseStudies.subtitle}
           </motion.p>

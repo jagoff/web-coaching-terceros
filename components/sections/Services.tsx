@@ -113,7 +113,7 @@ export default function Services() {
         </motion.div>
 
         {/* Service cards */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto md:auto-rows-fr">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -126,6 +126,8 @@ export default function Services() {
                 className={`glass-card p-6 sm:p-10 md:p-12 flex flex-col group relative overflow-hidden${service.featured ? " ring-1" : ""}`}
                 style={{
                   perspective: "800px",
+                  minHeight: "100%",
+                  height: "100%",
                   ...(service.featured
                     ? {
                         borderColor: "rgba(124,107,196,0.45)",
@@ -173,13 +175,14 @@ export default function Services() {
                   className="heading-md mb-6"
                   style={{ 
                     fontFamily: "var(--font-heading)",
-                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)"
+                    fontSize: "clamp(1.5rem, 3vw, 1.875rem)",
+                    minHeight: "4.5rem"
                   }}
                 >
                   <span className="text-gradient">{service.title}</span>
                 </h3>
 
-                <p className="mb-6 sm:mb-10" style={{ color: "var(--text-secondary)", lineHeight: "1.75" }}>
+                <p className="mb-6 sm:mb-10" style={{ color: "var(--text-secondary)", lineHeight: "1.75", minHeight: "9rem" }}>
                   {service.description}
                 </p>
 
@@ -193,11 +196,11 @@ export default function Services() {
                   {service.benefits.map((benefit) => (
                     <motion.li key={benefit} variants={benefitItem} className="flex items-start gap-3">
                       <CheckCircle2
-                        size={16}
-                        className="flex-shrink-0 mt-0.5"
+                        size={18}
+                        className="flex-shrink-0 mt-1"
                         style={{ color: "var(--gold-primary)" }}
                       />
-                      <span className="text-lg" style={{ color: "var(--text-secondary)" }}>
+                      <span className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)", fontWeight: 400 }}>
                         {benefit}
                       </span>
                     </motion.li>

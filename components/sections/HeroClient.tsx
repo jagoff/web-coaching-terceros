@@ -294,9 +294,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                   webpSrc={getOptimizedImagePath("/images/ui/this-is-fine-meme.png").webpSrc}
                   fallbackSrc={getOptimizedImagePath("/images/ui/this-is-fine-meme.png").fallbackSrc}
                   alt="Meme de un perro sentado en una oficina en llamas con el lema 'This is fine', representando equipos tech abrumados por problemas de procesos y comunicación"
-                  width={56}
-                  height={56}
-                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-full opacity-100"
+                  width={72}
+                  height={72}
+                  className="w-16 h-16 sm:w-18 sm:h-18 object-cover rounded-full opacity-100"
                   priority={true}
                   lazy={false}
                 />

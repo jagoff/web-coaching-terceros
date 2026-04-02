@@ -103,7 +103,7 @@ export default function Contact() {
         >
           <div className="text-center max-w-2xl mx-auto mb-6">
             <p
-              className="lead-text"
+              className="lead-text text-center mx-auto"
               style={{ color: "var(--text-secondary)" }}
             >
               {language === 'es' 
@@ -112,7 +112,7 @@ export default function Contact() {
               }
             </p>
             <p
-              className="lead-text"
+              className="lead-text text-center mx-auto"
               style={{ color: "var(--text-primary)" }}
             >
               <strong>

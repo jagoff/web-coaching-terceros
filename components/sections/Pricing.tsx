@@ -97,7 +97,7 @@ export default function Pricing() {
           </motion.h2>
           <motion.p
             variants={blurUp}
-            className="text-sm"
+            className="text-sm text-center mx-auto"
             style={{ color: "var(--text-muted)" }}
           >
             {t.pricing.subtitle}
@@ -141,7 +141,7 @@ export default function Pricing() {
                 <span 
                   className="text-gradient"
                   style={{
-                    fontSize: "1.375rem"
+                    fontSize: "1.125rem"
                   }}
                 >{plan.name}</span>
               </p>
@@ -176,7 +176,7 @@ export default function Pricing() {
               {/* CTA */}
               <div className="flex justify-center">
                 <button
-                  className="inline-flex items-center bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
+                  className="inline-flex items-center gap-2 bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold uppercase tracking-widest transition-all"
                   style={{ 
                     background: "linear-gradient(135deg, #FF8C42 0%, #FF6B35 50%, #FFA500 100%)",
                     WebkitBackgroundClip: "text",
@@ -189,6 +189,7 @@ export default function Pricing() {
                   onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                 >
                   {plan.cta}
+                  <ArrowRight size={16} style={{ color: "#FF6B35" }} />
                 </button>
               </div>
             </motion.div>
@@ -203,7 +204,7 @@ export default function Pricing() {
           className="text-center mt-12 sm:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <div className="text-center">
-            <p className="text-base mb-2" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
+            <p className="text-base mb-2 text-center mx-auto" style={{ color: "var(--text-secondary)", lineHeight: "1.8" }}>
               {t.pricing.doubt}
             </p>
             <button

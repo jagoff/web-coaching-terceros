@@ -184,23 +184,28 @@ export default function TestimonialsSimple() {
               onDragEnd={handleDragEnd}
               className="glass-card p-5 md:p-8 text-center cursor-grab active:cursor-grabbing relative"
             >
-              {/* Rating - Top Left */}
-              <div className="flex gap-1 mb-4 mt-2 justify-start">
+              {/* Rating - Centered */}
+              <div className="flex gap-1 mb-4 mt-2 justify-center">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     size={18}
                     className={i < 4 ? "fill-current" : ""}
-                    style={{ color: "var(--gold-primary)" }}
+                    style={{ color: "#FFD700" }}
                   />
                 ))}
               </div>
 
               {/* Quote */}
-              <blockquote className="mb-5 text-center" suppressHydrationWarning>
+              <blockquote className="mb-5 text-center px-4 md:px-6" suppressHydrationWarning>
                 <p
-                  className="text-base md:text-lg leading-relaxed mb-4"
-                  style={{ color: "var(--text-secondary)", textAlign: "center" }}
+                  className="text-sm md:text-base mb-4 mx-auto"
+                  style={{ 
+                    color: "var(--text-secondary)", 
+                    textAlign: "center", 
+                    lineHeight: "1.6",
+                    maxWidth: "100%"
+                  }}
                   suppressHydrationWarning
                 >
                   "{currentTestimonial.quote}"
@@ -208,14 +213,7 @@ export default function TestimonialsSimple() {
               </blockquote>
 
               {/* Author */}
-              <div className="flex flex-col items-center justify-center gap-4">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl"
-                  style={{ background: currentTestimonial.avatarBg }}
-                  suppressHydrationWarning
-                >
-                  {currentTestimonial.initials}
-                </div>
+              <div className="flex flex-col items-center justify-center">
                 <div className="text-center">
                   <h3
                     className="font-semibold text-lg"

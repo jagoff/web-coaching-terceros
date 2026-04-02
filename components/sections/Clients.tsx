@@ -8,73 +8,59 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const clientLogos = [
   {
     id: 1,
-    name: "Google",
-    logo: "/logos/google.svg",
-    width: 120,
-    height: 40
+    name: "Microsoft",
+    logo: "/logos/microsoft.svg",
+    width: 140,
+    height: 45
   },
   {
     id: 2,
-    name: "Microsoft",
-    logo: "/logos/microsoft.svg",
-    width: 120,
-    height: 40
+    name: "Google",
+    logo: "/logos/google.svg",
+    width: 130,
+    height: 45
   },
   {
     id: 3,
     name: "Amazon",
     logo: "/logos/amazon.svg",
-    width: 120,
-    height: 40
+    width: 130,
+    height: 45
   },
   {
     id: 4,
-    name: "Meta",
-    logo: "/logos/meta.svg",
-    width: 120,
-    height: 40
+    name: "Apple",
+    logo: "/logos/apple.svg",
+    width: 140,
+    height: 45
   },
   {
     id: 5,
-    name: "Apple",
-    logo: "/logos/apple.svg",
+    name: "Meta",
+    logo: "/logos/meta.svg",
     width: 120,
-    height: 40
+    height: 45
   },
   {
     id: 6,
-    name: "Netflix",
-    logo: "/logos/netflix.svg",
-    width: 120,
-    height: 40
+    name: "Salesforce",
+    logo: "/logos/salesforce.svg",
+    width: 140,
+    height: 45
   },
   {
     id: 7,
-    name: "Spotify",
-    logo: "/logos/spotify.svg",
-    width: 120,
-    height: 40
+    name: "LinkedIn",
+    logo: "/logos/linkedin.svg",
+    width: 130,
+    height: 45
   },
   {
     id: 8,
-    name: "LinkedIn",
-    logo: "/logos/linkedin.svg",
-    width: 120,
-    height: 40
-  },
-  {
-    id: 9,
     name: "Tesla",
     logo: "/logos/tesla.svg",
     width: 120,
-    height: 40
-  },
-  {
-    id: 10,
-    name: "Salesforce",
-    logo: "/logos/salesforce.svg",
-    width: 120,
-    height: 40
+    height: 45
   }
 ];
 
@@ -174,7 +160,7 @@ export default function Clients() {
           viewport={{ once: true }}
           className="text-center mt-8"
         >
-          <p className="text-xs text-secondary opacity-60">
+          <p className="text-xs text-secondary opacity-60 text-center mx-auto">
             {language === 'es' 
               ? 'Colaboramos con empresas de diversos sectores para impulsar su crecimiento'
               : 'We collaborate with companies from various sectors to drive their growth'
