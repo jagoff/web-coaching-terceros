@@ -1272,7 +1272,7 @@ input:focus, textarea:focus, select:focus {
 
 .pricing-feature {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
   font-size: 1.125rem; /* Increased from 0.9375rem */
   color: var(--text-secondary);
@@ -1287,7 +1287,7 @@ input:focus, textarea:focus, select:focus {
   width: 18px;
   height: 18px;
   color: var(--gold-primary);
-  margin-top: 2px;
+  margin-top: 0;
 }
 
 /* ============================================================
