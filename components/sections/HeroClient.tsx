@@ -172,7 +172,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           style={{ paddingTop: "clamp(64px, 10vh, 120px)", paddingBottom: "clamp(32px, 5vh, 60px)" }}
         >
           {/* Headline — each line reveals separately */}
-          <motion.h1
+          <h1
             className="display-text max-w-5xl mb-3 sm:mb-4"
             style={{ fontFamily: "var(--font-heading)", lineHeight: 1.15, fontSize: "clamp(1.75rem, 4vw, 2.8rem)" }}
           >
@@ -202,7 +202,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 <>Scale <span className="text-gradient">without limits</span>.</>
               )}
             </motion.span>
-          </motion.h1>
+          </h1>
 
           {/* Decorative line */}
           <motion.div
