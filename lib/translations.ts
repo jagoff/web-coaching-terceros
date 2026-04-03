@@ -400,19 +400,15 @@ export const translations: Record<Language, Translations> = {
   </p>
   
   <p style="margin-bottom: 1.2rem;">
-    <span style="font-family: var(--font-serif); font-weight: 500;">Llevo más de</span> <span style="font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem;">20 años</span> <span style="font-family: var(--font-serif); font-weight: 500;">en tecnología — desde</span> <span style="font-family: var(--font-modern); font-weight: 600;">infraestructura y operaciones</span> <span style="font-family: var(--font-serif); font-weight: 500;">hasta</span> <span style="font-family: var(--font-modern); font-weight: 600;">liderazgo estratégico y transformación cultural</span>.
+    <span style="font-family: var(--font-serif); font-weight: 500;">+20 años en tecnología: desde infraestructura hasta liderazgo estratégico. Fui técnico, sysadmin, CTO, Advanced Scrum Master, Product Owner, PM, Director de Operaciones.</span>
   </p>
   
   <p style="margin-bottom: 1.2rem;">
-    <span style="font-family: var(--font-serif); font-weight: 500;">Fui</span> <span style="font-family: var(--font-heading); font-weight: 600;">técnico</span>, <span style="font-family: var(--font-heading); font-weight: 600;">sysadmin</span>, <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">CTO</span>, <span style="font-family: var(--font-modern); font-weight: 700; color: #C87B5A;">Advanced Scrum Master</span>, <span style="font-family: var(--font-modern); font-weight: 700; color: #FF6B35;">Product Owner</span>, <span style="font-family: var(--font-heading); font-weight: 600;">PM</span>, <span style="font-family: var(--font-heading); font-weight: 600;">Director de Operaciones</span>.
+    <span style="font-family: var(--font-serif); font-weight: 500;">Lideré equipos de</span> <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">2500+ personas</span> <span style="font-family: var(--font-serif); font-weight: 500;">y startups de 4 personas. Ayudo a escalar sin perder identidad.</span>
   </p>
   
   <p style="margin-bottom: 1.2rem;">
-    <span style="font-family: var(--font-serif); font-weight: 500;">Lideré equipos en empresas de</span> <span style="font-family: var(--font-modern); font-weight: 700; font-size: 1.1rem; color: #7C6BC4;">más de 2500 personas</span> <span style="font-family: var(--font-serif); font-weight: 500;">como también en empresas de</span> <span style="font-family: var(--font-heading); font-weight: 600;">4 personas</span>, <span style="font-family: var(--font-serif); font-weight: 500;">acompañé</span> <span style="font-family: var(--font-modern); font-style: italic; color: #FF6B35;">startups a escalar sin perder su identidad</span>.
-  </p>
-  
-  <p style="margin-bottom: 1.2rem;">
-    <span style="font-family: var(--font-serif); font-weight: 500;">Hoy gestiono</span> <span style="font-family: var(--font-heading); font-weight: 600;">infraestructura AWS Cloud en Avature</span>, <span style="font-family: var(--font-serif); font-weight: 500;">co-fundé</span> <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">Nodok.AI</span> <span style="font-family: var(--font-serif); font-weight: 500;">para proyectos de inteligencia artificial, y llevo</span> <span style="font-family: var(--font-heading); font-weight: 600;">11 años como consultor ágil independiente</span>.
+    <span style="font-family: var(--font-serif); font-weight: 500;">Hoy en AWS Cloud (Avature), co-fundé</span> <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">Nodok.AI</span> <span style="font-family: var(--font-serif); font-weight: 500;">y 11 años como consultor ágil independiente.</span>
   </p>
   
   <p style="margin-top: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--gold-primary);">
@@ -811,8 +807,8 @@ export const translations: Record<Language, Translations> = {
 
     forWho: {
       badge: '¿Esto es para vos?',
-      title: '¿Te encontrás',
-      titleHighlight: 'en alguna de estas situaciones?',
+      title: '¿Te encontrás en alguna de estas situaciones?',
+      titleHighlight: '',
       subtitle: 'Acompaño a líderes tech y founders que están en momentos clave. Si alguna de estas situaciones te resuena, podemos trabajar juntos.',
       cta: 'Quiero trabajar en esto',
       profiles: [
@@ -878,7 +874,7 @@ export const translations: Record<Language, Translations> = {
       title1: 'From technology',
       title2: 'to transforming',
       title3: 'organizations.',
-      intro: "<span style=\"font-family: var(--font-modern); font-weight: 600; background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcc00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\">I'm Fernando Ferrari.</span> Over 20 years in technology — from infrastructure and operations to strategic leadership and cultural transformation.\n\n<span style=\"font-family: var(--font-modern); font-weight: 500;\">I've been technician, sysadmin, CTO, Advanced Scrum Master, Product Owner, PM, Operations Director.</span> I've led teams in companies with over 2500 people and helped startups scale without losing their identity. Today I manage AWS Cloud infrastructure at Avature, co-founded Nodok.AI for AI projects, and have 11 years as an independent agile consultant.\n\n— <span style=\"font-family: var(--font-heading); font-style: italic; color: var(--text-primary);\">I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.</span>",
+      intro: "<span style=\"font-family: var(--font-modern); font-weight: 600; background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcc00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;\">I'm Fernando Ferrari.</span> 20+ years in tech: from infrastructure to strategic leadership.\n\n<span style=\"font-family: var(--font-modern); font-weight: 500;\">I've been technician, sysadmin, CTO, Advanced Scrum Master, Product Owner, PM, Operations Director.</span> Led teams of 2500+ people and helped 4-person startups scale. Today at AWS Cloud (Avature), co-founded Nodok.AI for AI projects, and 11 years as independent agile consultant.\n\n— <span style=\"font-family: var(--font-heading); font-style: italic; color: var(--text-primary);\">I help you build autonomous teams, scalable processes, and a culture that retains talent.</span>",
       approach: '',
       certificaciones: 'Verifiable international certifications',
       stats: {
@@ -1244,8 +1240,8 @@ export const translations: Record<Language, Translations> = {
 
     forWho: {
       badge: 'Is this for you?',
-      title: 'Do any of these',
-      titleHighlight: 'sound familiar?',
+      title: 'Do any of these sound familiar?',
+      titleHighlight: '',
       subtitle: 'I work with tech leaders and founders at key moments. If any of these situations resonate with you, we can work together.',
       cta: 'I want to work on this',
       profiles: [
