@@ -131,7 +131,7 @@ export default function About() {
   return (
     <section
       id="sobre-mi"
-      className="section section-surface section-gold-border-top"
+      className="section section-surface about-section"
       ref={ref}
       style={{ 
         paddingTop: "clamp(0.25rem, 1vw, 1rem)",

@@ -1559,9 +1559,9 @@ input:focus, textarea:focus, select:focus {
   box-sizing: border-box;
 }
 
-/* Mobile text overflow prevention */
+/* Mobile text overflow prevention - Only for About section */
 @media (max-width: 768px) {
-  .lead-text {
+  .about-section .lead-text {
     font-size: 0.85rem !important;
     line-height: 1.6 !important;
     padding: 0 !important;
@@ -1576,7 +1576,7 @@ input:focus, textarea:focus, select:focus {
     position: relative !important;
   }
   
-  .lead-text * {
+  .about-section .lead-text * {
     max-width: 100% !important;
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
@@ -1585,7 +1585,7 @@ input:focus, textarea:focus, select:focus {
     width: 100% !important;
   }
   
-  .lead-text div {
+  .about-section .lead-text div {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
@@ -1593,7 +1593,7 @@ input:focus, textarea:focus, select:focus {
     overflow: hidden !important;
   }
   
-  .lead-text p {
+  .about-section .lead-text p {
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 !important;
@@ -1601,11 +1601,23 @@ input:focus, textarea:focus, select:focus {
     overflow: hidden !important;
   }
   
-  .lead-text span {
+  .about-section .lead-text span {
     max-width: 100% !important;
     word-wrap: break-word !important;
     word-break: break-word !important;
     display: inline-block !important;
+  }
+  
+  /* Preserve web-underline in all contexts */
+  .web-underline, .web-underline-orange {
+    position: relative !important;
+    display: inline !important;
+    text-decoration: none !important;
+    background-image: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    color: inherit !important;
   }
 }
 
