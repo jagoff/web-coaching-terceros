@@ -104,12 +104,6 @@
       "webp": "ui/this-is-fine-meme.webp",
       "size": 22596,
       "optimized": true
-    },
-    {
-      "original": "ui/tv-icon",
-      "webp": "ui/tv-icon.webp",
-      "size": 8534,
-      "optimized": true
     }
   ]
 }
