@@ -2531,9 +2531,12 @@ html {
 @media (max-width: 768px) {
   .whatsapp-tooltip {
     right: auto;
-    left: 50%;
+    left: 16px;
     bottom: 70px;
-    transform: translateX(-50%);
+    transform: none;
+    max-width: calc(100vw - 32px);
+    word-wrap: break-word;
+    hyphens: auto;
   }
 }
 
