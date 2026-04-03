@@ -18,11 +18,25 @@ try {
   if (configContent.includes("output: 'export'")) {
     console.log('✅ Static export already configured');
   } else {
-    // Replace standalone with export for static hosting
-    configContent = configContent.replace(
-      "output: 'standalone',",
-      "output: 'export',"
-    );
+    // Add output export to the nextConfig object
+    // Find the position after const nextConfig: NextConfig = {
+    const configStart = configContent.indexOf("const nextConfig: NextConfig = {");
+    if (configStart !== -1) {
+      // Find the closing brace of the config object
+      const configEnd = configContent.indexOf("};", configStart);
+      if (configEnd !== -1) {
+        // Insert output: 'export' before the closing brace
+        const beforeClosingBrace = configContent.lastIndexOf("\n", configEnd);
+        const insertionPoint = beforeClosingBrace + 1;
+        
+        const indent = '  '; // Match existing indentation
+        const outputConfig = `\n${indent}output: 'export',\n`;
+        
+        configContent = configContent.slice(0, insertionPoint) + 
+                        outputConfig + 
+                        configContent.slice(insertionPoint);
+      }
+    }
     
     fs.writeFileSync(configPath, configContent);
     console.log('✅ Updated configuration for static export');
