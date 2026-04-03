@@ -1608,16 +1608,10 @@ input:focus, textarea:focus, select:focus {
     display: inline-block !important;
   }
   
-  /* Preserve web-underline in all contexts */
-  .web-underline, .web-underline-orange {
-    position: relative !important;
+  /* Don't affect web-underline spans - they need special styling */
+  .about-section .lead-text span.web-underline,
+  .about-section .lead-text span.web-underline-orange {
     display: inline !important;
-    text-decoration: none !important;
-    background-image: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    background-clip: unset !important;
-    color: inherit !important;
   }
 }
 
