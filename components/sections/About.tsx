@@ -236,6 +236,16 @@ export default function About() {
 
             <div 
               className="lead-text mb-6 sm:mb-8"
+              style={{
+                maxWidth: '100%',
+                overflow: 'hidden',
+                wordWrap: 'break-word',
+                wordBreak: 'break-word',
+                hyphens: 'auto',
+                boxSizing: 'border-box',
+                padding: '0',
+                margin: '0'
+              }}
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t.about.intro) }}
             />
 

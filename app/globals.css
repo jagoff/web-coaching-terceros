@@ -1555,6 +1555,33 @@ input:focus, textarea:focus, select:focus {
   font-size: clamp(1.0625rem, 2vw, 1.25rem);
   line-height: 1.85;
   color: var(--text-secondary);
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  box-sizing: border-box;
+}
+
+/* Mobile text overflow prevention */
+@media (max-width: 768px) {
+  .lead-text {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+    padding: 0 0.5rem !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+  
+  .lead-text * {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    box-sizing: border-box !important;
+  }
 }
 
 .label-text {
