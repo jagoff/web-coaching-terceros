@@ -226,7 +226,9 @@ export default function About() {
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span className="block sm:inline">{t.about.title1}{" "}</span>
-              <span className="block sm:inline text-gradient">{t.about.title2}{" "}</span>
+              {t.about.title2 && (
+                <span className="block sm:inline text-gradient">{t.about.title2}{" "}</span>
+              )}
               <span className="block sm:inline">{t.about.title3}</span>
             </h2>
 
