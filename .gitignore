@@ -169,3 +169,4 @@ next-env.d.ts
 # Local development
 .local
 .env*.local
+public/images_backup*
