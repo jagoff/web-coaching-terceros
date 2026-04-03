@@ -82,7 +82,7 @@ export default function Pricing() {
           variants={headerStagger}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-8 md:mb-14"
+          className="text-center mb-8 md:mb-12"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">{t.pricing.badge}</span>
