@@ -9,9 +9,11 @@ Landing page for **ELEVA CONSULTORIA** — coaching and organizational consultin
 ## Build Commands
 
 ```bash
-npm run dev              # Development server
-npm run build            # Production build
+npm run dev              # Development server (uses webpack due to --webpack flag)
+npm run build            # Production build (14 static pages in ~1.6s)
 npm run start            # Production server
+npm run build:export     # Static export to /out (230 files)
+npm run verify:ssr       # Verify SSR/SSG configuration
 npm run lint             # ESLint
 npm run lint:fix         # Fix lint issues
 npm run test             # Unit tests (Vitest)
@@ -28,6 +30,22 @@ npm run optimize:images  # Optimize images with Sharp
 - **Testing**: Vitest (unit, jsdom), Playwright (e2e + visual regression)
 - **Email**: Resend (primary) + Web3Forms (fallback)
 - **Icons**: Lucide React
+- **Deployment**: Vercel (production) with static export support
+
+## Removed Dependencies (Cleanup 2025)
+
+The following dependencies were removed to optimize bundle size and eliminate unused code:
+- `@emotion/react`, `@emotion/styled` - Emotion CSS-in-JS library
+- `react-helmet-async` - SEO meta management (replaced with Next.js built-in SEO)
+- `schema-dts` - TypeScript types for JSON-LD (replaced with inline types)
+- `lenis` - Smooth scrolling library (replaced with native smooth scroll)
+- `critters` - CSS inlining tool (unused)
+
+## Removed Files (Cleanup 2025)
+
+- **Components**: 21 dead component files removed (unused legacy components)
+- **Lib**: `optimized-icons.ts`, `optimized-motion.ts`, `get-dictionary.ts` (unused utilities)
+- **CSS**: `design-tokens.css` (consolidated into existing CSS files)
 
 ## Environment Variables
 
@@ -37,8 +55,9 @@ NEXT_PUBLIC_CALCOM_USERNAME=        # Cal.com booking
 NEXT_PUBLIC_CALCOM_EVENT_TYPE_ID=30min
 RESEND_API_KEY=                     # Email confirmations
 CONTACT_EMAIL=                      # Recipient for form notifications
-VERCEL_ENV=                         # Staging detection (disables robots indexing)
 ```
+
+**Note**: `VERCEL_ENV` was removed from `vercel.json` to fix SEO blocking in production. Environment detection is now handled automatically.
 
 ## Architecture
 
@@ -128,15 +147,49 @@ Form validation is in `useContactForm.ts` with Zod schema in `lib/validations.ts
 - Particle count: 0 on mobile (`< 768px`), 3 on desktop — see `HeroClient.tsx`
 - `CursorGlow` deferred 500ms after mount in `ClientLayout.tsx`
 - All pages are force-static with `revalidate: 3600`
+- **CSS Optimizations**: Removed global `* { transition }` and `* { border-radius }` rules, consolidated specificity wars
+- **Bundle Size**: Reduced by removing unused dependencies and dead code elimination
+- **Scroll Performance**: Simplified `lib/scroll.ts` to use native smooth scroll instead of lenis
 
 ### SEO
 
 - JSON-LD structured data via `JsonLdStructuredData.tsx` (supports: LocalBusiness, Person, Service, FAQPage, WebPage, AggregateRating, etc.)
+- JSON-LD output is compact (no indentation) and uses static dates for proper caching
 - Hreflang tags via `Hreflang.tsx` component in `<head>`
 - `LangAttribute.tsx` updates `<html lang>` on client after hydration
 - `public/llms.txt` for AI crawlers
 - `robots.ts` allowlists Grok, YouBot, GeminiBot, Meta-ExternalAgent
+- **Critical Fix**: Removed `VERCEL_ENV=preview` override from `vercel.json` to unblock production indexing
+- **Sitemap**: Dynamic sitemap.xml generated at `/app/sitemap.ts` with 10 indexed routes
+- **Robots**: Configured at `/app/robots.ts` with proper crawl directives
 
 ## Business Logic — Maturity Assessment (`/madurez-empresarial`)
 
 5-question self-assessment across 5 dimensions (Organización, Comunicación, Procesos, Tecnología, Liderazgo). Score 1–5 per question → percentage out of 100. Levels: Inicial (0–40%) → Desarrollo (40–60%) → Maduro (60–80%) → Excelencia (80–100%). Logic lives in `lib/madurez-empresarial/calculator.ts`.
+
+## Recent Updates (January 2025)
+
+### Performance & Cleanup
+- ✅ Removed 21 dead component files and 3 unused lib files
+- ✅ Removed 6 unused dependencies (@emotion/*, react-helmet-async, schema-dts, lenis, critters)
+- ✅ Fixed CSS performance bottlenecks: global transitions and border-radius rules
+- ✅ Consolidated btn-primary specificity wars in globals.css
+- ✅ Simplified scroll behavior using native smooth scroll
+
+### SEO & Configuration Fixes
+- ✅ Fixed JSON-LD structured data: compact output, static dates for caching
+- ✅ Fixed vercel.json: removed VERCEL_ENV=preview blocking production indexing
+- ✅ Fixed next.config.ts: removed emotion compiler config
+- ✅ Fixed tsconfig.json: removed non-existent out/ paths
+- ✅ Fixed CSS font variables: --font-heading now uses loaded fonts
+
+### Verification
+- ✅ Build verification: 14 static pages compiled in 1.6s
+- ✅ Dev server verification: HTTP 200 on localhost:3001
+- ✅ All major components and dynamic imports functional
+- ✅ SSR/SSG configuration confirmed with ISR (1h revalidate)
+- ✅ Static export support with `npm run build:export`
+
+### Production URL
+- **Live Site**: https://eleva-consultoria.com
+- **Deployment**: Vercel with automatic deployments from main branch
