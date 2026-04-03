@@ -338,7 +338,7 @@ export default function ConversationalContactForm() {
 
               {step === 3 && (
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="grid grid-cols-1 gap-4">
                     {challenges[language].map((challenge) => {
                       const Icon = challenge.icon;
                       const isSelected = selectedChallenge === challenge.value;
@@ -347,37 +347,68 @@ export default function ConversationalContactForm() {
                         <motion.button
                           key={challenge.value}
                           onClick={() => handleChallengeSelect(challenge.value)}
-                          className="relative group text-left p-4 rounded-xl transition-all duration-300"
+                          className="relative group text-left p-5 rounded-2xl transition-all duration-300"
                           style={{
                             background: isSelected 
-                              ? 'linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 107, 53, 0.1) 100%)'
-                              : 'rgba(255, 255, 255, 0.03)',
+                              ? 'linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(255, 107, 53, 0.15) 100%)'
+                              : 'rgba(255, 255, 255, 0.04)',
                             border: isSelected 
-                              ? '2px solid rgba(255, 107, 53, 0.4)'
-                              : '2px solid rgba(255, 255, 255, 0.08)',
+                              ? '2px solid rgba(255, 107, 53, 0.5)'
+                              : '2px solid rgba(255, 255, 255, 0.1)',
+                            boxShadow: isSelected 
+                              ? '0 8px 32px rgba(255, 107, 53, 0.15)'
+                              : '0 4px 16px rgba(0, 0, 0, 0.1)',
                           }}
-                          whileHover={{ scale: 1.02 }}
+                          whileHover={{ 
+                            scale: 1.02,
+                            boxShadow: isSelected 
+                              ? '0 12px 40px rgba(255, 107, 53, 0.2)'
+                              : '0 8px 24px rgba(0, 0, 0, 0.15)'
+                          }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-4">
                             <div 
-                              className="p-2 rounded-lg"
+                              className="p-3 rounded-xl flex-shrink-0"
                               style={{
                                 background: isSelected 
-                                  ? 'rgba(255, 107, 53, 0.2)'
-                                  : 'rgba(255, 255, 255, 0.05)'
+                                  ? 'linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(255, 107, 53, 0.2) 100%)'
+                                  : 'rgba(255, 255, 255, 0.08)',
+                                border: isSelected 
+                                  ? '1px solid rgba(255, 107, 53, 0.4)'
+                                  : '1px solid rgba(255, 255, 255, 0.15)',
                               }}
                             >
-                              <Icon size={20} className="text-white" />
+                              <Icon size={24} className="text-white" />
                             </div>
-                            <span className="text-white font-medium flex-1">{challenge.label}</span>
+                            <div className="flex-1">
+                              <span className="text-white font-semibold text-lg block">{challenge.label}</span>
+                              {isSelected && challenge.value !== "custom" && (
+                                <motion.span 
+                                  initial={{ opacity: 0, y: -5 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  className="text-sm text-gray-400 block mt-1"
+                                >
+                                  {es ? 'Seleccionado - listo para enviar' : 'Selected - ready to send'}
+                                </motion.span>
+                              )}
+                            </div>
                             {isSelected && (
                               <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
+                                initial={{ scale: 0, rotate: -180 }}
+                                animate={{ scale: 1, rotate: 0 }}
                                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                className="flex-shrink-0"
                               >
-                                <CheckCircle2 size={20} style={{ color: '#FF6B35' }} />
+                                <div 
+                                  className="w-8 h-8 rounded-full flex items-center justify-center"
+                                  style={{
+                                    background: 'linear-gradient(135deg, #FF6B35 0%, #FF8555 100%)',
+                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)'
+                                  }}
+                                >
+                                  <CheckCircle2 size={20} className="text-white" />
+                                </div>
                               </motion.div>
                             )}
                           </div>
@@ -393,49 +424,36 @@ export default function ConversationalContactForm() {
                       exit={{ opacity: 0, height: 0 }}
                       className="relative"
                     >
-                      <textarea
-                        value={formData.mensaje}
-                        onChange={(e) => setFormData(prev => ({ ...prev, mensaje: e.target.value }))}
-                        placeholder={es ? "Cuéntame más sobre tu desafío..." : "Tell me more about your challenge..."}
-                        rows={4}
-                        className="w-full p-4 pt-5 rounded-xl text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          border: errors.mensaje ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
-                          fontSize: '1rem'
-                        }}
-                        autoFocus
-                      />
-                      {errors.mensaje && (
-                        <motion.p
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="text-red-400 text-sm mt-2 ml-1"
-                        >
-                          {errors.mensaje}
-                        </motion.p>
-                      )}
-                    </motion.div>
-                  )}
-
-                  {selectedChallenge && selectedChallenge !== "custom" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      className="relative"
-                    >
-                      <textarea
-                        value={formData.mensaje}
-                        onChange={(e) => setFormData(prev => ({ ...prev, mensaje: e.target.value }))}
-                        placeholder={es ? "¿Algo más que quieras compartir? (opcional)" : "Anything else you'd like to share? (optional)"}
-                        rows={3}
-                        className="w-full p-4 rounded-xl text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          border: '2px solid rgba(255, 255, 255, 0.1)',
-                          fontSize: '1rem'
-                        }}
-                      />
+                      <div className="p-4 rounded-xl" style={{
+                        background: 'rgba(255, 255, 255, 0.02)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)'
+                      }}>
+                        <p className="text-sm text-gray-400 mb-3">
+                          {es ? 'Cuéntame más sobre tu desafío personalizado:' : 'Tell me more about your custom challenge:'}
+                        </p>
+                        <textarea
+                          value={formData.mensaje}
+                          onChange={(e) => setFormData(prev => ({ ...prev, mensaje: e.target.value }))}
+                          placeholder={es ? "Describe tu situación específica..." : "Describe your specific situation..."}
+                          rows={4}
+                          className="w-full p-4 pt-5 rounded-xl text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            border: errors.mensaje ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
+                            fontSize: '1rem'
+                          }}
+                          autoFocus
+                        />
+                        {errors.mensaje && (
+                          <motion.p
+                            initial={{ opacity: 0, y: -5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-red-400 text-sm mt-2 ml-1"
+                          >
+                            {errors.mensaje}
+                          </motion.p>
+                        )}
+                      </div>
                     </motion.div>
                   )}
 
