@@ -202,13 +202,16 @@ export default function About() {
                 </p>
               </div>
               
-              <YouTubeThumbnail
-                videoId="mgr1mkSRl3o"
-                title={language === 'es' 
-                  ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
-                  : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
-                }
-              />
+              {/* YouTube thumbnail with proper mobile sizing */}
+              <div className="relative w-full" style={{ aspectRatio: "16/9", maxWidth: "100%" }}>
+                <YouTubeThumbnail
+                  videoId="mgr1mkSRl3o"
+                  title={language === 'es' 
+                    ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
+                    : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
+                  }
+                />
+              </div>
             </motion.div>
           </motion.div>
 

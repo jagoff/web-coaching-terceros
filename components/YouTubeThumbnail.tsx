@@ -59,7 +59,9 @@ export default function YouTubeThumbnail({
       className={`relative w-full cursor-pointer group ${className}`}
       style={{ 
         aspectRatio: "16/9",
-        minHeight: "200px"
+        minHeight: "180px",
+        width: "100%",
+        maxWidth: "100%"
       }}
       onClick={handleClick}
       role="button"
