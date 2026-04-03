@@ -826,11 +826,13 @@ input:focus, textarea:focus, select:focus {
   color: var(--text-primary);
 }
 
-/* Mobile: Allow natural wrapping without forcing full width */
+/* Mobile: wrap text inside chips so long certs don't overflow viewport */
 @media (max-width: 768px) {
   .credential-chip {
     flex-shrink: 1;
     min-width: 0;
+    white-space: normal;
+    word-break: break-word;
   }
 }
 

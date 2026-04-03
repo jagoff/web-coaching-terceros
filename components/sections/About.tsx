@@ -10,10 +10,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import DOMPurify from "isomorphic-dompurify";
 
 const slideReveal: Variants = {
-  hidden: (dir: number) => ({ opacity: 0, x: dir, filter: "blur(6px)" }),
+  hidden: () => ({ opacity: 0, filter: "blur(6px)" }),
   visible: {
     opacity: 1,
-    x: 0,
     filter: "blur(0px)",
     transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
   },
