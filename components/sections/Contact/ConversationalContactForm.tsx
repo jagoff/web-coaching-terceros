@@ -285,7 +285,7 @@ export default function ConversationalContactForm() {
                       onChange={(e) => setFormData(prev => ({ ...prev, nombre: e.target.value }))}
                       onKeyPress={(e) => e.key === 'Enter' && handleNext()}
                       placeholder={es ? "Tu nombre completo" : "Your full name"}
-                      className="w-full px-4 py-4 rounded-xl text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
+                      className="w-full px-4 py-4 rounded-lg text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: errors.nombre ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
@@ -315,7 +315,7 @@ export default function ConversationalContactForm() {
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       onKeyPress={(e) => e.key === 'Enter' && handleNext()}
                       placeholder="email@ejemplo.com"
-                      className="w-full px-4 py-4 rounded-xl text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
+                      className="w-full px-4 py-4 rounded-lg text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: errors.email ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
@@ -436,7 +436,7 @@ export default function ConversationalContactForm() {
                           onChange={(e) => setFormData(prev => ({ ...prev, mensaje: e.target.value }))}
                           placeholder={es ? "Describe tu situación específica..." : "Describe your specific situation..."}
                           rows={4}
-                          className="w-full p-4 pt-5 rounded-xl text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
+                          className="w-full p-4 pt-5 rounded-lg text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
                           style={{
                             background: 'rgba(255, 255, 255, 0.05)',
                             border: errors.mensaje ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
