@@ -2574,13 +2574,12 @@ html {
 
 @media (max-width: 768px) {
   .whatsapp-tooltip {
-    right: auto;
-    left: 16px;
-    bottom: 70px;
+    right: 68px;
+    left: auto;
+    bottom: auto;
     transform: none;
-    max-width: calc(100vw - 32px);
-    word-wrap: break-word;
-    hyphens: auto;
+    white-space: nowrap;
+    max-width: calc(100vw - 100px);
   }
 }
 
