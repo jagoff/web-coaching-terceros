@@ -72,7 +72,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start max-w-7xl mx-auto">
           {/* Left Column — Sidebar (desktop only) */}
           <motion.div
             className="hidden lg:block"
@@ -85,6 +85,7 @@ export default function Contact() {
 
           {/* Right Column — Form (full width on mobile) */}
           <motion.div
+            className="w-full"
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}

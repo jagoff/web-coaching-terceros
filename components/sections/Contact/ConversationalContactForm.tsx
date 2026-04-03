@@ -185,7 +185,7 @@ export default function ConversationalContactForm() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full max-w-2xl mx-auto">
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
