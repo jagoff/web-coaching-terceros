@@ -48,7 +48,6 @@ export default function NewsletterSignup() {
         border: "1px solid rgba(124,107,196,0.3)",
       }}
       whileHover={{ y: -3, boxShadow: "0 12px 40px rgba(124,107,196,0.15)" }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       {/* Ambient violet glow */}
       <div
