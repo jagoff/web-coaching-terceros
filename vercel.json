@@ -1,9 +1,6 @@
 {
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "env": {
-    "VERCEL_ENV": "preview"
-  },
   "headers": [
     {
       "source": "/(.*)",

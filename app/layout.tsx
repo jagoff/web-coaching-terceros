@@ -15,7 +15,7 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
-  preload: false, // Disable preload to reduce FCP blocking
+  preload: true, // Preload primary font to prevent FOIT
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -121,30 +121,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning={true}>
-      <head>
-        {/* Critical CSS inline */}
-        <style dangerouslySetInnerHTML={{
+      <head suppressHydrationWarning>
+        {/* Critical CSS inline — prevents FOUC before main stylesheet loads */}
+        <style suppressHydrationWarning dangerouslySetInnerHTML={{
           __html: `
-            * { box-sizing: border-box; }
-            html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
-            body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-            .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-            .heading-xl { font-size: 2.5rem; font-weight: 700; line-height: 1.2; }
-            .text-gradient { background: linear-gradient(135deg, #7C6BC4 0%, #C97B5A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-            .hero-bg { background: radial-gradient(ellipse at 50% 100%, rgba(124,107,196,0.08) 0%, transparent 60%), #0f0f0f; min-height: 100vh; }
-            .section { padding: 4rem 0; }
-            .text-center { text-align: center; }
-            .flex { display: flex; }
-            .flex-col { flex-direction: column; }
-            .items-center { align-items: center; }
-            .text-white { color: #fff; }
-            .mb-4 { margin-bottom: 1rem; }
-            .mt-3 { margin-top: 0.75rem; }
-            .block { display: block; }
+            *,*::before,*::after{box-sizing:border-box}
+            html{line-height:1.15;-webkit-text-size-adjust:100%;scroll-behavior:auto!important;overflow-anchor:none}
+            body{margin:0;background:#0C0A12;color:#fff;font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-anchor:none}
+            .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+            .section{padding:clamp(3rem,6vw,5rem) 0}
+            .heading-xl{font-size:clamp(1.75rem,5vw,3.5rem);font-weight:700;line-height:1.2}
+            .text-gradient{background:linear-gradient(135deg,#7C6BC4 0%,#C87B5A 55%,#9D8FD8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+            .badge{display:inline-flex;align-items:center;padding:.5rem 1.25rem;background:linear-gradient(135deg,rgba(124,107,196,.25) 0%,rgba(200,123,90,.15) 100%);border:1px solid rgba(124,107,196,.5);border-radius:9999px;color:#C87B5A;font-size:.875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+            .glass-card{background:rgba(20,18,29,.80);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(124,107,196,.3);border-radius:1rem}
+            .hero-section{min-height:100svh;display:flex;align-items:center;background:radial-gradient(ellipse at 50% 100%,rgba(124,107,196,.08) 0%,transparent 60%),#0C0A12}
+            .text-center{text-align:center}
+            .flex{display:flex}
+            .items-center{align-items:center}
           `
         }} />
-        
-        {/* Preload critical resources */}
+
+        {/* Preconnect for third-party origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Preload critical above-fold image */}
         <link rel="preload" href="/images/optimized/hero/transformacion.webp" as="image" type="image/webp" />
         
         {/* Hreflang tags for multilingual SEO */}

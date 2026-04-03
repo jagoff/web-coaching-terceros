@@ -398,11 +398,11 @@ export default function ConversationalContactForm() {
                         onChange={(e) => setFormData(prev => ({ ...prev, mensaje: e.target.value }))}
                         placeholder={es ? "Cuéntame más sobre tu desafío..." : "Tell me more about your challenge..."}
                         rows={4}
-                        className="w-full p-4 rounded-xl text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
+                        className="w-full p-4 pt-5 rounded-xl text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
                         style={{
                           background: 'rgba(255, 255, 255, 0.05)',
                           border: errors.mensaje ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
-                          fontSize: '0.95rem'
+                          fontSize: '1rem'
                         }}
                         autoFocus
                       />
@@ -433,7 +433,7 @@ export default function ConversationalContactForm() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.05)',
                           border: '2px solid rgba(255, 255, 255, 0.1)',
-                          fontSize: '0.95rem'
+                          fontSize: '1rem'
                         }}
                       />
                     </motion.div>

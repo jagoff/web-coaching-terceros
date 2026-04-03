@@ -5,18 +5,9 @@ import { motion, useScroll, useTransform, AnimatePresence, type Variants } from 
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Language } from "@/lib/translations";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { getOptimizedImagePath } from "@/lib/image-optimization";
-
-// Dynamic imports for non-critical components - lazy loaded after page load
-const CoachingWordsBackground = dynamic(() => import("@/components/CoachingWordsBackground"), {
-  ssr: false,
-  loading: () => null
-});
-
-// No particles for performance optimization
 
 type Particle = {
   id: number;
@@ -183,7 +174,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           {/* Headline — each line reveals separately */}
           <motion.h1
             className="display-text max-w-5xl mb-3 sm:mb-4"
-            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.125rem, 4.8vw, 3.625rem)" }}
+            style={{ fontFamily: "var(--font-heading)", lineHeight: "1.15", fontSize: "clamp(2.0625rem, 4.7vw, 3.5625rem)" }}
           >
             <motion.span variants={revealUp} className="block">
               {renderLanguage === 'es' ? (

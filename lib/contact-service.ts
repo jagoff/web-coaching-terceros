@@ -26,11 +26,17 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
   const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
   if (!WEB3FORMS_ACCESS_KEY) {
-    devLog.warn('[ContactService] NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is not set — form submission will fail');
+    devLog.warn('[ContactService] NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is not set — using mailto fallback');
+    
+    // Abrir cliente de email como fallback
+    const mailtoLink = createMailtoLink(data);
+    if (typeof window !== 'undefined') {
+      window.location.href = mailtoLink;
+    }
+    
     return {
-      success: false,
-      message: 'El servicio de contacto no está configurado. Por favor, contáctanos directamente.',
-      error: 'Missing WEB3FORMS_ACCESS_KEY',
+      success: true,
+      message: 'Abriendo tu cliente de email para enviar el mensaje.',
     };
   }
 

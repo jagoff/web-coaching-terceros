@@ -52,22 +52,14 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "jobTitle": "Coach Profesional",
             "url": `${baseUrl}/sobre-mi`
           },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+54-9-11-1234-5678",
-            "contactType": "consulting",
-            "availableLanguage": ["Spanish", "English"]
-          },
           "address": {
             "@type": "PostalAddress",
             "addressCountry": "Argentina",
             "addressRegion": "Buenos Aires"
           },
           "sameAs": [
-            "https://www.instagram.com/eleva_consultoria",
-            "https://www.linkedin.com/in/fernandoferrari",
-            "https://www.linkedin.com/company/eleva-consultoria",
-            "https://twitter.com/eleva_consultoria"
+            "https://www.instagram.com/jago_ff",
+            "https://www.linkedin.com/in/fernandolferrari"
           ],
           "knowsAbout": [
             "Agile Methodologies",
@@ -188,7 +180,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
           },
           "inLanguage": "es",
           "isAccessibleForFree": true,
-          "dateModified": new Date().toISOString(),
+          "dateModified": "2025-04-01T00:00:00.000Z",
           "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -295,7 +287,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
             "name": data.author
           },
           "reviewBody": data.review,
-          "datePublished": data.date || new Date().toISOString(),
+          "datePublished": data.date || "2025-04-01T00:00:00.000Z",
           "publisher": {
             "@type": "Organization",
             "name": "ELEVA CONSULTORIA"
@@ -483,7 +475,7 @@ export default function JsonLdStructuredData({ type, data = {}, pathname = '/' }
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2)
+        __html: JSON.stringify(structuredData)
       }}
     />
   );

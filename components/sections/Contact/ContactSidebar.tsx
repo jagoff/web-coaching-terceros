@@ -1,197 +1,144 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { 
-  CheckCircle2, 
-  Clock, 
-  Shield, 
-  Sparkles,
-  Award,
-  Users,
-  TrendingUp,
-  Quote,
-  Target
-} from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import Image from "next/image";
+import { slideLeft } from "./animations";
 
 export default function ContactSidebar() {
   const { language } = useLanguage();
-  const es = language === 'es';
-
-  const metrics = [
-    {
-      icon: Award,
-      value: "20+",
-      label: es ? "Años en Tech" : "Years in Tech",
-      gradient: "from-violet-500 to-purple-600"
-    },
-    {
-      icon: Users,
-      value: "50+",
-      label: es ? "Equipos Transformados" : "Teams Transformed",
-      gradient: "from-blue-500 to-cyan-600"
-    },
-    {
-      icon: TrendingUp,
-      value: "11+",
-      label: es ? "Años de Coaching" : "Years Coaching",
-      gradient: "from-amber-500 to-orange-600"
-    }
-  ];
-
-  const testimonials = [
-    {
-      quote: es 
-        ? "Fernando nos ayudó a escalar de 5 a 30 personas sin perder la cultura que nos define."
-        : "Fernando helped us scale from 5 to 30 people without losing our defining culture.",
-      author: "CTO, Startup Fintech",
-      role: es ? "Argentina" : "Argentina"
-    },
-    {
-      quote: es
-        ? "Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica."
-        : "We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics.",
-      author: "VP Engineering",
-      role: es ? "Tech Scale-up" : "Tech Scale-up"
-    }
-  ];
-
-  const guarantees = [
-    {
-      icon: Sparkles,
-      text: es ? "Sesión estratégica sin costo" : "Free strategic session",
-      color: "#f59e0b"
-    },
-    {
-      icon: Target,
-      text: es ? "Enfoque 100% personalizado" : "100% personalized approach",
-      color: "#10b981"
-    },
-    {
-      icon: Shield,
-      text: es ? "Conversación confidencial" : "Confidential conversation",
-      color: "#3b82f6"
-    }
-  ];
+  const es = language === "es";
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <div className="space-y-6">
-      {/* Guarantees - Moved to top */}
+    <div ref={ref} className="flex flex-col gap-4 h-full">
+
+      {/* ── Testimonial ── */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="space-y-3"
+        variants={slideLeft}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="glass-card p-6 relative overflow-hidden"
+        whileHover={{ y: -3, boxShadow: "0 12px 40px rgba(124,107,196,0.15)" }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        <h3 className="text-lg font-semibold text-white mb-4">
-          {es ? '¿Por qué contactarme?' : 'Why contact me?'}
-        </h3>
-        {guarantees.map((guarantee, index) => {
-          const Icon = guarantee.icon;
-          return (
-            <motion.div 
-              key={index} 
-              className="flex items-center gap-3 p-3 rounded-xl"
-              style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-              }}
-              whileHover={{ 
-                borderColor: 'rgba(255, 107, 53, 0.2)',
-                transition: { duration: 0.2 }
-              }}
-            >
-              <div 
-                className="p-2 rounded-lg flex-shrink-0"
-                style={{
-                  background: `${guarantee.color}20`,
-                }}
+        {/* Ambient gold halo */}
+        <div
+          className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(200,123,90,0.10) 0%, transparent 70%)",
+          }}
+        />
+
+        <div className="relative z-10">
+          {/* Opening quote mark */}
+          <div
+            className="text-5xl leading-none mb-3 select-none"
+            style={{ color: "var(--gold-primary)", fontFamily: "Georgia, serif", opacity: 0.6 }}
+            aria-hidden="true"
+          >
+            &ldquo;
+          </div>
+
+          <p
+            className="mb-4"
+            style={{
+              color: "var(--text-secondary)",
+              lineHeight: "1.7",
+              fontSize: "0.95rem",
+              fontStyle: "italic",
+            }}
+          >
+            {es
+              ? "Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica."
+              : "We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics."}
+          </p>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <div
+                className="text-sm font-semibold"
+                style={{ color: "var(--text-primary)", fontFamily: "var(--font-heading)" }}
               >
-                <Icon size={18} style={{ color: guarantee.color }} />
+                VP Engineering
               </div>
-              <span className="text-sm font-medium text-gray-200">{guarantee.text}</span>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+              <div
+                className="text-xs mt-0.5"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Tech Scale-up · Argentina
+              </div>
+            </div>
 
-      {/* Metrics Grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="grid grid-cols-3 gap-3"
-      >
-        {metrics.map((metric, index) => {
-          const Icon = metric.icon;
-          return (
-            <motion.div
-              key={index}
-              className="relative overflow-hidden rounded-xl p-4 text-center"
-              style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-              }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="flex justify-center mb-2">
-                <div 
-                  className="p-2 rounded-lg"
-                  style={{
-                    background: `linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%)`
-                  }}
+            {/* Stars */}
+            <div className="flex gap-0.5" aria-label="5 estrellas">
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-3.5 h-3.5"
+                  fill="var(--gold-primary)"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
-                  <Icon size={18} style={{ color: '#FF6B35' }} />
-                </div>
-              </div>
-              <div className="text-2xl font-bold text-white mb-1">{metric.value}</div>
-              <div className="text-xs text-gray-400 leading-tight">{metric.label}</div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-
-      {/* Single Best Testimonial */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="relative overflow-hidden rounded-xl p-5"
-        style={{
-          background: 'rgba(255, 255, 255, 0.03)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-        }}
-      >
-        <div className="flex items-start gap-3">
-          <Quote size={20} className="text-gray-500 flex-shrink-0 mt-1" />
-          <div className="flex-1">
-            <p className="text-sm text-gray-300 leading-relaxed mb-3 italic">
-              "{es 
-                ? 'Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica.'
-                : 'We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics.'
-              }"
-            </p>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold text-white">VP Engineering</p>
-                <p className="text-xs text-gray-500">{es ? 'Tech Scale-up' : 'Tech Scale-up'}</p>
-              </div>
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-3 h-3" fill="#FF6B35" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
             </div>
           </div>
         </div>
       </motion.div>
+
+      {/* ── Call to action card - Last message before conversion ── */}
+      <motion.div
+        variants={slideLeft}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="glass-card p-6 relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(124,107,196,0.12) 0%, rgba(200,123,90,0.08) 100%)",
+          border: "1px solid rgba(124,107,196,0.3)",
+        }}
+      >
+        {/* Ambient violet glow */}
+        <div
+          className="absolute -top-12 -right-12 w-32 h-32 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(124,107,196,0.15) 0%, transparent 70%)",
+          }}
+        />
+
+        <div className="relative z-10">
+          <p
+            className="mb-3 leading-relaxed"
+            style={{
+              color: "var(--text-primary)",
+              fontSize: "0.95rem",
+              fontWeight: 500,
+              lineHeight: "1.6",
+            }}
+          >
+            {es
+              ? "Cada día que pasa sin actuar es un día que tu equipo sigue lidiando con los mismos problemas."
+              : "Every day you wait is another day your team struggles with the same problems."}
+          </p>
+          
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: "0.875rem",
+              lineHeight: "1.6",
+            }}
+          >
+            {es
+              ? "La primera sesión es gratis. No tienes nada que perder, pero tu equipo tiene todo por ganar."
+              : "The first session is free. You have nothing to lose, but your team has everything to gain."}
+          </p>
+        </div>
+      </motion.div>
+
     </div>
   );
 }

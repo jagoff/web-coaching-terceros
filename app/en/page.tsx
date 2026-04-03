@@ -8,11 +8,10 @@ import {
   FAQ,
   Contact,
   CalBooking,
-  Footer,
-  CaseStudies,
+  ForWho,
+  Clients,
 } from "@/components/PageSections";
 import Testimonials from "@/components/sections/TestimonialsSimple";
-import Clients from "@/components/sections/Clients";
 import WhatsAppBooking from "@/components/WhatsAppBooking";
 import { Metadata } from "next";
 
@@ -73,17 +72,16 @@ export default function EnglishPage() {
   return (
     <main>
       <HeroServer pathname="/en" />
-      <About />
+      <Clients />
+      <ForWho />
       <Services />
+      <About />
       <Process />
-      <Testimonials />
       <Results />
-      <CaseStudies />
+      <Testimonials />
       <Pricing />
       <FAQ />
-      <Clients />
       <Contact />
-      <Footer />
       <WhatsAppBooking />
     </main>
   );

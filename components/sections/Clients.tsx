@@ -1,173 +1,139 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const clientLogos = [
+const brands = [
   {
-    id: 1,
-    name: "Microsoft",
-    logo: "/logos/microsoft.svg",
-    width: 140,
-    height: 45
+    name: "SAMSUNG",
+    style: { fontWeight: 700, letterSpacing: "0.08em", fontSize: "1.1rem" },
   },
   {
-    id: 2,
-    name: "Google",
-    logo: "/logos/google.svg",
-    width: 130,
-    height: 45
+    name: "Disney",
+    style: {
+      fontWeight: 400,
+      fontStyle: "italic",
+      letterSpacing: "0.02em",
+      fontSize: "1.25rem",
+      fontFamily: "Georgia, 'Times New Roman', serif",
+    },
   },
   {
-    id: 3,
-    name: "Amazon",
-    logo: "/logos/amazon.svg",
-    width: 130,
-    height: 45
+    name: "RE/MAX",
+    style: { fontWeight: 900, letterSpacing: "0.06em", fontSize: "1rem" },
   },
   {
-    id: 4,
-    name: "Apple",
-    logo: "/logos/apple.svg",
-    width: 140,
-    height: 45
+    name: "BBI",
+    style: { fontWeight: 800, letterSpacing: "0.2em", fontSize: "1.05rem" },
   },
-  {
-    id: 5,
-    name: "Meta",
-    logo: "/logos/meta.svg",
-    width: 120,
-    height: 45
-  },
-  {
-    id: 6,
-    name: "Salesforce",
-    logo: "/logos/salesforce.svg",
-    width: 140,
-    height: 45
-  },
-  {
-    id: 7,
-    name: "LinkedIn",
-    logo: "/logos/linkedin.svg",
-    width: 130,
-    height: 45
-  },
-  {
-    id: 8,
-    name: "Tesla",
-    logo: "/logos/tesla.svg",
-    width: 120,
-    height: 45
-  }
 ];
 
-export default function Clients() {
-  const { t, language } = useLanguage();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  
-  // Auto-rotate carousel
-  useEffect(() => {
-    if (isPaused) return;
-    
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % clientLogos.length);
-    }, 3000); // Change every 3 seconds
-    
-    return () => clearInterval(interval);
-  }, [isPaused]);
+// Duplicate 4× for a seamless infinite loop with no visible gap
+const track = [...brands, ...brands, ...brands, ...brands];
 
-  // Duplicate logos for infinite scroll effect
-  const duplicatedLogos = useMemo(() => 
-    [...clientLogos, ...clientLogos],
-    []
-  );
+export default function Clients() {
+  const { language } = useLanguage();
 
   return (
-    <section className="section py-8 md:py-12 bg-gradient-to-b from-transparent to-[rgba(124,107,196,0.03)]">
-      <div className="container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-6 md:mb-8"
-        >
-          <h2 className="heading-lg mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-            {language === 'es' ? 'Mis Clientes' : 'My Clients'}
-          </h2>
-          <div className="divider-gold mx-auto" />
-          <p className="text-secondary mt-4 max-w-2xl mx-auto">
-            {language === 'es' 
-              ? 'Empresas líderes que confían en mi consultoría para transformar sus equipos y procesos.'
-              : 'Leading companies that trust my consulting to transform their teams and processes.'
-            }
-          </p>
-        </motion.div>
+    <section
+      aria-label={language === "es" ? "Clientes" : "Clients"}
+      style={{
+        padding: "clamp(2.5rem, 5vw, 3.5rem) 0",
+        borderTop: "1px solid rgba(124,107,196,0.10)",
+        borderBottom: "1px solid rgba(124,107,196,0.10)",
+        background:
+          "linear-gradient(180deg, transparent 0%, rgba(124,107,196,0.03) 50%, transparent 100%)",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      {/* Label */}
+      <p
+        className="mb-6 uppercase tracking-widest"
+        style={{ color: "var(--text-muted)", fontSize: "0.7rem", fontWeight: 600, textAlign: "center" }}
+      >
+        {language === "es"
+          ? "Empresas que confían en ELEVA"
+          : "Companies that trust ELEVA"}
+      </p>
 
-        {/* Logo Carousel */}
-        <div 
-          className="relative overflow-hidden py-8"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Gradient masks for smooth edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[var(--dark-surface)] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[var(--dark-surface)] to-transparent z-10" />
+      {/* Marquee track */}
+      <div className="relative w-full" style={{ overflow: "hidden" }}>
+        {/* Left fade */}
+        <div
+          className="absolute left-0 top-0 bottom-0 z-10 pointer-events-none"
+          style={{
+            width: "clamp(40px, 8vw, 80px)",
+            background:
+              "linear-gradient(to right, var(--bg-primary, #0C0A12), transparent)",
+          }}
+        />
+        {/* Right fade */}
+        <div
+          className="absolute right-0 top-0 bottom-0 z-10 pointer-events-none"
+          style={{
+            width: "clamp(40px, 8vw, 80px)",
+            background:
+              "linear-gradient(to left, var(--bg-primary, #0C0A12), transparent)",
+          }}
+        />
 
-          {/* Animated carousel container */}
-          <motion.div
-            className="flex space-x-12 md:space-x-16"
-            animate={{
-              x: isPaused ? 0 : `-${currentSlide * 144}px` // 120px logo + 24px spacing
-            }}
-            transition={{
-              duration: 0.8,
-              ease: "easeInOut"
-            }}
-            style={{
-              width: `${duplicatedLogos.length * 144}px` // Total width for smooth animation
-            }}
-          >
-            {duplicatedLogos.map((client, index) => (
-              <motion.div
-                key={`${client.id}-${index}`}
-                className="flex-shrink-0 flex items-center justify-center px-6"
-                style={{
-                  width: `${client.width}px`,
-                  height: `${client.height}px`
-                }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
+        {/* Animated strip */}
+        <div
+          className="flex items-center gap-0"
+          style={{
+            animation: "clients-marquee 30s linear infinite",
+            width: "max-content",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLDivElement).style.animationPlayState =
+              "paused";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLDivElement).style.animationPlayState =
+              "running";
+          }}
+        >
+          {track.map((brand, idx) => (
+            <div
+              key={idx}
+              className="flex items-center gap-0 flex-shrink-0"
+              style={{
+                padding: "0 clamp(2rem, 5vw, 3.5rem)",
+                opacity: 0.45,
+                transition: "opacity 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.opacity = "1";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.opacity = "0.45";
+              }}
+            >
+              <span
+                className="text-white select-none whitespace-nowrap"
+                style={brand.style}
               >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+                {brand.name}
+              </span>
+              {/* Dot separator */}
+              <span
+                className="ml-[clamp(2rem,5vw,3.5rem)]"
+                style={{
+                  width: 4,
+                  height: 4,
+                  borderRadius: "50%",
+                  background: "rgba(124,107,196,0.4)",
+                  display: "inline-block",
+                  flexShrink: 0,
+                }}
+              />
+            </div>
+          ))}
         </div>
-
-        {/* Subtle text below carousel */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-8"
-        >
-          <p className="text-xs text-secondary opacity-60 text-center mx-auto">
-            {language === 'es' 
-              ? 'Colaboramos con empresas de diversos sectores para impulsar su crecimiento'
-              : 'We collaborate with companies from various sectors to drive their growth'
-            }
-          </p>
-        </motion.div>
       </div>
+
     </section>
   );
 }

@@ -2,9 +2,6 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform, type Variants } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { scrollToElement } from "@/lib/scroll";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const statCard: Variants = {
@@ -143,62 +140,23 @@ export default function Results() {
   return (
     <section
       id="resultados"
-      className="section relative overflow-hidden"
       ref={ref}
+      className="relative overflow-hidden section-gold-border-top"
       style={{
-        background:
-          "radial-gradient(ellipse at 50% 0%, rgba(124,107,196,0.08) 0%, transparent 60%), var(--dark-surface)",
+        background: "var(--dark-surface)",
+        paddingTop: "clamp(2rem, 4vw, 3rem)",
+        paddingBottom: "clamp(2rem, 4vw, 3rem)",
       }}
     >
-      {/* Decorative orb with scroll parallax */}
+      {/* Subtle orb */}
       <motion.div
-        className="orb orb-gold absolute"
-        style={{
-          width: 400,
-          height: 400,
-          top: "-20%",
-          left: "50%",
-          x: "-50%",
-          y: orbY,
-          opacity: 0.5,
-        }}
+        className="orb orb-gold absolute pointer-events-none"
+        style={{ width: 300, height: 300, top: "-30%", left: "50%", x: "-50%", y: orbY, opacity: 0.3 }}
         aria-hidden="true"
       />
 
       <div className="container relative z-10">
-        {/* Header */}
-        <motion.div
-          variants={headerStagger}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-14 md:mb-24"
-        >
-          <motion.div variants={blurUp} className="flex justify-center mb-6">
-            <span className="badge">{language === 'es' ? 'Impacto Real' : 'Real Impact'}</span>
-          </motion.div>
-          <motion.h2
-            variants={blurUp}
-            className="heading-xl text-center px-4"
-            style={{ 
-              fontFamily: "var(--font-heading)",
-              fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
-              lineHeight: 1.2,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis"
-            }}
-          >
-            {language === 'es' ? 'Transformación en' : 'Transformation in'}{" "}
-            <span className="text-gradient">{language === 'es' ? 'Números' : 'Numbers'}</span>
-          </motion.h2>
-          <motion.div
-            variants={dividerGrow}
-            className="divider-gold mt-6"
-          />
-        </motion.div>
-
-        {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12 lg:gap-16 mb-14 md:mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 lg:gap-14">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -210,64 +168,24 @@ export default function Results() {
               whileHover={{ scale: 1.06, y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* Number */}
-              <CountUp
-                value={stat.value}
-                prefix={stat.prefix}
-                suffix={stat.suffix}
-                started={isInView}
-              />
-
-              {/* Label */}
-              <h3 
-                className="heading-sm mt-3 mb-2 px-2" 
-                style={{ 
+              <CountUp value={stat.value} prefix={stat.prefix} suffix={stat.suffix} started={isInView} />
+              <h3
+                className="heading-sm mt-2 mb-1 px-2"
+                style={{
                   fontFamily: "var(--font-heading)",
-                  fontSize: "clamp(0.8rem, 3.5vw, 1rem)",
-                  lineHeight: 1.2,
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis"
+                  fontSize: "clamp(0.75rem, 3vw, 0.95rem)",
+                  lineHeight: 1.3,
+                  color: "var(--text-primary)",
                 }}
               >
                 {stat.label}
               </h3>
-
-              {/* Description */}
-              <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                 {stat.description}
               </p>
             </motion.div>
           ))}
         </div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center"
-        >
-          <p
-            className="lead-text max-w-2xl mx-auto mb-10"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {language === 'es' 
-              ? 'Cada número representa experiencia real construyendo equipos y organizaciones.' 
-              : 'Every number represents real experience building teams and organizations.'
-            }{" "}
-            <strong style={{ color: "var(--text-primary)" }}>
-              <a
-                href="https://wa.me/5493425153999?text=Hola%20Fernando%2C%20vi%20tu%20web%20y%20quiero%20agendar%20una%20sesi%C3%B3n%20gratuita."
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "underline" }}
-              >
-                {language === 'es' ? '¿Hablamos de tu próximo paso?' : 'Shall we talk about your next step?'}
-              </a>
-            </strong>
-          </p>
-        </motion.div>
       </div>
     </section>
   );

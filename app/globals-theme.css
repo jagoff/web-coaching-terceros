@@ -77,8 +77,9 @@
   }
 }
 
-/* Theme transitions */
-* {
+/* Theme transitions — scoped to interactive elements only */
+a, button, input, textarea, select,
+.glass-card, .badge, .btn-primary, .btn-secondary, .credential-chip {
   transition: background-color 0.3s ease,
               border-color 0.3s ease,
               color 0.3s ease;

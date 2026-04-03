@@ -108,8 +108,16 @@ export default function Pricing() {
           />
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch mt-12 sm:mt-20">
+        {/* Mobile scroll hint */}
+        <p className="md:hidden text-center text-xs mb-4" style={{ color: "var(--text-muted)" }}>
+          ← {language === "es" ? "deslizá para ver los planes" : "swipe to see plans"} →
+        </p>
+
+        {/* Cards — horizontal scroll on mobile, 3-col grid on desktop */}
+        <div
+          className="flex md:grid md:grid-cols-3 gap-6 md:gap-10 lg:gap-12 md:items-stretch mt-6 md:mt-16 overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory pb-4 md:pb-0"
+          style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+        >
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}
@@ -117,8 +125,8 @@ export default function Pricing() {
               variants={planCard}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              className={`pricing-card flex flex-col relative${plan.featured ? " featured animated-border" : ""}`}
-              style={{ perspective: "800px" }}
+              className={`pricing-card flex flex-col relative flex-none md:flex-initial snap-center snap-always${plan.featured ? " featured animated-border" : ""}`}
+              style={{ perspective: "800px", width: "min(82vw, 340px)", minWidth: "min(82vw, 280px)" } as React.CSSProperties}
               whileHover={{ y: -8, boxShadow: plan.featured ? "0 0 60px rgba(124,107,196,0.2), 0 16px 48px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.4)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
@@ -152,7 +160,6 @@ export default function Pricing() {
                 style={{
                   color: "var(--text-muted)",
                   lineHeight: 1.8,
-                  minHeight: "5.5rem",
                 }}
               >
                 {plan.description}

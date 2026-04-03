@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@emotion/react', '@emotion/styled'],
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
     webpackBuildWorker: true,
     serverMinification: true,
   },
@@ -39,14 +39,37 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' ? {
       exclude: ['error'],
     } : false,
-    emotion: true,
   },
   // Aggressive production optimizations
   productionBrowserSourceMaps: false,
-  generateEtags: false,
+  generateEtags: true,
   onDemandEntries: {
     maxInactiveAge: 60 * 60 * 1000,
     pagesBufferLength: 2,
+  },
+  async headers() {
+    return [
+      {
+        // Immutable cache for hashed static assets (_next/static)
+        source: "/_next/static/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        // Long cache for public images and fonts
+        source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
   },
   // Webpack optimization for smaller chunks
   webpack: (config, { isServer }) => {

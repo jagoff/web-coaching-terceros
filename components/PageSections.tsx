@@ -31,3 +31,5 @@ export const CalBooking    = dynamic(() => import("@/components/sections/CalBook
 export const FAQ           = dynamic(() => import("@/components/sections/FAQ"), { ssr: false });
 export const Footer        = dynamic(() => import("@/components/sections/Footer"), { ssr: true });
 export const CaseStudies    = dynamic(() => import("@/components/sections/CaseStudies"), { ssr: false });
+export const ForWho         = dynamic(() => import("@/components/sections/ForWho"), { ssr: false });
+export const Clients        = dynamic(() => import("@/components/sections/Clients"), { ssr: false });

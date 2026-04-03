@@ -142,6 +142,16 @@ export interface Translations {
     contactText: string;
   };
   
+  // Newsletter
+  newsletter: {
+    title: string;
+    subtitle: string;
+    benefits: string[];
+    emailPlaceholder: string;
+    subscribeButton: string;
+    note: string;
+  };
+  
   // Contact
   contact: {
     badge: string;
@@ -325,6 +335,21 @@ export interface Translations {
     next: string;
     ariaPrevious: string;
     ariaNext: string;
+  };
+
+  // For Who section
+  forWho: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    cta: string;
+    profiles: {
+      icon: string;
+      title: string;
+      description: string;
+      pain: string;
+    }[];
   };
 }
 
@@ -534,6 +559,20 @@ export const translations: Record<Language, Translations> = {
       },
       doubt: '¿Tenés dudas sobre qué plan se adapta mejor a tu caso?',
       contactText: 'Escribime y lo hablamos sin compromiso.'
+    },
+    
+    // Newsletter
+    newsletter: {
+      title: 'Newsletter Mensual',
+      subtitle: 'Leadership, recursos ágiles y noticias directamente en tu inbox',
+      benefits: [
+        'Tips prácticos de leadership moderno',
+        'Recursos ágiles para implementar ya',
+        'Noticias y tendencias del mundo tech'
+      ],
+      emailPlaceholder: 'Tu email profesional',
+      subscribeButton: 'Suscribirme Gratis',
+      note: 'Sin spam. Un email mensual con valor real.'
     },
     
     contact: {
@@ -769,8 +808,36 @@ export const translations: Record<Language, Translations> = {
       ariaPrevious: 'Testimonio anterior',
       ariaNext: 'Siguiente testimonio',
     },
+
+    forWho: {
+      badge: '¿Esto es para vos?',
+      title: '¿Te encontrás',
+      titleHighlight: 'en alguna de estas situaciones?',
+      subtitle: 'Acompaño a líderes tech y founders que están en momentos clave. Si alguna de estas situaciones te resuena, podemos trabajar juntos.',
+      cta: 'Quiero trabajar en esto',
+      profiles: [
+        {
+          icon: '🚀',
+          title: 'Nuevo en el rol de liderazgo',
+          description: 'Pasaste de escribir código a liderar personas y nadie te enseñó cómo. Técnicamente sos muy bueno, pero la parte humana y organizacional todavía te pesa.',
+          pain: 'Líder sin preparación',
+        },
+        {
+          icon: '⚡',
+          title: 'Tu empresa crece pero los procesos no acompañan',
+          description: 'Lo que funcionaba con 5 personas ya no alcanza con 20. El equipo se descoordina, las prioridades se chocan y la velocidad que tenías antes se perdió.',
+          pain: 'Escalar sin caos',
+        },
+        {
+          icon: '🎯',
+          title: 'Tenés el equipo pero no los resultados',
+          description: 'Hay talento, pero no entrega. Aparecen silos, falta de ownership y decisiones que nadie toma. Sabés que el problema no es técnico — y eso lo hace más difícil de resolver.',
+          pain: 'Talento sin resultados',
+        },
+      ],
+    },
   },
-  
+
   en: {
     nav: {
       sobreMi: 'About me',
@@ -952,6 +1019,20 @@ export const translations: Record<Language, Translations> = {
       },
       doubt: 'Not sure which plan best fits your needs?',
       contactText: 'Write to me and we\'ll discuss it with no commitment.'
+    },
+    
+    // Newsletter
+    newsletter: {
+      title: 'Monthly Newsletter',
+      subtitle: 'Leadership, agile resources and news directly in your inbox',
+      benefits: [
+        'Practical tips for modern leadership',
+        'Agile resources to implement now',
+        'Tech world news and trends'
+      ],
+      emailPlaceholder: 'Your professional email',
+      subscribeButton: 'Subscribe Free',
+      note: 'No spam. One monthly email with real value.'
     },
     
     contact: {
@@ -1159,6 +1240,34 @@ export const translations: Record<Language, Translations> = {
       next: 'Next',
       ariaPrevious: 'Previous testimonial',
       ariaNext: 'Next testimonial',
+    },
+
+    forWho: {
+      badge: 'Is this for you?',
+      title: 'Do any of these',
+      titleHighlight: 'sound familiar?',
+      subtitle: 'I work with tech leaders and founders at key moments. If any of these situations resonate with you, we can work together.',
+      cta: 'I want to work on this',
+      profiles: [
+        {
+          icon: '🚀',
+          title: 'New to a leadership role',
+          description: 'You went from writing code to leading people and nobody taught you how. Technically you\'re strong, but the human and organizational side still weighs on you.',
+          pain: 'The IC-to-leader jump with no support',
+        },
+        {
+          icon: '⚡',
+          title: 'Your company grows but processes don\'t keep up',
+          description: 'What worked with 5 people no longer cuts it with 20. The team loses coordination, priorities clash, and the speed you had before is gone.',
+          pain: 'Scaling without losing speed or culture',
+        },
+        {
+          icon: '🎯',
+          title: 'You have the team but not the results',
+          description: 'There\'s talent, but no delivery. Silos appear, ownership is missing, decisions don\'t get made. You know the problem isn\'t technical — and that makes it harder to solve.',
+          pain: 'Talent that doesn\'t convert into results',
+        },
+      ],
     },
   },
 };
