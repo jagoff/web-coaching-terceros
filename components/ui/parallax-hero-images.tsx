@@ -81,28 +81,21 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
               whileHover={{ scale: 1.05, zIndex: 10 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <img
-                src={src}
-                alt={`Image ${index + 1}`}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: 'center' }}
-                loading={index < 12 ? "eager" : "lazy"}
-                onError={(e) => {
-                  if (process.env.NODE_ENV === 'development') {
-                    logger.error(`Image failed to load: ${src}`, { component: 'parallax-hero-images' });
-                  }
-                  const target = e.target as HTMLImageElement;
-                  // Show a colored placeholder instead of hiding
-                  target.src = `data:image/svg+xml;base64,${btoa(`
-                    <svg width="100" height="125" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="100" height="125" fill="#374151"/>
-                      <text x="50" y="62.5" font-family="Arial" font-size="12" fill="#fff" text-anchor="middle" dy=".3em">
-                        ${index + 1}
-                      </text>
-                    </svg>
-                  `)}`;
-                }}
-              />
+              <picture className="absolute inset-0 w-full h-full">
+                <source srcSet={src} type="image/webp" />
+                <img
+                  src={src.replace('.webp', '.png')}
+                  alt={`Image ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center' }}
+                  loading={index < 3 ? "eager" : "lazy"}
+                  onError={(e) => {
+                    if (process.env.NODE_ENV === 'development') {
+                      logger.error(`Image failed to load: ${src}`, { component: 'parallax-hero-images' });
+                    }
+                  }}
+                />
+              </picture>
             </motion.div>
           );
         })}
