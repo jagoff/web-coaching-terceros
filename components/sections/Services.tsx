@@ -100,8 +100,7 @@ export default function Services() {
             style={{ 
               fontFamily: "var(--font-heading)",
               fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
-              lineHeight: "1.2",
-              whiteSpace: "nowrap"
+              lineHeight: "1.2"
             }}
           >
             <span className="text-gradient">{t.services.title}</span>
