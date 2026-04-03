@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
+import { CheckCircle2, ArrowRight, MessageCircle, ChevronRight } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -40,7 +40,25 @@ const featureItem: Variants = {
 export default function Pricing() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [currentPlanIndex, setCurrentPlanIndex] = useState(0);
+
+  // Handle scroll to update current plan index
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = container.firstChild ? (container.firstChild as HTMLElement).offsetWidth : 0;
+      const index = Math.round(scrollLeft / cardWidth);
+      setCurrentPlanIndex(Math.max(0, Math.min(index, 2))); // 3 plans total
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleScroll = (href: string) => scrollToElement(href);
 
@@ -108,13 +126,42 @@ export default function Pricing() {
           />
         </motion.div>
 
-        {/* Mobile scroll hint */}
-        <p className="md:hidden text-center text-xs mb-4" style={{ color: "var(--text-muted)" }}>
-          ← {language === "es" ? "deslizá para ver los planes" : "swipe to see plans"} →
-        </p>
+        {/* Mobile scroll indicator */}
+        <div className="md:hidden flex items-center justify-center gap-2 mb-6">
+          <motion.div
+            animate={{ x: [0, 8, 0] }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              repeatDelay: 0.5
+            }}
+            className="flex items-center gap-1"
+          >
+            <ChevronRight 
+              size={16} 
+              className="text-gradient"
+              style={{ color: "var(--gold-primary)" }}
+            />
+            <ChevronRight 
+              size={16} 
+              className="text-gradient opacity-60"
+              style={{ color: "var(--gold-primary)" }}
+            />
+            <ChevronRight 
+              size={16} 
+              className="text-gradient opacity-30"
+              style={{ color: "var(--gold-primary)" }}
+            />
+          </motion.div>
+          <span className="text-xs" style={{ color: "var(--text-muted)" }}>
+            {language === "es" ? "deslizá" : "swipe"}
+          </span>
+        </div>
 
         {/* Cards — horizontal scroll on mobile, 3-col grid on desktop */}
         <div
+          ref={scrollContainerRef}
           className="flex md:grid md:grid-cols-3 gap-6 md:gap-10 lg:gap-12 md:items-stretch mt-6 md:mt-16 overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory pb-4 md:pb-0"
           style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
         >
@@ -200,6 +247,37 @@ export default function Pricing() {
                 </button>
               </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile dots indicator */}
+        <div className="md:hidden flex items-center justify-center gap-2 mt-4">
+          {plans.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                const container = scrollContainerRef.current;
+                if (container) {
+                  const cardWidth = container.firstChild ? (container.firstChild as HTMLElement).offsetWidth : 0;
+                  container.scrollTo({
+                    left: index * cardWidth,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              className="transition-all duration-300"
+              style={{
+                width: currentPlanIndex === index ? '24px' : '8px',
+                height: '8px',
+                borderRadius: '4px',
+                background: currentPlanIndex === index 
+                  ? 'linear-gradient(135deg, #C87B5A 0%, #7C6BC4 50%, #FF6B35 100%)'
+                  : 'rgba(124,107,196,0.3)',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+              aria-label={`Go to plan ${index + 1}`}
+            />
           ))}
         </div>
 
