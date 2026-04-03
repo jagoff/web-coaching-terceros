@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import Hero from '@/components/sections/Hero'
+import HeroServer from '@/components/sections/HeroServer'
 
 // Mock the language context
 vi.mock('@/contexts/LanguageContext', () => ({
@@ -20,7 +20,7 @@ vi.mock('@/contexts/LanguageContext', () => ({
 
 describe('Hero Component', () => {
   it('renders hero title correctly', () => {
-    render(<Hero />)
+    render(<HeroServer pathname="/" />)
     
     expect(screen.getByText('Liderazgo ágil')).toBeInTheDocument()
     expect(screen.getByText('para')).toBeInTheDocument()
@@ -28,7 +28,7 @@ describe('Hero Component', () => {
   })
 
   it('renders call to action button', () => {
-    render(<Hero />)
+    render(<HeroServer pathname="/" />)
     
     const ctaButton = screen.getByText('Agenda tu sesión gratuita')
     expect(ctaButton).toBeInTheDocument()

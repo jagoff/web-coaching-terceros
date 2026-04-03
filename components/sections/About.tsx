@@ -158,7 +158,7 @@ export default function About() {
                 <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem]">
                   <CardItem translateZ="50" className="w-full h-full">
                     <img
-                      src="/images/ui/tv-icon.png"
+                      src="/images/ui/tv-icon.webp"
                       alt="TV Icon"
                       className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
                       style={{ 
