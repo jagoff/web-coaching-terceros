@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm ci",
+  "installCommand": "npm ci --force",
   "devCommand": "npm run dev",
   "regions": ["iad1"],
   "functions": {
@@ -12,7 +12,9 @@
   },
   "build": {
     "env": {
-      "NEXT_BUILD_ID": "force-rebuild-2026-04-03-15-34"
+      "NEXT_BUILD_ID": "fresh-build-2026-04-03-15-36",
+      "NODE_ENV": "production",
+      "FORCE_BUILD": "true"
     }
   },
   "crons": [],
