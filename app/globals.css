@@ -1559,6 +1559,11 @@ input:focus, textarea:focus, select:focus {
   box-sizing: border-box;
 }
 
+/* Clip horizontal overflow caused by slideReveal x:±60 animation initial state */
+.about-section {
+  overflow-x: clip;
+}
+
 /* Mobile text overflow prevention - Only for About section */
 @media (max-width: 768px) {
   .about-section .lead-text {
