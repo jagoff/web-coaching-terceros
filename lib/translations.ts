@@ -366,9 +366,9 @@ export const translations: Record<Language, Translations> = {
     },
     
     hero: {
-      title1: 'Liderazgo ágil',
-      title2: 'para',
-      title3: 'organizaciones que escalan',
+      title1: 'Liderazgo ágil para',
+      title2: 'organizaciones que escalan',
+      title3: '',
       subtitle: 'De la tecnología a transformar organizaciones.',
       cta: 'Comenzar tu transformación',
       viewServices: 'Ver servicios',
@@ -846,9 +846,9 @@ export const translations: Record<Language, Translations> = {
     },
     
     hero: {
-      title1: 'Agile leadership',
-      title2: 'for',
-      title3: 'scaling organizations',
+      title1: 'Agile leadership for',
+      title2: 'scaling organizations',
+      title3: '',
       subtitle: 'I transform teams and business cultures through personalized coaching, agile methodologies, and a human-centric approach.',
       cta: 'Start your transformation',
       viewServices: 'View services',
