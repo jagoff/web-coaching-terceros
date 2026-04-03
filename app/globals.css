@@ -1564,11 +1564,12 @@ input:focus, textarea:focus, select:focus {
   .lead-text {
     font-size: 0.85rem !important;
     line-height: 1.6 !important;
-    padding: 0 0.5rem !important;
+    padding: 0 !important;
     overflow: hidden !important;
     max-width: 100% !important;
     word-wrap: break-word !important;
     word-break: break-word !important;
+    box-sizing: border-box !important;
   }
   
   .lead-text * {

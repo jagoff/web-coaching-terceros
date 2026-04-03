@@ -244,7 +244,9 @@ export default function About() {
                 hyphens: 'auto',
                 boxSizing: 'border-box',
                 padding: '0',
-                margin: '0'
+                margin: '0',
+                position: 'relative',
+                zIndex: 1
               }}
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t.about.intro) }}
             />
