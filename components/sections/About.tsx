@@ -152,26 +152,7 @@ export default function About() {
               paddingTop: 'clamp(1rem, 10vw, 1rem)',
             }}
           >
-            {/* TV Image - Mobile Only */}
-            <div className="mb-8 flex justify-center lg:hidden">
-              <CardContainer className="inter-var">
-                <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem]">
-                  <CardItem translateZ="50" className="w-full h-full">
-                    <img
-                      src="/images/ui/tv-icon.webp"
-                      alt="TV Icon"
-                      className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
-                      style={{ 
-                        filter: 'brightness(1.1) contrast(1.1)',
-                        opacity: 1,
-                        transform: 'scale(1.2)'
-                      }}
-                    />
-                  </CardItem>
-                </CardBody>
-              </CardContainer>
-            </div>
-
+            
             {/* Image Grid */}
             <motion.div
               initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
