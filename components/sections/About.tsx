@@ -152,8 +152,8 @@ export default function About() {
               paddingTop: 'clamp(1rem, 10vw, 1rem)',
             }}
           >
-            {/* TV Image - Responsive */}
-            <div className="mb-8 flex justify-center">
+            {/* TV Image - Mobile Only */}
+            <div className="mb-8 flex justify-center lg:hidden">
               <CardContainer className="inter-var">
                 <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem]">
                   <CardItem translateZ="50" className="w-full h-full">
