@@ -391,8 +391,8 @@ export const translations: Record<Language, Translations> = {
     
     about: {
       badge: 'Sobre mí',
-      title1: 'De la tecnología a transformar',
-      title2: '',
+      title1: 'De la tecnología',
+      title2: 'a transformar',
       title3: 'organizaciones.',
       intro: `<div style="line-height: 1.6; font-size: 0.85rem; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; margin: 0; padding: 0 0.5rem; box-sizing: border-box; width: 100%;">
   <p style="margin-bottom: 1.2rem; max-width: 100%; overflow-wrap: break-word;">

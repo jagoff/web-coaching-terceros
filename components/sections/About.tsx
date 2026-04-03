@@ -222,13 +222,12 @@ export default function About() {
           >
             <h2 
               id="titulo-about"
-              className="heading-xl mb-6 sm:mb-10" 
+              className="heading-xl mb-6 sm:mb-10 px-4 sm:px-0" 
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              <span className="block sm:inline">{t.about.title1}{" "}</span>
-              {t.about.title2 && (
-                <span className="block sm:inline text-gradient">{t.about.title2}{" "}</span>
-              )}
+              <span className="sm:hidden block">{t.about.title1}{" "}{t.about.title2}</span>
+              <span className="hidden sm:inline">{t.about.title1}{" "}</span>
+              <span className="hidden sm:inline text-gradient">{t.about.title2}{" "}</span>
               <span className="block sm:inline">{t.about.title3}</span>
             </h2>
 
