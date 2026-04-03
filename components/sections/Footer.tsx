@@ -35,29 +35,11 @@ export default function Footer() {
       }}
     >
       <div
-        className="container flex flex-col sm:flex-row items-center justify-between gap-4"
+        className="container flex flex-col sm:flex-row items-center justify-end gap-4"
         suppressHydrationWarning
       >
-        {/* Logo */}
-        <div className="flex items-center gap-1.5 flex-shrink-0">
-          <span
-            className="text-gradient font-black tracking-tight"
-            style={{ fontFamily: "var(--font-heading)", fontSize: "1rem" }}
-          >
-            ELEVA
-          </span>
-          <span
-            className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "var(--text-muted)", paddingBottom: "1px" }}
-          >
-            <NoSSR fallback="CONSULTORIA">
-              {language === "es" ? "CONSULTORIA" : "CONSULTING"}
-            </NoSSR>
-          </span>
-        </div>
-
         {/* Nav links — hidden on small mobile, row on sm+ */}
-        <nav aria-label="Footer navigation">
+        <nav aria-label="Footer navigation" className="order-2 sm:order-1">
           <ul className="hidden sm:flex items-center gap-5 flex-wrap justify-center">
             <NoSSR
               fallback={fallbackLinks.map((link) => (
@@ -87,8 +69,34 @@ export default function Footer() {
           </ul>
         </nav>
 
-        {/* Right: Instagram + copyright */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+        {/* Right: Logo + Instagram + copyright */}
+        <div className="flex items-center gap-3 flex-shrink-0 order-1 sm:order-2">
+          {/* Logo */}
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <span
+              className="text-gradient font-black tracking-tight"
+              style={{ fontFamily: "var(--font-heading)", fontSize: "1rem" }}
+            >
+              ELEVA
+            </span>
+            <span
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--text-muted)", paddingBottom: "1px" }}
+            >
+              <NoSSR fallback="CONSULTORIA">
+                {language === "es" ? "CONSULTORIA" : "CONSULTING"}
+              </NoSSR>
+            </span>
+          </div>
+          
+          <span
+            className="text-xs"
+            style={{ color: "var(--text-muted)", whiteSpace: "nowrap" }}
+            suppressHydrationWarning
+          >
+            © 2026
+          </span>
+          
           <a
             href="https://instagram.com/jago_ff"
             target="_blank"
@@ -111,13 +119,6 @@ export default function Footer() {
           >
             <Instagram size={14} aria-hidden="true" />
           </a>
-          <p
-            className="text-xs"
-            style={{ color: "var(--text-muted)", whiteSpace: "nowrap" }}
-            suppressHydrationWarning
-          >
-            © 2026 ELEVA
-          </p>
         </div>
       </div>
     </footer>
