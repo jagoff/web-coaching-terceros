@@ -218,7 +218,7 @@ export default function About() {
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="order-1 lg:order-2"
+            className="order-1 lg:order-2 overflow-hidden"
           >
             <h2 
               id="titulo-about"
