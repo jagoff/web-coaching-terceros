@@ -25,6 +25,18 @@ const brands = [
     name: "BBI",
     style: { fontWeight: 800, letterSpacing: "0.2em", fontSize: "1.05rem" },
   },
+  {
+    name: "OpenAI",
+    style: { fontWeight: 600, letterSpacing: "0.05em", fontSize: "1rem" },
+  },
+  {
+    name: "Claude",
+    style: { fontWeight: 500, letterSpacing: "0.03em", fontSize: "1.1rem" },
+  },
+  {
+    name: "Gemini",
+    style: { fontWeight: 700, letterSpacing: "0.06em", fontSize: "1.05rem" },
+  },
 ];
 
 // Duplicate 4× for a seamless infinite loop with no visible gap
