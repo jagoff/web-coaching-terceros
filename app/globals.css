@@ -1404,6 +1404,12 @@ input:focus, textarea:focus, select:focus {
     transition-duration: 0.01ms !important;
   }
 
+  /* Exception for clients carousel - keep it moving */
+  [style*="clients-marquee"] {
+    animation-duration: 30s !important;
+    animation-iteration-count: infinite !important;
+  }
+
   html {
     scroll-behavior: auto;
   }
