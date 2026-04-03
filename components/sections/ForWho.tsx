@@ -47,7 +47,7 @@ export default function ForWho() {
             className="heading-xl"
             style={{
               fontFamily: "var(--font-heading)",
-              fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
+              fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
               lineHeight: "1.2",
             }}
           >
