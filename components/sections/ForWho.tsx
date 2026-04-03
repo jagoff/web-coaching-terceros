@@ -51,8 +51,8 @@ export default function ForWho() {
               lineHeight: "1.2",
             }}
           >
-            {t.forWho.title}{" "}
-            <span className="text-gradient">{t.forWho.titleHighlight}</span>
+            <span className="text-gradient">{t.forWho.title}</span>
+            {t.forWho.titleHighlight && <span>{t.forWho.titleHighlight}</span>}
           </motion.h2>
 
           <motion.p
