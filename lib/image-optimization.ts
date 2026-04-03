@@ -71,11 +71,7 @@ export function getOptimizedImagePath(originalPath: string, preferWebP = true): 
       webp: "/images/carousel/slide-12.webp",
       original: "/images/carousel/slide-12.png"
     },
-    "/images/ui/tv-icon.png": {
-      webp: "/images/ui/tv-icon.webp",
-      original: "/images/ui/tv-icon.png"
-    },
-    "/images/ui/this-is-fine-meme.png": {
+        "/images/ui/this-is-fine-meme.png": {
       webp: "/images/ui/this-is-fine-meme.webp",
       original: "/images/ui/this-is-fine-meme.png"
     },
