@@ -485,7 +485,7 @@ input:focus, textarea:focus, select:focus {
   border: none;
   min-height: 48px;
   min-width: 120px;
-  background: linear-gradient(135deg, #7c6bc4 0%, #c87b5a 50%, #7c6bc4 100%) !important;
+  background: var(--cta-primary) !important;
   color: white !important;
   text-decoration: none !important;
 }
