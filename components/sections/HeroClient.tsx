@@ -186,16 +186,16 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             <motion.span variants={revealUp} className="block">
               {renderLanguage === 'es' ? (
                 <>
-                  <span className="text-gradient">De la tecnología</span> a transformar
+                  <span className="text-gradient">Transformá</span> tu equipo.
                 </>
               ) : (
                 <>
-                  <span className="text-gradient">From technology</span> to transforming
+                  <span className="text-gradient">Transform</span> your team.
                 </>
               )}
             </motion.span>
             <motion.span variants={revealUp} className="block text-gradient mt-3">
-              {renderLanguage === 'es' ? 'organizaciones.' : 'organizations.'}
+              {renderLanguage === 'es' ? 'Liderá tu empresa.' : 'Lead with purpose.'}
             </motion.span>
             <motion.span variants={revealUp} className="block mt-3">
               {renderLanguage === 'es' ? (
