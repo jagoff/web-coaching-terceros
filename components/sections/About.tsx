@@ -5,6 +5,7 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { CheckCircle2, ExternalLink, Linkedin } from "lucide-react";
 import YouTubeThumbnail from "../YouTubeThumbnail";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const slideReveal: Variants = {
@@ -152,6 +153,31 @@ export default function About() {
                   }
                 />
               </div>
+            </motion.div>
+
+            {/* TV Image - Responsive */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-8 flex justify-center"
+            >
+              <CardContainer className="inter-var">
+                <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem]">
+                  <CardItem translateZ="50" className="w-full h-full">
+                    <img
+                      src="/images/ui/tv-icon.webp"
+                      alt="TV Icon"
+                      className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
+                      style={{
+                        filter: 'brightness(1.1) contrast(1.1)',
+                        opacity: 1,
+                        transform: 'scale(1.2)'
+                      }}
+                    />
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
             </motion.div>
           </motion.div>
 
