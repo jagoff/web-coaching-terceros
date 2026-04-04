@@ -102,14 +102,17 @@ export default function About() {
       const randomPos = Math.floor(Math.random() * (credentials.length + 1));
       setButtonPosition(randomPos);
       
-      // Load click count from localStorage
+      // Load click count from localStorage - with mobile safety
       try {
-        const saved = localStorage.getItem('linkedinButtonMetrics');
-        if (saved) {
-          setClickCount(JSON.parse(saved));
+        if (window.localStorage) {
+          const saved = localStorage.getItem('linkedinButtonMetrics');
+          if (saved) {
+            setClickCount(JSON.parse(saved));
+          }
         }
-      } catch {
+      } catch (error) {
         // localStorage unavailable or JSON parse failed — proceed with defaults
+        console.log('localStorage not available, using defaults');
       }
     }
   }, []);
@@ -119,9 +122,12 @@ export default function About() {
     setClickCount(prev => {
       const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 };
       try {
-        localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
-      } catch {
+        if (window.localStorage) {
+          localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
+        }
+      } catch (error) {
         // localStorage unavailable — skip persisting metrics
+        console.log('localStorage write failed, skipping metrics');
       }
       return newCount;
     });
