@@ -6,7 +6,6 @@ import { CheckCircle2, ExternalLink, Linkedin } from "lucide-react";
 import YouTubeThumbnail from "../YouTubeThumbnail";
 import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
 import { useLanguage } from "@/contexts/LanguageContext";
-import DOMPurify from "isomorphic-dompurify";
 
 const slideReveal: Variants = {
   hidden: () => ({ opacity: 0, filter: "blur(6px)" }),
@@ -191,7 +190,7 @@ export default function About() {
                 position: 'relative',
                 zIndex: 1,
               }}
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(t.about.intro) }}
+              dangerouslySetInnerHTML={{ __html: t.about.intro }}
             />
 
             <p className="lead-text mb-12">{t.about.approach}</p>
