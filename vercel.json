@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "./vercel-build.sh",
   "outputDirectory": ".next",
   "framework": "nextjs",
   "installCommand": "npm ci",
@@ -12,7 +12,7 @@
   },
   "build": {
     "env": {
-      "NEXT_BUILD_ID": "fresh-build-2026-04-03-v2",
+      "NEXT_BUILD_ID": "fresh-build-2026-04-03-v2-final",
       "NODE_ENV": "production"
     }
   },
