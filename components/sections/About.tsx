@@ -70,26 +70,18 @@ export default function About() {
   const { t, language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [shuffledCredentials, setCredentials] = useState(credentials);
-  const [buttonPosition, setButtonPosition] = useState(0);
   
-  // Pre-calcular todas las rutas para desktop grid
-  const optimizedImagePaths = baseImages.map(imageName => getImagePaths(imageName));
-
-  // Simplified useEffect without localStorage
-  useEffect(() => {
-    // Shuffle credentials array
-    const shuffled = [...credentials].sort(() => Math.random() - 0.5);
-    setCredentials(shuffled);
-    // Set random button position
-    const randomPos = Math.floor(Math.random() * (credentials.length + 1));
-    setButtonPosition(randomPos);
-  }, []);
-
-  const handleLinkedInClick = () => {
-    // Simplified click handler without localStorage
-    console.log('LinkedIn clicked');
-  };
+  // Simplified - no state for debugging
+  const credentials = [
+    "Advanced Certified ScrumMaster",
+    "Advanced Certified Scrum Product Owner (ACSPO)",
+    "Professional Scrum™ with UX (PSU I)",
+    "Agile Coach",
+    "Management 3.0 Metrics & OKR's",
+    "unFIX Foundation Workshop",
+    "Energizing People",
+    "Fundamentals Online Workshop",
+  ];
 
   return (
     <section
@@ -116,22 +108,19 @@ export default function About() {
             }}
           >
             
-            {/* Image Grid */}
+            {/* Image Grid - Simplified */}
             <motion.div
               initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
               animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mb-8"
             >
-              <div className="relative rounded-lg w-full">
-                <ParallaxHeroImages 
-                  images={optimizedImagePaths} 
-                  className="w-full"
-                />
+              <div className="relative rounded-lg w-full bg-gray-800 h-64 flex items-center justify-center">
+                <p className="text-white">Image Grid (Debug - No Parallax)</p>
               </div>
             </motion.div>
 
-            {/* YouTube Video Section */}
+            {/* YouTube Video Section - Simplified */}
             <motion.div
               initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
               animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
@@ -165,20 +154,14 @@ export default function About() {
                 </p>
               </div>
               
-              {/* YouTube thumbnail with proper mobile sizing */}
-              <div className="relative w-full" style={{ aspectRatio: "16/9", maxWidth: "100%" }}>
-                <YouTubeThumbnail
-                  videoId="mgr1mkSRl3o"
-                  title={language === 'es' 
-                    ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
-                    : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
-                  }
-                />
+              {/* YouTube thumbnail - Simplified */}
+              <div className="relative w-full bg-gray-800 h-32 flex items-center justify-center">
+                <p className="text-white">YouTube Thumbnail (Debug)</p>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Text column */}
+          {/* Text column - Simplified */}
           <motion.div
             custom={60}
             variants={slideReveal}
@@ -224,90 +207,18 @@ export default function About() {
               <span className="text-gradient">{t.about.certificaciones}</span>
             </h3>
 
-            {/* Credentials with LinkedIn Button */}
-            <motion.div
-              variants={credentialStagger}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="flex flex-wrap gap-3 sm:gap-4"
-            >
-              {shuffledCredentials.map((credential, index) => {
-                const shouldShowLinkedInBefore = index === buttonPosition;
-                
-                return (
-                  <React.Fragment key={`credential-${index}`}>
-                    {shouldShowLinkedInBefore && (
-                      <motion.div
-                        key="linkedin-button"
-                        variants={credentialPop}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className="linkedin-button-container"
-                      >
-                        <motion.a
-                          href="https://www.linkedin.com/in/fernandolferrari/details/certifications/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
-                          style={{
-                            background: "var(--gradient-gold)",
-                            color: "white",
-                            textDecoration: "none",
-                            fontWeight: "600",
-                            transition: "var(--transition-base)"
-                          }}
-                          whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={handleLinkedInClick}
-                        >
-                          <Linkedin size={16} />
-                          {t.process.linkedinButton}
-                          <ExternalLink size={14} />
-                        </motion.a>
-                      </motion.div>
-                    )}
-                    <motion.div
-                      key={credential}
-                      variants={credentialPop}
-                      className="credential-chip"
-                    >
-                      <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-                      <span>{credential}</span>
-                    </motion.div>
-                    {index === shuffledCredentials.length - 1 && buttonPosition > index && (
-                      <motion.div
-                        key="linkedin-button-end"
-                        variants={credentialPop}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className="linkedin-button-container"
-                      >
-                        <motion.a
-                          href="https://www.linkedin.com/in/fernandolferrari/details/certifications/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
-                          style={{
-                            background: "var(--gradient-gold)",
-                            color: "white",
-                            textDecoration: "none",
-                            fontWeight: "600",
-                            transition: "var(--transition-base)"
-                          }}
-                          whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={handleLinkedInClick}
-                        >
-                          <Linkedin size={16} />
-                          {t.process.linkedinButton}
-                          <ExternalLink size={14} />
-                        </motion.a>
-                      </motion.div>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </motion.div>
+            {/* Credentials - Simplified without LinkedIn button */}
+            <div className="flex flex-wrap gap-3 sm:gap-4">
+              {credentials.map((credential, index) => (
+                <div
+                  key={credential}
+                  className="credential-chip"
+                >
+                  <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
+                  <span>{credential}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
