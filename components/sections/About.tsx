@@ -72,65 +72,23 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [shuffledCredentials, setCredentials] = useState(credentials);
   const [buttonPosition, setButtonPosition] = useState(0);
-  const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});
   
   // Pre-calcular todas las rutas para desktop grid
   const optimizedImagePaths = baseImages.map(imageName => getImagePaths(imageName));
 
-  // Handle hash scrolling for "titulo-about"
+  // Simplified useEffect without localStorage
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash.replace('#', '');
-      if (hash === 'titulo-about') {
-        const element = document.getElementById('titulo-about');
-        if (element) {
-          // Small delay to ensure page is loaded
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        }
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Shuffle credentials array
-      const shuffled = [...credentials].sort(() => Math.random() - 0.5);
-      setCredentials(shuffled);
-      // Set random button position
-      const randomPos = Math.floor(Math.random() * (credentials.length + 1));
-      setButtonPosition(randomPos);
-      
-      // Load click count from localStorage - with mobile safety
-      try {
-        if (window.localStorage) {
-          const saved = localStorage.getItem('linkedinButtonMetrics');
-          if (saved) {
-            setClickCount(JSON.parse(saved));
-          }
-        }
-      } catch (error) {
-        // localStorage unavailable or JSON parse failed — proceed with defaults
-        console.log('localStorage not available, using defaults');
-      }
-    }
+    // Shuffle credentials array
+    const shuffled = [...credentials].sort(() => Math.random() - 0.5);
+    setCredentials(shuffled);
+    // Set random button position
+    const randomPos = Math.floor(Math.random() * (credentials.length + 1));
+    setButtonPosition(randomPos);
   }, []);
 
   const handleLinkedInClick = () => {
-    // Track click position
-    setClickCount(prev => {
-      const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 };
-      try {
-        if (window.localStorage) {
-          localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
-        }
-      } catch (error) {
-        // localStorage unavailable — skip persisting metrics
-        console.log('localStorage write failed, skipping metrics');
-      }
-      return newCount;
-    });
+    // Simplified click handler without localStorage
+    console.log('LinkedIn clicked');
   };
 
   return (
