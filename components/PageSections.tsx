@@ -11,7 +11,7 @@ export const About         = dynamic(() => import("@/components/sections/About")
 export const Services      = dynamic(() => import("@/components/sections/Services"), { ssr: false });
 export const Process       = dynamic(() => import("@/components/sections/Process"), { ssr: false });
 export const Results       = dynamic(() => import("@/components/sections/Results"), { ssr: false });
-export const Pricing       = dynamic(() => import("@/components/sections/Pricing"), { ssr: false });
+export const Pricing       = dynamic(() => import("@/components/sections/PlanCarousel"), { ssr: false });
 export const Contact       = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
 
 // Loading component with translations
