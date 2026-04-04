@@ -710,15 +710,6 @@ input:focus, textarea:focus, select:focus {
     background: rgba(19, 18, 27, 0.9) !important;
   }
   
-  /* Reduce complex gradients */
-  .text-gradient {
-    background: linear-gradient(90deg, var(--gold-primary), var(--amber-primary)) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent;
-  }
-
   /* Mobile-specific iframe optimizations */
   .calcom-widget-container {
     transform: translateZ(0);
