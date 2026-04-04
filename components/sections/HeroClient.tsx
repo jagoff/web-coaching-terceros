@@ -72,20 +72,22 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   const { language, t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   
-  // Simplified - no particles, no rotating phrases
+  // Simplified - no particles, no rotating phrases, no scroll tracking
   const particles: Particle[] = [];
   const phraseIndex = 0;
   const renderLanguage = language;
   
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
   
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  // Remove scroll tracking to prevent loops
+  // const { scrollYProgress } = useScroll({
+  //   target: sectionRef,
+  //   offset: ["start start", "end start"]
+  // });
+  
+  // const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  // const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  // const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   // Simplified - no useEffect for debugging
   useEffect(() => {
@@ -108,7 +110,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
       {/* Remove CoachingWordsBackground for FCP optimization */}
 
       {/* Simplified orbs - reduced from 3 to 1 for FCP */}
-      <motion.div style={{ y: orbY1, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <motion.div style={{ y: 0, willChange: 'transform', contain: 'layout style paint' }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="orb orb-gold animate-float-slow"
           style={{
