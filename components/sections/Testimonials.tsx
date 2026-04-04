@@ -20,14 +20,8 @@ export default function Testimonials() {
   const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
 
   // Calculate how many testimonials to show based on screen size
-  const getVisibleCount = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 3; // lg: 3 cards
-      if (window.innerWidth >= 768) return 2;  // md: 2 cards
-      return 1; // mobile: 1 card
-    }
-    return 1;
-  };
+  // Always return 1 for SSR consistency, will be updated by useEffect
+  const getVisibleCount = () => 1;
 
   const [visibleCount, setVisibleCount] = useState(getVisibleCount());
 
