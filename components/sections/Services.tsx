@@ -193,10 +193,10 @@ export default function Services() {
                   className="space-y-3 sm:space-y-4 mb-8 sm:mb-10 flex-1"
                 >
                   {service.benefits.map((benefit) => (
-                    <motion.li key={benefit} variants={benefitItem} className="flex items-center gap-3">
+                    <motion.li key={benefit} variants={benefitItem} className="flex items-start gap-3">
                       <CheckCircle2
                         size={18}
-                        className="flex-shrink-0"
+                        className="flex-shrink-0 mt-0.5"
                         style={{ color: "var(--gold-primary)" }}
                       />
                       <span className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)", fontWeight: 400 }}>
