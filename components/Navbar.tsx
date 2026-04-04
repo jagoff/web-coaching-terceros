@@ -7,12 +7,12 @@ import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import logger from "@/lib/logger";
 
-
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const lastScrollY = useRef(0);
   const lastScrollTime = useRef(0);
   const cachedContactTop = useRef<number | null>(null);
@@ -28,6 +28,12 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const now = Date.now();
+
+      // Calculate scroll progress
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight - windowHeight;
+      const progress = documentHeight > 0 ? (currentScrollY / documentHeight) * 100 : 0;
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
 
       // Throttle getBoundingClientRect calls to at most once every 100ms
       let shouldHide = false;
@@ -147,6 +153,20 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Progress Bar */}
+      <div 
+        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-900/20"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
+      >
+        <div
+          className="h-full transition-all duration-100 ease-out"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #ADD8E6 50%, #B0E0E6 100%)',
+            width: `${scrollProgress}%`
+          }}
+        />
+      </div>
+
       {/* Navbar placeholder to prevent content jump */}
       <motion.div 
         style={{ 
