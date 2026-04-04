@@ -393,7 +393,7 @@ export const translations: Record<Language, Translations> = {
       badge: 'Sobre mí',
       title1: 'De la tecnología',
       title2: 'a transformar',
-      title3: 'organizaciones.',
+      title3: 'organizaciones',
       intro: `<div style="line-height: 1.6; font-size: 0.85rem; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; margin: 0; padding: 0; box-sizing: border-box; width: 100%;">
   <p style="margin-bottom: 1.2rem; max-width: 100%; overflow-wrap: break-word;">
     <span style="font-family: var(--font-modern); font-weight: 600; font-size: 1rem; color: var(--text-primary); display: block; margin-bottom: 0.5rem;">¡Hola! Soy <span class="web-underline" style="background: linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; display: inline;">Fernando Ferrari</span></span>
