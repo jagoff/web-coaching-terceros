@@ -260,7 +260,7 @@ export default function About() {
               {t.about.approach}
             </p>
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
               <span className="text-gradient">{t.about.certificaciones}</span>
             </h3>
 
