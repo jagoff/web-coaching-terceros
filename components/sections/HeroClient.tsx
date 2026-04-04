@@ -87,52 +87,10 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
+  // Simplified - no useEffect for debugging
   useEffect(() => {
     setMounted(true);
-    setRenderLanguage(language); // Sync with context language after mount
-    
-    // Force scroll to top on mount - prevent any automatic scrolling
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    // Also prevent any hash-based scrolling
-    if (window.location.hash) {
-      window.history.replaceState(null, '', window.location.pathname);
-    }
-    
-    // Drastically reduced particle count for performance
-    const count = window.innerWidth < 768 ? 0 : 3; // 6→3, 2→0 (no particles on mobile)
-    
-    // Deterministic random function to avoid hydration mismatches
-    const deterministicRandom = (seed: number) => {
-      const x = Math.sin(seed) * 10000;
-      return x - Math.floor(x);
-    };
-    
-    setParticles(
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        x: deterministicRandom(i) * 100,
-        y: deterministicRandom(i + 1000) * 100,
-        size: deterministicRandom(i + 2000) * 2 + 1, // Smaller particles
-        delay: deterministicRandom(i + 3000) * 4,
-        duration: deterministicRandom(i + 4000) * 3 + 4, // Shorter duration
-        opacity: 0.1 + deterministicRandom(i + 5000) * 0.3, // Lower opacity
-        drift: (deterministicRandom(i + 6000) - 0.5) * 20, // Less drift
-      }))
-    );
   }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPhraseIndex((prev) => {
-        const nextIndex = (prev + 1) % (rotatingPhrases?.length || 1);
-        return nextIndex;
-      });
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [rotatingPhrases?.length]);
 
   const handleScroll = (href: string) => scrollToElement(href);
 
@@ -280,7 +238,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                         textAlign: "center"
                       }}
                       dangerouslySetInnerHTML={{ 
-                        __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (renderLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisiones</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
+                        __html: `&ldquo;${renderLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisions</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí'}&rdquo;` 
                       }}
                     />
                   </AnimatePresence>
