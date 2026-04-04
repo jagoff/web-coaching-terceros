@@ -38,8 +38,9 @@ export default function Testimonials() {
   }, []);
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * testimonials.length);
-    setCurrentIndex(randomIndex);
+    // Use a deterministic index based on language instead of random
+    const deterministicIndex = language === 'es' ? 0 : 1;
+    setCurrentIndex(deterministicIndex % testimonials.length);
   }, [language, testimonials.length]);
 
   const goTo = useCallback(
