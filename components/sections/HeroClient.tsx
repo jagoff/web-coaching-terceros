@@ -70,15 +70,20 @@ const ctaReveal: Variants = {
 
 export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Language }) {
   const { language, t } = useLanguage();
-  const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [renderLanguage, setRenderLanguage] = useState(ssrLanguage);
   
-  const rotatingPhrases = renderLanguage === 'es' ? t.hero.rotatingPhrases : t.hero.rotatingPhrases;
+  // Simplified - no particles, no rotating phrases
+  const particles: Particle[] = [];
+  const phraseIndex = 0;
+  const renderLanguage = language;
+  
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
 

@@ -100,7 +100,7 @@ export default function Home() {
       />
       <main>
         <HeroServer pathname="/" />
-        <Clients />
+        {/* <Clients />
         <ForWho />
         <Services />
         <About />
@@ -110,7 +110,7 @@ export default function Home() {
         <Pricing />
         <FAQ />
         <Contact />
-        <WhatsAppButton />
+        <WhatsAppButton /> */}
       </main>
     </>
   );
