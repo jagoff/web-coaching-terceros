@@ -1,17 +1,18 @@
-import HeroServer from "@/components/sections/HeroServer";
-import {
-  About,
-  Services,
-  Process,
-  Results,
-  Pricing,
-  FAQ,
-  Contact,
-  ForWho,
-  Clients,
-} from "@/components/PageSections";
-import Testimonials from "@/components/sections/TestimonialsSimple";
+import { Users, Target, TrendingUp, Zap } from "lucide-react";
+import ClientLayout from "@/components/ClientLayout";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import HeroServer from "@/components/sections/HeroServer";
+import Clients from "@/components/sections/Clients";
+import ForWho from "@/components/sections/ForWho";
+import Services from "@/components/sections/Services";
+import About from "@/components/sections/About";
+import Process from "@/components/sections/Process";
+import Results from "@/components/sections/Results";
+import Testimonials from "@/components/sections/Testimonials";
+import Pricing from "@/components/sections/Pricing";
+import FAQ from "@/components/sections/FAQ";
+import Contact from "@/components/sections/Contact";
+
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { Metadata } from "next";
 
@@ -46,10 +47,24 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div style={{ padding: '2rem', textAlign: 'center', minHeight: '100vh' }}>
-      <h1>Página de Prueba Mínima</h1>
-      <p>Si esto funciona, el problema está en los componentes.</p>
-      <p>Si esto sigue en loop, el problema es más profundo.</p>
-    </div>
+    <>
+      <ClientLayout>
+        <WhatsAppButton />
+        <main>
+          <HeroServer pathname="/" />
+          <Clients />
+          <ForWho />
+          <Services />
+          <About />
+          <Process />
+          <Results />
+          <Testimonials />
+          <Pricing />
+          <FAQ />
+          <Contact />
+          <WhatsAppButton />
+        </main>
+      </ClientLayout>
+    </>
   );
 }
