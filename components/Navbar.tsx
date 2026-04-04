@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X, Linkedin, Instagram } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -16,6 +16,10 @@ export default function Navbar() {
   const lastScrollY = useRef(0);
   const lastScrollTime = useRef(0);
   const cachedContactTop = useRef<number | null>(null);
+
+  // Global scroll progress for progress bar
+  const { scrollYProgress } = useScroll();
+  const progressWidth = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "/sobre-mi#titulo-about" },
@@ -147,6 +151,21 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Progress Bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-900/20"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
+      >
+        <motion.div
+          className="h-full"
+          style={{
+            background: 'linear-gradient(90deg, #87CEEB 0%, #ADD8E6 50%, #B0E0E6 100%)',
+            width: `${progressWidth}%`,
+            transition: 'width 0.1s ease-out'
+          }}
+        />
+      </motion.div>
+
       {/* Navbar placeholder to prevent content jump */}
       <motion.div 
         style={{ 
