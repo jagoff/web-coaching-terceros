@@ -133,11 +133,13 @@ export default function ForWho() {
 
               {/* Pain point tag */}
               <div
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest w-fit mt-auto"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mt-auto"
                 style={{
                   background: "rgba(200,123,90,0.10)",
                   border: "1px solid rgba(200,123,90,0.30)",
                   color: "var(--gold-primary)",
+                  whiteSpace: "nowrap",
+                  minWidth: "fit-content"
                 }}
               >
                 <span

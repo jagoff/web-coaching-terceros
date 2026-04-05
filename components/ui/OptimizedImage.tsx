@@ -146,6 +146,7 @@ export default function OptimizedImage({
           className={`transition-opacity duration-400 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
+          style={{ width: '100%', height: '100%', ...props.style }}
           {...props}
         />
       </motion.div>
