@@ -61,6 +61,11 @@ export interface Translations {
         description: string;
         benefits: string[];
       };
+      frameworks: {
+        title: string;
+        description: string;
+        benefits: string[];
+      };
       ambos: {
         title: string;
         description: string;
@@ -190,6 +195,7 @@ export interface Translations {
         options: {
           liderazgo: string;
           organizacional: string;
+          frameworks: string;
           ambos: string;
           otros: string;
         };
@@ -460,6 +466,19 @@ export const translations: Record<Language, Translations> = {
             'Gestión del cambio cultural',
           ],
         },
+        frameworks: {
+          title: 'Implementación de Frameworks',
+          description: 'Para equipos que necesitan herramientas concretas y probadas. Instalo OKRs, ceremonias ágiles, matrices de decisión y dashboard de métricas para que tu equipo funcione de inmediato.',
+          benefits: [
+            'OKRs (Objectives and Key Results)',
+            'Ceremonias Ágiles (daily, retrospective, planning)',
+            'Matriz de Decisiones (RACI, DACI)',
+            'Team Topologies',
+            'Sociocracy 3.0',
+            'Dashboard de Métricas (KPIs personalizados)',
+            'Herramientas de Automatización de Procesos',
+          ],
+        },
         ambos: {
           title: 'Ambos servicios',
           description: 'Un enfoque integral que combina coaching de liderazgo con consultoría organizacional para tu transformación completa y sostenible. Yo te guío en todo el camino.',
@@ -612,6 +631,7 @@ export const translations: Record<Language, Translations> = {
           options: {
             liderazgo: 'Coaching de Liderazgo',
             organizacional: 'Consultoría Organizacional',
+            frameworks: 'Implementación de Frameworks',
             ambos: 'Ambos servicios',
             otros: 'Otros',
           },
@@ -920,6 +940,19 @@ export const translations: Record<Language, Translations> = {
             'Cultural change management',
           ],
         },
+        frameworks: {
+          title: 'Frameworks Implementation',
+          description: 'For teams that need concrete and proven tools. I install OKRs, agile ceremonies, decision matrices and metrics dashboards so your team works immediately.',
+          benefits: [
+            'OKRs (Objectives and Key Results)',
+            'Agile Ceremonies (daily, retrospective, planning)',
+            'Decision Matrix (RACI, DACI)',
+            'Team Topologies',
+            'Sociocracy 3.0',
+            'Metrics Dashboard (custom KPIs)',
+            'Process Automation Tools',
+          ],
+        },
         ambos: {
           title: 'Both services',
           description: 'A comprehensive approach that combines leadership coaching with organizational consulting for your complete and sustainable transformation. I guide you through the entire journey.',
@@ -1072,6 +1105,7 @@ export const translations: Record<Language, Translations> = {
           options: {
             liderazgo: 'Leadership Coaching',
             organizacional: 'Organizational Consulting',
+            frameworks: 'Frameworks Implementation',
             ambos: 'Both services',
             otros: 'Other',
           },

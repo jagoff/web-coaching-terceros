@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { Flame, Gem, CheckCircle2, ArrowRight } from "lucide-react";
+import { Flame, Gem, CheckCircle2, ArrowRight, Settings } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -78,6 +78,15 @@ export default function Services() {
       featured: true,
       badge: language === 'es' ? 'MÁS SOLICITADO' : 'MOST POPULAR',
     },
+    {
+      id: "frameworks",
+      icon: Settings,
+      title: t.services.items.frameworks.title,
+      description: t.services.items.frameworks.description,
+      benefits: t.services.items.frameworks.benefits,
+      cta: t.services.knowMore,
+      featured: false,
+    },
   ];
 
   return (
@@ -112,7 +121,7 @@ export default function Services() {
         </motion.div>
 
         {/* Service cards */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto md:auto-rows-fr">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 max-w-7xl mx-auto md:auto-rows-fr">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
