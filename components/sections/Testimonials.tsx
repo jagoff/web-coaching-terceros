@@ -14,6 +14,7 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [direction, setDirection] = useState(1);
+  const [isClient, setIsClient] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -33,6 +34,8 @@ export default function Testimonials() {
   }, []);
 
   useEffect(() => {
+    // Wait for client-side rendering
+    setIsClient(true);
     // Use deterministic index based on language to prevent hydration mismatch
     const deterministicIndex = language === 'es' ? 0 : 1;
     setCurrentIndex(deterministicIndex);
@@ -50,10 +53,10 @@ export default function Testimonials() {
   const next = useCallback(() => goTo(currentIndex + 1, 1), [currentIndex, goTo]);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || !isClient) return;
     const id = setInterval(next, AUTOPLAY_INTERVAL);
     return () => clearInterval(id);
-  }, [paused, next]);
+  }, [paused, next, isClient]);
 
   const getVisibleTestimonials = () => {
     const visible = [];
@@ -78,6 +81,82 @@ export default function Testimonials() {
       transition: { duration: 0.3 }
     }
   };
+
+  // Don't render carousel on server to prevent hydration issues
+  if (!isClient) {
+    return (
+      <section
+        id="testimonios"
+        className="section section-dark relative overflow-hidden"
+        ref={ref}
+      >
+        <div className="absolute inset-0 opacity-30">
+          <div 
+            className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%)' }}
+            suppressHydrationWarning={true}
+          />
+          <div 
+            className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(124, 107, 196, 0.1) 0%, transparent 70%)' }}
+            suppressHydrationWarning={true}
+          />
+        </div>
+
+        <div className="container relative z-10">
+          <motion.div
+            variants={headerStagger}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="text-center mb-14 md:mb-24"
+          >
+            <motion.div variants={blurUp} className="flex justify-center mb-6">
+              <span className="badge">{t.testimonials.badge}</span>
+            </motion.div>
+            <motion.h2
+              variants={blurUp}
+              className="heading-xl mb-4 text-center px-4"
+              style={{ 
+                fontFamily: "var(--font-heading)",
+                fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+                lineHeight: 1.2,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              }}
+            >
+              <span className="text-gradient">{t.testimonials.title}</span>
+            </motion.h2>
+            <motion.div
+              variants={dividerGrow}
+              className="divider-gold mt-6"
+            />
+          </motion.div>
+
+          {/* Loading placeholder */}
+          <div className="flex justify-center">
+            <div className="animate-pulse">
+              <div 
+                className="relative max-w-xl w-full rounded-2xl p-5 md:p-6"
+                style={{
+                  minHeight: '240px',
+                  maxHeight: '280px',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                }}
+              >
+                <div className="h-4 bg-gray-700 rounded mb-4"></div>
+                <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -244,6 +323,42 @@ export default function Testimonials() {
                 </motion.div>
               ))}
             </AnimatePresence>
+          </div>
+
+          {/* Navigation Buttons */}
+          {testimonials.length > 1 && (
+            <div className="flex justify-center gap-4 mt-8">
+              <button
+                onClick={prev}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Anterior testimonio"
+              >
+                <ChevronLeft size={20} className="text-white" />
+              </button>
+              <button
+                onClick={next}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Siguiente testimonio"
+              >
+                <ChevronRight size={20} className="text-white" />
+              </button>
+            </div>
+          )}
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-4">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goTo(index, index > currentIndex ? 1 : -1)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex 
+                    ? 'bg-gold-primary' 
+                    : 'bg-white/30 hover:bg-white/50'
+                }`}
+                aria-label={`Ir al testimonio ${index + 1}`}
+              />
+            ))}
           </div>
         </motion.div>
       </div>
