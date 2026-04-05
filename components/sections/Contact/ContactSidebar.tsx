@@ -256,8 +256,8 @@ export default function ContactSidebar() {
             }}
           >
             {es
-              ? "La primera sesión es gratis. No tienes nada que perder, pero tu equipo tiene todo por ganar."
-              : "The first session is free. You have nothing to lose, but your team has everything to gain."}
+              ? "La primera sesión es gratis. No tienes nada que perder, pero tu equipo y tu empresa tiene todo por ganar."
+              : "The first session is free. You have nothing to lose, but your team and your company has everything to gain."}
           </p>
         </div>
       </motion.div>

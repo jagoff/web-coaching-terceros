@@ -26,7 +26,7 @@ export default function ContactSimple() {
             Cada día que pasa sin actuar es un día que tu equipo sigue lidiando con los mismos problemas.
           </p>
           <p>
-            La primera sesión es gratis. No tienes nada que perder, pero tu equipo tiene todo por ganar.
+            La primera sesión es gratis. No tienes nada que perder, pero tu equipo y tu empresa tiene todo por ganar.
           </p>
         </div>
 
