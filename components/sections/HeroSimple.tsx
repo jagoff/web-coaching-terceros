@@ -16,7 +16,7 @@ export default function HeroSimple() {
       </p>
       
       <div style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#666' }}>
-        Más de 20 años en tecnología · 11+ años de coaching · Empresas que confían en ELEVA
+        Más de 20 años en tecnología · 10+ años de coaching · Empresas que confían en ELEVA
       </div>
     </section>
   );

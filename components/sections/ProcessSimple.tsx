@@ -20,7 +20,7 @@ export default function ProcessSimple() {
 
   const stats = [
     { label: 'Años en tecnología', value: '20+', description: 'Desde infraestructura hasta liderazgo' },
-    { label: 'Años de coaching ágil', value: '11+', description: 'Transformando startups y empresas tech' },
+    { label: 'Años de coaching ágil', value: '10+', description: 'Transformando startups y empresas tech' },
     { label: 'Certificaciones activas', value: '8+', description: 'Scrum, UX, Management 3.0, Security' },
     { label: 'Empresas co-fundadas', value: '3', description: 'Mascabo, Nodok.AI, AyP' }
   ];

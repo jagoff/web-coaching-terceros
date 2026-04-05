@@ -342,8 +342,8 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
           >
             <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
               {renderLanguage === 'es' 
-                ? 'Más de 20 años en tecnología · 11+ años de coaching'
-                : 'Over 20 years in technology · 11+ years of agile consulting'
+                ? 'Más de 20 años en tecnología · 10+ años de coaching'
+                : 'Over 20 years in technology · 10+ years of agile consulting'
               }
             </p>
           </motion.div>

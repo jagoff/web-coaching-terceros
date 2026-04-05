@@ -37,9 +37,9 @@ export default function Results() {
     },
     {
       prefix: "",
-      value: 11,
+      value: 10,
       suffix: "+",
-      display: "11+",
+      display: "10+",
       label: "Años de coaching ágil",
       description: "Transformando startups y empresas tech",
     },
@@ -70,9 +70,9 @@ export default function Results() {
     },
     {
       prefix: "",
-      value: 11,
+      value: 10,
       suffix: "+",
-      display: "11+",
+      display: "10+",
       label: "Years of agile coaching",
       description: "Transforming startups and tech companies",
     },
