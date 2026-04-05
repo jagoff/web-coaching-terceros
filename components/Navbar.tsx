@@ -290,61 +290,58 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.15 }}
             className="fixed inset-0 flex flex-col lg:hidden"
             style={{
-              background: "rgba(12, 10, 18, 0.98)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
+              background: "rgba(12, 10, 18, 0.95)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
               zIndex: 9999,
             }}
           >
-            {/* Simple Close Button */}
-            <div className="flex justify-end p-6">
+            {/* Ultra Simple Close Button */}
+            <div className="flex justify-end p-4">
               <button
-                className="flex items-center justify-center w-10 h-10 rounded-full"
+                className="p-2"
                 style={{ color: "var(--text-secondary)" }}
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
 
-            {/* Simple Menu Links */}
-            <nav className="flex flex-col items-center justify-center flex-1 px-6">
+            {/* Ultra Minimal Menu Links */}
+            <nav className="flex flex-col items-center justify-center flex-1 px-4">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
-                  className="text-3xl font-light text-center py-6 bg-transparent cursor-pointer transition-colors"
+                  transition={{ delay: i * 0.03, duration: 0.2 }}
+                  className="text-2xl font-light text-center py-4 bg-transparent cursor-pointer"
                   style={{
                     fontFamily: "var(--font-heading)",
                     color: "var(--text-primary)",
-                    letterSpacing: "0.02em"
+                    letterSpacing: "0.01em"
                   }}
-                  whileHover={{ scale: 1.05, color: "var(--gold-primary)" }}
                   onClick={() => handleLinkClick(link.href)}
                 >
                   {link.label}
                 </motion.button>
               ))}
               
-              {/* Simple CTA */}
+              {/* Ultra Simple CTA */}
               <motion.button
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
-                className="mt-8 px-8 py-4 rounded-full text-lg font-medium transition-all"
+                transition={{ delay: navLinks.length * 0.03, duration: 0.2 }}
+                className="mt-6 text-lg font-light"
                 style={{
-                  background: "linear-gradient(45deg, #f59e0b, #d97706)",
-                  color: "white",
                   fontFamily: "var(--font-heading)",
-                  letterSpacing: "0.02em"
+                  color: "var(--gold-primary)",
+                  letterSpacing: "0.01em"
                 }}
-                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(245, 158, 11, 0.3)" }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
