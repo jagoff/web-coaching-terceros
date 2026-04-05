@@ -148,14 +148,14 @@ export default function Testimonials() {
                   whileHover="hover"
                   exit="hidden"
                   transition={{ delay: index * 0.1 }}
-                  className="relative max-w-2xl w-full"
+                  className="relative max-w-xl w-full"
                 >
                   {/* Card with glassmorphism */}
                   <div
-                    className="testimonial-card relative overflow-hidden rounded-2xl p-6 md:p-8 h-full flex flex-col"
+                    className="testimonial-card relative overflow-hidden rounded-2xl p-5 md:p-6 h-full flex flex-col"
                     style={{
-                      minHeight: '280px',
-                      maxHeight: '320px',
+                      minHeight: '240px',
+                      maxHeight: '280px',
                       background: 'rgba(255, 255, 255, 0.03)',
                       backdropFilter: 'blur(20px)',
                       WebkitBackdropFilter: 'blur(20px)',
