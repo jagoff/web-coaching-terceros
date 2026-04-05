@@ -5,14 +5,9 @@
   "installCommand": "npm ci --force",
   "devCommand": "npm run dev",
   "regions": ["iad1"],
-  "functions": {
-    "app/page.tsx": {
-      "maxDuration": 10
-    }
-  },
   "build": {
     "env": {
-      "NEXT_BUILD_ID": "static-export-2026-04-05-01-56",
+      "NEXT_BUILD_ID": "static-export-2026-04-05-02-02",
       "NODE_ENV": "production",
       "FORCE_BUILD": "true",
       "OUTPUT_MODE": "export"
