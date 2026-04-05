@@ -137,7 +137,7 @@ export default function Testimonials() {
           onMouseLeave={() => setPaused(false)}
         >
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="flex justify-center">
             <AnimatePresence mode="wait">
               {getVisibleTestimonials().map((testimonial, index) => (
                 <motion.div
@@ -148,13 +148,14 @@ export default function Testimonials() {
                   whileHover="hover"
                   exit="hidden"
                   transition={{ delay: index * 0.1 }}
-                  className="relative"
+                  className="relative max-w-2xl w-full"
                 >
                   {/* Card with glassmorphism */}
                   <div
                     className="testimonial-card relative overflow-hidden rounded-2xl p-6 md:p-8 h-full flex flex-col"
                     style={{
-                      minHeight: '320px',
+                      minHeight: '280px', // Reducido de 320px
+                      maxHeight: '320px', // Limitar altura máxima
                       background: 'rgba(255, 255, 255, 0.03)',
                       backdropFilter: 'blur(20px)',
                       WebkitBackdropFilter: 'blur(20px)',
@@ -238,7 +239,7 @@ export default function Testimonials() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-between mt-12">
+          <div className="flex items-center justify-center gap-8 mt-12">
             {/* Previous Button */}
             <button
               onClick={prev}
@@ -252,26 +253,11 @@ export default function Testimonials() {
               />
             </button>
 
-            {/* Dots Indicator */}
-            <div className="flex gap-2" role="tablist">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  role="tab"
-                  aria-selected={i === currentIndex}
-                  aria-label={`${t.testimonialsNav.previous} ${i + 1}`}
-                  onClick={() => goTo(i, i > currentIndex ? 1 : -1)}
-                  className="transition-all duration-300 rounded-full"
-                  style={{
-                    width: i === currentIndex ? 32 : 8,
-                    height: 8,
-                    background:
-                      i === currentIndex
-                        ? "var(--gold-primary)"
-                        : "var(--dark-border)",
-                  }}
-                />
-              ))}
+            {/* Counter */}
+            <div className="text-center">
+              <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                {currentIndex + 1} / {testimonials.length}
+              </p>
             </div>
 
             {/* Next Button */}
@@ -286,13 +272,6 @@ export default function Testimonials() {
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
-          </div>
-
-          {/* Counter */}
-          <div className="text-center mt-6">
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              {currentIndex + 1} / {testimonials.length}
-            </p>
           </div>
         </motion.div>
       </div>
