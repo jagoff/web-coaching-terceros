@@ -250,7 +250,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                   alt="Meme de un perro sentado en una oficina en llamas con el lema 'This is fine', representando equipos tech abrumados por problemas de procesos y comunicación"
                   width={72}
                   height={72}
-                  className="w-16 h-16 sm:w-18 sm:h-18 object-cover rounded-full opacity-100"
+                  className="w-16 h-16 object-cover rounded-full opacity-100"
                   priority={true}
                   lazy={false}
                 />

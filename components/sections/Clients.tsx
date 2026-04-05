@@ -47,6 +47,7 @@ export default function Clients() {
 
   return (
     <section
+      id="clientes"
       aria-label={language === "es" ? "Clientes" : "Clients"}
       style={{
         padding: "clamp(2.5rem, 5vw, 3.5rem) 0",

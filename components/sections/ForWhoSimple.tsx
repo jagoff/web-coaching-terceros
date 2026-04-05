@@ -98,7 +98,8 @@ export default function ForWhoSimple() {
                 border: '1px solid rgba(245, 158, 11, 0.3)',
                 borderRadius: '1rem',
                 fontSize: '0.875rem',
-                color: '#f59e0b'
+                color: '#f59e0b',
+                whiteSpace: 'nowrap'
               }}>
                 {profile.pain}
               </div>

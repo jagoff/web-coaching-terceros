@@ -146,9 +146,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Preload critical above-fold image */}
-        <link rel="preload" href="/images/optimized/hero/transformacion.webp" as="image" type="image/webp" />
-        
         {/* Hreflang tags for multilingual SEO */}
         <Hreflang />
         

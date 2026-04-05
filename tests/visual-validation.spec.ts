@@ -64,33 +64,25 @@ test.describe('Visual Validation - Complete Site Check', () => {
   });
 
   test('footer sections exist', async ({ page }) => {
-    // Note: Homepage doesn't have footer by design, only subpages do
-    // So we check if we're on homepage (no footer expected) or subpage (footer expected)
+    // Homepage doesn't have footer by design, only subpages do
     const currentUrl = page.url();
     const isHomepage = currentUrl.endsWith('/') || currentUrl.endsWith('/#');
-    
+
     if (isHomepage) {
-      // Homepage should not have footer
       const footer = await page.locator('footer').count();
       expect(footer).toBe(0);
       console.log('✅ Homepage correctly has no footer');
     } else {
-      // Subpages should have footer
+      // Subpages have a minimal footer: logo + nav links + instagram
       const footer = await page.locator('footer').count();
       expect(footer).toBe(1);
-      
-      // Check for both Spanish and English navigation headers
-      const navHeaderES = await page.locator('h3:has-text("Navegación")').count();
-      const navHeaderEN = await page.locator('h3:has-text("Navigation")').count();
-      const servicesHeaderES = await page.locator('h3:has-text("Servicios")').count();
-      const servicesHeaderEN = await page.locator('h3:has-text("Services")').count();
-      
-      expect(navHeaderES + navHeaderEN).toBe(1);
-      expect(servicesHeaderES + servicesHeaderEN).toBe(1);
-      console.log('✅ Subpage has correct footer sections');
+
+      const instagramLink = await page.locator('footer a[href*="instagram"]').count();
+      expect(instagramLink).toBe(1);
+      console.log('✅ Subpage has correct footer');
     }
-    
-    console.log('✅ Footer sections exist');
+
+    console.log('✅ Footer check complete');
   });
 
   test('hero section exists', async ({ page }) => {
@@ -178,21 +170,24 @@ test.describe('Visual Validation - Complete Site Check', () => {
   });
 
   test('mobile responsive check', async ({ page }) => {
+    // Homepage has no footer by design (nano footer is embedded in Contact section)
+    // Navigate to a subpage that does have a footer to test mobile responsive layout
+    await page.goto('/servicios');
+    await page.waitForLoadState('domcontentloaded');
     await page.setViewportSize({ width: 375, height: 667 });
     await page.waitForTimeout(500);
-    
+
     const footer = await page.locator('footer').count();
     expect(footer).toBe(1);
-    
-    // Check for both Spanish and English navigation headers
-    const navHeaderES = await page.locator('h3:has-text("Navegación")').count();
-    const navHeaderEN = await page.locator('h3:has-text("Navigation")').count();
-    const servicesHeaderES = await page.locator('h3:has-text("Servicios")').count();
-    const servicesHeaderEN = await page.locator('h3:has-text("Services")').count();
-    
-    expect(navHeaderES + navHeaderEN).toBe(1);
-    expect(servicesHeaderES + servicesHeaderEN).toBe(1);
-    
+
+    // Footer has a minimal horizontal layout: logo + nav links + instagram
+    const instagramLink = await page.locator('footer a[href*="instagram"]').count();
+    expect(instagramLink).toBe(1);
+
+    // Logo brand mark should be present
+    const logoText = await page.locator('footer .text-gradient').count();
+    expect(logoText).toBeGreaterThan(0);
+
     console.log('✅ Mobile responsive layout correct');
   });
 
