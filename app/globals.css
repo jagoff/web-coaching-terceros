@@ -480,7 +480,7 @@ input:focus, textarea:focus, select:focus {
   padding: 12px 24px;
   border-radius: var(--radius-pill);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   text-align: center;
   cursor: pointer;
@@ -1025,6 +1025,10 @@ input:focus, textarea:focus, select:focus {
 /* Hero background */
 .hero-bg {
   background: var(--gradient-hero);
+}
+
+.hero-section-scroll {
+  position: relative !important;
 }
 
 /* Padding de sección */
@@ -1610,6 +1614,12 @@ input:focus, textarea:focus, select:focus {
   
   /* Specific rules for web-underline spans */
   .about-section .lead-text span.web-underline {
+    display: inline !important;
+    width: auto !important;
+  }
+  
+  /* Additional rule for web-underline in about sections */
+  .about-section h3 span.web-underline {
     display: inline !important;
     width: auto !important;
   }

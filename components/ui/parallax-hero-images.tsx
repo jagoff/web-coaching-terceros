@@ -88,7 +88,7 @@ export function ParallaxHeroImages({ images, className = "" }: ParallaxHeroImage
                   alt={`Image ${index + 1}`}
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center' }}
-                  loading={index < 3 ? "eager" : "lazy"}
+                  loading="lazy"
                   onError={(e) => {
                     if (process.env.NODE_ENV === 'development') {
                       logger.error(`Image failed to load: ${src}`, { component: 'parallax-hero-images' });

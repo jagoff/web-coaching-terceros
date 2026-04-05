@@ -70,13 +70,13 @@ export default function Process() {
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
-            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
+            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 3.5vw, 2.3rem)" }}
           >
             {t.process.title}
             <br />
             <span className="text-gradient">{t.process.title2}</span> {t.process.title3}
           </motion.h2>
-          <motion.p variants={blurUp} className="lead-text text-center px-4 mx-auto">
+          <motion.p variants={blurUp} className="lead-text text-center px-4 mx-auto" style={{ maxWidth: '600px' }}>
             {t.process.subtitle}
           </motion.p>
           <motion.div

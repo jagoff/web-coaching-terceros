@@ -176,11 +176,28 @@ export default function Results() {
                   fontSize: "clamp(0.75rem, 3vw, 0.95rem)",
                   lineHeight: 1.3,
                   color: "var(--text-primary)",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  maxWidth: "100%"
                 }}
               >
                 {stat.label}
               </h3>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+              <p 
+                className="text-xs px-2" 
+                style={{ 
+                  color: "var(--text-muted)",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  lineHeight: "1.3",
+                  maxHeight: "2.6em",
+                  maxWidth: "100%"
+                }}
+              >
                 {stat.description}
               </p>
             </motion.div>

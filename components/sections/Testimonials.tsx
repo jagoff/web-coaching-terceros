@@ -90,10 +90,12 @@ export default function Testimonials() {
         <div 
           className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl"
           style={{ background: 'radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%)' }}
+          suppressHydrationWarning={true}
         />
         <div 
           className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl"
           style={{ background: 'radial-gradient(circle, rgba(124, 107, 196, 0.1) 0%, transparent 70%)' }}
+          suppressHydrationWarning={true}
         />
       </div>
 

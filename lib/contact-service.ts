@@ -1,6 +1,6 @@
 /**
  * Contact Service - Maneja el envío de formularios de contacto
- * Usa Web3Forms como servicio principal con fallback a mailto
+ * Usa Resend como servicio principal con fallback a mailto
  */
 
 import devLog from './dev-logger';
@@ -19,14 +19,15 @@ export interface ContactResponse {
 }
 
 /**
- * Envía el formulario de contacto usando Web3Forms
- * Web3Forms es gratuito y no requiere backend
+ * Envía el formulario de contacto usando Resend
+ * Resend es un servicio de email moderno y confiable
  */
 export async function sendContactForm(data: ContactFormData): Promise<ContactResponse> {
-  const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
 
-  if (!WEB3FORMS_ACCESS_KEY) {
-    devLog.warn('[ContactService] NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is not set — using mailto fallback');
+  if (!RESEND_API_KEY || !CONTACT_EMAIL) {
+    devLog.warn('[ContactService] RESEND_API_KEY or CONTACT_EMAIL is not set — using mailto fallback');
     
     // Abrir cliente de email como fallback
     const mailtoLink = createMailtoLink(data);
@@ -45,7 +46,7 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
     nombre: data.nombre,
     email: data.email,
     mensajeLength: data.mensaje.length,
-    accessKey: WEB3FORMS_ACCESS_KEY.substring(0, 10) + '...'
+    toEmail: CONTACT_EMAIL
   });
 
   try {
@@ -59,28 +60,64 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
       throw new Error('Email inválido');
     }
 
-    // Preparar datos para Web3Forms
-    const formData = new FormData();
-    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-    formData.append('name', data.nombre);
-    formData.append('email', data.email);
-    formData.append('message', data.mensaje);
-    formData.append('subject', 'Nuevo contacto desde ELEVA CONSULTORIA');
-    formData.append('from_name', 'ELEVA CONSULTORIA Website');
-    formData.append('redirect', 'false'); // No redirigir, manejar respuesta en JSON
+    // Preparar email para Resend
+    const emailData = {
+      from: 'ELEVA CONSULTORIA Website <onboarding@resend.dev>',
+      to: [CONTACT_EMAIL],
+      reply_to: data.email,
+      subject: 'Nuevo contacto desde ELEVA CONSULTORIA',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+          <div style="background: linear-gradient(135deg, #FF6B35 0%, #C87B5A 50%, #7C6BC4 100%); padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 30px;">
+            <h1 style="color: white; margin: 0; font-size: 28px;">ELEVA CONSULTORIA</h1>
+            <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">Nuevo mensaje de contacto</p>
+          </div>
+          
+          <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; margin-bottom: 20px;">Información del Contacto</h2>
+            
+            <div style="margin-bottom: 20px;">
+              <strong style="color: #FF6B35;">Nombre:</strong><br>
+              <span style="color: #666;">${data.nombre}</span>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <strong style="color: #FF6B35;">Email:</strong><br>
+              <span style="color: #666;">${data.email}</span>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <strong style="color: #FF6B35;">Mensaje:</strong><br>
+              <span style="color: #666; white-space: pre-wrap;">${data.mensaje}</span>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+              <p style="color: #999; font-size: 12px; margin: 0;">
+                Este mensaje fue enviado desde el formulario de contacto de ELEVA CONSULTORIA<br>
+                Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'America/Argentina/Buenos_Aires' })}
+              </p>
+            </div>
+          </div>
+        </div>
+      `
+    };
 
-    // Enviar a Web3Forms
-    const response = await fetch('https://api.web3forms.com/submit', {
+    // Enviar a Resend
+    const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      body: formData,
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData),
     });
 
     const result = await response.json();
 
-    devLog.log('[ContactService] Respuesta de Web3Forms:', result);
+    devLog.log('[ContactService] Respuesta de Resend:', result);
 
-    if (!response.ok || !result.success) {
-      throw new Error(result.message || 'Error al enviar el formulario');
+    if (!response.ok) {
+      throw new Error(result.message || 'Error al enviar el email');
     }
 
     return {

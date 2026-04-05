@@ -28,14 +28,20 @@ export default function ProcessSimple() {
   return (
     <section style={{ padding: '4rem 2rem', background: '#1a1a1a', color: '#ffffff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-        <h2 style={{ 
-          fontSize: '2.5rem', 
-          fontWeight: 'bold', 
-          marginBottom: '1rem',
-          background: 'linear-gradient(45deg, #f59e0b, #d97706)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
-        }}>
+        <h2 
+          style={{ 
+            fontSize: '1.5rem', 
+            fontWeight: 'bold', 
+            marginBottom: '1rem',
+            background: 'linear-gradient(45deg, #f59e0b, #d97706)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textAlign: 'center',
+            maxWidth: '380px',
+            margin: '0 auto 1rem auto',
+            lineHeight: '1.2'
+          }}
+        >
           Estos son mis 4 pasos hacia la transformación positiva
         </h2>
         

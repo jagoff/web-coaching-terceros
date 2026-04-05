@@ -813,7 +813,7 @@ export const translations: Record<Language, Translations> = {
       badge: '¿Esto es para vos?',
       title: '¿Te encontrás en alguna de estas situaciones?',
       titleHighlight: '',
-      subtitle: 'Acompaño a líderes tech y founders que están en momentos clave. Si alguna de estas situaciones te resuena, podemos trabajar juntos.',
+      subtitle: 'Acompaño a <strong>líderes tech y founders</strong> que están en momentos clave. Si alguna de estas situaciones te resuena, podemos trabajar juntos.',
       cta: 'Quiero trabajar en esto',
       profiles: [
         {
@@ -824,7 +824,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           icon: '⚡',
-          title: 'Tu empresa crece pero los procesos no acompañan',
+          title: 'Tu empresa crece,\nlos procesos no acompañan',
           description: 'Lo que funcionaba con 5 personas ya no alcanza con 20. El equipo se descoordina, las prioridades se chocan y la velocidad que tenías antes se perdió.',
           pain: 'Escalar sin caos',
         },

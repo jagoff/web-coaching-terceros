@@ -150,9 +150,9 @@ export default function FAQ() {
                     aria-hidden="true"
                   >
                     {openIndex === i ? (
-                      <Minus size={18} style={{ color: "var(--gold-primary)" }} />
+                      <Minus size={18} style={{ color: "var(--gold-primary)" }} suppressHydrationWarning={true} />
                     ) : (
-                      <Plus size={18} style={{ color: "var(--gold-primary)" }} />
+                      <Plus size={18} style={{ color: "var(--gold-primary)" }} suppressHydrationWarning={true} />
                     )}
                   </motion.div>
                 </button>
@@ -172,6 +172,7 @@ export default function FAQ() {
                           lineHeight: 1.8,
                           color: "var(--text-secondary)",
                         }}
+                        suppressHydrationWarning={true}
                       >
                         {faq.answer}
                       </div>

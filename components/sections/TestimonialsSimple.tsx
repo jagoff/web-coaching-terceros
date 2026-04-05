@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, useInView, PanInfo } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { haptics } from "@/lib/haptics";
@@ -135,8 +135,8 @@ export default function TestimonialsSimple() {
   }, [goToPrevious, goToNext]);
 
   return (
-    <section id="testimonios" className="section section-dark">
-      <div className="container">
+    <section id="testimonios" className="section section-dark" style={{ position: 'relative', padding: '1rem 0.5rem' }}>
+      <div className="container" style={{ maxWidth: '90%', padding: '0', margin: '0 auto' }}>
         {/* Header */}
         <motion.div
           variants={headerStagger}
@@ -169,7 +169,7 @@ export default function TestimonialsSimple() {
         </motion.div>
 
         {/* Testimonial Carousel */}
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-xl mx-auto" style={{ width: '100%', padding: '0 0.5rem' }}>
           <div className="relative">
             {/* Testimonial Card */}
             <motion.div
@@ -182,29 +182,46 @@ export default function TestimonialsSimple() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="glass-card p-5 md:p-8 text-center cursor-grab active:cursor-grabbing relative"
+              className="glass-card p-6 md:p-8 text-center cursor-grab active:cursor-grabbing relative overflow-hidden"
+              style={{
+                minHeight: '450px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }}
             >
               {/* Rating - Centered */}
-              <div className="flex gap-1 mb-4 mt-2 justify-center">
+              <div className="flex gap-1 mb-4 mt-2 justify-center flex-shrink-0">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     size={18}
                     className={i < 4 ? "fill-current" : ""}
-                    style={{ color: "#FFD700" }}
+                    style={{ color: "#FFD700", flexShrink: 0 }}
                   />
                 ))}
               </div>
 
+              {/* Quote Icon */}
+              <div className="flex justify-center mb-3 flex-shrink-0" style={{ marginTop: '-0.5rem' }}>
+                <Quote 
+                  size={32} 
+                  style={{ color: "var(--gold-primary)", flexShrink: 0 }}
+                  aria-hidden="true"
+                />
+              </div>
+
               {/* Quote */}
-              <blockquote className="mb-5 text-center px-4 md:px-6" suppressHydrationWarning>
+              <blockquote className="mb-5 text-center px-4 md:px-6 flex-shrink-0" suppressHydrationWarning>
                 <p
-                  className="text-sm md:text-base mb-4 mx-auto"
+                  className="text-xs md:text-sm mb-4 mx-auto"
                   style={{ 
                     color: "var(--text-secondary)", 
                     textAlign: "center", 
-                    lineHeight: "1.6",
-                    maxWidth: "100%"
+                    lineHeight: "1.5",
+                    maxWidth: "100%",
+                    wordWrap: "break-word",
+                    overflowWrap: "break-word"
                   }}
                   suppressHydrationWarning
                 >
@@ -213,25 +230,47 @@ export default function TestimonialsSimple() {
               </blockquote>
 
               {/* Author */}
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center flex-shrink-0">
+                {/* Avatar */}
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mb-3 flex-shrink-0"
+                  style={{ background: currentTestimonial.avatarBg }}
+                >
+                  {currentTestimonial.initials}
+                </div>
                 <div className="text-center">
                   <h3
                     className="font-semibold text-lg"
-                    style={{ color: "var(--text-primary)" }}
+                    style={{ 
+                      color: "var(--text-primary)",
+                      wordWrap: "break-word",
+                      overflowWrap: "break-word",
+                      maxWidth: "100%"
+                    }}
                     suppressHydrationWarning
                   >
                     {currentTestimonial.name}
                   </h3>
                   <p
                     className="text-sm"
-                    style={{ color: "var(--text-muted)" }}
+                    style={{ 
+                      color: "var(--text-muted)",
+                      wordWrap: "break-word",
+                      overflowWrap: "break-word",
+                      maxWidth: "100%"
+                    }}
                     suppressHydrationWarning
                   >
                     {currentTestimonial.role}
                   </p>
                   <p
                     className="text-xs"
-                    style={{ color: "var(--text-muted)" }}
+                    style={{ 
+                      color: "var(--text-muted)",
+                      wordWrap: "break-word",
+                      overflowWrap: "break-word",
+                      maxWidth: "100%"
+                    }}
                     suppressHydrationWarning
                   >
                     {currentTestimonial.company}

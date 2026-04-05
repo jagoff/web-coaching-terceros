@@ -60,9 +60,8 @@ const baseImages = [
 ];
 
 const getImagePaths = (imageName: string) => {
-  // Usar imágenes optimizadas con soporte WebP
-  const originalPath = `/images/carousel/${imageName}`;
-  return originalPath; // Simplificado para desktop grid
+  // Usar WebP optimizado en lugar de PNG original
+  return `/images/carousel/${imageName.replace('.png', '.webp')}`;
 };
 
 export default function About() {
@@ -158,8 +157,9 @@ export default function About() {
                     <img
                       src="/images/ui/tv-icon.webp"
                       alt="TV Icon"
+                      loading="lazy"
                       className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
-                      style={{ 
+                      style={{
                         filter: 'brightness(1.1) contrast(1.1)',
                         opacity: 1,
                         transform: 'scale(1.2)'
@@ -261,7 +261,7 @@ export default function About() {
             </p>
 
             <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-              <span className="text-gradient">{t.about.certificaciones}</span>
+              <span className="web-underline">{t.about.certificaciones}</span>
             </h3>
 
             {/* Credentials with LinkedIn Button */}

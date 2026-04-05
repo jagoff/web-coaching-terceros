@@ -157,6 +157,7 @@ export default function Navbar() {
       <div 
         className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-900/20"
         style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
+        suppressHydrationWarning={true}
       >
         <div
           className="h-full transition-all duration-100 ease-out"
@@ -164,16 +165,11 @@ export default function Navbar() {
             background: 'linear-gradient(90deg, #87CEEB 0%, #ADD8E6 50%, #B0E0E6 100%)',
             width: `${scrollProgress}%`
           }}
+          suppressHydrationWarning={true}
         />
       </div>
 
-      {/* Navbar placeholder to prevent content jump */}
-      <motion.div 
-        style={{ 
-          height: visible ? '0px' : '88px', // Calculado: padding 1.5rem*2 + contenido ~44px
-          transition: 'height 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
-        }} 
-      />
+      {/* Navbar is position:fixed — no spacer needed, it doesn't affect document flow */}
       
       <AnimatePresence>
         {visible && (

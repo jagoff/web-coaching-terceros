@@ -58,10 +58,13 @@ export default function ForWho() {
           <motion.p
             variants={blurUp}
             className="lead-text mt-4 max-w-2xl mx-auto"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {t.forWho.subtitle}
-          </motion.p>
+            style={{ 
+              color: "var(--text-secondary)",
+              fontSize: "1.25rem",
+              lineHeight: "1.6"
+            }}
+            dangerouslySetInnerHTML={{ __html: t.forWho.subtitle }}
+          />
 
           <motion.div variants={dividerGrow} className="divider-gold mt-6" />
         </motion.div>

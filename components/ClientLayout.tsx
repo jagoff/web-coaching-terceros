@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const DynamicNavbar = dynamic(() => import("@/components/Navbar"), {
-  loading: () => <div className="h-16" />,
+  loading: () => null, // Navbar is position:fixed — no skeleton needed
 });
 
 const CursorGlow = dynamic(() => import("@/components/CursorGlow"), {

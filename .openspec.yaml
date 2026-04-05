@@ -1,4 +1,32 @@
 schema: spec-driven
 created: 2026-04-04
 project: coaching-landing
-version: "1.0"
+version: "1.1"
+
+# Component Standards
+components:
+  ui:
+    base: /openspec/specs/ui-components/
+    patterns: /openspec/specs/design-patterns/
+  sections:
+    hero: /openspec/specs/sections/hero/
+    about: /openspec/specs/sections/about/
+    contact: /openspec/specs/contact-system/
+    services: /openspec/specs/sections/services/
+  forms:
+    validation: /openspec/specs/forms/validation/
+    security: /openspec/specs/forms/security/
+
+# Development Standards
+development:
+  mobile_first: true
+  accessibility: WCAG-AA
+  performance: Lighthouse-90+
+  testing: vitest + playwright
+
+# Build Requirements
+build:
+  static_export: true
+  isr_revalidate: 1h
+  bundle_optimization: true
+  image_optimization: true

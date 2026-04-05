@@ -1,4 +1,9 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export default function AboutComplete() {
+  const { t } = useLanguage();
   const credentials = [
     "Advanced Certified ScrumMaster",
     "Advanced Certified Scrum Product Owner (ACSPO)",
@@ -11,7 +16,7 @@ export default function AboutComplete() {
   ];
 
   return (
-    <section style={{ padding: '4rem 2rem', background: '#0f0f0f', color: '#ffffff' }}>
+    <section className="about-section" style={{ padding: '4rem 2rem', background: '#0f0f0f', color: '#ffffff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
         <h2 style={{ 
           fontSize: '2.5rem', 
@@ -49,13 +54,22 @@ export default function AboutComplete() {
           </p>
         </div>
 
-        <h3 style={{ 
-          fontSize: '2rem', 
-          fontWeight: '600', 
-          marginBottom: '2rem',
-          color: '#ffffff'
-        }}>
-          Certificaciones internacionales comprobables
+        <h3 
+          style={{ 
+            fontSize: '2rem', 
+            fontWeight: '600', 
+            marginBottom: '2rem',
+            color: '#ffffff'
+          }}
+        >
+          <span style={{
+            background: 'linear-gradient(135deg, #7C6BC4 0%, #C87B5A 50%, #FF6B35 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            position: 'relative',
+            display: 'inline'
+          }}>Certificaciones internacionales comprobables</span>
         </h3>
         
         <div style={{ marginBottom: '2rem' }}>

@@ -138,10 +138,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
     <section
       id="inicio"
       ref={sectionRef}
-      className="hero-bg relative flex min-h-screen flex-col items-center overflow-hidden"
+      className="hero-bg hero-section-scroll relative flex min-h-screen flex-col items-center overflow-hidden"
       style={{ 
-        paddingTop: "clamp(2.25rem, 6vh, 4.25rem)",
-        position: "relative"
+        paddingTop: "clamp(2.25rem, 6vh, 4.25rem)"
       }}
       aria-label="Sección principal"
     >
@@ -204,7 +203,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text"
-                }}>Escalá</span> sin límites.</>
+                }} suppressHydrationWarning={true}>Escalá</span> sin límites.</>
               ) : (
                 <>Scale <span className="text-gradient">without limits</span>.</>
               )}
@@ -228,8 +227,12 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               backdropFilter: "none",
               border: "1px solid rgba(124,107,196,0.12)",
               boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.4)",
-              position: "relative"
+              position: "relative",
+              opacity: 0,
+              filter: "blur(8px)",
+              transform: "translateY(60px)"
             }}
+            suppressHydrationWarning={true}
           >
             {/* Subtle gold radial glow behind */}
             <div
@@ -240,6 +243,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 filter: "blur(50px)",
               }}
               aria-hidden="true"
+              suppressHydrationWarning={true}
             />
             <div className="flex items-center justify-between gap-4 h-full">
               <div className="flex-shrink-0">
@@ -256,7 +260,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 />
               </div>
               <div className="flex-1">
-                <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }}>
+                <p className="text-base uppercase tracking-widest mb-2" style={{ color: "var(--text-muted)", letterSpacing: "0.15em" }} suppressHydrationWarning={true}>
                   {renderLanguage === 'es' ? '¿Te suena esto?' : 'Does this sound familiar?'}
                 </p>
                 <div className="flex items-center justify-center" style={{ minHeight: "2.5rem" }}>
@@ -277,6 +281,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                         fontSize: "clamp(1.3rem, 2.7vw, 1.7rem)",
                         textAlign: "center"
                       }}
+                      suppressHydrationWarning={true}
                       dangerouslySetInnerHTML={{ 
                         __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : (renderLanguage === 'en' ? 'My team doesn\'t make <span class=\'web-underline\'>decisions</span> without me' : 'Mi equipo no toma <span class=\'web-underline\'>decisiones</span> sin mí')}&rdquo;` 
                       }}
@@ -298,6 +303,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               lineHeight: 1.85,
               color: "#F8F7FF"
             }}
+            suppressHydrationWarning={true}
           >
             {renderLanguage === 'es' 
               ? 'Te acompaño a construir equipos autónomos, procesos que escalen, y una cultura que retenga y desafie al talento.'
@@ -340,7 +346,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             variants={revealUp}
             className="flex items-center justify-center mt-12 sm:mt-20 pb-16"
           >
-            <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }}>
+            <p className="text-sm leading-relaxed text-center" style={{ color: "var(--text-muted)" }} suppressHydrationWarning={true}>
               {renderLanguage === 'es' 
                 ? 'Más de 20 años en tecnología · 10+ años de coaching'
                 : 'Over 20 years in technology · 10+ years of agile consulting'
@@ -367,6 +373,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             border: "2px solid var(--text-muted)",
             transition: "border-color 0.3s",
           }}
+          suppressHydrationWarning={true}
         >
           <motion.div
             className="absolute left-1/2 -translate-x-1/2 rounded-full"
@@ -376,6 +383,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               top: 6,
               background: "var(--gold-primary)",
             }}
+            suppressHydrationWarning={true}
             animate={{ y: [0, 14, 0], opacity: [1, 0.3, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />

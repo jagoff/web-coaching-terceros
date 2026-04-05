@@ -1,4 +1,9 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export default function ForWhoSimple() {
+  const { t } = useLanguage();
   const profiles = [
     {
       icon: '🚀',
@@ -8,7 +13,7 @@ export default function ForWhoSimple() {
     },
     {
       icon: '⚡',
-      title: 'Tu empresa crece pero los procesos no acompañan',
+      title: 'Tu empresa crece,\nlos procesos no acompañan',
       description: 'Lo que funcionaba con 5 personas ya no alcanza con 20. El equipo se descoordina, las prioridades se chocan y la velocidad que tenías antes se perdió.',
       pain: 'Escalar sin caos',
     },
@@ -52,13 +57,13 @@ export default function ForWhoSimple() {
           maxWidth: '600px', 
           margin: '0 auto 3rem',
           lineHeight: '1.6'
-        }}>
-          Acompaño a líderes tech y founders que están en momentos clave. Si alguna de estas situaciones te resuena, podemos trabajar juntos.
-        </p>
+        }}
+        dangerouslySetInnerHTML={{ __html: t.forWho.subtitle }}
+        />
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', 
           gap: '2rem',
           marginTop: '3rem'
         }}>
@@ -77,10 +82,11 @@ export default function ForWhoSimple() {
                 {profile.icon}
               </div>
               <h3 style={{ 
-                fontSize: '1.25rem', 
+                fontSize: '1.1rem',  // Reducido de 1.25rem a 1.1rem
                 fontWeight: '600', 
                 marginBottom: '1rem',
-                color: '#ffffff'
+                color: '#ffffff',
+                whiteSpace: 'pre-line'
               }}>
                 {profile.title}
               </h3>
@@ -103,8 +109,9 @@ export default function ForWhoSimple() {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 maxWidth: '100%',
-                minWidth: 'fit-content'
-              }}>
+                minWidth: 'fit-content',
+                margin: '0 auto'
+              }} className="mx-auto">
                 {profile.pain}
               </div>
             </div>
