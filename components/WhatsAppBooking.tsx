@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function WhatsAppBooking() {
   const { t } = useLanguage()
-  const [showBadge, setShowBadge] = useState(true)
+  const [showBadge] = useState(true)
 
   const phoneNumber = '5493425153999'
   const message = encodeURIComponent(t.whatsapp.message)
@@ -21,39 +21,39 @@ export default function WhatsAppBooking() {
       aria-label={t.whatsapp.ariaLabel}
       className="whatsapp-fab flex items-center justify-center text-white shadow-lg relative"
       style={{ backgroundColor: '#25D366', width: '64px', height: '64px' }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.1,
-        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3)'
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3)',
       }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
     >
       <motion.div
         animate={{ rotate: [0, 10, -10, 0] }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity, 
+        transition={{
+          duration: 2,
+          repeat: Infinity,
           repeatDelay: 3,
-          ease: 'easeInOut'
+          ease: 'easeInOut',
         }}
       >
         <MessageCircle size={24} />
       </motion.div>
-      
+
       {/* Notification badge */}
       <AnimatePresence>
         {showBadge && (
           <motion.span
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ 
-              scale: 1, 
+            animate={{
+              scale: 1,
               opacity: 1,
-              transition: { type: 'spring', stiffness: 300, damping: 20 }
+              transition: { type: 'spring', stiffness: 300, damping: 20 },
             }}
-            exit={{ 
-              scale: 0, 
+            exit={{
+              scale: 0,
               opacity: 0,
-              transition: { duration: 0.2 }
+              transition: { duration: 0.2 },
             }}
             className="whatsapp-badge"
             style={{

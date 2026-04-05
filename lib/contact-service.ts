@@ -129,9 +129,6 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
   } catch (error) {
     devLog.error('[ContactService] Error:', error)
 
-    // Fallback: crear mailto link
-    const mailtoLink = createMailtoLink(data)
-
     return {
       success: false,
       message:

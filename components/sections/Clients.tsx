@@ -52,8 +52,10 @@ export default function Clients() {
   }, [])
 
   // Use consistent text during SSR and hydration
-  const labelText = mounted 
-    ? (language === 'es' ? 'Empresas que confían en ELEVA' : 'Companies that trust ELEVA')
+  const labelText = mounted
+    ? language === 'es'
+      ? 'Empresas que confían en ELEVA'
+      : 'Companies that trust ELEVA'
     : 'Empresas que confían en ELEVA'
 
   return (

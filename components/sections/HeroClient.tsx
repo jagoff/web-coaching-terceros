@@ -35,7 +35,6 @@ const lineGrow: Variants = {
   },
 }
 
-
 export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Language }) {
   const { language, t } = useLanguage()
   const [mounted, setMounted] = useState(false)
@@ -118,165 +117,164 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             paddingBottom: 'clamp(32px, 5vh, 60px)',
           }}
         >
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center w-full"
-        >
-          {/* Headline — each line reveals separately */}
-          <h1
-            className="display-text max-w-5xl mb-3 sm:mb-4"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              lineHeight: '1.15',
-              fontSize: 'clamp(2.0625rem, 4.7vw, 3.5625rem)',
-            }}
-          >
-            <motion.span variants={revealUp} className="block">
-              {displayLanguage === 'es' ? (
-                <>
-                  <span className="text-gradient">Transformá</span> tu equipo.
-                </>
-              ) : (
-                <>
-                  <span className="text-gradient">Transform</span> your team.
-                </>
-              )}
-            </motion.span>
-            <motion.span variants={revealUp} className="block text-gradient mt-3">
-              {displayLanguage === 'es' ? 'Liderá tu empresa.' : 'Lead with purpose.'}
-            </motion.span>
-            <motion.span variants={revealUp} className="block mt-3">
-              {displayLanguage === 'es' ? (
-                <>
-                  {' '}
-                  <span
-                    style={{
-                      background: 'linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                    suppressHydrationWarning={true}
-                  >
-                    Escalá
-                  </span>{' '}
-                  sin límites.
-                </>
-              ) : (
-                <>
-                  Scale <span className="text-gradient">without limits</span>.
-                </>
-              )}
-            </motion.span>
-          </h1>
-
-          {/* Decorative line */}
           <motion.div
-            variants={lineGrow}
-            className="divider-gold mb-6"
-            style={{ width: '80px', height: '3px' }}
-          />
-
-          {/* Rotating pain-point phrases */}
-          <motion.div
-            variants={revealUp}
-            className="relative w-full max-w-lg mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl mx-auto"
-            style={{
-              height: '9.5rem', // Extended height to cover 3 lines properly
-              background: '#000000',
-              border: '1px solid rgba(124,107,196,0.12)',
-              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.4)',
-              position: 'relative',
-            }}
-            suppressHydrationWarning={true}
+            variants={stagger}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-center w-full"
           >
-            {/* Subtle gold radial glow behind */}
-            <div
-              className="absolute inset-0 -z-10 rounded-2xl"
+            {/* Headline — each line reveals separately */}
+            <h1
+              className="display-text max-w-5xl mb-3 sm:mb-4"
               style={{
-                background:
-                  'radial-gradient(ellipse at center, rgba(124,107,196,0.01) 0%, transparent 40%)',
-                transform: 'scale(1.8)',
-                filter: 'blur(50px)',
+                fontFamily: 'var(--font-heading)',
+                lineHeight: '1.15',
+                fontSize: 'clamp(2.0625rem, 4.7vw, 3.5625rem)',
               }}
-              aria-hidden="true"
-              suppressHydrationWarning={true}
-            />
-            <div className="flex items-center justify-between gap-4 h-full">
-              <div className="flex-shrink-0">
-                <OptimizedImage
-                  src={getOptimizedImagePath('/images/ui/this-is-fine-meme.png').src}
-                  webpSrc={getOptimizedImagePath('/images/ui/this-is-fine-meme.png').webpSrc}
-                  fallbackSrc={
-                    getOptimizedImagePath('/images/ui/this-is-fine-meme.png').fallbackSrc
-                  }
-                  alt="Meme de un perro sentado en una oficina en llamas con el lema 'This is fine', representando equipos tech abrumados por problemas de procesos y comunicación"
-                  width={72}
-                  height={72}
-                  className="w-16 h-16 object-cover rounded-full opacity-100"
-                  priority={true}
-                  lazy={false}
-                />
-              </div>
-              <div className="flex-1">
-                <p
-                  className="text-base uppercase tracking-widest mb-2"
-                  style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}
-                  suppressHydrationWarning={true}
-                >
-                  {displayLanguage === 'es' ? '¿Te suena esto?' : 'Does this sound familiar?'}
-                </p>
-                <div className="flex items-center justify-center" style={{ minHeight: '2.5rem' }}>
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={phraseIndex}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                      className="lead-text italic"
+            >
+              <motion.span variants={revealUp} className="block">
+                {displayLanguage === 'es' ? (
+                  <>
+                    <span className="text-gradient">Transformá</span> tu equipo.
+                  </>
+                ) : (
+                  <>
+                    <span className="text-gradient">Transform</span> your team.
+                  </>
+                )}
+              </motion.span>
+              <motion.span variants={revealUp} className="block text-gradient mt-3">
+                {displayLanguage === 'es' ? 'Liderá tu empresa.' : 'Lead with purpose.'}
+              </motion.span>
+              <motion.span variants={revealUp} className="block mt-3">
+                {displayLanguage === 'es' ? (
+                  <>
+                    {' '}
+                    <span
                       style={{
-                        background:
-                          'linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)',
+                        background: 'linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
-                        fontFamily: 'var(--font-heading)',
-                        fontSize: 'clamp(1.3rem, 2.7vw, 1.7rem)',
-                        textAlign: 'center',
                       }}
                       suppressHydrationWarning={true}
-                      dangerouslySetInnerHTML={{
-                        __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : displayLanguage === 'en' ? "My team doesn't make <span class='web-underline'>decisions</span> without me" : "Mi equipo no toma <span class='web-underline'>decisiones</span> sin mí"}&rdquo;`,
-                      }}
-                    />
-                  </AnimatePresence>
+                    >
+                      Escalá
+                    </span>{' '}
+                    sin límites.
+                  </>
+                ) : (
+                  <>
+                    Scale <span className="text-gradient">without limits</span>.
+                  </>
+                )}
+              </motion.span>
+            </h1>
+
+            {/* Decorative line */}
+            <motion.div
+              variants={lineGrow}
+              className="divider-gold mb-6"
+              style={{ width: '80px', height: '3px' }}
+            />
+
+            {/* Rotating pain-point phrases */}
+            <motion.div
+              variants={revealUp}
+              className="relative w-full max-w-lg mb-4 sm:mb-6 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl mx-auto"
+              style={{
+                height: '9.5rem', // Extended height to cover 3 lines properly
+                background: '#000000',
+                border: '1px solid rgba(124,107,196,0.12)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.4)',
+                position: 'relative',
+              }}
+              suppressHydrationWarning={true}
+            >
+              {/* Subtle gold radial glow behind */}
+              <div
+                className="absolute inset-0 -z-10 rounded-2xl"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at center, rgba(124,107,196,0.01) 0%, transparent 40%)',
+                  transform: 'scale(1.8)',
+                  filter: 'blur(50px)',
+                }}
+                aria-hidden="true"
+                suppressHydrationWarning={true}
+              />
+              <div className="flex items-center justify-between gap-4 h-full">
+                <div className="flex-shrink-0">
+                  <OptimizedImage
+                    src={getOptimizedImagePath('/images/ui/this-is-fine-meme.png').src}
+                    webpSrc={getOptimizedImagePath('/images/ui/this-is-fine-meme.png').webpSrc}
+                    fallbackSrc={
+                      getOptimizedImagePath('/images/ui/this-is-fine-meme.png').fallbackSrc
+                    }
+                    alt="Meme de un perro sentado en una oficina en llamas con el lema 'This is fine', representando equipos tech abrumados por problemas de procesos y comunicación"
+                    width={72}
+                    height={72}
+                    className="w-16 h-16 object-cover rounded-full opacity-100"
+                    priority={true}
+                    lazy={false}
+                  />
+                </div>
+                <div className="flex-1">
+                  <p
+                    className="text-base uppercase tracking-widest mb-2"
+                    style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}
+                    suppressHydrationWarning={true}
+                  >
+                    {displayLanguage === 'es' ? '¿Te suena esto?' : 'Does this sound familiar?'}
+                  </p>
+                  <div className="flex items-center justify-center" style={{ minHeight: '2.5rem' }}>
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={phraseIndex}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="lead-text italic"
+                        style={{
+                          background:
+                            'linear-gradient(135deg, var(--text-primary) 0%, var(--gold-primary) 100%)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                          fontFamily: 'var(--font-heading)',
+                          fontSize: 'clamp(1.3rem, 2.7vw, 1.7rem)',
+                          textAlign: 'center',
+                        }}
+                        suppressHydrationWarning={true}
+                        dangerouslySetInnerHTML={{
+                          __html: `&ldquo;${mounted ? rotatingPhrases[phraseIndex] : displayLanguage === 'en' ? "My team doesn't make <span class='web-underline'>decisions</span> without me" : "Mi equipo no toma <span class='web-underline'>decisiones</span> sin mí"}&rdquo;`,
+                        }}
+                      />
+                    </AnimatePresence>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
+
+            {/* Subheadline */}
+            <motion.p
+              variants={revealUp}
+              className="max-w-2xl mb-8 sm:mb-12"
+              style={{
+                fontFamily: 'var(--font-modern)',
+                fontWeight: 400,
+                fontSize: 'clamp(1.25rem, 2.2vw, 1.4rem)',
+                lineHeight: 1.85,
+                color: '#F8F7FF',
+              }}
+              suppressHydrationWarning={true}
+            >
+              {displayLanguage === 'es'
+                ? 'Te acompaño a construir equipos autónomos, procesos que escalen, y una cultura que retenga y desafie al talento.'
+                : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'}
+            </motion.p>
           </motion.div>
-
-          {/* Subheadline */}
-          <motion.p
-            variants={revealUp}
-            className="max-w-2xl mb-8 sm:mb-12"
-            style={{
-              fontFamily: 'var(--font-modern)',
-              fontWeight: 400,
-              fontSize: 'clamp(1.25rem, 2.2vw, 1.4rem)',
-              lineHeight: 1.85,
-              color: '#F8F7FF',
-            }}
-            suppressHydrationWarning={true}
-          >
-            {displayLanguage === 'es'
-              ? 'Te acompaño a construir equipos autónomos, procesos que escalen, y una cultura que retenga y desafie al talento.'
-              : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'}
-          </motion.p>
-
-        </motion.div>
 
           {/* CTAs — animación independiente, visible a los ~300ms sin esperar el stagger */}
           <motion.div

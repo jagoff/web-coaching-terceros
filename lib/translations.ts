@@ -426,7 +426,8 @@ export const translations: Record<Language, Translations> = {
   </p>
 </div>`,
       approach: '',
-      certificaciones: '<span class="web-underline">Certificaciones internacionales comprobables</span>',
+      certificaciones:
+        '<span class="web-underline">Certificaciones internacionales comprobables</span>',
       stats: {
         tecnologia: 'Años en tecnología',
         coaching: 'Años de coaching ágil',

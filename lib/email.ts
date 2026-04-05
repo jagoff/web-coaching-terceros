@@ -256,7 +256,6 @@ export async function sendContactEmail(data: ContactFormData): Promise<SendEmail
     const { Resend } = await import('resend')
     const resend = new Resend(apiKey)
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'tu sitio web'
     const fromAddress = `ELEVA CONSULTORIA <onboarding@resend.dev>`
 
     // Enviar confirmación al cliente y notificación al coach en paralelo

@@ -67,7 +67,7 @@ export function ParallaxHeroImages({ images, className = '' }: ParallaxHeroImage
       <div className="grid grid-cols-3 gap-3 md:gap-4 w-full p-2">
         {images.slice(0, 15).map((src, index) => {
           const depth = (index % 3) + 1
-          const { x: moveX, y: moveY } = getTransformForDepth(depth)
+          const { x: moveX } = getTransformForDepth(depth)
 
           return (
             <motion.div
@@ -89,7 +89,7 @@ export function ParallaxHeroImages({ images, className = '' }: ParallaxHeroImage
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center' }}
                   loading="lazy"
-                  onError={e => {
+                  onError={_e => {
                     if (process.env.NODE_ENV === 'development') {
                       logger.error(`Image failed to load: ${src}`, {
                         component: 'parallax-hero-images',

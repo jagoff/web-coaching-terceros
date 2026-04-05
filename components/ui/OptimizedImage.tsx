@@ -58,19 +58,6 @@ export default function OptimizedImage({
     return () => observer.disconnect()
   }, [lazy, priority, isInView])
 
-  // Generar blur placeholder
-  const generateBlurDataURL = (width: number, height: number) => {
-    const canvas = document.createElement('canvas')
-    canvas.width = width
-    canvas.height = height
-    const ctx = canvas.getContext('2d')
-    if (ctx) {
-      ctx.fillStyle = '#1a1a1a'
-      ctx.fillRect(0, 0, width, height)
-    }
-    return canvas.toDataURL()
-  }
-
   const handleLoad = () => {
     setIsLoaded(true)
     onLoadCallback?.()
