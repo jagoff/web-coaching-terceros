@@ -2,7 +2,7 @@
   "buildCommand": "npm run build:export",
   "outputDirectory": "out",
   "framework": null,
-  "installCommand": "npm ci --force",
+  "installCommand": "npm ci --force --include=dev",
   "devCommand": "npm run dev",
   "regions": ["iad1"],
   "build": {
