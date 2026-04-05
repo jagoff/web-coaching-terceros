@@ -163,47 +163,6 @@ export default function Testimonials() {
                       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
                     }}
                   >
-                    {/* Previous Button - Left Side of Card */}
-                    <button
-                      onClick={prev}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center testimonial-nav-btn group z-20"
-                      style={{ 
-                        width: 40, 
-                        height: 40,
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)'
-                      }}
-                      aria-label={t.testimonialsNav.ariaPrevious}
-                    >
-                      <ChevronLeft 
-                        size={18} 
-                        className="transition-transform duration-300 group-hover:-translate-x-1"
-                        style={{ color: 'var(--gold-primary)' }}
-                      />
-                    </button>
-
-                    {/* Next Button - Right Side of Card */}
-                    <button
-                      onClick={next}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center testimonial-nav-btn group z-20"
-                      style={{ 
-                        width: 40, 
-                        height: 40,
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)'
-                      }}
-                      aria-label={t.testimonialsNav.ariaNext}
-                    >
-                      <ChevronRight 
-                        size={18} 
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                        style={{ color: 'var(--gold-primary)' }}
-                      />
-                    </button>
                     {/* Quote icon */}
                     <div className="absolute top-4 right-4 opacity-20">
                       <Quote 
