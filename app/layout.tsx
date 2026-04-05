@@ -7,6 +7,7 @@ import ClientLayout from '@/components/ClientLayout'
 import AnalyticsScripts from '@/components/AnalyticsScripts'
 import Hreflang from '@/components/Hreflang'
 import LangAttribute from '@/components/LangAttribute'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -174,6 +175,7 @@ export default function RootLayout({
           <ClientLayout>
             <AnalyticsScripts />
             {children}
+            <Analytics />
           </ClientLayout>
         </LanguageProvider>
       </body>
