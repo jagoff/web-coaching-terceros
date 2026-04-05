@@ -173,7 +173,7 @@ export default function Testimonials() {
 
                     {/* Quote */}
                     <blockquote
-                      className="text-xs md:text-xs leading-relaxed flex-1 mb-6"
+                      className="text-xs md:text-xs leading-relaxed flex-1 mb-4"
                       style={{
                         color: "var(--text-secondary)",
                         fontStyle: "italic",
