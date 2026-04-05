@@ -1,58 +1,56 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { Search, Compass, Zap, Star } from "lucide-react";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useRef } from 'react'
+import { motion, useInView, type Variants } from 'framer-motion'
+import { Search, Compass, Zap, Star } from 'lucide-react'
+import { headerStagger, blurUp, dividerGrow } from '@/lib/animations'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const stepReveal: Variants = {
-  hidden: { opacity: 0, y: 50, rotateY: -8, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 50, rotateY: -8 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     rotateY: 0,
-    filter: "blur(0px)",
     transition: {
       duration: 0.7,
       delay: 0.35 + i * 0.15,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
-};
-
+}
 
 export default function Process() {
-  const { t } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLanguage()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   const steps = [
     {
-      number: "01",
+      number: '01',
       icon: Search,
       title: t.process.steps.diagnostico.title,
       description: t.process.steps.diagnostico.description,
     },
     {
-      number: "02",
+      number: '02',
       icon: Compass,
       title: t.process.steps.diseno.title,
       description: t.process.steps.diseno.description,
     },
     {
-      number: "03",
+      number: '03',
       icon: Zap,
       title: t.process.steps.ejecucion.title,
       description: t.process.steps.ejecucion.description,
     },
     {
-      number: "04",
+      number: '04',
       icon: Star,
       title: t.process.steps.autonomia.title,
       description: t.process.steps.autonomia.description,
     },
-  ];
+  ]
 
   return (
     <section id="proceso" className="section section-surface section-gold-border-top" ref={ref}>
@@ -61,7 +59,7 @@ export default function Process() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="text-center mb-8 md:mb-12 max-w-3xl mx-auto"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
@@ -70,19 +68,20 @@ export default function Process() {
           <motion.h2
             variants={blurUp}
             className="heading-xl mb-4"
-            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 3.5vw, 2.3rem)" }}
+            style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem, 3.5vw, 2.3rem)' }}
           >
             {t.process.title}
             <br />
             <span className="text-gradient">{t.process.title2}</span> {t.process.title3}
           </motion.h2>
-          <motion.p variants={blurUp} className="lead-text text-center px-4 mx-auto" style={{ maxWidth: '600px' }}>
+          <motion.p
+            variants={blurUp}
+            className="lead-text text-center px-4 mx-auto"
+            style={{ maxWidth: '600px' }}
+          >
             {t.process.subtitle}
           </motion.p>
-          <motion.div
-            variants={dividerGrow}
-            className="divider-gold mt-6"
-          />
+          <motion.div variants={dividerGrow} className="divider-gold mt-6" />
         </motion.div>
 
         {/* Steps — desktop horizontal / mobile vertical */}
@@ -96,46 +95,51 @@ export default function Process() {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 1.2, delay: 0.6, ease: [0, 0, 0.2, 1] as [number, number, number, number] }}
+              transition={{
+                duration: 1.2,
+                delay: 0.6,
+                ease: [0, 0, 0.2, 1] as [number, number, number, number],
+              }}
               className="step-connector mx-auto"
               style={{
-                width: "calc(100% - 120px)",
-                marginLeft: "60px",
-                transformOrigin: "left",
+                width: 'calc(100% - 120px)',
+                marginLeft: '60px',
+                transformOrigin: 'left',
               }}
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 relative z-10">
             {steps.map((step, i) => {
-              const Icon = step.icon;
+              const Icon = step.icon
               return (
                 <motion.div
                   key={step.number}
                   custom={i}
                   variants={stepReveal}
                   initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
+                  animate={isInView ? 'visible' : 'hidden'}
                   className="process-step glass-card-sm group p-6"
-                  style={{ perspective: "600px" }}
+                  style={{ perspective: '600px' }}
                   whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
                   {/* Ghost number */}
-                  <span 
-                    className="step-number" 
+                  <span
+                    className="step-number"
                     aria-hidden="true"
                     style={{
-                      background: i === 0 
-                        ? "linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%)"
-                        : i === 1
-                        ? "linear-gradient(135deg, #8B7BD4 0%, #D4956A 55%, #A89FE8 100%)"
-                        : i === 2
-                        ? "linear-gradient(135deg, #9A8BE4 0%, #E0A57A 55%, #B3AFF8 100%)"
-                        : "linear-gradient(135deg, #A99BF4 0%, #ECB58A 55%, #BEBFFF 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
+                      background:
+                        i === 0
+                          ? 'linear-gradient(135deg, #7C6BC4 0%, #C87B5A 55%, #9D8FD8 100%)'
+                          : i === 1
+                            ? 'linear-gradient(135deg, #8B7BD4 0%, #D4956A 55%, #A89FE8 100%)'
+                            : i === 2
+                              ? 'linear-gradient(135deg, #9A8BE4 0%, #E0A57A 55%, #B3AFF8 100%)'
+                              : 'linear-gradient(135deg, #A99BF4 0%, #ECB58A 55%, #BEBFFF 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
                     }}
                   >
                     {step.number}
@@ -145,31 +149,30 @@ export default function Process() {
                   <motion.div
                     className="step-icon group"
                     whileHover={{ scale: 1.15, rotate: -5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 12 }}
                   >
-                    <Icon 
-                      size={22} 
-                      strokeWidth={1.5} 
+                    <Icon
+                      size={22}
+                      strokeWidth={1.5}
                       className="transition-all duration-300 group-hover:text-[var(--gold-primary)] group-hover:drop-shadow-[0_0_12px_rgba(255,107,53,0.8)] group-hover:drop-shadow-[0_0_20px_rgba(255,123,90,0.4)]"
                     />
                   </motion.div>
 
-                  
                   <h3
                     className="text-lg font-semibold mb-5"
-                    style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}
+                    style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}
                   >
                     {step.title}
                   </h3>
 
-                  <p 
-                    className="leading-relaxed" 
-                    style={{ 
-                      fontFamily: "var(--font-roboto)",
+                  <p
+                    className="leading-relaxed"
+                    style={{
+                      fontFamily: 'var(--font-roboto)',
                       fontWeight: 400,
-                      color: "var(--text-muted)", 
-                      lineHeight: "2.0",
-                      fontSize: "24px"
+                      color: 'var(--text-muted)',
+                      lineHeight: '2.0',
+                      fontSize: '24px',
                     }}
                   >
                     {step.description}
@@ -180,17 +183,17 @@ export default function Process() {
                     <div
                       className="sm:hidden mx-auto mt-4 w-px h-8 opacity-30"
                       style={{
-                        background: "linear-gradient(180deg, var(--gold-primary), transparent)",
+                        background: 'linear-gradient(180deg, var(--gold-primary), transparent)',
                       }}
                       aria-hidden="true"
                     />
                   )}
                 </motion.div>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Instagram } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
-import ConversationalContactForm from "./Contact/ConversationalContactForm";
-import ContactSidebar from "./Contact/ContactSidebar";
+import { useRef } from 'react'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { Instagram } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { headerStagger, blurUp, dividerGrow } from '@/lib/animations'
+import ConversationalContactForm from './Contact/ConversationalContactForm'
+import ContactSidebar from './Contact/ContactSidebar'
 
 export default function Contact() {
-  const { language } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const orbY = useTransform(scrollYProgress, [0, 1], [80, -40]);
+  const { language } = useLanguage()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const orbY = useTransform(scrollYProgress, [0, 1], [80, -40])
 
   return (
     <section
@@ -22,8 +22,8 @@ export default function Contact() {
       ref={ref}
       style={{
         background:
-          "radial-gradient(ellipse at 50% 100%, rgba(124,107,196,0.08) 0%, transparent 60%), var(--dark-surface)",
-        paddingBottom: "clamp(1rem, 2vw, 1.5rem)",
+          'radial-gradient(ellipse at 50% 100%, rgba(124,107,196,0.08) 0%, transparent 60%), var(--dark-surface)',
+        paddingBottom: 'clamp(1rem, 2vw, 1.5rem)',
       }}
     >
       {/* Decorative orb */}
@@ -32,9 +32,9 @@ export default function Contact() {
         style={{
           width: 400,
           height: 400,
-          bottom: "-20%",
-          right: "50%",
-          x: "50%",
+          bottom: '-20%',
+          right: '50%',
+          x: '50%',
           y: orbY,
           opacity: 0.5,
         }}
@@ -46,26 +46,26 @@ export default function Contact() {
         <motion.div
           variants={headerStagger}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="text-center mb-8 md:mb-12"
         >
           <motion.div variants={blurUp} className="flex justify-center mb-6">
             <span className="badge">
-              {language === "es" ? "Contacto Directo" : "Direct Contact"}
+              {language === 'es' ? 'Contacto Directo' : 'Direct Contact'}
             </span>
           </motion.div>
           <motion.h2
             variants={blurUp}
             className="heading-xl text-center px-4"
             style={{
-              fontFamily: "var(--font-heading)",
-              fontSize: "clamp(1.75rem, 5vw, 2.5rem)",
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(1.75rem, 5vw, 2.5rem)',
               lineHeight: 1.2,
             }}
           >
-            {language === "es" ? "Comenzá tu" : "Start your"}{" "}
+            {language === 'es' ? 'Comenzá tu' : 'Start your'}{' '}
             <span className="text-gradient">
-              {language === "es" ? "Transformación" : "Transformation"}
+              {language === 'es' ? 'Transformación' : 'Transformation'}
             </span>
           </motion.h2>
           <motion.div variants={dividerGrow} className="divider-gold mt-6" />
@@ -98,24 +98,24 @@ export default function Contact() {
                col-span-full  → full width on mobile (single column)       ── */}
           <div
             className="flex items-center justify-between gap-3 pt-4 lg:col-start-2 self-end"
-            style={{ borderTop: "1px solid var(--dark-border)" }}
+            style={{ borderTop: '1px solid var(--dark-border)' }}
           >
             <div className="flex items-center gap-1.5">
               <span
                 className="text-gradient font-black tracking-tight"
-                style={{ fontFamily: "var(--font-heading)", fontSize: "0.85rem" }}
+                style={{ fontFamily: 'var(--font-heading)', fontSize: '0.85rem' }}
               >
                 ELEVA
               </span>
               <span
                 className="text-xs font-semibold uppercase tracking-widest"
-                style={{ color: "var(--text-muted)" }}
+                style={{ color: 'var(--text-muted)' }}
               >
-                {language === "es" ? "CONSULTORIA" : "CONSULTING"}
+                {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
               </span>
             </div>
 
-            <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
               © 2026
             </p>
 
@@ -126,17 +126,17 @@ export default function Contact() {
               aria-label="Instagram de ELEVA Consultoria"
               className="w-7 h-7 rounded-full flex items-center justify-center transition-all"
               style={{
-                background: "rgba(124,107,196,0.1)",
-                border: "1px solid var(--gold-border)",
-                color: "var(--gold-primary)",
+                background: 'rgba(124,107,196,0.1)',
+                border: '1px solid var(--gold-border)',
+                color: 'var(--gold-primary)',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(124,107,196,0.2)";
-                e.currentTarget.style.transform = "scale(1.1)";
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(124,107,196,0.2)'
+                e.currentTarget.style.transform = 'scale(1.1)'
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(124,107,196,0.1)";
-                e.currentTarget.style.transform = "scale(1)";
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(124,107,196,0.1)'
+                e.currentTarget.style.transform = 'scale(1)'
               }}
             >
               <Instagram size={13} aria-hidden="true" />
@@ -145,5 +145,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,91 +1,91 @@
-"use client";
+'use client'
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { slideLeft } from "./animations";
+import { useRef, useState, useEffect } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { slideLeft } from './animations'
 
 export default function ContactSidebar() {
-  const { language } = useLanguage();
-  const es = language === "es";
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { language } = useLanguage()
+  const es = language === 'es'
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-60px' })
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   // Array de testimonios
-  const testimonials = es ? [
-    {
-      text: "Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica.",
-      role: "VP Engineering",
-      company: "Tech Scale-up · Argentina"
-    },
-    {
-      text: "Fernando transformó nuestra forma de trabajar. Hoy tenemos procesos que escalan y equipos felices.",
-      role: "CEO & Founder",
-      company: "Startup SaaS · Buenos Aires"
-    },
-    {
-      text: "El coaching nos dio las herramientas para crecer sin perder nuestra cultura. Impacto inmediato.",
-      role: "CTO",
-      company: "Fintech · Argentina"
-    },
-    {
-      text: "Dejamos de apagar incendios y empezamos a construir el futuro. Mejor inversión que hicimos.",
-      role: "Head of Engineering",
-      company: "E-commerce LATAM"
-    }
-  ] : [
-    {
-      text: "We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics.",
-      role: "VP Engineering",
-      company: "Tech Scale-up · Argentina"
-    },
-    {
-      text: "Fernando transformed our way of working. Today we have scalable processes and happy teams.",
-      role: "CEO & Founder",
-      company: "SaaS Startup · Buenos Aires"
-    },
-    {
-      text: "The coaching gave us the tools to grow without losing our culture. Immediate impact.",
-      role: "CTO",
-      company: "Fintech · Argentina"
-    },
-    {
-      text: "We stopped fighting fires and started building the future. Best investment we made.",
-      role: "Head of Engineering",
-      company: "E-commerce LATAM"
-    }
-  ];
+  const testimonials = es
+    ? [
+        {
+          text: 'Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica.',
+          role: 'VP Engineering',
+          company: 'Tech Scale-up · Argentina',
+        },
+        {
+          text: 'Fernando transformó nuestra forma de trabajar. Hoy tenemos procesos que escalan y equipos felices.',
+          role: 'CEO & Founder',
+          company: 'Startup SaaS · Buenos Aires',
+        },
+        {
+          text: 'El coaching nos dio las herramientas para crecer sin perder nuestra cultura. Impacto inmediato.',
+          role: 'CTO',
+          company: 'Fintech · Argentina',
+        },
+        {
+          text: 'Dejamos de apagar incendios y empezamos a construir el futuro. Mejor inversión que hicimos.',
+          role: 'Head of Engineering',
+          company: 'E-commerce LATAM',
+        },
+      ]
+    : [
+        {
+          text: 'We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics.',
+          role: 'VP Engineering',
+          company: 'Tech Scale-up · Argentina',
+        },
+        {
+          text: 'Fernando transformed our way of working. Today we have scalable processes and happy teams.',
+          role: 'CEO & Founder',
+          company: 'SaaS Startup · Buenos Aires',
+        },
+        {
+          text: 'The coaching gave us the tools to grow without losing our culture. Immediate impact.',
+          role: 'CTO',
+          company: 'Fintech · Argentina',
+        },
+        {
+          text: 'We stopped fighting fires and started building the future. Best investment we made.',
+          role: 'Head of Engineering',
+          company: 'E-commerce LATAM',
+        },
+      ]
 
   // Rotación automática cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+      setCurrentTestimonial(prev => (prev + 1) % testimonials.length)
+    }, 5000)
 
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+    return () => clearInterval(interval)
+  }, [testimonials.length])
 
-  const testimonial = testimonials[currentTestimonial];
+  const testimonial = testimonials[currentTestimonial]
 
   return (
     <div ref={ref} className="flex flex-col gap-4 h-full">
-
       {/* ── Testimonial ── */}
       <motion.div
         variants={slideLeft}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isInView ? 'visible' : 'hidden'}
         className="glass-card p-6 relative overflow-hidden"
-        whileHover={{ y: -3, boxShadow: "0 12px 40px rgba(124,107,196,0.15)" }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(124,107,196,0.15)' }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         {/* Ambient gold halo */}
         <div
           className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full pointer-events-none"
           style={{
-            background:
-              "radial-gradient(circle, rgba(200,123,90,0.10) 0%, transparent 70%)",
+            background: 'radial-gradient(circle, rgba(200,123,90,0.10) 0%, transparent 70%)',
           }}
         />
 
@@ -93,7 +93,7 @@ export default function ContactSidebar() {
           {/* Opening quote mark */}
           <div
             className="text-5xl leading-none mb-3 select-none"
-            style={{ color: "var(--gold-primary)", fontFamily: "Georgia, serif", opacity: 0.6 }}
+            style={{ color: 'var(--gold-primary)', fontFamily: 'Georgia, serif', opacity: 0.6 }}
             aria-hidden="true"
           >
             &ldquo;
@@ -103,10 +103,10 @@ export default function ContactSidebar() {
             key={currentTestimonial}
             className="mb-4"
             style={{
-              color: "var(--text-secondary)",
-              lineHeight: "1.7",
-              fontSize: "0.95rem",
-              fontStyle: "italic",
+              color: 'var(--text-secondary)',
+              lineHeight: '1.7',
+              fontSize: '0.95rem',
+              fontStyle: 'italic',
             }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export default function ContactSidebar() {
             {testimonial.text}
           </motion.p>
 
-          <motion.div 
+          <motion.div
             key={`author-${currentTestimonial}`}
             className="flex items-center justify-between"
             initial={{ opacity: 0, x: -10 }}
@@ -125,14 +125,11 @@ export default function ContactSidebar() {
             <div>
               <div
                 className="text-sm font-semibold"
-                style={{ color: "var(--text-primary)", fontFamily: "var(--font-heading)" }}
+                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}
               >
                 {testimonial.role}
               </div>
-              <div
-                className="text-xs mt-0.5"
-                style={{ color: "var(--text-muted)" }}
-              >
+              <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                 {testimonial.company}
               </div>
             </div>
@@ -159,8 +156,8 @@ export default function ContactSidebar() {
               <div
                 key={index}
                 className={`h-1 rounded-full transition-all duration-300 ${
-                  index === currentTestimonial 
-                    ? 'w-6 bg-gradient-to-r from-yellow-400 to-orange-500' 
+                  index === currentTestimonial
+                    ? 'w-6 bg-gradient-to-r from-yellow-400 to-orange-500'
                     : 'w-1 bg-gray-600'
                 }`}
               />
@@ -173,19 +170,19 @@ export default function ContactSidebar() {
       <motion.div
         variants={slideLeft}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isInView ? 'visible' : 'hidden'}
         className="glass-card p-6 relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, rgba(124,107,196,0.12) 0%, rgba(200,123,90,0.08) 100%)",
-          border: "1px solid rgba(124,107,196,0.3)",
+          background:
+            'linear-gradient(135deg, rgba(124,107,196,0.12) 0%, rgba(200,123,90,0.08) 100%)',
+          border: '1px solid rgba(124,107,196,0.3)',
         }}
       >
         {/* Ambient violet glow */}
         <div
           className="absolute -top-12 -right-12 w-32 h-32 rounded-full pointer-events-none"
           style={{
-            background:
-              "radial-gradient(circle, rgba(124,107,196,0.15) 0%, transparent 70%)",
+            background: 'radial-gradient(circle, rgba(124,107,196,0.15) 0%, transparent 70%)',
           }}
         />
 
@@ -193,31 +190,30 @@ export default function ContactSidebar() {
           <p
             className="mb-3 leading-relaxed"
             style={{
-              color: "var(--text-primary)",
-              fontSize: "0.95rem",
+              color: 'var(--text-primary)',
+              fontSize: '0.95rem',
               fontWeight: 500,
-              lineHeight: "1.6",
+              lineHeight: '1.6',
             }}
           >
             {es
-              ? "Cada día que pasa sin actuar es un día que tu equipo sigue lidiando con los mismos problemas."
-              : "Every day you wait is another day your team struggles with the same problems."}
+              ? 'Cada día que pasa sin actuar es un día que tu equipo sigue lidiando con los mismos problemas.'
+              : 'Every day you wait is another day your team struggles with the same problems.'}
           </p>
-          
+
           <p
             style={{
-              color: "var(--text-muted)",
-              fontSize: "0.875rem",
-              lineHeight: "1.6",
+              color: 'var(--text-muted)',
+              fontSize: '0.875rem',
+              lineHeight: '1.6',
             }}
           >
             {es
-              ? "La primera sesión es gratis. No tienes nada que perder, pero tu equipo y tu empresa tiene todo por ganar."
-              : "The first session is free. You have nothing to lose, but your team and your company has everything to gain."}
+              ? 'La primera sesión es gratis. No tienes nada que perder, pero tu equipo y tu empresa tiene todo por ganar.'
+              : 'The first session is free. You have nothing to lose, but your team and your company has everything to gain.'}
           </p>
         </div>
       </motion.div>
-
     </div>
-  );
+  )
 }

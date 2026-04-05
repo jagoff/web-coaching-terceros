@@ -1,195 +1,217 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ArrowRight, 
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  ArrowRight,
   ArrowLeft,
-  CheckCircle2, 
-  Loader2, 
-  User, 
-  Mail,
+  CheckCircle2,
+  Loader2,
   MessageSquare,
-  Sparkles,
   Target,
   Users,
   Zap,
   TrendingUp,
-  Send
-} from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { sendContactForm } from "@/lib/contact-service";
+  Send,
+} from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { sendContactForm } from '@/lib/contact-service'
 
 interface FormData {
-  nombre: string;
-  email: string;
-  desafio: string;
-  mensaje: string;
+  nombre: string
+  email: string
+  desafio: string
+  mensaje: string
 }
 
-type Step = 1 | 2 | 3 | 4;
+type Step = 1 | 2 | 3 | 4
 
 const challenges = {
   es: [
-    { icon: Users, label: "Mi equipo no es autónomo", value: "equipo_dependiente" },
-    { icon: Target, label: "Necesito escalar sin perder calidad", value: "escalabilidad" },
-    { icon: TrendingUp, label: "Quiero mejorar mi liderazgo", value: "liderazgo" },
-    { icon: Zap, label: "Tengo problemas de comunicación", value: "comunicacion" },
-    { icon: MessageSquare, label: "Otro desafío", value: "custom" }
+    { icon: Users, label: 'Mi equipo no es autónomo', value: 'equipo_dependiente' },
+    { icon: Target, label: 'Necesito escalar sin perder calidad', value: 'escalabilidad' },
+    { icon: TrendingUp, label: 'Quiero mejorar mi liderazgo', value: 'liderazgo' },
+    { icon: Zap, label: 'Tengo problemas de comunicación', value: 'comunicacion' },
+    { icon: MessageSquare, label: 'Otro desafío', value: 'custom' },
   ],
   en: [
-    { icon: Users, label: "My team isn't autonomous", value: "equipo_dependiente" },
-    { icon: Target, label: "Need to scale without losing quality", value: "escalabilidad" },
-    { icon: TrendingUp, label: "Want to improve my leadership", value: "liderazgo" },
-    { icon: Zap, label: "Communication problems", value: "comunicacion" },
-    { icon: MessageSquare, label: "Other challenge", value: "custom" }
-  ]
-};
+    { icon: Users, label: "My team isn't autonomous", value: 'equipo_dependiente' },
+    { icon: Target, label: 'Need to scale without losing quality', value: 'escalabilidad' },
+    { icon: TrendingUp, label: 'Want to improve my leadership', value: 'liderazgo' },
+    { icon: Zap, label: 'Communication problems', value: 'comunicacion' },
+    { icon: MessageSquare, label: 'Other challenge', value: 'custom' },
+  ],
+}
 
 export default function ConversationalContactForm() {
-  const { language } = useLanguage();
-  const [step, setStep] = useState<Step>(1);
+  const { language } = useLanguage()
+  const [step, setStep] = useState<Step>(1)
   const [formData, setFormData] = useState<FormData>({
-    nombre: "",
-    email: "",
-    desafio: "",
-    mensaje: ""
-  });
-  const [errors, setErrors] = useState<Partial<FormData>>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [selectedChallenge, setSelectedChallenge] = useState<string>("");
+    nombre: '',
+    email: '',
+    desafio: '',
+    mensaje: '',
+  })
+  const [errors, setErrors] = useState<Partial<FormData>>({})
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [selectedChallenge, setSelectedChallenge] = useState<string>('')
 
-  const es = language === 'es';
+  const es = language === 'es'
 
   const validateStep = (currentStep: Step): boolean => {
-    const newErrors: Partial<FormData> = {};
+    const newErrors: Partial<FormData> = {}
 
     switch (currentStep) {
       case 1:
         if (!formData.nombre.trim()) {
-          newErrors.nombre = es ? "Por favor, comparte tu nombre" : "Please share your name";
+          newErrors.nombre = es ? 'Por favor, comparte tu nombre' : 'Please share your name'
         } else if (formData.nombre.trim().length < 2) {
-          newErrors.nombre = es ? "Un poco más largo, por favor" : "A bit longer, please";
+          newErrors.nombre = es ? 'Un poco más largo, por favor' : 'A bit longer, please'
         } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.nombre)) {
-          newErrors.nombre = es ? "Solo letras y espacios" : "Letters and spaces only";
+          newErrors.nombre = es ? 'Solo letras y espacios' : 'Letters and spaces only'
         }
-        break;
+        break
 
-      case 2:
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      case 2: {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!formData.email.trim()) {
-          newErrors.email = es ? "Necesito tu email para contactarte" : "I need your email to contact you";
+          newErrors.email = es
+            ? 'Necesito tu email para contactarte'
+            : 'I need your email to contact you'
         } else if (!emailRegex.test(formData.email)) {
-          newErrors.email = es ? "Este email no parece válido" : "This email doesn't look valid";
+          newErrors.email = es ? 'Este email no parece válido' : "This email doesn't look valid"
         }
-        break;
+        break
+      }
 
       case 3:
         if (!selectedChallenge) {
-          newErrors.desafio = es ? "Selecciona un desafío" : "Select a challenge";
-        } else if (selectedChallenge === "custom" && !formData.mensaje.trim()) {
-          newErrors.mensaje = es ? "Cuéntame sobre tu desafío" : "Tell me about your challenge";
-        } else if (selectedChallenge === "custom" && formData.mensaje.trim().length < 10) {
-          newErrors.mensaje = es ? "Un poco más de detalle, por favor" : "A bit more detail, please";
+          newErrors.desafio = es ? 'Selecciona un desafío' : 'Select a challenge'
+        } else if (selectedChallenge === 'custom' && !formData.mensaje.trim()) {
+          newErrors.mensaje = es ? 'Cuéntame sobre tu desafío' : 'Tell me about your challenge'
+        } else if (selectedChallenge === 'custom' && formData.mensaje.trim().length < 10) {
+          newErrors.mensaje = es ? 'Un poco más de detalle, por favor' : 'A bit more detail, please'
         }
-        break;
+        break
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleNext = () => {
     if (validateStep(step)) {
       if (step < 4) {
-        setStep((prev) => (prev + 1) as Step);
+        setStep(prev => (prev + 1) as Step)
       }
     }
-  };
+  }
 
   const handleBack = () => {
     if (step > 1) {
-      setStep((prev) => (prev - 1) as Step);
-      setErrors({});
+      setStep(prev => (prev - 1) as Step)
+      setErrors({})
     }
-  };
+  }
 
   const handleChallengeSelect = (value: string) => {
-    setSelectedChallenge(value);
-    setFormData(prev => ({ ...prev, desafio: value }));
-    setErrors({});
-  };
+    setSelectedChallenge(value)
+    setFormData(prev => ({ ...prev, desafio: value }))
+    setErrors({})
+  }
 
   const handleSubmit = async () => {
-    if (!validateStep(3)) return;
+    if (!validateStep(3)) return
 
-    setStatus("loading");
-    setStep(4);
+    setStatus('loading')
+    setStep(4)
 
     try {
-      const challengeLabel = challenges[language].find(c => c.value === selectedChallenge)?.label || selectedChallenge;
-      const finalMessage = selectedChallenge === "custom" 
-        ? formData.mensaje 
-        : `${es ? 'Desafío seleccionado' : 'Selected challenge'}: ${challengeLabel}\n\n${formData.mensaje || (es ? 'Sin detalles adicionales' : 'No additional details')}`;
+      const challengeLabel =
+        challenges[language].find(c => c.value === selectedChallenge)?.label || selectedChallenge
+      const finalMessage =
+        selectedChallenge === 'custom'
+          ? formData.mensaje
+          : `${es ? 'Desafío seleccionado' : 'Selected challenge'}: ${challengeLabel}\n\n${formData.mensaje || (es ? 'Sin detalles adicionales' : 'No additional details')}`
 
       const result = await sendContactForm({
         nombre: formData.nombre,
         email: formData.email,
-        mensaje: finalMessage
-      });
+        mensaje: finalMessage,
+      })
 
       if (result.success) {
-        setStatus("success");
+        setStatus('success')
       } else {
-        setStatus("error");
+        setStatus('error')
       }
-    } catch (err) {
-      setStatus("error");
+    } catch {
+      setStatus('error')
     }
-  };
+  }
 
   const resetForm = () => {
-    setFormData({ nombre: "", email: "", desafio: "", mensaje: "" });
-    setSelectedChallenge("");
-    setStep(1);
-    setStatus("idle");
-    setErrors({});
-  };
+    setFormData({ nombre: '', email: '', desafio: '', mensaje: '' })
+    setSelectedChallenge('')
+    setStep(1)
+    setStatus('idle')
+    setErrors({})
+  }
 
   const getStepTitle = () => {
     switch (step) {
-      case 1: return es ? "¿Cómo te llamas?" : "What's your name?";
-      case 2: return es ? "¿Cuál es tu email?" : "What's your email?";
-      case 3: return es ? "¿Cuál es tu mayor desafío?" : "What's your biggest challenge?";
-      case 4: return status === "success" 
-        ? (es ? "¡Mensaje enviado!" : "Message sent!")
-        : status === "error"
-        ? (es ? "Algo salió mal" : "Something went wrong")
-        : (es ? "Enviando..." : "Sending...");
-      default: return "";
+      case 1:
+        return es ? '¿Cómo te llamas?' : "What's your name?"
+      case 2:
+        return es ? '¿Cuál es tu email?' : "What's your email?"
+      case 3:
+        return es ? '¿Cuál es tu mayor desafío?' : "What's your biggest challenge?"
+      case 4:
+        return status === 'success'
+          ? es
+            ? '¡Mensaje enviado!'
+            : 'Message sent!'
+          : status === 'error'
+            ? es
+              ? 'Algo salió mal'
+              : 'Something went wrong'
+            : es
+              ? 'Enviando...'
+              : 'Sending...'
+      default:
+        return ''
     }
-  };
+  }
 
   const getStepSubtitle = () => {
     switch (step) {
-      case 1: return es ? "Empecemos por conocernos" : "Let's start by getting to know each other";
-      case 2: return es ? "Para poder contactarte" : "So I can reach you";
-      case 3: return es ? "Selecciona el que más resuene contigo" : "Select the one that resonates most";
-      case 4: return status === "success"
-        ? (es ? "Te responderé en menos de 24 horas" : "I'll get back to you within 24 hours")
-        : status === "error"
-        ? (es ? "Por favor, intenta nuevamente" : "Please try again")
-        : "";
-      default: return "";
+      case 1:
+        return es ? 'Empecemos por conocernos' : "Let's start by getting to know each other"
+      case 2:
+        return es ? 'Para poder contactarte' : 'So I can reach you'
+      case 3:
+        return es ? 'Selecciona el que más resuene contigo' : 'Select the one that resonates most'
+      case 4:
+        return status === 'success'
+          ? es
+            ? 'Te responderé en menos de 24 horas'
+            : "I'll get back to you within 24 hours"
+          : status === 'error'
+            ? es
+              ? 'Por favor, intenta nuevamente'
+              : 'Please try again'
+            : ''
+      default:
+        return ''
     }
-  };
+  }
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
-          {[1, 2, 3].map((s) => (
+          {[1, 2, 3].map(s => (
             <div key={s} className="flex items-center flex-1">
               <motion.div
                 className="relative flex items-center justify-center"
@@ -201,12 +223,14 @@ export default function ConversationalContactForm() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center relative z-10 transition-all duration-300"
                   style={{
-                    background: step >= s 
-                      ? 'linear-gradient(135deg, #FF6B35 0%, #FF8555 100%)'
-                      : 'rgba(255, 255, 255, 0.05)',
-                    border: step >= s 
-                      ? '2px solid rgba(255, 107, 53, 0.3)'
-                      : '2px solid rgba(255, 255, 255, 0.1)',
+                    background:
+                      step >= s
+                        ? 'linear-gradient(135deg, #FF6B35 0%, #FF8555 100%)'
+                        : 'rgba(255, 255, 255, 0.05)',
+                    border:
+                      step >= s
+                        ? '2px solid rgba(255, 107, 53, 0.3)'
+                        : '2px solid rgba(255, 255, 255, 0.1)',
                   }}
                 >
                   {step > s ? (
@@ -217,11 +241,15 @@ export default function ConversationalContactForm() {
                 </div>
               </motion.div>
               {s < 3 && (
-                <div className="flex-1 h-0.5 mx-2" style={{
-                  background: step > s 
-                    ? 'linear-gradient(90deg, #FF6B35 0%, #FF8555 100%)'
-                    : 'rgba(255, 255, 255, 0.1)'
-                }} />
+                <div
+                  className="flex-1 h-0.5 mx-2"
+                  style={{
+                    background:
+                      step > s
+                        ? 'linear-gradient(90deg, #FF6B35 0%, #FF8555 100%)'
+                        : 'rgba(255, 255, 255, 0.1)',
+                  }}
+                />
               )}
             </div>
           ))}
@@ -237,14 +265,15 @@ export default function ConversationalContactForm() {
           WebkitBackdropFilter: 'blur(20px)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-          minHeight: '400px'
+          minHeight: '400px',
         }}
       >
         {/* Gradient overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{
-            background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(124, 107, 196, 0.05) 100%)',
+            background:
+              'linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(124, 107, 196, 0.05) 100%)',
           }}
         />
 
@@ -259,7 +288,7 @@ export default function ConversationalContactForm() {
             >
               {/* Step Title */}
               <div className="mb-8">
-                <h3 
+                <h3
                   className="text-2xl md:text-3xl font-bold mb-2"
                   style={{
                     background: 'linear-gradient(135deg, #FF6B35 0%, #C87B5A 50%, #7C6BC4 100%)',
@@ -270,9 +299,7 @@ export default function ConversationalContactForm() {
                 >
                   {getStepTitle()}
                 </h3>
-                <p className="text-gray-400 text-sm md:text-base">
-                  {getStepSubtitle()}
-                </p>
+                <p className="text-gray-400 text-sm md:text-base">{getStepSubtitle()}</p>
               </div>
 
               {/* Step Content */}
@@ -282,14 +309,16 @@ export default function ConversationalContactForm() {
                     <input
                       type="text"
                       value={formData.nombre}
-                      onChange={(e) => setFormData(prev => ({ ...prev, nombre: e.target.value }))}
-                      onKeyPress={(e) => e.key === 'Enter' && handleNext()}
-                      placeholder={es ? "Tu nombre completo" : "Your full name"}
+                      onChange={e => setFormData(prev => ({ ...prev, nombre: e.target.value }))}
+                      onKeyPress={e => e.key === 'Enter' && handleNext()}
+                      placeholder={es ? 'Tu nombre completo' : 'Your full name'}
                       className="w-full px-4 py-4 rounded-md text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
-                        border: errors.nombre ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
-                        fontSize: '1rem'
+                        border: errors.nombre
+                          ? '2px solid #ef4444'
+                          : '2px solid rgba(255, 255, 255, 0.1)',
+                        fontSize: '1rem',
                       }}
                       autoFocus
                     />
@@ -312,14 +341,16 @@ export default function ConversationalContactForm() {
                     <input
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      onKeyPress={(e) => e.key === 'Enter' && handleNext()}
+                      onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      onKeyPress={e => e.key === 'Enter' && handleNext()}
                       placeholder="email@ejemplo.com"
                       className="w-full px-4 py-4 rounded-md text-white placeholder-gray-500 transition-all duration-300 focus:outline-none"
                       style={{
                         background: 'rgba(255, 255, 255, 0.05)',
-                        border: errors.email ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
-                        fontSize: '1rem'
+                        border: errors.email
+                          ? '2px solid #ef4444'
+                          : '2px solid rgba(255, 255, 255, 0.1)',
+                        fontSize: '1rem',
                       }}
                       autoFocus
                     />
@@ -339,42 +370,42 @@ export default function ConversationalContactForm() {
               {step === 3 && (
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 gap-4">
-                    {challenges[language].map((challenge) => {
-                      const Icon = challenge.icon;
-                      const isSelected = selectedChallenge === challenge.value;
-                      
+                    {challenges[language].map(challenge => {
+                      const Icon = challenge.icon
+                      const isSelected = selectedChallenge === challenge.value
+
                       return (
                         <motion.button
                           key={challenge.value}
                           onClick={() => handleChallengeSelect(challenge.value)}
                           className="relative group text-left p-5 rounded-2xl transition-all duration-300"
                           style={{
-                            background: isSelected 
+                            background: isSelected
                               ? 'linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(255, 107, 53, 0.15) 100%)'
                               : 'rgba(255, 255, 255, 0.04)',
-                            border: isSelected 
+                            border: isSelected
                               ? '2px solid rgba(255, 107, 53, 0.5)'
                               : '2px solid rgba(255, 255, 255, 0.1)',
-                            boxShadow: isSelected 
+                            boxShadow: isSelected
                               ? '0 8px 32px rgba(255, 107, 53, 0.15)'
                               : '0 4px 16px rgba(0, 0, 0, 0.1)',
                           }}
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.02,
-                            boxShadow: isSelected 
+                            boxShadow: isSelected
                               ? '0 12px 40px rgba(255, 107, 53, 0.2)'
-                              : '0 8px 24px rgba(0, 0, 0, 0.15)'
+                              : '0 8px 24px rgba(0, 0, 0, 0.15)',
                           }}
                           whileTap={{ scale: 0.98 }}
                         >
                           <div className="flex items-center gap-4">
-                            <div 
+                            <div
                               className="p-3 rounded-xl flex-shrink-0"
                               style={{
-                                background: isSelected 
+                                background: isSelected
                                   ? 'linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(255, 107, 53, 0.2) 100%)'
                                   : 'rgba(255, 255, 255, 0.08)',
-                                border: isSelected 
+                                border: isSelected
                                   ? '1px solid rgba(255, 107, 53, 0.4)'
                                   : '1px solid rgba(255, 255, 255, 0.15)',
                               }}
@@ -382,14 +413,18 @@ export default function ConversationalContactForm() {
                               <Icon size={24} className="text-white" />
                             </div>
                             <div className="flex-1">
-                              <span className="text-white font-semibold text-lg block">{challenge.label}</span>
-                              {isSelected && challenge.value !== "custom" && (
-                                <motion.span 
+                              <span className="text-white font-semibold text-lg block">
+                                {challenge.label}
+                              </span>
+                              {isSelected && challenge.value !== 'custom' && (
+                                <motion.span
                                   initial={{ opacity: 0, y: -5 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   className="text-sm text-gray-400 block mt-1"
                                 >
-                                  {es ? 'Seleccionado - listo para enviar' : 'Selected - ready to send'}
+                                  {es
+                                    ? 'Seleccionado - listo para enviar'
+                                    : 'Selected - ready to send'}
                                 </motion.span>
                               )}
                             </div>
@@ -397,14 +432,14 @@ export default function ConversationalContactForm() {
                               <motion.div
                                 initial={{ scale: 0, rotate: -180 }}
                                 animate={{ scale: 1, rotate: 0 }}
-                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                                 className="flex-shrink-0"
                               >
-                                <div 
+                                <div
                                   className="w-8 h-8 rounded-full flex items-center justify-center"
                                   style={{
                                     background: 'linear-gradient(135deg, #FF6B35 0%, #FF8555 100%)',
-                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)'
+                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)',
                                   }}
                                 >
                                   <CheckCircle2 size={20} className="text-white" />
@@ -413,34 +448,47 @@ export default function ConversationalContactForm() {
                             )}
                           </div>
                         </motion.button>
-                      );
+                      )
                     })}
                   </div>
 
-                  {selectedChallenge === "custom" && (
+                  {selectedChallenge === 'custom' && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       className="relative"
                     >
-                      <div className="p-4 rounded-xl" style={{
-                        background: 'rgba(255, 255, 255, 0.02)',
-                        border: '1px solid rgba(255, 255, 255, 0.08)'
-                      }}>
+                      <div
+                        className="p-4 rounded-xl"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.02)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                        }}
+                      >
                         <p className="text-sm text-gray-400 mb-3">
-                          {es ? 'Cuéntame más sobre tu desafío personalizado:' : 'Tell me more about your custom challenge:'}
+                          {es
+                            ? 'Cuéntame más sobre tu desafío personalizado:'
+                            : 'Tell me more about your custom challenge:'}
                         </p>
                         <textarea
                           value={formData.mensaje}
-                          onChange={(e) => setFormData(prev => ({ ...prev, mensaje: e.target.value }))}
-                          placeholder={es ? "Describe tu situación específica..." : "Describe your specific situation..."}
+                          onChange={e =>
+                            setFormData(prev => ({ ...prev, mensaje: e.target.value }))
+                          }
+                          placeholder={
+                            es
+                              ? 'Describe tu situación específica...'
+                              : 'Describe your specific situation...'
+                          }
                           rows={4}
                           className="w-full p-4 pt-5 rounded-md text-white placeholder-gray-500 resize-none transition-all duration-300 focus:outline-none"
                           style={{
                             background: 'rgba(255, 255, 255, 0.05)',
-                            border: errors.mensaje ? '2px solid #ef4444' : '2px solid rgba(255, 255, 255, 0.1)',
-                            fontSize: '1rem'
+                            border: errors.mensaje
+                              ? '2px solid #ef4444'
+                              : '2px solid rgba(255, 255, 255, 0.1)',
+                            fontSize: '1rem',
                           }}
                           autoFocus
                         />
@@ -471,31 +519,38 @@ export default function ConversationalContactForm() {
 
               {step === 4 && (
                 <div className="text-center py-8">
-                  {status === "loading" && (
+                  {status === 'loading' && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                     >
-                      <Loader2 className="w-16 h-16 mx-auto mb-4 animate-spin" style={{ color: '#FF6B35' }} />
-                      <p className="text-gray-400">{es ? 'Enviando tu mensaje...' : 'Sending your message...'}</p>
+                      <Loader2
+                        className="w-16 h-16 mx-auto mb-4 animate-spin"
+                        style={{ color: '#FF6B35' }}
+                      />
+                      <p className="text-gray-400">
+                        {es ? 'Enviando tu mensaje...' : 'Sending your message...'}
+                      </p>
                     </motion.div>
                   )}
 
-                  {status === "success" && (
+                  {status === 'success' && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                     >
-                      <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style={{
-                        background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'
-                      }}>
+                      <div
+                        className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center"
+                        style={{
+                          background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)',
+                        }}
+                      >
                         <CheckCircle2 className="w-10 h-10 text-white" />
                       </div>
                       <p className="text-lg text-gray-300 mb-6">
-                        {es 
+                        {es
                           ? '¡Gracias por contactarme! Revisaré tu mensaje y te responderé pronto.'
-                          : 'Thanks for reaching out! I will review your message and get back to you soon.'
-                        }
+                          : 'Thanks for reaching out! I will review your message and get back to you soon.'}
                       </p>
                       <button
                         onClick={resetForm}
@@ -509,22 +564,24 @@ export default function ConversationalContactForm() {
                     </motion.div>
                   )}
 
-                  {status === "error" && (
+                  {status === 'error' && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                     >
-                      <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style={{
-                        background: 'rgba(239, 68, 68, 0.2)',
-                        border: '2px solid rgba(239, 68, 68, 0.4)'
-                      }}>
+                      <div
+                        className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center"
+                        style={{
+                          background: 'rgba(239, 68, 68, 0.2)',
+                          border: '2px solid rgba(239, 68, 68, 0.4)',
+                        }}
+                      >
                         <span className="text-4xl">😔</span>
                       </div>
                       <p className="text-lg text-gray-300 mb-6">
-                        {es 
+                        {es
                           ? 'Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.'
-                          : 'There was a problem sending your message. Please try again.'
-                        }
+                          : 'There was a problem sending your message. Please try again.'}
                       </p>
                       <button
                         onClick={() => setStep(1)}
@@ -580,5 +637,5 @@ export default function ConversationalContactForm() {
         </div>
       </motion.div>
     </div>
-  );
+  )
 }

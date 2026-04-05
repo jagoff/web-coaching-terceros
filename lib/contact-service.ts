@@ -3,19 +3,19 @@
  * Usa Resend como servicio principal con fallback a mailto
  */
 
-import devLog from './dev-logger';
-import { EMAIL_REGEX } from './validations';
+import devLog from './dev-logger'
+import { EMAIL_REGEX } from './validations'
 
 export interface ContactFormData {
-  nombre: string;
-  email: string;
-  mensaje: string;
+  nombre: string
+  email: string
+  mensaje: string
 }
 
 export interface ContactResponse {
-  success: boolean;
-  message: string;
-  error?: string;
+  success: boolean
+  message: string
+  error?: string
 }
 
 /**
@@ -23,22 +23,24 @@ export interface ContactResponse {
  * Resend es un servicio de email moderno y confiable
  */
 export async function sendContactForm(data: ContactFormData): Promise<ContactResponse> {
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
+  const RESEND_API_KEY = process.env.RESEND_API_KEY
+  const CONTACT_EMAIL = process.env.CONTACT_EMAIL
 
   if (!RESEND_API_KEY || !CONTACT_EMAIL) {
-    devLog.warn('[ContactService] RESEND_API_KEY or CONTACT_EMAIL is not set — using mailto fallback');
-    
+    devLog.warn(
+      '[ContactService] RESEND_API_KEY or CONTACT_EMAIL is not set — using mailto fallback'
+    )
+
     // Abrir cliente de email como fallback
-    const mailtoLink = createMailtoLink(data);
+    const mailtoLink = createMailtoLink(data)
     if (typeof window !== 'undefined') {
-      window.location.href = mailtoLink;
+      window.location.href = mailtoLink
     }
-    
+
     return {
       success: true,
       message: 'Abriendo tu cliente de email para enviar el mensaje.',
-    };
+    }
   }
 
   // Debug log en desarrollo
@@ -46,18 +48,18 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
     nombre: data.nombre,
     email: data.email,
     mensajeLength: data.mensaje.length,
-    toEmail: CONTACT_EMAIL
-  });
+    toEmail: CONTACT_EMAIL,
+  })
 
   try {
     // Validación básica
     if (!data.nombre || !data.email || !data.mensaje) {
-      throw new Error('Todos los campos son requeridos');
+      throw new Error('Todos los campos son requeridos')
     }
 
     // Validación de email
     if (!EMAIL_REGEX.test(data.email)) {
-      throw new Error('Email inválido');
+      throw new Error('Email inválido')
     }
 
     // Preparar email para Resend
@@ -99,43 +101,43 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
             </div>
           </div>
         </div>
-      `
-    };
+      `,
+    }
 
     // Enviar a Resend
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        Authorization: `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(emailData),
-    });
+    })
 
-    const result = await response.json();
+    const result = await response.json()
 
-    devLog.log('[ContactService] Respuesta de Resend:', result);
+    devLog.log('[ContactService] Respuesta de Resend:', result)
 
     if (!response.ok) {
-      throw new Error(result.message || 'Error al enviar el email');
+      throw new Error(result.message || 'Error al enviar el email')
     }
 
     return {
       success: true,
       message: 'Mensaje enviado correctamente. Te contactaremos pronto.',
-    };
-
+    }
   } catch (error) {
-    devLog.error('[ContactService] Error:', error);
+    devLog.error('[ContactService] Error:', error)
 
     // Fallback: crear mailto link
-    const mailtoLink = createMailtoLink(data);
-    
+    const mailtoLink = createMailtoLink(data)
+
     return {
       success: false,
-      message: 'Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo o contáctanos directamente.',
+      message:
+        'Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo o contáctanos directamente.',
       error: error instanceof Error ? error.message : 'Error desconocido',
-    };
+    }
   }
 }
 
@@ -143,43 +145,43 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
  * Crea un link mailto como fallback
  */
 export function createMailtoLink(data: ContactFormData): string {
-  const subject = encodeURIComponent('Contacto desde ELEVA CONSULTORIA');
+  const subject = encodeURIComponent('Contacto desde ELEVA CONSULTORIA')
   const body = encodeURIComponent(
     `Nombre: ${data.nombre}\nEmail: ${data.email}\n\nMensaje:\n${data.mensaje}`
-  );
-  return `mailto:contacto@eleva-consultoria.com?subject=${subject}&body=${body}`;
+  )
+  return `mailto:contacto@eleva-consultoria.com?subject=${subject}&body=${body}`
 }
 
 /**
  * Valida los datos del formulario
  */
 export function validateContactForm(data: Partial<ContactFormData>): {
-  isValid: boolean;
-  errors: Partial<Record<keyof ContactFormData, string>>;
+  isValid: boolean
+  errors: Partial<Record<keyof ContactFormData, string>>
 } {
-  const errors: Partial<Record<keyof ContactFormData, string>> = {};
+  const errors: Partial<Record<keyof ContactFormData, string>> = {}
 
   // Validar nombre
   if (!data.nombre || data.nombre.trim().length < 2) {
-    errors.nombre = 'El nombre debe tener al menos 2 caracteres';
+    errors.nombre = 'El nombre debe tener al menos 2 caracteres'
   }
 
   // Validar email
   if (!data.email) {
-    errors.email = 'El email es requerido';
+    errors.email = 'El email es requerido'
   } else if (!EMAIL_REGEX.test(data.email)) {
-    errors.email = 'Email inválido';
+    errors.email = 'Email inválido'
   }
 
   // Validar mensaje
   if (!data.mensaje || data.mensaje.trim().length < 10) {
-    errors.mensaje = 'El mensaje debe tener al menos 10 caracteres';
+    errors.mensaje = 'El mensaje debe tener al menos 10 caracteres'
   } else if (data.mensaje.length > 1000) {
-    errors.mensaje = 'El mensaje no puede exceder 1000 caracteres';
+    errors.mensaje = 'El mensaje no puede exceder 1000 caracteres'
   }
 
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
-  };
+  }
 }

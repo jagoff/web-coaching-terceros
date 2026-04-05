@@ -1,16 +1,16 @@
-"use client";
+'use client'
 
-import { useState, useRef, useEffect } from "react";
-import { Instagram } from "lucide-react";
-import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
-import { useLanguage } from "@/contexts/LanguageContext";
-import OptimizedImage from "@/components/ui/OptimizedImage";
-import { getOptimizedImagePath } from "@/lib/image-optimization";
+import { useState, useRef } from 'react'
+import { Instagram } from 'lucide-react'
+import { ParallaxHeroImages } from '@/components/ui/parallax-hero-images'
+import { useLanguage } from '@/contexts/LanguageContext'
+import OptimizedImage from '@/components/ui/OptimizedImage'
+import { getOptimizedImagePath } from '@/lib/image-optimization'
 
 // Array of 12 unique carousel images
 const baseImages = [
   'slide-01.png',
-  'slide-02.png', 
+  'slide-02.png',
   'slide-03.png',
   'slide-04.png',
   'slide-05.png',
@@ -20,77 +20,81 @@ const baseImages = [
   'slide-09.png',
   'slide-10.png',
   'slide-11.png',
-  'slide-12.png'
-];
+  'slide-12.png',
+]
 
 const getImagePaths = (imageName: string) => {
   // Usar imágenes optimizadas con soporte WebP
-  const originalPath = `/images/carousel/${imageName}`;
-  return getOptimizedImagePath(originalPath, true);
-};
+  const originalPath = `/images/carousel/${imageName}`
+  return getOptimizedImagePath(originalPath, true)
+}
 
 export default function GesturesCarousel() {
-  const { t } = useLanguage();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-  const images = baseImages;
-  const currentImage = images[currentIndex];
-  const currentImagePaths = getImagePaths(currentImage);
-  
+  const { t } = useLanguage()
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+  const images = baseImages
+  const currentImage = images[currentIndex]
+  const currentImagePaths = getImagePaths(currentImage)
+
   // Pre-calcular todas las rutas optimizadas para desktop
-  const optimizedImagePaths = images.map(imageName => getImagePaths(imageName).src);
+  const optimizedImagePaths = images.map(imageName => getImagePaths(imageName).src)
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+    setCurrentIndex(prev => (prev + 1) % images.length)
+  }
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+    setCurrentIndex(prev => (prev - 1 + images.length) % images.length)
+  }
 
   // Swipe handlers para móvil
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
+    touchStartX.current = e.touches[0].clientX
+  }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
+    touchEndX.current = e.touches[0].clientX
+  }
 
   const handleTouchEnd = () => {
-    const swipeThreshold = 50; // Mínimo de píxeles para considerar un swipe
-    const diff = touchStartX.current - touchEndX.current;
+    const swipeThreshold = 50 // Mínimo de píxeles para considerar un swipe
+    const diff = touchStartX.current - touchEndX.current
 
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
         // Swipe left - next image
-        nextImage();
+        nextImage()
       } else {
         // Swipe right - previous image
-        prevImage();
+        prevImage()
       }
     }
-  };
+  }
 
   if (!currentImage || images.length === 0) {
-    return <div className="w-full h-full flex items-center justify-center">{t.loadingStates.loading}</div>;
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        {t.loadingStates.loading}
+      </div>
+    )
   }
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
       {/* Mobile Carousel */}
       <div className="block sm:hidden">
-        <div 
+        <div
           className="relative overflow-hidden rounded-lg bg-black shadow-2xl touch-pan-y"
-          style={{ aspectRatio: "4/5", minHeight: "400px" }}
+          style={{ aspectRatio: '4/5', minHeight: '400px' }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
           {/* Native img with explicit dimensions for mobile static export */}
           <OptimizedImage
-            key={currentImage}  // Force re-render when image changes
+            key={currentImage} // Force re-render when image changes
             src={currentImagePaths.src}
             webpSrc={currentImagePaths.webpSrc}
             fallbackSrc={currentImagePaths.fallbackSrc}
@@ -103,7 +107,7 @@ export default function GesturesCarousel() {
             lazy={false} // No lazy loading para carousel visible
             priority={currentIndex === 0} // Priorizar primera imagen
           />
-          
+
           {/* Navigation buttons - Mejorados para móvil */}
           <button
             onClick={prevImage}
@@ -121,7 +125,7 @@ export default function GesturesCarousel() {
           >
             <span className="text-xl font-bold">→</span>
           </button>
-          
+
           {/* Contador de imágenes */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
             {currentIndex + 1} / {images.length}
@@ -136,9 +140,7 @@ export default function GesturesCarousel() {
               onClick={() => setCurrentIndex(index)}
               aria-label={`Ir a imagen ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex 
-                  ? "bg-blue-500 scale-125" 
-                  : "bg-gray-400 hover:bg-gray-300"
+                index === currentIndex ? 'bg-blue-500 scale-125' : 'bg-gray-400 hover:bg-gray-300'
               }`}
               style={{ minWidth: '12px', minHeight: '12px' }}
             />
@@ -163,12 +165,9 @@ export default function GesturesCarousel() {
       {/* Desktop */}
       <div className="hidden sm:block">
         <div className="relative rounded-lg w-full">
-          <ParallaxHeroImages 
-            images={optimizedImagePaths} 
-            className="w-full"
-          />
+          <ParallaxHeroImages images={optimizedImagePaths} className="w-full" />
         </div>
       </div>
     </div>
-  );
+  )
 }

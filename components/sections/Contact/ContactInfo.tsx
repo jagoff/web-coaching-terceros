@@ -1,48 +1,53 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import { Sparkles, Target, Zap, ArrowRight, Star, Shield, Clock, ChevronRight } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { blurUp } from "@/lib/animations";
+import { motion } from 'framer-motion'
+import { Sparkles, Target, Zap, ArrowRight, Star, Shield, Clock, ChevronRight } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ContactInfo() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage()
 
   const benefits = [
     {
       icon: Sparkles,
       title: language === 'es' ? 'Sesión Gratuita' : 'Free Session',
-      description: language === 'es' 
-        ? 'Primera sesión sin compromiso para conocernos' 
-        : 'First session without commitment to get to know each other',
+      description:
+        language === 'es'
+          ? 'Primera sesión sin compromiso para conocernos'
+          : 'First session without commitment to get to know each other',
       gradient: 'from-violet-500 via-purple-500 to-indigo-600',
-      bgGradient: 'from-violet-500/10 to-purple-500/5'
+      bgGradient: 'from-violet-500/10 to-purple-500/5',
     },
     {
       icon: Target,
       title: language === 'es' ? 'Enfoque Personalizado' : 'Personalized Approach',
-      description: language === 'es'
-        ? 'Soluciones adaptadas a tu contexto y desafíos'
-        : 'Solutions adapted to your context and challenges',
+      description:
+        language === 'es'
+          ? 'Soluciones adaptadas a tu contexto y desafíos'
+          : 'Solutions adapted to your context and challenges',
       gradient: 'from-blue-500 via-cyan-500 to-teal-600',
-      bgGradient: 'from-blue-500/10 to-cyan-500/5'
+      bgGradient: 'from-blue-500/10 to-cyan-500/5',
     },
     {
       icon: Zap,
       title: language === 'es' ? 'Resultados Rápidos' : 'Fast Results',
-      description: language === 'es'
-        ? 'Métodos validados por Scrum.org que funcionan'
-        : 'Scrum.org validated methods that work',
+      description:
+        language === 'es'
+          ? 'Métodos validados por Scrum.org que funcionan'
+          : 'Scrum.org validated methods that work',
       gradient: 'from-amber-500 via-orange-500 to-red-600',
-      bgGradient: 'from-amber-500/10 to-orange-500/5'
-    }
-  ];
+      bgGradient: 'from-amber-500/10 to-orange-500/5',
+    },
+  ]
 
   const guarantees = [
-    { icon: Clock, text: language === 'es' ? 'Respuesta en menos de 24hs' : 'Response in less than 24h' },
+    {
+      icon: Clock,
+      text: language === 'es' ? 'Respuesta en menos de 24hs' : 'Response in less than 24h',
+    },
     { icon: Shield, text: language === 'es' ? '100% confidencial' : '100% confidential' },
-    { icon: Star, text: language === 'es' ? 'Sin compromiso' : 'No commitment' }
-  ];
+    { icon: Star, text: language === 'es' ? 'Sin compromiso' : 'No commitment' },
+  ]
 
   return (
     <div className="relative min-h-screen">
@@ -51,16 +56,16 @@ export default function ContactInfo() {
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-violet-500/20 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute top-20 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-cyan-500/10 rounded-full blur-2xl animate-pulse delay-1000" />
         <div className="absolute bottom-0 left-1/2 w-80 h-80 bg-gradient-to-br from-amber-500/20 to-orange-500/10 rounded-full blur-3xl animate-pulse delay-500" />
-        
+
         {/* Grid pattern overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(124,107,196,0.1)' stroke-width='1'%3E%3Cpath d='M0 30h60M30 0v60M15 0l30 60M45 0L15 60M0 15l60 30M0 45l60-30'/%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(124,107,196,0.1)' stroke-width='1'%3E%3Cpath d='M0 30h60M30 0v60M15 0l30 60M45 0L15 60M0 15l60 30M0 45l60-30'/%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
       </div>
-      
+
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-16">
         {/* Modern Hero Section */}
         <motion.div
@@ -70,7 +75,7 @@ export default function ContactInfo() {
           className="text-center mb-20"
         >
           {/* Modern badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -78,7 +83,7 @@ export default function ContactInfo() {
           >
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
             >
               <Sparkles className="h-5 w-5 text-violet-400" />
             </motion.div>
@@ -86,9 +91,9 @@ export default function ContactInfo() {
               {language === 'es' ? 'Transformación Garantizada' : 'Guaranteed Transformation'}
             </span>
           </motion.div>
-          
+
           {/* Modern typography with proper spacing */}
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -105,15 +110,15 @@ export default function ContactInfo() {
               {language === 'es' ? 'hoy?' : 'today?'}
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12 font-light"
           >
-            {language === 'es' 
-              ? 'Cada gran transformación comienza con una conversación. Descubre cómo el coaching ágil puede revolucionar tu equipo y tu carrera.' 
+            {language === 'es'
+              ? 'Cada gran transformación comienza con una conversación. Descubre cómo el coaching ágil puede revolucionar tu equipo y tu carrera.'
               : 'Every great transformation begins with a conversation. Discover how agile coaching can revolutionize your team and career.'}
           </motion.p>
         </motion.div>
@@ -129,19 +134,23 @@ export default function ContactInfo() {
               className="group"
             >
               {/* Modern card with geometric elements */}
-              <div className={`relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${benefit.bgGradient} p-10 backdrop-blur-xl transition-all duration-700 hover:border-white/30 hover:shadow-2xl`}>
+              <div
+                className={`relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${benefit.bgGradient} p-10 backdrop-blur-xl transition-all duration-700 hover:border-white/30 hover:shadow-2xl`}
+              >
                 {/* Geometric background pattern */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 transition-opacity duration-700 group-hover:opacity-10`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 transition-opacity duration-700 group-hover:opacity-10`}
+                />
+
                 {/* Geometric shapes */}
                 <div className="absolute top-4 right-4 w-16 h-16 border-2 border-white/10 rounded-lg rotate-45 group-hover:rotate-90 transition-transform duration-700" />
                 <div className="absolute bottom-4 left-4 w-8 h-8 border border-white/10 rounded-full group-hover:scale-150 transition-transform duration-700" />
-                
+
                 {/* Modern content layout */}
                 <div className="relative z-10 grid md:grid-cols-12 gap-8 items-center">
                   {/* Icon with modern design */}
                   <div className="md:col-span-3">
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                       className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br ${benefit.gradient} p-4 shadow-2xl mx-auto md:mx-0`}
@@ -150,7 +159,7 @@ export default function ContactInfo() {
                       <benefit.icon className="h-12 w-12 text-white relative z-10 mx-auto" />
                     </motion.div>
                   </div>
-                  
+
                   {/* Content with modern typography */}
                   <div className="md:col-span-9 text-center md:text-left">
                     <h4 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
@@ -159,14 +168,18 @@ export default function ContactInfo() {
                     <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 font-light">
                       {benefit.description}
                     </p>
-                    
+
                     {/* Modern progress indicator */}
                     <div className="flex items-center gap-4">
-                      <div className={`h-1 w-20 bg-gradient-to-r ${benefit.gradient} rounded-full`} />
+                      <div
+                        className={`h-1 w-20 bg-gradient-to-r ${benefit.gradient} rounded-full`}
+                      />
                       <span className="text-sm text-gray-400 uppercase tracking-widest font-medium">
                         {language === 'es' ? 'Beneficio Clave' : 'Key Benefit'}
                       </span>
-                      <ChevronRight className={`h-5 w-5 text-${benefit.gradient.split(' ')[0].split('-')[1]}-400 group-hover:translate-x-2 transition-transform duration-300`} />
+                      <ChevronRight
+                        className={`h-5 w-5 text-${benefit.gradient.split(' ')[0].split('-')[1]}-400 group-hover:translate-x-2 transition-transform duration-300`}
+                      />
                     </div>
                   </div>
                 </div>
@@ -198,7 +211,7 @@ export default function ContactInfo() {
                     className="group"
                   >
                     <div className="flex items-center space-x-4 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105">
-                      <motion.div 
+                      <motion.div
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
                         className="flex-shrink-0 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 p-3 shadow-xl"
@@ -229,11 +242,11 @@ export default function ContactInfo() {
             {/* Modern button effects */}
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/10 opacity-50" />
-            
+
             {/* Geometric button decoration */}
             <div className="absolute top-2 left-2 w-4 h-4 bg-white/30 rounded-full group-hover:scale-150 transition-transform duration-700" />
             <div className="absolute bottom-2 right-2 w-3 h-3 bg-white/20 rounded-full group-hover:scale-200 transition-transform duration-700" />
-            
+
             {/* Button content with modern spacing */}
             <div className="relative z-10 flex items-center justify-center space-x-6">
               <motion.div
@@ -256,5 +269,5 @@ export default function ContactInfo() {
         </motion.div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 
 /**
  * Client component to update html lang attribute dynamically
  * This fixes the hardcoded lang="es" issue for /en pages
  */
 export default function LangAttribute() {
-  const pathname = usePathname();
-  
+  const pathname = usePathname()
+
   useEffect(() => {
-    const lang = pathname?.startsWith('/en') ? 'en' : 'es';
-    document.documentElement.lang = lang;
-  }, [pathname]);
-  
-  return null;
+    const lang = pathname?.startsWith('/en') ? 'en' : 'es'
+    document.documentElement.lang = lang
+  }, [pathname])
+
+  return null
 }

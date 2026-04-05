@@ -10,7 +10,7 @@ export const haptics = {
    */
   light: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate(10);
+      navigator.vibrate(10)
     }
   },
 
@@ -20,7 +20,7 @@ export const haptics = {
    */
   medium: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate(20);
+      navigator.vibrate(20)
     }
   },
 
@@ -30,7 +30,7 @@ export const haptics = {
    */
   heavy: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate(30);
+      navigator.vibrate(30)
     }
   },
 
@@ -40,7 +40,7 @@ export const haptics = {
    */
   success: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate([10, 50, 10]);
+      navigator.vibrate([10, 50, 10])
     }
   },
 
@@ -50,7 +50,7 @@ export const haptics = {
    */
   error: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate([10, 30, 10, 30, 10]);
+      navigator.vibrate([10, 30, 10, 30, 10])
     }
   },
 
@@ -60,7 +60,7 @@ export const haptics = {
    */
   warning: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate([30, 50, 10]);
+      navigator.vibrate([30, 50, 10])
     }
   },
 
@@ -70,7 +70,7 @@ export const haptics = {
    */
   selection: () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      navigator.vibrate(15);
+      navigator.vibrate(15)
     }
   },
-};
+}

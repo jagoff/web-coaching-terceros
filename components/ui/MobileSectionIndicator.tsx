@@ -8,7 +8,7 @@ import { SECTION_MAPPINGS, MOBILE_BREAKPOINT } from '@/lib/constants/sections'
 import type { MobileSectionIndicatorProps } from '@/lib/types/section-tracker'
 
 export const MobileSectionIndicator: React.FC<MobileSectionIndicatorProps> = ({
-  className = ''
+  className = '',
 }) => {
   const currentSection = useSectionTracker()
   const { language } = useLanguage()
@@ -19,18 +19,18 @@ export const MobileSectionIndicator: React.FC<MobileSectionIndicatorProps> = ({
   const getSectionName = (section: string) => {
     const mappings = SECTION_MAPPINGS[language as keyof typeof SECTION_MAPPINGS]
     const fullName = mappings?.[section as keyof typeof mappings] || section
-    
+
     // Abbreviation logic for very long names on mobile
     const abbreviations: Record<string, string> = {
       'Sobre Mí': 'Sobre',
       'Madurez Empresarial': 'Test',
       'Casos de Estudio': 'Casos',
-      'Testimonios': 'Test',
-      'Reviews': 'Rev',
-      'About': 'About',
-      'Cases': 'Cases'
+      Testimonios: 'Test',
+      Reviews: 'Rev',
+      About: 'About',
+      Cases: 'Cases',
     }
-    
+
     return abbreviations[fullName] || fullName
   }
 
@@ -44,11 +44,11 @@ export const MobileSectionIndicator: React.FC<MobileSectionIndicatorProps> = ({
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setPrefersReducedMotion(mediaQuery.matches)
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches)
     }
-    
+
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
@@ -65,37 +65,41 @@ export const MobileSectionIndicator: React.FC<MobileSectionIndicatorProps> = ({
   // Animation variants with proper typing
   const variants = {
     initial: { opacity: 0, x: prefersReducedMotion ? 0 : 20 },
-    animate: { 
-      opacity: 1, 
+    animate: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: prefersReducedMotion ? 0 : 0.3,
-        ease: prefersReducedMotion ? [0, 0, 0.2, 1] as const : [0.4, 0, 0.2, 1] as const
-      }
+        ease: prefersReducedMotion ? ([0, 0, 0.2, 1] as const) : ([0.4, 0, 0.2, 1] as const),
+      },
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       x: prefersReducedMotion ? 0 : 20,
       transition: {
         duration: prefersReducedMotion ? 0 : 0.3,
-        ease: prefersReducedMotion ? [0, 0, 0.2, 1] as const : [0.4, 0, 0.2, 1] as const
-      }
-    }
+        ease: prefersReducedMotion ? ([0, 0, 0.2, 1] as const) : ([0.4, 0, 0.2, 1] as const),
+      },
+    },
   }
 
   // Loading animation variants
   const loadingVariants = {
-    initial: { opacity: 0, x: prefersReducedMotion ? 0 : 50, scale: prefersReducedMotion ? 1 : 0.8 },
-    animate: { 
-      opacity: 1, 
+    initial: {
+      opacity: 0,
+      x: prefersReducedMotion ? 0 : 50,
+      scale: prefersReducedMotion ? 1 : 0.8,
+    },
+    animate: {
+      opacity: 1,
       x: 0,
       scale: 1,
       transition: {
         duration: prefersReducedMotion ? 0 : 0.5,
-        ease: prefersReducedMotion ? [0, 0, 0.2, 1] as const : [0.4, 0, 0.2, 1] as const,
-        delay: prefersReducedMotion ? 0 : 0.2
-      }
-    }
+        ease: prefersReducedMotion ? ([0, 0, 0.2, 1] as const) : ([0.4, 0, 0.2, 1] as const),
+        delay: prefersReducedMotion ? 0 : 0.2,
+      },
+    },
   }
 
   // Don't render on desktop
@@ -115,7 +119,7 @@ export const MobileSectionIndicator: React.FC<MobileSectionIndicatorProps> = ({
       aria-live="polite"
       aria-atomic="true"
       tabIndex={0}
-      onKeyDown={(e) => {
+      onKeyDown={e => {
         if (e.key === 'Enter') {
           const element = document.querySelector(`#${currentSection}`)
           element?.scrollIntoView({ behavior: 'smooth' })

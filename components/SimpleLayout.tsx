@@ -4,5 +4,5 @@ export default function SimpleLayout({ children }: { children: React.ReactNode }
       <div className="noise-overlay" aria-hidden="true" />
       {children}
     </>
-  );
+  )
 }

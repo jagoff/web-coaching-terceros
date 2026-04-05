@@ -14,12 +14,12 @@ export const useSectionTracker = (options: SectionTrackerOptions = {}) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const sectionId = entry.target.id
-        
+
         // Clear existing timeout
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current)
         }
-        
+
         // Add smooth transition with debouncing
         timeoutRef.current = setTimeout(() => {
           setCurrentSection(sectionId)
@@ -57,7 +57,7 @@ export const useSectionTracker = (options: SectionTrackerOptions = {}) => {
     // Create observer with options
     const observerOptions = {
       threshold: options.threshold || 0.5,
-      rootMargin: options.rootMargin || '-20% 0px -20% 0px'
+      rootMargin: options.rootMargin || '-20% 0px -20% 0px',
     }
 
     observerRef.current = new IntersectionObserver(handleIntersection, observerOptions)

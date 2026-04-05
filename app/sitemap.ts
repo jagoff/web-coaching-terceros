@@ -16,10 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { es: '/faq', en: '/en/faq', priority: 0.7 },
     { es: '/sobre-mi', en: '/en/sobre-mi', priority: 0.8 },
     { es: '/madurez-empresarial', en: '/en/madurez-empresarial', priority: 0.7 },
-  ];
+  ]
 
   // Generate sitemap entries for both languages
-  const sitemapEntries: MetadataRoute.Sitemap = [];
+  const sitemapEntries: MetadataRoute.Sitemap = []
 
   pages.forEach(page => {
     // Spanish version
@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           en: `${baseUrl}${page.en}`,
         },
       },
-    });
+    })
 
     // English version
     sitemapEntries.push({
@@ -48,8 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
           en: `${baseUrl}${page.en}`,
         },
       },
-    });
-  });
+    })
+  })
 
-  return sitemapEntries;
+  return sitemapEntries
 }

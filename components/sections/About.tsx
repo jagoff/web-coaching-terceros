@@ -1,26 +1,25 @@
-"use client";
+'use client'
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2, ExternalLink, Linkedin } from "lucide-react";
-import YouTubeThumbnail from "../YouTubeThumbnail";
-import { ParallaxHeroImages } from "@/components/ui/parallax-hero-images";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { useLanguage } from "@/contexts/LanguageContext";
+import React, { useRef, useState, useEffect } from 'react'
+import { motion, useInView, type Variants } from 'framer-motion'
+import { CheckCircle2, ExternalLink, Linkedin } from 'lucide-react'
+import YouTubeThumbnail from '../YouTubeThumbnail'
+import { ParallaxHeroImages } from '@/components/ui/parallax-hero-images'
+import { CardContainer, CardBody, CardItem } from '@/components/ui/3d-card'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const slideReveal: Variants = {
-  hidden: () => ({ opacity: 0, filter: "blur(6px)" }),
+  hidden: () => ({ opacity: 0 }),
   visible: {
     opacity: 1,
-    filter: "blur(0px)",
     transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
   },
-};
+}
 
 const credentialStagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } },
-};
+}
 
 const credentialPop: Variants = {
   hidden: { opacity: 0, scale: 0.8, y: 10 },
@@ -28,38 +27,50 @@ const credentialPop: Variants = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 18 },
+    transition: { type: 'spring', stiffness: 300, damping: 18 },
   },
-};
+}
 
 // Function to add web-underline to specific words in certifications
 const underlineCredentialWords = (credential: string) => {
-  const wordsToUnderline = ['ScrumMaster', 'Scrum', 'Product Owner', 'UX', 'Agile', 'Coach', 'Management', 'OKR', 'unFIX', 'Energizing', 'Fundamentals'];
-  
-  let result = credential;
+  const wordsToUnderline = [
+    'ScrumMaster',
+    'Scrum',
+    'Product Owner',
+    'UX',
+    'Agile',
+    'Coach',
+    'Management',
+    'OKR',
+    'unFIX',
+    'Energizing',
+    'Fundamentals',
+  ]
+
+  let result = credential
   wordsToUnderline.forEach(word => {
-    const regex = new RegExp(`\\b${word}\\b`, 'g');
-    result = result.replace(regex, `<span class="web-underline">${word}</span>`);
-  });
-  
-  return result;
-};
+    const regex = new RegExp(`\\b${word}\\b`, 'g')
+    result = result.replace(regex, `<span class="web-underline">${word}</span>`)
+  })
+
+  return result
+}
 
 const credentials = [
-  "Advanced Certified ScrumMaster",
-  "Advanced Certified Scrum Product Owner (ACSPO)",
-  "Professional Scrum™ with UX (PSU I)",
-  "Agile Coach",
+  'Advanced Certified ScrumMaster',
+  'Advanced Certified Scrum Product Owner (ACSPO)',
+  'Professional Scrum™ with UX (PSU I)',
+  'Agile Coach',
   "Management 3.0 Metrics & OKR's",
-  "unFIX Foundation Workshop",
-  "Energizing People",
-  "Fundamentals Online Workshop",
-];
+  'unFIX Foundation Workshop',
+  'Energizing People',
+  'Fundamentals Online Workshop',
+]
 
 // Array of 12 unique carousel images for the grid
 const baseImages = [
   'slide-01.png',
-  'slide-02.png', 
+  'slide-02.png',
   'slide-03.png',
   'slide-04.png',
   'slide-05.png',
@@ -69,83 +80,58 @@ const baseImages = [
   'slide-09.png',
   'slide-10.png',
   'slide-11.png',
-  'slide-12.png'
-];
+  'slide-12.png',
+]
 
 const getImagePaths = (imageName: string) => {
   // Usar WebP optimizado en lugar de PNG original
-  return `/images/carousel/${imageName.replace('.png', '.webp')}`;
-};
+  return `/images/carousel/${imageName.replace('.png', '.webp')}`
+}
 
 export default function About() {
-  const { t, language } = useLanguage();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [shuffledCredentials, setCredentials] = useState(credentials);
-  const [buttonPosition, setButtonPosition] = useState(0);
-  const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});
-  
+  const { t, language } = useLanguage()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const [shuffledCredentials, setCredentials] = useState(credentials)
+  const [buttonPosition, setButtonPosition] = useState(0)
+
   // Pre-calcular todas las rutas para desktop grid
-  const optimizedImagePaths = baseImages.map(imageName => getImagePaths(imageName));
+  const optimizedImagePaths = baseImages.map(imageName => getImagePaths(imageName))
 
   // Handle hash scrolling for "titulo-about"
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const hash = window.location.hash.replace('#', '');
+      const hash = window.location.hash.replace('#', '')
       if (hash === 'titulo-about') {
-        const element = document.getElementById('titulo-about');
+        const element = document.getElementById('titulo-about')
         if (element) {
-          // Small delay to ensure page is loaded
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
+          element.scrollIntoView({ behavior: 'smooth' })
         }
       }
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // Shuffle credentials array
-      const shuffled = [...credentials].sort(() => Math.random() - 0.5);
-      setCredentials(shuffled);
+      const shuffled = [...credentials].sort(() => Math.random() - 0.5)
+      setCredentials(shuffled)
       // Set random button position
-      const randomPos = Math.floor(Math.random() * (credentials.length + 1));
-      setButtonPosition(randomPos);
-      
-      // Load click count from localStorage
-      try {
-        const saved = localStorage.getItem('linkedinButtonMetrics');
-        if (saved) {
-          setClickCount(JSON.parse(saved));
-        }
-      } catch {
-        // localStorage unavailable or JSON parse failed — proceed with defaults
-      }
+      const randomPos = Math.floor(Math.random() * (credentials.length + 1))
+      setButtonPosition(randomPos)
     }
-  }, []);
+  }, [])
 
-  const handleLinkedInClick = () => {
-    // Track click position
-    setClickCount(prev => {
-      const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 };
-      try {
-        localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
-      } catch {
-        // localStorage unavailable — skip persisting metrics
-      }
-      return newCount;
-    });
-  };
+  const handleLinkedInClick = () => {}
 
   return (
     <section
       id="sobre-mi"
       className="section section-surface section-gold-border-top"
       ref={ref}
-      style={{ 
-        paddingTop: "clamp(1rem, 2vw, 2rem)",
-        paddingBottom: "clamp(1rem, 2.5vw, 1.5rem)"
+      style={{
+        paddingTop: 'clamp(1rem, 2vw, 2rem)',
+        paddingBottom: 'clamp(1rem, 2.5vw, 1.5rem)',
       }}
     >
       <div className="container">
@@ -156,16 +142,16 @@ export default function About() {
             custom={-60}
             variants={slideReveal}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isInView ? 'visible' : 'hidden'}
             className="relative mt-4 z-0"
-            style={{ 
+            style={{
               paddingTop: 'clamp(1rem, 10vw, 1rem)',
             }}
           >
             {/* TV Image - Responsive */}
             <div className="mb-8 flex justify-center overflow-hidden">
               <CardContainer className="inter-var">
-                <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64">
+                <CardBody className="relative group/card w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80">
                   <CardItem translateZ="50" className="w-full h-full">
                     <img
                       src="/images/ui/tv-icon.webp"
@@ -175,7 +161,7 @@ export default function About() {
                       style={{
                         filter: 'brightness(1.1) contrast(1.1)',
                         opacity: 1,
-                        transform: 'scale(1.2)'
+                        transform: 'scale(1.2)',
                       }}
                     />
                   </CardItem>
@@ -189,16 +175,15 @@ export default function About() {
             custom={60}
             variants={slideReveal}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isInView ? 'visible' : 'hidden'}
             className="relative z-10"
           >
-            <h2 
+            <h2
               id="titulo-about"
-              className="heading-xl mb-6 sm:mb-10" 
-              style={{ fontFamily: "var(--font-heading)", transform: 'translateY(-5px)' }}
+              className="heading-xl mb-6 sm:mb-10"
+              style={{ fontFamily: 'var(--font-heading)', transform: 'translateY(-5px)' }}
             >
-              {t.about.title1}{" "}
-              <br />
+              {t.about.title1} <br />
               <span className="text-gradient">{t.about.title2}</span>
               <br />
               {t.about.title3}
@@ -206,29 +191,32 @@ export default function About() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <div 
+            <div
               className="lead-text mb-6 sm:mb-8"
               dangerouslySetInnerHTML={{ __html: t.about.intro }}
             />
 
             {/* Certifications */}
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "var(--text-primary)" }}>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
                 {t.about.certificaciones}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {[
-                  "Advanced Certified ScrumMaster",
-                  "Advanced Certified Scrum Product Owner (ACSPO)",
-                  "Professional Scrum™ with UX (PSU I)",
-                  "Agile Coach",
+                  'Advanced Certified ScrumMaster',
+                  'Advanced Certified Scrum Product Owner (ACSPO)',
+                  'Professional Scrum™ with UX (PSU I)',
+                  'Agile Coach',
                   "Management 3.0 Metrics & OKR's",
-                  "unFIX Foundation Workshop",
-                  "Energizing People",
-                  "Fundamentals Online Workshop",
+                  'unFIX Foundation Workshop',
+                  'Energizing People',
+                  'Fundamentals Online Workshop',
                 ].map((cert, index) => (
                   <React.Fragment key={index}>
-                    <span className="credential-chip" dangerouslySetInnerHTML={{ __html: underlineCredentialWords(cert) }} />
+                    <span
+                      className="credential-chip"
+                      dangerouslySetInnerHTML={{ __html: underlineCredentialWords(cert) }}
+                    />
                     {index === 1 && (
                       <a
                         href="https://www.linkedin.com/in/fernandoferrari/"
@@ -248,33 +236,49 @@ export default function About() {
 
             {/* LinkedIn CTA */}
             <div className="mb-8">
-              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                {language === 'es' 
-                  ? <span>¿Queres pasar por YouTube? <a 
-                      href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
-                      target="_blank" 
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                {language === 'es' ? (
+                  <span>
+                    ¿Queres pasar por YouTube?{' '}
+                    <a
+                      href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                      style={{
+                        color: 'var(--gold-primary)',
+                        textDecoration: 'underline',
+                        fontWeight: '500',
+                      }}
                     >
                       ¡Te espero!
-                    </a></span>
-                  : <span>Want to stop by YouTube? <a 
-                      href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
-                      target="_blank" 
+                    </a>
+                  </span>
+                ) : (
+                  <span>
+                    Want to stop by YouTube?{' '}
+                    <a
+                      href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                      style={{
+                        color: 'var(--gold-primary)',
+                        textDecoration: 'underline',
+                        fontWeight: '500',
+                      }}
                     >
                       I'll be there!
-                  </a></span>
-                }
+                    </a>
+                  </span>
+                )}
               </p>
             </div>
-            
+
             <YouTubeThumbnail
               videoId="mgr1mkSRl3o"
-              title={language === 'es' 
-                ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
-                : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
+              title={
+                language === 'es'
+                  ? 'Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional'
+                  : 'Fernando Ferrari - Leadership Coaching and Organizational Transformation'
               }
               autoPlay={true}
             />
@@ -288,16 +292,16 @@ export default function About() {
             custom={-60}
             variants={slideReveal}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isInView ? 'visible' : 'hidden'}
             className="relative order-1 lg:order-1 mt-4 z-0"
-            style={{ 
+            style={{
               paddingTop: 'clamp(1rem, 10vw, 1rem)',
             }}
           >
             {/* TV Image - Responsive */}
             <div className="mb-8 flex justify-center">
               <CardContainer className="inter-var">
-                <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[32rem] lg:h-[32rem]">
+                <CardBody className="relative group/card w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[36rem] lg:h-[36rem]">
                   <CardItem translateZ="50" className="w-full h-full">
                     <img
                       src="/images/ui/tv-icon.webp"
@@ -307,7 +311,7 @@ export default function About() {
                       style={{
                         filter: 'brightness(1.1) contrast(1.1)',
                         opacity: 1,
-                        transform: 'scale(1.2) translateY(-30px)'
+                        transform: 'scale(1.2) translateY(-30px)',
                       }}
                     />
                   </CardItem>
@@ -317,58 +321,74 @@ export default function About() {
 
             {/* Image Grid */}
             <motion.div
-              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mb-8"
             >
               <div className="relative rounded-lg w-full">
-                <ParallaxHeroImages 
-                  images={optimizedImagePaths} 
-                  className="w-full"
-                />
+                <ParallaxHeroImages images={optimizedImagePaths} className="w-full" />
               </div>
             </motion.div>
 
             {/* YouTube Video Section */}
             <motion.div
-              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="mb-6">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+                <h3
+                  className="text-2xl md:text-3xl font-semibold mb-3"
+                  style={{ fontFamily: 'var(--font-heading)' }}
+                >
                   <span className="text-gradient">
                     {language === 'es' ? 'Conocé mi enfoque' : 'See My Approach'}
                   </span>
                 </h3>
-                <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                  {language === 'es' 
-                    ? <span>¿Queres pasar por YouTube? <a 
-                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
-                        target="_blank" 
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  {language === 'es' ? (
+                    <span>
+                      ¿Queres pasar por YouTube?{' '}
+                      <a
+                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3"
+                        target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                        style={{
+                          color: 'var(--gold-primary)',
+                          textDecoration: 'underline',
+                          fontWeight: '500',
+                        }}
                       >
                         ¡Te espero!
-                      </a></span>
-                    : <span>Want to stop by YouTube? <a 
-                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
-                        target="_blank" 
+                      </a>
+                    </span>
+                  ) : (
+                    <span>
+                      Want to stop by YouTube?{' '}
+                      <a
+                        href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3"
+                        target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                        style={{
+                          color: 'var(--gold-primary)',
+                          textDecoration: 'underline',
+                          fontWeight: '500',
+                        }}
                       >
                         I'll be there!
-                      </a></span>
-                  }
+                      </a>
+                    </span>
+                  )}
                 </p>
               </div>
-              
+
               <YouTubeThumbnail
                 videoId="mgr1mkSRl3o"
-                title={language === 'es' 
-                  ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
-                  : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
+                title={
+                  language === 'es'
+                    ? 'Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional'
+                    : 'Fernando Ferrari - Leadership Coaching and Organizational Transformation'
                 }
                 autoPlay={true}
               />
@@ -380,16 +400,15 @@ export default function About() {
             custom={60}
             variants={slideReveal}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isInView ? 'visible' : 'hidden'}
             className="order-2 lg:order-2"
           >
-            <h2 
+            <h2
               id="titulo-about"
-              className="heading-xl mb-6 sm:mb-10" 
-              style={{ fontFamily: "var(--font-heading)" }}
+              className="heading-xl mb-6 sm:mb-10"
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t.about.title1}{" "}
-              <br />
+              {t.about.title1} <br />
               <span className="text-gradient">{t.about.title2}</span>
               <br />
               {t.about.title3}
@@ -397,16 +416,17 @@ export default function About() {
 
             <div className="divider-gold-left mb-6 sm:mb-10" />
 
-            <div 
+            <div
               className="lead-text mb-6 sm:mb-8"
               dangerouslySetInnerHTML={{ __html: t.about.intro }}
             />
 
-            <p className="lead-text mb-12">
-              {t.about.approach}
-            </p>
+            <p className="lead-text mb-12">{t.about.approach}</p>
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+            <h3
+              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
               <span className="web-underline">{t.about.certificaciones}</span>
             </h3>
 
@@ -414,12 +434,12 @@ export default function About() {
             <motion.div
               variants={credentialStagger}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
+              animate={isInView ? 'visible' : 'hidden'}
               className="flex flex-wrap gap-3 sm:gap-4"
             >
               {shuffledCredentials.map((credential, index) => {
-                const shouldShowLinkedInBefore = index === buttonPosition;
-                
+                const shouldShowLinkedInBefore = index === buttonPosition
+
                 return (
                   <React.Fragment key={`credential-${index}`}>
                     {shouldShowLinkedInBefore && (
@@ -427,7 +447,7 @@ export default function About() {
                         key="linkedin-button"
                         variants={credentialPop}
                         whileHover={{ scale: 1.05, y: -2 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                         className="linkedin-button-container"
                       >
                         <motion.a
@@ -436,13 +456,16 @@ export default function About() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
                           style={{
-                            background: "var(--gradient-gold)",
-                            color: "white",
-                            textDecoration: "none",
-                            fontWeight: "600",
-                            transition: "var(--transition-base)"
+                            background: 'var(--gradient-gold)',
+                            color: 'white',
+                            textDecoration: 'none',
+                            fontWeight: '600',
+                            transition: 'var(--transition-base)',
                           }}
-                          whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
+                          whileHover={{
+                            scale: 1.05,
+                            boxShadow: '0 8px 25px rgba(124,107,196,0.3)',
+                          }}
                           whileTap={{ scale: 0.98 }}
                           onClick={handleLinkedInClick}
                         >
@@ -457,15 +480,20 @@ export default function About() {
                       variants={credentialPop}
                       className="credential-chip"
                     >
-                      <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-                      <span dangerouslySetInnerHTML={{ __html: underlineCredentialWords(credential) }} />
+                      <CheckCircle2
+                        size={14}
+                        style={{ color: 'var(--gold-primary)', flexShrink: 0 }}
+                      />
+                      <span
+                        dangerouslySetInnerHTML={{ __html: underlineCredentialWords(credential) }}
+                      />
                     </motion.div>
                     {index === shuffledCredentials.length - 1 && buttonPosition > index && (
                       <motion.div
                         key="linkedin-button-end"
                         variants={credentialPop}
                         whileHover={{ scale: 1.05, y: -2 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                         className="linkedin-button-container"
                       >
                         <motion.a
@@ -474,13 +502,16 @@ export default function About() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
                           style={{
-                            background: "var(--gradient-gold)",
-                            color: "white",
-                            textDecoration: "none",
-                            fontWeight: "600",
-                            transition: "var(--transition-base)"
+                            background: 'var(--gradient-gold)',
+                            color: 'white',
+                            textDecoration: 'none',
+                            fontWeight: '600',
+                            transition: 'var(--transition-base)',
                           }}
-                          whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
+                          whileHover={{
+                            scale: 1.05,
+                            boxShadow: '0 8px 25px rgba(124,107,196,0.3)',
+                          }}
                           whileTap={{ scale: 0.98 }}
                           onClick={handleLinkedInClick}
                         >
@@ -491,12 +522,12 @@ export default function About() {
                       </motion.div>
                     )}
                   </React.Fragment>
-                );
+                )
               })}
             </motion.div>
           </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }

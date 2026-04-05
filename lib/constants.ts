@@ -24,7 +24,7 @@ export const ANIMATION = {
     BOUNCE: [0.34, 1.56, 0.64, 1] as const,
     OUT: [0, 0, 0.2, 1] as const,
   },
-} as const;
+} as const
 
 // Breakpoints (matching Tailwind)
 export const BREAKPOINTS = {
@@ -33,7 +33,7 @@ export const BREAKPOINTS = {
   LG: 1024,
   XL: 1280,
   '2XL': 1536,
-} as const;
+} as const
 
 // Particle configuration
 export const PARTICLES = {
@@ -49,14 +49,14 @@ export const PARTICLES = {
     MIN: 0.1,
     MAX: 0.3,
   },
-} as const;
+} as const
 
 // Touch target sizes (WCAG compliance)
 export const TOUCH_TARGETS = {
   MIN_HEIGHT: 44, // px - WCAG 2.1 Level AAA
-  MIN_WIDTH: 44,  // px
+  MIN_WIDTH: 44, // px
   RECOMMENDED: 48, // px - Better UX
-} as const;
+} as const
 
 // Navbar configuration
 export const NAVBAR = {
@@ -64,14 +64,14 @@ export const NAVBAR = {
   HIDE_OFFSET: 200, // px before contact section
   MOBILE_HEIGHT: 88, // px
   DESKTOP_HEIGHT: 88, // px
-} as const;
+} as const
 
 // Performance thresholds
 export const PERFORMANCE = {
   LAZY_LOAD_MARGIN: '-100px',
   IMAGE_QUALITY: 75,
   REVALIDATE_TIME: 3600, // seconds (1 hour)
-} as const;
+} as const
 
 // SEO configuration
 export const SEO = {
@@ -79,7 +79,7 @@ export const SEO = {
   SUPPORTED_LOCALES: ['es-AR', 'en-US'] as const,
   SITE_URL: 'https://eleva-consultoria.com',
   SITE_NAME: 'ELEVA CONSULTORIA',
-} as const;
+} as const
 
 // Color contrast ratios (WCAG)
 export const WCAG = {
@@ -93,7 +93,7 @@ export const WCAG = {
     MINIMUM: 16, // px - WCAG recommendation
     LARGE_TEXT: 18, // px - 18pt = 24px
   },
-} as const;
+} as const
 
 // Z-index layers
 export const Z_INDEX = {
@@ -104,11 +104,11 @@ export const Z_INDEX = {
   MODAL: 1050,
   POPOVER: 1060,
   TOOLTIP: 1070,
-} as const;
+} as const
 
 // Form validation
 export const VALIDATION = {
   EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   MIN_MESSAGE_LENGTH: 10,
   MAX_MESSAGE_LENGTH: 1000,
-} as const;
+} as const
