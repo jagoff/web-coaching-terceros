@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { slideLeft } from "./animations";
@@ -10,6 +10,72 @@ export default function ContactSidebar() {
   const es = language === "es";
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // Array de testimonios
+  const testimonials = es ? [
+    {
+      text: "Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica.",
+      role: "VP Engineering",
+      company: "Tech Scale-up · Argentina"
+    },
+    {
+      text: "Fernando transformó nuestra forma de trabajar. Hoy tenemos procesos que escalan y equipos felices.",
+      role: "CEO & Founder",
+      company: "Startup SaaS · Buenos Aires"
+    },
+    {
+      text: "El coaching nos dio las herramientas para crecer sin perder nuestra cultura. Impacto inmediato.",
+      role: "CTO",
+      company: "Fintech · Argentina"
+    },
+    {
+      text: "Dejamos de apagar incendios y empezamos a construir el futuro. Mejor inversión que hicimos.",
+      role: "Head of Engineering",
+      company: "E-commerce LATAM"
+    }
+  ] : [
+    {
+      text: "We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics.",
+      role: "VP Engineering",
+      company: "Tech Scale-up · Argentina"
+    },
+    {
+      text: "Fernando transformed our way of working. Today we have scalable processes and happy teams.",
+      role: "CEO & Founder",
+      company: "SaaS Startup · Buenos Aires"
+    },
+    {
+      text: "The coaching gave us the tools to grow without losing our culture. Immediate impact.",
+      role: "CTO",
+      company: "Fintech · Argentina"
+    },
+    {
+      text: "We stopped fighting fires and started building the future. Best investment we made.",
+      role: "Head of Engineering",
+      company: "E-commerce LATAM"
+    }
+  ];
+
+  // Rotación automática cada 5 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  // Funciones para navegación manual
+  const goToNext = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const testimonial = testimonials[currentTestimonial];
 
   return (
     <div ref={ref} className="flex flex-col gap-4 h-full">
@@ -42,7 +108,8 @@ export default function ContactSidebar() {
             &ldquo;
           </div>
 
-          <p
+          <motion.p
+            key={currentTestimonial}
             className="mb-4"
             style={{
               color: "var(--text-secondary)",
@@ -50,25 +117,32 @@ export default function ContactSidebar() {
               fontSize: "0.95rem",
               fontStyle: "italic",
             }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            {es
-              ? "Pasamos de micromanagement a equipos autónomos en 3 meses. Cambió completamente nuestra dinámica."
-              : "We went from micromanagement to autonomous teams in 3 months. It completely changed our dynamics."}
-          </p>
+            {testimonial.text}
+          </motion.p>
 
-          <div className="flex items-center justify-between">
+          <motion.div 
+            key={`author-${currentTestimonial}`}
+            className="flex items-center justify-between"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <div>
               <div
                 className="text-sm font-semibold"
                 style={{ color: "var(--text-primary)", fontFamily: "var(--font-heading)" }}
               >
-                VP Engineering
+                {testimonial.role}
               </div>
               <div
                 className="text-xs mt-0.5"
                 style={{ color: "var(--text-muted)" }}
               >
-                Tech Scale-up · Argentina
+                {testimonial.company}
               </div>
             </div>
 
@@ -86,6 +160,55 @@ export default function ContactSidebar() {
                 </svg>
               ))}
             </div>
+          </motion.div>
+
+          {/* Indicadores de progreso */}
+          <div className="flex items-center gap-2 mt-3 justify-center">
+            {/* Botón anterior */}
+            <button
+              onClick={goToPrev}
+              className="p-1 rounded-full hover:bg-gray-800 transition-colors"
+              aria-label="Testimonio anterior"
+            >
+              <svg 
+                className="w-3 h-3 text-gray-400" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Indicadores */}
+            <div className="flex gap-1">
+              {testimonials.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1 rounded-full transition-all duration-300 ${
+                    index === currentTestimonial 
+                      ? 'w-6 bg-gradient-to-r from-yellow-400 to-orange-500' 
+                      : 'w-1 bg-gray-600'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Botón siguiente */}
+            <button
+              onClick={goToNext}
+              className="p-1 rounded-full hover:bg-gray-800 transition-colors"
+              aria-label="Siguiente testimonio"
+            >
+              <svg 
+                className="w-3 h-3 text-gray-400" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </motion.div>
