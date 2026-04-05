@@ -225,6 +225,7 @@ export default function About() {
                   ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
                   : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
                 }
+                autoPlay={true}
               />
             </motion.div>
           </motion.div>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Play, Youtube } from "lucide-react";
 import Image from "next/image";
@@ -22,16 +22,25 @@ interface YouTubeThumbnailProps {
   videoId: string;
   title?: string;
   className?: string;
+  autoPlay?: boolean; // New prop for auto-play on scroll
 }
 
 export default function YouTubeThumbnail({
   videoId,
   title,
   className = "",
+  autoPlay = false, // Default to false for manual play
 }: YouTubeThumbnailProps) {
   const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(videoRef, { 
+    once: true, 
+    margin: "-100px", // Start loading when video is 100px away from viewport
+    amount: 0.3 // Trigger when 30% of video is visible
+  });
   
   const defaultTitle = t.video.defaultTitle;
   const finalTitle = title || defaultTitle;
@@ -39,6 +48,18 @@ export default function YouTubeThumbnail({
   // Simple reliable thumbnail URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=0&cc_load_policy=0&iv_load_policy=3&showinfo=0&disablekb=1`;
+
+  // Auto-play when video comes into view
+  useEffect(() => {
+    if (autoPlay && isInView && !isPlaying && !shouldAutoPlay) {
+      logger.debug('Video in view, triggering auto-play', { component: 'YouTubeThumbnail' });
+      setShouldAutoPlay(true);
+      // Small delay to ensure smooth transition
+      setTimeout(() => {
+        setIsPlaying(true);
+      }, 500);
+    }
+  }, [autoPlay, isInView, isPlaying, shouldAutoPlay]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -53,6 +74,7 @@ export default function YouTubeThumbnail({
 
   return (
     <motion.div
+      ref={videoRef}
       variants={thumbnailContainer}
       initial="hidden"
       animate="visible"
@@ -63,11 +85,11 @@ export default function YouTubeThumbnail({
         width: "100%",
         maxWidth: "100%"
       }}
-      onClick={handleClick}
-      role="button"
-      tabIndex={0}
+      onClick={!autoPlay ? handleClick : undefined}
+      role={autoPlay ? "presentation" : "button"}
+      tabIndex={autoPlay ? -1 : 0}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (!autoPlay && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault();
           setIsPlaying(true);
         }
@@ -124,32 +146,45 @@ export default function YouTubeThumbnail({
             }}
           />
           
-          {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative"
-            >
-              {/* Play button circle */}
-              <div
-                className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
-                style={{
-                  background: "rgba(255, 0, 0, 0.9)",
-                  backdropFilter: "blur(10px)",
-                }}
-              >
-                <Play size={32} className="text-white ml-1" fill="white" />
-              </div>
-              
-              {/* Pulse animation */}
+          {/* Play button overlay - only show if not auto-playing */}
+          {!autoPlay && (
+            <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-red-500"
-                animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative"
+              >
+                {/* Play button circle */}
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
+                  style={{
+                    background: "rgba(255, 0, 0, 0.9)",
+                    backdropFilter: "blur(10px)",
+                  }}
+                >
+                  <Play size={32} className="text-white ml-1" fill="white" />
+                </div>
+                
+                {/* Pulse animation */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-red-500"
+                  animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </motion.div>
+            </div>
+          )}
+          
+          {/* Auto-play indicator */}
+          {autoPlay && shouldAutoPlay && !isPlaying && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="w-12 h-12 rounded-full border-2 border-red-500 border-t-transparent"
               />
-            </motion.div>
-          </div>
+            </div>
+          )}
           
           {/* YouTube badge */}
           <div className="absolute top-4 right-4">

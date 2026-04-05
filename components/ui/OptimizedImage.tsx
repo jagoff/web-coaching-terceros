@@ -141,6 +141,7 @@ export default function OptimizedImage({
           onError={handleError}
           priority={priority}
           quality={75}
+          unoptimized={true} // Required for static export
           placeholder={blurDataURL ? "blur" : "empty"}
           blurDataURL={blurDataURL}
           className={`transition-opacity duration-400 ${

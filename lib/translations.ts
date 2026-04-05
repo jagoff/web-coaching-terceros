@@ -418,7 +418,7 @@ export const translations: Record<Language, Translations> = {
   </p>
   
   <p style="margin-bottom: 1rem; max-width: 100%; overflow-wrap: break-word;">
-    <span style="font-family: var(--font-serif); font-weight: 500; display: block;">Hoy gestiono infraestructura AWS Cloud en Avature, co-fundé</span> <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">Nodok.AI</span> <span style="font-family: var(--font-serif); font-weight: 500;">para proyectos de inteligencia artificial, y llevo +10 años como consultor ágil independiente.</span>
+    <span style="font-family: var(--font-serif); font-weight: 500; display: block;">Hoy gestiono infraestructura AWS Cloud en Avature, co-fundé <span style="font-family: var(--font-modern); font-weight: 700; color: #7C6BC4;">Nodok.AI</span> para proyectos de inteligencia artificial, y llevo +10 años como consultor ágil independiente.</span>
   </p>
   
   <p style="margin-top: 1.2rem; padding-left: 0.8rem; border-left: 3px solid var(--gold-primary); max-width: 100%; overflow-wrap: break-word;">
