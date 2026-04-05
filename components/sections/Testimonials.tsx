@@ -185,7 +185,7 @@ export default function Testimonials() {
 
                     {/* Quote */}
                     <blockquote
-                      className="text-base md:text-lg leading-relaxed flex-1 mb-6"
+                      className="text-sm md:text-base leading-relaxed flex-1 mb-6"
                       style={{
                         color: "var(--text-secondary)",
                         fontStyle: "italic",
@@ -210,13 +210,13 @@ export default function Testimonials() {
                       </div>
                       <div className="text-left">
                         <p
-                          className="font-semibold text-sm md:text-base"
+                          className="font-semibold text-xs md:text-sm"
                           style={{ color: "var(--text-primary)" }}
                         >
                           {testimonial.name}
                         </p>
                         <p 
-                          className="text-xs md:text-sm" 
+                          className="text-xs md:text-xs" 
                           style={{ color: "var(--text-muted)" }}
                         >
                           {testimonial.role}
