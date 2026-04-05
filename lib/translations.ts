@@ -410,7 +410,7 @@ export const translations: Record<Language, Translations> = {
   </p>
   
   <p style="margin-bottom: 1rem; max-width: 100%; overflow-wrap: break-word;">
-    <span style="font-family: var(--font-serif); font-weight: 500; display: block;">Fui técnico, sysadmin, CTO, Advanced Scrum Master, Product Owner, PM, Director de Operaciones.</span>
+    <span style="font-family: var(--font-serif); font-weight: 500; display: block;">Fui técnico, sysadmin, manager, CTO, Advanced Scrum Master, Product Owner, PM, Director de Operaciones.</span>
   </p>
   
   <p style="margin-bottom: 1rem; max-width: 100%; overflow-wrap: break-word;">

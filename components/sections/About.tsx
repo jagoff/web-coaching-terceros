@@ -158,11 +158,11 @@ export default function About() {
                       src="/images/ui/tv-icon.webp"
                       alt="TV Icon"
                       loading="lazy"
-                      className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300"
+                      className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300 rounded-2xl"
                       style={{
                         filter: 'brightness(1.1) contrast(1.1)',
                         opacity: 1,
-                        transform: 'scale(1.2)'
+                        transform: 'scale(1.2) translateY(-30px)'
                       }}
                     />
                   </CardItem>

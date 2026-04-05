@@ -245,7 +245,7 @@ export default function Testimonials() {
                     }}
                   >
                     {/* Quote icon */}
-                    <div className="absolute top-4 right-4 opacity-20">
+                    <div className="absolute top-4 left-4 opacity-20" style={{ top: '1px', left: '17px' }}>
                       <Quote 
                         size={32} 
                         style={{ color: 'var(--gold-primary)' }}
@@ -300,7 +300,7 @@ export default function Testimonials() {
                       </div>
 
                       {/* Stars */}
-                      <div className="flex gap-1" aria-label="5 estrellas">
+                      <div className="flex gap-1" aria-label="5 estrellas" style={{ marginTop: '-5px' }}>
                         {[...Array(5)].map((_, i) => (
                           <Star 
                             key={i} 
@@ -323,42 +323,6 @@ export default function Testimonials() {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
-
-          {/* Navigation Buttons */}
-          {testimonials.length > 1 && (
-            <div className="flex justify-center gap-4 mt-8">
-              <button
-                onClick={prev}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                aria-label="Anterior testimonio"
-              >
-                <ChevronLeft size={20} className="text-white" />
-              </button>
-              <button
-                onClick={next}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                aria-label="Siguiente testimonio"
-              >
-                <ChevronRight size={20} className="text-white" />
-              </button>
-            </div>
-          )}
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-4">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goTo(index, index > currentIndex ? 1 : -1)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex 
-                    ? 'bg-gold-primary' 
-                    : 'bg-white/30 hover:bg-white/50'
-                }`}
-                aria-label={`Ir al testimonio ${index + 1}`}
-              />
-            ))}
           </div>
         </motion.div>
       </div>

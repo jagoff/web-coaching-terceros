@@ -7,12 +7,15 @@ import { scrollToElement, scrollToTop } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import logger from "@/lib/logger";
 
+const SECTION_IDS = ['inicio', 'para-quien', 'servicios', 'sobre-mi', 'proceso', 'resultados', 'testimonios', 'precios', 'faq'];
+
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState('');
   const lastScrollY = useRef(0);
   const lastScrollTime = useRef(0);
   const cachedContactTop = useRef<number | null>(null);
@@ -78,6 +81,27 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [visible]);
+
+  // Active section tracker via IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the most visible section
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    SECTION_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -153,18 +177,15 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Progress Bar */}
-      <div 
-        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-900/20"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
+      {/* Progress Bar — brand gradient */}
+      <div
+        className="fixed top-0 left-0 right-0 z-50 h-[2px]"
+        style={{ background: 'rgba(124,107,196,0.12)' }}
         suppressHydrationWarning={true}
       >
-        <div
-          className="h-full transition-all duration-100 ease-out"
-          style={{
-            background: 'linear-gradient(90deg, #87CEEB 0%, #ADD8E6 50%, #B0E0E6 100%)',
-            width: `${scrollProgress}%`
-          }}
+        <motion.div
+          className="h-full origin-left"
+          style={{ scaleX: scrollProgress / 100, background: 'linear-gradient(90deg, #7C6BC4 0%, #C87B5A 60%, #FF6B35 100%)' }}
           suppressHydrationWarning={true}
         />
       </div>
@@ -180,19 +201,19 @@ export default function Navbar() {
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
         <div className="container">
           <div className="flex items-center justify-between gap-8">
             {/* Logo */}
-            <a
+            <motion.a
               href="#"
               className="relative flex flex-col items-center group"
-              aria-label={`ELEVA CONSULTORIA — inicio`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToTop();
-              }}
+              aria-label="ELEVA CONSULTORIA — inicio"
+              onClick={(e) => { e.preventDefault(); scrollToTop(); }}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <span
                 className="text-gradient font-heading font-black text-2xl tracking-tight mt-[calc(2.5rem+2px)]"
@@ -202,27 +223,47 @@ export default function Navbar() {
               </span>
               <span
                 className="text-[0.5rem] font-semibold uppercase tracking-[0.2em] text-muted -mt-[calc(0.4rem+16px)]"
-                style={{
-                  opacity: 0.85,
-                  lineHeight: "0.8"
-                }}
+                style={{ opacity: 0.85, lineHeight: "0.8" }}
               >
                 {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
               </span>
-            </a>
+            </motion.a>
 
-            {/* Desktop nav links */}
+            {/* Desktop nav links — stagger on mount */}
             <ul className="hidden lg:flex items-center gap-8 list-none">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <button
-                    className="nav-link bg-transparent border-0 cursor-pointer p-0 whitespace-nowrap"
-                    onClick={() => handleLinkClick(link.href)}
+              {navLinks.map((link, i) => {
+                const sectionId = link.href.split('/').pop()?.split('#')[0] || '';
+                const isActive = activeSection === sectionId;
+                return (
+                  <motion.li
+                    key={link.href}
+                    className="relative"
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 + i * 0.06, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
+                    <button
+                      className="nav-link bg-transparent border-0 cursor-pointer p-0 whitespace-nowrap"
+                      onClick={() => handleLinkClick(link.href)}
+                    >
+                      {link.label}
+                    </button>
+                    {/* Active section underline — outside button to bypass overflow:hidden */}
+                    <motion.span
+                      className="absolute left-0 w-full rounded-full pointer-events-none"
+                      style={{
+                        bottom: '-3px',
+                        height: '2px',
+                        background: 'var(--gold-primary)',
+                        transformOrigin: 'left',
+                      }}
+                      initial={false}
+                      animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 0.9 : 0 }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </motion.li>
+                );
+              })}
             </ul>
 
             {/* Desktop CTA */}
