@@ -30,7 +30,7 @@ export default function ProcessSimple() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
         <h2 
           style={{ 
-            fontSize: '1.5rem', 
+            fontSize: '1.3rem', 
             fontWeight: 'bold', 
             marginBottom: '1rem',
             background: 'linear-gradient(45deg, #f59e0b, #d97706)',
