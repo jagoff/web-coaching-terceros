@@ -184,14 +184,14 @@ export default function Testimonials() {
                     </blockquote>
 
                     {/* Author info */}
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-between mt-auto pb-2">
+                      <div className="flex items-center gap-3">
                         <div
-                          className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                           style={{ background: testimonial.avatarBg }}
                         >
                           <span
-                            className="text-sm font-bold"
+                            className="text-xs font-bold"
                             style={{ color: "var(--amber-light)" }}
                           >
                             {testimonial.initials}
@@ -219,7 +219,7 @@ export default function Testimonials() {
                         {[...Array(5)].map((_, i) => (
                           <Star 
                             key={i} 
-                            size={14} 
+                            size={12} 
                             fill="currentColor"
                             style={{ color: 'var(--gold-primary)' }}
                           />
