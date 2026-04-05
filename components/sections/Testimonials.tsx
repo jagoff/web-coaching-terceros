@@ -138,32 +138,6 @@ export default function Testimonials() {
         >
           {/* Cards Grid with Navigation */}
           <div className="flex justify-center relative">
-            {/* Previous Button - Left Side */}
-            <button
-              onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-4 rounded-full flex items-center justify-center testimonial-nav-btn group z-10"
-              style={{ width: 48, height: 48 }}
-              aria-label={t.testimonialsNav.ariaPrevious}
-            >
-              <ChevronLeft 
-                size={20} 
-                className="transition-transform duration-300 group-hover:-translate-x-1"
-              />
-            </button>
-
-            {/* Next Button - Right Side */}
-            <button
-              onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full ml-4 rounded-full flex items-center justify-center testimonial-nav-btn group z-10"
-              style={{ width: 48, height: 48 }}
-              aria-label={t.testimonialsNav.ariaNext}
-            >
-              <ChevronRight 
-                size={20} 
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </button>
-
             <AnimatePresence mode="wait">
               {getVisibleTestimonials().map((testimonial, index) => (
                 <motion.div
@@ -180,8 +154,8 @@ export default function Testimonials() {
                   <div
                     className="testimonial-card relative overflow-hidden rounded-2xl p-6 md:p-8 h-full flex flex-col"
                     style={{
-                      minHeight: '280px', // Reducido de 320px
-                      maxHeight: '320px', // Limitar altura máxima
+                      minHeight: '280px',
+                      maxHeight: '320px',
                       background: 'rgba(255, 255, 255, 0.03)',
                       backdropFilter: 'blur(20px)',
                       WebkitBackdropFilter: 'blur(20px)',
@@ -189,6 +163,47 @@ export default function Testimonials() {
                       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
                     }}
                   >
+                    {/* Previous Button - Left Side of Card */}
+                    <button
+                      onClick={prev}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center testimonial-nav-btn group z-20"
+                      style={{ 
+                        width: 40, 
+                        height: 40,
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(10px)',
+                        WebkitBackdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)'
+                      }}
+                      aria-label={t.testimonialsNav.ariaPrevious}
+                    >
+                      <ChevronLeft 
+                        size={18} 
+                        className="transition-transform duration-300 group-hover:-translate-x-1"
+                        style={{ color: 'var(--gold-primary)' }}
+                      />
+                    </button>
+
+                    {/* Next Button - Right Side of Card */}
+                    <button
+                      onClick={next}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center testimonial-nav-btn group z-20"
+                      style={{ 
+                        width: 40, 
+                        height: 40,
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(10px)',
+                        WebkitBackdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)'
+                      }}
+                      aria-label={t.testimonialsNav.ariaNext}
+                    >
+                      <ChevronRight 
+                        size={18} 
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                        style={{ color: 'var(--gold-primary)' }}
+                      />
+                    </button>
                     {/* Quote icon */}
                     <div className="absolute top-4 right-4 opacity-20">
                       <Quote 
