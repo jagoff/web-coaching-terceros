@@ -21,23 +21,15 @@ export default function Testimonials() {
 
   // Calculate how many testimonials to show based on screen size
   const getVisibleCount = () => {
-    // Default to 1 for SSR, will be updated on client
-    if (typeof window === 'undefined') return 1;
-    
-    if (window.innerWidth >= 1024) return 3; // lg: 3 cards
-    if (window.innerWidth >= 768) return 2;  // md: 2 cards
-    return 1; // mobile: 1 card
+    // Always show 1 testimonial at a time
+    return 1;
   };
 
   const [visibleCount, setVisibleCount] = useState(1); // Default to 1 for SSR
 
   useEffect(() => {
-    // Update visible count after mount to prevent hydration mismatch
-    setVisibleCount(getVisibleCount());
-    
-    const handleResize = () => setVisibleCount(getVisibleCount());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Set visible count to 1 (single testimonial mode)
+    setVisibleCount(1);
   }, []);
 
   useEffect(() => {
