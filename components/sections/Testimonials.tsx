@@ -1,152 +1,303 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-import { blurUp, dividerGrow } from "@/lib/animations";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { testimonialsES, testimonialsEN } from "@/lib/testimonials-data";
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 40, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 200, damping: 20 },
-  },
-  hover: {
-    y: -8,
-    scale: 1.02,
-    transition: { type: "spring", stiffness: 300, damping: 20 },
-  },
-};
+const AUTOPLAY_INTERVAL = 6000;
 
 export default function Testimonials() {
   const { t, language } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [direction, setDirection] = useState(1);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
-  
-  // Show only first 3 testimonials for SSR consistency
-  const visibleTestimonials = testimonials.slice(0, 3);
+
+  // Calculate how many testimonials to show based on screen size
+  const getVisibleCount = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 3; // lg: 3 cards
+      if (window.innerWidth >= 768) return 2;  // md: 2 cards
+      return 1; // mobile: 1 card
+    }
+    return 1;
+  };
+
+  const [visibleCount, setVisibleCount] = useState(getVisibleCount());
+
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(getVisibleCount());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * testimonials.length);
+    setCurrentIndex(randomIndex);
+  }, [language, testimonials.length]);
+
+  const goTo = useCallback(
+    (index: number, dir: number) => {
+      setDirection(dir);
+      setCurrentIndex((index + testimonials.length) % testimonials.length);
+    },
+    [testimonials.length]
+  );
+
+  const prev = () => goTo(currentIndex - 1, -1);
+  const next = useCallback(() => goTo(currentIndex + 1, 1), [currentIndex, goTo]);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(next, AUTOPLAY_INTERVAL);
+    return () => clearInterval(id);
+  }, [paused, next]);
+
+  const getVisibleTestimonials = () => {
+    const visible = [];
+    for (let i = 0; i < visibleCount; i++) {
+      const index = (currentIndex + i) % testimonials.length;
+      visible.push(testimonials[index]);
+    }
+    return visible;
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" as const }
+    },
+    hover: { 
+      y: -8,
+      scale: 1.02,
+      transition: { duration: 0.3 }
+    }
+  };
 
   return (
-    <section id="testimonios" className="section section-surface testimonials-section" ref={ref} style={{ scrollMarginTop: "80px" }}>
-      <div className="container">
+    <section
+      id="testimonios"
+      className="section section-dark relative overflow-hidden"
+      ref={ref}
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-30">
+        <div 
+          className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%)' }}
+        />
+        <div 
+          className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(124, 107, 196, 0.1) 0%, transparent 70%)' }}
+        />
+      </div>
+
+      <div className="container relative z-10">
+        <motion.div
+          variants={headerStagger}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-14 md:mb-24"
+        >
+          <motion.div variants={blurUp} className="flex justify-center mb-6">
+            <span className="badge">{t.testimonials.badge}</span>
+          </motion.div>
+          <motion.h2
+            variants={blurUp}
+            className="heading-xl mb-4 text-center px-4"
+            style={{ 
+              fontFamily: "var(--font-heading)",
+              fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+              lineHeight: 1.2,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis"
+            }}
+          >
+            <span className="text-gradient">{t.testimonials.title}</span>
+          </motion.h2>
+          <motion.div
+            variants={dividerGrow}
+            className="divider-gold mt-6"
+          />
+        </motion.div>
+
+        {/* Carousel Container */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, delay: 0.3 }}
           className="relative"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          {/* Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              <span className="badge badge-surface">{t.testimonials.badge}</span>
-            </motion.div>
-            <h2 className="heading-lg mb-4">
-              <span className="text-gradient">{t.testimonials.title}</span>
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              {t.testimonials.subtitle}
-            </p>
-          </div>
-
-          {/* Cards Grid - Static for SSR consistency */}
+          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {visibleTestimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-                transition={{ delay: index * 0.1 }}
-                className="relative"
-              >
-                {/* Card with glassmorphism */}
-                <div
-                  className="testimonial-card relative overflow-hidden rounded-2xl p-6 md:p-8 h-full flex flex-col"
-                  style={{
-                    minHeight: '320px',
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                  }}
+            <AnimatePresence mode="wait">
+              {getVisibleTestimonials().map((testimonial, index) => (
+                <motion.div
+                  key={`${testimonial.id}-${currentIndex}`}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  exit="hidden"
+                  transition={{ delay: index * 0.1 }}
+                  className="relative"
                 >
-                  {/* Quote icon */}
-                  <div className="absolute top-4 right-4 opacity-20">
-                    <Quote 
-                      size={32} 
-                      style={{ color: 'var(--gold-primary)' }}
-                    />
-                  </div>
+                  {/* Card with glassmorphism */}
+                  <div
+                    className="testimonial-card relative overflow-hidden rounded-2xl p-6 md:p-8 h-full flex flex-col"
+                    style={{
+                      minHeight: '320px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                    }}
+                  >
+                    {/* Quote icon */}
+                    <div className="absolute top-4 right-4 opacity-20">
+                      <Quote 
+                        size={32} 
+                        style={{ color: 'var(--gold-primary)' }}
+                      />
+                    </div>
 
-                  {/* Content */}
-                  <div className="relative z-10 flex flex-col h-full">
                     {/* Stars */}
-                    <div className="flex mb-4">
+                    <div className="stars mb-4 flex gap-1" aria-label="5 estrellas">
                       {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          size={16}
-                          className="text-yellow-400"
+                        <Star 
+                          key={i} 
+                          size={16} 
                           fill="currentColor"
+                          style={{ color: 'var(--gold-primary)' }}
                         />
                       ))}
                     </div>
 
-                    {/* Testimonial text */}
-                    <blockquote className="text-gray-300 mb-6 flex-grow">
+                    {/* Quote */}
+                    <blockquote
+                      className="text-base md:text-lg leading-relaxed flex-1 mb-6"
+                      style={{
+                        color: "var(--text-secondary)",
+                        fontStyle: "italic",
+                        lineHeight: 1.8,
+                      }}
+                    >
                       "{testimonial.quote}"
                     </blockquote>
 
                     {/* Author info */}
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-4">
-                        <div 
-                          className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                          style={{ backgroundColor: testimonial.avatarBg }}
+                    <div className="flex items-center gap-4 mt-auto">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ background: testimonial.avatarBg }}
+                      >
+                        <span
+                          className="text-sm font-bold"
+                          style={{ color: "var(--amber-light)" }}
                         >
-                          <span className="text-white font-semibold text-sm">
-                            {testimonial.initials}
-                          </span>
-                        </div>
-                        <div>
-                          <div className="font-semibold text-white" style={{ fontFamily: "var(--font-heading)" }}>
-                            {testimonial.name}
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            {testimonial.role}
-                          </div>
-                          {testimonial.company && (
-                            <div className="text-xs text-gray-500">
-                              {testimonial.company}
-                            </div>
-                          )}
-                        </div>
+                          {testimonial.initials}
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <p
+                          className="font-semibold text-sm md:text-base"
+                          style={{ color: "var(--text-primary)" }}
+                        >
+                          {testimonial.name}
+                        </p>
+                        <p 
+                          className="text-xs md:text-sm" 
+                          style={{ color: "var(--text-muted)" }}
+                        >
+                          {testimonial.role}
+                          {testimonial.company && ` · ${testimonial.company}`}
+                        </p>
                       </div>
                     </div>
+
+                    {/* Hover gradient overlay */}
+                    <div 
+                      className="absolute inset-0 opacity-0 hover:opacity-10 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(124, 107, 196, 0.05) 100%)',
+                      }}
+                    />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
-          {/* Decorative divider */}
-          <motion.div
-            variants={dividerGrow}
-            className="divider-gold mt-16"
-          />
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between mt-12">
+            {/* Previous Button */}
+            <button
+              onClick={prev}
+              className="rounded-full flex items-center justify-center testimonial-nav-btn group"
+              style={{ width: 48, height: 48 }}
+              aria-label={t.testimonialsNav.ariaPrevious}
+            >
+              <ChevronLeft 
+                size={20} 
+                className="transition-transform duration-300 group-hover:-translate-x-1"
+              />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex gap-2" role="tablist">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  role="tab"
+                  aria-selected={i === currentIndex}
+                  aria-label={`${t.testimonialsNav.previous} ${i + 1}`}
+                  onClick={() => goTo(i, i > currentIndex ? 1 : -1)}
+                  className="transition-all duration-300 rounded-full"
+                  style={{
+                    width: i === currentIndex ? 32 : 8,
+                    height: 8,
+                    background:
+                      i === currentIndex
+                        ? "var(--gold-primary)"
+                        : "var(--dark-border)",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={next}
+              className="rounded-full flex items-center justify-center testimonial-nav-btn group"
+              style={{ width: 48, height: 48 }}
+              aria-label={t.testimonialsNav.ariaNext}
+            >
+              <ChevronRight 
+                size={20} 
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </button>
+          </div>
+
+          {/* Counter */}
+          <div className="text-center mt-6">
+            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+              {currentIndex + 1} / {testimonials.length}
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
