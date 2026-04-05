@@ -136,8 +136,34 @@ export default function Testimonials() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* Cards Grid */}
-          <div className="flex justify-center">
+          {/* Cards Grid with Navigation */}
+          <div className="flex justify-center relative">
+            {/* Previous Button - Left Side */}
+            <button
+              onClick={prev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-4 rounded-full flex items-center justify-center testimonial-nav-btn group z-10"
+              style={{ width: 48, height: 48 }}
+              aria-label={t.testimonialsNav.ariaPrevious}
+            >
+              <ChevronLeft 
+                size={20} 
+                className="transition-transform duration-300 group-hover:-translate-x-1"
+              />
+            </button>
+
+            {/* Next Button - Right Side */}
+            <button
+              onClick={next}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full ml-4 rounded-full flex items-center justify-center testimonial-nav-btn group z-10"
+              style={{ width: 48, height: 48 }}
+              aria-label={t.testimonialsNav.ariaNext}
+            >
+              <ChevronRight 
+                size={20} 
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </button>
+
             <AnimatePresence mode="wait">
               {getVisibleTestimonials().map((testimonial, index) => (
                 <motion.div
@@ -238,35 +264,6 @@ export default function Testimonials() {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-center gap-8 mt-12">
-            {/* Previous Button */}
-            <button
-              onClick={prev}
-              className="rounded-full flex items-center justify-center testimonial-nav-btn group"
-              style={{ width: 48, height: 48 }}
-              aria-label={t.testimonialsNav.ariaPrevious}
-            >
-              <ChevronLeft 
-                size={20} 
-                className="transition-transform duration-300 group-hover:-translate-x-1"
-              />
-            </button>
-
-            {/* Next Button */}
-            <button
-              onClick={next}
-              className="rounded-full flex items-center justify-center testimonial-nav-btn group"
-              style={{ width: 48, height: 48 }}
-              aria-label={t.testimonialsNav.ariaNext}
-            >
-              <ChevronRight 
-                size={20} 
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </button>
           </div>
         </motion.div>
       </div>
