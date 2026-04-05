@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
+  "buildCommand": "npm run build:export",
+  "outputDirectory": "out",
   "framework": "nextjs",
   "installCommand": "npm ci --force",
   "devCommand": "npm run dev",
@@ -12,9 +12,10 @@
   },
   "build": {
     "env": {
-      "NEXT_BUILD_ID": "fresh-build-2026-04-03-15-36",
+      "NEXT_BUILD_ID": "static-export-2026-04-05-01-56",
       "NODE_ENV": "production",
-      "FORCE_BUILD": "true"
+      "FORCE_BUILD": "true",
+      "OUTPUT_MODE": "export"
     }
   },
   "crons": [],
@@ -23,5 +24,7 @@
       "source": "/(.*)",
       "destination": "/$1"
     }
-  ]
+  ],
+  "trailingSlash": true,
+  "cleanUrls": false
 }
