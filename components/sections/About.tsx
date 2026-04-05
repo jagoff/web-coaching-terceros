@@ -131,20 +131,152 @@ export default function About() {
       className="section section-surface section-gold-border-top"
       ref={ref}
       style={{ 
-        paddingTop: "clamp(0.25rem, 1vw, 1rem)",
+        paddingTop: "clamp(1rem, 2vw, 2rem)",
         paddingBottom: "clamp(1rem, 2.5vw, 1.5rem)"
       }}
     >
       <div className="container">
-
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative mt-24 lg:mt-40">
+        {/* Mobile Layout - Image First */}
+        <div className="flex flex-col lg:hidden gap-8 items-center relative mt-24">
           {/* Image column */}
           <motion.div
             custom={-60}
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="relative order-2 lg:order-1 mt-4 z-0"
+            className="relative mt-4 z-0"
+            style={{ 
+              paddingTop: 'clamp(1rem, 10vw, 1rem)',
+            }}
+          >
+            {/* TV Image - Responsive */}
+            <div className="mb-8 flex justify-center overflow-hidden">
+              <CardContainer className="inter-var">
+                <CardBody className="relative group/card w-48 h-48 sm:w-64 sm:h-64">
+                  <CardItem translateZ="50" className="w-full h-full">
+                    <img
+                      src="/images/ui/tv-icon.webp"
+                      alt="TV Icon"
+                      loading="lazy"
+                      className="w-full h-full object-contain group-hover/card:shadow-2xl transition-all duration-300 rounded-2xl"
+                      style={{
+                        filter: 'brightness(1.1) contrast(1.1)',
+                        opacity: 1,
+                        transform: 'scale(1.2)'
+                      }}
+                    />
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+            </div>
+          </motion.div>
+
+          {/* Text column */}
+          <motion.div
+            custom={60}
+            variants={slideReveal}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="relative z-10"
+          >
+            <h2 
+              id="titulo-about"
+              className="heading-xl mb-6 sm:mb-10" 
+              style={{ fontFamily: "var(--font-heading)", transform: 'translateY(-5px)' }}
+            >
+              {t.about.title1}{" "}
+              <br />
+              <span className="text-gradient">{t.about.title2}</span>
+              <br />
+              {t.about.title3}
+            </h2>
+
+            <div className="divider-gold-left mb-6 sm:mb-10" />
+
+            <div 
+              className="lead-text mb-6 sm:mb-8"
+              dangerouslySetInnerHTML={{ __html: t.about.intro }}
+            />
+
+            {/* Certifications */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4" style={{ color: "var(--text-primary)" }}>
+                {t.about.certificaciones}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Advanced Certified ScrumMaster",
+                  "Advanced Certified Scrum Product Owner (ACSPO)",
+                  "Professional Scrum™ with UX (PSU I)",
+                  "Agile Coach",
+                  "Management 3.0 Metrics & OKR's",
+                  "unFIX Foundation Workshop",
+                  "Energizing People",
+                  "Fundamentals Online Workshop",
+                ].map((cert, index) => (
+                  <React.Fragment key={index}>
+                    <span className="credential-chip">{cert}</span>
+                    {index === 1 && (
+                      <a
+                        href="https://www.linkedin.com/in/fernandoferrari/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="credential-chip bg-blue-600 hover:bg-blue-700"
+                        onClick={handleLinkedInClick}
+                      >
+                        <Linkedin size={14} className="inline mr-1" />
+                        LinkedIn
+                      </a>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            {/* LinkedIn CTA */}
+            <div className="mb-8">
+              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                {language === 'es' 
+                  ? <span>¿Queres pasar por YouTube? <a 
+                      href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                    >
+                      ¡Te espero!
+                    </a></span>
+                  : <span>Want to stop by YouTube? <a 
+                      href="https://www.youtube.com/watch?v=JIkgdtUAfGM&list=PLj8LyKdT6vm6V5h635rO3OCOsPBOsLYMH&index=3" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: "var(--gold-primary)", textDecoration: "underline", fontWeight: "500" }}
+                    >
+                      I'll be there!
+                  </a></span>
+                }
+              </p>
+            </div>
+            
+            <YouTubeThumbnail
+              videoId="mgr1mkSRl3o"
+              title={language === 'es' 
+                ? "Fernando Ferrari - Coaching de Liderazgo y Transformación Organizacional"
+                : "Fernando Ferrari - Leadership Coaching and Organizational Transformation"
+              }
+              autoPlay={true}
+            />
+          </motion.div>
+        </div>
+
+        {/* Desktop Layout - Original Grid */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center relative mt-24 lg:mt-40">
+          {/* Image column */}
+          <motion.div
+            custom={-60}
+            variants={slideReveal}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="relative order-1 lg:order-1 mt-4 z-0"
             style={{ 
               paddingTop: 'clamp(1rem, 10vw, 1rem)',
             }}
@@ -236,7 +368,7 @@ export default function About() {
             variants={slideReveal}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="order-1 lg:order-2"
+            className="order-2 lg:order-2"
           >
             <h2 
               id="titulo-about"

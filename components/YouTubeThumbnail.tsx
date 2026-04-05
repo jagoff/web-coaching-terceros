@@ -38,8 +38,8 @@ export default function YouTubeThumbnail({
   const videoRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(videoRef, { 
     once: true, 
-    margin: "-100px", // Start loading when video is 100px away from viewport
-    amount: 0.3 // Trigger when 30% of video is visible
+    margin: "0px", // Start loading when video enters viewport
+    amount: 0.1 // Trigger when 10% of video is visible
   });
   
   const defaultTitle = t.video.defaultTitle;
