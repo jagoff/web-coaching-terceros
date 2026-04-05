@@ -97,9 +97,12 @@ export default function ForWhoSimple() {
                 background: 'rgba(245, 158, 11, 0.1)',
                 border: '1px solid rgba(245, 158, 11, 0.3)',
                 borderRadius: '1rem',
-                fontSize: '0.875rem',
+                fontSize: '0.75rem',
                 color: '#f59e0b',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '100%'
               }}>
                 {profile.pain}
               </div>
