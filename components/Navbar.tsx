@@ -290,110 +290,66 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 flex flex-col lg:hidden"
             style={{
               background: "rgba(12, 10, 18, 0.98)",
-              backdropFilter: "blur(24px)",
-              WebkitBackdropFilter: "blur(24px)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
               zIndex: 9999,
             }}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b"
-              style={{ borderColor: "var(--dark-border)" }}>
-              <div className="flex items-center gap-2">
-                <span
-                  className="text-gradient font-heading font-black text-2xl tracking-tight"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  ELEVA
-                </span>
-                <span
-                  className="text-xs font-semibold uppercase tracking-[0.15em] text-muted"
-                  style={{
-                    opacity: 0.9,
-                    alignSelf: "flex-end",
-                    paddingBottom: "0.2rem"
-                  }}
-                >
-                  {language === 'es' ? 'CONSULTORIA' : 'CONSULTING'}
-                </span>
-              </div>
+            {/* Simple Close Button */}
+            <div className="flex justify-end p-6">
               <button
-                className="flex items-center justify-center rounded-md w-11 h-11"
+                className="flex items-center justify-center w-10 h-10 rounded-full"
                 style={{ color: "var(--text-secondary)" }}
                 onClick={() => setMobileOpen(false)}
                 aria-label="Cerrar menú"
               >
-                <X size={22} />
+                <X size={20} />
               </button>
             </div>
 
-            {/* Links */}
-            <nav className="flex flex-col px-8 gap-2 pt-8">
+            {/* Simple Menu Links */}
+            <nav className="flex flex-col items-center justify-center flex-1 px-6">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.3 }}
-                  className="text-left py-4 text-2xl font-heading font-semibold bg-transparent cursor-pointer mobile-nav-link"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05, duration: 0.3 }}
+                  className="text-3xl font-light text-center py-6 bg-transparent cursor-pointer transition-colors"
                   style={{
-                    borderBottom: "1px solid var(--dark-border)",
                     fontFamily: "var(--font-heading)",
+                    color: "var(--text-primary)",
+                    letterSpacing: "0.02em"
                   }}
+                  whileHover={{ scale: 1.05, color: "var(--gold-primary)" }}
                   onClick={() => handleLinkClick(link.href)}
                 >
                   {link.label}
                 </motion.button>
               ))}
-            </nav>
-
-            {/* Redes Sociales */}
-            <div className="flex items-center justify-center gap-4 px-8 py-6">
-              <motion.a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full flex items-center justify-center bg-black/50 text-white hover:bg-black/70 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <X size={18} />
-              </motion.a>
-              <motion.a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full flex items-center justify-center bg-black/50 text-white hover:bg-black/70 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Instagram size={18} />
-              </motion.a>
-              <motion.a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full flex items-center justify-center bg-black/50 text-white hover:bg-black/70 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin size={18} />
-              </motion.a>
-            </div>
-
-            {/* Mobile CTA Button */}
-            <div className="px-8 pb-6">
-              <button
-                id="navbar-cta-mobile"
-                className="navbar-cta-mobile"
+              
+              {/* Simple CTA */}
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
+                className="mt-8 px-8 py-4 rounded-full text-lg font-medium transition-all"
+                style={{
+                  background: "linear-gradient(45deg, #f59e0b, #d97706)",
+                  color: "white",
+                  fontFamily: "var(--font-heading)",
+                  letterSpacing: "0.02em"
+                }}
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(245, 158, 11, 0.3)" }}
                 onClick={() => handleLinkClick("#contacto")}
               >
                 {t.nav.sesionGratuita}
-              </button>
-            </div>
+              </motion.button>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
