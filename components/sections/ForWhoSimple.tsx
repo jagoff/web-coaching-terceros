@@ -102,7 +102,8 @@ export default function ForWhoSimple() {
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                maxWidth: '100%'
+                maxWidth: '100%',
+                minWidth: 'fit-content'
               }}>
                 {profile.pain}
               </div>
