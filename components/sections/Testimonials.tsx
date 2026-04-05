@@ -21,26 +21,30 @@ export default function Testimonials() {
 
   // Calculate how many testimonials to show based on screen size
   const getVisibleCount = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 3; // lg: 3 cards
-      if (window.innerWidth >= 768) return 2;  // md: 2 cards
-      return 1; // mobile: 1 card
-    }
-    return 1;
+    // Default to 1 for SSR, will be updated on client
+    if (typeof window === 'undefined') return 1;
+    
+    if (window.innerWidth >= 1024) return 3; // lg: 3 cards
+    if (window.innerWidth >= 768) return 2;  // md: 2 cards
+    return 1; // mobile: 1 card
   };
 
-  const [visibleCount, setVisibleCount] = useState(getVisibleCount());
+  const [visibleCount, setVisibleCount] = useState(1); // Default to 1 for SSR
 
   useEffect(() => {
+    // Update visible count after mount to prevent hydration mismatch
+    setVisibleCount(getVisibleCount());
+    
     const handleResize = () => setVisibleCount(getVisibleCount());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * testimonials.length);
-    setCurrentIndex(randomIndex);
-  }, [language, testimonials.length]);
+    // Use deterministic index based on language to prevent hydration mismatch
+    const deterministicIndex = language === 'es' ? 0 : 1;
+    setCurrentIndex(deterministicIndex);
+  }, [language]);
 
   const goTo = useCallback(
     (index: number, dir: number) => {
