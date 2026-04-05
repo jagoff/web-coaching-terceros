@@ -13,7 +13,7 @@ import { getOptimizedImagePath } from '@/lib/image-optimization'
 const stagger: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
   },
 }
 
@@ -35,15 +35,6 @@ const lineGrow: Variants = {
   },
 }
 
-const ctaReveal: Variants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: 'spring', stiffness: 200, damping: 20 },
-  },
-}
 
 export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Language }) {
   const { language, t } = useLanguage()
@@ -120,15 +111,18 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
 
       {/* Main content */}
       <div className="container relative z-10 flex flex-col items-center text-center">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
+        <div
           className="flex flex-col items-center"
           style={{
             paddingTop: 'clamp(64px, 10vh, 120px)',
             paddingBottom: 'clamp(32px, 5vh, 60px)',
           }}
+        >
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center w-full"
         >
           {/* Headline — each line reveals separately */}
           <h1
@@ -282,9 +276,13 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
               : 'I help you build teams that work without you micromanaging, processes that scale, and a culture where people want to stay.'}
           </motion.p>
 
-          {/* CTAs */}
+        </motion.div>
+
+          {/* CTAs — animación independiente, visible a los ~300ms sin esperar el stagger */}
           <motion.div
-            variants={ctaReveal}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto max-w-2xl"
           >
             <button
@@ -316,7 +314,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
 
           {/* Social proof */}
           <motion.div
-            variants={revealUp}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
             className="flex items-center justify-center mt-12 sm:mt-20 pb-16"
           >
             <p
@@ -329,7 +329,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                 : 'Over 20 years in technology · 10+ years of agile consulting'}
             </p>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator — animated mouse */}

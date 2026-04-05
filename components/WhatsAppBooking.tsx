@@ -14,23 +14,47 @@ export default function WhatsAppBooking() {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
 
   return (
-    <a
+    <motion.a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t.whatsapp.ariaLabel}
-      className="whatsapp-fab flex items-center justify-center text-white shadow-lg transition-all hover:scale-110 relative"
+      className="whatsapp-fab flex items-center justify-center text-white shadow-lg relative"
       style={{ backgroundColor: '#25D366', width: '64px', height: '64px' }}
+      whileHover={{ 
+        scale: 1.1,
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3)'
+      }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
     >
-      <MessageCircle size={24} />
+      <motion.div
+        animate={{ rotate: [0, 10, -10, 0] }}
+        transition={{ 
+          duration: 2, 
+          repeat: Infinity, 
+          repeatDelay: 3,
+          ease: 'easeInOut'
+        }}
+      >
+        <MessageCircle size={24} />
+      </motion.div>
       
       {/* Notification badge */}
       <AnimatePresence>
         {showBadge && (
           <motion.span
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ 
+              scale: 1, 
+              opacity: 1,
+              transition: { type: 'spring', stiffness: 300, damping: 20 }
+            }}
+            exit={{ 
+              scale: 0, 
+              opacity: 0,
+              transition: { duration: 0.2 }
+            }}
             className="whatsapp-badge"
             style={{
               position: 'absolute',
@@ -56,6 +80,6 @@ export default function WhatsAppBooking() {
           </motion.span>
         )}
       </AnimatePresence>
-    </a>
+    </motion.a>
   )
 }
