@@ -253,13 +253,6 @@ export default function Testimonials() {
               />
             </button>
 
-            {/* Counter */}
-            <div className="text-center">
-              <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-                {currentIndex + 1} / {testimonials.length}
-              </p>
-            </div>
-
             {/* Next Button */}
             <button
               onClick={next}
