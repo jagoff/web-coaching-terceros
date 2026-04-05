@@ -2557,18 +2557,23 @@ html {
   position: absolute;
   top: -4px;
   right: -4px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   border-radius: 50%;
-  background: #FF3B30;
-  color: #fff;
+  background: #FF3B30 !important;
+  color: #fff !important;
   font-size: 11px;
   font-weight: 700;
+  line-height: 1;
   box-shadow: 0 2px 8px rgba(255, 59, 48, 0.4);
   border: 2px solid #25D366;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .whatsapp-tooltip {

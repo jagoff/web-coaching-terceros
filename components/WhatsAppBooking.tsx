@@ -32,6 +32,25 @@ export default function WhatsAppBooking() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             className="whatsapp-badge"
+            style={{
+              position: 'absolute',
+              top: '-4px',
+              right: '-4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '20px',
+              height: '20px',
+              borderRadius: '50%',
+              background: '#FF3B30',
+              color: '#fff',
+              fontSize: '11px',
+              fontWeight: '700',
+              lineHeight: '1',
+              boxShadow: '0 2px 8px rgba(255, 59, 48, 0.4)',
+              border: '2px solid #25D366',
+              zIndex: 10,
+            }}
           >
             1
           </motion.span>

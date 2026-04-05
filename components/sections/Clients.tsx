@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const brands = [
@@ -44,6 +45,16 @@ const track = [...brands, ...brands, ...brands, ...brands]
 
 export default function Clients() {
   const { language } = useLanguage()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Use consistent text during SSR and hydration
+  const labelText = mounted 
+    ? (language === 'es' ? 'Empresas que confían en ELEVA' : 'Companies that trust ELEVA')
+    : 'Empresas que confían en ELEVA'
 
   return (
     <section
@@ -71,7 +82,7 @@ export default function Clients() {
           textAlign: 'center',
         }}
       >
-        {language === 'es' ? 'Empresas que confían en ELEVA' : 'Companies that trust ELEVA'}
+        {labelText}
       </p>
 
       {/* Marquee track */}
