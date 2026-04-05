@@ -32,6 +32,19 @@ const credentialPop: Variants = {
   },
 };
 
+// Function to add web-underline to specific words in certifications
+const underlineCredentialWords = (credential: string) => {
+  const wordsToUnderline = ['ScrumMaster', 'Scrum', 'Product Owner', 'UX', 'Agile', 'Coach', 'Management', 'OKR', 'unFIX', 'Energizing', 'Fundamentals'];
+  
+  let result = credential;
+  wordsToUnderline.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'g');
+    result = result.replace(regex, `<span class="web-underline">${word}</span>`);
+  });
+  
+  return result;
+};
+
 const credentials = [
   "Advanced Certified ScrumMaster",
   "Advanced Certified Scrum Product Owner (ACSPO)",
@@ -215,7 +228,7 @@ export default function About() {
                   "Fundamentals Online Workshop",
                 ].map((cert, index) => (
                   <React.Fragment key={index}>
-                    <span className="credential-chip">{cert}</span>
+                    <span className="credential-chip" dangerouslySetInnerHTML={{ __html: underlineCredentialWords(cert) }} />
                     {index === 1 && (
                       <a
                         href="https://www.linkedin.com/in/fernandoferrari/"
@@ -445,7 +458,7 @@ export default function About() {
                       className="credential-chip"
                     >
                       <CheckCircle2 size={14} style={{ color: "var(--gold-primary)", flexShrink: 0 }} />
-                      <span>{credential}</span>
+                      <span dangerouslySetInnerHTML={{ __html: underlineCredentialWords(credential) }} />
                     </motion.div>
                     {index === shuffledCredentials.length - 1 && buttonPosition > index && (
                       <motion.div

@@ -36,16 +36,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       window.history.replaceState(null, "", window.location.pathname);
     }
 
-    // Force scroll to top multiple times with increasing delays
-    const timers = [10, 50, 100, 200, 400, 600].map((delay) =>
-      setTimeout(forceScrollTop, delay)
-    );
+    // One deferred check in case the browser tries to restore scroll position
+    const scrollTimer = setTimeout(forceScrollTop, 100);
 
     // Defer non-critical decorative components after first paint
     const loadTimer = setTimeout(() => setIsLoaded(true), 500);
-    
+
     return () => {
-      timers.forEach(clearTimeout);
+      clearTimeout(scrollTimer);
       clearTimeout(loadTimer);
     };
   }, []);

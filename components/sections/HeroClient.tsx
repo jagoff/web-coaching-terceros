@@ -30,22 +30,20 @@ const stagger: Variants = {
 };
 
 const revealUp: Variants = {
-  hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const revealScale: Variants = {
-  hidden: { opacity: 0, scale: 0.85, filter: "blur(10px)" },
+  hidden: { opacity: 0, scale: 0.88 },
   visible: {
     opacity: 1,
     scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -74,34 +72,29 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   const [mounted, setMounted] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [renderLanguage, setRenderLanguage] = useState(ssrLanguage);
-  
+  const [isMobile, setIsMobile] = useState(true); // default to mobile-safe
+
   const rotatingPhrases = renderLanguage === 'es' ? t.hero.rotatingPhrases : t.hero.rotatingPhrases;
   const sectionRef = useRef<HTMLElement>(null);
+  // Only enable scroll-based parallax on desktop to avoid mobile overhead
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: isMobile ? undefined : sectionRef,
     offset: ["start start", "end start"]
   });
-  
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -100]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -80]);
+  const orbY3 = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -50]);
 
   useEffect(() => {
     setMounted(true);
     setRenderLanguage(language); // Sync with context language after mount
-    
-    // Force scroll to top on mount - prevent any automatic scrolling
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    // Also prevent any hash-based scrolling
-    if (window.location.hash) {
-      window.history.replaceState(null, '', window.location.pathname);
-    }
-    
+
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
+
     // Drastically reduced particle count for performance
-    const count = window.innerWidth < 768 ? 0 : 3; // 6→3, 2→0 (no particles on mobile)
+    const count = mobile ? 0 : 3; // no particles on mobile
     
     // Deterministic random function to avoid hydration mismatches
     const deterministicRandom = (seed: number) => {
@@ -138,8 +131,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
     <section
       id="inicio"
       ref={sectionRef}
-      className="hero-bg hero-section-scroll relative flex min-h-screen flex-col items-center overflow-hidden"
+      className="hero-bg hero-section-scroll flex min-h-screen flex-col items-center overflow-hidden"
       style={{ 
+        position: 'relative',
         paddingTop: "clamp(2.25rem, 6vh, 4.25rem)"
       }}
       aria-label="Sección principal"
@@ -224,13 +218,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
             style={{
               height: "9.5rem", // Extended height to cover 3 lines properly
               background: "#000000",
-              backdropFilter: "none",
               border: "1px solid rgba(124,107,196,0.12)",
               boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.4)",
-              position: "relative",
-              opacity: 0,
-              filter: "blur(8px)",
-              transform: "translateY(60px)"
+              position: "relative"
             }}
             suppressHydrationWarning={true}
           >
@@ -267,9 +257,9 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={phraseIndex}
-                      initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                       className="lead-text italic"
                       style={{ 

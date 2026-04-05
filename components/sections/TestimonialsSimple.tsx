@@ -169,8 +169,8 @@ export default function TestimonialsSimple() {
         </motion.div>
 
         {/* Testimonial Carousel */}
-        <div className="max-w-xl mx-auto" style={{ width: '100%', padding: '0 0.5rem' }}>
-          <div className="relative">
+        <div className="max-w-xl mx-auto" style={{ width: '100%', padding: '0 0.5rem', minHeight: '400px' }}>
+          <div className="relative" style={{ minHeight: '400px' }}>
             {/* Testimonial Card */}
             <motion.div
               key={currentIndex}
@@ -182,12 +182,14 @@ export default function TestimonialsSimple() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="glass-card p-6 md:p-8 text-center cursor-grab active:cursor-grabbing relative overflow-hidden"
+              className="glass-card p-6 md:p-8 text-center cursor-grab active:cursor-grabbing relative"
               style={{
-                minHeight: '450px',
+                minHeight: '350px',
+                height: 'auto',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'flex-start',
+                alignItems: 'center'
               }}
             >
               {/* Rating - Centered */}
@@ -212,16 +214,17 @@ export default function TestimonialsSimple() {
               </div>
 
               {/* Quote */}
-              <blockquote className="mb-5 text-center px-4 md:px-6 flex-shrink-0" suppressHydrationWarning>
+              <blockquote className="mb-5 text-center px-4 md:px-6 flex-grow" suppressHydrationWarning>
                 <p
                   className="text-xs md:text-sm mb-4 mx-auto"
                   style={{ 
                     color: "var(--text-secondary)", 
                     textAlign: "center", 
-                    lineHeight: "1.5",
+                    lineHeight: "1.6",
                     maxWidth: "100%",
                     wordWrap: "break-word",
-                    overflowWrap: "break-word"
+                    overflowWrap: "break-word",
+                    hyphens: "auto"
                   }}
                   suppressHydrationWarning
                 >
@@ -280,7 +283,7 @@ export default function TestimonialsSimple() {
             </motion.div>
 
             {/* Navigation */}
-            <div className="flex justify-between items-center mt-8">
+            <div className="flex justify-between items-center mt-8 mb-4">
               <button
                 onClick={goToPrevious}
                 className="p-3 rounded-full"

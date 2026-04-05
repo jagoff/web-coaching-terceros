@@ -21,9 +21,9 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["500", "600", "700"],
   display: "swap",
-  preload: false, // Disable preload to reduce FCP blocking
+  preload: true, // Preload heading font to prevent FOIT on h1/h2
 });
 
 const isStaging = process.env.VERCEL_ENV === 'preview' || 
