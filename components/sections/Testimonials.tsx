@@ -184,26 +184,30 @@ export default function Testimonials() {
                     </blockquote>
 
                     {/* Author info */}
-                    <div className="flex items-center justify-between mt-auto pb-2">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                          style={{ background: testimonial.avatarBg }}
-                        >
-                          <span
-                            className="text-xs font-bold"
-                            style={{ color: "var(--amber-light)" }}
+                    <div className="flex items-start justify-between mt-auto pb-2">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style={{ background: testimonial.avatarBg }}
                           >
-                            {testimonial.initials}
-                          </span>
+                            <span
+                              className="text-xs font-bold"
+                              style={{ color: "var(--amber-light)" }}
+                            >
+                              {testimonial.initials}
+                            </span>
+                          </div>
+                          <div className="text-left">
+                            <p
+                              className="font-semibold text-xs md:text-xs"
+                              style={{ color: "var(--text-primary)" }}
+                            >
+                              {testimonial.name}
+                            </p>
+                          </div>
                         </div>
-                        <div className="text-left">
-                          <p
-                            className="font-semibold text-xs md:text-xs"
-                            style={{ color: "var(--text-primary)" }}
-                          >
-                            {testimonial.name}
-                          </p>
+                        <div className="pl-[52px] text-left">
                           <p 
                             className="text-xs md:text-xs" 
                             style={{ color: "var(--text-muted)" }}
