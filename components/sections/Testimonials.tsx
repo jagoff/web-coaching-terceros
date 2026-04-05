@@ -171,18 +171,6 @@ export default function Testimonials() {
                       />
                     </div>
 
-                    {/* Stars */}
-                    <div className="stars mb-4 flex gap-1" aria-label="5 estrellas">
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          size={16} 
-                          fill="currentColor"
-                          style={{ color: 'var(--gold-primary)' }}
-                        />
-                      ))}
-                    </div>
-
                     {/* Quote */}
                     <blockquote
                       className="text-xs md:text-sm leading-relaxed flex-1 mb-6"
@@ -196,32 +184,46 @@ export default function Testimonials() {
                     </blockquote>
 
                     {/* Author info */}
-                    <div className="flex items-center gap-4 mt-auto">
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ background: testimonial.avatarBg }}
-                      >
-                        <span
-                          className="text-sm font-bold"
-                          style={{ color: "var(--amber-light)" }}
+                    <div className="flex items-center justify-between mt-auto">
+                      <div className="flex items-center gap-4">
+                        <div
+                          className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ background: testimonial.avatarBg }}
                         >
-                          {testimonial.initials}
-                        </span>
+                          <span
+                            className="text-sm font-bold"
+                            style={{ color: "var(--amber-light)" }}
+                          >
+                            {testimonial.initials}
+                          </span>
+                        </div>
+                        <div className="text-left">
+                          <p
+                            className="font-semibold text-xs md:text-xs"
+                            style={{ color: "var(--text-primary)" }}
+                          >
+                            {testimonial.name}
+                          </p>
+                          <p 
+                            className="text-xs md:text-xs" 
+                            style={{ color: "var(--text-muted)" }}
+                          >
+                            {testimonial.role}
+                            {testimonial.company && ` · ${testimonial.company}`}
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-left">
-                        <p
-                          className="font-semibold text-xs md:text-xs"
-                          style={{ color: "var(--text-primary)" }}
-                        >
-                          {testimonial.name}
-                        </p>
-                        <p 
-                          className="text-xs md:text-xs" 
-                          style={{ color: "var(--text-muted)" }}
-                        >
-                          {testimonial.role}
-                          {testimonial.company && ` · ${testimonial.company}`}
-                        </p>
+
+                      {/* Stars */}
+                      <div className="flex gap-1" aria-label="5 estrellas">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            size={14} 
+                            fill="currentColor"
+                            style={{ color: 'var(--gold-primary)' }}
+                          />
+                        ))}
                       </div>
                     </div>
 
