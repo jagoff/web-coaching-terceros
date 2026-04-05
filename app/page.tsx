@@ -1,5 +1,3 @@
-import { Users, Target, TrendingUp, Zap } from "lucide-react";
-import ClientLayout from "@/components/ClientLayout";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import HeroServer from "@/components/sections/HeroServer";
 import Clients from "@/components/sections/Clients";
@@ -73,7 +71,7 @@ const Results = nextDynamic(() => import("@/components/sections/Results"), {
   ),
 });
 
-const Testimonials = nextDynamic(() => import("@/components/sections/Testimonials"), {
+const Testimonials = nextDynamic(() => import("@/components/sections/TestimonialsSimple"), {
   loading: () => (
     <section className="section section-dark">
       <div className="container">
@@ -169,23 +167,20 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <ClientLayout>
-        <WhatsAppButton />
-        <main>
-          <HeroServer pathname="/" />
-          <Clients />
-          <ForWho />
-          <Services />
-          <About />
-          <Process />
-          <Results />
-          <Testimonials />
-          <Pricing />
-          <FAQ />
-          <Contact />
-          <WhatsAppButton />
-        </main>
-      </ClientLayout>
+      <WhatsAppButton />
+      <main>
+        <HeroServer pathname="/" />
+        <Clients />
+        <ForWho />
+        <Services />
+        <About />
+        <Process />
+        <Results />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <Contact />
+      </main>
     </>
   );
 }
