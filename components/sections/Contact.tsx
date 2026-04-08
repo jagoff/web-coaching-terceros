@@ -115,8 +115,8 @@ export default function Contact() {
               </span>
             </div>
 
-            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              © 2026
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }} suppressHydrationWarning>
+              © {new Date().getFullYear()}
             </p>
 
             <a

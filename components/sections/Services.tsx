@@ -116,7 +116,7 @@ export default function Services() {
         </motion.div>
 
         {/* Service cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 max-w-7xl mx-auto md:auto-rows-fr">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto">
           {services.map((service, i) => {
             const Icon = service.icon
             return (
@@ -129,8 +129,6 @@ export default function Services() {
                 className={`glass-card p-6 sm:p-10 md:p-12 flex flex-col group relative overflow-hidden${service.featured ? ' ring-1' : ''}`}
                 style={{
                   perspective: '800px',
-                  minHeight: '100%',
-                  height: '100%',
                   ...(service.featured
                     ? {
                         borderColor: 'rgba(124,107,196,0.45)',
@@ -221,7 +219,7 @@ export default function Services() {
                         style={{ color: 'var(--gold-primary)' }}
                       />
                       <span
-                        className="text-lg leading-relaxed"
+                        className="text-base leading-relaxed"
                         style={{ color: 'var(--text-secondary)', fontWeight: 400 }}
                       >
                         {benefit}

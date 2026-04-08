@@ -426,8 +426,7 @@ export const translations: Record<Language, Translations> = {
   </p>
 </div>`,
       approach: '',
-      certificaciones:
-        '<span class="web-underline">Certificaciones internacionales comprobables</span>',
+      certificaciones: 'Certificaciones internacionales comprobables',
       stats: {
         tecnologia: 'Años en tecnología',
         coaching: 'Años de coaching ágil',
@@ -1204,6 +1203,41 @@ export const translations: Record<Language, Translations> = {
           question: 'Is there any cost for the diagnosis session?',
           answer:
             'No. The first 30-minute session is completely free and without commitment. It serves to understand your situation, define objectives, and see if it makes sense to work together.',
+        },
+        {
+          question: 'What is the exact process for building autonomous teams?',
+          answer:
+            'Phase 1: Evaluation (2 weeks) - Assessment of current autonomy level with Team Autonomy Scorecard. Phase 2: Framework Implementation (4 weeks) - Implementation of OKRs, agile ceremonies, and decision matrix. Phase 3: Scaling (6 weeks) - Scaling practices and ROI measurement with metrics dashboard.',
+        },
+        {
+          question: 'What specific metrics are used to measure team autonomy?',
+          answer:
+            'Team Autonomy Score (0-100), Decision Latency Time, Meeting Efficiency Ratio, Dependency Reduction Rate, Innovation Velocity Index. Baseline measured monthly with weekly tracking during the process.',
+        },
+        {
+          question: 'What is the expected ROI from a 12-week program?',
+          answer:
+            'Historical average: 3x investment in 6 months. 60% reduction in meetings, +200% deployment velocity, -45% employee turnover, +40% team satisfaction. Metrics validated with 50+ teams.',
+        },
+        {
+          question: 'What tools and frameworks are implemented?',
+          answer:
+            'OKRs (Objectives and Key Results), Agile Ceremonies (daily, retrospective, planning), Decision Matrix (RACI, DACI), Team Topologies, Sociocracy 3.0, Metrics Dashboard (custom KPIs), Process Automation Tools.',
+        },
+        {
+          question: 'How does the pricing model work for organizational consulting?',
+          answer:
+            'Value-based model: USD 200/hour for diagnosis, USD 150/hour for implementation, monthly retainer option USD 2,500 for 5-10 person teams. Prices adjustable based on size and complexity.',
+        },
+        {
+          question: 'What certifications and experience does the coach have?',
+          answer:
+            '20+ years in technology leadership, Advanced Certified ScrumMaster, Advanced Certified Scrum Product Owner, Management 3.0, unFIX Foundation. Experience in companies from 4 to 2500+ people, co-founder of Nodok.AI, +10 years as independent agile consultant.',
+        },
+        {
+          question: 'What specific results can be expected in 3 months?',
+          answer:
+            'Week 1-4: Complete evaluation and framework design. Week 5-8: First implementation cycle with baseline metrics. Week 9-12: Scaling patterns and ROI validation. Typical results: 30% reduction in decision latency, 50% increase in team initiatives.',
         },
       ],
     },

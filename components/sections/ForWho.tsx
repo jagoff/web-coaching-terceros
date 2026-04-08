@@ -2,10 +2,16 @@
 
 import { useRef } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Rocket, Zap, Target } from 'lucide-react'
 import { scrollToElement } from '@/lib/scroll'
 import { headerStagger, blurUp, dividerGrow } from '@/lib/animations'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+const iconMap = {
+  '🚀': Rocket,
+  '⚡': Zap,
+  '🎯': Target,
+} as const
 
 const cardReveal: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: 8 },
@@ -95,15 +101,26 @@ export default function ForWho() {
 
               {/* Icon */}
               <motion.div
-                className="w-14 h-14 rounded-lg flex items-center justify-center text-2xl mb-6 flex-shrink-0"
+                className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 flex-shrink-0"
                 style={{
                   background: 'rgba(124,107,196,0.12)',
                   border: '1px solid rgba(124,107,196,0.25)',
                 }}
-                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileHover={{ scale: 1.15 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
               >
-                {profile.icon}
+                {(() => {
+                  const IconComponent = iconMap[profile.icon as keyof typeof iconMap]
+                  return IconComponent ? (
+                    <IconComponent
+                      size={24}
+                      style={{ color: 'var(--gold-primary)' }}
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    profile.icon
+                  )
+                })()}
               </motion.div>
 
               {/* Title */}

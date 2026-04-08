@@ -73,12 +73,11 @@ export default function ConversationalContactForm() {
         break
 
       case 2: {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!formData.email.trim()) {
           newErrors.email = es
             ? 'Necesito tu email para contactarte'
             : 'I need your email to contact you'
-        } else if (!emailRegex.test(formData.email)) {
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
           newErrors.email = es ? 'Este email no parece válido' : "This email doesn't look valid"
         }
         break

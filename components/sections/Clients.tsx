@@ -3,45 +3,39 @@
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const brands = [
+const tools = [
   {
-    name: 'SAMSUNG',
-    style: { fontWeight: 700, letterSpacing: '0.08em', fontSize: '1.1rem' },
+    name: 'AWS',
+    style: { fontWeight: 700, letterSpacing: '0.06em', fontSize: '1rem' },
   },
   {
-    name: 'Disney',
-    style: {
-      fontWeight: 400,
-      fontStyle: 'italic',
-      letterSpacing: '0.02em',
-      fontSize: '1.25rem',
-      fontFamily: "Georgia, 'Times New Roman', serif",
-    },
+    name: 'Jira',
+    style: { fontWeight: 600, letterSpacing: '0.03em', fontSize: '1rem' },
   },
   {
-    name: 'RE/MAX',
-    style: { fontWeight: 900, letterSpacing: '0.06em', fontSize: '1rem' },
-  },
-  {
-    name: 'BBI',
-    style: { fontWeight: 800, letterSpacing: '0.2em', fontSize: '1.05rem' },
-  },
-  {
-    name: 'OpenAI',
+    name: 'Slack',
     style: { fontWeight: 600, letterSpacing: '0.05em', fontSize: '1rem' },
   },
   {
-    name: 'Claude',
-    style: { fontWeight: 500, letterSpacing: '0.03em', fontSize: '1.1rem' },
+    name: 'Notion',
+    style: { fontWeight: 600, letterSpacing: '0.04em', fontSize: '1rem' },
   },
   {
-    name: 'Gemini',
-    style: { fontWeight: 700, letterSpacing: '0.06em', fontSize: '1.05rem' },
+    name: 'GitHub',
+    style: { fontWeight: 600, letterSpacing: '0.03em', fontSize: '1rem' },
+  },
+  {
+    name: 'Figma',
+    style: { fontWeight: 600, letterSpacing: '0.03em', fontSize: '1rem' },
+  },
+  {
+    name: 'Linear',
+    style: { fontWeight: 700, letterSpacing: '0.04em', fontSize: '1rem' },
   },
 ]
 
 // Duplicate 4× for a seamless infinite loop with no visible gap
-const track = [...brands, ...brands, ...brands, ...brands]
+const track = [...tools, ...tools, ...tools, ...tools]
 
 export default function Clients() {
   const { language } = useLanguage()
@@ -54,14 +48,14 @@ export default function Clients() {
   // Use consistent text during SSR and hydration
   const labelText = mounted
     ? language === 'es'
-      ? 'Empresas que confían en ELEVA'
-      : 'Companies that trust ELEVA'
-    : 'Empresas que confían en ELEVA'
+      ? 'Stack tecnológico'
+      : 'Tech Stack'
+    : 'Stack tecnológico'
 
   return (
     <section
       id="clientes"
-      aria-label={language === 'es' ? 'Clientes' : 'Clients'}
+      aria-label={language === 'es' ? 'Stack tecnológico' : 'Tech Stack'}
       style={{
         padding: 'clamp(2.5rem, 5vw, 3.5rem) 0',
         borderTop: '1px solid rgba(124,107,196,0.10)',
@@ -120,7 +114,7 @@ export default function Clients() {
             ;(e.currentTarget as HTMLDivElement).style.animationPlayState = 'running'
           }}
         >
-          {track.map((brand, idx) => (
+          {track.map((tool, idx) => (
             <div
               key={idx}
               className="flex items-center gap-0 flex-shrink-0"
@@ -136,8 +130,8 @@ export default function Clients() {
                 ;(e.currentTarget as HTMLDivElement).style.opacity = '0.45'
               }}
             >
-              <span className="text-white select-none whitespace-nowrap" style={brand.style}>
-                {brand.name}
+              <span className="text-white select-none whitespace-nowrap" style={tool.style}>
+                {tool.name}
               </span>
               {/* Dot separator */}
               <span

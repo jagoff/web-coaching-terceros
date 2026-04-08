@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "next dev --webpack -H 0.0.0.0",
     "build": "next build",
     "build:optimized": "npm run optimize:images && next build",
     "start": "next start",
@@ -32,6 +32,7 @@
     "framer-motion": "^12.35.1",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
+    "puppeteer": "^24.40.0",
     "react": "19.2.3",
     "react-countup": "^6.5.3",
     "react-dom": "19.2.3",
