@@ -1,7 +1,7 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 test('Underline position debug', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('http://localhost:3002/');
+  await page.goto('http://localhost:3000/');
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(800);
   await page.evaluate(() => {

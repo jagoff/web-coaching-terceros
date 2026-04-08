@@ -44,7 +44,7 @@ export default function HeroClient({ ssrLanguage = 'es' }: { ssrLanguage?: Langu
   // Use `language` from context after mount; fall back to ssrLanguage during SSR/hydration
   const displayLanguage = mounted ? language : ssrLanguage
 
-  const rotatingPhrases = t.hero.rotatingPhrases
+  const rotatingPhrases = t.hero?.rotatingPhrases || []
   const sectionRef = useRef<HTMLElement>(null)
 
   // Parallax only on desktop — useScroll always attached to sectionRef to avoid re-init

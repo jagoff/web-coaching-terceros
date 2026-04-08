@@ -1,4 +1,3 @@
-import WhatsAppButton from '@/components/WhatsAppButton'
 import HeroServer from '@/components/sections/HeroServer'
 import Clients from '@/components/sections/Clients'
 import ForWho from '@/components/sections/ForWho'
@@ -177,7 +176,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <WhatsAppButton />
       <main>
         <HeroServer pathname="/" />
         <Clients />

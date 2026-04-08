@@ -21,7 +21,12 @@ const credentialStagger: Variants = {
 
 const credentialPop: Variants = {
   hidden: { opacity: 0, scale: 0.8, y: 10 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 18 } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 18 },
+  },
 }
 
 const credentials = [
@@ -36,9 +41,18 @@ const credentials = [
 ]
 
 const baseImages = [
-  'slide-01.png', 'slide-02.png', 'slide-03.png', 'slide-04.png',
-  'slide-05.png', 'slide-06.png', 'slide-07.png', 'slide-08.png',
-  'slide-09.png', 'slide-10.png', 'slide-11.png', 'slide-12.png',
+  'slide-01.png',
+  'slide-02.png',
+  'slide-03.png',
+  'slide-04.png',
+  'slide-05.png',
+  'slide-06.png',
+  'slide-07.png',
+  'slide-08.png',
+  'slide-09.png',
+  'slide-10.png',
+  'slide-11.png',
+  'slide-12.png',
 ]
 
 export default function About() {
@@ -48,8 +62,8 @@ export default function About() {
   const [shuffledCredentials, setCredentials] = useState(credentials)
   const [buttonPosition, setButtonPosition] = useState(0)
 
-  const optimizedImagePaths = baseImages.map(name =>
-    `/images/carousel/${name.replace('.png', '.webp')}`
+  const optimizedImagePaths = baseImages.map(
+    name => `/images/carousel/${name.replace('.png', '.webp')}`
   )
 
   useEffect(() => {
@@ -68,14 +82,9 @@ export default function About() {
   }, [])
 
   return (
-    <section
-      id="sobre-mi"
-      className="section section-surface section-gold-border-top"
-      ref={ref}
-    >
+    <section id="sobre-mi" className="section section-surface section-gold-border-top" ref={ref}>
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mt-16 md:mt-24">
-
           {/* LEFT column: TV icon + carousel + YouTube */}
           <motion.div
             variants={slideReveal}
@@ -114,7 +123,10 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="w-full mt-8"
             >
-              <h3 className="text-2xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+              <h3
+                className="text-2xl font-semibold mb-3"
+                style={{ fontFamily: 'var(--font-heading)' }}
+              >
                 <span className="text-gradient">
                   {language === 'es' ? 'Conocé mi enfoque' : 'See My Approach'}
                 </span>
@@ -180,7 +192,12 @@ export default function About() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
-                        style={{ background: 'var(--gradient-gold)', color: 'white', textDecoration: 'none', fontWeight: '600' }}
+                        style={{
+                          background: 'var(--gradient-gold)',
+                          color: 'white',
+                          textDecoration: 'none',
+                          fontWeight: '600',
+                        }}
                         whileHover={{ scale: 1.05, boxShadow: '0 8px 25px rgba(124,107,196,0.3)' }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -191,7 +208,10 @@ export default function About() {
                     </motion.div>
                   )}
                   <motion.div variants={credentialPop} className="credential-chip">
-                    <CheckCircle2 size={14} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                    <CheckCircle2
+                      size={14}
+                      style={{ color: 'var(--gold-primary)', flexShrink: 0 }}
+                    />
                     <span>{credential}</span>
                   </motion.div>
                   {index === shuffledCredentials.length - 1 && buttonPosition > index && (
@@ -201,7 +221,12 @@ export default function About() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
-                        style={{ background: 'var(--gradient-gold)', color: 'white', textDecoration: 'none', fontWeight: '600' }}
+                        style={{
+                          background: 'var(--gradient-gold)',
+                          color: 'white',
+                          textDecoration: 'none',
+                          fontWeight: '600',
+                        }}
                         whileHover={{ scale: 1.05, boxShadow: '0 8px 25px rgba(124,107,196,0.3)' }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -215,7 +240,6 @@ export default function About() {
               ))}
             </motion.div>
           </motion.div>
-
         </div>
       </div>
     </section>

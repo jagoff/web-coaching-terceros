@@ -182,6 +182,71 @@ export default function ConversationalContactForm() {
     }
   }
 
+  // Design Responsibly: Human-centered approach - understanding user needs
+  const getHelperText = () => {
+    switch (step) {
+      case 1:
+        return es 
+          ? 'Tu información me ayuda a personalizar mi respuesta y entender mejor tu contexto.'
+          : 'Your information helps me personalize my response and better understand your context.'
+      case 2:
+        return es
+          ? 'Usaré tu email solo para responderte. Nunca compartiré tu información con terceros.'
+          : "I'll only use your email to respond to you. I'll never share your information with third parties."
+      case 3:
+        return es
+          ? 'Seleccionar el desafío correcto me permite prepararme con soluciones específicas para ti.'
+          : 'Selecting the right challenge allows me to prepare with specific solutions for you.'
+      default:
+        return ''
+    }
+  }
+
+  // Design Responsibly: Value tensions - balancing privacy with personalization
+  const getPrivacyNotice = () => {
+    if (step === 2) {
+      return es
+        ? '🔒 Tu privacidad es importante. Solo uso tus datos para responderte.'
+        : '🔒 Your privacy matters. I only use your data to respond to you.'
+    }
+    return null
+  }
+
+  // Design for Generative Variability: Show different conversation paths
+  const getConversationPath = (challengeValue: string) => {
+    const paths: Record<string, { es: string; en: string }> = {
+      equipo_dependiente: {
+        es: '🔄 Conversación sobre autonomía, delegación y empowerment del equipo',
+        en: '🔄 Conversation about autonomy, delegation, and team empowerment'
+      },
+      escalabilidad: {
+        es: '📈 Exploraremos crecimiento, procesos replicables y estructuras escalables',
+        en: '📈 We\'ll explore growth, replicable processes, and scalable structures'
+      },
+      liderazgo: {
+        es: '👥 Focus en estilos de liderazgo, comunicación y desarrollo de equipos',
+        en: '👥 Focus on leadership styles, communication, and team development'
+      },
+      comunicacion: {
+        es: '💬 Mejora de canales, feedback, alineación y colaboración efectiva',
+        en: '💬 Improving channels, feedback, alignment, and effective collaboration'
+      },
+      custom: {
+        es: '✨ Conversación completamente personalizada según tu situación',
+        en: '✨ Completely personalized conversation based on your situation'
+      }
+    }
+    
+    return paths[challengeValue]?.[language] || ''
+  }
+
+  // Design for Generative Variability: Draw attention to differences
+  const getVariabilityExplanation = () => {
+    return es
+      ? '💡 Cada opción genera una conversación única. Tu elección determina el enfoque de nuestra interacción.'
+      : '💡 Each option generates a unique conversation. Your choice determines the focus of our interaction.'
+  }
+
   const getStepSubtitle = () => {
     switch (step) {
       case 1:
@@ -330,6 +395,14 @@ export default function ConversationalContactForm() {
                         {errors.nombre}
                       </motion.p>
                     )}
+                    {/* Design Responsibly: Helper text for mental model */}
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-gray-500 text-sm mt-3 ml-1"
+                    >
+                      {getHelperText()}
+                    </motion.p>
                   </div>
                 </div>
               )}
@@ -362,12 +435,36 @@ export default function ConversationalContactForm() {
                         {errors.email}
                       </motion.p>
                     )}
+                    {/* Design Responsibly: Privacy notice and helper text */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-3 space-y-2"
+                    >
+                      <p className="text-gray-500 text-sm ml-1">
+                        {getHelperText()}
+                      </p>
+                      {getPrivacyNotice() && (
+                        <p className="text-blue-400 text-xs ml-1 flex items-center gap-1">
+                          {getPrivacyNotice()}
+                        </p>
+                      )}
+                    </motion.div>
                   </div>
                 </div>
               )}
 
               {step === 3 && (
                 <div className="space-y-6">
+                  {/* Design for Generative Variability: Multiple outputs visualization */}
+                  <div className="mb-6">
+                    <p className="text-sm text-gray-400 mb-3">
+                      {es
+                        ? 'Cada desafío abre una conversación diferente. Explora las opciones:'
+                        : 'Each challenge opens a different conversation. Explore the options:'}
+                    </p>
+                  </div>
+                  
                   <div className="grid grid-cols-1 gap-4">
                     {challenges[language].map(challenge => {
                       const Icon = challenge.icon
@@ -415,6 +512,21 @@ export default function ConversationalContactForm() {
                               <span className="text-white font-semibold text-lg block">
                                 {challenge.label}
                               </span>
+                              {/* Design for Generative Variability: Show conversation path preview */}
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{
+                                  opacity: isSelected ? 1 : 0,
+                                  height: isSelected ? 'auto' : 0,
+                                }}
+                                className="overflow-hidden"
+                              >
+                                <div className="text-sm text-gray-400 mt-2 space-y-1">
+                                  <p className="text-xs text-purple-300">
+                                    {getConversationPath(challenge.value)}
+                                  </p>
+                                </div>
+                              </motion.div>
                               {isSelected && challenge.value !== 'custom' && (
                                 <motion.span
                                   initial={{ opacity: 0, y: -5 }}
@@ -500,9 +612,30 @@ export default function ConversationalContactForm() {
                             {errors.mensaje}
                           </motion.p>
                         )}
+                        {/* Design Responsibly: Helper text for custom challenges */}
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="text-gray-500 text-sm mt-3"
+                        >
+                          {es
+                            ? '💡 Cuantos más detalles compartas, mejor podré ayudarte.'
+                            : '💡 The more details you share, the better I can help you.'}
+                        </motion.p>
                       </div>
                     </motion.div>
                   )}
+
+                  {/* Design for Generative Variability: Highlight differences and provide guidance */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mt-6 p-3 rounded-lg bg-purple-500/10 border border-purple-500/20"
+                  >
+                    <p className="text-xs text-purple-300">
+                      {getVariabilityExplanation()}
+                    </p>
+                  </motion.div>
 
                   {errors.desafio && (
                     <motion.p

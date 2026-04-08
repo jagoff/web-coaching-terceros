@@ -166,10 +166,10 @@ export default function TestimonialsSimple() {
 
         {/* Testimonial Carousel */}
         <div
-          className="max-w-xl mx-auto"
-          style={{ width: '100%', padding: '0 0.5rem', minHeight: '400px' }}
+          className="max-w-md mx-auto"
+          style={{ width: '100%', padding: '0 0.5rem', minHeight: '320px' }}
         >
-          <div className="relative" style={{ minHeight: '400px' }}>
+          <div className="relative" style={{ minHeight: '320px' }}>
             {/* Testimonial Card */}
             <motion.div
               key={currentIndex}
@@ -181,9 +181,9 @@ export default function TestimonialsSimple() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="glass-card p-6 md:p-8 text-center cursor-grab active:cursor-grabbing relative"
+              className="glass-card p-4 md:p-6 text-center cursor-grab active:cursor-grabbing relative"
               style={{
-                minHeight: '350px',
+                minHeight: '160px',
                 height: 'auto',
                 display: 'flex',
                 flexDirection: 'column',
@@ -230,6 +230,7 @@ export default function TestimonialsSimple() {
                     wordWrap: 'break-word',
                     overflowWrap: 'break-word',
                     hyphens: 'auto',
+                    fontSize: 'calc(0.7rem - 2pt)',
                   }}
                   suppressHydrationWarning
                 >
@@ -239,13 +240,6 @@ export default function TestimonialsSimple() {
 
               {/* Author */}
               <div className="flex flex-col items-center justify-center flex-shrink-0">
-                {/* Avatar */}
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mb-3 flex-shrink-0"
-                  style={{ background: currentTestimonial.avatarBg }}
-                >
-                  {currentTestimonial.initials}
-                </div>
                 <div className="text-center">
                   <h3
                     className="font-semibold text-lg"

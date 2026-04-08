@@ -13,6 +13,7 @@ vi.mock('@/contexts/LanguageContext', () => ({
         title3: 'organizaciones que escalan',
         subtitle: 'Transformo equipos y culturas empresariales...',
         cta: 'Agenda tu sesión gratuita',
+        rotatingPhrases: ['Mi equipo no toma decisiones sin mí'],
       },
     },
   }),
@@ -30,7 +31,7 @@ describe('Hero Component', () => {
   it('renders call to action button', () => {
     render(<HeroServer pathname="/" />)
     
-    const ctaButton = screen.getByText('Agenda tu sesión gratuita')
+    const ctaButton = screen.getByText('AGENDA GRATIS TU SESIÓN')
     expect(ctaButton).toBeInTheDocument()
   })
 })
