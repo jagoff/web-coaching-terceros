@@ -12,9 +12,14 @@ const CursorGlow = dynamic(() => import('@/components/CursorGlow'), {
   loading: () => null,
 })
 
+const WhatsAppButton = dynamic(() => import('@/components/WhatsAppButton'), {
+  ssr: false,
+  loading: () => null,
+})
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false)
-
+  
   useEffect(() => {
     // Prevent browser scroll restoration
     if ('scrollRestoration' in window.history) {
@@ -54,6 +59,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {isLoaded && <CursorGlow />}
       <DynamicNavbar />
       {children}
+      {isLoaded && typeof window !== 'undefined' && !document.querySelector('.whatsapp-fab') && (
+        <WhatsAppButton />
+      )}
     </>
   )
 }

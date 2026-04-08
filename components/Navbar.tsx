@@ -32,10 +32,10 @@ export default function Navbar() {
   const visibleRef = useRef(true)
 
   const navLinks = [
-    { label: t.nav.sobreMi, href: '/sobre-mi#titulo-about' },
-    { label: t.nav.servicios, href: '/servicios#titulo-servicios' },
-    { label: t.nav.testimonios, href: '/testimonios#titulo-testimonios' },
-    { label: t.nav.preguntasFrecuentes, href: '/faq#titulo-faq' },
+    { label: t.nav.sobreMi, href: '/sobre-mi' },
+    { label: t.nav.servicios, href: '/servicios' },
+    { label: t.nav.testimonios, href: '/testimonios' },
+    { label: t.nav.preguntasFrecuentes, href: '/faq' },
   ]
 
   useEffect(() => {

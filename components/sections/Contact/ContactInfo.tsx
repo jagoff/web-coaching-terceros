@@ -238,6 +238,17 @@ export default function ContactInfo() {
             className="group relative inline-flex items-center justify-center px-12 py-6 rounded-3xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 font-bold text-white text-xl shadow-2xl transition-all duration-700 hover:shadow-violet-500/30 hover:shadow-3xl border border-white/20 overflow-hidden"
             whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              const contactForm = document.querySelector(
+                '#contacto form, [data-testid="contact-form"], .contact-form'
+              )
+              if (contactForm) {
+                contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              } else {
+                // Si no hay formulario, navegar a página de contacto
+                window.location.href = '/#contacto'
+              }
+            }}
           >
             {/* Modern button effects */}
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

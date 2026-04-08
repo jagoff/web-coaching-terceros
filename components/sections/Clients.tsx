@@ -9,6 +9,22 @@ const tools = [
     style: { fontWeight: 700, letterSpacing: '0.06em', fontSize: '1rem' },
   },
   {
+    name: 'OpenAI',
+    style: { fontWeight: 600, letterSpacing: '0.03em', fontSize: '1rem' },
+  },
+  {
+    name: 'Anthropic',
+    style: { fontWeight: 600, letterSpacing: '0.04em', fontSize: '1rem' },
+  },
+  {
+    name: 'Google AI',
+    style: { fontWeight: 600, letterSpacing: '0.03em', fontSize: '1rem' },
+  },
+  {
+    name: 'Microsoft AI',
+    style: { fontWeight: 600, letterSpacing: '0.02em', fontSize: '1rem' },
+  },
+  {
     name: 'Jira',
     style: { fontWeight: 600, letterSpacing: '0.03em', fontSize: '1rem' },
   },

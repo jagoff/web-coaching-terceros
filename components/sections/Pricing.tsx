@@ -175,7 +175,7 @@ export default function Pricing() {
                 {plan.features.map(feature => (
                   <motion.li key={feature} variants={featureItem} className="pricing-feature">
                     <CheckCircle2 className="pricing-check" size={16} />
-                    <span>{feature}</span>
+                    <span style={{ fontSize: '0.75rem !important' }}>{feature}</span>
                   </motion.li>
                 ))}
               </motion.ul>

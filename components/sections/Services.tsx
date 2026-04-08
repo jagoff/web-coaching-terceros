@@ -195,7 +195,12 @@ export default function Services() {
 
                 <p
                   className="mb-6 sm:mb-10"
-                  style={{ color: 'var(--text-secondary)', lineHeight: '1.75', minHeight: '9rem' }}
+                  style={{
+                    color: 'var(--text-secondary)',
+                    lineHeight: '1.75',
+                    minHeight: '9rem',
+                    fontSize: 'calc(1rem - 2pt)', // Reducir 2pt del tamaño base
+                  }}
                 >
                   {service.description}
                 </p>
@@ -219,8 +224,12 @@ export default function Services() {
                         style={{ color: 'var(--gold-primary)' }}
                       />
                       <span
-                        className="text-base leading-relaxed"
-                        style={{ color: 'var(--text-secondary)', fontWeight: 400 }}
+                        className="leading-relaxed"
+                        style={{
+                          color: 'var(--text-secondary)',
+                          fontWeight: 400,
+                          fontSize: '0.75rem !important', // Reducido a 12px forzado
+                        }}
                       >
                         {benefit}
                       </span>
