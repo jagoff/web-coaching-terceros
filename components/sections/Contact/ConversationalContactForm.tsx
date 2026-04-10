@@ -399,7 +399,7 @@ export default function ConversationalContactForm() {
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="text-gray-500 text-sm mt-3 ml-1"
+                      className="text-gray-500 text-sm mt-6 ml-1"
                     >
                       {getHelperText()}
                     </motion.p>
@@ -441,7 +441,7 @@ export default function ConversationalContactForm() {
                       animate={{ opacity: 1 }}
                       className="mt-3 space-y-2"
                     >
-                      <p className="text-gray-500 text-sm ml-1">
+                      <p className="text-gray-500 text-sm mt-6 ml-1">
                         {getHelperText()}
                       </p>
                       {getPrivacyNotice() && (

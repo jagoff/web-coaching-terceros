@@ -132,18 +132,21 @@ export default function GesturesCarousel() {
           </div>
         </div>
 
-        {/* Dots - Mejorados para táctil */}
+        {/* Dots - Mejorados para táctil (WCAG 44px minimum) */}
         <div className="flex justify-center mt-4 gap-2 flex-wrap px-4">
           {images.map((image, index) => (
             <button
               key={`carousel-dot-${image}-${index}`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Ir a imagen ${index + 1}`}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? 'bg-blue-500 scale-125' : 'bg-gray-400 hover:bg-gray-300'
+              className={`w-11 h-11 rounded-full transition-all flex items-center justify-center ${
+                index === currentIndex ? 'bg-blue-500 scale-110' : 'bg-gray-400 hover:bg-gray-300'
               }`}
-              style={{ minWidth: '12px', minHeight: '12px' }}
-            />
+            >
+              <div className={`w-3 h-3 rounded-full ${
+                index === currentIndex ? 'bg-white' : 'bg-current'
+              }`} />
+            </button>
           ))}
         </div>
 

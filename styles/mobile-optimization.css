@@ -4,15 +4,32 @@
    TOUCH TARGETS - WCAG 2.1 AA Compliance (44px minimum)
    ============================================================ */
 
-/* Enhanced touch targets for all interactive elements */
+/* Enhanced touch targets for ALL interactive elements - WCAG 2.1 AA Compliance */
 .btn-primary,
 .btn-secondary,
-.btn-hero-primary {
+.btn-hero-primary,
+button,
+a[role="button"],
+input[type="button"],
+input[type="submit"],
+[role="button"] {
   min-height: 48px;
   min-width: 48px;
   padding: 12px 24px;
   font-size: 16px; /* Prevents zoom on iOS */
   position: relative;
+}
+
+/* Force 44px minimum for small interactive elements */
+button:not(.btn-primary):not(.btn-secondary):not(.btn-hero-primary):not(.navbar-cta-primary),
+a:not(.btn-primary):not(.btn-secondary):not(.btn-hero-primary):not(.navbar-cta-primary)[onclick],
+[role="button"]:not(.btn-primary):not(.btn-secondary):not(.btn-hero-primary) {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
 }
 
 /* Mobile specific touch targets */

@@ -341,14 +341,14 @@ export default function Navbar() {
                   </button>
 
                   <button
-                    className="flex items-center justify-center rounded-md transition-colors w-11 h-11 bg-transparent border-0"
+                    className="flex items-center justify-center rounded-lg transition-colors w-12 h-12 bg-transparent border-0"
                     style={{ color: 'var(--text-secondary)' }}
                     onClick={() => setMobileOpen(!mobileOpen)}
                     aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
                     aria-expanded={mobileOpen}
                     aria-controls="mobile-menu"
                   >
-                    {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+                    {mobileOpen ? <X size={24} /> : <Menu size={24} />}
                   </button>
                 </div>
               </div>
