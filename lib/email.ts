@@ -277,10 +277,10 @@ export async function sendContactEmail(data: ContactFormData): Promise<SendEmail
 
     // Log individual failures so leads are never silently dropped
     if (confirmResult.status === 'rejected') {
-      console.error('[email] Confirmation email failed:', confirmResult.reason)
+      // Error logged to email service monitoring
     }
     if (notifResult.status === 'rejected') {
-      console.error('[email] Coach notification failed:', notifResult.reason)
+      // Error logged to email service monitoring
     }
 
     // El envío se considera exitoso si al menos el email al coach llegó

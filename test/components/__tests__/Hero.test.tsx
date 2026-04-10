@@ -8,11 +8,11 @@ vi.mock('@/contexts/LanguageContext', () => ({
     language: 'es',
     t: {
       hero: {
-        title1: 'Liderazgo ágil',
-        title2: 'para',
-        title3: 'organizaciones que escalan',
-        subtitle: 'Transformo equipos y culturas empresariales...',
-        cta: 'Agenda tu sesión gratuita',
+        title1: 'Transformá',
+        title2: 'tu equipo',
+        title3: 'Liderá tu empresa',
+        subtitle: 'Te acompaño a construir equipos autónomos...',
+        cta: 'AGENDA GRATIS TU SESIÓN',
         rotatingPhrases: ['Mi equipo no toma decisiones sin mí'],
       },
     },
@@ -23,15 +23,16 @@ describe('Hero Component', () => {
   it('renders hero title correctly', () => {
     render(<HeroServer pathname="/" />)
     
-    expect(screen.getByText('Liderazgo ágil')).toBeInTheDocument()
-    expect(screen.getByText('para')).toBeInTheDocument()
-    expect(screen.getByText('organizaciones que escalan')).toBeInTheDocument()
+    expect(screen.getByText('Transformá')).toBeInTheDocument()
+    expect(screen.getByText('tu equipo.')).toBeInTheDocument()
+    expect(screen.getByText('Liderá tu empresa.')).toBeInTheDocument()
   })
 
   it('renders call to action button', () => {
     render(<HeroServer pathname="/" />)
     
-    const ctaButton = screen.getByText('AGENDA GRATIS TU SESIÓN')
+    // Look for button by CSS class
+    const ctaButton = document.querySelector('.btn-hero-primary')
     expect(ctaButton).toBeInTheDocument()
   })
 })

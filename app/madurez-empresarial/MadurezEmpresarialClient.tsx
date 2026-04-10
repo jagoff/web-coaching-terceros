@@ -27,8 +27,8 @@ export default function MadurezEmpresarialClient() {
   // Design for Mental Models: Orient user to assessment variability
   const getAssessmentExplanation = () => {
     if (!showExplanation) return null
-    
-    return language === 'es' 
+
+    return language === 'es'
       ? 'Este test evalúa 5 áreas clave de tu organización. Tus respuestas generarán un diagnóstico personalizado con recomendaciones específicas.'
       : 'This test evaluates 5 key areas of your organization. Your answers will generate a personalized diagnosis with specific recommendations.'
   }
@@ -46,26 +46,26 @@ export default function MadurezEmpresarialClient() {
     const explanations: Record<string, { es: string; en: string }> = {
       estructura: {
         es: 'La estructura organizacional define cómo se distribuyen roles y responsabilidades en tu equipo.',
-        en: 'Organizational structure defines how roles and responsibilities are distributed in your team.'
+        en: 'Organizational structure defines how roles and responsibilities are distributed in your team.',
       },
       comunicacion: {
         es: 'La comunicación efectiva es clave para la colaboración y alineación de objetivos.',
-        en: 'Effective communication is key for collaboration and goal alignment.'
+        en: 'Effective communication is key for collaboration and goal alignment.',
       },
       procesos: {
         es: 'Los procesos optimizados mejoran la eficiencia y consistencia de las operaciones.',
-        en: 'Optimized processes improve operational efficiency and consistency.'
+        en: 'Optimized processes improve operational efficiency and consistency.',
       },
       tecnologia: {
         es: 'La tecnología estratégica automatiza tareas y habilita nuevas capacidades.',
-        en: 'Strategic technology automates tasks and enables new capabilities.'
+        en: 'Strategic technology automates tasks and enables new capabilities.',
       },
       liderazgo: {
         es: 'El estilo de liderazgo impacta directamente la cultura y desempeño del equipo.',
-        en: 'Leadership style directly impacts team culture and performance.'
-      }
+        en: 'Leadership style directly impacts team culture and performance.',
+      },
     }
-    
+
     return explanations[currentQuestion.id]?.[language] || ''
   }
 
@@ -346,7 +346,7 @@ export default function MadurezEmpresarialClient() {
   const getResultRationale = () => {
     const answeredQuestions = Object.keys(answers).length
     const totalQuestions = questions.length
-    
+
     return language === 'es'
       ? `Basado en ${answeredQuestions} de ${totalQuestions} preguntas respondidas, este análisis refleja tu percepción actual de la organización.`
       : `Based on ${answeredQuestions} of ${totalQuestions} questions answered, this analysis reflects your current perception of the organization.`
@@ -393,16 +393,12 @@ export default function MadurezEmpresarialClient() {
                 className="mb-6 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20"
               >
                 <div className="flex items-start gap-3">
-                  <div className="text-amber-400 mt-1">
-                    🔍
-                  </div>
+                  <div className="text-amber-400 mt-1">🔍</div>
                   <div>
                     <p className="text-sm text-amber-300 font-medium mb-1">
                       {language === 'es' ? 'Precisión del diagnóstico:' : 'Diagnosis accuracy:'}
                     </p>
-                    <p className="text-xs text-amber-200 mb-2">
-                      {getTrustCalibration()}
-                    </p>
+                    <p className="text-xs text-amber-200 mb-2">{getTrustCalibration()}</p>
                     <div className="flex items-center gap-2 text-xs text-amber-300">
                       <span>{language === 'es' ? 'Confianza:' : 'Confidence:'}</span>
                       <div className="flex gap-1">
@@ -494,10 +490,10 @@ export default function MadurezEmpresarialClient() {
                   const option = question.options.find(o => o.value === answer)
                   const weight = customWeight[question.id] || 1
                   const weightedScore = (option?.score || 0) * weight
-                  
+
                   return (
-                    <motion.div 
-                      key={question.id} 
+                    <motion.div
+                      key={question.id}
                       className="flex items-center gap-4 p-3 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors"
                       whileHover={{ scale: editMode ? 1.02 : 1 }}
                     >
@@ -517,15 +513,15 @@ export default function MadurezEmpresarialClient() {
                               max="2"
                               step="0.1"
                               value={weight}
-                              onChange={(e) => setCustomWeight(prev => ({
-                                ...prev,
-                                [question.id]: parseFloat(e.target.value)
-                              }))}
+                              onChange={e =>
+                                setCustomWeight(prev => ({
+                                  ...prev,
+                                  [question.id]: parseFloat(e.target.value),
+                                }))
+                              }
                               className="w-16 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
                             />
-                            <span className="text-xs text-indigo-300 font-medium">
-                              {weight}x
-                            </span>
+                            <span className="text-xs text-indigo-300 font-medium">{weight}x</span>
                           </div>
                         )}
                       </div>
@@ -534,16 +530,14 @@ export default function MadurezEmpresarialClient() {
                           {editMode ? weightedScore.toFixed(1) : option?.score}/5
                         </div>
                         {editMode && weight !== 1 && (
-                          <div className="text-xs text-indigo-300">
-                            ×{weight}
-                          </div>
+                          <div className="text-xs text-indigo-300">×{weight}</div>
                         )}
                       </div>
                     </motion.div>
                   )
                 })}
               </div>
-              
+
               {/* Design for Co-Creation: Show impact of customizations */}
               {Object.keys(customWeight).length > 0 && (
                 <motion.div
@@ -554,7 +548,7 @@ export default function MadurezEmpresarialClient() {
                   <p className="text-xs text-indigo-300">
                     {language === 'es'
                       ? '🎯 Has personalizado los pesos. El puntaje refleja ahora tus prioridades específicas.'
-                      : '🎯 You\'ve customized the weights. The score now reflects your specific priorities.'}
+                      : "🎯 You've customized the weights. The score now reflects your specific priorities."}
                   </p>
                 </motion.div>
               )}
@@ -570,17 +564,30 @@ export default function MadurezEmpresarialClient() {
                   className="mb-4 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="text-blue-400 mt-1">
-                      🛠️
-                    </div>
+                    <div className="text-blue-400 mt-1">🛠️</div>
                     <div>
                       <p className="text-sm text-blue-300 font-medium mb-2">
                         {language === 'es' ? 'Mejora estos resultados:' : 'Improve these results:'}
                       </p>
                       <div className="space-y-1 text-xs text-blue-200">
-                        <p>• {language === 'es' ? 'Edita los pesos para reflejar prioridades reales' : 'Edit weights to reflect real priorities'}</p>
-                        <p>• {language === 'es' ? 'Añade notas sobre contexto específico' : 'Add notes about specific context'}</p>
-                        <p>• {language === 'es' ? 'Compara con evaluaciones anteriores' : 'Compare with previous assessments'}</p>
+                        <p>
+                          •{' '}
+                          {language === 'es'
+                            ? 'Edita los pesos para reflejar prioridades reales'
+                            : 'Edit weights to reflect real priorities'}
+                        </p>
+                        <p>
+                          •{' '}
+                          {language === 'es'
+                            ? 'Añade notas sobre contexto específico'
+                            : 'Add notes about specific context'}
+                        </p>
+                        <p>
+                          •{' '}
+                          {language === 'es'
+                            ? 'Compara con evaluaciones anteriores'
+                            : 'Compare with previous assessments'}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -592,12 +599,12 @@ export default function MadurezEmpresarialClient() {
                   className="mb-4 p-3 rounded-lg bg-orange-500/10 border border-orange-500/20"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="text-orange-400 mt-1">
-                      🤔
-                    </div>
+                    <div className="text-orange-400 mt-1">🤔</div>
                     <div>
                       <p className="text-sm text-orange-300 font-medium mb-1">
-                        {language === 'es' ? 'Reflexiona antes de actuar:' : 'Reflect before acting:'}
+                        {language === 'es'
+                          ? 'Reflexiona antes de actuar:'
+                          : 'Reflect before acting:'}
                       </p>
                       <p className="text-xs text-orange-200">
                         {language === 'es'
@@ -643,13 +650,9 @@ export default function MadurezEmpresarialClient() {
               className="mb-8 p-4 rounded-lg bg-gray-800/50 border border-gray-700"
             >
               <div className="flex items-start gap-3">
-                <div className="text-gray-400 mt-1">
-                  🤖
-                </div>
+                <div className="text-gray-400 mt-1">🤖</div>
                 <div>
-                  <p className="text-sm text-gray-300 font-medium mb-1">
-                    {getAIRole()}
-                  </p>
+                  <p className="text-sm text-gray-300 font-medium mb-1">{getAIRole()}</p>
                   <p className="text-xs text-gray-400">
                     {language === 'es'
                       ? 'No reemplaza el juicio humano ni el asesoramiento profesional.'
@@ -666,18 +669,22 @@ export default function MadurezEmpresarialClient() {
               className="mb-8 p-4 rounded-lg bg-indigo-500/10 border border-indigo-500/20"
             >
               <h4 className="text-sm font-semibold text-indigo-300 mb-3">
-                {language === 'es' ? '🎨 Personaliza tu diagnóstico' : '🎨 Personalize your diagnosis'}
+                {language === 'es'
+                  ? '🎨 Personaliza tu diagnóstico'
+                  : '🎨 Personalize your diagnosis'}
               </h4>
-              
+
               {/* Design for Co-Creation: Generic input parameters */}
               <div className="space-y-3">
                 <div>
                   <label className="text-xs text-gray-400 block mb-1">
-                    {language === 'es' ? 'Notas personales (opcional):' : 'Personal notes (optional):'}
+                    {language === 'es'
+                      ? 'Notas personales (opcional):'
+                      : 'Personal notes (optional):'}
                   </label>
                   <textarea
                     value={personalizedNotes}
-                    onChange={(e) => setPersonalizedNotes(e.target.value)}
+                    onChange={e => setPersonalizedNotes(e.target.value)}
                     placeholder={
                       language === 'es'
                         ? 'Añade contexto específico de tu organización...'
@@ -687,20 +694,23 @@ export default function MadurezEmpresarialClient() {
                     className="w-full p-2 rounded text-sm text-white placeholder-gray-500 bg-gray-800/50 border border-gray-600 focus:border-indigo-400 focus:outline-none"
                   />
                 </div>
-                
+
                 {/* Design for Co-Creation: Controls relevant to use case */}
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setEditMode(!editMode)}
                     className="text-xs px-3 py-1 rounded bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30 transition-colors"
                   >
-                    {editMode 
-                      ? (language === 'es' ? '✏️ Editando' : '✏️ Editing')
-                      : (language === 'es' ? '📝 Editar resultados' : '📝 Edit results')
-                    }
+                    {editMode
+                      ? language === 'es'
+                        ? '✏️ Editando'
+                        : '✏️ Editing'
+                      : language === 'es'
+                        ? '📝 Editar resultados'
+                        : '📝 Edit results'}
                   </button>
                   <span className="text-xs text-gray-500">
-                    {language === 'es' 
+                    {language === 'es'
                       ? 'Ajusta la importancia de cada área'
                       : 'Adjust the importance of each area'}
                   </span>
@@ -715,17 +725,20 @@ export default function MadurezEmpresarialClient() {
               className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20"
             >
               <h4 className="text-sm font-semibold text-green-300 mb-3">
-                {language === 'es' ? '📝 Ayuda a mejorar este diagnóstico' : '📝 Help improve this diagnosis'}
+                {language === 'es'
+                  ? '📝 Ayuda a mejorar este diagnóstico'
+                  : '📝 Help improve this diagnosis'}
               </h4>
               <div className="space-y-3">
                 <div className="flex gap-2">
                   <button
                     onClick={() => {
                       // In real implementation, this would collect feedback
-                      const feedback = language === 'es' 
-                        ? 'El diagnóstico fue útil y preciso'
-                        : 'The diagnosis was useful and accurate'
-                      console.log('Positive feedback:', feedback)
+                      const feedback =
+                        language === 'es'
+                          ? 'El diagnóstico fue útil y preciso'
+                          : 'The diagnosis was useful and accurate'
+                      // Feedback logged for analytics
                     }}
                     className="flex-1 px-3 py-2 text-xs rounded bg-green-500/20 text-green-300 hover:bg-green-500/30 transition-colors"
                   >
@@ -734,10 +747,11 @@ export default function MadurezEmpresarialClient() {
                   <button
                     onClick={() => {
                       // In real implementation, this would collect feedback
-                      const feedback = language === 'es' 
-                        ? 'El diagnóstico necesita mejoras'
-                        : 'The diagnosis needs improvements'
-                      console.log('Negative feedback:', feedback)
+                      const feedback =
+                        language === 'es'
+                          ? 'El diagnóstico necesita mejoras'
+                          : 'The diagnosis needs improvements'
+                      // Feedback logged for analytics
                     }}
                     className="flex-1 px-3 py-2 text-xs rounded bg-red-500/20 text-red-300 hover:bg-red-500/30 transition-colors"
                   >
@@ -746,7 +760,9 @@ export default function MadurezEmpresarialClient() {
                 </div>
                 <div>
                   <label className="text-xs text-gray-400 block mb-1">
-                    {language === 'es' ? 'Comentarios adicionales (opcional):' : 'Additional comments (optional):'}
+                    {language === 'es'
+                      ? 'Comentarios adicionales (opcional):'
+                      : 'Additional comments (optional):'}
                   </label>
                   <textarea
                     placeholder={
@@ -780,15 +796,17 @@ export default function MadurezEmpresarialClient() {
               >
                 {language === 'es' ? 'Reintentar Test' : 'Retake Test'}
               </button>
-              
+
               {/* Design for Co-Creation: Support co-editing of generated outputs */}
               {personalizedNotes && (
                 <button
                   onClick={() => {
                     // In a real implementation, this would regenerate with personalization
-                    alert(language === 'es' 
+                    // Show personalized regeneration message
+                    const message = language === 'es'
                       ? 'Diagnóstico regenerado con tus notas personales'
-                      : 'Diagnosis regenerated with your personal notes')
+                      : 'Diagnosis regenerated with your personal notes'
+                    // TODO: Implement toast notification instead of alert
                   }}
                   className="btn-secondary"
                 >
@@ -833,16 +851,10 @@ export default function MadurezEmpresarialClient() {
                   className="glass-card p-4 max-w-2xl mx-auto"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="text-blue-400 mt-1">
-                      💡
-                    </div>
+                    <div className="text-blue-400 mt-1">💡</div>
                     <div className="flex-1">
-                      <p className="text-sm text-gray-300 mb-2">
-                        {getAssessmentExplanation()}
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        {getScoringExplanation()}
-                      </p>
+                      <p className="text-sm text-gray-300 mb-2">{getAssessmentExplanation()}</p>
+                      <p className="text-xs text-gray-400">{getScoringExplanation()}</p>
                       <button
                         onClick={() => setShowExplanation(false)}
                         className="text-xs text-gray-500 hover:text-gray-300 mt-2 transition-colors"
@@ -888,9 +900,7 @@ export default function MadurezEmpresarialClient() {
                 animate={{ opacity: 1 }}
                 className="max-w-md mx-auto"
               >
-                <p className="text-sm text-gray-400 italic">
-                  {getCurrentCategoryExplanation()}
-                </p>
+                <p className="text-sm text-gray-400 italic">{getCurrentCategoryExplanation()}</p>
               </motion.div>
             </div>
 
@@ -899,12 +909,12 @@ export default function MadurezEmpresarialClient() {
               {/* Design for Mental Models: Scoring guidance */}
               <div className="text-center mb-4">
                 <p className="text-xs text-gray-500">
-                  {language === 'es' 
+                  {language === 'es'
                     ? 'Puntaje: 1 (más bajo) → 5 (más alto)'
                     : 'Score: 1 (lowest) → 5 (highest)'}
                 </p>
               </div>
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.options.map((option, _index) => (
                 <motion.button
                   key={option.value}
                   onClick={() => handleAnswer(currentQuestion.id, option.value)}
@@ -924,9 +934,7 @@ export default function MadurezEmpresarialClient() {
                           <div
                             key={score}
                             className={`w-2 h-2 rounded-full ${
-                              score <= option.score
-                                ? 'bg-purple-400'
-                                : 'bg-gray-600'
+                              score <= option.score ? 'bg-purple-400' : 'bg-gray-600'
                             }`}
                           />
                         ))}

@@ -16,6 +16,7 @@ class Logger {
     if (!isDev && level === 'debug') return
 
     const prefix = options?.component ? `[${options.component}]` : ''
+    // eslint-disable-next-line no-console
     const logFn = console[level] || console.log
 
     if (options?.data) {

@@ -186,7 +186,7 @@ export default function ConversationalContactForm() {
   const getHelperText = () => {
     switch (step) {
       case 1:
-        return es 
+        return es
           ? 'Tu información me ayuda a personalizar mi respuesta y entender mejor tu contexto.'
           : 'Your information helps me personalize my response and better understand your context.'
       case 2:
@@ -217,26 +217,26 @@ export default function ConversationalContactForm() {
     const paths: Record<string, { es: string; en: string }> = {
       equipo_dependiente: {
         es: '🔄 Conversación sobre autonomía, delegación y empowerment del equipo',
-        en: '🔄 Conversation about autonomy, delegation, and team empowerment'
+        en: '🔄 Conversation about autonomy, delegation, and team empowerment',
       },
       escalabilidad: {
         es: '📈 Exploraremos crecimiento, procesos replicables y estructuras escalables',
-        en: '📈 We\'ll explore growth, replicable processes, and scalable structures'
+        en: "📈 We'll explore growth, replicable processes, and scalable structures",
       },
       liderazgo: {
         es: '👥 Focus en estilos de liderazgo, comunicación y desarrollo de equipos',
-        en: '👥 Focus on leadership styles, communication, and team development'
+        en: '👥 Focus on leadership styles, communication, and team development',
       },
       comunicacion: {
         es: '💬 Mejora de canales, feedback, alineación y colaboración efectiva',
-        en: '💬 Improving channels, feedback, alignment, and effective collaboration'
+        en: '💬 Improving channels, feedback, alignment, and effective collaboration',
       },
       custom: {
         es: '✨ Conversación completamente personalizada según tu situación',
-        en: '✨ Completely personalized conversation based on your situation'
-      }
+        en: '✨ Completely personalized conversation based on your situation',
+      },
     }
-    
+
     return paths[challengeValue]?.[language] || ''
   }
 
@@ -441,9 +441,7 @@ export default function ConversationalContactForm() {
                       animate={{ opacity: 1 }}
                       className="mt-3 space-y-2"
                     >
-                      <p className="text-gray-500 text-sm mt-6 ml-1">
-                        {getHelperText()}
-                      </p>
+                      <p className="text-gray-500 text-sm mt-6 ml-1">{getHelperText()}</p>
                       {getPrivacyNotice() && (
                         <p className="text-blue-400 text-xs ml-1 flex items-center gap-1">
                           {getPrivacyNotice()}
@@ -464,7 +462,7 @@ export default function ConversationalContactForm() {
                         : 'Each challenge opens a different conversation. Explore the options:'}
                     </p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 gap-4">
                     {challenges[language].map(challenge => {
                       const Icon = challenge.icon
@@ -632,9 +630,7 @@ export default function ConversationalContactForm() {
                     animate={{ opacity: 1 }}
                     className="mt-6 p-3 rounded-lg bg-purple-500/10 border border-purple-500/20"
                   >
-                    <p className="text-xs text-purple-300">
-                      {getVariabilityExplanation()}
-                    </p>
+                    <p className="text-xs text-purple-300">{getVariabilityExplanation()}</p>
                   </motion.div>
 
                   {errors.desafio && (

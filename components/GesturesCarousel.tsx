@@ -143,9 +143,11 @@ export default function GesturesCarousel() {
                 index === currentIndex ? 'bg-blue-500 scale-110' : 'bg-gray-400 hover:bg-gray-300'
               }`}
             >
-              <div className={`w-3 h-3 rounded-full ${
-                index === currentIndex ? 'bg-white' : 'bg-current'
-              }`} />
+              <div
+                className={`w-3 h-3 rounded-full ${
+                  index === currentIndex ? 'bg-white' : 'bg-current'
+                }`}
+              />
             </button>
           ))}
         </div>

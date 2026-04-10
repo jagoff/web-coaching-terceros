@@ -19,7 +19,7 @@ const WhatsAppButton = dynamic(() => import('@/components/WhatsAppButton'), {
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false)
-  
+
   useEffect(() => {
     // Prevent browser scroll restoration
     if ('scrollRestoration' in window.history) {
