@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence, type Variants } from "framer-motion";
 import { scrollToElement } from "@/lib/scroll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import CoachingWordsBackground from "@/components/CoachingWordsBackground";
@@ -104,16 +104,6 @@ const revealUp: Variants = {
   },
 };
 
-const revealScale: Variants = {
-  hidden: { opacity: 0, scale: 0.85, filter: "blur(10px)" },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 const lineGrow: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: {
@@ -135,20 +125,26 @@ const ctaReveal: Variants = {
 
 export default function Hero() {
   const { language } = useLanguage();
+  const reduceMotion = useReducedMotion();
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
-  
+
   const rotatingPhrases = language === 'es' ? rotatingPhrasesES : rotatingPhrasesEN;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -120]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -80]);
+  const orbY3 = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -50]);
 
   useEffect(() => {
     setMounted(true);
-    const count = window.innerWidth < 768 ? 12 : 35;
+    if (reduceMotion) {
+      setParticles([]);
+      return;
+    }
+    // Mucho más conservador: bajo count, especialmente en mobile
+    const count = window.innerWidth < 768 ? 6 : 18;
     setParticles(
       Array.from({ length: count }, (_, i) => ({
         id: i,
@@ -161,16 +157,18 @@ export default function Hero() {
         drift: (Math.random() - 0.5) * 30,
       }))
     );
-  }, []);
+  }, [reduceMotion]);
 
   useEffect(() => {
+    setPhraseIndex(0);
+    if (reduceMotion) return; // No rotar frases si pidió reduced motion
     const interval = setInterval(() => {
       setPhraseIndex((prev) => (prev + 1) % rotatingPhrases.length);
     }, 3500);
     return () => clearInterval(interval);
-  }, []);
+  }, [rotatingPhrases.length, reduceMotion]);
 
-  const handleScroll = (href: string) => scrollToElement(href);
+  const handleScroll = useCallback((href: string) => scrollToElement(href), []);
 
   return (
     <section
@@ -434,12 +432,14 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer bg-transparent border-0 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-3 cursor-pointer bg-transparent border-0 z-10 focus-visible:outline-2 focus-visible:outline-offset-2"
+        style={{ minWidth: 44, minHeight: 44, padding: 4, outlineColor: "var(--gold-primary)" }}
         onClick={() => handleScroll("#sobre-mi")}
-        aria-label="Desplazarse hacia abajo"
+        aria-label={language === 'es' ? 'Desplazarse hacia abajo' : 'Scroll down'}
       >
         <div
           className="relative rounded-full"
+          aria-hidden="true"
           style={{
             width: 24,
             height: 40,
@@ -455,8 +455,8 @@ export default function Hero() {
               top: 6,
               background: "var(--gold-primary)",
             }}
-            animate={{ y: [0, 14, 0], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            animate={reduceMotion ? undefined : { y: [0, 14, 0], opacity: [1, 0.3, 1] }}
+            transition={reduceMotion ? undefined : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
       </motion.button>

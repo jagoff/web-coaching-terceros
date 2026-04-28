@@ -2,9 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { CheckCircle2, Instagram, ExternalLink, Linkedin } from "lucide-react";
+import { CheckCircle2, ExternalLink, Linkedin } from "lucide-react";
 import InstagramCarousel from "../experimental/InstagramCarousel";
-import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const slideReveal: Variants = {
@@ -44,57 +43,31 @@ const credentials = [
 ];
 
 
-const INSTAGRAM_URL = "https://www.instagram.com/jago_ff";
-
-const instagramPosts = [5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12];
-
-const instaStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
-};
-
-const instaCard: Variants = {
-  hidden: { opacity: 0, scale: 0.92, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 export default function About() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [shuffledCredentials, setCredentials] = useState(credentials);
   const [buttonPosition, setButtonPosition] = useState(0);
-  const [clickCount, setClickCount] = useState<{ [key: number]: number }>({});
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Shuffle credentials array
-      const shuffled = [...credentials].sort(() => Math.random() - 0.5);
-      setCredentials(shuffled);
-      // Set random button position
-      const randomPos = Math.floor(Math.random() * (credentials.length + 1));
-      setButtonPosition(randomPos);
-      
-      // Load click count from localStorage
-      const saved = localStorage.getItem('linkedinButtonMetrics');
-      if (saved) {
-        setClickCount(JSON.parse(saved));
-      }
-    }
+    if (typeof window === 'undefined') return;
+    const shuffled = [...credentials].sort(() => Math.random() - 0.5);
+    setCredentials(shuffled);
+    const randomPos = Math.floor(Math.random() * (credentials.length + 1));
+    setButtonPosition(randomPos);
   }, []);
 
   const handleLinkedInClick = () => {
-    // Track click position
-    setClickCount(prev => {
-      const newCount = { ...prev, [buttonPosition]: (prev[buttonPosition] || 0) + 1 };
-      localStorage.setItem('linkedinButtonMetrics', JSON.stringify(newCount));
-      return newCount;
-    });
+    if (typeof window === 'undefined') return;
+    try {
+      const saved = localStorage.getItem('linkedinButtonMetrics');
+      const prev = saved ? (JSON.parse(saved) as Record<number, number>) : {};
+      prev[buttonPosition] = (prev[buttonPosition] ?? 0) + 1;
+      localStorage.setItem('linkedinButtonMetrics', JSON.stringify(prev));
+    } catch {
+      // localStorage no disponible / cuota — ignorar
+    }
   };
 
   return (

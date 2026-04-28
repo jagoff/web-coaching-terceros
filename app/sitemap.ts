@@ -1,20 +1,46 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://coaching-landing-cyan.vercel.app'
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://coaching-landing-cyan.vercel.app";
+  const lastModified = new Date();
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      lastModified,
+      changeFrequency: "monthly",
       priority: 1,
+      alternates: {
+        languages: {
+          es: baseUrl,
+          en: `${baseUrl}/en`,
+        },
+      },
     },
     {
       url: `${baseUrl}/en`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          es: baseUrl,
+          en: `${baseUrl}/en`,
+        },
+      },
     },
-  ]
+    {
+      url: `${baseUrl}/madurez-empresarial`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/casos-de-estudio`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+  ];
 }

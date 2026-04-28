@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 
 const slideLeft: Variants = {
   hidden: { opacity: 0, x: -50, filter: "blur(6px)" },
@@ -41,10 +40,8 @@ const promiseItem: Variants = {
 import {
   CheckCircle2,
   Mail,
-  Linkedin,
   ArrowRight,
   Loader2,
-  CheckCheck,
   AlertCircle,
   User,
   MessageSquare,
@@ -70,27 +67,29 @@ export default function Contact() {
 
   // Real-time validation function
   const validateField = (name: string, value: string): string => {
+    const v = t.contact.form.validation;
     switch (name) {
       case "nombre":
-        if (!value.trim()) return "El nombre es obligatorio";
-        if (value.trim().length < 2) return "El nombre debe tener al menos 2 caracteres";
-        if (value.trim().length > 50) return "El nombre no puede exceder 50 caracteres";
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) return "Solo letras y espacios permitidos";
+        if (!value.trim()) return v.nombreRequired;
+        if (value.trim().length < 2) return v.nombreShort;
+        if (value.trim().length > 50) return v.nombreLong;
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) return v.nombreInvalid;
         return "";
-      
-      case "email":
-        if (!value.trim()) return "El email es obligatorio";
+
+      case "email": {
+        if (!value.trim()) return v.emailRequired;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) return "Introduce un email válido";
-        if (value.length > 100) return "Email demasiado largo";
+        if (!emailRegex.test(value)) return v.emailInvalid;
+        if (value.length > 100) return v.emailLong;
         return "";
-      
+      }
+
       case "mensaje":
-        if (!value.trim()) return "El mensaje es obligatorio";
-        if (value.trim().length < 10) return "Cuéntanos más (mínimo 10 caracteres)";
-        if (value.trim().length > 500) return "El mensaje no puede exceder 500 caracteres";
+        if (!value.trim()) return v.mensajeRequired;
+        if (value.trim().length < 10) return v.mensajeShort;
+        if (value.trim().length > 500) return v.mensajeLong;
         return "";
-      
+
       default:
         return "";
     }
@@ -193,12 +192,12 @@ export default function Contact() {
           contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       } else {
-        throw new Error("Error al enviar el formulario");
+        throw new Error("Form submit failed");
       }
-      
+
     } catch {
       setStatus("error");
-      setApiError("Error al enviar el mensaje. Por favor intenta más tarde.");
+      setApiError(t.contact.form.genericError);
     }
   };
 
@@ -258,7 +257,7 @@ export default function Contact() {
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text"
                 }}>
-                🎯 Solo <span 
+                🎯 {language === 'es' ? 'Solo' : 'Only'} <span
                   className="font-bold"
                   style={{
                     background: "linear-gradient(135deg, #FF6B35 0%, #C87B5A 100%)",
@@ -266,7 +265,7 @@ export default function Contact() {
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text"
                   }}
-                >3 cupos disponibles</span> este mes para acompañamiento personalizado
+                >{t.contact.form.cupos}</span> {language === 'es' ? 'este mes para acompañamiento personalizado' : 'this month for personalized support'}
               </p>
             </div>
 
@@ -277,9 +276,9 @@ export default function Contact() {
               className="space-y-4 sm:space-y-5 mb-10 sm:mb-14"
             >
               {[
-                language === 'es' ? '30 minutos que sirven' : '30 minutes that matter',
-                language === 'es' ? 'Conversación real y auténtica' : 'Real and authentic conversation',
-                language === 'es' ? 'Claridad garantizada' : 'Clarity guaranteed',
+                t.contact.form.promises.item1,
+                t.contact.form.promises.item2,
+                t.contact.form.promises.item3,
               ].map((item) => (
                 <motion.li key={item} variants={promiseItem} className="flex items-center gap-3">
                   <CheckCircle2
@@ -304,6 +303,8 @@ export default function Contact() {
                 {status === "success" ? (
                   <motion.div
                     key="success"
+                    role="status"
+                    aria-live="polite"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
@@ -354,9 +355,9 @@ export default function Contact() {
                         whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(124,107,196,0.3)" }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <Calendar size={18} />
-                        Agendar sesión gratuita ahora
-                        <ArrowRight size={16} />
+                        <Calendar size={18} aria-hidden="true" />
+                        {t.contact.success.cta}
+                        <ArrowRight size={16} aria-hidden="true" />
                       </motion.a>
                     </motion.div>
                   </motion.div>
@@ -421,8 +422,8 @@ export default function Contact() {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
-                          <CheckCircle2 size={12} />
-                          Nombre válido
+                          <CheckCircle2 size={12} aria-hidden="true" />
+                          {t.contact.form.validBadges.nombre}
                         </motion.p>
                       )}
                     </div>
@@ -438,6 +439,7 @@ export default function Contact() {
                           id="email"
                           name="email"
                           type="email"
+                          inputMode="email"
                           autoComplete="email"
                           placeholder={t.contact.form.email.placeholder}
                           className={`form-input text-base sm:text-sm p-4 sm:p-3 min-h-[56px] sm:min-h-[48px] pr-12 transition-all duration-200 ${
@@ -448,6 +450,7 @@ export default function Contact() {
                           value={form.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
+                          aria-describedby={errors.email ? "email-error" : undefined}
                           aria-invalid={!!errors.email}
                         />
                         <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -461,6 +464,7 @@ export default function Contact() {
                       </div>
                       {errors.email && (
                         <motion.p
+                          id="email-error"
                           role="alert"
                           className="text-xs mt-2 flex items-center gap-1"
                           style={{ color: "#ef4444" }}
@@ -477,8 +481,8 @@ export default function Contact() {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
-                          <CheckCircle2 size={12} />
-                          Email válido
+                          <CheckCircle2 size={12} aria-hidden="true" />
+                          {t.contact.form.validBadges.email}
                         </motion.p>
                       )}
                     </div>
@@ -493,6 +497,7 @@ export default function Contact() {
                         <textarea
                           id="mensaje"
                           name="mensaje"
+                          autoComplete="off"
                           className={`form-input form-textarea text-base sm:text-sm p-4 sm:p-3 min-h-[120px] sm:min-h-[100px] pr-12 transition-all duration-200 ${
                             getFieldStatus('mensaje') === 'success' ? 'border-green-500 bg-green-50/10' : 
                             getFieldStatus('mensaje') === 'error' ? 'border-red-500 bg-red-50/10' : 
@@ -503,6 +508,7 @@ export default function Contact() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           rows={4}
+                          aria-describedby={errors.mensaje ? "mensaje-error" : undefined}
                           aria-invalid={!!errors.mensaje}
                         />
                         <div className="absolute right-3 top-4">
@@ -517,6 +523,7 @@ export default function Contact() {
                       <div className="flex justify-between items-start mt-2">
                         {errors.mensaje ? (
                           <motion.p
+                            id="mensaje-error"
                             role="alert"
                             className="text-xs flex items-center gap-1"
                             style={{ color: "#ef4444" }}
@@ -534,8 +541,8 @@ export default function Contact() {
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                               >
-                                <CheckCircle2 size={12} />
-                                Mensaje válido
+                                <CheckCircle2 size={12} aria-hidden="true" />
+                                {t.contact.form.validBadges.mensaje}
                               </motion.p>
                             )}
                           </div>
@@ -558,18 +565,18 @@ export default function Contact() {
                     >
                       {status === "loading" ? (
                         <>
-                          <Loader2 size={16} className="inline animate-spin mr-2" />
-                          Enviando...
+                          <Loader2 size={16} className="inline animate-spin mr-2" aria-hidden="true" />
+                          {t.contact.form.submitting}
                         </>
                       ) : status === "error" ? (
                         <>
-                          Reintentar{" "}
-                          <ArrowRight size={16} className="inline ml-1" />
+                          {t.contact.form.retry}{" "}
+                          <ArrowRight size={16} className="inline ml-1" aria-hidden="true" />
                         </>
                       ) : (
                         <>
-                          Enviar y Agendar Sesión{" "}
-                          <ArrowRight size={16} className="inline ml-1" />
+                          {t.contact.form.submit}{" "}
+                          <ArrowRight size={16} className="inline ml-1" aria-hidden="true" />
                         </>
                       )}
                     </button>
@@ -588,7 +595,7 @@ export default function Contact() {
                       className="text-xs text-center"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {language === 'es' ? 'Respondo en menos de 24h. Tus datos están seguros.' : 'I respond within 24h. Your data is secure.'}
+                      {t.contact.form.privacyNote}
                     </p>
                   </motion.form>
                 )}

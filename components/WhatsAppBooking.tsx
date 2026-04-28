@@ -2,41 +2,42 @@
 
 import { MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const PHONE = "5493425153999";
 
 export default function WhatsAppBooking() {
+  const { t } = useLanguage();
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const phoneNumber = "5493425153999";
-  
-  const message = encodeURIComponent(
-    "Hola! Quiero agendar una sesión gratuita de consultoría. ¿Qué fechas y horarios tienes disponibles?"
-  );
-
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-
   if (!isClient) {
     return null;
   }
+
+  const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(t.whatsapp.bookingMessage)}`;
 
   return (
     <a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-6 py-4 rounded-full shadow-lg transition-all hover:scale-105"
+      aria-label={t.whatsapp.fabLabel}
+      className="fixed bottom-6 right-6 z-40 flex items-center gap-3 px-6 py-4 rounded-full shadow-lg transition-all hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       style={{
         backgroundColor: "#25D366",
         color: "white",
         fontWeight: "600",
-        fontSize: "16px"
+        fontSize: "16px",
+        minWidth: 56,
+        minHeight: 56,
       }}
     >
-      <MessageCircle size={24} />
-      <span className="hidden sm:inline">Agendar por WhatsApp</span>
+      <MessageCircle size={24} aria-hidden="true" />
+      <span className="hidden sm:inline">{t.whatsapp.fabLabel}</span>
     </a>
   );
 }

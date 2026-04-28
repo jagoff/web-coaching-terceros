@@ -22,10 +22,9 @@ Disallow: /admin/
 Disallow: /_next/
 Disallow: /static/
 
-# Bloquear archivos de sistema
+# Bloquear sólo manifests JSON, NO bloquear .js/.css
+# (Google necesita renderizar JS y CSS para evaluar mobile-friendly y contenido)
 Disallow: /*.json$
-Disallow: /*.js$
-Disallow: /*.css$
 
 # Permitir imágenes importantes para SEO
 Allow: /insta-*.png

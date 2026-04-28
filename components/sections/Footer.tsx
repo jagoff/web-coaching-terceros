@@ -1,8 +1,6 @@
 "use client";
 
 import { Linkedin, Instagram } from "lucide-react";
-import { scrollToElement, scrollToTop } from "@/lib/scroll";
-import { FooterSuspense } from "@/components/ui/SuspenseWrapper";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => {
@@ -40,8 +38,7 @@ export default function Footer() {
   ];
 
   return (
-    <FooterSuspense>
-      <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
+    <footer className="footer-bg" style={{ paddingTop: "clamp(3.5rem, 6vw, 5rem)" }} role="contentinfo">
       <div className="container">
         <div className="pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
           {/* Brand */}
@@ -72,11 +69,15 @@ export default function Footer() {
                 href="https://linkedin.com/in/fernandorferrari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
+                aria-label={language === 'es' ? 'Fernando Ferrari en LinkedIn' : 'Fernando Ferrari on LinkedIn'}
+                className="rounded-full flex items-center justify-center transition-all focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
+                  width: 44,
+                  height: 44,
                   background: "rgba(124,107,196,0.1)",
                   color: "var(--gold-primary)",
-                  border: "1px solid var(--gold-border)"
+                  border: "1px solid var(--gold-border)",
+                  outlineColor: "var(--gold-primary)",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "rgba(124,107,196,0.2)";
@@ -87,17 +88,21 @@ export default function Footer() {
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               >
-                <Linkedin size={18} />
+                <Linkedin size={18} aria-hidden="true" />
               </a>
               <a
                 href="https://instagram.com/jago_ff"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all"
+                aria-label={language === 'es' ? '@jago_ff en Instagram' : '@jago_ff on Instagram'}
+                className="rounded-full flex items-center justify-center transition-all focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
+                  width: 44,
+                  height: 44,
                   background: "rgba(124,107,196,0.1)",
                   color: "var(--gold-primary)",
-                  border: "1px solid var(--gold-border)"
+                  border: "1px solid var(--gold-border)",
+                  outlineColor: "var(--gold-primary)",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "rgba(124,107,196,0.2)";
@@ -108,7 +113,7 @@ export default function Footer() {
                   e.currentTarget.style.transform = "scale(1)";
                 }}
               >
-                <Instagram size={18} />
+                <Instagram size={18} aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -174,6 +179,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-    </FooterSuspense>
   );
 }

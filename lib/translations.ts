@@ -175,11 +175,69 @@ export interface Translations {
         placeholder: string;
       };
       submit: string;
+      submitting: string;
+      retry: string;
+      validation: {
+        nombreRequired: string;
+        nombreShort: string;
+        nombreLong: string;
+        nombreInvalid: string;
+        emailRequired: string;
+        emailInvalid: string;
+        emailLong: string;
+        mensajeRequired: string;
+        mensajeShort: string;
+        mensajeLong: string;
+      };
+      validBadges: {
+        nombre: string;
+        email: string;
+        mensaje: string;
+      };
+      genericError: string;
+      privacyNote: string;
+      cupos: string;
+      promises: {
+        item1: string;
+        item2: string;
+        item3: string;
+      };
     };
     success: {
       title: string;
       message: string;
+      cta: string;
     };
+  };
+
+  // Floating booking widgets
+  whatsapp: {
+    label: string;
+    tooltip: string;
+    fabLabel: string;
+    initialMessage: string;
+    bookingMessage: string;
+  };
+
+  // Social proof toast
+  socialProof: {
+    leader: string;
+    booked: string;
+    relative: {
+      days2: string;
+      days3: string;
+      days4: string;
+      days5: string;
+      days6: string;
+      week1: string;
+    };
+  };
+
+  // Common UI
+  common: {
+    loading: string;
+    loadingCalendar: string;
+    skipToContent: string;
   };
   
   // FAQ
@@ -410,12 +468,67 @@ export const translations: Record<Language, Translations> = {
           label: 'Mensaje',
           placeholder: 'Cuéntame más sobre tu situación...',
         },
-        submit: 'Enviar mensaje',
+        submit: 'Enviar y Agendar Sesión',
+        submitting: 'Enviando...',
+        retry: 'Reintentar',
+        validation: {
+          nombreRequired: 'El nombre es obligatorio',
+          nombreShort: 'El nombre debe tener al menos 2 caracteres',
+          nombreLong: 'El nombre no puede exceder 50 caracteres',
+          nombreInvalid: 'Solo letras y espacios permitidos',
+          emailRequired: 'El email es obligatorio',
+          emailInvalid: 'Introduce un email válido',
+          emailLong: 'Email demasiado largo',
+          mensajeRequired: 'El mensaje es obligatorio',
+          mensajeShort: 'Cuéntanos más (mínimo 10 caracteres)',
+          mensajeLong: 'El mensaje no puede exceder 500 caracteres',
+        },
+        validBadges: {
+          nombre: 'Nombre válido',
+          email: 'Email válido',
+          mensaje: 'Mensaje válido',
+        },
+        genericError: 'Error al enviar el mensaje. Por favor intenta más tarde.',
+        privacyNote: 'Respondo en menos de 24h. Tus datos están seguros.',
+        cupos: '3 cupos disponibles',
+        promises: {
+          item1: '30 minutos que sirven',
+          item2: 'Conversación real y auténtica',
+          item3: 'Claridad garantizada',
+        },
       },
       success: {
         title: '¡Mensaje enviado!',
         message: 'Gracias por contactarme. Te responderé dentro de las 24 horas hábiles. Aprovecha para agendar el día y la hora.',
+        cta: 'Agendar sesión gratuita ahora',
       },
+    },
+
+    whatsapp: {
+      label: 'Contactar por WhatsApp',
+      tooltip: '¿Charlamos por WhatsApp?',
+      fabLabel: 'Agendar por WhatsApp',
+      initialMessage: 'Hola Fernando, me interesa saber más sobre tu servicio de coaching/consultoría. Vi tu web y quiero agendar la sesión gratuita.',
+      bookingMessage: 'Hola! Quiero agendar una sesión gratuita de consultoría. ¿Qué fechas y horarios tienes disponibles?',
+    },
+
+    socialProof: {
+      leader: 'Un líder de',
+      booked: 'agendó su sesión',
+      relative: {
+        days2: 'hace 2 días',
+        days3: 'hace 3 días',
+        days4: 'hace 4 días',
+        days5: 'hace 5 días',
+        days6: 'hace 6 días',
+        week1: 'hace 1 semana',
+      },
+    },
+
+    common: {
+      loading: 'Cargando...',
+      loadingCalendar: 'Cargando calendario...',
+      skipToContent: 'Saltar al contenido principal',
     },
     
     faq: {
@@ -657,12 +770,67 @@ export const translations: Record<Language, Translations> = {
           label: 'Message',
           placeholder: 'Tell me more about your situation...',
         },
-        submit: 'Send message',
+        submit: 'Send and book session',
+        submitting: 'Sending...',
+        retry: 'Retry',
+        validation: {
+          nombreRequired: 'Name is required',
+          nombreShort: 'Name must be at least 2 characters',
+          nombreLong: 'Name cannot exceed 50 characters',
+          nombreInvalid: 'Only letters and spaces are allowed',
+          emailRequired: 'Email is required',
+          emailInvalid: 'Please enter a valid email',
+          emailLong: 'Email too long',
+          mensajeRequired: 'Message is required',
+          mensajeShort: 'Tell us more (minimum 10 characters)',
+          mensajeLong: 'Message cannot exceed 500 characters',
+        },
+        validBadges: {
+          nombre: 'Valid name',
+          email: 'Valid email',
+          mensaje: 'Valid message',
+        },
+        genericError: 'Error sending message. Please try again later.',
+        privacyNote: 'I respond within 24h. Your data is secure.',
+        cupos: '3 spots available',
+        promises: {
+          item1: '30 minutes that matter',
+          item2: 'Real and authentic conversation',
+          item3: 'Clarity guaranteed',
+        },
       },
       success: {
         title: 'Message sent!',
         message: 'Thank you for contacting me. I will respond within 24 business hours. Take advantage to schedule your day and time.',
+        cta: 'Book free session now',
       },
+    },
+
+    whatsapp: {
+      label: 'Contact via WhatsApp',
+      tooltip: 'Chat on WhatsApp?',
+      fabLabel: 'Book via WhatsApp',
+      initialMessage: "Hi Fernando, I'm interested in learning more about your coaching/consulting service. I saw your website and want to book the free session.",
+      bookingMessage: "Hi! I want to book a free consulting session. What dates and times do you have available?",
+    },
+
+    socialProof: {
+      leader: 'A leader from',
+      booked: 'booked their session',
+      relative: {
+        days2: '2 days ago',
+        days3: '3 days ago',
+        days4: '4 days ago',
+        days5: '5 days ago',
+        days6: '6 days ago',
+        week1: '1 week ago',
+      },
+    },
+
+    common: {
+      loading: 'Loading...',
+      loadingCalendar: 'Loading calendar...',
+      skipToContent: 'Skip to main content',
     },
     
     faq: {

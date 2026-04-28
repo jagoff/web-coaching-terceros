@@ -101,7 +101,7 @@ export class MadurezCalculator {
       ]
     };
 
-    let recommendations = baseRecommendations[level];
+    const recommendations = baseRecommendations[level];
 
     // Add specific recommendations based on weaknesses
     weaknesses.forEach(weakness => {

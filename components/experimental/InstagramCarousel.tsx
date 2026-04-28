@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
 import Image from "next/image";
 
@@ -34,43 +34,33 @@ const carouselVariants = {
   })
 };
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.min(Math.max(offset * velocity, 0), swipeConfidenceThreshold);
-};
-
 export default function InstagramCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
   const [isDragging, setIsDragging] = useState(false);
   const [instagramImages, setInstagramImages] = useState<number[]>([]);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Shuffle images on component mount
   useEffect(() => {
     const shuffled = shuffleArray(baseInstagramImages);
     setInstagramImages(shuffled);
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      setReduceMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
   }, []);
 
-  const imageIndex = Math.abs(page) % instagramImages.length;
+  const imageIndex = instagramImages.length > 0 ? Math.abs(page) % instagramImages.length : 0;
   const currentImage = instagramImages[imageIndex];
 
-  const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
-  };
+  const paginate = useCallback((newDirection: number) => {
+    setPage((prev) => [prev[0] + newDirection, newDirection]);
+  }, []);
 
-  const handleSwipeEnd = (e: any, info: any) => {
+  const handleSwipeEnd = (_: unknown, info: PanInfo) => {
     const { offset } = info;
-    
-    // Umbral más simple y directo
-    if (offset.x < -50) {
-      paginate(1); // Swipe izquierda → siguiente
-    } else if (offset.x > 50) {
-      paginate(-1); // Swipe derecha → anterior
-    }
-  };
-
-  const handleImageClick = () => {
-    // No hacer nada - las imágenes ya no redirigen a Instagram
+    if (offset.x < -50) paginate(1);
+    else if (offset.x > 50) paginate(-1);
   };
 
   // Keyboard navigation
@@ -81,15 +71,18 @@ export default function InstagramCarousel() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [page]);
+  }, [paginate]);
 
-  // Auto-advance (optional)
+  // Auto-advance — solo si el usuario no pidió reduced motion
   useEffect(() => {
-    const timer = setInterval(() => {
-      paginate(1);
-    }, 5000);
+    if (reduceMotion) return;
+    const timer = setInterval(() => paginate(1), 5000);
     return () => clearInterval(timer);
-  }, [page]);
+  }, [paginate, reduceMotion]);
+
+  if (!currentImage) {
+    return <div className="relative w-full" style={{ aspectRatio: "1/1", maxWidth: "100%" }} />;
+  }
 
   return (
     <div className="relative w-full">
@@ -124,6 +117,7 @@ export default function InstagramCarousel() {
                 src={`/insta-${currentImage}.png`}
                 alt={`Post de Instagram @ferf.coach - ${currentImage}`}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover select-none"
                 draggable={false}
                 style={{ 
@@ -135,36 +129,46 @@ export default function InstagramCarousel() {
           </AnimatePresence>
         </div>
 
-        {/* Navigation dots */}
-        <div className="flex justify-center mt-4 gap-2">
+        {/* Navigation dots — clickable area 44x44 px */}
+        <div className="flex justify-center mt-4 gap-1" role="tablist" aria-label="Posts de Instagram">
           {instagramImages.map((_, index) => (
             <button
               key={index}
               onClick={() => setPage([index - imageIndex, index > imageIndex ? 1 : -1])}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === imageIndex
-                  ? "bg-[var(--gold-primary)] w-6"
-                  : "bg-gray-600 hover:bg-gray-500"
-              }`}
+              className="relative inline-flex items-center justify-center"
+              style={{ width: 44, height: 44 }}
+              role="tab"
+              aria-selected={index === imageIndex}
               aria-label={`Ir a imagen ${index + 1}`}
-            />
+            >
+              <span
+                aria-hidden="true"
+                className={`block rounded-full transition-all duration-300 ${
+                  index === imageIndex
+                    ? "h-2 w-6 bg-[var(--gold-primary)]"
+                    : "w-2 h-2 bg-gray-600"
+                }`}
+              />
+            </button>
           ))}
         </div>
 
         {/* Navigation arrows */}
         <button
           onClick={() => paginate(-1)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200"
+          className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-200"
+          style={{ width: 44, height: 44 }}
           aria-label="Imagen anterior"
         >
-          <ChevronLeft size={16} />
+          <ChevronLeft size={20} aria-hidden="true" />
         </button>
         <button
           onClick={() => paginate(1)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 text-white flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-200"
+          style={{ width: 44, height: 44 }}
           aria-label="Siguiente imagen"
         >
-          <ChevronRight size={16} />
+          <ChevronRight size={20} aria-hidden="true" />
         </button>
 
         {/* Instagram info - con links */}
@@ -195,7 +199,7 @@ export default function InstagramCarousel() {
       {/* Desktop Grid - Visible solo en desktop y tablet */}
       <div className="hidden sm:block">
         <div className="grid grid-cols-3 gap-2">
-          {instagramImages.map((postNum, i) => (
+          {instagramImages.map((postNum) => (
             <div
               key={postNum}
               className="relative rounded-lg overflow-hidden group"

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { ArrowRight, TrendingUp, Users, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, CheckCircle2 } from "lucide-react";
 import { scrollToElement } from "@/lib/scroll";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -131,7 +131,7 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
-  const { t, language } = useLanguage();
+  useLanguage(); // mantener contexto disponible para futuras traducciones de los datos
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [showAll, setShowAll] = useState(false);

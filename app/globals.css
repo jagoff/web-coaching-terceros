@@ -65,8 +65,8 @@
   /* --- Tipografía --- */
   --font-heading:    var(--font-playfair), Georgia, serif;
   --font-body:       var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-modern:     var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
-  --font-roboto:     var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-modern:     var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-roboto:     var(--font-inter), system-ui, -apple-system, sans-serif;
 
   /* --- Transiciones --- */
   --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
@@ -191,9 +191,10 @@ p {
   padding-inline: var(--container-px);
 }
 
-/* Padding de sección */
+/* Padding de sección — definición temprana, se sobreescribe en bloque más completo más abajo */
 .section {
   padding-block: var(--section-padding-y);
+  position: relative;
 }
 
 /* Texto con gradiente dorado */
@@ -1117,10 +1118,18 @@ html.lenis, html.lenis body {
 .footer-link {
   color: var(--text-muted);
   transition: color var(--transition-base);
+  display: inline-block;
+  padding: 0.5rem 0; /* Tap target ~44px en mobile manteniendo el rendering inline */
 }
 
 .footer-link:hover {
   color: var(--text-primary);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Contact info links in footer */

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { scrollToElement, scrollToTop } from "@/lib/scroll";
@@ -11,20 +11,7 @@ export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [currentWord, setCurrentWord] = useState(0);
-
-  // Rotating words for branding
-  const rotatingWordsES = ['ELEVA', 'ELEVATE', 'ELEVARSE', 'ELEVARNOS', 'ELEVAREMOS'];
-  const rotatingWordsEN = ['ELEVA', 'ELEVATE', 'ELEVATE', 'ELEVATE US', 'WE WILL ELEVATE'];
-  const rotatingWords = language === 'es' ? rotatingWordsES : rotatingWordsEN;
-
-  // Rotate words every 2 seconds
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
-  //   }, 2000);
-  //   return () => clearInterval(interval);
-  // }, [rotatingWords.length]);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
     { label: t.nav.sobreMi, href: "#sobre-mi" },
@@ -34,21 +21,38 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 40);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent body scroll + ESC handler + restore focus when menu closes
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setMobileOpen(false);
+      };
+      window.addEventListener("keydown", onKey);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", onKey);
+      };
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = "";
+    // Devolver el foco al hamburger al cerrar
+    hamburgerRef.current?.focus();
   }, [mobileOpen]);
 
   const handleLinkClick = (href: string) => {
@@ -172,13 +176,19 @@ export default function Navbar() {
               </button>
               
               <button
-                className="flex items-center justify-center rounded-md transition-colors w-11 h-11 text-text-secondary bg-transparent border-0"
+                ref={hamburgerRef}
+                className="flex items-center justify-center rounded-md transition-colors text-text-secondary bg-transparent border-0 focus-visible:outline-2 focus-visible:outline-offset-2"
+                style={{ width: 48, height: 48, outlineColor: "var(--gold-primary)" }}
                 onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+                aria-label={
+                  mobileOpen
+                    ? language === 'es' ? "Cerrar menú" : "Close menu"
+                    : language === 'es' ? "Abrir menú" : "Open menu"
+                }
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
               >
-                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
@@ -224,11 +234,12 @@ export default function Navbar() {
                 </span>
               </div>
               <button
-                className="flex items-center justify-center rounded-md w-11 h-11 text-text-secondary"
+                className="flex items-center justify-center rounded-md text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2"
+                style={{ width: 48, height: 48, outlineColor: "var(--gold-primary)" }}
                 onClick={() => setMobileOpen(false)}
-                aria-label="Cerrar menú"
+                aria-label={language === 'es' ? "Cerrar menú" : "Close menu"}
               >
-                <X size={22} />
+                <X size={24} />
               </button>
             </div>
 

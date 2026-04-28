@@ -1,7 +1,23 @@
 import type { ContactFormData } from "./validations";
 
+// Escapa caracteres con significado especial en HTML para prevenir XSS
+// cuando los datos del usuario se interpolan en plantillas de email.
+function escapeHtml(input: string): string {
+  return input
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // Template HTML del email de confirmación enviado al cliente
 function buildConfirmationEmailHtml(data: ContactFormData): string {
+  const safe = {
+    nombre: escapeHtml(data.nombre),
+    email: escapeHtml(data.email),
+    mensaje: escapeHtml(data.mensaje),
+  };
 
   return `
 <!DOCTYPE html>
@@ -124,7 +140,7 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
       <p>Te responderemos en menos de 24 horas</p>
     </div>
     <div class="body">
-      <p class="greeting">Hola ${data.nombre},</p>
+      <p class="greeting">Hola ${safe.nombre},</p>
       <p class="text">
         Gracias por ponerte en contacto. Hemos recibido tu mensaje correctamente y nos
         pondremos en comunicación contigo a la brevedad posible.
@@ -134,15 +150,15 @@ function buildConfirmationEmailHtml(data: ContactFormData): string {
         <h3>Resumen de tu solicitud</h3>
         <div class="summary-row">
           <span class="summary-label">Nombre</span>
-          <span class="summary-value">${data.nombre}</span>
+          <span class="summary-value">${safe.nombre}</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Email</span>
-          <span class="summary-value">${data.email}</span>
+          <span class="summary-value">${safe.email}</span>
         </div>
         <div class="summary-row">
           <span class="summary-label">Mensaje</span>
-          <span class="summary-value">${data.mensaje}</span>
+          <span class="summary-value">${safe.mensaje}</span>
         </div>
       </div>
 
@@ -170,6 +186,12 @@ function buildNotificationEmailHtml(data: ContactFormData): string {
     dateStyle: "full",
     timeStyle: "short",
   });
+
+  const safe = {
+    nombre: escapeHtml(data.nombre),
+    email: escapeHtml(data.email),
+    mensaje: escapeHtml(data.mensaje),
+  };
 
   return `
 <!DOCTYPE html>
@@ -200,15 +222,15 @@ function buildNotificationEmailHtml(data: ContactFormData): string {
     <div class="body">
       <div class="field">
         <div class="label">Nombre</div>
-        <div class="value">${data.nombre}</div>
+        <div class="value">${safe.nombre}</div>
       </div>
       <div class="field">
         <div class="label">Email</div>
-        <div class="value">${data.email}</div>
+        <div class="value">${safe.email}</div>
       </div>
       <div class="field">
         <div class="label">Mensaje</div>
-        <div class="value mensaje-value">${data.mensaje}</div>
+        <div class="value mensaje-value">${safe.mensaje}</div>
       </div>
     </div>
   </div>
@@ -263,7 +285,6 @@ export async function sendContactEmail(
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "tu sitio web";
     const fromAddress = `ELEVA Coaching <onboarding@resend.dev>`;
 
     // Enviar confirmación al cliente y notificación al coach en paralelo

@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, ChevronLeft, Check, X, BarChart3, Users, Target, Zap, Shield, TrendingUp } from "lucide-react";
-import { headerStagger, blurUp } from "@/lib/animations";
+import { ChevronRight, ChevronLeft, Check, Users, Target, Zap, Shield, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function MadurezEmpresarial() {
@@ -270,6 +269,9 @@ export default function MadurezEmpresarial() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto"
+            role="region"
+            aria-live="polite"
+            aria-label={language === 'es' ? 'Resultados del test' : 'Test results'}
           >
             <div className="text-center mb-12">
               <h1 className="heading-xl mb-6">
@@ -309,7 +311,7 @@ export default function MadurezEmpresarial() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {questions.map((question, index) => {
+                {questions.map((question) => {
                   const answer = answers[question.id];
                   const option = question.options.find(o => o.value === answer);
                   return (
@@ -385,12 +387,19 @@ export default function MadurezEmpresarial() {
           <div className="glass-card p-8 mb-8">
             {/* Progress Bar */}
             <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center mb-4" aria-live="polite">
                 <span className="text-sm text-text-muted">{language === 'es' ? 'Pregunta' : 'Question'} {currentStep + 1} {language === 'es' ? 'de' : 'of'} {questions.length}</span>
                 <span className="text-sm text-text-muted">{Math.round(((currentStep + 1) / questions.length) * 100)}%</span>
               </div>
-              <div className="w-full bg-gray-700 rounded-full h-2">
-                <div 
+              <div
+                className="w-full bg-gray-700 rounded-full h-2"
+                role="progressbar"
+                aria-valuenow={currentStep + 1}
+                aria-valuemin={1}
+                aria-valuemax={questions.length}
+                aria-label={language === 'es' ? 'Progreso del test' : 'Test progress'}
+              >
+                <div
                   className="bg-gradient-to-r from-purple-500 to-orange-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
                 ></div>
@@ -399,33 +408,49 @@ export default function MadurezEmpresarial() {
 
             {/* Question */}
             <div className="text-center mb-8">
-              <div className="text-4xl mb-4 text-gradient">
+              <div className="text-4xl mb-4 text-gradient" aria-hidden="true">
                 {currentQuestion.icon}
               </div>
-              <h2 className="text-2xl font-bold mb-2">{currentQuestion.category}</h2>
-              <p className="text-xl text-text-secondary mb-8">{currentQuestion.question}</p>
+              <h2 id={`q-${currentQuestion.id}-cat`} className="text-2xl font-bold mb-2">{currentQuestion.category}</h2>
+              <p id={`q-${currentQuestion.id}-text`} className="text-xl text-text-secondary mb-8">{currentQuestion.question}</p>
             </div>
 
-            {/* Options */}
-            <div className="space-y-4 mb-8">
-              {currentQuestion.options.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => handleAnswer(currentQuestion.id, option.value)}
-                  className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
-                    answers[currentQuestion.id] === option.value
-                      ? 'border-purple-500 bg-purple-500/10'
-                      : 'border-gray-600 hover:border-gray-500'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span>{option.label}</span>
-                    {answers[currentQuestion.id] === option.value && (
-                      <Check className="text-purple-400" size={20} />
-                    )}
-                  </div>
-                </button>
-              ))}
+            {/* Options — radio group ARIA, soporta Space/Enter */}
+            <div
+              className="space-y-4 mb-8"
+              role="radiogroup"
+              aria-labelledby={`q-${currentQuestion.id}-text`}
+            >
+              {currentQuestion.options.map((option) => {
+                const selected = answers[currentQuestion.id] === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => handleAnswer(currentQuestion.id, option.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === ' ' || e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAnswer(currentQuestion.id, option.value);
+                      }
+                    }}
+                    className={`w-full text-left p-4 rounded-lg border-2 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                      selected
+                        ? 'border-purple-500 bg-purple-500/10'
+                        : 'border-gray-600 hover:border-gray-500'
+                    }`}
+                    style={{ minHeight: 56, outlineColor: 'rgb(168 85 247)' }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span>{option.label}</span>
+                      {selected && (
+                        <Check className="text-purple-400" size={20} aria-hidden="true" />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Navigation */}
@@ -435,7 +460,7 @@ export default function MadurezEmpresarial() {
                 disabled={currentStep === 0}
                 className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <ChevronLeft size={20} className="inline mr-2" />
+                <ChevronLeft size={20} className="inline mr-2" aria-hidden="true" />
                 {language === 'es' ? 'Anterior' : 'Previous'}
               </button>
               <button
@@ -444,7 +469,7 @@ export default function MadurezEmpresarial() {
                 className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {currentStep === questions.length - 1 ? (language === 'es' ? 'Ver Resultados' : 'View Results') : (language === 'es' ? 'Siguiente' : 'Next')}
-                <ChevronRight size={20} className="inline ml-2" />
+                <ChevronRight size={20} className="inline ml-2" aria-hidden="true" />
               </button>
             </div>
           </div>

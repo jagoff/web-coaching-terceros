@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { headerStagger, blurUp, dividerGrow } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -75,9 +75,18 @@ const testimonialsEN = [
 export default function Testimonials() {
   const { language, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   const testimonials = language === 'es' ? testimonialsES : testimonialsEN;
-  const currentTestimonial = testimonials[currentIndex];
+
+  // Reset index si el array cambia y el índice queda fuera de rango
+  useEffect(() => {
+    if (currentIndex >= testimonials.length) {
+      setCurrentIndex(0);
+    }
+  }, [testimonials.length, currentIndex]);
+
+  const safeIndex = currentIndex % testimonials.length;
+  const currentTestimonial = testimonials[safeIndex];
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
@@ -118,7 +127,7 @@ export default function Testimonials() {
           <div className="relative">
             {/* Testimonial Card */}
             <motion.div
-              key={currentIndex}
+              key={`${language}-${safeIndex}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
@@ -131,7 +140,7 @@ export default function Testimonials() {
                   className="text-lg md:text-xl leading-relaxed mb-6"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  "{currentTestimonial.quote}"
+                  &ldquo;{currentTestimonial.quote}&rdquo;
                 </p>
               </blockquote>
 
@@ -185,33 +194,41 @@ export default function Testimonials() {
               <button
                 onClick={goToPrevious}
                 className="p-3 rounded-full glass-border transition-all hover:scale-110"
-                style={{ color: "var(--gold-primary)" }}
-                aria-label="Previous testimonial"
+                style={{ color: "var(--gold-primary)", minWidth: 44, minHeight: 44 }}
+                aria-label={language === 'es' ? 'Testimonio anterior' : 'Previous testimonial'}
               >
                 <ChevronLeft size={24} />
               </button>
 
-              {/* Dots Indicator */}
-              <div className="flex gap-2">
+              {/* Dots Indicator — clickable area 44x44 px (visible 8x8) */}
+              <div className="flex gap-1 sm:gap-2" role="tablist" aria-label={language === 'es' ? 'Seleccionar testimonio' : 'Select testimonial'}>
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentIndex
-                        ? "bg-gold-primary"
-                        : "bg-text-muted opacity-50"
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
+                    className="relative inline-flex items-center justify-center"
+                    style={{ width: 44, height: 44 }}
+                    role="tab"
+                    aria-selected={index === safeIndex}
+                    aria-label={language === 'es' ? `Ir al testimonio ${index + 1}` : `Go to testimonial ${index + 1}`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`block rounded-full transition-all ${
+                        index === safeIndex
+                          ? "w-3 h-3 bg-gold-primary"
+                          : "w-2 h-2 bg-text-muted opacity-50"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
 
               <button
                 onClick={goToNext}
                 className="p-3 rounded-full glass-border transition-all hover:scale-110"
-                style={{ color: "var(--gold-primary)" }}
-                aria-label="Next testimonial"
+                style={{ color: "var(--gold-primary)", minWidth: 44, minHeight: 44 }}
+                aria-label={language === 'es' ? 'Siguiente testimonio' : 'Next testimonial'}
               >
                 <ChevronRight size={24} />
               </button>
